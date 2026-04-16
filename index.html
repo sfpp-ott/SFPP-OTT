@@ -6,7 +6,7 @@
     <title>SFPP ELITE - MA LISTE COMPLÈTE</title>
     
     <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
-    <link href="https://unpkg.com/@videojs/themes@1.0.1/dist/city/index.css" rel="stylesheet">
+    <link href="https://unpkg.com/@videojs/themes@1.0.1/dist/fantasy/index.css" rel="stylesheet">
     <link href="https://unpkg.com/@silvermine/videojs-chromecast@1.5.0/dist/silvermine-videojs-chromecast.css" rel="stylesheet">
 
     <style>
@@ -42,8 +42,16 @@
         #searchBar { flex: 0 1 180px; background: #222; border: 1px solid #444; color: white; padding: 8px 12px; border-radius: 20px; outline: none; font-size: 13px; }
         .btn-logout { background: #333; color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; font-size: 12px; flex-shrink: 0; white-space: nowrap; border: 1px solid #444; }
 
-        #player-section { display: none; width: 100%; background: #000; padding-top: 60px; border-bottom: 3px solid var(--accent); }
-        .movie-info { padding: 20px 5%; background: #0a0a0a; min-height: 150px; }
+        /* --- STYLE DU LECTEUR ELITE --- */
+        #player-section { display: none; width: 100%; background: #000; padding-top: 60px; }
+        .video-js { font-family: 'Helvetica Neue', Arial, sans-serif; color: #fff; }
+        .vjs-theme-fantasy .vjs-control-bar { background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); height: 60px; align-items: center; }
+        .vjs-theme-fantasy .vjs-play-progress { background-color: var(--accent); }
+        .vjs-theme-fantasy .vjs-slider { background-color: rgba(255,255,255,0.2); }
+        .vjs-big-play-centered .vjs-big-play-button { background-color: rgba(229, 9, 20, 0.8); border: none; border-radius: 50%; width: 80px; height: 80px; line-height: 80px; margin-top: -40px; margin-left: -40px; }
+        .vjs-chromecast-button .vjs-icon-placeholder:before { color: white; }
+        
+        .movie-info { padding: 20px 5%; background: #0a0a0a; min-height: 150px; border-bottom: 3px solid var(--accent); }
         .movie-title { font-size: 26px; font-weight: bold; margin-bottom: 8px; color: #fff; }
         .movie-cast { display: none; color: var(--gold); font-weight: bold; font-size: 15px; margin: 10px 0; padding: 5px 0; border-top: 1px solid #222; border-bottom: 1px solid #222; }
         .movie-desc { font-size: 14px; color: #bbb; line-height: 1.5; margin-bottom: 20px; }
@@ -69,9 +77,6 @@
         .season-title { color: var(--accent); font-size: 18px; font-weight: bold; margin: 25px 0 10px; border-left: 3px solid var(--accent); padding-left: 10px; }
         .episode-item { background: #111; padding: 15px; border-radius: 6px; margin-bottom: 8px; cursor: pointer; display: flex; align-items: center; gap: 15px; border: 1px solid #222; }
         .episode-item:hover { background: #222; }
-
-        /* Correction esthétique bouton Cast */
-        .vjs-chromecast-button .vjs-icon-placeholder:before { color: #ff9900 !important; }
     </style>
 </head>
 <body>
@@ -110,7 +115,7 @@
 </div>
 
 <section id="player-section">
-    <video id="main-video" class="video-js vjs-theme-city vjs-16-9 vjs-big-play-centered" controls preload="auto" width="100%"></video>
+    <video id="main-video" class="video-js vjs-theme-fantasy vjs-16-9 vjs-big-play-centered" controls preload="auto" width="100%"></video>
     <div class="movie-info">
         <div id="display-title" class="movie-title"></div>
         <div id="display-cast" class="movie-cast"></div>
@@ -155,7 +160,6 @@ const defaultProfiles = [
     { id: 4, name: "Enfant 2", icon: "🟪", color: "#9b59b6" }
 ];
 
-// --- CHARGEMENT DES DONNÉES DEPUIS LE JSON ---
 async function loadPlaylist() {
     try {
         const response = await fetch('films.json');
@@ -369,26 +373,32 @@ function closeSeries() { document.getElementById('series-overlay').style.display
 function filter() { render(document.getElementById('searchBar').value); }
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Initialisation du nouveau lecteur Elite
+    // Initialisation du lecteur Elite avec Chromecast
     player = videojs('main-video', { 
         techOrder: ['chromecast', 'html5'], 
         plugins: { 
-            chromecast: { 
-                addButtonToControlBar: true 
-            } 
+            chromecast: { addButtonToControlBar: true } 
         },
-        controlBar: {
-            children: [
-                'playToggle',
-                'progressControl',
-                'volumePanel',
-                'chromecastButton', // On force sa position ici
-                'fullscreenToggle',
-            ],
+        userActions: {
+            doubleClick: false // On désactive le comportement par défaut pour notre script personnalisé
         }
     });
 
-    // Optionnel : Double clic pour plein écran
+    // SCRIPT DOUBLE CLIC PLEIN ÉCRAN (Fonctionne sur tout l'écran de la vidéo)
+    let lastTap = 0;
+    player.on('touchstart', function(e) {
+        let now = new Date().getTime();
+        let timesince = now - lastTap;
+        if ((timesince < 300) && (timesince > 0)) {
+            if (player.isFullscreen()) {
+                player.exitFullscreen();
+            } else {
+                player.requestFullscreen();
+            }
+        }
+        lastTap = now;
+    });
+
     player.on('dblclick', function() {
         if (player.isFullscreen()) {
             player.exitFullscreen();
