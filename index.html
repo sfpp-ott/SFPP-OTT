@@ -31,7 +31,6 @@
         .is-editing .edit-icon { display: block; }
         .btn-manage { margin-top: 40px; background: none; border: 1px solid #444; color: #888; padding: 10px 20px; cursor: pointer; font-size: 14px; letter-spacing: 1px; }
 
-        /* HEADER OPTIMISÉ POUR TOUT FAIRE TENIR */
         header { 
             position: fixed; 
             top: 0; 
@@ -40,9 +39,9 @@
             background: rgba(0,0,0,0.95); 
             display: flex; 
             align-items: center; 
-            padding: 0 1%; /* Réduit au minimum */
+            padding: 0 1%; 
             z-index: 2000; 
-            gap: 3px; /* Espacement très serré pour gagner de la place */
+            gap: 3px; 
             border-bottom: 1px solid #222; 
             justify-content: space-between; 
             box-sizing: border-box;
@@ -61,7 +60,7 @@
             border: none; 
             color: #bbb; 
             cursor: pointer; 
-            font-size: 12px; /* Police réduite */
+            font-size: 12px; 
             font-weight: 500; 
             padding: 5px 4px; 
             transition: color 0.3s; 
@@ -70,7 +69,7 @@
         .nav-btn.active { color: white; font-weight: bold; border-bottom: 2px solid var(--accent); }
 
         #searchBar { 
-            flex: 0 1 75px; /* Largeur de recherche plus courte */
+            flex: 0 1 75px; 
             background: #222; 
             border: 1px solid #444; 
             color: white; 
@@ -79,7 +78,6 @@
             outline: none; 
             font-size: 11px; 
         }
-        /* Bouton Profils plus petit pour tenir à droite */
         .btn-logout { 
             background: #333; 
             color: white; 
@@ -93,7 +91,6 @@
             margin-right: 2px;
         }
 
-        /* --- NOUVEAU DESIGN LECTEUR ELITE --- */
         #player-section { display: none; width: 100%; background: #000; padding-top: 60px; }
         .video-container { position: relative; width: 100%; overflow: hidden; background: #000; }
         
@@ -154,8 +151,8 @@
 <div id="login-screen">
     <div class="login-box">
         <div class="logo" style="margin-bottom:20px">SFPP ELITE</div>
-        <input type="text" id="user" placeholder="Utilisateur">
-        <input type="password" id="pass" placeholder="Mot de passe">
+        <input type="text" id="user" placeholder="Utilisateur" autocapitalize="none" autocorrect="off">
+        <input type="password" id="pass" placeholder="Mot de passe" autocapitalize="none" autocorrect="off">
         <button onclick="checkLogin()">CONNEXION</button>
         <button class="btn-request" onclick="requestAccess()">Nouveau ? Demander un accès</button>
     </div>
@@ -246,8 +243,17 @@ async function loadPlaylist() {
 function requestAccess() {
     const email = "sfpp.ott@gmail.com";
     const subject = "Demande d'accès SFPP ELITE";
-    const body = "Bonjour,\n\nJe souhaiterais obtenir un accès pour SFPP ELITE.\n\nMerci d'avance.";
-    window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    const body = "Bonjour, Je souhaiterais obtenir un accès pour SFPP ELITE.";
+    // Sécurité pour iOS : on tente d'ouvrir l'app mail, sinon on affiche l'email
+    try {
+        window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        setTimeout(() => {
+            if(!document.hasFocus()) return;
+            alert("Veuillez envoyer votre demande à : " + email);
+        }, 500);
+    } catch (e) {
+        alert("Veuillez envoyer votre demande à : " + email);
+    }
 }
 
 function initProfiles() {
