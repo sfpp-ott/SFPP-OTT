@@ -69,6 +69,9 @@
         .season-title { color: var(--accent); font-size: 18px; font-weight: bold; margin: 25px 0 10px; border-left: 3px solid var(--accent); padding-left: 10px; }
         .episode-item { background: #111; padding: 15px; border-radius: 6px; margin-bottom: 8px; cursor: pointer; display: flex; align-items: center; gap: 15px; border: 1px solid #222; }
         .episode-item:hover { background: #222; }
+
+        /* Correction esthétique bouton Cast */
+        .vjs-chromecast-button .vjs-icon-placeholder:before { color: #ff9900 !important; }
     </style>
 </head>
 <body>
@@ -152,12 +155,15 @@ const defaultProfiles = [
     { id: 4, name: "Enfant 2", icon: "🟪", color: "#9b59b6" }
 ];
 
+// --- CHARGEMENT DES DONNÉES DEPUIS LE JSON ---
 async function loadPlaylist() {
     try {
         const response = await fetch('films.json');
         playlistData = await response.json();
         render();
-    } catch (e) { console.error("Erreur chargement JSON:", e); }
+    } catch (e) {
+        console.error("Erreur chargement JSON:", e);
+    }
 }
 
 function requestAccess() {
@@ -363,12 +369,12 @@ function closeSeries() { document.getElementById('series-overlay').style.display
 function filter() { render(document.getElementById('searchBar').value); }
 
 document.addEventListener('DOMContentLoaded', () => {
-    // INITIALISATION DU LECTEUR CORRIGÉ
+    // Initialisation du nouveau lecteur Elite
     player = videojs('main-video', { 
         techOrder: ['chromecast', 'html5'], 
         plugins: { 
             chromecast: { 
-                addButtonToControlBar: true // Force l'apparition du bouton
+                addButtonToControlBar: true 
             } 
         },
         controlBar: {
@@ -376,16 +382,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 'playToggle',
                 'progressControl',
                 'volumePanel',
-                'chromecastButton', // On force sa place ici
+                'chromecastButton', // On force sa position ici
                 'fullscreenToggle',
             ],
         }
     });
 
-    // DOUBLE CLIC POUR PLEIN ÉCRAN
+    // Optionnel : Double clic pour plein écran
     player.on('dblclick', function() {
-        if (player.isFullscreen()) { player.exitFullscreen(); } 
-        else { player.requestFullscreen(); }
+        if (player.isFullscreen()) {
+            player.exitFullscreen();
+        } else {
+            player.requestFullscreen();
+        }
     });
 
     if (localStorage.getItem('sfpp_logged') === 'true') {
