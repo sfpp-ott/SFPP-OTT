@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>SFPP ELITE - MA LISTE COMPLÈTE</title>
+    <title>SFPP ELITE - STREAMING</title>
     
     <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
     <link href="https://unpkg.com/@videojs/themes@1.0.1/dist/city/index.css" rel="stylesheet">
@@ -11,69 +11,47 @@
 
     <style>
         :root { --accent: #e50914; --bg: #050505; }
-        body { background: var(--bg); color: white; font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; padding-bottom: 50px; }
+        body { background: var(--bg); color: white; font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; overflow-x: hidden; }
         
-        /* Header & Logo */
-        header { position: fixed; top: 0; width: 100%; height: 60px; background: rgba(0,0,0,0.9); display: flex; align-items: center; padding: 0 4%; z-index: 2000; justify-content: space-between; box-sizing: border-box; }
-        .logo { color: var(--accent); font-weight: 900; font-size: 24px; }
-        .nav-links { display: flex; gap: 15px; }
-        .nav-btn { background: none; border: none; color: #bbb; cursor: pointer; font-size: 14px; }
-        .nav-btn.active { color: white; font-weight: bold; border-bottom: 2px solid var(--accent); }
-
-        /* Player Section */
+        header { position: fixed; top: 0; width: 100%; height: 60px; background: rgba(0,0,0,0.9); display: flex; align-items: center; padding: 0 4%; z-index: 2000; justify-content: space-between; box-sizing: border-box; border-bottom: 1px solid #222; }
+        .logo { color: var(--accent); font-weight: 900; font-size: 24px; text-decoration: none; }
+        
         #player-section { display: none; width: 100%; background: #000; padding-top: 60px; }
-        .video-js { width: 100%; max-height: 80vh; }
+        .video-js { width: 100%; aspect-ratio: 16/9; }
         
-        /* Personnalisation du bouton Chromecast pour qu'il soit visible */
-        .vjs-chromecast-button .vjs-icon-placeholder:before { color: #ffcc00 !important; } 
+        /* Force la couleur du bouton Chromecast en orange quand actif */
+        .vjs-chromecast-button.vjs-control.vjs-button.vjs-chromecast-available { color: #ff9900 !important; }
 
-        .movie-info { padding: 25px 5%; background: #0a0a0a; }
-        .movie-title { font-size: 28px; font-weight: bold; margin-bottom: 10px; }
-        .movie-desc { color: #aaa; font-size: 15px; line-height: 1.5; }
+        .movie-info { padding: 25px 5%; background: #0a0a0a; border-bottom: 2px solid var(--accent); }
+        .movie-title { font-size: 28px; font-weight: bold; margin-bottom: 5px; }
+        .movie-desc { color: #888; font-size: 15px; line-height: 1.5; }
 
-        /* Grid */
-        #main-content { padding-top: 80px; }
-        .category-title { font-size: 18px; font-weight: bold; margin: 25px 4% 10px; text-transform: uppercase; }
-        .carousel { display: flex; overflow-x: auto; gap: 15px; padding: 0 4% 20px; scrollbar-width: none; }
-        .card { flex: 0 0 150px; cursor: pointer; transition: 0.3s; }
-        .card:hover { transform: scale(1.05); }
-        .card img { width: 100%; aspect-ratio: 2/3; object-fit: cover; border-radius: 4px; }
-        .card-name { margin-top: 8px; font-size: 12px; text-align: center; color: #888; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .category-title { font-size: 18px; font-weight: bold; margin: 30px 4% 15px; color: #fff; text-transform: uppercase; border-left: 4px solid var(--accent); padding-left: 10px; }
+        .carousel { display: flex; overflow-x: auto; gap: 15px; padding: 0 4% 30px; scrollbar-width: none; }
+        .card { flex: 0 0 160px; cursor: pointer; transition: 0.3s; }
+        .card:hover { transform: scale(1.08); }
+        .card img { width: 100%; aspect-ratio: 2/3; object-fit: cover; border-radius: 6px; }
+        .card-name { margin-top: 8px; font-size: 13px; text-align: center; color: #ccc; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-        /* Login & Profiles (simplifié pour le code) */
         #login-screen { position: fixed; inset: 0; background: #000; z-index: 5000; display: flex; align-items: center; justify-content: center; }
-        .login-box { background: #111; padding: 30px; border-radius: 8px; width: 280px; text-align: center; border: 1px solid #333; }
-        .login-box input { width: 100%; padding: 12px; margin: 10px 0; background: #222; border: 1px solid #444; color: white; border-radius: 4px; box-sizing: border-box; }
-        .login-box button { width: 100%; padding: 12px; background: var(--accent); color: white; border: none; font-weight: bold; border-radius: 4px; cursor: pointer; }
-        
-        #profile-screen { position: fixed; inset: 0; background: var(--bg); z-index: 4000; display: none; flex-direction: column; align-items: center; justify-content: center; }
-        .profile-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
-        .profile-avatar { width: 90px; height: 90px; background: #333; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 40px; cursor: pointer; }
+        .login-box { background: #111; padding: 40px; border-radius: 8px; width: 300px; text-align: center; border: 1px solid #333; }
+        .login-box input { width: 100%; padding: 12px; margin: 10px 0; background: #222; border: 1px solid #444; color: white; border-radius: 4px; }
+        .login-box button { width: 100%; padding: 12px; background: var(--accent); color: white; border: none; font-weight: bold; cursor: pointer; }
     </style>
 </head>
 <body>
 
 <div id="login-screen">
     <div class="login-box">
-        <div class="logo" style="margin-bottom:20px">SFPP ELITE</div>
-        <input type="text" id="user" placeholder="Utilisateur">
-        <input type="password" id="pass" placeholder="Mot de passe">
-        <button onclick="checkLogin()">CONNEXION</button>
+        <div class="logo" style="margin-bottom:30px">SFPP ELITE</div>
+        <input type="password" id="pass" placeholder="Code d'accès">
+        <button onclick="checkLogin()">ENTRER</button>
     </div>
-</div>
-
-<div id="profile-screen">
-    <h1>Qui regarde ?</h1>
-    <div class="profile-grid" id="profile-list"></div>
 </div>
 
 <header>
-    <div class="logo">SFPP ELITE</div>
-    <div class="nav-links">
-        <button class="nav-btn active" onclick="changeView('all')">Accueil</button>
-        <button class="nav-btn" onclick="changeView('movies')">Films</button>
-    </div>
-    <button onclick="logout()" style="background:none; border:1px solid #444; color:white; padding:5px 10px; cursor:pointer;">Sortir</button>
+    <div class="logo">SFPP | ELITE</div>
+    <input type="text" id="searchBar" onkeyup="filter()" placeholder="Rechercher..." style="background:#222; border:1px solid #444; color:white; padding:8px; border-radius:20px; width:150px;">
 </header>
 
 <section id="player-section">
@@ -82,10 +60,108 @@
     <div class="movie-info">
         <div id="display-title" class="movie-title"></div>
         <div id="display-desc" class="movie-desc"></div>
-        <button onclick="closeP()" style="margin-top:20px; padding:10px 20px; background:#333; color:white; border:none; border-radius:4px; cursor:pointer;">Fermer</button>
+        <button onclick="closeP()" style="margin-top:20px; padding:10px 20px; background:var(--accent); color:white; border:none; border-radius:4px; cursor:pointer; font-weight:bold;">FERMER LE LECTEUR</button>
     </div>
 </section>
 
-<div id="main-content">
+<div id="main-content" style="padding-top:80px;">
     <div id="categories-container"></div>
 </div>
+
+<script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
+<script src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1"></script>
+<script src="https://unpkg.com/@silvermine/videojs-chromecast@1.5.0/dist/silvermine-videojs-chromecast.min.js"></script>
+
+<script>
+let player;
+let playlistData = [];
+
+// Initialisation du lecteur au démarrage
+function initPlayer() {
+    player = videojs('main-video', {
+        techOrder: ['chromecast', 'html5'],
+        plugins: {
+            chromecast: {
+                addButtonToControlBar: true, 
+                inlineDescription: "Diffusion sur TV"
+            }
+        },
+        controlBar: {
+            children: [
+                'playToggle',
+                'progressControl',
+                'volumePanel',
+                'chromecastButton', // On force le bouton ici
+                'fullscreenToggle',
+            ],
+        }
+    });
+
+    // Double clic pour Plein Écran
+    player.on('dblclick', function() {
+        if (player.isFullscreen()) { player.exitFullscreen(); } 
+        else { player.requestFullscreen(); }
+    });
+}
+
+async function loadPlaylist() {
+    try {
+        const response = await fetch('films.json');
+        playlistData = await response.json();
+        render();
+    } catch (e) { console.error("Erreur chargement JSON", e); }
+}
+
+function playMovie(idx) {
+    const m = playlistData[idx];
+    document.getElementById('player-section').style.display = 'block';
+    document.getElementById('display-title').innerText = m.t;
+    document.getElementById('display-desc').innerText = m.desc || "";
+
+    // Met à jour la source et lance la lecture
+    player.src({ src: m.url, type: 'video/mp4' });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    player.play();
+}
+
+function render(search = "") {
+    const container = document.getElementById('categories-container');
+    container.innerHTML = "";
+    const s = search.toLowerCase();
+    const cats = [...new Set(playlistData.map(m => m.cat))];
+    
+    cats.forEach(c => {
+        const filtered = playlistData.filter(m => m.cat === c && m.t.toLowerCase().includes(s));
+        if (filtered.length === 0) return;
+        
+        let html = `<div class="category-title">${c}</div><div class="carousel">`;
+        filtered.forEach(m => {
+            const idx = playlistData.indexOf(m);
+            html += `<div class="card" onclick="playMovie(${idx})"><img src="${m.img}"><div class="card-name">${m.t}</div></div>`;
+        });
+        container.innerHTML += html + `</div>`;
+    });
+}
+
+function checkLogin() {
+    if(document.getElementById('pass').value === "2025") {
+        localStorage.setItem('sfpp_auth', 'true');
+        document.getElementById('login-screen').style.display = 'none';
+        initPlayer();
+        loadPlaylist();
+    } else { alert("Code erroné"); }
+}
+
+function closeP() { player.pause(); document.getElementById('player-section').style.display = 'none'; }
+function filter() { render(document.getElementById('searchBar').value); }
+
+// Vérification de session
+if(localStorage.getItem('sfpp_auth') === 'true') {
+    document.getElementById('login-screen').style.display = 'none';
+    initPlayer();
+    loadPlaylist();
+}
+</script>
+
+</body>
+</html>
