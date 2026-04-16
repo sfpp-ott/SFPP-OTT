@@ -229,30 +229,40 @@
     const app = initializeApp(firebaseConfig);
     const db = getDatabase(app);
 
-    let deviceId = localStorage.getItem('sfpp_device_id') || Math.random().toString(36).substring(7);
-    localStorage.setItem('sfpp_device_id', deviceId);
+    // Identifiant unique pour cet appareil
+    let deviceId = localStorage.getItem('sfpp_device_id');
+    if (!deviceId) {
+        deviceId = Math.random().toString(36).substring(7);
+        localStorage.setItem('sfpp_device_id', deviceId);
+    }
 
+    // Fonction de connexion avec sécurité doublon
     window.checkLogin = function() {
-        const u = document.getElementById('user').value.trim().toUpperCase();
-        const p = document.getElementById('pass').value;
-        const found = USERS.find(user => user.u === u && user.p === p);
+        const uInput = document.getElementById('user').value.trim().toUpperCase();
+        const pInput = document.getElementById('pass').value;
+        const found = USERS.find(user => user.u === uInput && user.p === pInput);
         
         if (found) {
-            const userRef = ref(db, 'sessions/' + u);
+            const userRef = ref(db, 'sessions/' + uInput);
 
+            // On écoute en temps réel si un autre appareil se connecte
             onValue(userRef, (snapshot) => {
                 const session = snapshot.val();
                 if (session && session.deviceId !== deviceId) {
-                    alert("⚠️ Ce compte est utilisé sur un autre appareil. Déconnexion.");
+                    alert("⚠️ Ce compte est utilisé ailleurs. Déconnexion...");
                     localStorage.removeItem('sfpp_logged');
                     location.reload();
                 }
             });
 
-            set(userRef, { deviceId: deviceId, lastActive: Date.now() });
+            // On déclare cet appareil comme l'appareil actif
+            set(userRef, { 
+                deviceId: deviceId, 
+                timestamp: Date.now() 
+            });
 
             localStorage.setItem('sfpp_logged', 'true');
-            localStorage.setItem('sfpp_active_user', u);
+            localStorage.setItem('sfpp_active_user', uInput);
             document.getElementById('login-screen').style.display = 'none';
             document.getElementById('profile-screen').style.display = 'flex';
             initProfiles();
@@ -263,7 +273,6 @@
     };
 </script>
 <script>
-// NOTE : La fonction checkLogin originale a été remplacée par la version Firebase ci-dessus.
 const USERS = [
     { u: "SFPP", p: "2025", exp: "2100-12-31" },
     { u: "SAVANNAH", p: "2007", exp: "2100-04-13" },
