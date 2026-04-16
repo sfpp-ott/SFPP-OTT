@@ -42,15 +42,35 @@
         #searchBar { flex: 0 1 180px; background: #222; border: 1px solid #444; color: white; padding: 8px 12px; border-radius: 20px; outline: none; font-size: 13px; }
         .btn-logout { background: #333; color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; font-size: 12px; flex-shrink: 0; white-space: nowrap; border: 1px solid #444; }
 
-        /* --- STYLE DU LECTEUR ELITE --- */
+        /* --- NOUVEAU DESIGN LECTEUR ELITE --- */
         #player-section { display: none; width: 100%; background: #000; padding-top: 60px; }
-        .video-js { font-family: 'Helvetica Neue', Arial, sans-serif; color: #fff; }
-        .vjs-theme-fantasy .vjs-control-bar { background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); height: 60px; align-items: center; }
-        .vjs-theme-fantasy .vjs-play-progress { background-color: var(--accent); }
-        .vjs-theme-fantasy .vjs-slider { background-color: rgba(255,255,255,0.2); }
-        .vjs-big-play-centered .vjs-big-play-button { background-color: rgba(229, 9, 20, 0.8); border: none; border-radius: 50%; width: 80px; height: 80px; line-height: 80px; margin-top: -40px; margin-left: -40px; }
-        .vjs-chromecast-button .vjs-icon-placeholder:before { color: white; }
+        .video-container { position: relative; width: 100%; overflow: hidden; background: #000; }
         
+        /* Overlay invisible pour le Double Clic / Tap */
+        #video-touch-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: calc(100% - 50px); /* Laisse de la place pour la barre de contrôle */
+            z-index: 10;
+            cursor: pointer;
+        }
+
+        .video-js { font-family: 'Helvetica Neue', Arial, sans-serif; }
+        .vjs-theme-fantasy .vjs-control-bar { background: linear-gradient(0deg, rgba(0,0,0,0.8) 0%, transparent 100%); height: 50px; }
+        .vjs-theme-fantasy .vjs-play-progress { background-color: var(--accent); }
+        .vjs-theme-fantasy .vjs-big-play-centered .vjs-big-play-button { 
+            background-color: rgba(229, 9, 20, 0.85); 
+            border: none; 
+            width: 80px; 
+            height: 80px; 
+            border-radius: 50%; 
+            line-height: 80px;
+            margin-top: -40px;
+            margin-left: -40px;
+        }
+
         .movie-info { padding: 20px 5%; background: #0a0a0a; min-height: 150px; border-bottom: 3px solid var(--accent); }
         .movie-title { font-size: 26px; font-weight: bold; margin-bottom: 8px; color: #fff; }
         .movie-cast { display: none; color: var(--gold); font-weight: bold; font-size: 15px; margin: 10px 0; padding: 5px 0; border-top: 1px solid #222; border-bottom: 1px solid #222; }
@@ -115,7 +135,10 @@
 </div>
 
 <section id="player-section">
-    <video id="main-video" class="video-js vjs-theme-fantasy vjs-16-9 vjs-big-play-centered" controls preload="auto" width="100%"></video>
+    <div class="video-container">
+        <div id="video-touch-overlay"></div>
+        <video id="main-video" class="video-js vjs-theme-fantasy vjs-16-9 vjs-big-play-centered" controls preload="auto" width="100%"></video>
+    </div>
     <div class="movie-info">
         <div id="display-title" class="movie-title"></div>
         <div id="display-cast" class="movie-cast"></div>
@@ -141,6 +164,7 @@
 <script src="https://unpkg.com/@silvermine/videojs-chromecast@1.5.0/dist/silvermine-videojs-chromecast.min.js"></script>
 
 <script>
+// --- VOS CONSTANTES ET FONCTIONS DE BASE ---
 const USERS = [
     { u: "SFPP", p: "2025", exp: "2100-12-31" },
     { u: "test", p: "test", exp: "2026-04-13" },
@@ -355,11 +379,7 @@ function checkLogin() {
     const p = document.getElementById('pass').value;
     const found = USERS.find(user => user.u === u && user.p === p);
     if (found) {
-        const today = new Date();
-        const expirationDate = new Date(found.exp);
-        if (today > expirationDate) { alert("Accès refusé : Expiré le " + found.exp); return; }
         localStorage.setItem('sfpp_logged', 'true');
-        localStorage.setItem('sfpp_user_auth', u);
         document.getElementById('login-screen').style.display = 'none';
         document.getElementById('profile-screen').style.display = 'flex';
         initProfiles();
@@ -372,39 +392,40 @@ function closeP() { player.pause(); document.getElementById('player-section').st
 function closeSeries() { document.getElementById('series-overlay').style.display = 'none'; document.body.style.overflow = 'auto'; }
 function filter() { render(document.getElementById('searchBar').value); }
 
+// --- INITIALISATION DU NOUVEAU LECTEUR ---
 document.addEventListener('DOMContentLoaded', () => {
-    // Initialisation du lecteur Elite avec Chromecast
     player = videojs('main-video', { 
         techOrder: ['chromecast', 'html5'], 
         plugins: { 
             chromecast: { addButtonToControlBar: true } 
-        },
-        userActions: {
-            doubleClick: false // On désactive le comportement par défaut pour notre script personnalisé
         }
     });
 
-    // SCRIPT DOUBLE CLIC PLEIN ÉCRAN (Fonctionne sur tout l'écran de la vidéo)
+    const touchOverlay = document.getElementById('video-touch-overlay');
     let lastTap = 0;
-    player.on('touchstart', function(e) {
+
+    // Gestion PC : Double Clic
+    touchOverlay.addEventListener('dblclick', () => {
+        if (player.isFullscreen()) { player.exitFullscreen(); } 
+        else { player.requestFullscreen(); }
+    });
+
+    // Gestion Mobile : Double Tap
+    touchOverlay.addEventListener('touchstart', (e) => {
         let now = new Date().getTime();
         let timesince = now - lastTap;
         if ((timesince < 300) && (timesince > 0)) {
-            if (player.isFullscreen()) {
-                player.exitFullscreen();
-            } else {
-                player.requestFullscreen();
-            }
+            if (player.isFullscreen()) { player.exitFullscreen(); } 
+            else { player.requestFullscreen(); }
+            e.preventDefault();
         }
         lastTap = now;
     });
 
-    player.on('dblclick', function() {
-        if (player.isFullscreen()) {
-            player.exitFullscreen();
-        } else {
-            player.requestFullscreen();
-        }
+    // Simple clic sur l'overlay pour afficher/masquer les contrôles natifs
+    touchOverlay.addEventListener('click', () => {
+        if (player.userActive()) { player.userActive(false); } 
+        else { player.userActive(true); }
     });
 
     if (localStorage.getItem('sfpp_logged') === 'true') {
