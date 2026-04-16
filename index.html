@@ -171,6 +171,7 @@
         <button class="nav-btn active" id="btn-all" onclick="changeView('all')">Accueil</button>
         <button class="nav-btn" id="btn-movies" onclick="changeView('movies')">Films</button>
         <button class="nav-btn" id="btn-series" onclick="changeView('series')">Séries</button>
+        <button class="nav-btn" onclick="location.reload()" title="Rafraîchir">🔄</button>
     </div>
     <input type="text" id="searchBar" onkeyup="filter()" placeholder="Rechercher...">
     <button class="btn-logout" onclick="switchProfile()">PROFILS</button>
@@ -244,7 +245,6 @@ function requestAccess() {
     const email = "sfpp.ott@gmail.com";
     const subject = "Demande d'accès SFPP ELITE";
     const body = "Bonjour, Je souhaiterais obtenir un accès pour SFPP ELITE.";
-    // Sécurité pour iOS : on tente d'ouvrir l'app mail, sinon on affiche l'email
     try {
         window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
         setTimeout(() => {
