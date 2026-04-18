@@ -222,21 +222,30 @@
       projectId: "sfpp-elite",
       storageBucket: "sfpp-elite.firebasestorage.app",
       messagingSenderId: "101769747676",
-      appId: "1:101769747676:web:ecc3e5bd212f50b5aae819",
-      measurementId: "G-3FYZ8P6W1L"
+      appId: "1:101769747676:web:ecc3e5bd212f50b5aae819"
     };
 
     const app = initializeApp(firebaseConfig);
     const db = getDatabase(app);
 
-    // Identifiant unique pour cet appareil
-    let deviceId = localStorage.getItem('sfpp_device_id');
-    if (!deviceId) {
-        deviceId = Math.random().toString(36).substring(7);
-        localStorage.setItem('sfpp_device_id', deviceId);
-    }
+    // Identifiant unique pour CET appareil
+    let deviceId = localStorage.getItem('sfpp_device_id') || Math.random().toString(36).substring(7);
+    localStorage.setItem('sfpp_device_id', deviceId);
 
-    // Fonction de connexion avec sécurité doublon
+    // Fonction globale pour surveiller la session (utilisée au démarrage et à la connexion)
+    window.startSessionSync = function(username) {
+        const userRef = ref(db, 'sessions/' + username);
+        onValue(userRef, (snapshot) => {
+            const session = snapshot.val();
+            // Si une session existe et que l'ID n'est pas le mien -> DECONNEXION
+            if (session && session.deviceId !== deviceId) {
+                alert("⚠️ Ce compte est utilisé sur un autre appareil. Déconnexion automatique.");
+                localStorage.clear();
+                location.reload();
+            }
+        });
+    };
+
     window.checkLogin = function() {
         const uInput = document.getElementById('user').value.trim().toUpperCase();
         const pInput = document.getElementById('pass').value;
@@ -245,33 +254,33 @@
         if (found) {
             const userRef = ref(db, 'sessions/' + uInput);
 
-            // On écoute en temps réel si un autre appareil se connecte
-            onValue(userRef, (snapshot) => {
-                const session = snapshot.val();
-                if (session && session.deviceId !== deviceId) {
-                    alert("⚠️ Ce compte est utilisé ailleurs. Déconnexion...");
-                    localStorage.removeItem('sfpp_logged');
-                    location.reload();
-                }
-            });
+            // 1. On active la surveillance immédiate
+            window.startSessionSync(uInput);
 
-            // On déclare cet appareil comme l'appareil actif
+            // 2. On s'enregistre comme le NOUVEL appareil actif
             set(userRef, { 
                 deviceId: deviceId, 
                 timestamp: Date.now() 
+            }).then(() => {
+                localStorage.setItem('sfpp_logged', 'true');
+                localStorage.setItem('sfpp_active_user', uInput);
+                document.getElementById('login-screen').style.display = 'none';
+                document.getElementById('profile-screen').style.display = 'flex';
+                initProfiles();
+                loadPlaylist();
             });
-
-            localStorage.setItem('sfpp_logged', 'true');
-            localStorage.setItem('sfpp_active_user', uInput);
-            document.getElementById('login-screen').style.display = 'none';
-            document.getElementById('profile-screen').style.display = 'flex';
-            initProfiles();
-            loadPlaylist();
         } else {
-            alert("Accès refusé");
+            alert("Accès refusé : Identifiants incorrects.");
         }
     };
+
+    // Si déjà connecté au chargement, on relance la surveillance
+    const activeUser = localStorage.getItem('sfpp_active_user');
+    if (localStorage.getItem('sfpp_logged') === 'true' && activeUser) {
+        window.startSessionSync(activeUser);
+    }
 </script>
+
 <script>
 const USERS = [
     { u: "SFPP", p: "2025", exp: "2100-12-31" },
