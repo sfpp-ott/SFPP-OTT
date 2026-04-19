@@ -233,23 +233,27 @@
     let deviceId = localStorage.getItem('sfpp_device_id') || Math.random().toString(36).substring(7);
     localStorage.setItem('sfpp_device_id', deviceId);
 
-    // Fonction globale de vérification de date
+    // Fonction de vérification d'expiration avec logique stricte
     async function verifyExpiration(user) {
-        const snapshot = await get(ref(db, 'users_data/' + user.uid + '/expire'));
-        const expireValue = snapshot.val();
-        const today = new Date().toISOString().split('T')[0];
-        
-        if (expireValue) {
-            const expireDate = expireValue.toString().trim();
-            if (expireDate < today) {
-                alert("🚫 Accès expiré (" + expireDate + "). Contactez l'administrateur.");
-                signOut(auth);
-                localStorage.clear();
-                location.reload();
-                return true; // Expiré
+        if (!user) return false;
+        try {
+            const snapshot = await get(ref(db, 'users_data/' + user.uid + '/expire'));
+            const expireValue = snapshot.val();
+            const today = new Date().toISOString().split('T')[0];
+            
+            if (expireValue) {
+                const expireDate = expireValue.toString().trim();
+                // Si la date d'expiration est AUJOURD'HUI ou AVANT, on bloque
+                if (expireDate <= today) {
+                    alert("🚫 ACCÈS TERMINÉ\nDate d'expiration : " + expireDate + "\n\nVotre abonnement a expiré.");
+                    await signOut(auth);
+                    localStorage.clear();
+                    location.reload();
+                    return true;
+                }
             }
-        }
-        return false; // Pas expiré
+        } catch (e) { console.error(e); }
+        return false;
     }
 
     window.startSessionSync = function(uid) {
@@ -257,7 +261,7 @@
         onValue(userRef, (snapshot) => {
             const session = snapshot.val();
             if (session && session.deviceId !== deviceId) {
-                alert("⚠️ Ce compte est utilisé sur un autre appareil. Déconnexion.");
+                alert("⚠️ Ce compte est utilisé sur un autre appareil.");
                 signOut(auth);
                 location.reload();
             }
@@ -270,26 +274,21 @@
 
         signInWithEmailAndPassword(auth, email, pass)
             .then(async (userCredential) => {
-                const user = userCredential.user;
-                const isExpired = await verifyExpiration(user);
-                
-                if (!isExpired) {
-                    set(ref(db, 'sessions/' + user.uid), {
+                const expired = await verifyExpiration(userCredential.user);
+                if (!expired) {
+                    set(ref(db, 'sessions/' + userCredential.user.uid), {
                         deviceId: deviceId,
                         lastLogin: Date.now()
                     });
                 }
             })
-            .catch((error) => {
-                alert("Accès refusé : Identifiants incorrects.");
-            });
+            .catch(() => alert("Accès refusé."));
     };
 
     onAuthStateChanged(auth, async (user) => {
         if (user) {
-            // Sécurité : on vérifie l'expiration même si déjà connecté
-            const isExpired = await verifyExpiration(user);
-            if (isExpired) return;
+            const expired = await verifyExpiration(user);
+            if (expired) return;
 
             window.startSessionSync(user.uid);
             document.getElementById('login-screen').style.display = 'none';
@@ -330,7 +329,7 @@ async function loadPlaylist() {
         const response = await fetch('films.json');
         playlistData = await response.json();
         render();
-    } catch (e) { console.error("Erreur chargement JSON:", e); }
+    } catch (e) { console.error(e); }
 }
 
 function requestAccess() {
@@ -363,7 +362,7 @@ function toggleEditMode() {
 function handleProfileClick(id, name, icon) {
     if(isEditMode) {
         let newName = prompt("Nouveau nom :", name);
-        if(newName) { updateProfileName(id, newName.trim()); }
+        if(newName) updateProfileName(id, newName.trim());
     } else { selectProfile(name, icon); }
 }
 
@@ -435,7 +434,6 @@ function render(search = "") {
         const filtered = filteredData.filter(m => m.cat === c && m.t.toLowerCase().includes(s));
         if (filtered.length === 0) return;
         let html = `<div class="category-title">${c}</div><div class="carousel">`;
-        
         filtered.forEach(m => {
             const isSeries = /S\d{2}E\d{2}/.test(m.t);
             if(isSeries) {
@@ -459,7 +457,7 @@ function openSeries(name) {
     const eps = playlistData.filter(m => m.t.startsWith(name));
     overlay.style.display = 'block';
     document.body.style.overflow = 'hidden';
-    let html = `<div class="overlay-header"><img src="${eps[0].img}" class="overlay-img"><div><h2 style="margin:0">${name}</h2><p style="color:#666">Saisons disponibles</p></div></div>`;
+    let html = `<div class="overlay-header"><img src="${eps[0].img}" class="overlay-img"><div><h2 style="margin:0">${name}</h2></div></div>`;
     const seasons = {};
     eps.forEach(ep => {
         const sMatch = ep.t.match(/S(\d{2})/);
@@ -472,7 +470,7 @@ function openSeries(name) {
         seasons[s].forEach(ep => {
             const idx = playlistData.indexOf(ep);
             const epName = ep.t.split(' - ')[1] || ep.t;
-            html += `<div class="episode-item" onclick="playMovie(${idx}); closeSeries();"><div style="flex:1"><div style="font-weight:bold; color:white">${epName}</div><div style="font-size:12px; color:#555">${ep.desc || 'Aucune description.'}</div></div><div style="color:var(--accent); font-weight:bold">LIRE</div></div>`;
+            html += `<div class="episode-item" onclick="playMovie(${idx}); closeSeries();"><div style="flex:1"><div style="font-weight:bold; color:white">${epName}</div></div><div style="color:var(--accent); font-weight:bold">LIRE</div></div>`;
         });
     });
     content.innerHTML = html;
@@ -491,16 +489,12 @@ function addToHistory(title) {
 function playMovie(idx) {
     const m = playlistData[idx];
     addToHistory(m.t);
-    const castDiv = document.getElementById('display-cast');
-    castDiv.style.display = "none";
     document.getElementById('player-section').style.display = 'block';
     document.getElementById('display-title').innerText = m.t;
     document.getElementById('display-desc').innerText = m.desc || "";
-    if (m.cast && m.cast.trim().length > 1) { castDiv.innerHTML = "⭐️ AVEC : " + m.cast; castDiv.style.display = "block"; }
     window.scrollTo({ top: 0, behavior: 'smooth' });
     player.src({ src: m.url, type: m.url.includes('.m3u8') ? 'application/x-mpegURL' : 'video/mp4' });
     player.play();
-    render();
 }
 
 function closeP() { player.pause(); document.getElementById('player-section').style.display = 'none'; }
@@ -508,35 +502,17 @@ function closeSeries() { document.getElementById('series-overlay').style.display
 function filter() { render(document.getElementById('searchBar').value); }
 
 document.addEventListener('DOMContentLoaded', () => {
-    player = videojs('main-video', { 
-        techOrder: ['chromecast', 'html5'], 
-        plugins: { 
-            chromecast: { addButtonToControlBar: true } 
-        }
-    });
-
+    player = videojs('main-video', { techOrder: ['chromecast', 'html5'], plugins: { chromecast: { addButtonToControlBar: true } } });
     const touchOverlay = document.getElementById('video-touch-overlay');
     let lastTap = 0;
-
-    touchOverlay.addEventListener('dblclick', () => {
-        if (player.isFullscreen()) { player.exitFullscreen(); } 
-        else { player.requestFullscreen(); }
-    });
-
     touchOverlay.addEventListener('touchstart', (e) => {
         let now = new Date().getTime();
         let timesince = now - lastTap;
         if ((timesince < 300) && (timesince > 0)) {
-            if (player.isFullscreen()) { player.exitFullscreen(); } 
-            else { player.requestFullscreen(); }
+            if (player.isFullscreen()) player.exitFullscreen(); else player.requestFullscreen();
             e.preventDefault();
         }
         lastTap = now;
-    });
-
-    touchOverlay.addEventListener('click', () => {
-        if (player.userActive()) { player.userActive(false); } 
-        else { player.userActive(true); }
     });
 });
 </script>
