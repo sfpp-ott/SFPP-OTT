@@ -49,19 +49,14 @@
         .btn-logout { background: #333; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-size: 10px; flex-shrink: 0; border: 1px solid #444; margin-right: 2px; }
 
         #player-section { display: none; width: 100%; background: #000; padding-top: 60px; }
-        .video-container { position: relative; width: 100%; overflow: hidden; background: #000; }
+        .video-container { position: relative; width: 100%; background: #000; }
         
-        /* Overlay de contrôle (double clic) */
-        #video-touch-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 80%; z-index: 50; cursor: pointer; }
-
-        .vjs-skip-button { font-size: 1.5em !important; cursor: pointer; }
-
-        /* BOUTON ÉPISODE SUIVANT FORCÉ */
+        /* BOUTON ÉPISODE SUIVANT */
         #next-episode-btn {
             position: absolute;
-            bottom: 60px;
+            bottom: 80px;
             right: 20px;
-            z-index: 99999 !important;
+            z-index: 10000; /* Priorité absolue */
             background: #e50914;
             color: white;
             border: 2px solid #fff;
@@ -73,6 +68,8 @@
             cursor: pointer;
             box-shadow: 0 0 15px rgba(0,0,0,0.8);
         }
+
+        .vjs-skip-button { font-size: 1.5em !important; cursor: pointer; }
 
         .movie-info { padding: 20px 5%; background: #0a0a0a; min-height: 150px; border-bottom: 3px solid var(--accent); }
         .movie-title { font-size: 26px; font-weight: bold; margin-bottom: 8px; color: #fff; display: flex; align-items: center; gap: 15px; }
@@ -133,9 +130,8 @@
 </div>
 
 <section id="player-section">
-    <div class="video-container">
+    <div class="video-container" id="vid-cont">
         <video id="main-video" class="video-js vjs-theme-fantasy vjs-16-9 vjs-big-play-centered" controls preload="auto" width="100%"></video>
-        <div id="video-touch-overlay"></div>
         <button id="next-episode-btn" onclick="playNextEpisode()">ÉPISODE SUIVANT ⏭️</button>
     </div>
     <div class="movie-info">
@@ -429,15 +425,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const nextBtn = document.getElementById('next-episode-btn');
 
+    // SURVEILLANCE TEMPS POUR BOUTON SUIVANT
     player.on('timeupdate', function() {
         const duration = player.duration();
         const current = player.currentTime();
-        const isSeries = /\d/.test(currentPlayingTitle);
+        const isSeries = /S\d{2}E\d{2}/i.test(currentPlayingTitle);
         if (isSeries && duration > 0 && (duration - current) < 45) {
             nextBtn.style.display = 'block';
         } else {
             nextBtn.style.display = 'none';
         }
+    });
+
+    // DOUBLE CLIC POUR PLEIN ÉCRAN (Correction directe sur l'élément Video)
+    let lastTap = 0;
+    player.on('touchend', function(e) {
+        let now = Date.now();
+        if (now - lastTap < 300) {
+            if (player.isFullscreen()) player.exitFullscreen();
+            else player.requestFullscreen();
+            e.preventDefault();
+        }
+        lastTap = now;
     });
 
     const Button = videojs.getComponent('Button');
@@ -447,19 +456,6 @@ document.addEventListener('DOMContentLoaded', () => {
     player.ready(() => { 
         player.getChild('controlBar').addChild('Back', {}, 1); 
         player.getChild('controlBar').addChild('Forward', {}, 2); 
-    });
-
-    // DOUBLE CLIC RÉPARÉ
-    const touchOverlay = document.getElementById('video-touch-overlay');
-    let lastTap = 0;
-    touchOverlay.addEventListener('touchend', (e) => {
-        let now = Date.now();
-        if ((now - lastTap < 300)) { 
-            if (player.isFullscreen()) player.exitFullscreen(); 
-            else player.requestFullscreen(); 
-            e.preventDefault(); 
-        }
-        lastTap = now;
     });
 });
 </script>
