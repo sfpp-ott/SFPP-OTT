@@ -133,7 +133,6 @@
 
 <header>
     <div class="logo" id="header-logo">SFPP</div>
-    
     <div class="nav-links">
         <button class="nav-btn active" id="btn-all" onclick="changeView('all')">Accueil</button>
         <button class="nav-btn" id="btn-movies" onclick="changeView('movies')">Films</button>
@@ -141,12 +140,10 @@
         <button class="nav-btn" id="btn-fav" onclick="changeView('fav')">Ma Liste ❤️</button>
         <button class="nav-btn" onclick="location.reload()">🔄</button>
     </div>
-
     <div class="header-actions">
         <button class="btn-icon" onclick="openSearch()">🔍</button>
         <button class="btn-logout" onclick="switchProfile()">PROFILS</button>
     </div>
-
     <div id="search-overlay">
         <input type="text" id="searchBar" onkeyup="filter()" placeholder="Rechercher...">
         <button class="btn-icon" onclick="closeSearch()" style="margin-left:10px">✕</button>
@@ -210,32 +207,40 @@
     let deviceId = localStorage.getItem('sfpp_device_id') || Math.random().toString(36).substring(7);
     localStorage.setItem('sfpp_device_id', deviceId);
 
+    // Mémoriser l'e-mail dans les champs au démarrage
+    const savedEmail = localStorage.getItem('sfpp_last_email');
+    if(savedEmail) document.getElementById('user').value = savedEmail;
+
     async function verifyExpiration(user) {
         if (!user) return false;
         const snapshot = await get(ref(db, 'users_data/' + user.uid + '/expire'));
         const expireValue = snapshot.val();
+        if (!expireValue) return false;
+        
         const today = new Date();
         const expireDate = new Date(expireValue);
-        if (expireValue && expireDate <= today) {
+        // Comparaison stricte : si expireDate est aujourd'hui ou avant, on coupe
+        if (expireDate <= today) {
             alert("Abonnement expiré.");
             await signOut(auth);
+            // On nettoie tout SAUF l'email mémorisé
+            const mail = localStorage.getItem('sfpp_last_email');
             localStorage.clear();
+            localStorage.setItem('sfpp_last_email', mail);
+            localStorage.setItem('sfpp_device_id', deviceId);
             location.reload();
             return true;
         }
         return false;
     }
 
-    // Modification pour ne pas vider les identifiants lors d'une déconnexion forcée
     window.startSessionSync = function(uid) {
         onValue(ref(db, 'sessions/' + uid), (snapshot) => {
             const session = snapshot.val();
             if (session && session.deviceId !== deviceId) {
                 alert("⚠️ Ce compte est utilisé sur un autre appareil.");
                 localStorage.removeItem('sfpp_profile'); 
-                signOut(auth).then(() => {
-                    location.reload();
-                });
+                signOut(auth).then(() => location.reload());
             }
         });
     };
@@ -244,6 +249,7 @@
         const email = document.getElementById('user').value.trim();
         const pass = document.getElementById('pass').value;
         signInWithEmailAndPassword(auth, email, pass).then(async (u) => {
+            localStorage.setItem('sfpp_last_email', email); // Sauvegarde l'email
             const exp = await verifyExpiration(u.user);
             if (!exp) { set(ref(db, 'sessions/' + u.user.uid), { deviceId: deviceId, lastLogin: Date.now() }); }
         }).catch(() => alert("Accès refusé."));
@@ -271,7 +277,11 @@
             const saved = localStorage.getItem('sfpp_profile');
             if(saved) selectProfile(saved, localStorage.getItem('sfpp_profile_icon'));
             else document.getElementById('profile-screen').style.display = 'flex';
-        } else document.getElementById('login-screen').style.display = 'flex';
+        } else {
+            document.getElementById('login-screen').style.display = 'flex';
+            const mail = localStorage.getItem('sfpp_last_email');
+            if(mail) document.getElementById('user').value = mail;
+        }
     });
 
     window.selectProfile = async function(name, icon) {
@@ -287,7 +297,15 @@
         }
         render();
     };
-    window.logout = function() { signOut(auth).then(() => { localStorage.clear(); location.reload(); }); };
+    window.logout = function() { 
+        const mail = localStorage.getItem('sfpp_last_email');
+        signOut(auth).then(() => { 
+            localStorage.clear(); 
+            localStorage.setItem('sfpp_last_email', mail);
+            localStorage.setItem('sfpp_device_id', deviceId);
+            location.reload(); 
+        }); 
+    };
 </script>
 
 <script>
@@ -501,7 +519,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if(Math.floor(cur) % 10 === 0) saveP();
     });
 
-    /* LE DOUBLE CLIQUE POUR PLEIN ECRAN EST ICI */
     let lastTap = 0;
     player.on('touchend', function(e) {
         let now = Date.now();
