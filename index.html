@@ -253,13 +253,16 @@
             .then((userCredential) => {
                 const user = userCredential.user;
                 
-                // --- TEST DE BLOCAGE FORCÉ ---
                 const dateRef = ref(db, 'users_data/' + user.uid + '/expire');
                 onValue(dateRef, (snapshot) => {
-                    const expireDate = snapshot.val();
+                    const expireValue = snapshot.val();
+                    const today = new Date().toISOString().split('T')[0];
 
-                    if (true) { 
-                        alert("TEST : Le système de blocage est bien actif !");
+                    // Nettoyage de la valeur récupérée (retrait des espaces éventuels)
+                    const expireDate = expireValue ? expireValue.toString().trim() : null;
+
+                    if (expireDate && expireDate < today) {
+                        alert("🚫 Accès expiré depuis le : " + expireDate);
                         signOut(auth);
                         location.reload();
                     } else {
@@ -269,7 +272,6 @@
                         });
                     }
                 }, { onlyOnce: true });
-                // -----------------------------
             })
             .catch((error) => {
                 alert("Accès refusé : Identifiants incorrects.");
