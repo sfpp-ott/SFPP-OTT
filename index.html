@@ -54,20 +54,22 @@
 
         .vjs-skip-button { font-size: 1.5em !important; cursor: pointer; }
 
+        /* STYLE DU BOUTON ÉPISODE SUIVANT */
         #next-episode-btn {
             position: absolute;
             bottom: 80px;
             right: 20px;
-            z-index: 100;
-            background: rgba(0,0,0,0.8);
+            z-index: 2147483647;
+            background: rgba(0,0,0,0.85);
             color: white;
-            border: 1px solid #fff;
-            padding: 10px 20px;
+            border: 2px solid #fff;
+            padding: 12px 20px;
             border-radius: 4px;
             cursor: pointer;
             display: none;
             font-weight: bold;
             font-size: 14px;
+            transition: all 0.2s;
         }
         #next-episode-btn:hover { background: white; color: black; }
 
@@ -372,7 +374,9 @@ function openSeries(name) {
 function playMovie(idx) {
     const m = playlistData[idx];
     currentPlayingTitle = m.t;
+    // On cache le bouton au lancement d'une nouvelle vidéo
     document.getElementById('next-episode-btn').style.display = 'none';
+    
     if(currentProfile) {
         let key = 'sfpp_hist_' + currentProfile;
         let hist = JSON.parse(localStorage.getItem(key) || "[]").filter(t => t !== m.t);
@@ -405,7 +409,7 @@ function playNextEpisode() {
     if (nextIdx !== -1) {
         playMovie(nextIdx);
     } else {
-        alert("Fin de saison !");
+        alert("Fin de saison ou épisode suivant non trouvé !");
         document.getElementById('next-episode-btn').style.display = 'none';
     }
 }
@@ -429,14 +433,23 @@ document.addEventListener('DOMContentLoaded', () => {
         plugins: { chromecast: { addButtonToControlBar: true } },
         controlBar: { children: ['playToggle', 'volumePanel', 'currentTimeDisplay', 'timeDivider', 'durationDisplay', 'progressControl', 'liveDisplay', 'remainingTimeDisplay', 'customControlSpacer', 'playbackRateMenuButton', 'chaptersButton', 'descriptionsButton', 'subsCapsButton', 'audioTrackButton', 'fullscreenToggle'] }
     });
-    
+
+    // CORRECTION MAJEURE : Injection du bouton dans le conteneur VideoJS
+    const nextBtn = document.getElementById('next-episode-btn');
+    player.ready(() => {
+        player.el().appendChild(nextBtn); 
+    });
+
     player.on('timeupdate', function() {
-        const remaining = player.duration() - player.currentTime();
+        const duration = player.duration();
+        const current = player.currentTime();
         const isSeries = /S\d{2}E\d{2}/.test(currentPlayingTitle);
-        if (isSeries && remaining > 0 && remaining < 30) {
-            document.getElementById('next-episode-btn').style.display = 'block';
+        
+        // Apparition 45 secondes avant la fin
+        if (isSeries && duration > 0 && (duration - current) < 45) {
+            nextBtn.style.display = 'block';
         } else {
-            document.getElementById('next-episode-btn').style.display = 'none';
+            nextBtn.style.display = 'none';
         }
     });
 
@@ -444,8 +457,11 @@ document.addEventListener('DOMContentLoaded', () => {
     class Back extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-replay-10'; } handleClick() { player.currentTime(player.currentTime()-10); } }
     class Forward extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-forward-10'; } handleClick() { player.currentTime(player.currentTime()+10); } }
     videojs.registerComponent('Back', Back); videojs.registerComponent('Forward', Forward);
-    player.ready(() => { player.getChild('controlBar').addChild('Back', {}, 1); player.getChild('controlBar').addChild('Forward', {}, 2); });
-    
+    player.ready(() => { 
+        player.getChild('controlBar').addChild('Back', {}, 1); 
+        player.getChild('controlBar').addChild('Forward', {}, 2); 
+    });
+
     const touchOverlay = document.getElementById('video-touch-overlay');
     let lastTap = 0;
     touchOverlay.addEventListener('touchstart', (e) => {
