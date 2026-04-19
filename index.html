@@ -54,24 +54,24 @@
 
         .vjs-skip-button { font-size: 1.5em !important; cursor: pointer; }
 
-        /* STYLE DU BOUTON ÉPISODE SUIVANT */
+        /* BOUTON ÉPISODE SUIVANT FORCÉ AU PREMIER PLAN */
         #next-episode-btn {
             position: absolute;
-            bottom: 80px;
-            right: 20px;
-            z-index: 2147483647;
-            background: rgba(0,0,0,0.85);
-            color: white;
-            border: 2px solid #fff;
-            padding: 12px 20px;
-            border-radius: 4px;
-            cursor: pointer;
+            bottom: 15% !important;
+            right: 5% !important;
+            z-index: 999999 !important;
+            background: #e50914 !important;
+            color: white !important;
+            border: 2px solid #fff !important;
+            padding: 15px 25px !important;
+            border-radius: 5px !important;
+            cursor: pointer !important;
             display: none;
-            font-weight: bold;
-            font-size: 14px;
-            transition: all 0.2s;
+            font-weight: bold !important;
+            font-size: 16px !important;
+            text-transform: uppercase;
+            box-shadow: 0 0 20px rgba(0,0,0,0.8);
         }
-        #next-episode-btn:hover { background: white; color: black; }
 
         .movie-info { padding: 20px 5%; background: #0a0a0a; min-height: 150px; border-bottom: 3px solid var(--accent); }
         .movie-title { font-size: 26px; font-weight: bold; margin-bottom: 8px; color: #fff; display: flex; align-items: center; gap: 15px; }
@@ -374,8 +374,10 @@ function openSeries(name) {
 function playMovie(idx) {
     const m = playlistData[idx];
     currentPlayingTitle = m.t;
-    // On cache le bouton au lancement d'une nouvelle vidéo
-    document.getElementById('next-episode-btn').style.display = 'none';
+    
+    // On s'assure que le bouton est caché au début
+    const nb = document.getElementById('next-episode-btn');
+    if(nb) nb.style.display = 'none';
     
     if(currentProfile) {
         let key = 'sfpp_hist_' + currentProfile;
@@ -396,20 +398,22 @@ function playMovie(idx) {
 
 function playNextEpisode() {
     const currentEp = currentPlayingTitle;
-    const isSeries = /S(\d{2})E(\d{2})/.test(currentEp);
-    if (!isSeries) return;
+    const parts = currentEp.match(/(.*[SE])(\d+)(.*)/i);
+    if (!parts) return;
 
-    const parts = currentEp.match(/(.*S\d{2}E)(\d{2})(.*)/);
     const prefix = parts[1];
-    const nextNum = (parseInt(parts[2]) + 1).toString().padStart(2, '0');
+    const num = parseInt(parts[2]);
     const suffix = parts[3];
-    const nextTitle = prefix + nextNum + suffix;
+    
+    // On cherche l'épisode avec le numéro + 1
+    const nextNum = (num + 1).toString().padStart(2, '0');
+    const nextTitlePart = prefix + nextNum;
 
-    const nextIdx = playlistData.findIndex(m => m.t.includes(nextTitle));
+    const nextIdx = playlistData.findIndex(m => m.t.toUpperCase().includes(nextTitlePart.toUpperCase()));
     if (nextIdx !== -1) {
         playMovie(nextIdx);
     } else {
-        alert("Fin de saison ou épisode suivant non trouvé !");
+        alert("Fin de saison !");
         document.getElementById('next-episode-btn').style.display = 'none';
     }
 }
@@ -434,22 +438,28 @@ document.addEventListener('DOMContentLoaded', () => {
         controlBar: { children: ['playToggle', 'volumePanel', 'currentTimeDisplay', 'timeDivider', 'durationDisplay', 'progressControl', 'liveDisplay', 'remainingTimeDisplay', 'customControlSpacer', 'playbackRateMenuButton', 'chaptersButton', 'descriptionsButton', 'subsCapsButton', 'audioTrackButton', 'fullscreenToggle'] }
     });
 
-    // CORRECTION MAJEURE : Injection du bouton dans le conteneur VideoJS
     const nextBtn = document.getElementById('next-episode-btn');
+    
+    // Force l'intégration du bouton dans VideoJS dès qu'il est prêt
     player.ready(() => {
-        player.el().appendChild(nextBtn); 
+        player.el().appendChild(nextBtn);
     });
 
     player.on('timeupdate', function() {
         const duration = player.duration();
         const current = player.currentTime();
-        const isSeries = /S\d{2}E\d{2}/.test(currentPlayingTitle);
         
-        // Apparition 45 secondes avant la fin
-        if (isSeries && duration > 0 && (duration - current) < 45) {
-            nextBtn.style.display = 'block';
-        } else {
-            nextBtn.style.display = 'none';
+        // Détection large : si le titre contient un chiffre, on considère que c'est une série
+        const looksLikeSeries = /\d/.test(currentPlayingTitle);
+        
+        if (looksLikeSeries && duration > 0) {
+            const timeLeft = duration - current;
+            // Affiche si il reste moins de 60 secondes
+            if (timeLeft > 0 && timeLeft < 60) {
+                nextBtn.style.setProperty('display', 'block', 'important');
+            } else {
+                nextBtn.style.display = 'none';
+            }
         }
     });
 
