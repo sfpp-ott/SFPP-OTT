@@ -252,10 +252,25 @@
         signInWithEmailAndPassword(auth, email, pass)
             .then((userCredential) => {
                 const user = userCredential.user;
-                set(ref(db, 'sessions/' + user.uid), {
-                    deviceId: deviceId,
-                    lastLogin: Date.now()
-                });
+                
+                // --- VÉRIFICATION DE LA DATE D'EXPIRATION ---
+                const dateRef = ref(db, 'users_data/' + user.uid + '/expire');
+                onValue(dateRef, (snapshot) => {
+                    const expireDate = snapshot.val();
+                    const today = new Date().toISOString().split('T')[0];
+
+                    if (expireDate && expireDate < today) {
+                        alert("🚫 Accès expiré depuis le : " + expireDate);
+                        signOut(auth);
+                    } else {
+                        // Si pas de date ou date valide, on ouvre la session
+                        set(ref(db, 'sessions/' + user.uid), {
+                            deviceId: deviceId,
+                            lastLogin: Date.now()
+                        });
+                    }
+                }, { onlyOnce: true });
+                // --------------------------------------------
             })
             .catch((error) => {
                 alert("Accès refusé : Identifiants incorrects.");
