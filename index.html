@@ -315,6 +315,29 @@
 <script>
 let player, playlistData = [], currentProfile = null, isEditMode = false, currentView = 'all', currentPlayingTitle = "";
 
+// GESTION NAVIGATION ANDROID TV / DPAD
+document.addEventListener('keydown', (e) => {
+    // Si un input est actif, on laisse la main au clavier
+    if(document.activeElement.tagName === 'INPUT') return;
+
+    switch(e.keyCode) {
+        case 38: // HAUT
+            window.scrollBy({ top: -200, behavior: 'smooth' });
+            break;
+        case 40: // BAS
+            window.scrollBy({ top: 200, behavior: 'smooth' });
+            break;
+        case 37: // GAUCHE
+            const leftCarousel = document.querySelector('.carousel:hover') || document.querySelector('.carousel');
+            if(leftCarousel) leftCarousel.scrollBy({ left: -300, behavior: 'smooth' });
+            break;
+        case 39: // DROITE
+            const rightCarousel = document.querySelector('.carousel:hover') || document.querySelector('.carousel');
+            if(rightCarousel) rightCarousel.scrollBy({ left: 300, behavior: 'smooth' });
+            break;
+    }
+});
+
 function openSearch() {
     document.getElementById('search-overlay').style.display = 'flex';
     document.getElementById('searchBar').focus();
