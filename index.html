@@ -211,23 +211,19 @@
     const savedEmail = localStorage.getItem('sfpp_last_email');
     if(savedEmail) document.getElementById('user').value = savedEmail;
 
-    // CORRECTION EXPIRATION : Comparaison basée sur la date LOCALE
+    // CORRECTION EXPIRATION : Comparaison stricte par texte (YYYY-MM-DD)
     async function verifyExpiration(user) {
         if (!user) return false;
         const snapshot = await get(ref(db, 'users_data/' + user.uid + '/expire'));
-        const expireValue = snapshot.val();
+        const expireValue = snapshot.val(); // Exemple: "2026-04-20"
         if (!expireValue) return false;
         
-        // Obtenir la date locale française au format YYYY-MM-DD
-        const now = new Date();
-        const y = now.getFullYear();
-        const m = String(now.getMonth() + 1).padStart(2, '0');
-        const d = String(now.getDate()).padStart(2, '0');
-        const todayStr = `${y}-${m}-${d}`;
+        // Date du jour au format ISO YYYY-MM-DD
+        const todayStr = new Date().toISOString().split('T')[0];
         
-        // Si aujourd'hui >= expiration, on déconnecte
+        // Si aujourd'hui est >= à l'expiration, on bloque
         if (todayStr >= expireValue) {
-            alert("Accès expiré le " + expireValue);
+            alert("Abonnement expiré le " + expireValue);
             await signOut(auth);
             const mail = localStorage.getItem('sfpp_last_email');
             localStorage.clear();
