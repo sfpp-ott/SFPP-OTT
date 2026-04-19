@@ -54,23 +54,17 @@
 
         .vjs-skip-button { font-size: 1.5em !important; cursor: pointer; }
 
-        /* BOUTON ÉPISODE SUIVANT FORCÉ AU PREMIER PLAN */
-        #next-episode-btn {
-            position: absolute;
-            bottom: 15% !important;
-            right: 5% !important;
-            z-index: 999999 !important;
-            background: #e50914 !important;
+        /* Le style du bouton injecté par Video.js */
+        .vjs-next-episode-btn {
+            background-color: #e50914 !important;
             color: white !important;
-            border: 2px solid #fff !important;
-            padding: 15px 25px !important;
-            border-radius: 5px !important;
-            cursor: pointer !important;
-            display: none;
+            padding: 12px 20px !important;
+            border-radius: 4px !important;
             font-weight: bold !important;
-            font-size: 16px !important;
-            text-transform: uppercase;
-            box-shadow: 0 0 20px rgba(0,0,0,0.8);
+            font-size: 14px !important;
+            cursor: pointer !important;
+            border: 2px solid white !important;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
         }
 
         .movie-info { padding: 20px 5%; background: #0a0a0a; min-height: 150px; border-bottom: 3px solid var(--accent); }
@@ -134,7 +128,6 @@
 <section id="player-section">
     <div class="video-container">
         <div id="video-touch-overlay"></div>
-        <button id="next-episode-btn" onclick="playNextEpisode()">ÉPISODE SUIVANT ⏭️</button>
         <video id="main-video" class="video-js vjs-theme-fantasy vjs-16-9 vjs-big-play-centered" controls preload="auto" width="100%"></video>
     </div>
     <div class="movie-info">
@@ -375,10 +368,6 @@ function playMovie(idx) {
     const m = playlistData[idx];
     currentPlayingTitle = m.t;
     
-    // On s'assure que le bouton est caché au début
-    const nb = document.getElementById('next-episode-btn');
-    if(nb) nb.style.display = 'none';
-    
     if(currentProfile) {
         let key = 'sfpp_hist_' + currentProfile;
         let hist = JSON.parse(localStorage.getItem(key) || "[]").filter(t => t !== m.t);
@@ -392,7 +381,7 @@ function playMovie(idx) {
     document.getElementById('display-actors').innerText = cast ? "Avec : " + cast : "";
     updatePlayerFavUI();
     window.scrollTo({top:0, behavior:'smooth'});
-    player.src({ src: m.url, type: m.url.includes('.m3u8') ? 'application/x-mpegURL' : 'video/mp4' });
+    player.src({ src: m.url, type: 'video/mp4' });
     player.play();
 }
 
@@ -404,8 +393,6 @@ function playNextEpisode() {
     const prefix = parts[1];
     const num = parseInt(parts[2]);
     const suffix = parts[3];
-    
-    // On cherche l'épisode avec le numéro + 1
     const nextNum = (num + 1).toString().padStart(2, '0');
     const nextTitlePart = prefix + nextNum;
 
@@ -414,7 +401,6 @@ function playNextEpisode() {
         playMovie(nextIdx);
     } else {
         alert("Fin de saison !");
-        document.getElementById('next-episode-btn').style.display = 'none';
     }
 }
 
@@ -431,6 +417,7 @@ function toggleEditMode() { isEditMode = !isEditMode; document.getElementById('p
 function switchProfile() { localStorage.removeItem('sfpp_profile'); location.reload(); }
 function requestAccess() { window.location.href = "mailto:sfpp.ott@gmail.com"; }
 
+// INITIALISATION DU PLAYER ET COMPOSANT SUIVANT
 document.addEventListener('DOMContentLoaded', () => {
     player = videojs('main-video', { 
         techOrder: ['chromecast', 'html5'], 
@@ -438,29 +425,42 @@ document.addEventListener('DOMContentLoaded', () => {
         controlBar: { children: ['playToggle', 'volumePanel', 'currentTimeDisplay', 'timeDivider', 'durationDisplay', 'progressControl', 'liveDisplay', 'remainingTimeDisplay', 'customControlSpacer', 'playbackRateMenuButton', 'chaptersButton', 'descriptionsButton', 'subsCapsButton', 'audioTrackButton', 'fullscreenToggle'] }
     });
 
-    const nextBtn = document.getElementById('next-episode-btn');
-    
-    // Force l'intégration du bouton dans VideoJS dès qu'il est prêt
-    player.ready(() => {
-        player.el().appendChild(nextBtn);
-    });
-
-    player.on('timeupdate', function() {
-        const duration = player.duration();
-        const current = player.currentTime();
-        
-        // Détection large : si le titre contient un chiffre, on considère que c'est une série
-        const looksLikeSeries = /\d/.test(currentPlayingTitle);
-        
-        if (looksLikeSeries && duration > 0) {
-            const timeLeft = duration - current;
-            // Affiche si il reste moins de 60 secondes
-            if (timeLeft > 0 && timeLeft < 60) {
-                nextBtn.style.setProperty('display', 'block', 'important');
-            } else {
-                nextBtn.style.display = 'none';
-            }
+    // Création du bouton Suivant comme composant officiel Video.js
+    const Component = videojs.getComponent('Component');
+    const NextButton = videojs.extend(Component, {
+        constructor: function(player, options) {
+            Component.apply(this, arguments);
+            this.addClass('vjs-next-episode-btn');
+            this.el().innerHTML = 'ÉPISODE SUIVANT ⏭️';
+            this.el().style.display = 'none';
         }
+    });
+    videojs.registerComponent('NextButton', NextButton);
+
+    player.ready(() => {
+        const nextBtnInstance = player.addChild('NextButton');
+        const el = nextBtnInstance.el();
+        
+        // Positionnement forcé à l'intérieur du player
+        el.style.position = 'absolute';
+        el.style.bottom = '80px';
+        el.style.right = '20px';
+        el.style.zIndex = '2000';
+
+        el.addEventListener('click', () => playNextEpisode());
+
+        // Surveillance de la fin
+        player.on('timeupdate', function() {
+            const duration = player.duration();
+            const current = player.currentTime();
+            const isSeries = /\d/.test(currentPlayingTitle);
+            
+            if (isSeries && duration > 0 && (duration - current) < 60) {
+                el.style.display = 'block';
+            } else {
+                el.style.display = 'none';
+            }
+        });
     });
 
     const Button = videojs.getComponent('Button');
