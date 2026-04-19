@@ -233,7 +233,6 @@
     let deviceId = localStorage.getItem('sfpp_device_id') || Math.random().toString(36).substring(7);
     localStorage.setItem('sfpp_device_id', deviceId);
 
-    // Fonction de vérification d'expiration avec logique stricte
     async function verifyExpiration(user) {
         if (!user) return false;
         try {
@@ -243,7 +242,6 @@
             
             if (expireValue) {
                 const expireDate = expireValue.toString().trim();
-                // Si la date d'expiration est AUJOURD'HUI ou AVANT, on bloque
                 if (expireDate <= today) {
                     alert("🚫 ACCÈS TERMINÉ\nDate d'expiration : " + expireDate + "\n\nVotre abonnement a expiré.");
                     await signOut(auth);
@@ -295,12 +293,35 @@
             loadPlaylist();
             initProfiles();
             const savedProfile = localStorage.getItem('sfpp_profile');
-            if(savedProfile) { selectProfile(savedProfile, localStorage.getItem('sfpp_profile_icon')); }
+            if(savedProfile) { 
+                window.selectProfile(savedProfile, localStorage.getItem('sfpp_profile_icon')); 
+            }
             else { document.getElementById('profile-screen').style.display = 'flex'; }
         } else {
             document.getElementById('login-screen').style.display = 'flex';
         }
     });
+
+    // Modification pour l'affichage de la date d'expiration dans le logo
+    window.selectProfile = async function(name, icon) {
+        currentProfile = name;
+        localStorage.setItem('sfpp_profile', name);
+        localStorage.setItem('sfpp_profile_icon', icon);
+        document.getElementById('profile-screen').style.display = 'none';
+        document.getElementById('current-user-name').innerText = name;
+        
+        const user = auth.currentUser;
+        if (user) {
+            const snapshot = await get(ref(db, 'users_data/' + user.uid + '/expire'));
+            const expireDate = snapshot.val();
+            if (expireDate) {
+                document.getElementById('header-logo').innerHTML = `SFPP | ${icon} <span style="font-size:10px; color:#666; margin-left:5px;">(Fin: ${expireDate})</span>`;
+            } else {
+                document.getElementById('header-logo').innerText = "SFPP | " + icon;
+            }
+        }
+        render();
+    };
 
     window.logout = function() {
         signOut(auth).then(() => {
@@ -363,23 +384,13 @@ function handleProfileClick(id, name, icon) {
     if(isEditMode) {
         let newName = prompt("Nouveau nom :", name);
         if(newName) updateProfileName(id, newName.trim());
-    } else { selectProfile(name, icon); }
+    } else { window.selectProfile(name, icon); }
 }
 
 function updateProfileName(id, newName) {
     let saved = JSON.parse(localStorage.getItem('sfpp_profiles_data') || JSON.stringify(defaultProfiles));
     const idx = saved.findIndex(p => p.id === id);
     if(idx !== -1) { saved[idx].name = newName; localStorage.setItem('sfpp_profiles_data', JSON.stringify(saved)); initProfiles(); }
-}
-
-function selectProfile(name, icon) {
-    currentProfile = name;
-    localStorage.setItem('sfpp_profile', name);
-    localStorage.setItem('sfpp_profile_icon', icon);
-    document.getElementById('profile-screen').style.display = 'none';
-    document.getElementById('current-user-name').innerText = name;
-    document.getElementById('header-logo').innerText = "SFPP | " + icon;
-    render();
 }
 
 function switchProfile() {
