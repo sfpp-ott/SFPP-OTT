@@ -90,23 +90,20 @@
         #main-content { padding-top: 80px; }
         .category-title { font-size: 18px; font-weight: bold; margin: 20px 4% 10px; color: #fff; text-transform: uppercase; }
         
-        /* CORRECTION SOURIS AMAZON SILK */
+        /* MODIFICATION POUR SOURIS TV/SILK */
         .carousel { 
             display: flex; 
-            overflow-x: auto; 
+            overflow-x: scroll; 
             gap: 12px; 
             padding: 0 4% 20px; 
             scrollbar-width: thin; 
             -webkit-overflow-scrolling: touch;
             touch-action: pan-x pan-y;
         }
-        
-        .card { 
-            flex: 0 0 150px; 
-            cursor: pointer; 
-            position: relative; 
-            outline: none; 
-        }
+        .carousel::-webkit-scrollbar { height: 4px; }
+        .carousel::-webkit-scrollbar-thumb { background: #333; }
+
+        .card { flex: 0 0 150px; cursor: pointer; position: relative; outline: none; }
         .card img { width: 100%; aspect-ratio: 2/3; object-fit: cover; border-radius: 4px; background: #222; }
         .card-name { margin-top: 6px; font-size: 12px; text-align: center; color: #bbb; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
 
