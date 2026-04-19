@@ -51,12 +51,11 @@
         #player-section { display: none; width: 100%; background: #000; padding-top: 60px; }
         .video-container { position: relative; width: 100%; background: #000; }
         
-        /* BOUTON ÉPISODE SUIVANT */
         #next-episode-btn {
             position: absolute;
             bottom: 80px;
             right: 20px;
-            z-index: 10000; /* Priorité absolue */
+            z-index: 10000;
             background: #e50914;
             color: white;
             border: 2px solid #fff;
@@ -329,7 +328,7 @@ function render(search = "") {
         if (filtered.length === 0) return;
         let html = `<div class="category-title">${c}</div><div class="carousel">`;
         filtered.forEach(m => {
-            const isS = /S\d{2}E\d{2}/.test(m.t);
+            const isS = /S\d{2}E\d{2}/i.test(m.t);
             const heart = favs.includes(m.t) ? `<div class="fav-indicator">❤️</div>` : "";
             if(isS) {
                 const sName = m.t.split(' - ')[0];
@@ -425,7 +424,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const nextBtn = document.getElementById('next-episode-btn');
 
-    // SURVEILLANCE TEMPS POUR BOUTON SUIVANT
     player.on('timeupdate', function() {
         const duration = player.duration();
         const current = player.currentTime();
@@ -437,7 +435,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // DOUBLE CLIC POUR PLEIN ÉCRAN (Correction directe sur l'élément Video)
+    // DOUBLE CLIC POUR PLEIN ÉCRAN
     let lastTap = 0;
     player.on('touchend', function(e) {
         let now = Date.now();
