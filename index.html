@@ -90,22 +90,12 @@
         #main-content { padding-top: 80px; }
         .category-title { font-size: 18px; font-weight: bold; margin: 20px 4% 10px; color: #fff; text-transform: uppercase; }
         
-        /* MODIFICATION POUR SOURIS TV/SILK */
-        .carousel { 
-            display: flex; 
-            overflow-x: scroll; 
-            gap: 12px; 
-            padding: 0 4% 20px; 
-            scrollbar-width: thin; 
-            -webkit-overflow-scrolling: touch;
-            touch-action: pan-x pan-y;
-        }
-        .carousel::-webkit-scrollbar { height: 4px; }
-        .carousel::-webkit-scrollbar-thumb { background: #333; }
-
-        .card { flex: 0 0 150px; cursor: pointer; position: relative; outline: none; }
-        .card img { width: 100%; aspect-ratio: 2/3; object-fit: cover; border-radius: 4px; background: #222; }
-        .card-name { margin-top: 6px; font-size: 12px; text-align: center; color: #bbb; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+        /* CORRECTION SOURIS AMAZON */
+        .carousel { display: flex; overflow-x: auto; gap: 12px; padding: 0 4% 20px; scrollbar-width: none; cursor: grab; }
+        .carousel:active { cursor: grabbing; }
+        .card { flex: 0 0 150px; cursor: pointer; position: relative; user-select: none; -webkit-user-drag: none; }
+        .card img { width: 100%; aspect-ratio: 2/3; object-fit: cover; border-radius: 4px; background: #222; pointer-events: none; }
+        .card-name { margin-top: 6px; font-size: 12px; text-align: center; color: #bbb; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; pointer-events: none; }
 
         .prog-bg { position: absolute; bottom: 25px; left: 0; width: 100%; height: 4px; background: rgba(255,255,255,0.2); border-radius: 0 0 4px 4px; }
         .prog-fill { height: 100%; background: var(--accent); transition: width 0.3s; }
@@ -356,6 +346,25 @@ function saveP() {
     }
 }
 
+function attachDragScroll(slider) {
+    let isDown = false, startX, scrollLeft;
+    slider.addEventListener('mousedown', (e) => {
+        isDown = true;
+        startX = e.pageX - slider.offsetLeft;
+        scrollLeft = slider.scrollLeft;
+        slider.style.cursor = 'grabbing';
+    });
+    slider.addEventListener('mouseleave', () => { isDown = false; slider.style.cursor = 'grab'; });
+    slider.addEventListener('mouseup', () => { isDown = false; slider.style.cursor = 'grab'; });
+    slider.addEventListener('mousemove', (e) => {
+        if(!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - slider.offsetLeft;
+        const walk = (x - startX) * 2;
+        slider.scrollLeft = scrollLeft - walk;
+    });
+}
+
 function render(search = "") {
     const cont = document.getElementById('categories-container');
     const histSec = document.getElementById('history-sec');
@@ -378,9 +387,10 @@ function render(search = "") {
                 const m = playlistData.find(item => item.t === title);
                 if(m) {
                     const pct = (prog[m.t] && prog[m.t].p > 1) ? `<div class="prog-bg"><div class="prog-fill" style="width:${prog[m.t].p}%"></div></div>` : "";
-                    histCont.innerHTML += `<div class="card" tabindex="0" onclick="playMovie(${playlistData.indexOf(m)})"><img src="${m.img}">${pct}<div class="card-name">${m.t}</div></div>`;
+                    histCont.innerHTML += `<div class="card" onclick="playMovie(${playlistData.indexOf(m)})"><img src="${m.img}">${pct}<div class="card-name">${m.t}</div></div>`;
                 }
             });
+            attachDragScroll(histCont);
         } else histSec.style.display = "none";
     } else histSec.style.display = "none";
 
@@ -390,21 +400,34 @@ function render(search = "") {
     cats.forEach(c => {
         const filtered = data.filter(m => m.cat === c && m.t.toLowerCase().includes(s));
         if (filtered.length === 0) return;
-        let html = `<div class="category-title">${c}</div><div class="carousel">`;
+        
+        const catDiv = document.createElement('div');
+        catDiv.innerHTML = `<div class="category-title">${c}</div>`;
+        const carousel = document.createElement('div');
+        carousel.className = "carousel";
+        
         filtered.forEach(m => {
             const isS = /S\d{2}E\d{2}/i.test(m.t);
             const heart = favs.includes(m.t) ? `<div class="fav-indicator">❤️</div>` : "";
+            const card = document.createElement('div');
+            card.className = "card";
             if(isS) {
                 const sName = m.t.split(' - ')[0];
                 if(!addedSeries.includes(sName)) {
                     addedSeries.push(sName);
-                    html += `<div class="card" tabindex="0" onclick="openSeries('${sName}')"><img src="${m.img}">${heart}<div class="card-name">${sName}</div></div>`;
+                    card.onclick = () => openSeries(sName);
+                    card.innerHTML = `<img src="${m.img}">${heart}<div class="card-name">${sName}</div>`;
+                    carousel.appendChild(card);
                 }
             } else {
-                html += `<div class="card" tabindex="0" onclick="playMovie(${playlistData.indexOf(m)})"><img src="${m.img}">${heart}<div class="card-name">${m.t}</div></div>`;
+                card.onclick = () => playMovie(playlistData.indexOf(m));
+                card.innerHTML = `<img src="${m.img}">${heart}<div class="card-name">${m.t}</div>`;
+                carousel.appendChild(card);
             }
         });
-        cont.innerHTML += html + `</div>`;
+        catDiv.appendChild(carousel);
+        cont.appendChild(catDiv);
+        attachDragScroll(carousel);
     });
 }
 
