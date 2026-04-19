@@ -54,6 +54,23 @@
 
         .vjs-skip-button { font-size: 1.5em !important; cursor: pointer; }
 
+        #next-episode-btn {
+            position: absolute;
+            bottom: 80px;
+            right: 20px;
+            z-index: 100;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            border: 1px solid #fff;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            display: none;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        #next-episode-btn:hover { background: white; color: black; }
+
         .movie-info { padding: 20px 5%; background: #0a0a0a; min-height: 150px; border-bottom: 3px solid var(--accent); }
         .movie-title { font-size: 26px; font-weight: bold; margin-bottom: 8px; color: #fff; display: flex; align-items: center; gap: 15px; }
         #player-fav-btn { background: #222; border: 1px solid #444; color: white; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 14px; }
@@ -115,6 +132,7 @@
 <section id="player-section">
     <div class="video-container">
         <div id="video-touch-overlay"></div>
+        <button id="next-episode-btn" onclick="playNextEpisode()">ÉPISODE SUIVANT ⏭️</button>
         <video id="main-video" class="video-js vjs-theme-fantasy vjs-16-9 vjs-big-play-centered" controls preload="auto" width="100%"></video>
     </div>
     <div class="movie-info">
@@ -156,7 +174,6 @@
     const db = getDatabase(app);
     const auth = getAuth(app);
 
-    // RÉCUPÉRATION SÉCURITÉ D'ORIGINE
     let deviceId = localStorage.getItem('sfpp_device_id') || Math.random().toString(36).substring(7);
     localStorage.setItem('sfpp_device_id', deviceId);
 
@@ -355,6 +372,7 @@ function openSeries(name) {
 function playMovie(idx) {
     const m = playlistData[idx];
     currentPlayingTitle = m.t;
+    document.getElementById('next-episode-btn').style.display = 'none';
     if(currentProfile) {
         let key = 'sfpp_hist_' + currentProfile;
         let hist = JSON.parse(localStorage.getItem(key) || "[]").filter(t => t !== m.t);
@@ -370,6 +388,26 @@ function playMovie(idx) {
     window.scrollTo({top:0, behavior:'smooth'});
     player.src({ src: m.url, type: m.url.includes('.m3u8') ? 'application/x-mpegURL' : 'video/mp4' });
     player.play();
+}
+
+function playNextEpisode() {
+    const currentEp = currentPlayingTitle;
+    const isSeries = /S(\d{2})E(\d{2})/.test(currentEp);
+    if (!isSeries) return;
+
+    const parts = currentEp.match(/(.*S\d{2}E)(\d{2})(.*)/);
+    const prefix = parts[1];
+    const nextNum = (parseInt(parts[2]) + 1).toString().padStart(2, '0');
+    const suffix = parts[3];
+    const nextTitle = prefix + nextNum + suffix;
+
+    const nextIdx = playlistData.findIndex(m => m.t.includes(nextTitle));
+    if (nextIdx !== -1) {
+        playMovie(nextIdx);
+    } else {
+        alert("Fin de saison !");
+        document.getElementById('next-episode-btn').style.display = 'none';
+    }
 }
 
 function closeP() { player.pause(); document.getElementById('player-section').style.display = 'none'; }
@@ -391,11 +429,23 @@ document.addEventListener('DOMContentLoaded', () => {
         plugins: { chromecast: { addButtonToControlBar: true } },
         controlBar: { children: ['playToggle', 'volumePanel', 'currentTimeDisplay', 'timeDivider', 'durationDisplay', 'progressControl', 'liveDisplay', 'remainingTimeDisplay', 'customControlSpacer', 'playbackRateMenuButton', 'chaptersButton', 'descriptionsButton', 'subsCapsButton', 'audioTrackButton', 'fullscreenToggle'] }
     });
+    
+    player.on('timeupdate', function() {
+        const remaining = player.duration() - player.currentTime();
+        const isSeries = /S\d{2}E\d{2}/.test(currentPlayingTitle);
+        if (isSeries && remaining > 0 && remaining < 30) {
+            document.getElementById('next-episode-btn').style.display = 'block';
+        } else {
+            document.getElementById('next-episode-btn').style.display = 'none';
+        }
+    });
+
     const Button = videojs.getComponent('Button');
     class Back extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-replay-10'; } handleClick() { player.currentTime(player.currentTime()-10); } }
     class Forward extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-forward-10'; } handleClick() { player.currentTime(player.currentTime()+10); } }
     videojs.registerComponent('Back', Back); videojs.registerComponent('Forward', Forward);
     player.ready(() => { player.getChild('controlBar').addChild('Back', {}, 1); player.getChild('controlBar').addChild('Forward', {}, 2); });
+    
     const touchOverlay = document.getElementById('video-touch-overlay');
     let lastTap = 0;
     touchOverlay.addEventListener('touchstart', (e) => {
