@@ -38,31 +38,30 @@
         .is-editing .edit-icon { display: block; }
         .btn-manage { margin-top: 40px; background: none; border: 1px solid #444; color: #888; padding: 10px 20px; cursor: pointer; font-size: 14px; letter-spacing: 1px; }
 
-        /* HEADER OPTIMISÉ POUR MOBILE */
-        header { position: fixed; top: 0; width: 100%; height: 65px; background: rgba(0,0,0,0.95); display: flex; align-items: center; z-index: 2000; border-bottom: 1px solid #222; box-sizing: border-box; padding: 0 10px; gap: 10px; }
+        header { position: fixed; top: 0; width: 100%; height: 60px; background: rgba(0,0,0,0.95); display: flex; align-items: center; padding: 0 10px; z-index: 2000; gap: 10px; border-bottom: 1px solid #222; box-sizing: border-box; }
         .logo { color: var(--accent); font-weight: 900; font-size: 16px; flex-shrink: 0; }
         
-        /* NAVIGATION DÉFILANTE */
+        /* Modifié pour permettre le défilement horizontal */
         .nav-links { 
             display: flex; 
-            gap: 15px; 
+            gap: 10px; 
             flex: 1; 
             overflow-x: auto; 
             scrollbar-width: none; 
+            white-space: nowrap; 
+            -webkit-overflow-scrolling: touch; 
             align-items: center;
-            white-space: nowrap;
-            -webkit-overflow-scrolling: touch;
         }
         .nav-links::-webkit-scrollbar { display: none; }
-        
-        .nav-btn { background: none; border: none; color: #bbb; cursor: pointer; font-size: 13px; font-weight: 500; padding: 10px 5px; transition: color 0.3s; flex-shrink: 0; }
+
+        .nav-btn { background: none; border: none; color: #bbb; cursor: pointer; font-size: 12px; font-weight: 500; padding: 8px 4px; transition: color 0.3s; flex-shrink: 0; }
+        .nav-btn:hover { color: white; }
         .nav-btn.active { color: white; font-weight: bold; border-bottom: 2px solid var(--accent); }
 
-        #searchBar { width: 80px; background: #222; border: 1px solid #444; color: white; padding: 5px 10px; border-radius: 20px; outline: none; font-size: 11px; flex-shrink: 0; transition: width 0.3s; }
-        #searchBar:focus { width: 120px; }
-        .btn-logout { background: #333; color: white; border: none; padding: 5px 8px; border-radius: 4px; cursor: pointer; font-size: 10px; flex-shrink: 0; border: 1px solid #444; }
+        #searchBar { width: 90px; background: #222; border: 1px solid #444; color: white; padding: 5px 10px; border-radius: 20px; outline: none; font-size: 11px; flex-shrink: 0; }
+        .btn-logout { background: #333; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-size: 10px; flex-shrink: 0; border: 1px solid #444; }
 
-        #player-section { display: none; width: 100%; background: #000; padding-top: 65px; }
+        #player-section { display: none; width: 100%; background: #000; padding-top: 60px; }
         .video-container { position: relative; width: 100%; background: #000; }
         
         #next-episode-btn {
@@ -101,7 +100,7 @@
         .movie-title { font-size: 26px; font-weight: bold; margin-bottom: 8px; color: #fff; display: flex; align-items: center; gap: 15px; }
         #player-fav-btn { background: #222; border: 1px solid #444; color: white; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 14px; }
         #player-fav-btn.is-fav { color: var(--accent); border-color: var(--accent); }
-        #main-content { padding-top: 85px; }
+        #main-content { padding-top: 80px; }
         
         .category-row { position: relative; width: 100%; margin-bottom: 20px; }
         .category-title { font-size: 18px; font-weight: bold; margin: 20px 4% 10px; color: #fff; text-transform: uppercase; }
@@ -121,7 +120,7 @@
             position: absolute;
             top: 0;
             bottom: 30px;
-            width: 40px;
+            width: 50px;
             background: rgba(0,0,0,0.5);
             display: flex;
             align-items: center;
@@ -129,7 +128,7 @@
             z-index: 10;
             cursor: pointer;
             color: white;
-            font-size: 24px;
+            font-size: 30px;
             opacity: 0;
             transition: opacity 0.3s;
         }
@@ -178,8 +177,9 @@
         <button class="nav-btn" id="btn-movies" onclick="changeView('movies')">Films</button>
         <button class="nav-btn" id="btn-series" onclick="changeView('series')">Séries</button>
         <button class="nav-btn" id="btn-fav" onclick="changeView('fav')">Ma Liste ❤️</button>
+        <button class="nav-btn" onclick="location.reload()">🔄</button>
     </div>
-    <input type="text" id="searchBar" onkeyup="filter()" placeholder="Rechercher...">
+    <input type="text" id="searchBar" onkeyup="filter()" placeholder="Chercher...">
     <button class="btn-logout" onclick="switchProfile()">PROFILS</button>
 </header>
 
@@ -323,7 +323,7 @@
         if(user) {
             const snap = await get(ref(db, 'users_data/' + user.uid + '/expire'));
             const date = snap.val();
-            document.getElementById('header-logo').innerHTML = `${icon} <span style="font-size:10px; color:#666;">(${date})</span>`;
+            document.getElementById('header-logo').innerHTML = `SFPP | ${icon} <span style="font-size:10px; color:#666;">(${date})</span>`;
         }
         render();
     };
