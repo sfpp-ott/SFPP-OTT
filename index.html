@@ -60,7 +60,7 @@
         .movie-info { padding: 20px 5%; background: #0a0a0a; min-height: 150px; border-bottom: 3px solid var(--accent); }
         .movie-title { font-size: 26px; font-weight: bold; margin-bottom: 8px; color: #fff; display: flex; align-items: center; gap: 15px; }
         
-        #player-fav-btn { background: #222; border: 1px solid #444; color: white; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-size: 14px; }
+        #player-fav-btn { background: #222; border: 1px solid #444; color: white; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 14px; }
         #player-fav-btn.is-fav { color: var(--accent); border-color: var(--accent); }
 
         #main-content { padding-top: 80px; }
@@ -128,7 +128,8 @@
             <span id="display-title"></span>
             <button id="player-fav-btn" onclick="toggleFavCurrent()">+ Ma Liste</button>
         </div>
-        <div id="display-desc" style="color: #bbb; margin-bottom: 20px;"></div>
+        <div id="display-desc" style="color: #bbb; margin-bottom: 10px;"></div>
+        <div id="display-actors" style="color: #888; font-size: 13px; margin-bottom: 20px; font-style: italic;"></div>
         <button class="btn-close" onclick="closeP()">Fermer</button>
     </div>
 </section>
@@ -170,9 +171,9 @@
     onAuthStateChanged(auth, async (user) => {
         if (user) {
             const snapshot = await get(ref(db, 'users_data/' + user.uid + '/expire'));
-            const expireValue = snapshot.val();
+            const expVal = snapshot.val();
             const today = new Date().toISOString().split('T')[0];
-            if (expireValue && expireValue.toString().trim() <= today) {
+            if (expVal && expVal.toString().trim() <= today) {
                 alert("Abonnement expiré."); signOut(auth); location.reload(); return;
             }
             document.getElementById('login-screen').style.display = 'none';
@@ -333,6 +334,11 @@ function playMovie(idx) {
     document.getElementById('player-section').style.display = 'block';
     document.getElementById('display-title').innerText = m.t;
     document.getElementById('display-desc').innerText = m.desc || "";
+    
+    // Affichage du casting
+    const cast = m.actors || m.cast || "";
+    document.getElementById('display-actors').innerText = cast ? "Avec : " + cast : "";
+
     updatePlayerFavUI();
     window.scrollTo({top:0, behavior:'smooth'});
     player.src({ src: m.url, type: m.url.includes('.m3u8') ? 'application/x-mpegURL' : 'video/mp4' });
