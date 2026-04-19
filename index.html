@@ -213,7 +213,7 @@
 
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-    import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+    import { getDatabase, ref, set, onValue, get } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
     import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
     const firebaseConfig = {
@@ -250,28 +250,28 @@
         const pass = document.getElementById('pass').value;
 
         signInWithEmailAndPassword(auth, email, pass)
-            .then((userCredential) => {
+            .then(async (userCredential) => {
                 const user = userCredential.user;
                 
-                const dateRef = ref(db, 'users_data/' + user.uid + '/expire');
-                onValue(dateRef, (snapshot) => {
-                    const expireValue = snapshot.val();
-                    const today = new Date().toISOString().split('T')[0];
+                // On utilise 'get' pour une lecture unique et rapide lors de la connexion
+                const snapshot = await get(ref(db, 'users_data/' + user.uid + '/expire'));
+                const expireValue = snapshot.val();
+                const today = new Date().toISOString().split('T')[0];
+                const expireDate = expireValue ? expireValue.toString().trim() : "Non définie";
 
-                    // Nettoyage de la valeur récupérée (retrait des espaces éventuels)
-                    const expireDate = expireValue ? expireValue.toString().trim() : null;
+                // --- TEST : Cette alerte te dira ce que le code voit ---
+                // alert("Debug - Aujourd'hui : " + today + " | Expire : " + expireDate);
 
-                    if (expireDate && expireDate < today) {
-                        alert("🚫 Accès expiré depuis le : " + expireDate);
-                        signOut(auth);
-                        location.reload();
-                    } else {
-                        set(ref(db, 'sessions/' + user.uid), {
-                            deviceId: deviceId,
-                            lastLogin: Date.now()
-                        });
-                    }
-                }, { onlyOnce: true });
+                if (expireValue && expireDate < today) {
+                    alert("🚫 Accès expiré depuis le : " + expireDate);
+                    signOut(auth);
+                    location.reload();
+                } else {
+                    set(ref(db, 'sessions/' + user.uid), {
+                        deviceId: deviceId,
+                        lastLogin: Date.now()
+                    });
+                }
             })
             .catch((error) => {
                 alert("Accès refusé : Identifiants incorrects.");
