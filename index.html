@@ -50,11 +50,11 @@
 
         #player-section { display: none; width: 100%; background: #000; padding-top: 60px; }
         .video-container { position: relative; width: 100%; overflow: hidden; background: #000; }
-        #video-touch-overlay { position: absolute; top: 0; left: 0; width: 100%; height: calc(100% - 50px); z-index: 10; cursor: pointer; }
+        #video-touch-overlay { position: absolute; top: 0; left: 0; width: 100%; height: calc(100% - 80px); z-index: 10; cursor: pointer; pointer-events: auto; }
 
         .vjs-skip-button { font-size: 1.5em !important; cursor: pointer; }
 
-        /* Le style du bouton injecté par Video.js */
+        /* Style du bouton Suivant */
         .vjs-next-episode-btn {
             background-color: #e50914 !important;
             color: white !important;
@@ -64,7 +64,11 @@
             font-size: 14px !important;
             cursor: pointer !important;
             border: 2px solid white !important;
-            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            box-shadow: 0 0 15px rgba(0,0,0,0.7);
+            position: absolute !important;
+            bottom: 80px !important;
+            right: 20px !important;
+            z-index: 9999 !important;
         }
 
         .movie-info { padding: 20px 5%; background: #0a0a0a; min-height: 150px; border-bottom: 3px solid var(--accent); }
@@ -367,7 +371,6 @@ function openSeries(name) {
 function playMovie(idx) {
     const m = playlistData[idx];
     currentPlayingTitle = m.t;
-    
     if(currentProfile) {
         let key = 'sfpp_hist_' + currentProfile;
         let hist = JSON.parse(localStorage.getItem(key) || "[]").filter(t => t !== m.t);
@@ -389,19 +392,14 @@ function playNextEpisode() {
     const currentEp = currentPlayingTitle;
     const parts = currentEp.match(/(.*[SE])(\d+)(.*)/i);
     if (!parts) return;
-
     const prefix = parts[1];
     const num = parseInt(parts[2]);
     const suffix = parts[3];
     const nextNum = (num + 1).toString().padStart(2, '0');
     const nextTitlePart = prefix + nextNum;
-
     const nextIdx = playlistData.findIndex(m => m.t.toUpperCase().includes(nextTitlePart.toUpperCase()));
-    if (nextIdx !== -1) {
-        playMovie(nextIdx);
-    } else {
-        alert("Fin de saison !");
-    }
+    if (nextIdx !== -1) playMovie(nextIdx);
+    else alert("Fin de saison !");
 }
 
 function closeP() { player.pause(); document.getElementById('player-section').style.display = 'none'; }
@@ -417,7 +415,6 @@ function toggleEditMode() { isEditMode = !isEditMode; document.getElementById('p
 function switchProfile() { localStorage.removeItem('sfpp_profile'); location.reload(); }
 function requestAccess() { window.location.href = "mailto:sfpp.ott@gmail.com"; }
 
-// INITIALISATION DU PLAYER ET COMPOSANT SUIVANT
 document.addEventListener('DOMContentLoaded', () => {
     player = videojs('main-video', { 
         techOrder: ['chromecast', 'html5'], 
@@ -425,7 +422,7 @@ document.addEventListener('DOMContentLoaded', () => {
         controlBar: { children: ['playToggle', 'volumePanel', 'currentTimeDisplay', 'timeDivider', 'durationDisplay', 'progressControl', 'liveDisplay', 'remainingTimeDisplay', 'customControlSpacer', 'playbackRateMenuButton', 'chaptersButton', 'descriptionsButton', 'subsCapsButton', 'audioTrackButton', 'fullscreenToggle'] }
     });
 
-    // Création du bouton Suivant comme composant officiel Video.js
+    // COMPOSANT BOUTON SUIVANT
     const Component = videojs.getComponent('Component');
     const NextButton = videojs.extend(Component, {
         constructor: function(player, options) {
@@ -440,22 +437,13 @@ document.addEventListener('DOMContentLoaded', () => {
     player.ready(() => {
         const nextBtnInstance = player.addChild('NextButton');
         const el = nextBtnInstance.el();
-        
-        // Positionnement forcé à l'intérieur du player
-        el.style.position = 'absolute';
-        el.style.bottom = '80px';
-        el.style.right = '20px';
-        el.style.zIndex = '2000';
+        el.addEventListener('click', (e) => { e.stopPropagation(); playNextEpisode(); });
 
-        el.addEventListener('click', () => playNextEpisode());
-
-        // Surveillance de la fin
         player.on('timeupdate', function() {
             const duration = player.duration();
             const current = player.currentTime();
             const isSeries = /\d/.test(currentPlayingTitle);
-            
-            if (isSeries && duration > 0 && (duration - current) < 60) {
+            if (isSeries && duration > 0 && (duration - current) < 40) {
                 el.style.display = 'block';
             } else {
                 el.style.display = 'none';
@@ -463,6 +451,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // BOUTONS BACK/FORWARD
     const Button = videojs.getComponent('Button');
     class Back extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-replay-10'; } handleClick() { player.currentTime(player.currentTime()-10); } }
     class Forward extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-forward-10'; } handleClick() { player.currentTime(player.currentTime()+10); } }
@@ -472,11 +461,16 @@ document.addEventListener('DOMContentLoaded', () => {
         player.getChild('controlBar').addChild('Forward', {}, 2); 
     });
 
+    // GESTION DU PLEIN ÉCRAN (DOUBLE CLIC)
     const touchOverlay = document.getElementById('video-touch-overlay');
     let lastTap = 0;
-    touchOverlay.addEventListener('touchstart', (e) => {
+    touchOverlay.addEventListener('touchend', (e) => {
         let now = Date.now();
-        if ((now - lastTap < 300)) { if (player.isFullscreen()) player.exitFullscreen(); else player.requestFullscreen(); e.preventDefault(); }
+        if ((now - lastTap < 300)) { 
+            if (player.isFullscreen()) player.exitFullscreen(); 
+            else player.requestFullscreen(); 
+            e.preventDefault(); 
+        }
         lastTap = now;
     });
 });
