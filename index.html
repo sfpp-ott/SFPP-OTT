@@ -88,14 +88,46 @@
         #player-fav-btn { background: #222; border: 1px solid #444; color: white; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 14px; }
         #player-fav-btn.is-fav { color: var(--accent); border-color: var(--accent); }
         #main-content { padding-top: 80px; }
+        
+        /* STYLE POUR LA NAVIGATION TV */
+        .category-row { position: relative; width: 100%; margin-bottom: 20px; }
         .category-title { font-size: 18px; font-weight: bold; margin: 20px 4% 10px; color: #fff; text-transform: uppercase; }
         
-        /* CORRECTION SOURIS AMAZON */
-        .carousel { display: flex; overflow-x: auto; gap: 12px; padding: 0 4% 20px; scrollbar-width: none; cursor: grab; }
-        .carousel:active { cursor: grabbing; }
-        .card { flex: 0 0 150px; cursor: pointer; position: relative; user-select: none; -webkit-user-drag: none; }
-        .card img { width: 100%; aspect-ratio: 2/3; object-fit: cover; border-radius: 4px; background: #222; pointer-events: none; }
-        .card-name { margin-top: 6px; font-size: 12px; text-align: center; color: #bbb; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; pointer-events: none; }
+        .carousel { 
+            display: flex; 
+            overflow-x: auto; 
+            gap: 12px; 
+            padding: 0 4% 10px; 
+            scrollbar-width: none; 
+            scroll-behavior: smooth;
+            -ms-overflow-style: none;
+        }
+        .carousel::-webkit-scrollbar { display: none; }
+
+        /* BOUTONS DE NAVIGATION INVISIBLES POUR SOURIS TV */
+        .nav-arrow {
+            position: absolute;
+            top: 40px;
+            bottom: 0;
+            width: 50px;
+            background: rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            cursor: pointer;
+            color: white;
+            font-size: 24px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .category-row:hover .nav-arrow { opacity: 1; }
+        .arrow-left { left: 0; border-radius: 0 4px 4px 0; }
+        .arrow-right { right: 0; border-radius: 4px 0 0 4px; }
+
+        .card { flex: 0 0 150px; cursor: pointer; position: relative; }
+        .card img { width: 100%; aspect-ratio: 2/3; object-fit: cover; border-radius: 4px; background: #222; }
+        .card-name { margin-top: 6px; font-size: 12px; text-align: center; color: #bbb; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
 
         .prog-bg { position: absolute; bottom: 25px; left: 0; width: 100%; height: 4px; background: rgba(255,255,255,0.2); border-radius: 0 0 4px 4px; }
         .prog-fill { height: 100%; background: var(--accent); transition: width 0.3s; }
@@ -166,7 +198,11 @@
 
     <div id="history-sec" style="display:none">
         <div class="category-title">Reprendre avec <span id="current-user-name"></span></div>
-        <div class="carousel" id="history-container"></div>
+        <div class="category-row">
+            <div class="nav-arrow arrow-left" onclick="scrollSide(this, -300)">‹</div>
+            <div class="carousel" id="history-container"></div>
+            <div class="nav-arrow arrow-right" onclick="scrollSide(this, 300)">›</div>
+        </div>
     </div>
     <div id="categories-container"></div>
 </div>
@@ -346,23 +382,10 @@ function saveP() {
     }
 }
 
-function attachDragScroll(slider) {
-    let isDown = false, startX, scrollLeft;
-    slider.addEventListener('mousedown', (e) => {
-        isDown = true;
-        startX = e.pageX - slider.offsetLeft;
-        scrollLeft = slider.scrollLeft;
-        slider.style.cursor = 'grabbing';
-    });
-    slider.addEventListener('mouseleave', () => { isDown = false; slider.style.cursor = 'grab'; });
-    slider.addEventListener('mouseup', () => { isDown = false; slider.style.cursor = 'grab'; });
-    slider.addEventListener('mousemove', (e) => {
-        if(!isDown) return;
-        e.preventDefault();
-        const x = e.pageX - slider.offsetLeft;
-        const walk = (x - startX) * 2;
-        slider.scrollLeft = scrollLeft - walk;
-    });
+// FONCTION POUR SCROLLER AVEC LES FLECHES INVISIBLES
+function scrollSide(btn, amt) {
+    const car = btn.parentElement.querySelector('.carousel');
+    car.scrollBy({ left: amt, behavior: 'smooth' });
 }
 
 function render(search = "") {
@@ -390,7 +413,6 @@ function render(search = "") {
                     histCont.innerHTML += `<div class="card" onclick="playMovie(${playlistData.indexOf(m)})"><img src="${m.img}">${pct}<div class="card-name">${m.t}</div></div>`;
                 }
             });
-            attachDragScroll(histCont);
         } else histSec.style.display = "none";
     } else histSec.style.display = "none";
 
@@ -401,33 +423,28 @@ function render(search = "") {
         const filtered = data.filter(m => m.cat === c && m.t.toLowerCase().includes(s));
         if (filtered.length === 0) return;
         
-        const catDiv = document.createElement('div');
-        catDiv.innerHTML = `<div class="category-title">${c}</div>`;
-        const carousel = document.createElement('div');
-        carousel.className = "carousel";
+        let html = `
+            <div class="category-title">${c}</div>
+            <div class="category-row">
+                <div class="nav-arrow arrow-left" onclick="scrollSide(this, -400)">‹</div>
+                <div class="carousel">`;
         
         filtered.forEach(m => {
             const isS = /S\d{2}E\d{2}/i.test(m.t);
             const heart = favs.includes(m.t) ? `<div class="fav-indicator">❤️</div>` : "";
-            const card = document.createElement('div');
-            card.className = "card";
             if(isS) {
                 const sName = m.t.split(' - ')[0];
                 if(!addedSeries.includes(sName)) {
                     addedSeries.push(sName);
-                    card.onclick = () => openSeries(sName);
-                    card.innerHTML = `<img src="${m.img}">${heart}<div class="card-name">${sName}</div>`;
-                    carousel.appendChild(card);
+                    html += `<div class="card" onclick="openSeries('${sName}')"><img src="${m.img}">${heart}<div class="card-name">${sName}</div></div>`;
                 }
             } else {
-                card.onclick = () => playMovie(playlistData.indexOf(m));
-                card.innerHTML = `<img src="${m.img}">${heart}<div class="card-name">${m.t}</div>`;
-                carousel.appendChild(card);
+                html += `<div class="card" onclick="playMovie(${playlistData.indexOf(m)})"><img src="${m.img}">${heart}<div class="card-name">${m.t}</div></div>`;
             }
         });
-        catDiv.appendChild(carousel);
-        cont.appendChild(catDiv);
-        attachDragScroll(carousel);
+        
+        html += `</div><div class="nav-arrow arrow-right" onclick="scrollSide(this, 400)">›</div></div>`;
+        cont.innerHTML += html;
     });
 }
 
