@@ -13,6 +13,11 @@
         :root { --accent: #e50914; --gold: #ffcc00; --bg: #050505; }
         body { background: var(--bg); color: white; font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; padding-bottom: 50px; }
         
+        /* Transition fluide pour les écrans */
+        #login-screen, #profile-screen, #main-content, #player-section {
+            transition: opacity 0.5s ease-in-out;
+        }
+
         #login-screen { position: fixed; inset: 0; background: #000; z-index: 5000; display: flex; align-items: center; justify-content: center; }
         .login-box { background: #111; padding: 30px; border-radius: 8px; width: 280px; text-align: center; border: 1px solid #333; }
         .login-box input { width: 100%; padding: 12px; margin: 10px 0; background: #222; border: 1px solid #444; color: white; border-radius: 4px; box-sizing: border-box; }
@@ -48,79 +53,32 @@
         }
         .logo { color: var(--accent); font-weight: 900; font-size: 16px; flex-shrink: 0; }
         
-        .nav-links { 
-            display: flex; 
-            gap: 5px; 
-            flex: 1; 
-            justify-content: center;
-            white-space: nowrap;
-        }
-        .nav-btn { 
-            background: none; 
-            border: none; 
-            color: #bbb; 
-            cursor: pointer; 
-            font-size: 12px; 
-            font-weight: 500; 
-            padding: 5px 4px; 
-            transition: color 0.3s; 
-        }
+        .nav-links { display: flex; gap: 5px; flex: 1; justify-content: center; white-space: nowrap; }
+        .nav-btn { background: none; border: none; color: #bbb; cursor: pointer; font-size: 12px; font-weight: 500; padding: 5px 4px; transition: color 0.3s; }
         .nav-btn:hover { color: white; }
         .nav-btn.active { color: white; font-weight: bold; border-bottom: 2px solid var(--accent); }
 
-        #searchBar { 
-            flex: 0 1 120px; 
-            background: #222; 
-            border: 1px solid #444; 
-            color: white; 
-            padding: 5px 10px; 
-            border-radius: 20px; 
-            outline: none; 
-            font-size: 11px; 
-        }
-        .btn-logout { 
-            background: #333; 
-            color: white; 
-            border: none; 
-            padding: 5px 10px; 
-            border-radius: 4px; 
-            cursor: pointer; 
-            font-size: 10px; 
-            flex-shrink: 0; 
-            border: 1px solid #444; 
-            margin-right: 2px;
-        }
+        #searchBar { flex: 0 1 120px; background: #222; border: 1px solid #444; color: white; padding: 5px 10px; border-radius: 20px; outline: none; font-size: 11px; }
+        .btn-logout { background: #333; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-size: 10px; flex-shrink: 0; border: 1px solid #444; margin-right: 2px; }
 
         #player-section { display: none; width: 100%; background: #000; padding-top: 60px; }
         .video-container { position: relative; width: 100%; overflow: hidden; background: #000; }
         
-        #video-touch-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: calc(100% - 50px);
-            z-index: 10;
-            cursor: pointer;
-        }
+        #video-touch-overlay { position: absolute; top: 0; left: 0; width: 100%; height: calc(100% - 50px); z-index: 10; cursor: pointer; }
+
+        /* Styles pour les nouveaux boutons ±10s */
+        .vjs-skip-button { font-size: 1.5em !important; cursor: pointer; }
 
         .video-js { font-family: 'Helvetica Neue', Arial, sans-serif; }
         .vjs-theme-fantasy .vjs-control-bar { background: linear-gradient(0deg, rgba(0,0,0,0.8) 0%, transparent 100%); height: 50px; }
         .vjs-theme-fantasy .vjs-play-progress { background-color: var(--accent); }
         .vjs-theme-fantasy .vjs-big-play-centered .vjs-big-play-button { 
             background-color: rgba(229, 9, 20, 0.85); 
-            border: none; 
-            width: 80px; 
-            height: 80px; 
-            border-radius: 50%; 
-            line-height: 80px;
-            margin-top: -40px;
-            margin-left: -40px;
+            border: none; width: 80px; height: 80px; border-radius: 50%; line-height: 80px; margin-top: -40px; margin-left: -40px;
         }
 
         .movie-info { padding: 20px 5%; background: #0a0a0a; min-height: 150px; border-bottom: 3px solid var(--accent); }
         .movie-title { font-size: 26px; font-weight: bold; margin-bottom: 8px; color: #fff; }
-        .movie-cast { display: none; color: var(--gold); font-weight: bold; font-size: 15px; margin: 10px 0; padding: 5px 0; border-top: 1px solid #222; border-bottom: 1px solid #222; }
         .movie-desc { font-size: 14px; color: #bbb; line-height: 1.5; margin-bottom: 20px; }
 
         #main-content { padding-top: 80px; }
@@ -189,7 +147,6 @@
     </div>
     <div class="movie-info">
         <div id="display-title" class="movie-title"></div>
-        <div id="display-cast" class="movie-cast"></div>
         <div id="display-desc" class="movie-desc"></div>
         <button class="btn-close" onclick="closeP()">Fermer</button>
     </div>
@@ -239,7 +196,6 @@
             const snapshot = await get(ref(db, 'users_data/' + user.uid + '/expire'));
             const expireValue = snapshot.val();
             const today = new Date().toISOString().split('T')[0];
-            
             if (expireValue) {
                 const expireDate = expireValue.toString().trim();
                 if (expireDate <= today) {
@@ -254,81 +210,54 @@
         return false;
     }
 
-    window.startSessionSync = function(uid) {
-        const userRef = ref(db, 'sessions/' + uid);
-        onValue(userRef, (snapshot) => {
-            const session = snapshot.val();
-            if (session && session.deviceId !== deviceId) {
-                alert("⚠️ Ce compte est utilisé sur un autre appareil.");
-                signOut(auth);
-                location.reload();
-            }
-        });
-    };
-
     window.checkLogin = function() {
         const email = document.getElementById('user').value.trim();
         const pass = document.getElementById('pass').value;
-
-        signInWithEmailAndPassword(auth, email, pass)
-            .then(async (userCredential) => {
-                const expired = await verifyExpiration(userCredential.user);
-                if (!expired) {
-                    set(ref(db, 'sessions/' + userCredential.user.uid), {
-                        deviceId: deviceId,
-                        lastLogin: Date.now()
-                    });
-                }
-            })
-            .catch(() => alert("Accès refusé."));
+        signInWithEmailAndPassword(auth, email, pass).then(async (userCredential) => {
+            const expired = await verifyExpiration(userCredential.user);
+            if (!expired) {
+                set(ref(db, 'sessions/' + userCredential.user.uid), { deviceId: deviceId, lastLogin: Date.now() });
+            }
+        }).catch(() => alert("Accès refusé."));
     };
 
     onAuthStateChanged(auth, async (user) => {
         if (user) {
             const expired = await verifyExpiration(user);
             if (expired) return;
-
-            window.startSessionSync(user.uid);
-            document.getElementById('login-screen').style.display = 'none';
+            document.getElementById('login-screen').style.opacity = '0';
+            setTimeout(() => document.getElementById('login-screen').style.display = 'none', 500);
             loadPlaylist();
             initProfiles();
             const savedProfile = localStorage.getItem('sfpp_profile');
-            if(savedProfile) { 
-                window.selectProfile(savedProfile, localStorage.getItem('sfpp_profile_icon')); 
+            if(savedProfile) { window.selectProfile(savedProfile, localStorage.getItem('sfpp_profile_icon')); }
+            else { 
+                document.getElementById('profile-screen').style.display = 'flex';
+                document.getElementById('profile-screen').style.opacity = '1';
             }
-            else { document.getElementById('profile-screen').style.display = 'flex'; }
         } else {
             document.getElementById('login-screen').style.display = 'flex';
+            document.getElementById('login-screen').style.opacity = '1';
         }
     });
 
-    // Modification pour l'affichage de la date d'expiration dans le logo
     window.selectProfile = async function(name, icon) {
         currentProfile = name;
         localStorage.setItem('sfpp_profile', name);
         localStorage.setItem('sfpp_profile_icon', icon);
-        document.getElementById('profile-screen').style.display = 'none';
+        document.getElementById('profile-screen').style.opacity = '0';
+        setTimeout(() => document.getElementById('profile-screen').style.display = 'none', 500);
         document.getElementById('current-user-name').innerText = name;
-        
         const user = auth.currentUser;
         if (user) {
             const snapshot = await get(ref(db, 'users_data/' + user.uid + '/expire'));
             const expireDate = snapshot.val();
-            if (expireDate) {
-                document.getElementById('header-logo').innerHTML = `SFPP | ${icon} <span style="font-size:10px; color:#666; margin-left:5px;">(Fin: ${expireDate})</span>`;
-            } else {
-                document.getElementById('header-logo').innerText = "SFPP | " + icon;
-            }
+            document.getElementById('header-logo').innerHTML = expireDate ? `SFPP | ${icon} <span style="font-size:10px; color:#666; margin-left:5px;">(Fin: ${expireDate})</span>` : "SFPP | " + icon;
         }
         render();
     };
 
-    window.logout = function() {
-        signOut(auth).then(() => {
-            localStorage.clear();
-            location.reload();
-        });
-    };
+    window.logout = function() { signOut(auth).then(() => { localStorage.clear(); location.reload(); }); };
 </script>
 
 <script>
@@ -338,38 +267,38 @@ let currentProfile = null;
 let isEditMode = false;
 let currentView = 'all';
 
-const defaultProfiles = [
-    { id: 1, name: "Papa", icon: "🟦", color: "#1e90ff" },
-    { id: 2, name: "Maman", icon: "🟩", color: "#2ecc71" },
-    { id: 3, name: "Enfant 1", icon: "🟧", color: "#e67e22" },
-    { id: 4, name: "Enfant 2", icon: "🟪", color: "#9b59b6" }
-];
-
 async function loadPlaylist() {
-    try {
-        const response = await fetch('films.json');
-        playlistData = await response.json();
-        render();
-    } catch (e) { console.error(e); }
-}
-
-function requestAccess() {
-    const email = "sfpp.ott@gmail.com";
-    window.location.href = `mailto:${email}?subject=Demande accès SFPP ELITE`;
+    try { const response = await fetch('films.json'); playlistData = await response.json(); render(); } catch (e) { console.error(e); }
 }
 
 function initProfiles() {
     let saved = localStorage.getItem('sfpp_profiles_data');
-    let profiles = saved ? JSON.parse(saved) : defaultProfiles;
+    let profiles = saved ? JSON.parse(saved) : [
+        { id: 1, name: "Papa", icon: "🟦", color: "#1e90ff" },
+        { id: 2, name: "Maman", icon: "🟩", color: "#2ecc71" },
+        { id: 3, name: "Enfant 1", icon: "🟧", color: "#e67e22" },
+        { id: 4, name: "Enfant 2", icon: "🟪", color: "#9b59b6" }
+    ];
     const list = document.getElementById('profile-list');
     list.innerHTML = "";
     profiles.forEach(p => {
         list.innerHTML += `<div class="profile-item" onclick="handleProfileClick(${p.id}, '${p.name}', '${p.icon}')">
                 <div class="profile-avatar" style="background: ${p.color};">${p.icon}</div>
                 <div class="edit-icon">✏️</div>
-                <div class="profile-name" id="pname-${p.id}">${p.name}</div>
+                <div class="profile-name">${p.name}</div>
             </div>`;
     });
+}
+
+function handleProfileClick(id, name, icon) {
+    if(isEditMode) {
+        let newName = prompt("Nouveau nom :", name);
+        if(newName) {
+            let saved = JSON.parse(localStorage.getItem('sfpp_profiles_data') || "[]");
+            const idx = saved.findIndex(p => p.id === id);
+            if(idx !== -1) { saved[idx].name = newName; localStorage.setItem('sfpp_profiles_data', JSON.stringify(saved)); initProfiles(); }
+        }
+    } else { window.selectProfile(name, icon); }
 }
 
 function toggleEditMode() {
@@ -380,126 +309,55 @@ function toggleEditMode() {
     else { screen.classList.remove('is-editing'); btn.innerText = "GÉRER LES PROFILS"; }
 }
 
-function handleProfileClick(id, name, icon) {
-    if(isEditMode) {
-        let newName = prompt("Nouveau nom :", name);
-        if(newName) updateProfileName(id, newName.trim());
-    } else { window.selectProfile(name, icon); }
-}
-
-function updateProfileName(id, newName) {
-    let saved = JSON.parse(localStorage.getItem('sfpp_profiles_data') || JSON.stringify(defaultProfiles));
-    const idx = saved.findIndex(p => p.id === id);
-    if(idx !== -1) { saved[idx].name = newName; localStorage.setItem('sfpp_profiles_data', JSON.stringify(saved)); initProfiles(); }
-}
-
 function switchProfile() {
     localStorage.removeItem('sfpp_profile');
     document.getElementById('profile-screen').style.display = 'flex';
-}
-
-function changeView(view) {
-    currentView = view;
-    document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
-    document.getElementById('btn-' + (view === 'all' ? 'all' : view === 'movies' ? 'movies' : 'series')).classList.add('active');
-    render(document.getElementById('searchBar').value);
+    document.getElementById('profile-screen').style.opacity = '1';
 }
 
 function render(search = "") {
     const catsCont = document.getElementById('categories-container');
-    const featCont = document.getElementById('featured-container');
     const featSec = document.getElementById('featured-sec');
     const histSec = document.getElementById('history-sec');
-    const histCont = document.getElementById('history-container');
     if(!catsCont) return;
-    catsCont.innerHTML = ""; featCont.innerHTML = ""; histCont.innerHTML = "";
+    catsCont.innerHTML = "";
     const s = search.toLowerCase();
     
     let filteredData = playlistData;
-    if (currentView === 'movies') { filteredData = playlistData.filter(m => m.cat !== "SÉRIES"); } 
-    else if (currentView === 'series') { filteredData = playlistData.filter(m => m.cat === "SÉRIES"); }
+    if (currentView === 'movies') filteredData = playlistData.filter(m => m.cat !== "SÉRIES");
+    else if (currentView === 'series') filteredData = playlistData.filter(m => m.cat === "SÉRIES");
 
-    if(currentProfile) {
+    if(currentProfile && s === "") {
         let history = JSON.parse(localStorage.getItem('sfpp_hist_' + currentProfile) || "[]");
-        if(history.length > 0 && s === "") {
+        if(history.length > 0) {
             histSec.style.display = "block";
-            history.reverse().forEach(movieTitle => {
-                const m = filteredData.find(item => item.t === movieTitle);
-                if(m) { const idx = playlistData.indexOf(m); histCont.innerHTML += `<div class="card" onclick="playMovie(${idx})"><img src="${m.img}"><div class="card-name">${m.t}</div></div>`; }
+            let hHtml = "";
+            history.reverse().forEach(title => {
+                const m = filteredData.find(item => item.t === title);
+                if(m) hHtml += `<div class="card" onclick="playMovie(${playlistData.indexOf(m)})"><img src="${m.img}"><div class="card-name">${m.t}</div></div>`;
             });
-        } else { histSec.style.display = "none"; }
+            document.getElementById('history-container').innerHTML = hHtml;
+        } else histSec.style.display = "none";
     }
 
-    if(s === "" && currentView === 'all') {
-        featSec.style.display = "block";
-        filteredData.slice(0, 5).forEach((m) => { 
-            const idx = playlistData.indexOf(m);
-            featCont.innerHTML += `<div class="featured-card" onclick="playMovie(${idx})"><img src="${m.img}"><div class="featured-title">${m.t}</div></div>`; 
-        });
-    } else { featSec.style.display = "none"; }
-
     const cats = [...new Set(filteredData.map(m => m.cat))];
-    let addedSeries = [];
-
     cats.forEach(c => {
         const filtered = filteredData.filter(m => m.cat === c && m.t.toLowerCase().includes(s));
         if (filtered.length === 0) return;
         let html = `<div class="category-title">${c}</div><div class="carousel">`;
-        filtered.forEach(m => {
-            const isSeries = /S\d{2}E\d{2}/.test(m.t);
-            if(isSeries) {
-                const sName = m.t.split(' - ')[0];
-                if(!addedSeries.includes(sName)) {
-                    addedSeries.push(sName);
-                    html += `<div class="card" onclick="openSeries('${sName}')"><img src="${m.img}"><div class="card-name">${sName}</div></div>`;
-                }
-            } else {
-                const idx = playlistData.indexOf(m);
-                html += `<div class="card" onclick="playMovie(${idx})"><img src="${m.img}"><div class="card-name">${m.t}</div></div>`;
-            }
-        });
+        filtered.forEach(m => html += `<div class="card" onclick="playMovie(${playlistData.indexOf(m)})"><img src="${m.img}"><div class="card-name">${m.t}</div></div>`);
         catsCont.innerHTML += html + `</div>`;
     });
 }
 
-function openSeries(name) {
-    const overlay = document.getElementById('series-overlay');
-    const content = document.getElementById('series-detail-content');
-    const eps = playlistData.filter(m => m.t.startsWith(name));
-    overlay.style.display = 'block';
-    document.body.style.overflow = 'hidden';
-    let html = `<div class="overlay-header"><img src="${eps[0].img}" class="overlay-img"><div><h2 style="margin:0">${name}</h2></div></div>`;
-    const seasons = {};
-    eps.forEach(ep => {
-        const sMatch = ep.t.match(/S(\d{2})/);
-        const sNum = sMatch ? sMatch[1] : "01";
-        if(!seasons[sNum]) seasons[sNum] = [];
-        seasons[sNum].push(ep);
-    });
-    Object.keys(seasons).sort().forEach(s => {
-        html += `<div class="season-title">SAISON ${s}</div>`;
-        seasons[s].forEach(ep => {
-            const idx = playlistData.indexOf(ep);
-            const epName = ep.t.split(' - ')[1] || ep.t;
-            html += `<div class="episode-item" onclick="playMovie(${idx}); closeSeries();"><div style="flex:1"><div style="font-weight:bold; color:white">${epName}</div></div><div style="color:var(--accent); font-weight:bold">LIRE</div></div>`;
-        });
-    });
-    content.innerHTML = html;
-}
-
-function addToHistory(title) {
-    if(!currentProfile) return;
-    let key = 'sfpp_hist_' + currentProfile;
-    let history = JSON.parse(localStorage.getItem(key) || "[]");
-    history = history.filter(t => t !== title);
-    history.push(title);
-    if(history.length > 10) history.shift();
-    localStorage.setItem(key, JSON.stringify(history));
-}
-
 function playMovie(idx) {
     const m = playlistData[idx];
-    addToHistory(m.t);
+    if(currentProfile) {
+        let key = 'sfpp_hist_' + currentProfile;
+        let hist = JSON.parse(localStorage.getItem(key) || "[]").filter(t => t !== m.t);
+        hist.push(m.t); if(hist.length > 10) hist.shift();
+        localStorage.setItem(key, JSON.stringify(hist));
+    }
     document.getElementById('player-section').style.display = 'block';
     document.getElementById('display-title').innerText = m.t;
     document.getElementById('display-desc').innerText = m.desc || "";
@@ -509,17 +367,58 @@ function playMovie(idx) {
 }
 
 function closeP() { player.pause(); document.getElementById('player-section').style.display = 'none'; }
-function closeSeries() { document.getElementById('series-overlay').style.display = 'none'; document.body.style.overflow = 'auto'; }
+function changeView(v) { currentView = v; render(document.getElementById('searchBar').value); }
 function filter() { render(document.getElementById('searchBar').value); }
 
 document.addEventListener('DOMContentLoaded', () => {
-    player = videojs('main-video', { techOrder: ['chromecast', 'html5'], plugins: { chromecast: { addButtonToControlBar: true } } });
+    player = videojs('main-video', { 
+        techOrder: ['chromecast', 'html5'], 
+        plugins: { chromecast: { addButtonToControlBar: true } },
+        controlBar: {
+            children: [
+                'playToggle',
+                'volumePanel',
+                'currentTimeDisplay',
+                'timeDivider',
+                'durationDisplay',
+                'progressControl',
+                'liveDisplay',
+                'remainingTimeDisplay',
+                'customControlSpacer',
+                'playbackRateMenuButton',
+                'chaptersButton',
+                'descriptionsButton',
+                'subsCapsButton',
+                'audioTrackButton',
+                'fullscreenToggle'
+            ]
+        }
+    });
+
+    // Ajout manuel des boutons ±10s
+    const ControlBar = videojs.getComponent('ControlBar');
+    const Button = videojs.getComponent('Button');
+
+    class BackButton extends Button {
+        buildCSSClass() { return 'vjs-skip-button vjs-icon-replay-10'; }
+        handleClick() { player.currentTime(player.currentTime() - 10); }
+    }
+    class ForwardButton extends Button {
+        buildCSSClass() { return 'vjs-skip-button vjs-icon-forward-10'; }
+        handleClick() { player.currentTime(player.currentTime() + 10); }
+    }
+
+    videojs.registerComponent('BackButton', BackButton);
+    videojs.registerComponent('ForwardButton', ForwardButton);
+
+    player.getChild('controlBar').addChild('BackButton', {}, 1);
+    player.getChild('controlBar').addChild('ForwardButton', {}, 2);
+
     const touchOverlay = document.getElementById('video-touch-overlay');
     let lastTap = 0;
     touchOverlay.addEventListener('touchstart', (e) => {
-        let now = new Date().getTime();
-        let timesince = now - lastTap;
-        if ((timesince < 300) && (timesince > 0)) {
+        let now = Date.now();
+        if ((now - lastTap < 300)) {
             if (player.isFullscreen()) player.exitFullscreen(); else player.requestFullscreen();
             e.preventDefault();
         }
