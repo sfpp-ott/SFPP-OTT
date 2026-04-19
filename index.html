@@ -38,17 +38,31 @@
         .is-editing .edit-icon { display: block; }
         .btn-manage { margin-top: 40px; background: none; border: 1px solid #444; color: #888; padding: 10px 20px; cursor: pointer; font-size: 14px; letter-spacing: 1px; }
 
-        header { position: fixed; top: 0; width: 100%; height: 60px; background: rgba(0,0,0,0.95); display: flex; align-items: center; padding: 0 1%; z-index: 2000; gap: 5px; border-bottom: 1px solid #222; justify-content: space-between; box-sizing: border-box; }
+        /* HEADER OPTIMISÉ POUR MOBILE */
+        header { position: fixed; top: 0; width: 100%; height: 65px; background: rgba(0,0,0,0.95); display: flex; align-items: center; z-index: 2000; border-bottom: 1px solid #222; box-sizing: border-box; padding: 0 10px; gap: 10px; }
         .logo { color: var(--accent); font-weight: 900; font-size: 16px; flex-shrink: 0; }
-        .nav-links { display: flex; gap: 5px; flex: 1; justify-content: center; white-space: nowrap; }
-        .nav-btn { background: none; border: none; color: #bbb; cursor: pointer; font-size: 12px; font-weight: 500; padding: 5px 4px; transition: color 0.3s; }
-        .nav-btn:hover { color: white; }
+        
+        /* NAVIGATION DÉFILANTE */
+        .nav-links { 
+            display: flex; 
+            gap: 15px; 
+            flex: 1; 
+            overflow-x: auto; 
+            scrollbar-width: none; 
+            align-items: center;
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
+        }
+        .nav-links::-webkit-scrollbar { display: none; }
+        
+        .nav-btn { background: none; border: none; color: #bbb; cursor: pointer; font-size: 13px; font-weight: 500; padding: 10px 5px; transition: color 0.3s; flex-shrink: 0; }
         .nav-btn.active { color: white; font-weight: bold; border-bottom: 2px solid var(--accent); }
 
-        #searchBar { flex: 0 1 120px; background: #222; border: 1px solid #444; color: white; padding: 5px 10px; border-radius: 20px; outline: none; font-size: 11px; }
-        .btn-logout { background: #333; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-size: 10px; flex-shrink: 0; border: 1px solid #444; margin-right: 2px; }
+        #searchBar { width: 80px; background: #222; border: 1px solid #444; color: white; padding: 5px 10px; border-radius: 20px; outline: none; font-size: 11px; flex-shrink: 0; transition: width 0.3s; }
+        #searchBar:focus { width: 120px; }
+        .btn-logout { background: #333; color: white; border: none; padding: 5px 8px; border-radius: 4px; cursor: pointer; font-size: 10px; flex-shrink: 0; border: 1px solid #444; }
 
-        #player-section { display: none; width: 100%; background: #000; padding-top: 60px; }
+        #player-section { display: none; width: 100%; background: #000; padding-top: 65px; }
         .video-container { position: relative; width: 100%; background: #000; }
         
         #next-episode-btn {
@@ -87,7 +101,7 @@
         .movie-title { font-size: 26px; font-weight: bold; margin-bottom: 8px; color: #fff; display: flex; align-items: center; gap: 15px; }
         #player-fav-btn { background: #222; border: 1px solid #444; color: white; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 14px; }
         #player-fav-btn.is-fav { color: var(--accent); border-color: var(--accent); }
-        #main-content { padding-top: 80px; }
+        #main-content { padding-top: 85px; }
         
         .category-row { position: relative; width: 100%; margin-bottom: 20px; }
         .category-title { font-size: 18px; font-weight: bold; margin: 20px 4% 10px; color: #fff; text-transform: uppercase; }
@@ -107,7 +121,7 @@
             position: absolute;
             top: 0;
             bottom: 30px;
-            width: 50px;
+            width: 40px;
             background: rgba(0,0,0,0.5);
             display: flex;
             align-items: center;
@@ -115,7 +129,7 @@
             z-index: 10;
             cursor: pointer;
             color: white;
-            font-size: 30px;
+            font-size: 24px;
             opacity: 0;
             transition: opacity 0.3s;
         }
@@ -165,7 +179,6 @@
         <button class="nav-btn" id="btn-series" onclick="changeView('series')">Séries</button>
         <button class="nav-btn" id="btn-fav" onclick="changeView('fav')">Ma Liste ❤️</button>
     </div>
-    <button class="nav-btn" onclick="location.reload()" style="font-size: 18px; margin-right: 5px;">🔄</button>
     <input type="text" id="searchBar" onkeyup="filter()" placeholder="Rechercher...">
     <button class="btn-logout" onclick="switchProfile()">PROFILS</button>
 </header>
@@ -310,7 +323,7 @@
         if(user) {
             const snap = await get(ref(db, 'users_data/' + user.uid + '/expire'));
             const date = snap.val();
-            document.getElementById('header-logo').innerHTML = `SFPP | ${icon} <span style="font-size:10px; color:#666;">(${date})</span>`;
+            document.getElementById('header-logo').innerHTML = `${icon} <span style="font-size:10px; color:#666;">(${date})</span>`;
         }
         render();
     };
@@ -429,7 +442,6 @@ function render(search = "") {
         filtered.forEach(m => {
             const isS = /S\d{2}E\d{2}/i.test(m.t);
             const heart = favs.includes(m.t) ? `<div class="fav-indicator">❤️</div>` : "";
-            // ON RÉCUPÈRE LA PROGRESSION SI ELLE EXISTE
             const pct = (prog[m.t] && prog[m.t].p > 1) ? `<div class="prog-bg"><div class="prog-fill" style="width:${prog[m.t].p}%"></div></div>` : "";
 
             if(isS) {
@@ -467,7 +479,6 @@ function openSeries(name) {
         html += `<div class="season-title">SAISON ${s}</div>`;
         seasons[s].forEach(ep => {
             const epName = ep.t.split(' - ')[1] || ep.t;
-            // AJOUT DE LA BARRE DE PROGRESSION SUR LES ÉPISODES AUSSI
             const pct = (prog[ep.t] && prog[ep.t].p > 1) ? `<div style="height:3px; background:#444; width:100px; margin-top:5px; border-radius:2px;"><div style="height:100%; background:var(--accent); width:${prog[ep.t].p}%"></div></div>` : "";
             
             html += `<div class="episode-item" onclick="playMovie(${playlistData.indexOf(ep)}); closeSeries();">
