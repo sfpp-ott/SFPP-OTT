@@ -233,6 +233,25 @@
     let deviceId = localStorage.getItem('sfpp_device_id') || Math.random().toString(36).substring(7);
     localStorage.setItem('sfpp_device_id', deviceId);
 
+    // Fonction globale de vérification de date
+    async function verifyExpiration(user) {
+        const snapshot = await get(ref(db, 'users_data/' + user.uid + '/expire'));
+        const expireValue = snapshot.val();
+        const today = new Date().toISOString().split('T')[0];
+        
+        if (expireValue) {
+            const expireDate = expireValue.toString().trim();
+            if (expireDate < today) {
+                alert("🚫 Accès expiré (" + expireDate + "). Contactez l'administrateur.");
+                signOut(auth);
+                localStorage.clear();
+                location.reload();
+                return true; // Expiré
+            }
+        }
+        return false; // Pas expiré
+    }
+
     window.startSessionSync = function(uid) {
         const userRef = ref(db, 'sessions/' + uid);
         onValue(userRef, (snapshot) => {
@@ -252,21 +271,9 @@
         signInWithEmailAndPassword(auth, email, pass)
             .then(async (userCredential) => {
                 const user = userCredential.user;
+                const isExpired = await verifyExpiration(user);
                 
-                // On utilise 'get' pour une lecture unique et rapide lors de la connexion
-                const snapshot = await get(ref(db, 'users_data/' + user.uid + '/expire'));
-                const expireValue = snapshot.val();
-                const today = new Date().toISOString().split('T')[0];
-                const expireDate = expireValue ? expireValue.toString().trim() : "Non définie";
-
-                // --- TEST : Cette alerte te dira ce que le code voit ---
-                // alert("Debug - Aujourd'hui : " + today + " | Expire : " + expireDate);
-
-                if (expireValue && expireDate < today) {
-                    alert("🚫 Accès expiré depuis le : " + expireDate);
-                    signOut(auth);
-                    location.reload();
-                } else {
+                if (!isExpired) {
                     set(ref(db, 'sessions/' + user.uid), {
                         deviceId: deviceId,
                         lastLogin: Date.now()
@@ -278,8 +285,12 @@
             });
     };
 
-    onAuthStateChanged(auth, (user) => {
+    onAuthStateChanged(auth, async (user) => {
         if (user) {
+            // Sécurité : on vérifie l'expiration même si déjà connecté
+            const isExpired = await verifyExpiration(user);
+            if (isExpired) return;
+
             window.startSessionSync(user.uid);
             document.getElementById('login-screen').style.display = 'none';
             loadPlaylist();
