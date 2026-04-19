@@ -26,7 +26,7 @@
         .login-box button { width: 100%; padding: 12px; background: var(--accent); color: white; border: none; font-weight: bold; border-radius: 4px; cursor: pointer; }
         .btn-request { background: none !important; border: none; color: #666 !important; font-size: 11px; margin-top: 15px; cursor: pointer; text-decoration: underline; }
 
-        #profile-screen { position: fixed; inset: 0; background: var(--bg); z-index: 4000; display: none; flex-direction: column; align-items: center; justify-content: center; transition: opacity 0.5s ease; }
+        #profile-screen { position: fixed; inset: 0; background: var(--bg); z-index: 4000; display: none; flex-direction: column; align-items: center; justify-content: center; }
         .profile-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; width: 80%; max-width: 400px; margin-top: 30px; }
         .profile-item { text-align: center; cursor: pointer; transition: transform 0.2s; position: relative; }
         .profile-item:hover { transform: scale(1.05); }
@@ -38,11 +38,7 @@
         .is-editing .edit-icon { display: block; }
         .btn-manage { margin-top: 40px; background: none; border: 1px solid #444; color: #888; padding: 10px 20px; cursor: pointer; font-size: 14px; letter-spacing: 1px; }
 
-        header { 
-            position: fixed; top: 0; width: 100%; height: 60px; background: rgba(0,0,0,0.95); 
-            display: flex; align-items: center; padding: 0 1%; z-index: 2000; gap: 5px; 
-            border-bottom: 1px solid #222; justify-content: space-between; box-sizing: border-box;
-        }
+        header { position: fixed; top: 0; width: 100%; height: 60px; background: rgba(0,0,0,0.95); display: flex; align-items: center; padding: 0 1%; z-index: 2000; gap: 5px; border-bottom: 1px solid #222; justify-content: space-between; box-sizing: border-box; }
         .logo { color: var(--accent); font-weight: 900; font-size: 16px; flex-shrink: 0; }
         .nav-links { display: flex; gap: 5px; flex: 1; justify-content: center; white-space: nowrap; }
         .nav-btn { background: none; border: none; color: #bbb; cursor: pointer; font-size: 12px; font-weight: 500; padding: 5px 4px; transition: color 0.3s; }
@@ -60,26 +56,23 @@
 
         .movie-info { padding: 20px 5%; background: #0a0a0a; min-height: 150px; border-bottom: 3px solid var(--accent); }
         .movie-title { font-size: 26px; font-weight: bold; margin-bottom: 8px; color: #fff; display: flex; align-items: center; gap: 15px; }
-        
         #player-fav-btn { background: #222; border: 1px solid #444; color: white; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 14px; }
         #player-fav-btn.is-fav { color: var(--accent); border-color: var(--accent); }
 
         #main-content { padding-top: 80px; }
         .category-title { font-size: 18px; font-weight: bold; margin: 20px 4% 10px; color: #fff; text-transform: uppercase; }
-        
         .carousel { display: flex; overflow-x: auto; gap: 12px; padding: 0 4% 20px; scrollbar-width: none; }
         .card { flex: 0 0 150px; cursor: pointer; position: relative; }
         .card img { width: 100%; aspect-ratio: 2/3; object-fit: cover; border-radius: 4px; background: #222; }
         .card-name { margin-top: 6px; font-size: 12px; text-align: center; color: #bbb; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
         .fav-indicator { position: absolute; top: 5px; right: 5px; font-size: 16px; text-shadow: 0 0 5px black; }
 
-        .btn-close { background: #333; color: #fff; border: none; padding: 10px 22px; border-radius: 4px; cursor: pointer; }
-
         #series-overlay { position: fixed; inset: 0; background: var(--bg); z-index: 3000; display: none; overflow-y: auto; padding: 80px 5% 40px; }
         .overlay-header { display: flex; gap: 20px; margin-bottom: 30px; align-items: center; }
         .overlay-img { width: 120px; border-radius: 8px; border: 1px solid #333; }
         .season-title { color: var(--accent); font-size: 18px; font-weight: bold; margin: 25px 0 10px; border-left: 3px solid var(--accent); padding-left: 10px; }
         .episode-item { background: #111; padding: 15px; border-radius: 6px; margin-bottom: 8px; cursor: pointer; display: flex; align-items: center; gap: 15px; border: 1px solid #222; }
+        .btn-close { background: #333; color: #fff; border: none; padding: 10px 22px; border-radius: 4px; cursor: pointer; }
     </style>
 </head>
 <body>
@@ -87,7 +80,7 @@
 <div id="login-screen">
     <div class="login-box">
         <div class="logo" style="margin-bottom:20px">SFPP ELITE</div>
-        <input type="text" id="user" placeholder="E-mail">
+        <input type="text" id="user" placeholder="E-mail" autocapitalize="none">
         <input type="password" id="pass" placeholder="Mot de passe">
         <button onclick="checkLogin()">CONNEXION</button>
         <button class="btn-request" onclick="requestAccess()">Nouveau ? Demander un accès</button>
@@ -130,7 +123,7 @@
             <button id="player-fav-btn" onclick="toggleFavCurrent()">+ Ma Liste</button>
         </div>
         <div id="display-desc" style="color: #bbb; margin-bottom: 10px;"></div>
-        <div id="display-actors" style="color: #888; font-size: 13px; margin-bottom: 20px; font-style: italic;"></div>
+        <div id="display-actors" style="color: var(--gold); font-weight: bold; font-size: 14px; margin-bottom: 20px;"></div>
         <button class="btn-close" onclick="closeP()">Fermer</button>
     </div>
 </section>
@@ -149,7 +142,7 @@
 
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-    import { getDatabase, ref, set, get } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+    import { getDatabase, ref, set, onValue, get } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
     import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
     const firebaseConfig = {
@@ -163,26 +156,60 @@
     const db = getDatabase(app);
     const auth = getAuth(app);
 
+    // RÉCUPÉRATION SÉCURITÉ D'ORIGINE
+    let deviceId = localStorage.getItem('sfpp_device_id') || Math.random().toString(36).substring(7);
+    localStorage.setItem('sfpp_device_id', deviceId);
+
+    async function verifyExpiration(user) {
+        if (!user) return false;
+        const snapshot = await get(ref(db, 'users_data/' + user.uid + '/expire'));
+        const expireValue = snapshot.val();
+        const today = new Date().toISOString().split('T')[0];
+        if (expireValue && expireValue.toString().trim() <= today) {
+            alert("Abonnement expiré.");
+            await signOut(auth);
+            localStorage.clear();
+            location.reload();
+            return true;
+        }
+        return false;
+    }
+
+    window.startSessionSync = function(uid) {
+        onValue(ref(db, 'sessions/' + uid), (snapshot) => {
+            const session = snapshot.val();
+            if (session && session.deviceId !== deviceId) {
+                alert("⚠️ Ce compte est utilisé sur un autre appareil.");
+                signOut(auth);
+                location.reload();
+            }
+        });
+    };
+
     window.checkLogin = function() {
         const email = document.getElementById('user').value.trim();
         const pass = document.getElementById('pass').value;
-        signInWithEmailAndPassword(auth, email, pass).catch(() => alert("Accès refusé."));
+        signInWithEmailAndPassword(auth, email, pass).then(async (u) => {
+            const exp = await verifyExpiration(u.user);
+            if (!exp) {
+                set(ref(db, 'sessions/' + u.user.uid), { deviceId: deviceId, lastLogin: Date.now() });
+            }
+        }).catch(() => alert("Accès refusé."));
     };
 
     onAuthStateChanged(auth, async (user) => {
         if (user) {
-            const snapshot = await get(ref(db, 'users_data/' + user.uid + '/expire'));
-            const expVal = snapshot.val();
-            const today = new Date().toISOString().split('T')[0];
-            if (expVal && expVal.toString().trim() <= today) {
-                alert("Abonnement expiré."); signOut(auth); location.reload(); return;
-            }
+            if (await verifyExpiration(user)) return;
+            window.startSessionSync(user.uid);
             document.getElementById('login-screen').style.display = 'none';
             loadPlaylist();
             initProfiles();
-            if(localStorage.getItem('sfpp_profile')) selectProfile(localStorage.getItem('sfpp_profile'), localStorage.getItem('sfpp_profile_icon'));
-            else { document.getElementById('profile-screen').style.display = 'flex'; document.getElementById('profile-screen').style.opacity = '1'; }
-        } else { document.getElementById('login-screen').style.display = 'flex'; }
+            const saved = localStorage.getItem('sfpp_profile');
+            if(saved) selectProfile(saved, localStorage.getItem('sfpp_profile_icon'));
+            else document.getElementById('profile-screen').style.display = 'flex';
+        } else {
+            document.getElementById('login-screen').style.display = 'flex';
+        }
     });
 
     window.selectProfile = async function(name, icon) {
@@ -192,9 +219,11 @@
         document.getElementById('profile-screen').style.display = 'none';
         document.getElementById('current-user-name').innerText = name;
         const user = auth.currentUser;
-        const snapshot = await get(ref(db, 'users_data/' + user.uid + '/expire'));
-        const exp = snapshot.val();
-        document.getElementById('header-logo').innerHTML = exp ? `SFPP | ${icon} <span style="font-size:10px; color:#666;">(${exp})</span>` : "SFPP | " + icon;
+        if(user) {
+            const snap = await get(ref(db, 'users_data/' + user.uid + '/expire'));
+            const date = snap.val();
+            document.getElementById('header-logo').innerHTML = `SFPP | ${icon} <span style="font-size:10px; color:#666;">(${date})</span>`;
+        }
         render();
     };
 
@@ -335,10 +364,8 @@ function playMovie(idx) {
     document.getElementById('player-section').style.display = 'block';
     document.getElementById('display-title').innerText = m.t;
     document.getElementById('display-desc').innerText = m.desc || "";
-    
     const cast = m.actors || m.cast || "";
     document.getElementById('display-actors').innerText = cast ? "Avec : " + cast : "";
-
     updatePlayerFavUI();
     window.scrollTo({top:0, behavior:'smooth'});
     player.src({ src: m.url, type: m.url.includes('.m3u8') ? 'application/x-mpegURL' : 'video/mp4' });
@@ -362,20 +389,13 @@ document.addEventListener('DOMContentLoaded', () => {
     player = videojs('main-video', { 
         techOrder: ['chromecast', 'html5'], 
         plugins: { chromecast: { addButtonToControlBar: true } },
-        controlBar: {
-            children: ['playToggle', 'volumePanel', 'currentTimeDisplay', 'timeDivider', 'durationDisplay', 'progressControl', 'liveDisplay', 'remainingTimeDisplay', 'customControlSpacer', 'playbackRateMenuButton', 'chaptersButton', 'descriptionsButton', 'subsCapsButton', 'audioTrackButton', 'fullscreenToggle']
-        }
+        controlBar: { children: ['playToggle', 'volumePanel', 'currentTimeDisplay', 'timeDivider', 'durationDisplay', 'progressControl', 'liveDisplay', 'remainingTimeDisplay', 'customControlSpacer', 'playbackRateMenuButton', 'chaptersButton', 'descriptionsButton', 'subsCapsButton', 'audioTrackButton', 'fullscreenToggle'] }
     });
-
     const Button = videojs.getComponent('Button');
     class Back extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-replay-10'; } handleClick() { player.currentTime(player.currentTime()-10); } }
     class Forward extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-forward-10'; } handleClick() { player.currentTime(player.currentTime()+10); } }
     videojs.registerComponent('Back', Back); videojs.registerComponent('Forward', Forward);
-    player.ready(() => {
-        player.getChild('controlBar').addChild('Back', {}, 1);
-        player.getChild('controlBar').addChild('Forward', {}, 2);
-    });
-
+    player.ready(() => { player.getChild('controlBar').addChild('Back', {}, 1); player.getChild('controlBar').addChild('Forward', {}, 2); });
     const touchOverlay = document.getElementById('video-touch-overlay');
     let lastTap = 0;
     touchOverlay.addEventListener('touchstart', (e) => {
