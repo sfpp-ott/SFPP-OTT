@@ -51,12 +51,11 @@
         #player-section { display: none; width: 100%; background: #000; padding-top: 60px; }
         .video-container { position: relative; width: 100%; background: #000; }
         
-        /* STYLE DU BOUTON ÉPISODE SUIVANT */
         #next-episode-btn {
             position: absolute;
             bottom: 85px;
             right: 25px;
-            z-index: 99999 !important; /* Pour être au dessus du plein écran */
+            z-index: 99999 !important;
             background: #e50914;
             color: white;
             border: 2px solid #fff;
@@ -69,22 +68,32 @@
             box-shadow: 0 4px 20px rgba(0,0,0,0.9);
             animation: fadeIn 0.5s;
         }
+
+        /* BANDEAU EXPIRATION */
+        #expiration-banner {
+            display: none;
+            background: #ffcc00;
+            color: #000;
+            text-align: center;
+            padding: 10px;
+            font-size: 13px;
+            font-weight: bold;
+            position: relative;
+            z-index: 1500;
+        }
+
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
         .vjs-skip-button { font-size: 1.5em !important; cursor: pointer; }
-
         .movie-info { padding: 20px 5%; background: #0a0a0a; min-height: 150px; border-bottom: 3px solid var(--accent); }
         .movie-title { font-size: 26px; font-weight: bold; margin-bottom: 8px; color: #fff; display: flex; align-items: center; gap: 15px; }
         #player-fav-btn { background: #222; border: 1px solid #444; color: white; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 14px; }
         #player-fav-btn.is-fav { color: var(--accent); border-color: var(--accent); }
-
         #main-content { padding-top: 80px; }
         .category-title { font-size: 18px; font-weight: bold; margin: 20px 4% 10px; color: #fff; text-transform: uppercase; }
         .carousel { display: flex; overflow-x: auto; gap: 12px; padding: 0 4% 20px; scrollbar-width: none; }
         .card { flex: 0 0 150px; cursor: pointer; position: relative; }
         .card img { width: 100%; aspect-ratio: 2/3; object-fit: cover; border-radius: 4px; background: #222; }
         .card-name { margin-top: 6px; font-size: 12px; text-align: center; color: #bbb; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
-
         #series-overlay { position: fixed; inset: 0; background: var(--bg); z-index: 3000; display: none; overflow-y: auto; padding: 80px 5% 40px; }
         .overlay-header { display: flex; gap: 20px; margin-bottom: 30px; align-items: center; }
         .overlay-img { width: 120px; border-radius: 8px; border: 1px solid #333; }
@@ -147,6 +156,8 @@
 </section>
 
 <div id="main-content">
+    <div id="expiration-banner"></div>
+
     <div id="history-sec" style="display:none">
         <div class="category-title">Reprendre avec <span id="current-user-name"></span></div>
         <div class="carousel" id="history-container"></div>
@@ -181,8 +192,10 @@
         if (!user) return false;
         const snapshot = await get(ref(db, 'users_data/' + user.uid + '/expire'));
         const expireValue = snapshot.val();
-        const today = new Date().toISOString().split('T')[0];
-        if (expireValue && expireValue.toString().trim() <= today) {
+        const today = new Date();
+        const expireDate = new Date(expireValue);
+        
+        if (expireValue && expireDate <= today) {
             alert("Abonnement expiré.");
             await signOut(auth);
             localStorage.clear();
@@ -221,6 +234,25 @@
             document.getElementById('login-screen').style.display = 'none';
             loadPlaylist();
             initProfiles();
+            
+            // GESTION DU BANDEAU D'ALERTE
+            const snap = await get(ref(db, 'users_data/' + user.uid + '/expire'));
+            const expireValue = snap.val();
+            if(expireValue) {
+                const today = new Date();
+                const expireDate = new Date(expireValue);
+                const diffTime = expireDate - today;
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                
+                const banner = document.getElementById('expiration-banner');
+                if(diffDays > 0 && diffDays <= 5) {
+                    banner.style.display = 'block';
+                    banner.innerHTML = `⚠️ Votre abonnement expire dans ${diffDays} jour(s). Pensez à renouveler !`;
+                } else {
+                    banner.style.display = 'none';
+                }
+            }
+
             const saved = localStorage.getItem('sfpp_profile');
             if(saved) selectProfile(saved, localStorage.getItem('sfpp_profile_icon'));
             else document.getElementById('profile-screen').style.display = 'flex';
@@ -391,30 +423,17 @@ function playMovie(idx) {
     player.play();
 }
 
-/** FONCTION ÉPISODE SUIVANT CORRIGÉE **/
 function playNextEpisode() {
     const currentEp = currentPlayingTitle;
     const parts = currentEp.match(/(.*[SE])(\d+)(.*)/i);
-    
-    if (!parts) {
-        alert("Format de titre non reconnu pour l'épisode suivant.");
-        return;
-    }
-
-    const prefix = parts[1]; // Ex: "Ma Série S01E"
-    const num = parseInt(parts[2]); // Ex: 01
-    const nextNum = (num + 1).toString().padStart(2, '0'); // Ex: "02"
+    if (!parts) return;
+    const prefix = parts[1];
+    const num = parseInt(parts[2]);
+    const nextNum = (num + 1).toString().padStart(2, '0');
     const nextTitleSearch = (prefix + nextNum).toUpperCase();
-
-    // On cherche dans TOUTE la playlist
     const nextIdx = playlistData.findIndex(m => m.t.toUpperCase().includes(nextTitleSearch));
-    
-    if (nextIdx !== -1) {
-        playMovie(nextIdx);
-    } else {
-        alert("Dernier épisode de la saison !");
-        document.getElementById('next-episode-btn').style.display = 'none';
-    }
+    if (nextIdx !== -1) playMovie(nextIdx);
+    else document.getElementById('next-episode-btn').style.display = 'none';
 }
 
 function closeP() { player.pause(); document.getElementById('player-section').style.display = 'none'; }
@@ -439,25 +458,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const nextBtn = document.getElementById('next-episode-btn');
 
-    // LOGIQUE D'AFFICHAGE DU BOUTON (VÉRIFIÉ)
     player.on('timeupdate', function() {
         const duration = player.duration();
         const current = player.currentTime();
-        // Vérifie si le titre contient S00E00
         const isSeries = /S\d{2}E\d{2}/i.test(currentPlayingTitle);
-        
-        // Affiche le bouton si il reste moins de 80 secondes
         if (isSeries && duration > 0 && (duration - current) < 80) {
-            if (player.isFullscreen()) {
-                player.exitFullscreen();
-            }
+            if (player.isFullscreen()) player.exitFullscreen();
             nextBtn.style.display = 'block';
         } else {
             nextBtn.style.display = 'none';
         }
     });
 
-    // DOUBLE CLIC POUR PLEIN ÉCRAN
     let lastTap = 0;
     player.on('touchend', function(e) {
         let now = Date.now();
