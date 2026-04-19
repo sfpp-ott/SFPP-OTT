@@ -18,8 +18,11 @@
 
     <style>
         :root { --accent: #e50914; --gold: #ffcc00; --bg: #050505; }
-        body { background: var(--bg); color: white; font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; padding-bottom: 50px; }
+        body { background: var(--bg); color: white; font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; padding-bottom: 50px; overflow-x: hidden; }
         
+        /* Correction focus pour Android TV */
+        .card:focus, .nav-btn:focus, .episode-item:focus { outline: 3px solid white; transform: scale(1.05); z-index: 10; }
+
         #login-screen { position: fixed; inset: 0; background: #000; z-index: 5000; display: flex; align-items: center; justify-content: center; }
         .login-box { background: #111; padding: 30px; border-radius: 8px; width: 280px; text-align: center; border: 1px solid #333; }
         .login-box input { width: 100%; padding: 12px; margin: 10px 0; background: #222; border: 1px solid #444; color: white; border-radius: 4px; box-sizing: border-box; }
@@ -97,7 +100,7 @@
         .arrow-left { left: 0; }
         .arrow-right { right: 0; }
 
-        .card { flex: 0 0 150px; cursor: pointer; position: relative; }
+        .card { flex: 0 0 150px; cursor: pointer; position: relative; transition: transform 0.2s; }
         .card img { width: 100%; aspect-ratio: 2/3; object-fit: cover; border-radius: 4px; background: #222; }
         .card-name { margin-top: 6px; font-size: 12px; text-align: center; color: #bbb; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
 
@@ -112,7 +115,7 @@
         .btn-close { background: #333; color: #fff; border: none; padding: 10px 22px; border-radius: 4px; cursor: pointer; }
     </style>
 </head>
-<body>
+<body tabindex="-1">
 
 <div id="login-screen">
     <form class="login-box" onsubmit="event.preventDefault(); checkLogin();">
@@ -134,15 +137,15 @@
 <header>
     <div class="logo" id="header-logo">SFPP</div>
     <div class="nav-links">
-        <button class="nav-btn active" id="btn-all" onclick="changeView('all')">Accueil</button>
-        <button class="nav-btn" id="btn-movies" onclick="changeView('movies')">Films</button>
-        <button class="nav-btn" id="btn-series" onclick="changeView('series')">Séries</button>
-        <button class="nav-btn" id="btn-fav" onclick="changeView('fav')">Ma Liste ❤️</button>
-        <button class="nav-btn" onclick="location.reload()">🔄</button>
+        <button class="nav-btn active" id="btn-all" onclick="changeView('all')" tabindex="0">Accueil</button>
+        <button class="nav-btn" id="btn-movies" onclick="changeView('movies')" tabindex="0">Films</button>
+        <button class="nav-btn" id="btn-series" onclick="changeView('series')" tabindex="0">Séries</button>
+        <button class="nav-btn" id="btn-fav" onclick="changeView('fav')" tabindex="0">Ma Liste ❤️</button>
+        <button class="nav-btn" onclick="location.reload()" tabindex="0">🔄</button>
     </div>
     <div class="header-actions">
-        <button class="btn-icon" onclick="openSearch()">🔍</button>
-        <button class="btn-logout" onclick="switchProfile()">PROFILS</button>
+        <button class="btn-icon" onclick="openSearch()" tabindex="0">🔍</button>
+        <button class="btn-logout" onclick="switchProfile()" tabindex="0">PROFILS</button>
     </div>
     <div id="search-overlay">
         <input type="text" id="searchBar" onkeyup="filter()" placeholder="Rechercher...">
@@ -151,23 +154,23 @@
 </header>
 
 <div id="series-overlay">
-    <button class="btn-close" onclick="closeSeries()" style="margin-bottom: 20px;">← Retour</button>
+    <button class="btn-close" onclick="closeSeries()" style="margin-bottom: 20px;" tabindex="0">← Retour</button>
     <div id="series-detail-content"></div>
 </div>
 
 <section id="player-section">
     <div class="video-container">
         <video id="main-video" class="video-js vjs-theme-fantasy vjs-16-9 vjs-big-play-centered" controls preload="auto" width="100%"></video>
-        <button id="next-episode-btn" onclick="playNextEpisode()">ÉPISODE SUIVANT ⏭️</button>
+        <button id="next-episode-btn" onclick="playNextEpisode()" tabindex="0">ÉPISODE SUIVANT ⏭️</button>
     </div>
     <div class="movie-info">
         <div class="movie-title">
             <span id="display-title"></span>
-            <button id="player-fav-btn" onclick="toggleFavCurrent()">+ Ma Liste</button>
+            <button id="player-fav-btn" onclick="toggleFavCurrent()" tabindex="0">+ Ma Liste</button>
         </div>
         <div id="display-desc" style="color: #bbb; margin-bottom: 10px;"></div>
         <div id="display-actors" style="color: var(--gold); font-weight: bold; font-size: 14px; margin-bottom: 20px;"></div>
-        <button class="btn-close" onclick="closeP()">Fermer</button>
+        <button class="btn-close" onclick="closeP()" tabindex="0">Fermer</button>
     </div>
 </section>
 
@@ -207,21 +210,15 @@
     let deviceId = localStorage.getItem('sfpp_device_id') || Math.random().toString(36).substring(7);
     localStorage.setItem('sfpp_device_id', deviceId);
 
-    // Mémoriser l'e-mail au démarrage
     const savedEmail = localStorage.getItem('sfpp_last_email');
     if(savedEmail) document.getElementById('user').value = savedEmail;
 
-    // CORRECTION EXPIRATION : Comparaison stricte par texte (YYYY-MM-DD)
     async function verifyExpiration(user) {
         if (!user) return false;
         const snapshot = await get(ref(db, 'users_data/' + user.uid + '/expire'));
-        const expireValue = snapshot.val(); // Exemple: "2026-04-20"
+        const expireValue = snapshot.val();
         if (!expireValue) return false;
-        
-        // Date du jour au format ISO YYYY-MM-DD
         const todayStr = new Date().toISOString().split('T')[0];
-        
-        // Si aujourd'hui est >= à l'expiration, on bloque
         if (todayStr >= expireValue) {
             alert("Abonnement expiré le " + expireValue);
             await signOut(auth);
@@ -265,7 +262,6 @@
             document.getElementById('login-screen').style.display = 'none';
             loadPlaylist();
             initProfiles();
-            
             const snap = await get(ref(db, 'users_data/' + user.uid + '/expire'));
             const expireValue = snap.val();
             if(expireValue) {
@@ -278,7 +274,6 @@
                     banner.innerHTML = `⚠️ Fin d'accès dans ${diffDays} jour(s).Pensez à renouveler !`;
                 } else banner.style.display = 'none';
             }
-            
             const saved = localStorage.getItem('sfpp_profile');
             if(saved) selectProfile(saved, localStorage.getItem('sfpp_profile_icon'));
             else document.getElementById('profile-screen').style.display = 'flex';
@@ -315,26 +310,28 @@
 <script>
 let player, playlistData = [], currentProfile = null, isEditMode = false, currentView = 'all', currentPlayingTitle = "";
 
-// GESTION NAVIGATION ANDROID TV / DPAD
+// CORRECTION NAVIGATION ANDROID TV / SMART TV
 document.addEventListener('keydown', (e) => {
-    // Si un input est actif, on laisse la main au clavier
     if(document.activeElement.tagName === 'INPUT') return;
-
-    switch(e.keyCode) {
-        case 38: // HAUT
-            window.scrollBy({ top: -200, behavior: 'smooth' });
-            break;
-        case 40: // BAS
-            window.scrollBy({ top: 200, behavior: 'smooth' });
-            break;
-        case 37: // GAUCHE
-            const leftCarousel = document.querySelector('.carousel:hover') || document.querySelector('.carousel');
-            if(leftCarousel) leftCarousel.scrollBy({ left: -300, behavior: 'smooth' });
-            break;
-        case 39: // DROITE
-            const rightCarousel = document.querySelector('.carousel:hover') || document.querySelector('.carousel');
-            if(rightCarousel) rightCarousel.scrollBy({ left: 300, behavior: 'smooth' });
-            break;
+    
+    // Défilement forcé si la souris ou le curseur invisible bloque
+    const scrollAmount = 250;
+    if (e.key === 'ArrowUp') { window.scrollBy(0, -scrollAmount); }
+    if (e.key === 'ArrowDown') { window.scrollBy(0, scrollAmount); }
+    if (e.key === 'ArrowRight') {
+        const row = document.activeElement.closest('.category-row');
+        if (row) row.querySelector('.carousel').scrollBy(scrollAmount, 0);
+    }
+    if (e.key === 'ArrowLeft') {
+        const row = document.activeElement.closest('.category-row');
+        if (row) row.querySelector('.carousel').scrollBy(-scrollAmount, 0);
+    }
+    
+    // Gestion de la touche "Entrée" pour Android TV
+    if (e.key === 'Enter') {
+        if (document.activeElement.classList.contains('card') || document.activeElement.classList.contains('episode-item')) {
+            document.activeElement.click();
+        }
     }
 });
 
@@ -361,7 +358,7 @@ function initProfiles() {
     ];
     const list = document.getElementById('profile-list');
     list.innerHTML = profiles.map(p => `
-        <div class="profile-item" onclick="handleProfileClick(${p.id}, '${p.name}', '${p.icon}')">
+        <div class="profile-item" onclick="handleProfileClick(${p.id}, '${p.name}', '${p.icon}')" tabindex="0">
             <div class="profile-avatar" style="background:${p.color}">${p.icon}</div>
             <div class="edit-icon">✏️</div>
             <div class="profile-name">${p.name}</div>
@@ -434,7 +431,7 @@ function render(search = "") {
                 const m = playlistData.find(item => item.t === title);
                 if(m) {
                     const pct = (prog[m.t] && prog[m.t].p > 1) ? `<div class="prog-bg"><div class="prog-fill" style="width:${prog[m.t].p}%"></div></div>` : "";
-                    histCont.innerHTML += `<div class="card" onclick="playMovie(${playlistData.indexOf(m)})"><img src="${m.img}">${pct}<div class="card-name">${m.t}</div></div>`;
+                    histCont.innerHTML += `<div class="card" onclick="playMovie(${playlistData.indexOf(m)})" tabindex="0"><img src="${m.img}">${pct}<div class="card-name">${m.t}</div></div>`;
                 }
             });
         } else histSec.style.display = "none";
@@ -455,10 +452,10 @@ function render(search = "") {
                 const sName = m.t.split(' - ')[0];
                 if(!addedSeries.includes(sName)) {
                     addedSeries.push(sName);
-                    html += `<div class="card" onclick="openSeries('${sName}')"><img src="${m.img}">${heart}<div class="card-name">${sName}</div></div>`;
+                    html += `<div class="card" onclick="openSeries('${sName}')" tabindex="0"><img src="${m.img}">${heart}<div class="card-name">${sName}</div></div>`;
                 }
             } else {
-                html += `<div class="card" onclick="playMovie(${playlistData.indexOf(m)})"><img src="${m.img}">${heart}${pct}<div class="card-name">${m.t}</div></div>`;
+                html += `<div class="card" onclick="playMovie(${playlistData.indexOf(m)})" tabindex="0"><img src="${m.img}">${heart}${pct}<div class="card-name">${m.t}</div></div>`;
             }
         });
         html += `</div><div class="nav-arrow arrow-right" onclick="scrollSide(this, 400)">›</div></div>`;
@@ -485,7 +482,7 @@ function openSeries(name) {
         seasons[s].forEach(ep => {
             const epName = ep.t.split(' - ')[1] || ep.t;
             const pct = (prog[ep.t] && prog[ep.t].p > 1) ? `<div style="height:3px; background:#444; width:100px; margin-top:5px;"><div style="height:100%; background:var(--accent); width:${prog[ep.t].p}%"></div></div>` : "";
-            html += `<div class="episode-item" onclick="playMovie(${playlistData.indexOf(ep)}); closeSeries();">
+            html += `<div class="episode-item" onclick="playMovie(${playlistData.indexOf(ep)}); closeSeries();" tabindex="0">
                         <div style="flex:1"><b>${epName}</b>${pct}</div>
                         <div style="color:var(--accent)">LIRE</div>
                      </div>`;
