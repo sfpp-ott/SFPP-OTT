@@ -51,22 +51,25 @@
         #player-section { display: none; width: 100%; background: #000; padding-top: 60px; }
         .video-container { position: relative; width: 100%; background: #000; }
         
+        /* STYLE DU BOUTON ÉPISODE SUIVANT */
         #next-episode-btn {
             position: absolute;
-            bottom: 80px;
-            right: 20px;
-            z-index: 10000;
+            bottom: 85px;
+            right: 25px;
+            z-index: 99999 !important; /* Pour être au dessus du plein écran */
             background: #e50914;
             color: white;
             border: 2px solid #fff;
-            padding: 12px 20px;
-            border-radius: 5px;
+            padding: 15px 25px;
+            border-radius: 8px;
             font-weight: bold;
-            font-size: 14px;
+            font-size: 15px;
             display: none;
             cursor: pointer;
-            box-shadow: 0 0 15px rgba(0,0,0,0.8);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.9);
+            animation: fadeIn 0.5s;
         }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
         .vjs-skip-button { font-size: 1.5em !important; cursor: pointer; }
 
@@ -81,7 +84,6 @@
         .card { flex: 0 0 150px; cursor: pointer; position: relative; }
         .card img { width: 100%; aspect-ratio: 2/3; object-fit: cover; border-radius: 4px; background: #222; }
         .card-name { margin-top: 6px; font-size: 12px; text-align: center; color: #bbb; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
-        .fav-indicator { position: absolute; top: 5px; right: 5px; font-size: 16px; text-shadow: 0 0 5px black; }
 
         #series-overlay { position: fixed; inset: 0; background: var(--bg); z-index: 3000; display: none; overflow-y: auto; padding: 80px 5% 40px; }
         .overlay-header { display: flex; gap: 20px; margin-bottom: 30px; align-items: center; }
@@ -129,7 +131,7 @@
 </div>
 
 <section id="player-section">
-    <div class="video-container" id="vid-cont">
+    <div class="video-container">
         <video id="main-video" class="video-js vjs-theme-fantasy vjs-16-9 vjs-big-play-centered" controls preload="auto" width="100%"></video>
         <button id="next-episode-btn" onclick="playNextEpisode()">ÉPISODE SUIVANT ⏭️</button>
     </div>
@@ -389,17 +391,30 @@ function playMovie(idx) {
     player.play();
 }
 
+/** FONCTION ÉPISODE SUIVANT CORRIGÉE **/
 function playNextEpisode() {
     const currentEp = currentPlayingTitle;
     const parts = currentEp.match(/(.*[SE])(\d+)(.*)/i);
-    if (!parts) return;
-    const prefix = parts[1];
-    const num = parseInt(parts[2]);
-    const nextNum = (num + 1).toString().padStart(2, '0');
-    const nextTitlePart = prefix + nextNum;
-    const nextIdx = playlistData.findIndex(m => m.t.toUpperCase().includes(nextTitlePart.toUpperCase()));
-    if (nextIdx !== -1) playMovie(nextIdx);
-    else alert("Fin de saison !");
+    
+    if (!parts) {
+        alert("Format de titre non reconnu pour l'épisode suivant.");
+        return;
+    }
+
+    const prefix = parts[1]; // Ex: "Ma Série S01E"
+    const num = parseInt(parts[2]); // Ex: 01
+    const nextNum = (num + 1).toString().padStart(2, '0'); // Ex: "02"
+    const nextTitleSearch = (prefix + nextNum).toUpperCase();
+
+    // On cherche dans TOUTE la playlist
+    const nextIdx = playlistData.findIndex(m => m.t.toUpperCase().includes(nextTitleSearch));
+    
+    if (nextIdx !== -1) {
+        playMovie(nextIdx);
+    } else {
+        alert("Dernier épisode de la saison !");
+        document.getElementById('next-episode-btn').style.display = 'none';
+    }
 }
 
 function closeP() { player.pause(); document.getElementById('player-section').style.display = 'none'; }
@@ -424,11 +439,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const nextBtn = document.getElementById('next-episode-btn');
 
+    // LOGIQUE D'AFFICHAGE DU BOUTON (VÉRIFIÉ)
     player.on('timeupdate', function() {
         const duration = player.duration();
         const current = player.currentTime();
+        // Vérifie si le titre contient S00E00
         const isSeries = /S\d{2}E\d{2}/i.test(currentPlayingTitle);
-        if (isSeries && duration > 0 && (duration - current) < 45) {
+        
+        // Affiche le bouton si il reste moins de 60 secondes
+        if (isSeries && duration > 0 && (duration - current) < 60) {
             nextBtn.style.display = 'block';
         } else {
             nextBtn.style.display = 'none';
