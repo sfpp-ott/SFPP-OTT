@@ -446,8 +446,8 @@ document.addEventListener('DOMContentLoaded', () => {
         // Vérifie si le titre contient S00E00
         const isSeries = /S\d{2}E\d{2}/i.test(currentPlayingTitle);
         
-        // Affiche le bouton si il reste moins de 100 secondes
-        if (isSeries && duration > 0 && (duration - current) < 100) {
+        // Affiche le bouton si il reste moins de 80 secondes
+        if (isSeries && duration > 0 && (duration - current) < 80) {
             if (player.isFullscreen()) {
                 player.exitFullscreen();
             }
