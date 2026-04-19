@@ -24,44 +24,42 @@
         .login-box { background: #111; padding: 30px; border-radius: 8px; width: 280px; text-align: center; border: 1px solid #333; }
         .login-box input { width: 100%; padding: 12px; margin: 10px 0; background: #222; border: 1px solid #444; color: white; border-radius: 4px; box-sizing: border-box; }
         .login-box button { width: 100%; padding: 12px; background: var(--accent); color: white; border: none; font-weight: bold; border-radius: 4px; cursor: pointer; }
-        .btn-request { background: none !important; border: none; color: #666 !important; font-size: 11px; margin-top: 15px; cursor: pointer; text-decoration: underline; }
 
-        #profile-screen { position: fixed; inset: 0; background: var(--bg); z-index: 4000; display: none; flex-direction: column; align-items: center; justify-content: center; }
-        .profile-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; width: 80%; max-width: 400px; margin-top: 30px; }
-        .profile-item { text-align: center; cursor: pointer; transition: transform 0.2s; position: relative; }
-        .profile-avatar { width: 100px; height: 100px; background: #333; border-radius: 4px; margin: 0 auto 10px; display: flex; align-items: center; justify-content: center; font-size: 40px; border: 3px solid transparent; }
-        .profile-item:hover .profile-avatar { border-color: white; }
-        .profile-name { font-size: 14px; color: #888; }
-        
         header { position: fixed; top: 0; width: 100%; height: 60px; background: rgba(0,0,0,0.95); display: flex; align-items: center; padding: 0 1%; z-index: 2000; border-bottom: 1px solid #222; justify-content: space-between; box-sizing: border-box; }
         .logo { color: var(--accent); font-weight: 900; font-size: 16px; }
-        .nav-links { display: flex; gap: 5px; flex: 1; justify-content: center; }
-        .nav-btn { background: none; border: none; color: #bbb; cursor: pointer; font-size: 12px; padding: 5px 4px; }
-        .nav-btn.active { color: white; font-weight: bold; border-bottom: 2px solid var(--accent); }
-
-        #searchBar { flex: 0 1 120px; background: #222; border: 1px solid #444; color: white; padding: 5px 10px; border-radius: 20px; font-size: 11px; }
 
         #player-section { display: none; width: 100%; background: #000; padding-top: 60px; }
         .video-container { position: relative; width: 100%; background: #000; }
-
-        /* Style pour le bouton suivant intégré au player */
-        .vjs-next-button { 
-            cursor: pointer; 
-            font-weight: bold !important; 
-            color: #ffcc00 !important;
+        
+        /* LE BOUTON SUIVANT (Visible uniquement hors plein écran) */
+        #next-episode-btn {
+            position: absolute;
+            bottom: 80px;
+            right: 20px;
+            z-index: 10000;
+            background: #e50914;
+            color: white;
+            border: 2px solid #fff;
+            padding: 15px 25px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 16px;
+            display: none;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(0,0,0,0.8);
         }
-        .vjs-next-button:before { content: "\f11f"; font-family: VideoJS; margin-right: 5px; }
-
-        .vjs-skip-button { font-size: 1.5em !important; cursor: pointer; }
 
         .movie-info { padding: 20px 5%; background: #0a0a0a; border-bottom: 3px solid var(--accent); }
-        .movie-title { font-size: 26px; font-weight: bold; margin-bottom: 8px; color: #fff; }
+        .movie-title { font-size: 26px; font-weight: bold; color: #fff; margin-bottom: 10px; }
 
         #main-content { padding-top: 80px; }
         .category-title { font-size: 18px; font-weight: bold; margin: 20px 4% 10px; color: #fff; text-transform: uppercase; }
         .carousel { display: flex; overflow-x: auto; gap: 12px; padding: 0 4% 20px; scrollbar-width: none; }
         .card { flex: 0 0 150px; cursor: pointer; position: relative; }
         .card img { width: 100%; aspect-ratio: 2/3; object-fit: cover; border-radius: 4px; background: #222; }
+        .card-name { margin-top: 6px; font-size: 12px; text-align: center; color: #bbb; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+
+        .vjs-skip-button { font-size: 1.5em !important; cursor: pointer; }
     </style>
 </head>
 <body>
@@ -75,28 +73,22 @@
     </div>
 </div>
 
-<div id="profile-screen">
-    <h1>Qui regarde ?</h1>
-    <div class="profile-grid" id="profile-list"></div>
-</div>
-
 <header>
     <div class="logo">SFPP</div>
     <div class="nav-links">
-        <button class="nav-btn active" onclick="changeView('all')">Accueil</button>
-        <button class="nav-btn" onclick="changeView('movies')">Films</button>
-        <button class="nav-btn" onclick="changeView('series')">Séries</button>
+        <button class="nav-btn" onclick="location.reload()">Accueil</button>
     </div>
-    <input type="text" id="searchBar" onkeyup="filter()" placeholder="Rechercher...">
+    <input type="text" id="searchBar" placeholder="Rechercher...">
 </header>
 
 <section id="player-section">
-    <div class="video-container">
+    <div class="video-container" id="vid-cont">
         <video id="main-video" class="video-js vjs-theme-fantasy vjs-16-9 vjs-big-play-centered" controls preload="auto" width="100%"></video>
+        <button id="next-episode-btn" onclick="playNextEpisode()">ÉPISODE SUIVANT ⏭️</button>
     </div>
     <div class="movie-info">
         <div class="movie-title" id="display-title"></div>
-        <button onclick="closeP()" style="background:#333; color:white; border:none; padding:10px 20px; border-radius:4px;">Fermer</button>
+        <button onclick="closeP()" style="background:#333; color:white; border:none; padding:10px 22px; border-radius:4px; cursor:pointer;">Fermer</button>
     </div>
 </section>
 
@@ -110,8 +102,8 @@
 
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-    import { getDatabase, ref, set, onValue, get } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
-    import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+    import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+    import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyDipnvk8nHn_mnj6HObA038DhS2U39kSgU",
@@ -121,32 +113,20 @@
     };
 
     const app = initializeApp(firebaseConfig);
-    const db = getDatabase(app);
     const auth = getAuth(app);
 
     window.checkLogin = function() {
         const email = document.getElementById('user').value.trim();
         const pass = document.getElementById('pass').value;
-        signInWithEmailAndPassword(auth, email, pass).catch(() => alert("Accès refusé."));
+        signInWithEmailAndPassword(auth, email, pass).catch(() => alert("Erreur connexion"));
     };
 
     onAuthStateChanged(auth, (user) => {
         if (user) {
             document.getElementById('login-screen').style.display = 'none';
             loadPlaylist();
-            initProfiles();
-            if(!localStorage.getItem('sfpp_profile')) document.getElementById('profile-screen').style.display = 'flex';
-            else selectProfile(localStorage.getItem('sfpp_profile'), "🟦");
-        } else {
-            document.getElementById('login-screen').style.display = 'flex';
         }
     });
-
-    window.selectProfile = function(name, icon) {
-        localStorage.setItem('sfpp_profile', name);
-        document.getElementById('profile-screen').style.display = 'none';
-        render();
-    };
 </script>
 
 <script>
@@ -156,11 +136,6 @@ async function loadPlaylist() {
     try { const response = await fetch('films.json'); playlistData = await response.json(); render(); } catch (e) {}
 }
 
-function initProfiles() {
-    const list = document.getElementById('profile-list');
-    list.innerHTML = `<div class="profile-item" onclick="selectProfile('User', '🟦')"><div class="profile-avatar" style="background:#1e90ff">🟦</div><div class="profile-name">Session</div></div>`;
-}
-
 function render() {
     const cont = document.getElementById('categories-container');
     cont.innerHTML = "";
@@ -168,7 +143,7 @@ function render() {
     cats.forEach(c => {
         let html = `<div class="category-title">${c}</div><div class="carousel">`;
         playlistData.filter(m => m.cat === c).forEach(m => {
-            html += `<div class="card" onclick="playMovie(${playlistData.indexOf(m)})"><img src="${m.img}"><div>${m.t}</div></div>`;
+            html += `<div class="card" onclick="playMovie(${playlistData.indexOf(m)})"><img src="${m.img}"><div class="card-name">${m.t}</div></div>`;
         });
         cont.innerHTML += html + `</div>`;
     });
@@ -179,28 +154,23 @@ function playMovie(idx) {
     currentPlayingTitle = m.t;
     document.getElementById('player-section').style.display = 'block';
     document.getElementById('display-title').innerText = m.t;
-    window.scrollTo(0,0);
+    document.getElementById('next-episode-btn').style.display = 'none';
+    window.scrollTo({top:0, behavior:'smooth'});
     player.src({ src: m.url, type: 'video/mp4' });
     player.play();
 }
 
-/** LOGIQUE DE RECHERCHE ÉPISODE SUIVANT **/
-function getNextEpisodeIdx() {
-    const currentEp = currentPlayingTitle;
-    const parts = currentEp.match(/(.*[SE])(\d+)(.*)/i);
-    if (!parts) return -1;
-
-    const prefix = parts[1];
-    const num = parseInt(parts[2]);
-    const nextNum = (num + 1).toString().padStart(2, '0');
-    const nextTitleSearch = (prefix + nextNum).toUpperCase();
-
-    return playlistData.findIndex(m => m.t.toUpperCase().includes(nextTitleSearch));
+function playNextEpisode() {
+    const parts = currentPlayingTitle.match(/(.*[SE])(\d+)(.*)/i);
+    if (!parts) return;
+    const nextNum = (parseInt(parts[2]) + 1).toString().padStart(2, '0');
+    const nextSearch = (parts[1] + nextNum).toUpperCase();
+    const nextIdx = playlistData.findIndex(m => m.t.toUpperCase().includes(nextSearch));
+    if (nextIdx !== -1) playMovie(nextIdx);
+    else alert("Fin de saison !");
 }
 
 function closeP() { player.pause(); document.getElementById('player-section').style.display = 'none'; }
-function filter() { /* simplifiée pour l'exemple */ }
-function changeView(v) { render(); }
 
 document.addEventListener('DOMContentLoaded', () => {
     player = videojs('main-video', {
@@ -208,49 +178,28 @@ document.addEventListener('DOMContentLoaded', () => {
         plugins: { chromecast: { addButtonToControlBar: true } }
     });
 
-    // 1. CRÉATION DU BOUTON "SUIVANT" INTÉGRÉ (Visible en plein écran)
-    const Button = videojs.getComponent('Button');
-    class NextButton extends Button {
-        constructor(player, options) {
-            super(player, options);
-            this.addClass('vjs-next-button');
-            this.controlText('Épisode Suivant');
-            this.hide(); // Caché par défaut
-        }
-        handleClick() {
-            const nextIdx = getNextEpisodeIdx();
-            if (nextIdx !== -1) playMovie(nextIdx);
-        }
-    }
-    videojs.registerComponent('NextButton', NextButton);
+    const nextBtn = document.getElementById('next-episode-btn');
 
-    // 2. CRÉATION DES BOUTONS -10 / +10
-    class Back extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-replay-10'; } handleClick() { player.currentTime(player.currentTime()-10); } }
-    class Forward extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-forward-10'; } handleClick() { player.currentTime(player.currentTime()+10); } }
-    videojs.registerComponent('Back', Back); 
-    videojs.registerComponent('Forward', Forward);
+    player.on('timeupdate', function() {
+        const duration = player.duration();
+        const current = player.currentTime();
+        const remaining = duration - current;
+        const isSeries = /S\d{2}E\d{2}/i.test(currentPlayingTitle);
 
-    player.ready(() => {
-        const cb = player.getChild('controlBar');
-        cb.addChild('Back', {}, 1);
-        cb.addChild('Forward', {}, 2);
-        // On ajoute le bouton Suivant à la fin de la barre
-        const nextBtnInstance = cb.addChild('NextButton', {}, 10);
-
-        // Surveillance du temps pour afficher/cacher le bouton Suivant
-        player.on('timeupdate', function() {
-            const isSeries = /S\d{2}E\d{2}/i.test(currentPlayingTitle);
-            const remaining = player.duration() - player.currentTime();
-            
-            if (isSeries && remaining > 0 && remaining < 60) {
-                nextBtnInstance.show();
-            } else {
-                nextBtnInstance.hide();
+        // LOGIQUE : QUITTER LE PLEIN ÉCRAN POUR VOIR LE BOUTON
+        if (isSeries && duration > 0 && remaining < 60) {
+            // Si on est en plein écran, on le quitte automatiquement
+            if (player.isFullscreen()) {
+                player.exitFullscreen();
             }
-        });
+            // On affiche le bouton
+            nextBtn.style.display = 'block';
+        } else {
+            nextBtn.style.display = 'none';
+        }
     });
 
-    // 3. DOUBLE CLIC POUR PLEIN ÉCRAN
+    // DOUBLE CLIC PLEIN ÉCRAN (Fonctionne toujours)
     let lastTap = 0;
     player.on('touchend', function(e) {
         let now = Date.now();
@@ -260,6 +209,16 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
         }
         lastTap = now;
+    });
+
+    // BOUTONS -10 / +10
+    const Button = videojs.getComponent('Button');
+    class Back extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-replay-10'; } handleClick() { player.currentTime(player.currentTime()-10); } }
+    class Forward extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-forward-10'; } handleClick() { player.currentTime(player.currentTime()+10); } }
+    videojs.registerComponent('Back', Back); videojs.registerComponent('Forward', Forward);
+    player.ready(() => { 
+        player.getChild('controlBar').addChild('Back', {}, 1); 
+        player.getChild('controlBar').addChild('Forward', {}, 2); 
     });
 });
 </script>
