@@ -19,52 +19,66 @@
         :root { --accent: #e50914; --gold: #ffcc00; --bg: #050505; }
         body { background: var(--bg); color: white; font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; padding-bottom: 50px; }
         
-        #login-screen, #profile-screen { transition: opacity 0.5s ease; }
         #login-screen { position: fixed; inset: 0; background: #000; z-index: 5000; display: flex; align-items: center; justify-content: center; }
         .login-box { background: #111; padding: 30px; border-radius: 8px; width: 280px; text-align: center; border: 1px solid #333; }
         .login-box input { width: 100%; padding: 12px; margin: 10px 0; background: #222; border: 1px solid #444; color: white; border-radius: 4px; box-sizing: border-box; }
         .login-box button { width: 100%; padding: 12px; background: var(--accent); color: white; border: none; font-weight: bold; border-radius: 4px; cursor: pointer; }
+        .btn-request { background: none !important; border: none; color: #666 !important; font-size: 11px; margin-top: 15px; cursor: pointer; text-decoration: underline; }
 
-        #profile-screen { position: fixed; inset: 0; background: var(--bg); z-index: 4000; display: none; flex-direction: column; align-items: center; justify-content: center; }
+        #profile-screen { position: fixed; inset: 0; background: var(--bg); z-index: 4000; display: none; flex-direction: column; align-items: center; justify-content: center; transition: opacity 0.5s ease; }
         .profile-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; width: 80%; max-width: 400px; margin-top: 30px; }
         .profile-item { text-align: center; cursor: pointer; transition: transform 0.2s; position: relative; }
+        .profile-item:hover { transform: scale(1.05); }
         .profile-avatar { width: 100px; height: 100px; background: #333; border-radius: 4px; margin: 0 auto 10px; display: flex; align-items: center; justify-content: center; font-size: 40px; border: 3px solid transparent; }
         .profile-item:hover .profile-avatar { border-color: white; }
+        .profile-name { font-size: 14px; color: #888; }
+        
         .edit-icon { position: absolute; top: 35px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.7); border-radius: 50%; padding: 5px; display: none; font-size: 20px; }
         .is-editing .edit-icon { display: block; }
         .btn-manage { margin-top: 40px; background: none; border: 1px solid #444; color: #888; padding: 10px 20px; cursor: pointer; font-size: 14px; letter-spacing: 1px; }
 
-        header { position: fixed; top: 0; width: 100%; height: 60px; background: rgba(0,0,0,0.95); display: flex; align-items: center; padding: 0 1%; z-index: 2000; border-bottom: 1px solid #222; justify-content: space-between; box-sizing: border-box; }
-        .logo { color: var(--accent); font-weight: 900; font-size: 16px; }
-        .nav-links { display: flex; gap: 5px; flex: 1; justify-content: center; }
-        .nav-btn { background: none; border: none; color: #bbb; cursor: pointer; font-size: 12px; padding: 5px 4px; }
+        header { 
+            position: fixed; top: 0; width: 100%; height: 60px; background: rgba(0,0,0,0.95); 
+            display: flex; align-items: center; padding: 0 1%; z-index: 2000; gap: 5px; 
+            border-bottom: 1px solid #222; justify-content: space-between; box-sizing: border-box;
+        }
+        .logo { color: var(--accent); font-weight: 900; font-size: 16px; flex-shrink: 0; }
+        .nav-links { display: flex; gap: 5px; flex: 1; justify-content: center; white-space: nowrap; }
+        .nav-btn { background: none; border: none; color: #bbb; cursor: pointer; font-size: 12px; font-weight: 500; padding: 5px 4px; transition: color 0.3s; }
+        .nav-btn:hover { color: white; }
         .nav-btn.active { color: white; font-weight: bold; border-bottom: 2px solid var(--accent); }
 
-        #searchBar { flex: 0 1 120px; background: #222; border: 1px solid #444; color: white; padding: 5px 10px; border-radius: 20px; font-size: 11px; outline: none; }
-        .btn-logout-header { background: #333; color: white; border: 1px solid #444; padding: 5px 10px; border-radius: 4px; font-size: 10px; cursor: pointer; }
-
-        /* FAVORIS */
-        .fav-badge { position: absolute; top: 5px; right: 5px; background: rgba(0,0,0,0.7); border-radius: 50%; width: 25px; height: 25px; display: flex; align-items: center; justify-content: center; font-size: 14px; z-index: 5; }
-        #player-fav-btn { background: #222; border: 1px solid #444; color: white; padding: 8px 15px; border-radius: 4px; cursor: pointer; margin-bottom: 10px; }
-        #player-fav-btn.is-fav { color: var(--accent); border-color: var(--accent); }
+        #searchBar { flex: 0 1 120px; background: #222; border: 1px solid #444; color: white; padding: 5px 10px; border-radius: 20px; outline: none; font-size: 11px; }
+        .btn-logout { background: #333; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-size: 10px; flex-shrink: 0; border: 1px solid #444; margin-right: 2px; }
 
         #player-section { display: none; width: 100%; background: #000; padding-top: 60px; }
-        .video-container { position: relative; width: 100%; }
-        #video-touch-overlay { position: absolute; top: 0; left: 0; width: 100%; height: calc(100% - 50px); z-index: 10; }
+        .video-container { position: relative; width: 100%; overflow: hidden; background: #000; }
+        #video-touch-overlay { position: absolute; top: 0; left: 0; width: 100%; height: calc(100% - 50px); z-index: 10; cursor: pointer; }
+
+        .vjs-skip-button { font-size: 1.5em !important; cursor: pointer; }
+
+        .movie-info { padding: 20px 5%; background: #0a0a0a; min-height: 150px; border-bottom: 3px solid var(--accent); }
+        .movie-title { font-size: 26px; font-weight: bold; margin-bottom: 8px; color: #fff; display: flex; align-items: center; gap: 15px; }
         
-        .movie-info { padding: 20px 5%; background: #0a0a0a; border-bottom: 3px solid var(--accent); }
-        .movie-title { font-size: 26px; font-weight: bold; margin-bottom: 8px; }
+        #player-fav-btn { background: #222; border: 1px solid #444; color: white; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-size: 14px; }
+        #player-fav-btn.is-fav { color: var(--accent); border-color: var(--accent); }
 
         #main-content { padding-top: 80px; }
         .category-title { font-size: 18px; font-weight: bold; margin: 20px 4% 10px; color: #fff; text-transform: uppercase; }
+        
         .carousel { display: flex; overflow-x: auto; gap: 12px; padding: 0 4% 20px; scrollbar-width: none; }
         .card { flex: 0 0 150px; cursor: pointer; position: relative; }
         .card img { width: 100%; aspect-ratio: 2/3; object-fit: cover; border-radius: 4px; background: #222; }
         .card-name { margin-top: 6px; font-size: 12px; text-align: center; color: #bbb; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+        .fav-indicator { position: absolute; top: 5px; right: 5px; font-size: 16px; text-shadow: 0 0 5px black; }
+
+        .btn-close { background: #333; color: #fff; border: none; padding: 10px 22px; border-radius: 4px; cursor: pointer; }
 
         #series-overlay { position: fixed; inset: 0; background: var(--bg); z-index: 3000; display: none; overflow-y: auto; padding: 80px 5% 40px; }
-        .episode-item { background: #111; padding: 15px; border-radius: 6px; margin-bottom: 8px; display: flex; align-items: center; gap: 15px; border: 1px solid #222; }
-        .vjs-skip-button { font-size: 1.5em !important; cursor: pointer; }
+        .overlay-header { display: flex; gap: 20px; margin-bottom: 30px; align-items: center; }
+        .overlay-img { width: 120px; border-radius: 8px; border: 1px solid #333; }
+        .season-title { color: var(--accent); font-size: 18px; font-weight: bold; margin: 25px 0 10px; border-left: 3px solid var(--accent); padding-left: 10px; }
+        .episode-item { background: #111; padding: 15px; border-radius: 6px; margin-bottom: 8px; cursor: pointer; display: flex; align-items: center; gap: 15px; border: 1px solid #222; }
     </style>
 </head>
 <body>
@@ -75,6 +89,7 @@
         <input type="text" id="user" placeholder="E-mail">
         <input type="password" id="pass" placeholder="Mot de passe">
         <button onclick="checkLogin()">CONNEXION</button>
+        <button class="btn-request" onclick="requestAccess()">Nouveau ? Demander un accès</button>
     </div>
 </div>
 
@@ -82,7 +97,7 @@
     <h1 style="font-size: 32px;">Qui regarde ?</h1>
     <div class="profile-grid" id="profile-list"></div>
     <button class="btn-manage" id="manage-btn" onclick="toggleEditMode()">GÉRER LES PROFILS</button>
-    <button onclick="logout()" style="margin-top: 20px; background:none; border:none; color:#444; cursor:pointer;">DÉCONNEXION</button>
+    <button onclick="logout()" style="margin-top: 20px; background:none; border:none; color:#444; cursor:pointer; font-size: 12px;">DÉCONNEXION</button>
 </div>
 
 <header>
@@ -93,12 +108,13 @@
         <button class="nav-btn" id="btn-series" onclick="changeView('series')">Séries</button>
         <button class="nav-btn" id="btn-fav" onclick="changeView('fav')">Ma Liste ❤️</button>
     </div>
+    <button class="nav-btn" onclick="location.reload()" style="font-size: 18px; margin-right: 5px;">🔄</button>
     <input type="text" id="searchBar" onkeyup="filter()" placeholder="Rechercher...">
-    <button class="btn-logout-header" onclick="switchProfile()">PROFILS</button>
+    <button class="btn-logout" onclick="switchProfile()">PROFILS</button>
 </header>
 
 <div id="series-overlay">
-    <button onclick="closeSeries()" style="background:#333; color:white; border:none; padding:10px; margin-bottom:20px; border-radius:4px;">← Retour</button>
+    <button class="btn-close" onclick="closeSeries()" style="margin-bottom: 20px;">← Retour</button>
     <div id="series-detail-content"></div>
 </div>
 
@@ -108,10 +124,12 @@
         <video id="main-video" class="video-js vjs-theme-fantasy vjs-16-9 vjs-big-play-centered" controls preload="auto" width="100%"></video>
     </div>
     <div class="movie-info">
-        <div id="display-title" class="movie-title"></div>
-        <button id="player-fav-btn" onclick="toggleFavCurrent()">❤️ Ajouter aux favoris</button>
-        <div id="display-desc" style="color:#bbb; font-size:14px; margin-bottom:20px;"></div>
-        <button onclick="closeP()" style="background:#333; color:white; border:none; padding:10px 20px; border-radius:4px;">Fermer</button>
+        <div class="movie-title">
+            <span id="display-title"></span>
+            <button id="player-fav-btn" onclick="toggleFavCurrent()">+ Ma Liste</button>
+        </div>
+        <div id="display-desc" style="color: #bbb; margin-bottom: 20px;"></div>
+        <button class="btn-close" onclick="closeP()">Fermer</button>
     </div>
 </section>
 
@@ -124,6 +142,8 @@
 </div>
 
 <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
+<script src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1"></script>
+<script src="https://unpkg.com/@silvermine/videojs-chromecast@1.5.0/dist/silvermine-videojs-chromecast.min.js"></script>
 
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
@@ -153,14 +173,13 @@
             const expireValue = snapshot.val();
             const today = new Date().toISOString().split('T')[0];
             if (expireValue && expireValue.toString().trim() <= today) {
-                alert("🚫 Abonnement expiré.");
-                signOut(auth); location.reload(); return;
+                alert("Abonnement expiré."); signOut(auth); location.reload(); return;
             }
             document.getElementById('login-screen').style.display = 'none';
             loadPlaylist();
             initProfiles();
             if(localStorage.getItem('sfpp_profile')) selectProfile(localStorage.getItem('sfpp_profile'), localStorage.getItem('sfpp_profile_icon'));
-            else document.getElementById('profile-screen').style.display = 'flex';
+            else { document.getElementById('profile-screen').style.display = 'flex'; document.getElementById('profile-screen').style.opacity = '1'; }
         } else { document.getElementById('login-screen').style.display = 'flex'; }
     });
 
@@ -214,34 +233,28 @@ function handleProfileClick(id, name, icon) {
     } else selectProfile(name, icon);
 }
 
-function toggleFav(title, event) {
-    if(event) event.stopPropagation();
+function toggleFavCurrent() {
     let key = 'sfpp_fav_' + currentProfile;
     let favs = JSON.parse(localStorage.getItem(key) || "[]");
-    if(favs.includes(title)) favs = favs.filter(t => t !== title);
-    else favs.push(title);
+    if(favs.includes(currentPlayingTitle)) favs = favs.filter(t => t !== currentPlayingTitle);
+    else favs.push(currentPlayingTitle);
     localStorage.setItem(key, JSON.stringify(favs));
+    updatePlayerFavUI();
     render(document.getElementById('searchBar').value);
-    if(currentPlayingTitle === title) updatePlayerFavUI();
 }
-
-function toggleFavCurrent() { toggleFav(currentPlayingTitle); }
 
 function updatePlayerFavUI() {
     let favs = JSON.parse(localStorage.getItem('sfpp_fav_' + currentProfile) || "[]");
     const btn = document.getElementById('player-fav-btn');
-    if(favs.includes(currentPlayingTitle)) {
-        btn.innerText = "❤️ Dans Ma Liste";
-        btn.classList.add('is-fav');
-    } else {
-        btn.innerText = "♡ Ajouter aux favoris";
-        btn.classList.remove('is-fav');
-    }
+    if(favs.includes(currentPlayingTitle)) { btn.innerText = "❤️ Dans Ma Liste"; btn.classList.add('is-fav'); }
+    else { btn.innerText = "+ Ma Liste"; btn.classList.remove('is-fav'); }
 }
 
 function render(search = "") {
     const cont = document.getElementById('categories-container');
-    cont.innerHTML = "";
+    const histSec = document.getElementById('history-sec');
+    const histCont = document.getElementById('history-container');
+    cont.innerHTML = ""; histCont.innerHTML = "";
     const s = search.toLowerCase();
     const favs = JSON.parse(localStorage.getItem('sfpp_fav_' + currentProfile) || "[]");
     
@@ -249,6 +262,17 @@ function render(search = "") {
     if(currentView === 'movies') data = playlistData.filter(m => m.cat !== "SÉRIES");
     else if(currentView === 'series') data = playlistData.filter(m => m.cat === "SÉRIES");
     else if(currentView === 'fav') data = playlistData.filter(m => favs.includes(m.t));
+
+    if(currentProfile && s === "" && currentView === 'all') {
+        let history = JSON.parse(localStorage.getItem('sfpp_hist_' + currentProfile) || "[]");
+        if(history.length > 0) {
+            histSec.style.display = "block";
+            history.reverse().forEach(title => {
+                const m = playlistData.find(item => item.t === title);
+                if(m) histCont.innerHTML += `<div class="card" onclick="playMovie(${playlistData.indexOf(m)})"><img src="${m.img}"><div class="card-name">${m.t}</div></div>`;
+            });
+        } else histSec.style.display = "none";
+    } else histSec.style.display = "none";
 
     const cats = [...new Set(data.map(m => m.cat))];
     let addedSeries = [];
@@ -259,17 +283,15 @@ function render(search = "") {
         let html = `<div class="category-title">${c}</div><div class="carousel">`;
         filtered.forEach(m => {
             const isS = /S\d{2}E\d{2}/.test(m.t);
-            const isFav = favs.includes(m.t);
-            const heartIcon = isFav ? "❤️" : "";
-            
+            const heart = favs.includes(m.t) ? `<div class="fav-indicator">❤️</div>` : "";
             if(isS) {
                 const sName = m.t.split(' - ')[0];
                 if(!addedSeries.includes(sName)) {
                     addedSeries.push(sName);
-                    html += `<div class="card" onclick="openSeries('${sName}')"><img src="${m.img}"><div class="fav-badge">${heartIcon}</div><div class="card-name">${sName}</div></div>`;
+                    html += `<div class="card" onclick="openSeries('${sName}')"><img src="${m.img}">${heart}<div class="card-name">${sName}</div></div>`;
                 }
             } else {
-                html += `<div class="card" onclick="playMovie(${playlistData.indexOf(m)})"><img src="${m.img}"><div class="fav-badge">${heartIcon}</div><div class="card-name">${m.t}</div></div>`;
+                html += `<div class="card" onclick="playMovie(${playlistData.indexOf(m)})"><img src="${m.img}">${heart}<div class="card-name">${m.t}</div></div>`;
             }
         });
         cont.innerHTML += html + `</div>`;
@@ -281,7 +303,7 @@ function openSeries(name) {
     const content = document.getElementById('series-detail-content');
     const eps = playlistData.filter(m => m.t.startsWith(name));
     overlay.style.display = 'block';
-    let html = `<h2>${name}</h2>`;
+    let html = `<div class="overlay-header"><img src="${eps[0].img}" class="overlay-img"><div><h2>${name}</h2></div></div>`;
     const seasons = {};
     eps.forEach(ep => {
         const sMatch = ep.t.match(/S(\d{2})/);
@@ -293,10 +315,7 @@ function openSeries(name) {
         html += `<div class="season-title">SAISON ${s}</div>`;
         seasons[s].forEach(ep => {
             const epName = ep.t.split(' - ')[1] || ep.t;
-            html += `<div class="episode-item" onclick="playMovie(${playlistData.indexOf(ep)}); closeSeries();">
-                <div style="flex:1"><b>${epName}</b></div>
-                <div style="color:var(--accent)">LIRE</div>
-            </div>`;
+            html += `<div class="episode-item" onclick="playMovie(${playlistData.indexOf(ep)}); closeSeries();"><b>${epName}</b><div style="margin-left:auto; color:var(--accent)">LIRE</div></div>`;
         });
     });
     content.innerHTML = html;
@@ -305,6 +324,12 @@ function openSeries(name) {
 function playMovie(idx) {
     const m = playlistData[idx];
     currentPlayingTitle = m.t;
+    if(currentProfile) {
+        let key = 'sfpp_hist_' + currentProfile;
+        let hist = JSON.parse(localStorage.getItem(key) || "[]").filter(t => t !== m.t);
+        hist.push(m.t); if(hist.length > 10) hist.shift();
+        localStorage.setItem(key, JSON.stringify(hist));
+    }
     document.getElementById('player-section').style.display = 'block';
     document.getElementById('display-title').innerText = m.t;
     document.getElementById('display-desc').innerText = m.desc || "";
@@ -325,9 +350,17 @@ function changeView(v) {
 function filter() { render(document.getElementById('searchBar').value); }
 function toggleEditMode() { isEditMode = !isEditMode; document.getElementById('profile-screen').classList.toggle('is-editing'); }
 function switchProfile() { localStorage.removeItem('sfpp_profile'); location.reload(); }
+function requestAccess() { window.location.href = "mailto:sfpp.ott@gmail.com"; }
 
 document.addEventListener('DOMContentLoaded', () => {
-    player = videojs('main-video');
+    player = videojs('main-video', { 
+        techOrder: ['chromecast', 'html5'], 
+        plugins: { chromecast: { addButtonToControlBar: true } },
+        controlBar: {
+            children: ['playToggle', 'volumePanel', 'currentTimeDisplay', 'timeDivider', 'durationDisplay', 'progressControl', 'liveDisplay', 'remainingTimeDisplay', 'customControlSpacer', 'playbackRateMenuButton', 'chaptersButton', 'descriptionsButton', 'subsCapsButton', 'audioTrackButton', 'fullscreenToggle']
+        }
+    });
+
     const Button = videojs.getComponent('Button');
     class Back extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-replay-10'; } handleClick() { player.currentTime(player.currentTime()-10); } }
     class Forward extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-forward-10'; } handleClick() { player.currentTime(player.currentTime()+10); } }
@@ -335,6 +368,14 @@ document.addEventListener('DOMContentLoaded', () => {
     player.ready(() => {
         player.getChild('controlBar').addChild('Back', {}, 1);
         player.getChild('controlBar').addChild('Forward', {}, 2);
+    });
+
+    const touchOverlay = document.getElementById('video-touch-overlay');
+    let lastTap = 0;
+    touchOverlay.addEventListener('touchstart', (e) => {
+        let now = Date.now();
+        if ((now - lastTap < 300)) { if (player.isFullscreen()) player.exitFullscreen(); else player.requestFullscreen(); e.preventDefault(); }
+        lastTap = now;
     });
 });
 </script>
