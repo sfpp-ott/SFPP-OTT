@@ -50,25 +50,28 @@
 
         #player-section { display: none; width: 100%; background: #000; padding-top: 60px; }
         .video-container { position: relative; width: 100%; overflow: hidden; background: #000; }
-        #video-touch-overlay { position: absolute; top: 0; left: 0; width: 100%; height: calc(100% - 80px); z-index: 10; cursor: pointer; pointer-events: auto; }
+        
+        /* Overlay de contrôle (double clic) */
+        #video-touch-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 80%; z-index: 50; cursor: pointer; }
 
         .vjs-skip-button { font-size: 1.5em !important; cursor: pointer; }
 
-        /* Style du bouton Suivant */
-        .vjs-next-episode-btn {
-            background-color: #e50914 !important;
-            color: white !important;
-            padding: 12px 20px !important;
-            border-radius: 4px !important;
-            font-weight: bold !important;
-            font-size: 14px !important;
-            cursor: pointer !important;
-            border: 2px solid white !important;
-            box-shadow: 0 0 15px rgba(0,0,0,0.7);
-            position: absolute !important;
-            bottom: 80px !important;
-            right: 20px !important;
-            z-index: 9999 !important;
+        /* BOUTON ÉPISODE SUIVANT FORCÉ */
+        #next-episode-btn {
+            position: absolute;
+            bottom: 60px;
+            right: 20px;
+            z-index: 99999 !important;
+            background: #e50914;
+            color: white;
+            border: 2px solid #fff;
+            padding: 12px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 14px;
+            display: none;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(0,0,0,0.8);
         }
 
         .movie-info { padding: 20px 5%; background: #0a0a0a; min-height: 150px; border-bottom: 3px solid var(--accent); }
@@ -131,8 +134,9 @@
 
 <section id="player-section">
     <div class="video-container">
-        <div id="video-touch-overlay"></div>
         <video id="main-video" class="video-js vjs-theme-fantasy vjs-16-9 vjs-big-play-centered" controls preload="auto" width="100%"></video>
+        <div id="video-touch-overlay"></div>
+        <button id="next-episode-btn" onclick="playNextEpisode()">ÉPISODE SUIVANT ⏭️</button>
     </div>
     <div class="movie-info">
         <div class="movie-title">
@@ -371,6 +375,8 @@ function openSeries(name) {
 function playMovie(idx) {
     const m = playlistData[idx];
     currentPlayingTitle = m.t;
+    document.getElementById('next-episode-btn').style.display = 'none';
+    
     if(currentProfile) {
         let key = 'sfpp_hist_' + currentProfile;
         let hist = JSON.parse(localStorage.getItem(key) || "[]").filter(t => t !== m.t);
@@ -394,7 +400,6 @@ function playNextEpisode() {
     if (!parts) return;
     const prefix = parts[1];
     const num = parseInt(parts[2]);
-    const suffix = parts[3];
     const nextNum = (num + 1).toString().padStart(2, '0');
     const nextTitlePart = prefix + nextNum;
     const nextIdx = playlistData.findIndex(m => m.t.toUpperCase().includes(nextTitlePart.toUpperCase()));
@@ -422,36 +427,19 @@ document.addEventListener('DOMContentLoaded', () => {
         controlBar: { children: ['playToggle', 'volumePanel', 'currentTimeDisplay', 'timeDivider', 'durationDisplay', 'progressControl', 'liveDisplay', 'remainingTimeDisplay', 'customControlSpacer', 'playbackRateMenuButton', 'chaptersButton', 'descriptionsButton', 'subsCapsButton', 'audioTrackButton', 'fullscreenToggle'] }
     });
 
-    // COMPOSANT BOUTON SUIVANT
-    const Component = videojs.getComponent('Component');
-    const NextButton = videojs.extend(Component, {
-        constructor: function(player, options) {
-            Component.apply(this, arguments);
-            this.addClass('vjs-next-episode-btn');
-            this.el().innerHTML = 'ÉPISODE SUIVANT ⏭️';
-            this.el().style.display = 'none';
+    const nextBtn = document.getElementById('next-episode-btn');
+
+    player.on('timeupdate', function() {
+        const duration = player.duration();
+        const current = player.currentTime();
+        const isSeries = /\d/.test(currentPlayingTitle);
+        if (isSeries && duration > 0 && (duration - current) < 45) {
+            nextBtn.style.display = 'block';
+        } else {
+            nextBtn.style.display = 'none';
         }
     });
-    videojs.registerComponent('NextButton', NextButton);
 
-    player.ready(() => {
-        const nextBtnInstance = player.addChild('NextButton');
-        const el = nextBtnInstance.el();
-        el.addEventListener('click', (e) => { e.stopPropagation(); playNextEpisode(); });
-
-        player.on('timeupdate', function() {
-            const duration = player.duration();
-            const current = player.currentTime();
-            const isSeries = /\d/.test(currentPlayingTitle);
-            if (isSeries && duration > 0 && (duration - current) < 40) {
-                el.style.display = 'block';
-            } else {
-                el.style.display = 'none';
-            }
-        });
-    });
-
-    // BOUTONS BACK/FORWARD
     const Button = videojs.getComponent('Button');
     class Back extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-replay-10'; } handleClick() { player.currentTime(player.currentTime()-10); } }
     class Forward extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-forward-10'; } handleClick() { player.currentTime(player.currentTime()+10); } }
@@ -461,7 +449,7 @@ document.addEventListener('DOMContentLoaded', () => {
         player.getChild('controlBar').addChild('Forward', {}, 2); 
     });
 
-    // GESTION DU PLEIN ÉCRAN (DOUBLE CLIC)
+    // DOUBLE CLIC RÉPARÉ
     const touchOverlay = document.getElementById('video-touch-overlay');
     let lastTap = 0;
     touchOverlay.addEventListener('touchend', (e) => {
