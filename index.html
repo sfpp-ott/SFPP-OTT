@@ -273,9 +273,9 @@
                 const expireDate = new Date(expireValue);
                 const diffDays = Math.ceil((expireDate - today) / (1000 * 60 * 60 * 24));
                 const banner = document.getElementById('expiration-banner');
-                if(diffDays > 0 && diffDays <= 5) {
+                if(diffDays > 0 && diffDays <= 7) {
                     banner.style.display = 'block';
-                    banner.innerHTML = `⚠️ Fin d'accès dans ${diffDays} jour(s).`;
+                    banner.innerHTML = `⚠️ Fin d'accès dans ${diffDays} jour(s).Pensez à renouveler !`;
                 } else banner.style.display = 'none';
             }
             
