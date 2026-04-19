@@ -89,7 +89,6 @@
         #player-fav-btn.is-fav { color: var(--accent); border-color: var(--accent); }
         #main-content { padding-top: 80px; }
         
-        /* STYLE POUR LA NAVIGATION TV */
         .category-row { position: relative; width: 100%; margin-bottom: 20px; }
         .category-title { font-size: 18px; font-weight: bold; margin: 20px 4% 10px; color: #fff; text-transform: uppercase; }
         
@@ -104,26 +103,25 @@
         }
         .carousel::-webkit-scrollbar { display: none; }
 
-        /* BOUTONS DE NAVIGATION INVISIBLES POUR SOURIS TV */
         .nav-arrow {
             position: absolute;
-            top: 40px;
-            bottom: 0;
+            top: 0;
+            bottom: 30px;
             width: 50px;
-            background: rgba(0,0,0,0.3);
+            background: rgba(0,0,0,0.5);
             display: flex;
             align-items: center;
             justify-content: center;
             z-index: 10;
             cursor: pointer;
             color: white;
-            font-size: 24px;
+            font-size: 30px;
             opacity: 0;
             transition: opacity 0.3s;
         }
         .category-row:hover .nav-arrow { opacity: 1; }
-        .arrow-left { left: 0; border-radius: 0 4px 4px 0; }
-        .arrow-right { right: 0; border-radius: 4px 0 0 4px; }
+        .arrow-left { left: 0; }
+        .arrow-right { right: 0; }
 
         .card { flex: 0 0 150px; cursor: pointer; position: relative; }
         .card img { width: 100%; aspect-ratio: 2/3; object-fit: cover; border-radius: 4px; background: #222; }
@@ -382,7 +380,6 @@ function saveP() {
     }
 }
 
-// FONCTION POUR SCROLLER AVEC LES FLECHES INVISIBLES
 function scrollSide(btn, amt) {
     const car = btn.parentElement.querySelector('.carousel');
     car.scrollBy({ left: amt, behavior: 'smooth' });
@@ -432,6 +429,9 @@ function render(search = "") {
         filtered.forEach(m => {
             const isS = /S\d{2}E\d{2}/i.test(m.t);
             const heart = favs.includes(m.t) ? `<div class="fav-indicator">❤️</div>` : "";
+            // ON RÉCUPÈRE LA PROGRESSION SI ELLE EXISTE
+            const pct = (prog[m.t] && prog[m.t].p > 1) ? `<div class="prog-bg"><div class="prog-fill" style="width:${prog[m.t].p}%"></div></div>` : "";
+
             if(isS) {
                 const sName = m.t.split(' - ')[0];
                 if(!addedSeries.includes(sName)) {
@@ -439,7 +439,7 @@ function render(search = "") {
                     html += `<div class="card" onclick="openSeries('${sName}')"><img src="${m.img}">${heart}<div class="card-name">${sName}</div></div>`;
                 }
             } else {
-                html += `<div class="card" onclick="playMovie(${playlistData.indexOf(m)})"><img src="${m.img}">${heart}<div class="card-name">${m.t}</div></div>`;
+                html += `<div class="card" onclick="playMovie(${playlistData.indexOf(m)})"><img src="${m.img}">${heart}${pct}<div class="card-name">${m.t}</div></div>`;
             }
         });
         
@@ -455,6 +455,8 @@ function openSeries(name) {
     overlay.style.display = 'block';
     let html = `<div class="overlay-header"><img src="${eps[0].img}" class="overlay-img"><div><h2>${name}</h2></div></div>`;
     const seasons = {};
+    const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
+
     eps.forEach(ep => {
         const sMatch = ep.t.match(/S(\d{2})/);
         const sNum = sMatch ? sMatch[1] : "01";
@@ -465,7 +467,16 @@ function openSeries(name) {
         html += `<div class="season-title">SAISON ${s}</div>`;
         seasons[s].forEach(ep => {
             const epName = ep.t.split(' - ')[1] || ep.t;
-            html += `<div class="episode-item" onclick="playMovie(${playlistData.indexOf(ep)}); closeSeries();"><b>${epName}</b><div style="margin-left:auto; color:var(--accent)">LIRE</div></div>`;
+            // AJOUT DE LA BARRE DE PROGRESSION SUR LES ÉPISODES AUSSI
+            const pct = (prog[ep.t] && prog[ep.t].p > 1) ? `<div style="height:3px; background:#444; width:100px; margin-top:5px; border-radius:2px;"><div style="height:100%; background:var(--accent); width:${prog[ep.t].p}%"></div></div>` : "";
+            
+            html += `<div class="episode-item" onclick="playMovie(${playlistData.indexOf(ep)}); closeSeries();">
+                        <div style="flex:1">
+                            <b>${epName}</b>
+                            ${pct}
+                        </div>
+                        <div style="color:var(--accent)">LIRE</div>
+                     </div>`;
         });
     });
     content.innerHTML = html;
