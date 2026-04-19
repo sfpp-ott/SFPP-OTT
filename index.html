@@ -253,7 +253,6 @@
             .then((userCredential) => {
                 const user = userCredential.user;
                 
-                // --- VÉRIFICATION DE LA DATE D'EXPIRATION ---
                 const dateRef = ref(db, 'users_data/' + user.uid + '/expire');
                 onValue(dateRef, (snapshot) => {
                     const expireDate = snapshot.val();
@@ -262,15 +261,14 @@
                     if (expireDate && expireDate < today) {
                         alert("🚫 Accès expiré depuis le : " + expireDate);
                         signOut(auth);
+                        location.reload();
                     } else {
-                        // Si pas de date ou date valide, on ouvre la session
                         set(ref(db, 'sessions/' + user.uid), {
                             deviceId: deviceId,
                             lastLogin: Date.now()
                         });
                     }
                 }, { onlyOnce: true });
-                // --------------------------------------------
             })
             .catch((error) => {
                 alert("Accès refusé : Identifiants incorrects.");
