@@ -38,28 +38,63 @@
         .is-editing .edit-icon { display: block; }
         .btn-manage { margin-top: 40px; background: none; border: 1px solid #444; color: #888; padding: 10px 20px; cursor: pointer; font-size: 14px; letter-spacing: 1px; }
 
-        header { position: fixed; top: 0; width: 100%; height: 60px; background: rgba(0,0,0,0.95); display: flex; align-items: center; padding: 0 10px; z-index: 2000; gap: 10px; border-bottom: 1px solid #222; box-sizing: border-box; }
+        /* HEADER FIXÉ POUR DÉFILEMENT */
+        header { 
+            position: fixed; 
+            top: 0; 
+            width: 100%; 
+            height: 60px; 
+            background: rgba(0,0,0,0.95); 
+            display: flex; 
+            align-items: center; 
+            padding: 0 10px; 
+            z-index: 2000; 
+            gap: 10px; 
+            border-bottom: 1px solid #222; 
+            box-sizing: border-box;
+            overflow: hidden; /* Empêche le header entier de bouger */
+        }
+        
         .logo { color: var(--accent); font-weight: 900; font-size: 16px; flex-shrink: 0; }
         
-        /* Modifié pour permettre le défilement horizontal */
+        /* ZONE DE NAVIGATION DÉFILANTE */
         .nav-links { 
             display: flex; 
-            gap: 10px; 
+            gap: 15px; 
             flex: 1; 
             overflow-x: auto; 
-            scrollbar-width: none; 
             white-space: nowrap; 
-            -webkit-overflow-scrolling: touch; 
             align-items: center;
+            scrollbar-width: none; /* Firefox */
+            -webkit-overflow-scrolling: touch; /* Inertie iOS */
         }
-        .nav-links::-webkit-scrollbar { display: none; }
+        .nav-links::-webkit-scrollbar { display: none; } /* Chrome/Safari */
 
-        .nav-btn { background: none; border: none; color: #bbb; cursor: pointer; font-size: 12px; font-weight: 500; padding: 8px 4px; transition: color 0.3s; flex-shrink: 0; }
-        .nav-btn:hover { color: white; }
+        .nav-btn { 
+            background: none; 
+            border: none; 
+            color: #bbb; 
+            cursor: pointer; 
+            font-size: 13px; 
+            font-weight: 500; 
+            padding: 10px 2px; 
+            transition: color 0.3s; 
+            flex-shrink: 0; /* Important : empêche les boutons de rétrécir */
+        }
         .nav-btn.active { color: white; font-weight: bold; border-bottom: 2px solid var(--accent); }
 
-        #searchBar { width: 90px; background: #222; border: 1px solid #444; color: white; padding: 5px 10px; border-radius: 20px; outline: none; font-size: 11px; flex-shrink: 0; }
-        .btn-logout { background: #333; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-size: 10px; flex-shrink: 0; border: 1px solid #444; }
+        #searchBar { 
+            width: 70px; /* Plus petit pour laisser de la place au menu */
+            background: #222; 
+            border: 1px solid #444; 
+            color: white; 
+            padding: 5px 8px; 
+            border-radius: 20px; 
+            outline: none; 
+            font-size: 11px; 
+            flex-shrink: 0; 
+        }
+        .btn-logout { background: #333; color: white; border: none; padding: 5px 8px; border-radius: 4px; cursor: pointer; font-size: 10px; flex-shrink: 0; border: 1px solid #444; }
 
         #player-section { display: none; width: 100%; background: #000; padding-top: 60px; }
         .video-container { position: relative; width: 100%; background: #000; }
@@ -177,9 +212,9 @@
         <button class="nav-btn" id="btn-movies" onclick="changeView('movies')">Films</button>
         <button class="nav-btn" id="btn-series" onclick="changeView('series')">Séries</button>
         <button class="nav-btn" id="btn-fav" onclick="changeView('fav')">Ma Liste ❤️</button>
-        <button class="nav-btn" onclick="location.reload()">🔄</button>
+        <button class="nav-btn" onclick="location.reload()" style="font-size: 16px;">🔄</button>
     </div>
-    <input type="text" id="searchBar" onkeyup="filter()" placeholder="Chercher...">
+    <input type="text" id="searchBar" onkeyup="filter()" placeholder="Recherche">
     <button class="btn-logout" onclick="switchProfile()">PROFILS</button>
 </header>
 
@@ -442,6 +477,7 @@ function render(search = "") {
         filtered.forEach(m => {
             const isS = /S\d{2}E\d{2}/i.test(m.t);
             const heart = favs.includes(m.t) ? `<div class="fav-indicator">❤️</div>` : "";
+            // ON RÉCUPÈRE LA PROGRESSION SI ELLE EXISTE
             const pct = (prog[m.t] && prog[m.t].p > 1) ? `<div class="prog-bg"><div class="prog-fill" style="width:${prog[m.t].p}%"></div></div>` : "";
 
             if(isS) {
@@ -479,6 +515,7 @@ function openSeries(name) {
         html += `<div class="season-title">SAISON ${s}</div>`;
         seasons[s].forEach(ep => {
             const epName = ep.t.split(' - ')[1] || ep.t;
+            // AJOUT DE LA BARRE DE PROGRESSION SUR LES ÉPISODES AUSSI
             const pct = (prog[ep.t] && prog[ep.t].p > 1) ? `<div style="height:3px; background:#444; width:100px; margin-top:5px; border-radius:2px;"><div style="height:100%; background:var(--accent); width:${prog[ep.t].p}%"></div></div>` : "";
             
             html += `<div class="episode-item" onclick="playMovie(${playlistData.indexOf(ep)}); closeSeries();">
