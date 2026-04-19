@@ -69,7 +69,6 @@
             animation: fadeIn 0.5s;
         }
 
-        /* BANDEAU EXPIRATION */
         #expiration-banner {
             display: none;
             background: #ffcc00;
@@ -94,6 +93,11 @@
         .card { flex: 0 0 150px; cursor: pointer; position: relative; }
         .card img { width: 100%; aspect-ratio: 2/3; object-fit: cover; border-radius: 4px; background: #222; }
         .card-name { margin-top: 6px; font-size: 12px; text-align: center; color: #bbb; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+
+        /* STYLE BARRE DE PROGRESSION MINIATURE */
+        .progress-container { position: absolute; bottom: 25px; left: 0; width: 100%; height: 4px; background: rgba(255,255,255,0.2); border-radius: 0 0 4px 4px; overflow: hidden; }
+        .progress-bar { height: 100%; background: var(--accent); }
+
         #series-overlay { position: fixed; inset: 0; background: var(--bg); z-index: 3000; display: none; overflow-y: auto; padding: 80px 5% 40px; }
         .overlay-header { display: flex; gap: 20px; margin-bottom: 30px; align-items: center; }
         .overlay-img { width: 120px; border-radius: 8px; border: 1px solid #333; }
@@ -235,7 +239,6 @@
             loadPlaylist();
             initProfiles();
             
-            // GESTION DU BANDEAU D'ALERTE
             const snap = await get(ref(db, 'users_data/' + user.uid + '/expire'));
             const expireValue = snap.val();
             if(expireValue) {
@@ -330,6 +333,19 @@ function updatePlayerFavUI() {
     else { btn.innerText = "+ Ma Liste"; btn.classList.remove('is-fav'); }
 }
 
+function saveWatchProgress() {
+    if (!currentPlayingTitle || !currentProfile) return;
+    const progressKey = 'sfpp_prog_' + currentProfile;
+    let prog = JSON.parse(localStorage.getItem(progressKey) || "{}");
+    const current = player.currentTime();
+    const duration = player.duration();
+    if (duration > 0) {
+        const percent = (current / duration) * 100;
+        prog[currentPlayingTitle] = { time: current, percent: percent };
+        localStorage.setItem(progressKey, JSON.stringify(prog));
+    }
+}
+
 function render(search = "") {
     const cont = document.getElementById('categories-container');
     const histSec = document.getElementById('history-sec');
@@ -337,6 +353,7 @@ function render(search = "") {
     cont.innerHTML = ""; histCont.innerHTML = "";
     const s = search.toLowerCase();
     const favs = JSON.parse(localStorage.getItem('sfpp_fav_' + currentProfile) || "[]");
+    const prog = JSON.parse(localStorage.getItem('sfpp_prog_' + currentProfile) || "{}");
     
     let data = playlistData;
     if(currentView === 'movies') data = playlistData.filter(m => m.cat !== "SÉRIES");
@@ -349,7 +366,14 @@ function render(search = "") {
             histSec.style.display = "block";
             history.reverse().forEach(title => {
                 const m = playlistData.find(item => item.t === title);
-                if(m) histCont.innerHTML += `<div class="card" onclick="playMovie(${playlistData.indexOf(m)})"><img src="${m.img}"><div class="card-name">${m.t}</div></div>`;
+                if(m) {
+                    const p = prog[m.t] ? prog[m.t].percent : 0;
+                    const progressHtml = p > 1 ? `<div class="progress-container"><div class="progress-bar" style="width:${p}%"></div></div>` : "";
+                    histCont.innerHTML += `<div class="card" onclick="playMovie(${playlistData.indexOf(m)})">
+                        <img src="${m.img}">${progressHtml}
+                        <div class="card-name">${m.t}</div>
+                    </div>`;
+                }
             });
         } else histSec.style.display = "none";
     } else histSec.style.display = "none";
@@ -420,6 +444,12 @@ function playMovie(idx) {
     updatePlayerFavUI();
     window.scrollTo({top:0, behavior:'smooth'});
     player.src({ src: m.url, type: 'video/mp4' });
+    
+    // REPRISE DE LECTURE
+    const prog = JSON.parse(localStorage.getItem('sfpp_prog_' + currentProfile) || "{}");
+    if(prog[m.t] && prog[m.t].time > 10) {
+        player.currentTime(prog[m.t].time);
+    }
     player.play();
 }
 
@@ -436,7 +466,7 @@ function playNextEpisode() {
     else document.getElementById('next-episode-btn').style.display = 'none';
 }
 
-function closeP() { player.pause(); document.getElementById('player-section').style.display = 'none'; }
+function closeP() { saveWatchProgress(); player.pause(); document.getElementById('player-section').style.display = 'none'; render(); }
 function closeSeries() { document.getElementById('series-overlay').style.display = 'none'; }
 function changeView(v) { 
     currentView = v; 
@@ -468,6 +498,8 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             nextBtn.style.display = 'none';
         }
+        // Sauvegarde auto toutes les 10 secondes environ
+        if (Math.floor(current) % 10 === 0) saveWatchProgress();
     });
 
     let lastTap = 0;
