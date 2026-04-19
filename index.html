@@ -89,12 +89,27 @@
         #player-fav-btn.is-fav { color: var(--accent); border-color: var(--accent); }
         #main-content { padding-top: 80px; }
         .category-title { font-size: 18px; font-weight: bold; margin: 20px 4% 10px; color: #fff; text-transform: uppercase; }
-        .carousel { display: flex; overflow-x: auto; gap: 12px; padding: 0 4% 20px; scrollbar-width: none; }
-        .card { flex: 0 0 150px; cursor: pointer; position: relative; }
+        
+        /* CORRECTION SOURIS AMAZON SILK */
+        .carousel { 
+            display: flex; 
+            overflow-x: auto; 
+            gap: 12px; 
+            padding: 0 4% 20px; 
+            scrollbar-width: thin; 
+            -webkit-overflow-scrolling: touch;
+            touch-action: pan-x pan-y;
+        }
+        
+        .card { 
+            flex: 0 0 150px; 
+            cursor: pointer; 
+            position: relative; 
+            outline: none; 
+        }
         .card img { width: 100%; aspect-ratio: 2/3; object-fit: cover; border-radius: 4px; background: #222; }
         .card-name { margin-top: 6px; font-size: 12px; text-align: center; color: #bbb; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
 
-        /* BARRE DE PROGRESSION - Ajoutée proprement sans toucher au reste */
         .prog-bg { position: absolute; bottom: 25px; left: 0; width: 100%; height: 4px; background: rgba(255,255,255,0.2); border-radius: 0 0 4px 4px; }
         .prog-fill { height: 100%; background: var(--accent); transition: width 0.3s; }
 
@@ -333,7 +348,6 @@ function updatePlayerFavUI() {
     else { btn.innerText = "+ Ma Liste"; btn.classList.remove('is-fav'); }
 }
 
-// SAUVEGARDE PROGRESSION
 function saveP() {
     if(!currentPlayingTitle || !currentProfile) return;
     const cur = player.currentTime();
@@ -367,7 +381,7 @@ function render(search = "") {
                 const m = playlistData.find(item => item.t === title);
                 if(m) {
                     const pct = (prog[m.t] && prog[m.t].p > 1) ? `<div class="prog-bg"><div class="prog-fill" style="width:${prog[m.t].p}%"></div></div>` : "";
-                    histCont.innerHTML += `<div class="card" onclick="playMovie(${playlistData.indexOf(m)})"><img src="${m.img}">${pct}<div class="card-name">${m.t}</div></div>`;
+                    histCont.innerHTML += `<div class="card" tabindex="0" onclick="playMovie(${playlistData.indexOf(m)})"><img src="${m.img}">${pct}<div class="card-name">${m.t}</div></div>`;
                 }
             });
         } else histSec.style.display = "none";
@@ -387,10 +401,10 @@ function render(search = "") {
                 const sName = m.t.split(' - ')[0];
                 if(!addedSeries.includes(sName)) {
                     addedSeries.push(sName);
-                    html += `<div class="card" onclick="openSeries('${sName}')"><img src="${m.img}">${heart}<div class="card-name">${sName}</div></div>`;
+                    html += `<div class="card" tabindex="0" onclick="openSeries('${sName}')"><img src="${m.img}">${heart}<div class="card-name">${sName}</div></div>`;
                 }
             } else {
-                html += `<div class="card" onclick="playMovie(${playlistData.indexOf(m)})"><img src="${m.img}">${heart}<div class="card-name">${m.t}</div></div>`;
+                html += `<div class="card" tabindex="0" onclick="playMovie(${playlistData.indexOf(m)})"><img src="${m.img}">${heart}<div class="card-name">${m.t}</div></div>`;
             }
         });
         cont.innerHTML += html + `</div>`;
@@ -440,7 +454,6 @@ function playMovie(idx) {
     window.scrollTo({top:0, behavior:'smooth'});
     player.src({ src: m.url, type: 'video/mp4' });
     
-    // REPRISE
     const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
     if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
     
@@ -492,7 +505,6 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             nextBtn.style.display = 'none';
         }
-        // Save auto
         if(Math.floor(current) % 10 === 0) saveP();
     });
 
