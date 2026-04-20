@@ -1,174 +1,163 @@
 <!DOCTYPE html>
-<html lang="fr" class="dark">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lumeo Clone - Streaming</title>
+    <title>Lumeo - Streaming HD</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Geologica:wght@300;400;600;800&display=swap" rel="stylesheet">
-    
     <style>
-        :root {
-            --bg-color: #050505;
-            --accent-color: #bf97ff;
-        }
-        body { 
-            font-family: 'Geologica', sans-serif; 
-            background-color: var(--bg-color);
-            color: white;
-            overflow-x: hidden;
-        }
-        /* Effet de flou en arrière-plan */
-        .glass { 
-            background: rgba(255, 255, 255, 0.03); 
-            backdrop-filter: blur(12px); 
-            border: 1px solid rgba(255, 255, 255, 0.1); 
-        }
-        /* Dégradé de fond radial dynamique */
-        .bg-glow {
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: radial-gradient(circle at 50% -20%, #2a1b4d 0%, transparent 50%),
-                        radial-gradient(circle at 0% 100%, #1a1a1a 0%, transparent 40%);
-            z-index: -1;
-        }
-        /* Scrollbar invisible pour les carrousels */
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
         
-        .card-snap { scroll-snap-align: start; }
+        body {
+            background-color: #0a0a0a;
+            color: #efefef;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Sidebar personnalisée */
+        .sidebar {
+            width: 80px;
+            transition: width 0.3s ease;
+            background: #000000;
+            border-right: 1px solid #1a1a1a;
+        }
+        .sidebar:hover { width: 240px; }
+
+        .sidebar-label {
+            display: none;
+            white-space: nowrap;
+            margin-left: 15px;
+        }
+        .sidebar:hover .sidebar-label { display: block; }
+
+        /* Scrollbar Lumeo Style */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #0a0a0a; }
+        ::-webkit-scrollbar-thumb { background: #222; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #333; }
+
+        /* Overlay dégradé sur les posters */
+        .movie-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 50%);
+        }
     </style>
 </head>
-<body class="antialiased">
-    <div class="bg-glow"></div>
+<body class="flex h-screen overflow-hidden">
 
-    <nav class="fixed top-0 w-full z-[100] glass border-b border-white/5 h-16 flex items-center px-4 md:px-8 justify-between">
-        <div class="flex items-center gap-10">
-            <div class="flex items-center gap-2 font-extrabold text-xl tracking-tighter">
-                <span class="text-purple-400">LUMEO</span><span class="text-white">HD</span>
-            </div>
-            <div class="hidden lg:flex gap-8 text-[14px] font-medium text-gray-400">
-                <a href="#" class="hover:text-white transition-colors">Accueil</a>
-                <a href="#" class="hover:text-white transition-colors">Films</a>
-                <a href="#" class="hover:text-white transition-colors">Séries</a>
-                <a href="#" class="hover:text-white transition-colors">Catalogue</a>
-            </div>
+    <aside class="sidebar fixed h-full z-50 flex flex-col items-center py-6 gap-8">
+        <div class="text-purple-500 mb-4">
+            <i data-lucide="play-circle" class="w-10 h-10 fill-current"></i>
         </div>
 
-        <div class="flex items-center gap-3">
-            <div class="relative hidden md:block">
-                <i data-lucide="search" class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500"></i>
-                <input type="text" placeholder="Rechercher..." class="bg-white/5 border border-white/10 rounded-full py-2 pl-10 pr-4 text-sm w-64 outline-none focus:border-purple-500/50 transition-all">
-            </div>
-            <button class="text-sm font-medium px-4 py-2 text-gray-300 hover:text-white transition">Connexion</button>
-            <button class="hidden sm:block text-sm font-medium bg-purple-500/10 border border-purple-500/20 text-purple-300 px-5 py-2 rounded-full hover:bg-purple-500/20 transition-all shadow-[inset_0_0_10px_rgba(191,151,255,0.1)]">
-                Essai gratuit
-            </button>
-        </div>
-    </nav>
+        <nav class="flex flex-col w-full gap-2 px-4">
+            <a href="#" class="flex items-center p-3 text-purple-500 bg-purple-500/10 rounded-xl">
+                <i data-lucide="home"></i>
+                <span class="sidebar-label font-semibold">Accueil</span>
+            </a>
+            <a href="#" class="flex items-center p-3 text-gray-500 hover:text-white transition">
+                <i data-lucide="clapperboard"></i>
+                <span class="sidebar-label font-semibold">Films</span>
+            </a>
+            <a href="#" class="flex items-center p-3 text-gray-500 hover:text-white transition">
+                <i data-lucide="tv"></i>
+                <span class="sidebar-label font-semibold">Séries</span>
+            </a>
+            <a href="#" class="flex items-center p-3 text-gray-500 hover:text-white transition">
+                <i data-lucide="heart"></i>
+                <span class="sidebar-label font-semibold">Ma Liste</span>
+            </a>
+        </nav>
 
-    <main class="pt-24 pb-12 px-4 md:px-8 max-w-[1600px] mx-auto">
+        <div class="mt-auto flex flex-col w-full px-4 gap-2 border-t border-white/5 pt-4">
+             <a href="#" class="flex items-center p-3 text-gray-500 hover:text-white transition">
+                <i data-lucide="settings"></i>
+                <span class="sidebar-label font-semibold">Paramètres</span>
+            </a>
+        </div>
+    </aside>
+
+    <main class="ml-[80px] flex-1 overflow-y-auto">
         
-        <section class="relative w-full aspect-[16/9] md:aspect-[25/9] rounded-3xl overflow-hidden glass mb-12 group">
-            <div class="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent z-10"></div>
-            <div class="absolute inset-0 flex items-center justify-center">
-                <div class="text-center z-20 space-y-4">
-                    <div class="w-16 h-16 border-4 border-purple-500 border-t-transparent rounded-full animate-spin mx-auto opacity-50"></div>
-                    <p class="text-gray-500 font-medium animate-pulse">Chargement des tendances...</p>
+        <header class="flex items-center justify-between p-6 bg-transparent">
+            <div class="flex items-center bg-[#111] border border-white/5 rounded-full px-4 py-2 w-full max-w-xl">
+                <i data-lucide="search" class="w-4 h-4 text-gray-500 mr-3"></i>
+                <input type="text" placeholder="Rechercher sur Lumeo..." class="bg-transparent border-none outline-none text-sm w-full">
+            </div>
+            <div class="flex items-center gap-4">
+                <button class="text-sm font-bold bg-white text-black px-6 py-2 rounded-full hover:bg-gray-200 transition">VIP</button>
+                <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-purple-600 to-blue-500 border-2 border-white/10"></div>
+            </div>
+        </header>
+
+        <section class="px-6 mb-10">
+            <div class="relative w-full h-[450px] rounded-3xl overflow-hidden shadow-2xl group">
+                <img src="https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover" alt="Hero Movie">
+                <div class="absolute inset-0 bg-gradient-to-r from-black via-black/40 to-transparent p-12 flex flex-col justify-end">
+                    <span class="text-purple-500 font-bold mb-2 tracking-widest text-sm uppercase">Nouveau sur Lumeo</span>
+                    <h1 class="text-5xl font-extrabold mb-4 max-w-2xl leading-tight">Interstellar : <br><span class="text-gray-400">Le voyage ultime</span></h1>
+                    <div class="flex items-center gap-4 mb-8">
+                        <span class="bg-white/10 px-3 py-1 rounded text-xs font-bold">4K ULTRA HD</span>
+                        <span class="text-gray-300 text-sm">2024 • 2h 49m • Science-fiction</span>
+                    </div>
+                    <div class="flex gap-4">
+                        <button class="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-xl font-bold flex items-center gap-2 transition">
+                            <i data-lucide="play" class="fill-current w-4"></i> Regarder
+                        </button>
+                        <button class="bg-white/5 hover:bg-white/10 backdrop-blur-md text-white px-8 py-3 rounded-xl font-bold transition">Détails</button>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <div class="space-y-12">
-            
-            <section>
-                <div class="flex justify-between items-end mb-6 px-2">
-                    <h2 class="text-xl md:text-2xl font-bold tracking-tight">Derniers films ajoutés</h2>
-                    <a href="#" class="text-sm text-purple-400 hover:underline">Voir tout</a>
+        <section class="px-6 pb-20">
+            <div class="flex items-center justify-between mb-6">
+                <h2 class="text-xl font-bold flex items-center gap-2">
+                    <span class="w-1 h-6 bg-purple-500 rounded-full"></span>
+                    Tendances actuelles
+                </h2>
+                <div class="flex gap-2">
+                    <button class="p-2 bg-white/5 rounded-lg hover:bg-white/10"><i data-lucide="chevron-left" class="w-5"></i></button>
+                    <button class="p-2 bg-white/5 rounded-lg hover:bg-white/10"><i data-lucide="chevron-right" class="w-5"></i></button>
                 </div>
-                
-                <div class="flex gap-4 overflow-x-auto no-scrollbar snap-x snap-mandatory pb-4">
-                    <script>
-                        const createCard = () => `
-                            <div class="flex-none w-[160px] md:w-[200px] card-snap group cursor-pointer">
-                                <div class="relative aspect-[2/3] rounded-2xl overflow-hidden glass transition-all duration-500 group-hover:scale-[1.02] group-hover:border-purple-500/50">
-                                    <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-                                        <button class="w-full py-2 bg-white text-black rounded-xl font-bold text-xs">VOIR</button>
-                                    </div>
-                                    <div class="h-full w-full flex items-center justify-center bg-white/5">
-                                        <i data-lucide="clapperboard" class="text-white/10 w-12 h-12"></i>
-                                    </div>
+            </div>
+
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
+                <script>
+                    const movies = [
+                        {title: "The Batman", year: "2022", img: "https://images.unsplash.com/photo-1509248961158-e54f6934749c?w=400"},
+                        {title: "Inception", year: "2010", img: "https://images.unsplash.com/photo-1440404653325-ab127d49abc1?w=400"},
+                        {title: "Joker", year: "2019", img: "https://images.unsplash.com/photo-1531259683007-016a7b628fc3?w=400"},
+                        {title: "The Whale", year: "2023", img: "https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=400"},
+                        {title: "Avatar", year: "2022", img: "https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?w=400"},
+                        {title: "Dune", year: "2021", img: "https://images.unsplash.com/photo-1509347528160-9a9e33742cdb?w=400"}
+                    ];
+
+                    movies.forEach(movie => {
+                        document.write(`
+                            <div class="movie-card relative group cursor-pointer overflow-hidden rounded-2xl bg-white/5">
+                                <img src="${movie.img}" class="w-full aspect-[2/3] object-cover transition duration-500 group-hover:scale-110">
+                                <div class="absolute inset-0 z-10 flex flex-col justify-end p-4">
+                                    <h3 class="font-bold text-sm truncate">${movie.title}</h3>
+                                    <p class="text-[10px] text-gray-400 uppercase tracking-widest mt-1">${movie.year} • Film</p>
                                 </div>
-                                <div class="mt-3 px-1">
-                                    <h3 class="text-sm font-semibold truncate group-hover:text-purple-300 transition-colors">Titre du Film</h3>
-                                    <p class="text-[11px] text-gray-500 mt-1">2026 • 4K HDR</p>
+                                <div class="absolute inset-0 bg-purple-600/20 opacity-0 group-hover:opacity-100 transition-opacity z-20 flex items-center justify-center">
+                                    <div class="bg-white text-black p-3 rounded-full shadow-xl translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                                        <i data-lucide="play" class="fill-current w-6 h-6"></i>
+                                    </div>
                                 </div>
                             </div>
-                        `;
-                        for(let i=0; i<8; i++) document.write(createCard());
-                    </script>
-                </div>
-            </section>
-
-            <section>
-                <div class="flex justify-between items-end mb-6 px-2">
-                    <h2 class="text-xl md:text-2xl font-bold tracking-tight">Séries tendance</h2>
-                    <a href="#" class="text-sm text-purple-400 hover:underline">Voir tout</a>
-                </div>
-                <div class="flex gap-4 overflow-x-auto no-scrollbar snap-x snap-mandatory pb-4">
-                    <script>
-                        for(let i=0; i<8; i++) document.write(createCard());
-                    </script>
-                </div>
-            </section>
-
-        </div>
+                        `);
+                    });
+                </script>
+            </div>
+        </section>
     </main>
 
-    <footer class="mt-20 glass border-t border-white/5 pt-12 pb-8 px-6 md:px-12">
-        <div class="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 items-start">
-            <div class="space-y-4">
-                <div class="font-extrabold text-2xl tracking-tighter">LUMEO<span class="text-purple-400">HD</span></div>
-                <p class="text-sm text-gray-500 leading-relaxed">
-                    Stream the best movies and TV series without ads. High-quality entertainment at your fingertips.
-                </p>
-                <div class="flex gap-4">
-                    <a href="#" class="p-2 glass rounded-full hover:text-purple-400 transition"><i data-lucide="send" class="w-5 h-5"></i></a>
-                    <a href="#" class="p-2 glass rounded-full hover:text-purple-400 transition"><i data-lucide="twitter" class="w-5 h-5"></i></a>
-                </div>
-            </div>
-            
-            <div class="md:col-span-2 grid grid-cols-2 sm:grid-cols-3 gap-8 text-sm">
-                <div class="space-y-3">
-                    <h4 class="font-bold text-white">Légal</h4>
-                    <ul class="text-gray-500 space-y-2">
-                        <li><a href="#" class="hover:text-white">DMCA</a></li>
-                        <li><a href="#" class="hover:text-white">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="space-y-3">
-                    <h4 class="font-bold text-white">Communauté</h4>
-                    <ul class="text-gray-500 space-y-2">
-                        <li><a href="#" class="hover:text-white">Telegram</a></li>
-                        <li><a href="#" class="hover:text-white">Demander un film</a></li>
-                    </ul>
-                </div>
-                <div class="space-y-3">
-                    <div class="flex items-center gap-2 text-green-500 font-medium">
-                        <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-                        Systèmes opérationnels
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="max-w-[1400px] mx-auto mt-12 pt-8 border-t border-white/5 text-center text-xs text-gray-600">
-            © 2026 Lumeo Inc. Tous droits réservés. Lumeo n'héberge aucun fichier sur ses serveurs.
-        </div>
-    </footer>
-
     <script>
-        // Initialisation des icônes Lucide
         lucide.createIcons();
     </script>
 </body>
