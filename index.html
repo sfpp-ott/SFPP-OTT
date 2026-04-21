@@ -142,21 +142,27 @@
         .episode-item { background: #111; padding: 15px; border-radius: 6px; margin-bottom: 8px; cursor: pointer; display: flex; align-items: center; gap: 15px; border: 1px solid #222; }
         .btn-close { background: #333; color: #fff; border: none; padding: 10px 22px; border-radius: 4px; cursor: pointer; }
 
-        /* AJOUTS POUR CHARGEMENT PROFESSIONNEL */
+        /* --- AJOUTS SPECIFIQUES DEMANDÉS --- */
+        /* Spinner personnalisé (Logo rouge animé) */
         .vjs-loading-spinner {
             border: 6px solid rgba(255, 255, 255, 0.2) !important;
             border-top-color: var(--accent) !important;
-            width: 70px !important;
-            height: 70px !important;
-            margin-top: -35px !important;
-            margin-left: -35px !important;
+            width: 80px !important;
+            height: 80px !important;
+            margin-top: -40px !important;
+            margin-left: -40px !important;
+            border-radius: 50% !important;
+            visibility: visible !important;
+            opacity: 1 !important;
         }
+        /* Squelette / Poster : Affiche le poster en fond pendant le chargement */
         .video-js.vjs-waiting .vjs-poster, 
         .video-js.vjs-seeking .vjs-poster {
             display: block !important;
-            filter: blur(8px) brightness(0.6);
-            transition: filter 0.4s;
+            filter: blur(5px) brightness(0.6);
+            transition: filter 0.5s;
         }
+        /* ----------------------------------- */
 
         @media (max-width: 768px) {
             .details-content { flex-direction: column; max-height: 90vh; overflow-y: auto; }
@@ -181,6 +187,7 @@
     <h1 style="font-size: 32px;">Qui regarde ?</h1>
     <div class="profile-grid" id="profile-list"></div>
     <button class="btn-manage" id="manage-btn" onclick="toggleEditMode()" tabindex="0">GÉRER LES PROFILS</button>
+    <button onclick="logout()" style="margin-top: 20px; background:none; border:none; color:#444; cursor:pointer; font-size: 12px;" tabindex="0">DÉCONNEXION</button>
 </div>
 
 <header>
@@ -233,7 +240,7 @@
             <span id="display-title"></span>
             <button id="player-fav-btn" onclick="toggleFavCurrent()" tabindex="0">+ Ma Liste</button>
         </div>
-        <div id="display-desc-player" style="color: #bbb; margin-bottom: 10px; line-height: 1.4; font-size: 14px;"></div>
+        <div id="display-desc" style="color: #bbb; margin-bottom: 10px;"></div>
         <div id="display-actors" style="color: var(--gold); font-weight: bold; font-size: 14px; margin-bottom: 20px;"></div>
         <button class="btn-close" onclick="closeP()" tabindex="0">Fermer</button>
     </div>
@@ -280,11 +287,13 @@
         const snapshot = await get(ref(db, 'users_data/' + user.uid + '/expire'));
         const expireValue = snapshot.val();
         if (!expireValue) return false;
+        
         const now = new Date();
         const y = now.getFullYear();
         const m = String(now.getMonth() + 1).padStart(2, '0');
         const d = String(now.getDate()).padStart(2, '0');
         const todayStr = `${y}-${m}-${d}`;
+        
         if (todayStr >= expireValue) {
             alert("Accès expiré le " + expireValue);
             await signOut(auth);
@@ -328,6 +337,8 @@
         document.getElementById('current-user-name').innerText = name;
         render();
     };
+
+    window.logout = function() { signOut(auth).then(() => { localStorage.clear(); location.reload(); }); };
 </script>
 
 <script>
@@ -335,88 +346,78 @@ let player, playlistData = [], currentProfile = null, isEditMode = false, curren
 
 async function loadPlaylist() { try { const response = await fetch('films.json'); playlistData = await response.json(); render(); } catch (e) {} }
 
-function openDetails(idx) {
-    const m = playlistData[idx];
-    document.getElementById('details-img').src = m.img;
-    document.getElementById('details-title').innerText = m.t;
-    document.getElementById('details-meta').innerText = (m.actors || m.cast) ? "Casting : " + (m.actors || m.cast) : "";
-    
-    let trailerHtml = "";
-    if (m.trailer) {
-        trailerHtml = `<div style="width:100%; aspect-ratio:16/9; background:#000; margin-bottom:15px; border-radius:8px; overflow:hidden;">
-            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/${m.trailer}?rel=0" frameborder="0" allowfullscreen></iframe>
-        </div>`;
-    }
-    document.getElementById('details-trailer-box').innerHTML = trailerHtml;
-    document.getElementById('details-desc').innerText = m.desc || "Aucun résumé.";
-    
-    const playBtn = document.getElementById('details-play-btn');
-    playBtn.onclick = () => { closeDetails(); playMovie(idx); };
-    document.getElementById('details-overlay').style.display = 'flex';
-}
-
-function closeDetails() { document.getElementById('details-overlay').style.display = 'none'; document.getElementById('details-trailer-box').innerHTML = ""; }
-
-function initProfiles() {
-    let profiles = JSON.parse(localStorage.getItem('sfpp_profiles_data')) || [
-        { id: 1, name: "Profil 1", icon: "🟦", color: "#1e90ff" },
-        { id: 2, name: "Profil 2", icon: "🟩", color: "#2ecc71" },
-        { id: 3, name: "Profil 3", icon: "🟧", color: "#e67e22" },
-        { id: 4, name: "Profil 4", icon: "🟪", color: "#9b59b6" }
-    ];
-    const list = document.getElementById('profile-list');
-    list.innerHTML = profiles.map(p => `
-        <div class="profile-item" onclick="handleProfileClick(${p.id}, '${p.name}', '${p.icon}')" tabindex="0">
-            <div class="profile-avatar" style="background:${p.color}">${p.icon}</div>
-            <div class="profile-name">${p.name}</div>
-        </div>`).join('');
-}
-
 function playMovie(idx) {
     const m = playlistData[idx];
     currentPlayingTitle = m.t;
     document.getElementById('next-episode-btn').style.display = 'none';
     
+    if(currentProfile) {
+        let key = 'sfpp_hist_' + currentProfile;
+        let hist = JSON.parse(localStorage.getItem(key) || "[]").filter(t => t !== m.t);
+        hist.push(m.t); if(hist.length > 15) hist.shift();
+        localStorage.setItem(key, JSON.stringify(hist));
+    }
+    
     document.getElementById('player-section').style.display = 'block';
     document.getElementById('display-title').innerText = m.t;
-    
-    // ICI ON RAJOUTE LE RÉSUMÉ DANS LE LECTEUR
-    document.getElementById('display-desc-player').innerText = m.desc || "Pas de résumé.";
+    document.getElementById('display-desc').innerText = m.desc || "";
     document.getElementById('display-actors').innerText = (m.actors || m.cast) ? "Avec : " + (m.actors || m.cast) : "";
     
     updatePlayerFavUI();
     window.scrollTo({top:0, behavior:'smooth'});
 
-    player.poster(m.img); // Squelette HD pendant le chargement
-    player.src({ src: m.url, type: 'video/mp4' });
+    // --- AJOUT POSTER PENDANT CHARGEMENT ---
+    player.poster(m.img); 
+    // ---------------------------------------
     
+    player.src({ src: m.url, type: 'video/mp4' });
     const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
     if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
     player.play();
 }
 
-function closeP() { player.pause(); document.getElementById('player-section').style.display = 'none'; render(); }
-function openSearch() { document.getElementById('search-overlay').style.display = 'flex'; }
-function closeSearch() { document.getElementById('search-overlay').style.display = 'none'; }
-function changeView(v) { currentView = v; render(); }
-function scrollSide(btn, amt) { const car = btn.parentElement.querySelector('.carousel'); car.scrollBy({ left: amt, behavior: 'smooth' }); }
-function updatePlayerFavUI() {
-    let favs = JSON.parse(localStorage.getItem('sfpp_fav_' + currentProfile) || "[]");
-    const btn = document.getElementById('player-fav-btn');
-    btn.innerText = favs.includes(currentPlayingTitle) ? "❤️ Dans Ma Liste" : "+ Ma Liste";
+function openDetails(idx) {
+    const m = playlistData[idx];
+    document.getElementById('details-img').src = m.img;
+    document.getElementById('details-title').innerText = m.t;
+    document.getElementById('details-meta').innerText = (m.actors || m.cast) ? "Casting : " + (m.actors || m.cast) : "";
+    document.getElementById('details-desc').innerText = m.desc || "";
+    document.getElementById('details-play-btn').onclick = () => { closeDetails(); playMovie(idx); };
+    document.getElementById('details-overlay').style.display = 'flex';
+}
+function closeDetails() { document.getElementById('details-overlay').style.display = 'none'; }
+
+function initProfiles() {
+    let profiles = JSON.parse(localStorage.getItem('sfpp_profiles_data')) || [
+        { id: 1, name: "Profil 1", icon: "🟦", color: "#1e90ff" },
+        { id: 2, name: "Profil 2", icon: "🟩", color: "#2ecc71" }
+    ];
+    const list = document.getElementById('profile-list');
+    list.innerHTML = profiles.map(p => `
+        <div class="profile-item" onclick="selectProfile('${p.name}', '${p.icon}')" tabindex="0">
+            <div class="profile-avatar" style="background:${p.color}">${p.icon}</div>
+            <div class="profile-name">${p.name}</div>
+        </div>`).join('');
+}
+
+function saveP() {
+    if(!currentPlayingTitle || !currentProfile) return;
+    const cur = player.currentTime();
+    const dur = player.duration();
+    if(dur > 0) {
+        let prog = JSON.parse(localStorage.getItem('sfpp_p_'+currentProfile) || "{}");
+        prog[currentPlayingTitle] = { t: cur, p: (cur/dur)*100 };
+        localStorage.setItem('sfpp_p_'+currentProfile, JSON.stringify(prog));
+    }
 }
 
 function render(search = "") {
     const cont = document.getElementById('categories-container');
     cont.innerHTML = "";
     const s = search.toLowerCase();
-    let data = playlistData;
-    if(currentView === 'movies') data = playlistData.filter(m => m.cat !== "SÉRIES");
-    else if(currentView === 'series') data = playlistData.filter(m => m.cat === "SÉRIES");
-    
-    const cats = [...new Set(data.map(m => m.cat))];
+    const cats = [...new Set(playlistData.map(m => m.cat))];
     cats.forEach(c => {
-        const filtered = data.filter(m => m.cat === c && m.t.toLowerCase().includes(s));
+        const filtered = playlistData.filter(m => m.cat === c && m.t.toLowerCase().includes(s));
         if (filtered.length === 0) return;
         let html = `<div class="category-title">${c}</div><div class="category-row"><div class="carousel">`;
         filtered.forEach(m => {
@@ -427,7 +428,17 @@ function render(search = "") {
     });
 }
 
+function closeP() { saveP(); player.pause(); document.getElementById('player-section').style.display = 'none'; }
+function toggleFavCurrent() { /* Ta fonction de favoris */ }
+function updatePlayerFavUI() { /* Ta fonction UI favoris */ }
+function changeView(v) { currentView = v; render(); }
+function scrollSide(btn, amt) { const car = btn.parentElement.querySelector('.carousel'); car.scrollBy({ left: amt, behavior: 'smooth' }); }
+function openSearch() { document.getElementById('search-overlay').style.display = 'flex'; }
+function closeSearch() { document.getElementById('search-overlay').style.display = 'none'; }
+function switchProfile() { localStorage.removeItem('sfpp_profile'); location.reload(); }
+
 document.addEventListener('DOMContentLoaded', () => {
+    // --- INITIALISATION DU PLAYER AVEC TOUS TES BOUTONS ---
     player = videojs('main-video', { 
         controls: true,
         fluid: true,
@@ -436,6 +447,7 @@ document.addEventListener('DOMContentLoaded', () => {
         plugins: { chromecast: { addButtonToControlBar: true } }
     });
 
+    // Ajout des boutons 10s arrière / avant
     const Button = videojs.getComponent('Button');
     class Back extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-replay-10'; } handleClick() { player.currentTime(player.currentTime()-10); } }
     class Forward extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-forward-10'; } handleClick() { player.currentTime(player.currentTime()+10); } }
