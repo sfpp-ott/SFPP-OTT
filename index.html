@@ -87,7 +87,7 @@
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         .vjs-skip-button { font-size: 1.5em !important; cursor: pointer; }
         
-        /* MODAL FICHE FILM DÉTAILS */
+        /* MODAL FICHE FILM DÉTAILS - MIS À JOUR */
         #details-overlay {
             position: fixed; inset: 0; background: rgba(0,0,0,0.95);
             z-index: 3500; display: none; align-items: center; justify-content: center;
@@ -110,6 +110,14 @@
         .btn-play-main { background: white; color: black; border: none; padding: 12px 25px; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 16px; flex: 1; }
         .btn-play-main:hover { background: #ddd; }
         .btn-close-details { position: absolute; top: 15px; right: 15px; background: rgba(255,255,255,0.1); border: none; color: white; width: 35px; height: 35px; border-radius: 50%; cursor: pointer; z-index: 10; }
+
+        /* NOUVEAUX STYLES TRAILER ET ACTEURS */
+        .trailer-box { width: 100%; aspect-ratio: 16/9; background: #000; border-radius: 8px; margin-bottom: 15px; overflow: hidden; }
+        .cast-row { display: flex; gap: 12px; overflow-x: auto; padding: 5px 0 15px; scrollbar-width: none; }
+        .cast-row::-webkit-scrollbar { display: none; }
+        .actor-item { flex: 0 0 70px; text-align: center; }
+        .actor-item img { width: 60px; height: 60px; border-radius: 50%; object-fit: cover; border: 2px solid var(--accent); }
+        .actor-name { font-size: 10px; color: #aaa; margin-top: 5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
         .movie-info { padding: 20px 5%; background: #0a0a0a; min-height: 150px; border-bottom: 3px solid var(--accent); }
         .movie-title { font-size: 26px; font-weight: bold; margin-bottom: 8px; color: #fff; display: flex; align-items: center; gap: 15px; }
@@ -142,8 +150,7 @@
         .episode-item { background: #111; padding: 15px; border-radius: 6px; margin-bottom: 8px; cursor: pointer; display: flex; align-items: center; gap: 15px; border: 1px solid #222; }
         .btn-close { background: #333; color: #fff; border: none; padding: 10px 22px; border-radius: 4px; cursor: pointer; }
 
-        /* --- AJOUTS SPECIFIQUES DEMANDÉS --- */
-        /* Spinner personnalisé (Logo rouge animé) */
+        /* AJOUTS OPTIMISATION CHARGEMENT */
         .vjs-loading-spinner {
             border: 6px solid rgba(255, 255, 255, 0.2) !important;
             border-top-color: var(--accent) !important;
@@ -155,14 +162,12 @@
             visibility: visible !important;
             opacity: 1 !important;
         }
-        /* Squelette / Poster : Affiche le poster en fond pendant le chargement */
         .video-js.vjs-waiting .vjs-poster, 
         .video-js.vjs-seeking .vjs-poster {
             display: block !important;
             filter: blur(5px) brightness(0.6);
             transition: filter 0.5s;
         }
-        /* ----------------------------------- */
 
         @media (max-width: 768px) {
             .details-content { flex-direction: column; max-height: 90vh; overflow-y: auto; }
@@ -282,6 +287,9 @@
     let deviceId = localStorage.getItem('sfpp_device_id') || Math.random().toString(36).substring(7);
     localStorage.setItem('sfpp_device_id', deviceId);
 
+    const savedEmail = localStorage.getItem('sfpp_last_email');
+    if(savedEmail) document.getElementById('user').value = savedEmail;
+
     async function verifyExpiration(user) {
         if (!user) return false;
         const snapshot = await get(ref(db, 'users_data/' + user.uid + '/expire'));
@@ -297,11 +305,26 @@
         if (todayStr >= expireValue) {
             alert("Accès expiré le " + expireValue);
             await signOut(auth);
+            const mail = localStorage.getItem('sfpp_last_email');
+            localStorage.clear();
+            localStorage.setItem('sfpp_last_email', mail);
+            localStorage.setItem('sfpp_device_id', deviceId);
             location.reload();
             return true;
         }
         return false;
     }
+
+    window.startSessionSync = function(uid) {
+        onValue(ref(db, 'sessions/' + uid), (snapshot) => {
+            const session = snapshot.val();
+            if (session && session.deviceId !== deviceId) {
+                alert("⚠️ Ce compte est utilisé sur un autre appareil.");
+                localStorage.removeItem('sfpp_profile'); 
+                signOut(auth).then(() => location.reload());
+            }
+        });
+    };
 
     window.checkLogin = function() {
         const email = document.getElementById('user').value.trim();
@@ -318,9 +341,24 @@
     onAuthStateChanged(auth, async (user) => {
         if (user) {
             if (await verifyExpiration(user)) return;
+            window.startSessionSync(user.uid);
             document.getElementById('login-screen').style.display = 'none';
             loadPlaylist();
             initProfiles();
+            
+            const snap = await get(ref(db, 'users_data/' + user.uid + '/expire'));
+            const expireValue = snap.val();
+            if(expireValue) {
+                const today = new Date();
+                const expireDate = new Date(expireValue);
+                const diffDays = Math.ceil((expireDate - today) / (1000 * 60 * 60 * 24));
+                const banner = document.getElementById('expiration-banner');
+                if(diffDays > 0 && diffDays <= 5) {
+                    banner.style.display = 'block';
+                    banner.innerHTML = `⚠️ Fin d'accès dans ${diffDays} jour(s).`;
+                } else banner.style.display = 'none';
+            }
+            
             const saved = localStorage.getItem('sfpp_profile');
             if(saved) selectProfile(saved, localStorage.getItem('sfpp_profile_icon'));
             else document.getElementById('profile-screen').style.display = 'flex';
@@ -335,69 +373,121 @@
         localStorage.setItem('sfpp_profile_icon', icon);
         document.getElementById('profile-screen').style.display = 'none';
         document.getElementById('current-user-name').innerText = name;
+        const user = auth.currentUser;
+        if(user) {
+            const snap = await get(ref(db, 'users_data/' + user.uid + '/expire'));
+            document.getElementById('header-logo').innerHTML = `SFPP | ${icon} <span style="font-size:10px; color:#666;">(${snap.val()})</span>`;
+        }
         render();
     };
 
-    window.logout = function() { signOut(auth).then(() => { localStorage.clear(); location.reload(); }); };
+    window.logout = function() { 
+        const mail = localStorage.getItem('sfpp_last_email');
+        signOut(auth).then(() => { 
+            localStorage.clear(); 
+            localStorage.setItem('sfpp_last_email', mail);
+            localStorage.setItem('sfpp_device_id', deviceId);
+            location.reload(); 
+        }); 
+    };
 </script>
 
 <script>
 let player, playlistData = [], currentProfile = null, isEditMode = false, currentView = 'all', currentPlayingTitle = "";
 
-async function loadPlaylist() { try { const response = await fetch('films.json'); playlistData = await response.json(); render(); } catch (e) {} }
-
-function playMovie(idx) {
-    const m = playlistData[idx];
-    currentPlayingTitle = m.t;
-    document.getElementById('next-episode-btn').style.display = 'none';
-    
-    if(currentProfile) {
-        let key = 'sfpp_hist_' + currentProfile;
-        let hist = JSON.parse(localStorage.getItem(key) || "[]").filter(t => t !== m.t);
-        hist.push(m.t); if(hist.length > 15) hist.shift();
-        localStorage.setItem(key, JSON.stringify(hist));
+document.addEventListener('focusin', (e) => {
+    if (e.target.hasAttribute('tabindex')) {
+        e.target.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });
     }
-    
-    document.getElementById('player-section').style.display = 'block';
-    document.getElementById('display-title').innerText = m.t;
-    document.getElementById('display-desc').innerText = m.desc || "";
-    document.getElementById('display-actors').innerText = (m.actors || m.cast) ? "Avec : " + (m.actors || m.cast) : "";
-    
-    updatePlayerFavUI();
-    window.scrollTo({top:0, behavior:'smooth'});
+});
 
-    // --- AJOUT POSTER PENDANT CHARGEMENT ---
-    player.poster(m.img); 
-    // ---------------------------------------
-    
-    player.src({ src: m.url, type: 'video/mp4' });
-    const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
-    if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
-    player.play();
-}
+function openSearch() { document.getElementById('search-overlay').style.display = 'flex'; document.getElementById('searchBar').focus(); }
+function closeSearch() { document.getElementById('search-overlay').style.display = 'none'; document.getElementById('searchBar').value = ''; filter(); }
+
+async function loadPlaylist() { try { const response = await fetch('films.json'); playlistData = await response.json(); render(); } catch (e) {} }
 
 function openDetails(idx) {
     const m = playlistData[idx];
     document.getElementById('details-img').src = m.img;
     document.getElementById('details-title').innerText = m.t;
-    document.getElementById('details-meta').innerText = (m.actors || m.cast) ? "Casting : " + (m.actors || m.cast) : "";
-    document.getElementById('details-desc').innerText = m.desc || "";
-    document.getElementById('details-play-btn').onclick = () => { closeDetails(); playMovie(idx); };
+    
+    let castHtml = "";
+    if (m.actors_pics && m.actors_pics.length > 0) {
+        castHtml = `<div class="cast-row">` + 
+            m.actors_pics.map(a => `
+                <div class="actor-item">
+                    <img src="${a.img}" onerror="this.src='https://via.placeholder.com/60x60?text=?'">
+                    <div class="actor-name">${a.name}</div>
+                </div>
+            `).join('') + `</div>`;
+    } else {
+        castHtml = (m.actors || m.cast) ? "Casting : " + (m.actors || m.cast) : "";
+    }
+    document.getElementById('details-meta').innerHTML = castHtml;
+
+    let trailerHtml = "";
+    if (m.trailer) {
+        trailerHtml = `<div class="trailer-box">
+            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/${m.trailer}?rel=0" frameborder="0" allowfullscreen></iframe>
+        </div>`;
+    }
+    document.getElementById('details-trailer-box').innerHTML = trailerHtml;
+    document.getElementById('details-desc').innerText = m.desc || "Aucun résumé disponible.";
+    
+    const playBtn = document.getElementById('details-play-btn');
+    playBtn.onclick = () => { closeDetails(); playMovie(idx); };
+    
     document.getElementById('details-overlay').style.display = 'flex';
+    playBtn.focus();
 }
-function closeDetails() { document.getElementById('details-overlay').style.display = 'none'; }
+
+function closeDetails() {
+    document.getElementById('details-overlay').style.display = 'none';
+    document.getElementById('details-trailer-box').innerHTML = "";
+}
 
 function initProfiles() {
     let profiles = JSON.parse(localStorage.getItem('sfpp_profiles_data')) || [
         { id: 1, name: "Profil 1", icon: "🟦", color: "#1e90ff" },
-        { id: 2, name: "Profil 2", icon: "🟩", color: "#2ecc71" }
+        { id: 2, name: "Profil 2", icon: "🟩", color: "#2ecc71" },
+        { id: 3, name: "Profil 3", icon: "🟧", color: "#e67e22" },
+        { id: 4, name: "Profil 4", icon: "🟪", color: "#9b59b6" }
     ];
     const list = document.getElementById('profile-list');
     list.innerHTML = profiles.map(p => `
-        <div class="profile-item" onclick="selectProfile('${p.name}', '${p.icon}')" tabindex="0">
+        <div class="profile-item" onclick="handleProfileClick(${p.id}, '${p.name}', '${p.icon}')" tabindex="0">
             <div class="profile-avatar" style="background:${p.color}">${p.icon}</div>
+            <div class="edit-icon">✏️</div>
             <div class="profile-name">${p.name}</div>
         </div>`).join('');
+}
+
+function handleProfileClick(id, name, icon) {
+    if(isEditMode) {
+        let n = prompt("Nouveau nom :", name);
+        if(n) {
+            let saved = JSON.parse(localStorage.getItem('sfpp_profiles_data') || "[]");
+            const idx = saved.findIndex(p => p.id === id);
+            if(idx !== -1) { saved[idx].name = n; localStorage.setItem('sfpp_profiles_data', JSON.stringify(saved)); initProfiles(); }
+        }
+    } else selectProfile(name, icon);
+}
+
+function toggleFavCurrent() {
+    let key = 'sfpp_fav_' + currentProfile;
+    let favs = JSON.parse(localStorage.getItem(key) || "[]");
+    if(favs.includes(currentPlayingTitle)) favs = favs.filter(t => t !== currentPlayingTitle);
+    else favs.push(currentPlayingTitle);
+    localStorage.setItem(key, JSON.stringify(favs));
+    updatePlayerFavUI();
+    render(document.getElementById('searchBar').value);
+}
+
+function updatePlayerFavUI() {
+    let favs = JSON.parse(localStorage.getItem('sfpp_fav_' + currentProfile) || "[]");
+    const btn = document.getElementById('player-fav-btn');
+    if(favs.includes(currentPlayingTitle)) { btn.innerText = "❤️ Dans Ma Liste"; btn.classList.add('is-fav'); }
+    else { btn.innerText = "+ Ma Liste"; btn.classList.remove('is-fav'); }
 }
 
 function saveP() {
@@ -411,53 +501,166 @@ function saveP() {
     }
 }
 
+function scrollSide(btn, amt) { const car = btn.parentElement.querySelector('.carousel'); car.scrollBy({ left: amt, behavior: 'smooth' }); }
+
 function render(search = "") {
     const cont = document.getElementById('categories-container');
-    cont.innerHTML = "";
+    const histSec = document.getElementById('history-sec');
+    const histCont = document.getElementById('history-container');
+    cont.innerHTML = ""; histCont.innerHTML = "";
     const s = search.toLowerCase();
-    const cats = [...new Set(playlistData.map(m => m.cat))];
+    const favs = JSON.parse(localStorage.getItem('sfpp_fav_' + currentProfile) || "[]");
+    const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
+    
+    let data = playlistData;
+    if(currentView === 'movies') data = playlistData.filter(m => m.cat !== "SÉRIES");
+    else if(currentView === 'series') data = playlistData.filter(m => m.cat === "SÉRIES");
+    else if(currentView === 'fav') data = playlistData.filter(m => favs.includes(m.t));
+
+    if(currentProfile && s === "" && currentView === 'all') {
+        let history = JSON.parse(localStorage.getItem('sfpp_hist_' + currentProfile) || "[]");
+        if(history.length > 0) {
+            histSec.style.display = "block";
+            history.slice().reverse().forEach(title => {
+                const m = playlistData.find(item => item.t === title);
+                if(m) {
+                    const pct = (prog[m.t] && prog[m.t].p > 1) ? `<div class="prog-bg"><div class="prog-fill" style="width:${prog[m.t].p}%"></div></div>` : "";
+                    histCont.innerHTML += `<div class="card" onclick="openDetails(${playlistData.indexOf(m)})" tabindex="0"><img src="${m.img}">${pct}<div class="card-name">${m.t}</div></div>`;
+                }
+            });
+        } else histSec.style.display = "none";
+    } else histSec.style.display = "none";
+
+    const cats = [...new Set(data.map(m => m.cat))];
+    let addedSeries = [];
+
     cats.forEach(c => {
-        const filtered = playlistData.filter(m => m.cat === c && m.t.toLowerCase().includes(s));
+        const filtered = data.filter(m => m.cat === c && m.t.toLowerCase().includes(s));
         if (filtered.length === 0) return;
-        let html = `<div class="category-title">${c}</div><div class="category-row"><div class="carousel">`;
+        let html = `<div class="category-title">${c}</div><div class="category-row"><div class="nav-arrow arrow-left" onclick="scrollSide(this, -400)">‹</div><div class="carousel">`;
         filtered.forEach(m => {
-            html += `<div class="card" onclick="openDetails(${playlistData.indexOf(m)})" tabindex="0"><img src="${m.img}"><div class="card-name">${m.t}</div></div>`;
+            const isS = /S\d{2}E\d{2}/i.test(m.t);
+            const heart = favs.includes(m.t) ? `<div style="position:absolute; top:5px; right:5px;">❤️</div>` : "";
+            const pct = (prog[m.t] && prog[m.t].p > 1) ? `<div class="prog-bg"><div class="prog-fill" style="width:${prog[m.t].p}%"></div></div>` : "";
+            if(isS) {
+                const sName = m.t.split(' - ')[0];
+                if(!addedSeries.includes(sName)) {
+                    addedSeries.push(sName);
+                    html += `<div class="card" onclick="openSeries('${sName}')" tabindex="0"><img src="${m.img}">${heart}<div class="card-name">${sName}</div></div>`;
+                }
+            } else {
+                html += `<div class="card" onclick="openDetails(${playlistData.indexOf(m)})" tabindex="0"><img src="${m.img}">${heart}${pct}<div class="card-name">${m.t}</div></div>`;
+            }
         });
-        html += `</div></div>`;
+        html += `</div><div class="nav-arrow arrow-right" onclick="scrollSide(this, 400)">›</div></div>`;
         cont.innerHTML += html;
     });
 }
 
-function closeP() { saveP(); player.pause(); document.getElementById('player-section').style.display = 'none'; }
-function toggleFavCurrent() { /* Ta fonction de favoris */ }
-function updatePlayerFavUI() { /* Ta fonction UI favoris */ }
-function changeView(v) { currentView = v; render(); }
-function scrollSide(btn, amt) { const car = btn.parentElement.querySelector('.carousel'); car.scrollBy({ left: amt, behavior: 'smooth' }); }
-function openSearch() { document.getElementById('search-overlay').style.display = 'flex'; }
-function closeSearch() { document.getElementById('search-overlay').style.display = 'none'; }
+function openSeries(name) {
+    const overlay = document.getElementById('series-overlay');
+    const content = document.getElementById('series-detail-content');
+    const eps = playlistData.filter(m => m.t.startsWith(name));
+    overlay.style.display = 'block';
+    let html = `<div class="overlay-header"><img src="${eps[0].img}" class="overlay-img"><div><h2>${name}</h2></div></div>`;
+    const seasons = {};
+    const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
+    eps.forEach(ep => {
+        const sMatch = ep.t.match(/S(\d{2})/);
+        const sNum = sMatch ? sMatch[1] : "01";
+        if(!seasons[sNum]) seasons[sNum] = [];
+        seasons[sNum].push(ep);
+    });
+    Object.keys(seasons).sort().forEach(s => {
+        html += `<div class="season-title">SAISON ${s}</div>`;
+        seasons[s].forEach(ep => {
+            const epName = ep.t.split(' - ')[1] || ep.t;
+            const pct = (prog[ep.t] && prog[ep.t].p > 1) ? `<div style="height:3px; background:#444; width:100px; margin-top:5px;"><div style="height:100%; background:var(--accent); width:${prog[ep.t].p}%"></div></div>` : "";
+            html += `<div class="episode-item" onclick="openDetails(${playlistData.indexOf(ep)}); closeSeries();" tabindex="0">
+                        <div style="flex:1"><b>${epName}</b>${pct}</div>
+                        <div style="color:var(--accent)">DÉTAILS</div>
+                     </div>`;
+        });
+    });
+    content.innerHTML = html;
+}
+
+function playMovie(idx) {
+    const m = playlistData[idx];
+    currentPlayingTitle = m.t;
+    document.getElementById('next-episode-btn').style.display = 'none';
+    if(currentProfile) {
+        let key = 'sfpp_hist_' + currentProfile;
+        let hist = JSON.parse(localStorage.getItem(key) || "[]").filter(t => t !== m.t);
+        hist.push(m.t); if(hist.length > 15) hist.shift();
+        localStorage.setItem(key, JSON.stringify(hist));
+    }
+    document.getElementById('player-section').style.display = 'block';
+    document.getElementById('display-title').innerText = m.t;
+    document.getElementById('display-desc').innerText = m.desc || "";
+    document.getElementById('display-actors').innerText = (m.actors || m.cast) ? "Avec : " + (m.actors || m.cast) : "";
+    updatePlayerFavUI();
+    
+    // --- AJOUT POSTER PENDANT CHARGEMENT ---
+    player.poster(m.img); 
+    // ---------------------------------------
+    
+    window.scrollTo({top:0, behavior:'smooth'});
+    player.src({ src: m.url, type: 'video/mp4' });
+    const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
+    if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
+    player.play();
+}
+
+function playNextEpisode() {
+    const parts = currentPlayingTitle.match(/(.*[SE])(\d+)(.*)/i);
+    if (!parts) return;
+    const nextTitleSearch = (parts[1] + (parseInt(parts[2]) + 1).toString().padStart(2, '0')).toUpperCase();
+    const nextIdx = playlistData.findIndex(m => m.t.toUpperCase().includes(nextTitleSearch));
+    if (nextIdx !== -1) playMovie(nextIdx);
+}
+
+function closeP() { saveP(); player.pause(); document.getElementById('player-section').style.display = 'none'; render(); }
+function closeSeries() { document.getElementById('series-overlay').style.display = 'none'; }
+function changeView(v) { currentView = v; document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active')); document.getElementById('btn-'+v).classList.add('active'); render(); }
+function filter() { render(document.getElementById('searchBar').value); }
+function toggleEditMode() { isEditMode = !isEditMode; document.getElementById('profile-screen').classList.toggle('is-editing'); }
 function switchProfile() { localStorage.removeItem('sfpp_profile'); location.reload(); }
+function requestAccess() { window.location.href = "mailto:sfpp.ott@gmail.com"; }
 
 document.addEventListener('DOMContentLoaded', () => {
-    // --- INITIALISATION DU PLAYER AVEC TOUS TES BOUTONS ---
     player = videojs('main-video', { 
-        controls: true,
-        fluid: true,
-        responsive: true,
+        controls: true, // Option ajoutée
+        fluid: true,    // Option ajoutée
         techOrder: ['chromecast', 'html5'], 
         plugins: { chromecast: { addButtonToControlBar: true } }
     });
+    
+    player.on('timeupdate', function() {
+        const dur = player.duration(), cur = player.currentTime();
+        if (/S\d{2}E\d{2}/i.test(currentPlayingTitle) && dur > 0 && (dur - cur) < 80) {
+            if (player.isFullscreen()) player.exitFullscreen();
+            document.getElementById('next-episode-btn').style.display = 'block';
+        } else document.getElementById('next-episode-btn').style.display = 'none';
+        if(Math.floor(cur) % 10 === 0) saveP();
+    });
 
-    // Ajout des boutons 10s arrière / avant
+    let lastTap = 0;
+    player.on('touchend', function(e) {
+        let now = Date.now();
+        if (now - lastTap < 300) {
+            if (player.isFullscreen()) player.exitFullscreen();
+            else player.requestFullscreen();
+            e.preventDefault();
+        }
+        lastTap = now;
+    });
+
     const Button = videojs.getComponent('Button');
     class Back extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-replay-10'; } handleClick() { player.currentTime(player.currentTime()-10); } }
     class Forward extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-forward-10'; } handleClick() { player.currentTime(player.currentTime()+10); } }
-    videojs.registerComponent('Back', Back); 
-    videojs.registerComponent('Forward', Forward);
-    
-    player.ready(() => { 
-        player.getChild('controlBar').addChild('Back', {}, 1); 
-        player.getChild('controlBar').addChild('Forward', {}, 2); 
-    });
+    videojs.registerComponent('Back', Back); videojs.registerComponent('Forward', Forward);
+    player.ready(() => { player.getChild('controlBar').addChild('Back', {}, 1); player.getChild('controlBar').addChild('Forward', {}, 2); });
 });
 </script>
 </body>
