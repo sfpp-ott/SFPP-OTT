@@ -20,7 +20,6 @@
         :root { --accent: #e50914; --gold: #ffcc00; --bg: #050505; }
         body { background: var(--bg); color: white; font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; padding-bottom: 50px; }
         
-        /* AJOUT POUR ANDROID TV : Focus visible et propre */
         [tabindex="0"]:focus {
             outline: 3px solid white !important;
             outline-offset: 2px;
@@ -88,7 +87,7 @@
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         .vjs-skip-button { font-size: 1.5em !important; cursor: pointer; }
         
-        /* MODAL FICHE FILM DÉTAILS */
+        /* MODAL FICHE FILM DÉTAILS - MIS À JOUR */
         #details-overlay {
             position: fixed; inset: 0; background: rgba(0,0,0,0.95);
             z-index: 3500; display: none; align-items: center; justify-content: center;
@@ -102,17 +101,24 @@
         @keyframes slideUp { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
         
         .details-poster { width: 35%; object-fit: cover; border-right: 1px solid #222; }
-        .details-info { width: 65%; padding: 40px; display: flex; flex-direction: column; gap: 15px; }
+        .details-info { width: 65%; padding: 40px; display: flex; flex-direction: column; gap: 15px; overflow-y: auto; max-height: 90vh; }
         .details-info h2 { margin: 0; font-size: 28px; }
         .details-info .meta { color: var(--gold); font-weight: bold; font-size: 14px; }
         .details-info .synopsis { color: #ccc; line-height: 1.6; font-size: 15px; }
-        .details-actions { margin-top: auto; display: flex; gap: 15px; }
+        .details-actions { margin-top: 20px; display: flex; gap: 15px; }
         
         .btn-play-main { background: white; color: black; border: none; padding: 12px 25px; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 16px; flex: 1; }
         .btn-play-main:hover { background: #ddd; }
-        .btn-close-details { position: absolute; top: 15px; right: 15px; background: rgba(255,255,255,0.1); border: none; color: white; width: 35px; height: 35px; border-radius: 50%; cursor: pointer; }
+        .btn-close-details { position: absolute; top: 15px; right: 15px; background: rgba(255,255,255,0.1); border: none; color: white; width: 35px; height: 35px; border-radius: 50%; cursor: pointer; z-index: 10; }
 
-        /* RESTE DU CSS */
+        /* NOUVEAUX STYLES TRAILER ET ACTEURS */
+        .trailer-box { width: 100%; aspect-ratio: 16/9; background: #000; border-radius: 8px; margin-bottom: 15px; overflow: hidden; }
+        .cast-row { display: flex; gap: 12px; overflow-x: auto; padding: 5px 0 15px; scrollbar-width: none; }
+        .cast-row::-webkit-scrollbar { display: none; }
+        .actor-item { flex: 0 0 70px; text-align: center; }
+        .actor-item img { width: 60px; height: 60px; border-radius: 50%; object-fit: cover; border: 2px solid var(--accent); }
+        .actor-name { font-size: 10px; color: #aaa; margin-top: 5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
         .movie-info { padding: 20px 5%; background: #0a0a0a; min-height: 150px; border-bottom: 3px solid var(--accent); }
         .movie-title { font-size: 26px; font-weight: bold; margin-bottom: 8px; color: #fff; display: flex; align-items: center; gap: 15px; }
         #player-fav-btn { background: #222; border: 1px solid #444; color: white; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 14px; }
@@ -196,6 +202,7 @@
         <div class="details-info">
             <h2 id="details-title">Titre du film</h2>
             <div id="details-meta" class="meta"></div>
+            <div id="details-trailer-box"></div>
             <p id="details-desc" class="synopsis"></p>
             <div class="details-actions">
                 <button id="details-play-btn" class="btn-play-main" tabindex="0">▶ Lancer le film</button>
@@ -369,7 +376,6 @@
 <script>
 let player, playlistData = [], currentProfile = null, isEditMode = false, currentView = 'all', currentPlayingTitle = "";
 
-/* LOGIQUE NAVIGATION AUTO-SCROLL POUR ANDROID TV */
 document.addEventListener('focusin', (e) => {
     if (e.target.hasAttribute('tabindex')) {
         e.target.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });
@@ -381,24 +387,47 @@ function closeSearch() { document.getElementById('search-overlay').style.display
 
 async function loadPlaylist() { try { const response = await fetch('films.json'); playlistData = await response.json(); render(); } catch (e) {} }
 
-// NOUVELLES FONCTIONS POUR LA FICHE DÉTAILS
+// FONCTION OPEN DETAILS MODIFIÉE POUR TRAILERS ET PHOTOS
 function openDetails(idx) {
     const m = playlistData[idx];
     document.getElementById('details-img').src = m.img;
     document.getElementById('details-title').innerText = m.t;
-    document.getElementById('details-meta').innerText = (m.actors || m.cast) ? "Casting : " + (m.actors || m.cast) : "";
-    document.getElementById('details-desc').innerText = m.desc || "Aucun résumé disponible pour ce titre.";
     
-    // Configurer le bouton lecture
+    // Casting avec photos
+    let castHtml = "";
+    if (m.actors_pics && m.actors_pics.length > 0) {
+        castHtml = `<div class="cast-row">` + 
+            m.actors_pics.map(a => `
+                <div class="actor-item">
+                    <img src="${a.img}" onerror="this.src='https://via.placeholder.com/60x60?text=?'">
+                    <div class="actor-name">${a.name}</div>
+                </div>
+            `).join('') + `</div>`;
+    } else {
+        castHtml = (m.actors || m.cast) ? "Casting : " + (m.actors || m.cast) : "";
+    }
+    document.getElementById('details-meta').innerHTML = castHtml;
+
+    // Bande annonce YouTube
+    let trailerHtml = "";
+    if (m.trailer) {
+        trailerHtml = `<div class="trailer-box">
+            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/${m.trailer}?rel=0" frameborder="0" allowfullscreen></iframe>
+        </div>`;
+    }
+    document.getElementById('details-trailer-box').innerHTML = trailerHtml;
+    document.getElementById('details-desc').innerText = m.desc || "Aucun résumé disponible.";
+    
     const playBtn = document.getElementById('details-play-btn');
     playBtn.onclick = () => { closeDetails(); playMovie(idx); };
     
     document.getElementById('details-overlay').style.display = 'flex';
-    playBtn.focus(); // Pour Android TV
+    playBtn.focus();
 }
 
 function closeDetails() {
     document.getElementById('details-overlay').style.display = 'none';
+    document.getElementById('details-trailer-box').innerHTML = ""; // Stop le trailer
 }
 
 function initProfiles() {
@@ -480,7 +509,6 @@ function render(search = "") {
                 const m = playlistData.find(item => item.t === title);
                 if(m) {
                     const pct = (prog[m.t] && prog[m.t].p > 1) ? `<div class="prog-bg"><div class="prog-fill" style="width:${prog[m.t].p}%"></div></div>` : "";
-                    // Ici on garde openDetails pour la cohérence
                     histCont.innerHTML += `<div class="card" onclick="openDetails(${playlistData.indexOf(m)})" tabindex="0"><img src="${m.img}">${pct}<div class="card-name">${m.t}</div></div>`;
                 }
             });
@@ -505,7 +533,6 @@ function render(search = "") {
                     html += `<div class="card" onclick="openSeries('${sName}')" tabindex="0"><img src="${m.img}">${heart}<div class="card-name">${sName}</div></div>`;
                 }
             } else {
-                // MODIFICATION : On appelle openDetails au lieu de playMovie directement
                 html += `<div class="card" onclick="openDetails(${playlistData.indexOf(m)})" tabindex="0"><img src="${m.img}">${heart}${pct}<div class="card-name">${m.t}</div></div>`;
             }
         });
@@ -595,7 +622,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if(Math.floor(cur) % 10 === 0) saveP();
     });
 
-    // Double-tap zoom (restauré)
     let lastTap = 0;
     player.on('touchend', function(e) {
         let now = Date.now();
