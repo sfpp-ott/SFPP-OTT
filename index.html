@@ -74,7 +74,7 @@
         .btn-icon { background: none; border: none; color: white; font-size: 18px; cursor: pointer; }
         .btn-logout { background: #333; color: white; border: 1px solid #444; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-size: 10px; flex-shrink: 0; }
 
-        #player-section { display: none; width: 100%; background: #000; padding-top: 60px; }
+        #player-section { display: none; width: 100%; background: #000; padding-top: 60px; position: fixed; inset: 0; z-index: 4000; overflow-y: auto; }
         .video-container { position: relative; width: 100%; background: #000; }
         
         #next-episode-btn {
@@ -87,6 +87,32 @@
         #expiration-banner { display: none; background: #ffcc00; color: #000; text-align: center; padding: 10px; font-size: 13px; font-weight: bold; position: relative; z-index: 1500; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         .vjs-skip-button { font-size: 1.5em !important; cursor: pointer; }
+        
+        /* MODAL FICHE FILM DÉTAILS */
+        #details-overlay {
+            position: fixed; inset: 0; background: rgba(0,0,0,0.95);
+            z-index: 3500; display: none; align-items: center; justify-content: center;
+            padding: 20px;
+        }
+        .details-content {
+            background: #111; max-width: 850px; width: 100%; border-radius: 12px;
+            display: flex; position: relative; overflow: hidden; border: 1px solid #333;
+            animation: slideUp 0.4s ease;
+        }
+        @keyframes slideUp { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        
+        .details-poster { width: 35%; object-fit: cover; border-right: 1px solid #222; }
+        .details-info { width: 65%; padding: 40px; display: flex; flex-direction: column; gap: 15px; }
+        .details-info h2 { margin: 0; font-size: 28px; }
+        .details-info .meta { color: var(--gold); font-weight: bold; font-size: 14px; }
+        .details-info .synopsis { color: #ccc; line-height: 1.6; font-size: 15px; }
+        .details-actions { margin-top: auto; display: flex; gap: 15px; }
+        
+        .btn-play-main { background: white; color: black; border: none; padding: 12px 25px; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 16px; flex: 1; }
+        .btn-play-main:hover { background: #ddd; }
+        .btn-close-details { position: absolute; top: 15px; right: 15px; background: rgba(255,255,255,0.1); border: none; color: white; width: 35px; height: 35px; border-radius: 50%; cursor: pointer; }
+
+        /* RESTE DU CSS */
         .movie-info { padding: 20px 5%; background: #0a0a0a; min-height: 150px; border-bottom: 3px solid var(--accent); }
         .movie-title { font-size: 26px; font-weight: bold; margin-bottom: 8px; color: #fff; display: flex; align-items: center; gap: 15px; }
         #player-fav-btn { background: #222; border: 1px solid #444; color: white; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 14px; }
@@ -117,6 +143,12 @@
         .season-title { color: var(--accent); font-size: 18px; font-weight: bold; margin: 25px 0 10px; border-left: 3px solid var(--accent); padding-left: 10px; }
         .episode-item { background: #111; padding: 15px; border-radius: 6px; margin-bottom: 8px; cursor: pointer; display: flex; align-items: center; gap: 15px; border: 1px solid #222; }
         .btn-close { background: #333; color: #fff; border: none; padding: 10px 22px; border-radius: 4px; cursor: pointer; }
+
+        @media (max-width: 768px) {
+            .details-content { flex-direction: column; max-height: 90vh; overflow-y: auto; }
+            .details-poster { width: 100%; height: 250px; }
+            .details-info { width: 100%; padding: 20px; }
+        }
     </style>
 </head>
 <body>
@@ -156,6 +188,21 @@
         <button class="btn-icon" onclick="closeSearch()" style="margin-left:10px" tabindex="0">✕</button>
     </div>
 </header>
+
+<div id="details-overlay">
+    <div class="details-content">
+        <button class="btn-close-details" onclick="closeDetails()">✕</button>
+        <img id="details-img" class="details-poster" src="" alt="">
+        <div class="details-info">
+            <h2 id="details-title">Titre du film</h2>
+            <div id="details-meta" class="meta"></div>
+            <p id="details-desc" class="synopsis"></p>
+            <div class="details-actions">
+                <button id="details-play-btn" class="btn-play-main" tabindex="0">▶ Lancer le film</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div id="series-overlay">
     <button class="btn-close" onclick="closeSeries()" style="margin-bottom: 20px;" tabindex="0">← Retour</button>
@@ -334,6 +381,26 @@ function closeSearch() { document.getElementById('search-overlay').style.display
 
 async function loadPlaylist() { try { const response = await fetch('films.json'); playlistData = await response.json(); render(); } catch (e) {} }
 
+// NOUVELLES FONCTIONS POUR LA FICHE DÉTAILS
+function openDetails(idx) {
+    const m = playlistData[idx];
+    document.getElementById('details-img').src = m.img;
+    document.getElementById('details-title').innerText = m.t;
+    document.getElementById('details-meta').innerText = (m.actors || m.cast) ? "Casting : " + (m.actors || m.cast) : "";
+    document.getElementById('details-desc').innerText = m.desc || "Aucun résumé disponible pour ce titre.";
+    
+    // Configurer le bouton lecture
+    const playBtn = document.getElementById('details-play-btn');
+    playBtn.onclick = () => { closeDetails(); playMovie(idx); };
+    
+    document.getElementById('details-overlay').style.display = 'flex';
+    playBtn.focus(); // Pour Android TV
+}
+
+function closeDetails() {
+    document.getElementById('details-overlay').style.display = 'none';
+}
+
 function initProfiles() {
     let profiles = JSON.parse(localStorage.getItem('sfpp_profiles_data')) || [
         { id: 1, name: "Profil 1", icon: "🟦", color: "#1e90ff" },
@@ -413,7 +480,8 @@ function render(search = "") {
                 const m = playlistData.find(item => item.t === title);
                 if(m) {
                     const pct = (prog[m.t] && prog[m.t].p > 1) ? `<div class="prog-bg"><div class="prog-fill" style="width:${prog[m.t].p}%"></div></div>` : "";
-                    histCont.innerHTML += `<div class="card" onclick="playMovie(${playlistData.indexOf(m)})" tabindex="0"><img src="${m.img}">${pct}<div class="card-name">${m.t}</div></div>`;
+                    // Ici on garde openDetails pour la cohérence
+                    histCont.innerHTML += `<div class="card" onclick="openDetails(${playlistData.indexOf(m)})" tabindex="0"><img src="${m.img}">${pct}<div class="card-name">${m.t}</div></div>`;
                 }
             });
         } else histSec.style.display = "none";
@@ -437,7 +505,8 @@ function render(search = "") {
                     html += `<div class="card" onclick="openSeries('${sName}')" tabindex="0"><img src="${m.img}">${heart}<div class="card-name">${sName}</div></div>`;
                 }
             } else {
-                html += `<div class="card" onclick="playMovie(${playlistData.indexOf(m)})" tabindex="0"><img src="${m.img}">${heart}${pct}<div class="card-name">${m.t}</div></div>`;
+                // MODIFICATION : On appelle openDetails au lieu de playMovie directement
+                html += `<div class="card" onclick="openDetails(${playlistData.indexOf(m)})" tabindex="0"><img src="${m.img}">${heart}${pct}<div class="card-name">${m.t}</div></div>`;
             }
         });
         html += `</div><div class="nav-arrow arrow-right" onclick="scrollSide(this, 400)">›</div></div>`;
@@ -464,9 +533,9 @@ function openSeries(name) {
         seasons[s].forEach(ep => {
             const epName = ep.t.split(' - ')[1] || ep.t;
             const pct = (prog[ep.t] && prog[ep.t].p > 1) ? `<div style="height:3px; background:#444; width:100px; margin-top:5px;"><div style="height:100%; background:var(--accent); width:${prog[ep.t].p}%"></div></div>` : "";
-            html += `<div class="episode-item" onclick="playMovie(${playlistData.indexOf(ep)}); closeSeries();" tabindex="0">
+            html += `<div class="episode-item" onclick="openDetails(${playlistData.indexOf(ep)}); closeSeries();" tabindex="0">
                         <div style="flex:1"><b>${epName}</b>${pct}</div>
-                        <div style="color:var(--accent)">LIRE</div>
+                        <div style="color:var(--accent)">DÉTAILS</div>
                      </div>`;
         });
     });
