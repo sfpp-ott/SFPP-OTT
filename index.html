@@ -73,9 +73,25 @@
         .btn-icon { background: none; border: none; color: white; font-size: 18px; cursor: pointer; }
         .btn-logout { background: #333; color: white; border: 1px solid #444; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-size: 10px; flex-shrink: 0; }
 
+        /* MODIFICATIONS LECTEUR & FOND FLOUTÉ */
         #player-section { display: none; width: 100%; background: #000; padding-top: 60px; position: fixed; inset: 0; z-index: 4000; overflow-y: auto; }
-        .video-container { position: relative; width: 100%; background: #000; }
+        .video-container { position: relative; width: 100%; background: #000; min-height: 200px; }
         
+        .vjs-blur-bg {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 0;
+            background-size: cover;
+            background-position: center;
+            filter: blur(25px) brightness(0.4);
+            transform: scale(1.1); /* Évite les bords blancs */
+            display: block;
+        }
+        
+        /* On s'assure que la vidéo est devant le flou */
+        .video-js { z-index: 1 !important; }
+        .video-js.vjs-playing .vjs-blur-bg { display: none; }
+
         #next-episode-btn {
             position: absolute; bottom: 85px; right: 25px; z-index: 99999 !important;
             background: #e50914; color: white; border: 2px solid #fff; padding: 15px 25px;
@@ -87,7 +103,6 @@
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         .vjs-skip-button { font-size: 1.5em !important; cursor: pointer; }
         
-        /* MODAL FICHE FILM DÉTAILS - MIS À JOUR */
         #details-overlay {
             position: fixed; inset: 0; background: rgba(0,0,0,0.95);
             z-index: 3500; display: none; align-items: center; justify-content: center;
@@ -111,7 +126,6 @@
         .btn-play-main:hover { background: #ddd; }
         .btn-close-details { position: absolute; top: 15px; right: 15px; background: rgba(255,255,255,0.1); border: none; color: white; width: 35px; height: 35px; border-radius: 50%; cursor: pointer; z-index: 10; }
 
-        /* NOUVEAUX STYLES TRAILER ET ACTEURS */
         .trailer-box { width: 100%; aspect-ratio: 16/9; background: #000; border-radius: 8px; margin-bottom: 15px; overflow: hidden; }
         .cast-row { display: flex; gap: 12px; overflow-x: auto; padding: 5px 0 15px; scrollbar-width: none; }
         .cast-row::-webkit-scrollbar { display: none; }
@@ -150,7 +164,6 @@
         .episode-item { background: #111; padding: 15px; border-radius: 6px; margin-bottom: 8px; cursor: pointer; display: flex; align-items: center; gap: 15px; border: 1px solid #222; }
         .btn-close { background: #333; color: #fff; border: none; padding: 10px 22px; border-radius: 4px; cursor: pointer; }
 
-        /* AJOUTS OPTIMISATION CHARGEMENT */
         .vjs-loading-spinner {
             border: 6px solid rgba(255, 255, 255, 0.2) !important;
             border-top-color: var(--accent) !important;
@@ -161,12 +174,6 @@
             border-radius: 50% !important;
             visibility: visible !important;
             opacity: 1 !important;
-        }
-        .video-js.vjs-waiting .vjs-poster, 
-        .video-js.vjs-seeking .vjs-poster {
-            display: block !important;
-            filter: blur(5px) brightness(0.6);
-            transition: filter 0.5s;
         }
 
         @media (max-width: 768px) {
@@ -236,7 +243,8 @@
 </div>
 
 <section id="player-section">
-    <div class="video-container">
+    <div class="video-container" id="video-container">
+        <div id="player-blur-bg" class="vjs-blur-bg"></div>
         <video id="main-video" class="video-js vjs-theme-fantasy vjs-16-9 vjs-big-play-centered" controls preload="auto" width="100%"></video>
         <button id="next-episode-btn" onclick="playNextEpisode()" tabindex="0">ÉPISODE SUIVANT ⏭️</button>
     </div>
@@ -589,26 +597,32 @@ function playMovie(idx) {
     const m = playlistData[idx];
     currentPlayingTitle = m.t;
     document.getElementById('next-episode-btn').style.display = 'none';
+    
     if(currentProfile) {
         let key = 'sfpp_hist_' + currentProfile;
         let hist = JSON.parse(localStorage.getItem(key) || "[]").filter(t => t !== m.t);
         hist.push(m.t); if(hist.length > 15) hist.shift();
         localStorage.setItem(key, JSON.stringify(hist));
     }
+    
     document.getElementById('player-section').style.display = 'block';
     document.getElementById('display-title').innerText = m.t;
     document.getElementById('display-desc').innerText = m.desc || "";
     document.getElementById('display-actors').innerText = (m.actors || m.cast) ? "Avec : " + (m.actors || m.cast) : "";
     updatePlayerFavUI();
     
-    // --- AJOUT POSTER PENDANT CHARGEMENT ---
+    // Mise à jour du fond flouté et du poster
+    document.getElementById('player-blur-bg').style.backgroundImage = `url('${m.img}')`;
     player.poster(m.img); 
-    // ---------------------------------------
     
     window.scrollTo({top:0, behavior:'smooth'});
     player.src({ src: m.url, type: 'video/mp4' });
+    
     const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
-    if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
+    if(prog[m.t] && prog[m.t].t > 10) {
+        player.currentTime(prog[m.t].t);
+    }
+    
     player.play();
 }
 
@@ -630,8 +644,8 @@ function requestAccess() { window.location.href = "mailto:sfpp.ott@gmail.com"; }
 
 document.addEventListener('DOMContentLoaded', () => {
     player = videojs('main-video', { 
-        controls: true, // Option ajoutée
-        fluid: true,    // Option ajoutée
+        controls: true, 
+        fluid: true,
         techOrder: ['chromecast', 'html5'], 
         plugins: { chromecast: { addButtonToControlBar: true } }
     });
@@ -660,7 +674,10 @@ document.addEventListener('DOMContentLoaded', () => {
     class Back extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-replay-10'; } handleClick() { player.currentTime(player.currentTime()-10); } }
     class Forward extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-forward-10'; } handleClick() { player.currentTime(player.currentTime()+10); } }
     videojs.registerComponent('Back', Back); videojs.registerComponent('Forward', Forward);
-    player.ready(() => { player.getChild('controlBar').addChild('Back', {}, 1); player.getChild('controlBar').addChild('Forward', {}, 2); });
+    player.ready(() => { 
+        player.getChild('controlBar').addChild('Back', {}, 1); 
+        player.getChild('controlBar').addChild('Forward', {}, 2); 
+    });
 });
 </script>
 </body>
