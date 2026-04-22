@@ -3,116 +3,162 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>SFPP ELITE - PURSTREAM</title>
+    <title>SFPP ELITE - NEXT GEN</title>
     
     <link rel="manifest" href="manifest.json">
     <link rel="apple-touch-icon" href="https://i.ibb.co/mS6p9Xv/icon-sfpp.png">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="SFPP ELITE">
-    <meta name="theme-color" content="#050505">
+    <meta name="theme-color" content="#000000">
 
     <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
     <link href="https://unpkg.com/@videojs/themes@1.0.1/dist/fantasy/index.css" rel="stylesheet">
-    <link href="https://unpkg.com/@silvermine/videojs-chromecast@1.5.0/dist/silvermine-videojs-chromecast.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;500;800&display=swap" rel="stylesheet">
 
     <style>
-        :root { --accent: #e50914; --gold: #ffcc00; --bg: #050505; --card-shadow: rgba(229, 9, 20, 0.2); }
-        body { background: var(--bg); color: white; font-family: 'Inter', sans-serif; margin: 0; padding-bottom: 50px; -webkit-font-smoothing: antialiased; }
-        
+        :root { 
+            --accent: #ff0000; 
+            --accent-glow: rgba(255, 0, 0, 0.5);
+            --bg: #000000; 
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+        }
+
+        body { 
+            background: var(--bg); 
+            color: white; 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            margin: 0; 
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* --- BACKGROUND ANIMÉ --- */
+        body::before {
+            content: "";
+            position: fixed;
+            top: -10%; left: -10%; width: 120%; height: 120%;
+            background: radial-gradient(circle at 10% 20%, rgba(229, 9, 20, 0.05) 0%, transparent 40%),
+                        radial-gradient(circle at 90% 80%, rgba(229, 9, 20, 0.05) 0%, transparent 40%);
+            z-index: -1;
+            filter: blur(100px);
+        }
+
+        /* --- FOCUS ANDROID TV --- */
         [tabindex="0"]:focus {
-            outline: 3px solid white !important;
-            outline-offset: 4px;
-            transform: scale(1.07);
+            outline: none !important;
+            transform: scale(1.12) !important;
+            box-shadow: 0 0 30px var(--accent-glow) !important;
+            border-color: var(--accent) !important;
             z-index: 100;
-            transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        /* Login PurStream Style */
-        #login-screen { position: fixed; inset: 0; background: radial-gradient(circle at center, #1a1a1a 0%, #000 100%); z-index: 5000; display: flex; align-items: center; justify-content: center; }
-        .login-box { background: rgba(0,0,0,0.7); padding: 40px; border-radius: 16px; width: 320px; text-align: center; border: 1px solid #222; backdrop-filter: blur(10px); }
-        .login-box input { width: 100%; padding: 15px; margin: 12px 0; background: #111; border: 1px solid #333; color: white; border-radius: 8px; box-sizing: border-box; font-size: 16px; }
-        .login-box button { width: 100%; padding: 15px; background: var(--accent); color: white; border: none; font-weight: 800; border-radius: 8px; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; }
-        .btn-request { background: none !important; border: none; color: #555 !important; font-size: 12px; margin-top: 20px; cursor: pointer; text-decoration: underline; }
-
-        /* Profils Style */
-        #profile-screen { position: fixed; inset: 0; background: var(--bg); z-index: 4000; display: none; flex-direction: column; align-items: center; justify-content: center; }
-        .profile-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; margin-top: 40px; }
-        .profile-item { text-align: center; cursor: pointer; position: relative; }
-        .profile-avatar { width: 120px; height: 120px; border-radius: 12px; margin: 0 auto 15px; display: flex; align-items: center; justify-content: center; font-size: 50px; border: 4px solid transparent; transition: 0.3s; }
-        .profile-item:hover .profile-avatar { border-color: white; transform: scale(1.05); }
-        .profile-name { font-size: 16px; color: #888; font-weight: 600; }
-        .edit-icon { position: absolute; inset: 0; background: rgba(0,0,0,0.6); display: none; align-items: center; justify-content: center; border-radius: 12px; font-size: 30px; }
-        .is-editing .edit-icon { display: flex; }
-        .btn-manage { margin-top: 60px; background: none; border: 1px solid #444; color: #888; padding: 12px 30px; cursor: pointer; font-size: 14px; font-weight: 600; transition: 0.3s; }
-        .btn-manage:hover { border-color: white; color: white; }
-
-        /* Header PurStream (Transparent puis Flou) */
+        /* --- HEADER ULTRA MODERN --- */
         header { 
-            position: fixed; top: 0; width: 100%; height: 70px; 
-            background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%); 
-            display: flex; align-items: center; padding: 0 4%; z-index: 2000; 
-            justify-content: space-between; box-sizing: border-box; transition: 0.4s;
+            position: fixed; top: 0; width: 100%; height: 80px; 
+            display: flex; align-items: center; padding: 0 5%; z-index: 2000; 
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
         }
-        header.scrolled { background: rgba(5,5,5,0.95); backdrop-filter: blur(10px); border-bottom: 1px solid #1a1a1a; }
-        .logo { color: var(--accent); font-weight: 800; font-size: 24px; letter-spacing: -1px; }
+        header.scrolled { 
+            height: 70px;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+        }
+        .logo { 
+            font-weight: 800; font-size: 28px; letter-spacing: -1.5px; 
+            background: linear-gradient(to right, #fff, #666);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
         
-        .nav-links { display: flex; gap: 20px; flex: 1; margin-left: 30px; overflow-x: auto; scrollbar-width: none; align-items: center; }
-        .nav-links::-webkit-scrollbar { display: none; }
-        .nav-btn { background: none; border: none; color: #aaa; cursor: pointer; font-size: 14px; font-weight: 600; transition: 0.3s; }
-        .nav-btn.active { color: white; position: relative; }
-        .nav-btn.active::after { content: ''; position: absolute; bottom: -8px; left: 0; width: 100%; height: 2px; background: var(--accent); }
+        .nav-links { display: flex; gap: 30px; margin-left: 50px; flex: 1; }
+        .nav-btn { 
+            background: none; border: none; color: #888; font-weight: 600; font-size: 14px;
+            cursor: pointer; transition: 0.3s; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .nav-btn:hover, .nav-btn.active { color: #fff; transform: translateY(-2px); }
+        .nav-btn.active { text-shadow: 0 0 15px rgba(255,255,255,0.5); }
 
-        #search-overlay { position: absolute; inset: 0; background: #050505; display: none; align-items: center; padding: 0 4%; z-index: 2001; }
-        #searchBar { flex: 1; background: #111; border: 1px solid #333; color: white; padding: 12px 20px; border-radius: 8px; outline: none; }
-        
-        .header-actions { display: flex; align-items: center; gap: 15px; }
-        .btn-icon { background: none; border: none; color: white; font-size: 20px; cursor: pointer; opacity: 0.8; }
-        .btn-logout { background: transparent; color: #888; border: 1px solid #333; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 11px; font-weight: 700; transition: 0.3s; }
-        .btn-logout:hover { border-color: white; color: white; }
+        /* --- CARDS "FLOAT" --- */
+        #main-content { padding-top: 120px; }
+        .category-title { 
+            font-size: 1.6rem; font-weight: 800; margin: 0 5% 20px; 
+            display: flex; align-items: center; gap: 15px;
+        }
+        .category-title::before { content: ""; width: 4px; height: 24px; background: var(--accent); border-radius: 10px; }
 
-        /* Player & Background Blur */
-        #player-section { display: none; width: 100%; background: #000; position: fixed; inset: 0; z-index: 4000; overflow-y: auto; }
-        .vjs-blur-bg { position: absolute; inset: 0; z-index: 0; background-size: cover; background-position: center; filter: blur(60px) brightness(0.3); transform: scale(1.1); }
-        .video-js { z-index: 1 !important; border-radius: 8px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
-        
-        #next-episode-btn {
-            position: absolute; bottom: 100px; right: 40px; z-index: 9999;
-            background: var(--accent); color: white; border: 2px solid white; padding: 15px 30px;
-            border-radius: 12px; font-weight: 800; cursor: pointer; display: none; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        .carousel { display: flex; gap: 20px; padding: 0 5% 40px; overflow-x: auto; scrollbar-width: none; }
+        .card { 
+            flex: 0 0 190px; cursor: pointer; transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1); 
+            position: relative; border-radius: 15px;
+        }
+        .card img { 
+            width: 100%; aspect-ratio: 2/3; object-fit: cover; border-radius: 15px; 
+            border: 1px solid var(--glass-border);
+        }
+        .card:hover { transform: scale(1.1) translateY(-10px); }
+        .card-name { 
+            margin-top: 15px; font-size: 13px; font-weight: 600; text-align: center; 
+            opacity: 0.7; transition: 0.3s; 
+        }
+        .card:hover .card-name { opacity: 1; color: var(--accent); }
+
+        /* --- PROGRESS BAR NEON --- */
+        .prog-bg { 
+            position: absolute; bottom: 45px; left: 10%; width: 80%; height: 4px; 
+            background: rgba(255,255,255,0.1); border-radius: 10px; overflow: hidden;
+        }
+        .prog-fill { background: var(--accent); box-shadow: 0 0 15px var(--accent); }
+
+        /* --- OVERLAY DÉTAILS IMMERSIF --- */
+        #details-overlay { 
+            position: fixed; inset: 0; background: rgba(0,0,0,0.4); 
+            backdrop-filter: blur(30px); z-index: 3500; display: none; 
+            align-items: center; justify-content: center;
+        }
+        .details-content { 
+            background: rgba(15, 15, 15, 0.8); width: 90%; max-width: 1100px;
+            border-radius: 30px; display: flex; overflow: hidden;
+            border: 1px solid var(--glass-border); box-shadow: 0 50px 100px rgba(0,0,0,0.9);
+        }
+        .details-poster { width: 40%; object-fit: cover; }
+        .details-info { width: 60%; padding: 60px; position: relative; }
+        .btn-play-main { 
+            background: #fff; color: #000; border: none; padding: 20px 50px; 
+            border-radius: 15px; font-weight: 800; font-size: 18px; cursor: pointer;
+            transition: 0.3s; width: 100%;
+        }
+        .btn-play-main:hover { background: var(--accent); color: #fff; transform: scale(1.02); }
+
+        /* --- LOGIN GLASSMORPHISM --- */
+        #login-screen { 
+            position: fixed; inset: 0; background: #000; z-index: 5000; 
+            display: flex; align-items: center; justify-content: center;
+            background: url('https://i.ibb.co/mS6p9Xv/icon-sfpp.png') no-repeat center; background-size: 20%;
+        }
+        .login-box { 
+            background: rgba(20, 20, 20, 0.8); padding: 50px; border-radius: 30px; 
+            width: 350px; backdrop-filter: blur(20px); border: 1px solid var(--glass-border);
+            text-align: center;
+        }
+        .login-box input { 
+            width: 100%; padding: 18px; margin: 10px 0; background: var(--glass);
+            border: 1px solid var(--glass-border); color: white; border-radius: 12px; font-size: 16px;
         }
 
-        /* Details Style PurStream */
-        #details-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 3500; display: none; align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(15px); }
-        .details-content { background: #0a0a0a; max-width: 1000px; width: 100%; border-radius: 20px; display: flex; position: relative; overflow: hidden; border: 1px solid #222; box-shadow: 0 40px 100px rgba(0,0,0,0.8); }
-        .details-poster { width: 35%; object-fit: cover; border-right: 1px solid #1a1a1a; }
-        .details-info { width: 65%; padding: 50px; display: flex; flex-direction: column; gap: 20px; overflow-y: auto; max-height: 85vh; }
-        .btn-play-main { background: white; color: black; border: none; padding: 16px 40px; border-radius: 10px; font-weight: 800; cursor: pointer; font-size: 18px; transition: 0.3s; }
-        .btn-play-main:hover { transform: scale(1.02); background: var(--accent); color: white; }
+        /* --- PLAYER CUSTOM --- */
+        #player-section { display: none; position: fixed; inset: 0; background: #000; z-index: 4000; }
+        .vjs-blur-bg { 
+            position: absolute; inset: 0; filter: blur(100px) brightness(0.4); 
+            background-size: cover; opacity: 0.6;
+        }
 
-        /* Cards Style PurStream */
-        #main-content { padding-top: 100px; }
-        .category-title { font-size: 1.4rem; font-weight: 800; margin: 0 4% 15px; color: #fff; letter-spacing: -0.5px; }
-        .category-row { position: relative; margin-bottom: 40px; }
-        .carousel { display: flex; overflow-x: auto; gap: 15px; padding: 0 4% 20px; scrollbar-width: none; scroll-behavior: smooth; }
-        .card { flex: 0 0 180px; cursor: pointer; position: relative; transition: 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); }
-        .card:hover { transform: scale(1.1) translateY(-10px); z-index: 10; }
-        .card img { width: 100%; aspect-ratio: 2/3; object-fit: cover; border-radius: 10px; box-shadow: 0 15px 30px rgba(0,0,0,0.5); }
-        .card-name { margin-top: 12px; font-size: 14px; font-weight: 600; color: #aaa; text-align: left; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-
-        .prog-bg { position: absolute; bottom: 35px; left: 0; width: 100%; height: 3px; background: rgba(255,255,255,0.1); border-radius: 0 0 10px 10px; overflow: hidden; }
-        .prog-fill { height: 100%; background: var(--accent); box-shadow: 0 0 10px var(--accent); }
-
-        #series-overlay { position: fixed; inset: 0; background: var(--bg); z-index: 3000; display: none; overflow-y: auto; padding: 100px 5% 50px; }
-        .episode-item { background: #111; padding: 20px; border-radius: 12px; margin-bottom: 12px; cursor: pointer; display: flex; align-items: center; gap: 20px; border: 1px solid #222; transition: 0.3s; }
-        .episode-item:hover { background: #181818; border-color: var(--accent); }
-
-        @media (max-width: 768px) {
+        @media (max-width: 800px) {
             .details-content { flex-direction: column; }
-            .details-poster { width: 100%; height: 280px; }
+            .details-poster { width: 100%; height: 300px; }
             .details-info { width: 100%; padding: 30px; }
-            .card { flex: 0 0 145px; }
+            .card { flex: 0 0 150px; }
         }
     </style>
 </head>
@@ -120,91 +166,66 @@
 
 <div id="login-screen">
     <form class="login-box" onsubmit="event.preventDefault(); checkLogin();">
-        <div class="logo" style="margin-bottom:30px; font-size: 35px;">SFPP ELITE</div>
+        <div class="logo" style="margin-bottom:30px; font-size: 40px; background:none; -webkit-text-fill-color:#fff;">SFPP <span style="color:var(--accent)">ELITE</span></div>
         <input type="email" id="user" placeholder="E-mail" required>
         <input type="password" id="pass" placeholder="Mot de passe" required>
-        <button type="submit" tabindex="0">CONNEXION</button>
-        <button type="button" class="btn-request" onclick="requestAccess()" tabindex="0">Demander un accès</button>
+        <button type="submit" style="width:100%; padding:18px; background:var(--accent); color:white; border:none; border-radius:12px; font-weight:800; cursor:pointer; margin-top:10px;">SE CONNECTER</button>
+        <button type="button" class="btn-request" onclick="requestAccess()" style="background:none; border:none; color:#555; margin-top:20px; cursor:pointer;">Besoin d'accès ?</button>
     </form>
 </div>
 
-<div id="profile-screen">
-    <h1 style="font-size: 40px; font-weight: 800;">Qui regarde ?</h1>
-    <div class="profile-grid" id="profile-list"></div>
-    <button class="btn-manage" id="manage-btn" onclick="toggleEditMode()" tabindex="0">GÉRER LES PROFILS</button>
-    <button onclick="logout()" style="margin-top: 30px; background:none; border:none; color:#444; cursor:pointer;" tabindex="0">DÉCONNEXION</button>
+<div id="profile-screen" style="position:fixed; inset:0; background:#000; z-index:4000; display:none; flex-direction:column; align-items:center; justify-content:center;">
+    <h1 style="font-size: 48px; font-weight: 800; letter-spacing: -2px;">Qui regarde ?</h1>
+    <div class="profile-grid" id="profile-list" style="display:grid; grid-template-columns: repeat(2,1fr); gap:40px; margin:40px 0;"></div>
+    <button class="btn-manage" onclick="toggleEditMode()" style="background:none; border:1px solid #333; color:#666; padding:12px 30px; border-radius:30px; cursor:pointer;">GÉRER LES PROFILS</button>
 </div>
 
-<header id="header-bar">
-    <div class="logo" id="header-logo">SFPP</div>
+<header id="main-header">
+    <div class="logo">SFPP</div>
     <div class="nav-links">
-        <button class="nav-btn active" id="btn-all" onclick="changeView('all')" tabindex="0">Accueil</button>
-        <button class="nav-btn" id="btn-movies" onclick="changeView('movies')" tabindex="0">Films</button>
-        <button class="nav-btn" id="btn-series" onclick="changeView('series')" tabindex="0">Séries</button>
-        <button class="nav-btn" id="btn-fav" onclick="changeView('fav')" tabindex="0">Ma Liste</button>
-        <button class="nav-btn" onclick="location.reload()" tabindex="0">🔄</button>
+        <button class="nav-btn active" id="btn-all" onclick="changeView('all')">Accueil</button>
+        <button class="nav-btn" id="btn-movies" onclick="changeView('movies')">Films</button>
+        <button class="nav-btn" id="btn-series" onclick="changeView('series')">Séries</button>
+        <button class="nav-btn" id="btn-fav" onclick="changeView('fav')">Ma Liste</button>
     </div>
     <div class="header-actions">
-        <button class="btn-icon" onclick="openSearch()" tabindex="0">🔍</button>
-        <button class="btn-logout" onclick="switchProfile()" tabindex="0">PROFILS</button>
-    </div>
-    <div id="search-overlay">
-        <input type="text" id="searchBar" onkeyup="filter()" placeholder="Rechercher un titre..." tabindex="0">
-        <button class="btn-icon" onclick="closeSearch()" style="margin-left:20px" tabindex="0">✕</button>
+        <button class="btn-icon" onclick="openSearch()">🔍</button>
+        <button class="btn-logout" onclick="switchProfile()" style="background:var(--glass); border:1px solid var(--glass-border); color:#fff; padding:8px 15px; border-radius:10px; cursor:pointer; font-weight:600;">PROFILS</button>
     </div>
 </header>
 
-<div id="details-overlay">
-    <div class="details-content">
-        <button class="btn-close-details" onclick="closeDetails()" style="position:absolute; top:20px; right:20px; width:45px; height:45px; background:rgba(255,255,255,0.1); border:none; border-radius:50%; color:white; font-size:20px; cursor:pointer;">✕</button>
-        <img id="details-img" class="details-poster" src="">
-        <div class="details-info">
-            <h2 id="details-title" style="font-size: 40px; font-weight: 800; margin:0;"></h2>
-            <div id="details-meta"></div>
-            <div id="details-trailer-box"></div>
-            <p id="details-desc" style="color: #ccc; line-height: 1.8; font-size: 16px;"></p>
-            <button id="details-play-btn" class="btn-play-main" tabindex="0">LECTURE</button>
-        </div>
-    </div>
-</div>
-
-<div id="series-overlay">
-    <button class="btn-close" onclick="closeSeries()" style="background:white; color:black; font-weight:800; padding:12px 30px; border-radius:8px; margin-bottom:40px;" tabindex="0">← RETOUR</button>
-    <div id="series-detail-content"></div>
-</div>
-
-<section id="player-section">
-    <div class="video-container">
-        <div id="player-blur-bg" class="vjs-blur-bg"></div>
-        <video id="main-video" class="video-js vjs-theme-fantasy vjs-16-9 vjs-big-play-centered" controls preload="auto" width="100%"></video>
-        <button id="next-episode-btn" onclick="playNextEpisode()" tabindex="0">ÉPISODE SUIVANT ⏭️</button>
-    </div>
-    <div class="movie-info">
-        <div class="movie-title">
-            <span id="display-title" style="font-size: 32px;"></span>
-            <button id="player-fav-btn" onclick="toggleFavCurrent()" tabindex="0">+ Ma Liste</button>
-        </div>
-        <div id="display-desc" style="color: #999; margin: 20px 0; font-size: 17px;"></div>
-        <div id="display-actors" style="color: var(--gold); margin-bottom: 30px;"></div>
-        <button class="btn-close" onclick="closeP()" style="background:#222; color:white; border:none; padding:12px 30px; border-radius:6px;" tabindex="0">QUITTER</button>
-    </div>
-</section>
-
 <div id="main-content">
-    <div id="expiration-banner"></div>
     <div id="history-sec" style="display:none">
-        <div class="category-title">Reprendre la lecture</div>
-        <div class="category-row">
-            <div class="carousel" id="history-container"></div>
-        </div>
+        <div class="category-title">Continuer la lecture</div>
+        <div class="carousel" id="history-container"></div>
     </div>
     <div id="categories-container"></div>
 </div>
 
-<script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
-<script src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1"></script>
-<script src="https://unpkg.com/@silvermine/videojs-chromecast@1.5.0/dist/silvermine-videojs-chromecast.min.js"></script>
+<div id="details-overlay">
+    <div class="details-content">
+        <img id="details-img" class="details-poster">
+        <div class="details-info">
+            <button onclick="closeDetails()" style="position:absolute; top:30px; right:30px; background:none; border:none; color:#fff; font-size:30px; cursor:pointer;">✕</button>
+            <h2 id="details-title" style="font-size: 50px; font-weight: 800; margin:0; line-height:1;"></h2>
+            <div id="details-meta" style="margin:20px 0; color:var(--accent); font-weight:600;"></div>
+            <div id="details-trailer-box"></div>
+            <p id="details-desc" style="font-size:18px; color:#aaa; line-height:1.6; margin-bottom:40px;"></p>
+            <button id="details-play-btn" class="btn-play-main" tabindex="0">REGARDER MAINTENANT</button>
+        </div>
+    </div>
+</div>
 
+<section id="player-section">
+    <div id="player-blur-bg" class="vjs-blur-bg"></div>
+    <video id="main-video" class="video-js vjs-theme-fantasy vjs-16-9 vjs-big-play-centered" controls preload="auto" width="100%"></video>
+    <div style="padding:50px; position:relative; z-index:10;">
+        <h2 id="display-title" style="font-size:40px; margin:0;"></h2>
+        <button onclick="closeP()" style="margin-top:30px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); color:#fff; padding:15px 40px; border-radius:12px; cursor:pointer;">RETOUR À L'ACCUEIL</button>
+    </div>
+</section>
+
+<script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
     import { getDatabase, ref, set, onValue, get } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
@@ -221,14 +242,11 @@
     const db = getDatabase(app);
     const auth = getAuth(app);
     let deviceId = localStorage.getItem('sfpp_device_id') || Math.random().toString(36).substring(7);
-    localStorage.setItem('sfpp_device_id', deviceId);
 
     window.checkLogin = function() {
         const email = document.getElementById('user').value.trim();
         const pass = document.getElementById('pass').value;
-        signInWithEmailAndPassword(auth, email, pass).then(async (u) => {
-            set(ref(db, 'sessions/' + u.user.uid), { deviceId: deviceId, lastLogin: Date.now() }); 
-        }).catch(() => alert("Identifiants incorrects."));
+        signInWithEmailAndPassword(auth, email, pass).catch(() => alert("Erreur"));
     };
 
     onAuthStateChanged(auth, async (user) => {
@@ -236,20 +254,6 @@
             document.getElementById('login-screen').style.display = 'none';
             loadPlaylist();
             initProfiles();
-            onValue(ref(db, 'sessions/' + user.uid), (snap) => {
-                const s = snap.val();
-                if (s && s.deviceId !== deviceId) { alert("Compte utilisé ailleurs"); logout(); }
-            });
-            const snap = await get(ref(db, 'users_data/' + user.uid + '/expire'));
-            const expireValue = snap.val();
-            if(expireValue) {
-                const diff = Math.ceil((new Date(expireValue) - new Date()) / (1000 * 60 * 60 * 24));
-                if(diff > 0 && diff <= 5) {
-                    const b = document.getElementById('expiration-banner');
-                    b.style.display = 'block';
-                    b.innerText = `⚠️ Fin d'accès dans ${diff} jour(s).`;
-                }
-            }
             const saved = localStorage.getItem('sfpp_profile');
             if(saved) selectProfile(saved, localStorage.getItem('sfpp_profile_icon'));
             else document.getElementById('profile-screen').style.display = 'flex';
@@ -258,102 +262,60 @@
         }
     });
 
-    window.selectProfile = async function(name, icon) {
-        currentProfile = name;
-        localStorage.setItem('sfpp_profile', name);
-        localStorage.setItem('sfpp_profile_icon', icon);
+    window.selectProfile = function(n, i) {
+        currentProfile = n;
+        localStorage.setItem('sfpp_profile', n);
         document.getElementById('profile-screen').style.display = 'none';
-        const user = auth.currentUser;
-        const snap = await get(ref(db, 'users_data/' + user.uid + '/expire'));
-        document.getElementById('header-logo').innerHTML = `SFPP | ${icon} <span style="font-size:10px; opacity:0.5;">(${snap.val()})</span>`;
         render();
     };
-
-    window.logout = function() { signOut(auth).then(() => { localStorage.clear(); location.reload(); }); };
-    window.switchProfile = function() { localStorage.removeItem('sfpp_profile'); location.reload(); };
+    window.switchProfile = () => { localStorage.removeItem('sfpp_profile'); location.reload(); };
 </script>
 
 <script>
-let player, playlistData = [], currentProfile = null, isEditMode = false, currentView = 'all', currentPlayingTitle = "";
+let player, playlistData = [], currentProfile = null, currentView = 'all', currentPlayingTitle = "";
 
-async function loadPlaylist() { try { const r = await fetch('films.json'); playlistData = await r.json(); render(); } catch(e){} }
+async function loadPlaylist() { 
+    try { 
+        const r = await fetch('films.json'); 
+        playlistData = await r.json(); 
+        render(); 
+    } catch(e){} 
+}
 
 function render(search = "") {
     const cont = document.getElementById('categories-container');
-    const histSec = document.getElementById('history-sec');
-    const histCont = document.getElementById('history-container');
-    cont.innerHTML = ""; histCont.innerHTML = "";
     const s = search.toLowerCase();
+    cont.innerHTML = "";
+    
     const favs = JSON.parse(localStorage.getItem('sfpp_fav_' + currentProfile) || "[]");
     const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
     
     let data = playlistData;
-    if(currentView === 'movies') data = playlistData.filter(m => m.cat !== "SÉRIES");
-    else if(currentView === 'series') data = playlistData.filter(m => m.cat === "SÉRIES");
-    else if(currentView === 'fav') data = playlistData.filter(m => favs.includes(m.t));
-
-    if(currentProfile && s === "" && currentView === 'all') {
-        let history = JSON.parse(localStorage.getItem('sfpp_hist_' + currentProfile) || "[]");
-        if(history.length > 0) {
-            histSec.style.display = "block";
-            history.slice().reverse().forEach(title => {
-                const m = playlistData.find(item => item.t === title);
-                if(m) histCont.innerHTML += createCard(m, prog, favs);
-            });
-        } else histSec.style.display = "none";
-    }
+    if(currentView === 'movies') data = data.filter(m => m.cat !== "SÉRIES");
+    else if(currentView === 'series') data = data.filter(m => m.cat === "SÉRIES");
+    else if(currentView === 'fav') data = data.filter(m => favs.includes(m.t));
 
     const cats = [...new Set(data.map(m => m.cat))];
-    let addedSeries = [];
     cats.forEach(c => {
         const filtered = data.filter(m => m.cat === c && m.t.toLowerCase().includes(s));
         if (filtered.length === 0) return;
-        let html = `<div class="category-title">${c}</div><div class="category-row"><div class="carousel">`;
+        let html = `<div class="category-title">${c}</div><div class="carousel">`;
         filtered.forEach(m => {
-            const isS = /S\d{2}E\d{2}/i.test(m.t);
-            if(isS) {
-                const sName = m.t.split(' - ')[0];
-                if(!addedSeries.includes(sName)) { addedSeries.push(sName); html += `<div class="card" onclick="openSeries('${sName}')" tabindex="0"><img src="${m.img}"><div class="card-name">${sName}</div></div>`; }
-            } else { html += createCard(m, prog, favs); }
+            const pct = (prog[m.t] && prog[m.t].p > 1) ? `<div class="prog-bg"><div class="prog-fill" style="width:${prog[m.t].p}%"></div></div>` : "";
+            html += `<div class="card" onclick="openDetails(${playlistData.indexOf(m)})" tabindex="0"><img src="${m.img}">${pct}<div class="card-name">${m.t}</div></div>`;
         });
-        html += `</div></div>`;
+        html += `</div>`;
         cont.innerHTML += html;
     });
-}
-
-function createCard(m, prog, favs) {
-    const heart = favs.includes(m.t) ? `<div style="position:absolute; top:8px; right:8px;">❤️</div>` : "";
-    const pct = (prog[m.t] && prog[m.t].p > 1) ? `<div class="prog-bg"><div class="prog-fill" style="width:${prog[m.t].p}%"></div></div>` : "";
-    return `<div class="card" onclick="openDetails(${playlistData.indexOf(m)})" tabindex="0"><img src="${m.img}">${heart}${pct}<div class="card-name">${m.t}</div></div>`;
 }
 
 function openDetails(idx) {
     const m = playlistData[idx];
     document.getElementById('details-img').src = m.img;
     document.getElementById('details-title').innerText = m.t;
-    document.getElementById('details-desc').innerText = m.desc || "Aucun résumé.";
-    
-    let castHtml = "";
-    if (m.actors_pics) {
-        castHtml = `<div style="display:flex; gap:12px; overflow-x:auto; padding-bottom:15px;">` + 
-            m.actors_pics.map(a => `<div style="text-align:center; flex:0 0 65px;"><img src="${a.img}" style="width:60px; height:60px; border-radius:50%; object-fit:cover; border:2px solid var(--accent);"><div style="font-size:10px; color:#888; margin-top:5px;">${a.name}</div></div>`).join('') + `</div>`;
-    } else { castHtml = (m.actors || m.cast) ? "Avec : " + (m.actors || m.cast) : ""; }
-    document.getElementById('details-meta').innerHTML = castHtml;
-
-    document.getElementById('details-trailer-box').innerHTML = m.trailer ? `<div style="width:100%; aspect-ratio:16/9; margin-bottom:20px;"><iframe width="100%" height="100%" src="https://www.youtube.com/embed/${m.trailer}?rel=0" frameborder="0" allowfullscreen></iframe></div>` : "";
+    document.getElementById('details-desc').innerText = m.desc || "Pas de description.";
     document.getElementById('details-play-btn').onclick = () => { closeDetails(); playMovie(idx); };
     document.getElementById('details-overlay').style.display = 'flex';
-}
-
-function openSeries(name) {
-    const content = document.getElementById('series-detail-content');
-    const eps = playlistData.filter(m => m.t.startsWith(name));
-    document.getElementById('series-overlay').style.display = 'block';
-    let html = `<h2 style="font-size:35px; margin-bottom:30px;">${name}</h2>`;
-    eps.forEach(ep => {
-        html += `<div class="episode-item" onclick="openDetails(${playlistData.indexOf(ep)}); closeSeries();" tabindex="0"><div style="flex:1"><b>${ep.t}</b></div><div style="color:var(--accent)">DÉTAILS</div></div>`;
-    });
-    content.innerHTML = html;
 }
 
 function playMovie(idx) {
@@ -361,82 +323,25 @@ function playMovie(idx) {
     currentPlayingTitle = m.t;
     document.getElementById('player-section').style.display = 'block';
     document.getElementById('display-title').innerText = m.t;
-    document.getElementById('display-desc').innerText = m.desc || "";
-    document.getElementById('display-actors').innerText = (m.actors || m.cast) ? "Avec : " + (m.actors || m.cast) : "";
     document.getElementById('player-blur-bg').style.backgroundImage = `url('${m.img}')`;
     player.src({ src: m.url, type: 'video/mp4' });
-    
-    let key = 'sfpp_hist_' + currentProfile;
-    let hist = JSON.parse(localStorage.getItem(key) || "[]").filter(t => t !== m.t);
-    hist.push(m.t); if(hist.length > 20) hist.shift();
-    localStorage.setItem(key, JSON.stringify(hist));
-
-    const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
-    if(prog[m.t]) player.currentTime(prog[m.t].t);
     player.play();
 }
 
-function saveP() {
-    if(!currentPlayingTitle) return;
-    const cur = player.currentTime(), dur = player.duration();
-    if(dur > 0) {
-        let p = JSON.parse(localStorage.getItem('sfpp_p_'+currentProfile) || "{}");
-        p[currentPlayingTitle] = { t: cur, p: (cur/dur)*100 };
-        localStorage.setItem('sfpp_p_'+currentProfile, JSON.stringify(p));
-    }
-}
-
-function closeP() { saveP(); player.pause(); document.getElementById('player-section').style.display = 'none'; render(); }
-function closeDetails() { document.getElementById('details-overlay').style.display = 'none'; document.getElementById('details-trailer-box').innerHTML = ""; }
-function closeSeries() { document.getElementById('series-overlay').style.display = 'none'; }
-function changeView(v) { currentView = v; document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active')); document.getElementById('btn-'+v).classList.add('active'); render(); }
-function openSearch() { document.getElementById('search-overlay').style.display = 'flex'; document.getElementById('searchBar').focus(); }
-function closeSearch() { document.getElementById('search-overlay').style.display = 'none'; render(""); }
-function filter() { render(document.getElementById('searchBar').value); }
-function toggleEditMode() { isEditMode = !isEditMode; document.getElementById('profile-screen').classList.toggle('is-editing'); }
+function closeDetails() { document.getElementById('details-overlay').style.display = 'none'; }
+function closeP() { player.pause(); document.getElementById('player-section').style.display = 'none'; }
+function changeView(v) { currentView = v; render(); }
 
 function initProfiles() {
-    let p = JSON.parse(localStorage.getItem('sfpp_profiles_data')) || [
-        { id: 1, name: "Profil 1", icon: "🟦", color: "#1e90ff" }, { id: 2, name: "Profil 2", icon: "🟩", color: "#2ecc71" }
-    ];
-    document.getElementById('profile-list').innerHTML = p.map(x => `<div class="profile-item" onclick="handleProfileClick(${x.id},'${x.name}','${x.icon}')" tabindex="0"><div class="profile-avatar" style="background:${x.color}">${x.icon}<div class="edit-icon">✏️</div></div><div class="profile-name">${x.name}</div></div>`).join('');
-}
-
-function handleProfileClick(id, name, icon) {
-    if(isEditMode) {
-        let n = prompt("Nom :", name);
-        if(n) {
-            let s = JSON.parse(localStorage.getItem('sfpp_profiles_data') || "[]");
-            let idx = s.findIndex(x => x.id === id);
-            if(idx !== -1) { s[idx].name = n; localStorage.setItem('sfpp_profiles_data', JSON.stringify(s)); initProfiles(); }
-        }
-    } else selectProfile(name, icon);
+    let p = [{id:1, name:"Elite 1", icon:"🔴", color:"#222"}, {id:2, name:"Elite 2", icon:"⚪", color:"#222"}];
+    document.getElementById('profile-list').innerHTML = p.map(x => `<div class="profile-item" onclick="selectProfile('${x.name}','${x.icon}')" tabindex="0"><div style="width:120px; height:120px; background:${x.color}; border-radius:20px; display:flex; align-items:center; justify-content:center; font-size:40px; border:2px solid #333;">${x.icon}</div><div style="margin-top:10px;">${x.name}</div></div>`).join('');
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    player = videojs('main-video', { 
-        controls: true, fluid: true,
-        techOrder: ['chromecast', 'html5'], 
-        plugins: { chromecast: { addButtonToControlBar: true } }
-    });
-    
-    player.on('timeupdate', () => {
-        const dur = player.duration(), cur = player.currentTime();
-        if (/S\d{2}E\d{2}/i.test(currentPlayingTitle) && dur > 0 && (dur - cur) < 80) document.getElementById('next-episode-btn').style.display = 'block';
-        else document.getElementById('next-episode-btn').style.display = 'none';
-        if(Math.floor(cur) % 10 === 0) saveP();
-    });
-
-    // Custom buttons 10s
-    const Button = videojs.getComponent('Button');
-    class Back extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-replay-10'; } handleClick() { player.currentTime(player.currentTime()-10); } }
-    class Forward extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-forward-10'; } handleClick() { player.currentTime(player.currentTime()+10); } }
-    videojs.registerComponent('Back', Back); videojs.registerComponent('Forward', Forward);
-    player.ready(() => { player.getChild('controlBar').addChild('Back', {}, 1); player.getChild('controlBar').addChild('Forward', {}, 2); });
-
+    player = videojs('main-video');
     window.addEventListener('scroll', () => {
-        if(window.scrollY > 50) document.getElementById('header-bar').classList.add('scrolled');
-        else document.getElementById('header-bar').classList.remove('scrolled');
+        if(window.scrollY > 50) document.getElementById('main-header').classList.add('scrolled');
+        else document.getElementById('main-header').classList.remove('scrolled');
     });
 });
 </script>
