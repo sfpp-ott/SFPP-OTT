@@ -209,7 +209,7 @@
         }
     </style>
 </head>
-<body onclick="ensureHistory()">
+<body>
 
 <div id="login-screen">
     <form class="login-box" onsubmit="event.preventDefault(); checkLogin();">
@@ -413,9 +413,8 @@
             document.getElementById('header-logo').innerHTML = `SFPP | ${icon} <span style="font-size:10px; color:#666;">(${snap.val()})</span>`;
         }
         render();
-        
-        // On initialise l'historique
-        window.history.pushState({ active: true }, "");
+        // Injecter l'état initial pour le blocage du retour sur l'accueil
+        pushInitialState();
     };
 
     window.logout = function() { 
@@ -427,17 +426,17 @@
             location.reload(); 
         }); 
     };
+
+    // Fonction pour injecter un état initial afin de bloquer le premier retour sur l'accueil
+    function pushInitialState() {
+        if (window.history.state?.overlay !== 'home') {
+            window.history.pushState({ overlay: 'home' }, "");
+        }
+    }
 </script>
 
 <script>
-let player, playlistData = [], currentProfile = null, isEditMode = false, currentView = 'all', currentPlayingTitle = "";
-
-// SECURITE : S'assure que l'état de l'historique est toujours présent au moindre clic
-function ensureHistory() {
-    if (!window.history.state || !window.history.state.active) {
-        window.history.pushState({ active: true }, "");
-    }
-}
+let player, playlistData = [], currentProfile = null, isEditMode = false, currentView = 'all', currentPlayingTitle = "", exitConfirmed = false;
 
 // GESTION DU BOUTON RETOUR
 window.addEventListener('popstate', function (event) {
@@ -445,34 +444,34 @@ window.addEventListener('popstate', function (event) {
     const seriesOverlay = document.getElementById('series-overlay');
     const playerSection = document.getElementById('player-section');
 
-    // Cas 1 : Fermer les menus si ouverts
-    if (detailsOverlay.style.display === 'flex' || 
-        seriesOverlay.style.display === 'block' || 
-        playerSection.style.display === 'block') {
-        
+    // 1. Si un menu ou le lecteur est ouvert, on le ferme
+    if (detailsOverlay.style.display === 'flex') {
         detailsOverlay.style.display = 'none';
-        seriesOverlay.style.display = 'none';
-        if(playerSection.style.display === 'block') {
-            saveP(); 
-            player.pause(); 
-            playerSection.style.display = 'none';
-        }
-        
         document.getElementById('details-trailer-box').innerHTML = "";
+        return;
+    }
+    if (seriesOverlay.style.display === 'block') {
+        seriesOverlay.style.display = 'none';
+        return;
+    }
+    if (playerSection.style.display === 'block') {
+        saveP(); 
+        player.pause(); 
+        playerSection.style.display = 'none';
         render();
-        
-        // On remet l'état pour capturer le prochain retour
-        window.history.pushState({ active: true }, "");
         return;
     }
 
-    // Cas 2 : On est à l'accueil
-    if (confirm("Souhaitez-vous vraiment quitter l'application ?")) {
-        // L'utilisateur confirme : on laisse sortir
-        window.history.back();
-    } else {
-        // L'utilisateur reste : on recrée le verrou
-        window.history.pushState({ active: true }, "");
+    // 2. Si on est sur l'accueil, demander confirmation
+    if (!exitConfirmed) {
+        // Empêcher la fermeture immédiate en rajoutant l'état
+        history.pushState({ overlay: 'home' }, "");
+        
+        const quitter = confirm("Souhaitez-vous vraiment quitter l'application ?");
+        if (quitter) {
+            exitConfirmed = true;
+            history.back(); // Sortie effective
+        }
     }
 });
 
@@ -488,6 +487,9 @@ function closeSearch() { document.getElementById('search-overlay').style.display
 async function loadPlaylist() { try { const response = await fetch('films.json'); playlistData = await response.json(); render(); } catch (e) {} }
 
 function openDetails(idx) {
+    // Ajouter une étape dans l'historique
+    history.pushState({ overlay: 'details' }, "");
+
     const m = playlistData[idx];
     document.getElementById('details-img').src = m.img;
     document.getElementById('details-title').innerText = m.t;
@@ -524,7 +526,7 @@ function openDetails(idx) {
 
 function closeDetails() {
     if (document.getElementById('details-overlay').style.display === 'flex') {
-        window.history.back();
+        history.back();
     }
 }
 
@@ -640,6 +642,7 @@ function render(search = "") {
 }
 
 function openSeries(name) {
+    history.pushState({ overlay: 'series' }, "");
     const overlay = document.getElementById('series-overlay');
     const content = document.getElementById('series-detail-content');
     const eps = playlistData.filter(m => m.t.startsWith(name));
@@ -668,6 +671,8 @@ function openSeries(name) {
 }
 
 function playMovie(idx) {
+    history.replaceState({ overlay: 'player' }, "");
+    
     const m = playlistData[idx];
     currentPlayingTitle = m.t;
     document.getElementById('next-episode-btn').style.display = 'none';
@@ -713,13 +718,13 @@ function playNextEpisode() {
 
 function closeP() { 
     if (document.getElementById('player-section').style.display === 'block') {
-        window.history.back();
+        history.back();
     }
 }
 
 function closeSeries() { 
     if (document.getElementById('series-overlay').style.display === 'block') {
-        window.history.back();
+        history.back();
     }
 }
 
