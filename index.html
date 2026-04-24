@@ -413,7 +413,6 @@
             document.getElementById('header-logo').innerHTML = `SFPP | ${icon} <span style="font-size:10px; color:#666;">(${snap.val()})</span>`;
         }
         render();
-        // Injecter l'état initial pour le blocage du retour sur l'accueil
         pushInitialState();
     };
 
@@ -427,7 +426,6 @@
         }); 
     };
 
-    // Fonction pour injecter un état initial afin de bloquer le premier retour sur l'accueil
     function pushInitialState() {
         if (window.history.state?.overlay !== 'home') {
             window.history.pushState({ overlay: 'home' }, "");
@@ -438,13 +436,12 @@
 <script>
 let player, playlistData = [], currentProfile = null, isEditMode = false, currentView = 'all', currentPlayingTitle = "", exitConfirmed = false;
 
-// GESTION DU BOUTON RETOUR
+// GESTION DU BOUTON RETOUR ET HISTORIQUE
 window.addEventListener('popstate', function (event) {
     const detailsOverlay = document.getElementById('details-overlay');
     const seriesOverlay = document.getElementById('series-overlay');
     const playerSection = document.getElementById('player-section');
 
-    // 1. Si un menu ou le lecteur est ouvert, on le ferme
     if (detailsOverlay.style.display === 'flex') {
         detailsOverlay.style.display = 'none';
         document.getElementById('details-trailer-box').innerHTML = "";
@@ -462,15 +459,12 @@ window.addEventListener('popstate', function (event) {
         return;
     }
 
-    // 2. Si on est sur l'accueil, demander confirmation
     if (!exitConfirmed) {
-        // Empêcher la fermeture immédiate en rajoutant l'état
         history.pushState({ overlay: 'home' }, "");
-        
         const quitter = confirm("Souhaitez-vous vraiment quitter l'application ?");
         if (quitter) {
             exitConfirmed = true;
-            history.back(); // Sortie effective
+            history.back();
         }
     }
 });
@@ -487,9 +481,7 @@ function closeSearch() { document.getElementById('search-overlay').style.display
 async function loadPlaylist() { try { const response = await fetch('films.json'); playlistData = await response.json(); render(); } catch (e) {} }
 
 function openDetails(idx) {
-    // Ajouter une étape dans l'historique
     history.pushState({ overlay: 'details' }, "");
-
     const m = playlistData[idx];
     document.getElementById('details-img').src = m.img;
     document.getElementById('details-title').innerText = m.t;
@@ -672,7 +664,6 @@ function openSeries(name) {
 
 function playMovie(idx) {
     history.replaceState({ overlay: 'player' }, "");
-    
     const m = playlistData[idx];
     currentPlayingTitle = m.t;
     document.getElementById('next-episode-btn').style.display = 'none';
@@ -687,24 +678,17 @@ function playMovie(idx) {
     document.getElementById('details-overlay').style.display = 'none';
     document.getElementById('details-trailer-box').innerHTML = "";
     document.getElementById('series-overlay').style.display = 'none';
-
     document.getElementById('player-section').style.display = 'block';
     document.getElementById('display-title').innerText = m.t;
     document.getElementById('display-desc').innerText = m.desc || "";
     document.getElementById('display-actors').innerText = (m.actors || m.cast) ? "Avec : " + (m.actors || m.cast) : "";
     updatePlayerFavUI();
-    
     document.getElementById('player-blur-bg').style.backgroundImage = `url('${m.img}')`;
     player.poster(m.img); 
-    
     window.scrollTo({top:0, behavior:'smooth'});
     player.src({ src: m.url, type: 'video/mp4' });
-    
     const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
-    if(prog[m.t] && prog[m.t].t > 10) {
-        player.currentTime(prog[m.t].t);
-    }
-    
+    if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
     player.play();
 }
 
@@ -716,18 +700,8 @@ function playNextEpisode() {
     if (nextIdx !== -1) playMovie(nextIdx);
 }
 
-function closeP() { 
-    if (document.getElementById('player-section').style.display === 'block') {
-        history.back();
-    }
-}
-
-function closeSeries() { 
-    if (document.getElementById('series-overlay').style.display === 'block') {
-        history.back();
-    }
-}
-
+function closeP() { if (document.getElementById('player-section').style.display === 'block') history.back(); }
+function closeSeries() { if (document.getElementById('series-overlay').style.display === 'block') history.back(); }
 function changeView(v) { currentView = v; document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active')); document.getElementById('btn-'+v).classList.add('active'); render(); }
 function filter() { render(document.getElementById('searchBar').value); }
 function toggleEditMode() { isEditMode = !isEditMode; document.getElementById('profile-screen').classList.toggle('is-editing'); }
@@ -742,7 +716,6 @@ document.addEventListener('DOMContentLoaded', () => {
         techOrder: ['chromecast', 'html5'], 
         plugins: { chromecast: { addButtonToControlBar: true } }
     });
-    
     player.on('timeupdate', function() {
         const dur = player.duration(), cur = player.currentTime();
         if (/S\d{2}E\d{2}/i.test(currentPlayingTitle) && dur > 0 && (dur - cur) < 80) {
@@ -751,7 +724,6 @@ document.addEventListener('DOMContentLoaded', () => {
         } else document.getElementById('next-episode-btn').style.display = 'none';
         if(Math.floor(cur) % 10 === 0) saveP();
     });
-
     let lastTap = 0;
     player.on('touchend', function(e) {
         let now = Date.now();
@@ -762,7 +734,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         lastTap = now;
     });
-
     const Button = videojs.getComponent('Button');
     class Back extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-replay-10'; } handleClick() { player.currentTime(player.currentTime()-10); } }
     class Forward extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-forward-10'; } handleClick() { player.currentTime(player.currentTime()+10); } }
