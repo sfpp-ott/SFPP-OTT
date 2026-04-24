@@ -413,6 +413,8 @@
             document.getElementById('header-logo').innerHTML = `SFPP | ${icon} <span style="font-size:10px; color:#666;">(${snap.val()})</span>`;
         }
         render();
+        // Injecter l'état initial pour le blocage du retour sur l'accueil
+        pushInitialState();
     };
 
     window.logout = function() { 
@@ -424,10 +426,17 @@
             location.reload(); 
         }); 
     };
+
+    // Fonction pour injecter un état initial afin de bloquer le premier retour sur l'accueil
+    function pushInitialState() {
+        if (window.history.state?.overlay !== 'home') {
+            window.history.pushState({ overlay: 'home' }, "");
+        }
+    }
 </script>
 
 <script>
-let player, playlistData = [], currentProfile = null, isEditMode = false, currentView = 'all', currentPlayingTitle = "";
+let player, playlistData = [], currentProfile = null, isEditMode = false, currentView = 'all', currentPlayingTitle = "", exitConfirmed = false;
 
 // GESTION DU BOUTON RETOUR
 window.addEventListener('popstate', function (event) {
@@ -435,19 +444,34 @@ window.addEventListener('popstate', function (event) {
     const seriesOverlay = document.getElementById('series-overlay');
     const playerSection = document.getElementById('player-section');
 
-    // On ne ferme les éléments que s'ils sont visibles
+    // 1. Si un menu ou le lecteur est ouvert, on le ferme
     if (detailsOverlay.style.display === 'flex') {
         detailsOverlay.style.display = 'none';
         document.getElementById('details-trailer-box').innerHTML = "";
+        return;
     }
     if (seriesOverlay.style.display === 'block') {
         seriesOverlay.style.display = 'none';
+        return;
     }
     if (playerSection.style.display === 'block') {
         saveP(); 
         player.pause(); 
         playerSection.style.display = 'none';
         render();
+        return;
+    }
+
+    // 2. Si on est sur l'accueil, demander confirmation
+    if (!exitConfirmed) {
+        // Empêcher la fermeture immédiate en rajoutant l'état
+        history.pushState({ overlay: 'home' }, "");
+        
+        const quitter = confirm("Souhaitez-vous vraiment quitter l'application ?");
+        if (quitter) {
+            exitConfirmed = true;
+            history.back(); // Sortie effective
+        }
     }
 });
 
@@ -647,7 +671,6 @@ function openSeries(name) {
 }
 
 function playMovie(idx) {
-    // Si on vient des détails, on remplace l'état actuel de l'historique pour le lecteur
     history.replaceState({ overlay: 'player' }, "");
     
     const m = playlistData[idx];
@@ -661,12 +684,10 @@ function playMovie(idx) {
         localStorage.setItem(key, JSON.stringify(hist));
     }
     
-    // Fermeture propre des overlays
     document.getElementById('details-overlay').style.display = 'none';
     document.getElementById('details-trailer-box').innerHTML = "";
     document.getElementById('series-overlay').style.display = 'none';
 
-    // Affichage du lecteur
     document.getElementById('player-section').style.display = 'block';
     document.getElementById('display-title').innerText = m.t;
     document.getElementById('display-desc').innerText = m.desc || "";
