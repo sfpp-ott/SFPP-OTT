@@ -209,7 +209,7 @@
         }
     </style>
 </head>
-<body>
+<body onclick="ensureHistory()">
 
 <div id="login-screen">
     <form class="login-box" onsubmit="event.preventDefault(); checkLogin();">
@@ -414,9 +414,8 @@
         }
         render();
         
-        // CRUCIAL : On pousse deux états pour forcer le bouton retour à réagir dès l'accueil
-        window.history.pushState({ page: 'home' }, "");
-        window.history.pushState({ page: 'active' }, "");
+        // On initialise l'historique
+        window.history.pushState({ active: true }, "");
     };
 
     window.logout = function() { 
@@ -433,13 +432,20 @@
 <script>
 let player, playlistData = [], currentProfile = null, isEditMode = false, currentView = 'all', currentPlayingTitle = "";
 
-// GESTION DU BOUTON RETOUR CORRIGÉE POUR L'ACCUEIL SANS NAVIGATION
+// SECURITE : S'assure que l'état de l'historique est toujours présent au moindre clic
+function ensureHistory() {
+    if (!window.history.state || !window.history.state.active) {
+        window.history.pushState({ active: true }, "");
+    }
+}
+
+// GESTION DU BOUTON RETOUR
 window.addEventListener('popstate', function (event) {
     const detailsOverlay = document.getElementById('details-overlay');
     const seriesOverlay = document.getElementById('series-overlay');
     const playerSection = document.getElementById('player-section');
 
-    // 1. Gestion des fermetures d'overlays/lecteur
+    // Cas 1 : Fermer les menus si ouverts
     if (detailsOverlay.style.display === 'flex' || 
         seriesOverlay.style.display === 'block' || 
         playerSection.style.display === 'block') {
@@ -455,18 +461,18 @@ window.addEventListener('popstate', function (event) {
         document.getElementById('details-trailer-box').innerHTML = "";
         render();
         
-        // On remet un état pour que le prochain "Retour" soit encore capturé
-        window.history.pushState({ page: 'active' }, "");
+        // On remet l'état pour capturer le prochain retour
+        window.history.pushState({ active: true }, "");
         return;
     }
 
-    // 2. Gestion de la page d'accueil (Si on est ici, c'est qu'on a cliqué sur retour à l'accueil)
+    // Cas 2 : On est à l'accueil
     if (confirm("Souhaitez-vous vraiment quitter l'application ?")) {
-        // Pour quitter réellement sur une Web App, on revient à l'historique initial
+        // L'utilisateur confirme : on laisse sortir
         window.history.back();
     } else {
-        // L'utilisateur reste, on recrée l'état "barrière"
-        window.history.pushState({ page: 'active' }, "");
+        // L'utilisateur reste : on recrée le verrou
+        window.history.pushState({ active: true }, "");
     }
 });
 
