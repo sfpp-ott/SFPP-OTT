@@ -76,25 +76,22 @@
         #player-section { display: none; width: 100%; background: #000; padding-top: 60px; position: fixed; inset: 0; z-index: 4000; overflow-y: auto; }
         .video-container { position: relative; width: 100%; background: #000; min-height: 200px; }
         
-        /* CORRECTIF : Image de fond floutée et poster Video.js */
         .vjs-blur-bg {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
             z-index: 0;
-            background-size: cover !important;
-            background-position: center !important;
+            background-size: cover;
+            background-position: center;
             filter: blur(25px) brightness(0.4);
             transform: scale(1.1); 
             display: block;
         }
-
-        .video-js .vjs-poster {
-            background-size: cover !important;
-            background-position: center center !important;
-        }
         
         .video-js { z-index: 1 !important; }
         .video-js.vjs-playing .vjs-blur-bg { display: none; }
+
+        /* AJOUT POUR PLEIN ÉCRAN SANS BANDES NOIRES */
+        .video-js video { object-fit: cover !important; }
 
         #next-episode-btn {
             position: absolute; bottom: 85px; right: 25px; z-index: 99999 !important;
@@ -154,6 +151,7 @@
         .arrow-left { left: 0; }
         .arrow-right { right: 0; }
 
+        /* --- SECTION CORRIGÉE POUR ALIGNEMENT PARFAIT --- */
         .card { 
             flex: 0 0 150px; 
             width: 150px;
@@ -165,7 +163,7 @@
         
         .card img { 
             width: 150px !important; 
-            height: 225px !important; 
+            height: 225px !important; /* Hauteur fixe 2:3 */
             object-fit: cover !important; 
             border-radius: 4px; 
             background: #222;
@@ -642,7 +640,6 @@ function playMovie(idx) {
     document.getElementById('display-actors').innerText = (m.actors || m.cast) ? "Avec : " + (m.actors || m.cast) : "";
     updatePlayerFavUI();
     
-    /* CORRECTIF ICI : Force l'affichage du poster */
     document.getElementById('player-blur-bg').style.backgroundImage = `url('${m.img}')`;
     player.poster(m.img); 
     
@@ -677,6 +674,7 @@ document.addEventListener('DOMContentLoaded', () => {
     player = videojs('main-video', { 
         controls: true, 
         fluid: true,
+        fill: true, // AJOUT POUR REMPLIR LE LECTEUR
         techOrder: ['chromecast', 'html5'], 
         plugins: { chromecast: { addButtonToControlBar: true } }
     });
