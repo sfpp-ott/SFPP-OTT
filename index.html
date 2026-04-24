@@ -413,8 +413,10 @@
             document.getElementById('header-logo').innerHTML = `SFPP | ${icon} <span style="font-size:10px; color:#666;">(${snap.val()})</span>`;
         }
         render();
-        // NOUVEAU : On injecte l'historique systématiquement pour capturer le retour
-        pushInitialState();
+        
+        // CRUCIAL : On pousse deux états pour forcer le bouton retour à réagir dès l'accueil
+        window.history.pushState({ page: 'home' }, "");
+        window.history.pushState({ page: 'active' }, "");
     };
 
     window.logout = function() { 
@@ -426,55 +428,45 @@
             location.reload(); 
         }); 
     };
-
-    // Fonction pour forcer une entrée dans l'historique
-    function pushInitialState() {
-        window.history.pushState({ overlay: 'home' }, "");
-    }
 </script>
 
 <script>
-let player, playlistData = [], currentProfile = null, isEditMode = false, currentView = 'all', currentPlayingTitle = "", exitConfirmed = false;
+let player, playlistData = [], currentProfile = null, isEditMode = false, currentView = 'all', currentPlayingTitle = "";
 
-// GESTION DU BOUTON RETOUR CORRIGÉE
+// GESTION DU BOUTON RETOUR CORRIGÉE POUR L'ACCUEIL SANS NAVIGATION
 window.addEventListener('popstate', function (event) {
     const detailsOverlay = document.getElementById('details-overlay');
     const seriesOverlay = document.getElementById('series-overlay');
     const playerSection = document.getElementById('player-section');
 
-    // 1. Si un overlay est ouvert, on le ferme et on RE-PUSH l'état home pour maintenir la protection
-    if (detailsOverlay.style.display === 'flex') {
+    // 1. Gestion des fermetures d'overlays/lecteur
+    if (detailsOverlay.style.display === 'flex' || 
+        seriesOverlay.style.display === 'block' || 
+        playerSection.style.display === 'block') {
+        
         detailsOverlay.style.display = 'none';
-        document.getElementById('details-trailer-box').innerHTML = "";
-        window.history.pushState({ overlay: 'home' }, "");
-        return;
-    }
-    if (seriesOverlay.style.display === 'block') {
         seriesOverlay.style.display = 'none';
-        window.history.pushState({ overlay: 'home' }, "");
-        return;
-    }
-    if (playerSection.style.display === 'block') {
-        saveP(); 
-        player.pause(); 
-        playerSection.style.display = 'none';
+        if(playerSection.style.display === 'block') {
+            saveP(); 
+            player.pause(); 
+            playerSection.style.display = 'none';
+        }
+        
+        document.getElementById('details-trailer-box').innerHTML = "";
         render();
-        window.history.pushState({ overlay: 'home' }, "");
+        
+        // On remet un état pour que le prochain "Retour" soit encore capturé
+        window.history.pushState({ page: 'active' }, "");
         return;
     }
 
-    // 2. Si on est sur l'accueil (cas direct ou retour d'overlay)
-    if (!exitConfirmed) {
-        // On demande confirmation
-        const quitter = confirm("Souhaitez-vous vraiment quitter l'application ?");
-        if (quitter) {
-            exitConfirmed = true;
-            // On quitte réellement
-            window.history.back();
-        } else {
-            // L'utilisateur reste, on ré-injecte l'état pour bloquer le prochain retour
-            window.history.pushState({ overlay: 'home' }, "");
-        }
+    // 2. Gestion de la page d'accueil (Si on est ici, c'est qu'on a cliqué sur retour à l'accueil)
+    if (confirm("Souhaitez-vous vraiment quitter l'application ?")) {
+        // Pour quitter réellement sur une Web App, on revient à l'historique initial
+        window.history.back();
+    } else {
+        // L'utilisateur reste, on recrée l'état "barrière"
+        window.history.pushState({ page: 'active' }, "");
     }
 });
 
@@ -490,8 +482,6 @@ function closeSearch() { document.getElementById('search-overlay').style.display
 async function loadPlaylist() { try { const response = await fetch('films.json'); playlistData = await response.json(); render(); } catch (e) {} }
 
 function openDetails(idx) {
-    // Note : On ne fait plus de pushState ici car popstate gère les visibilités.
-    // L'état 'home' est déjà dans la pile.
     const m = playlistData[idx];
     document.getElementById('details-img').src = m.img;
     document.getElementById('details-title').innerText = m.t;
@@ -528,7 +518,7 @@ function openDetails(idx) {
 
 function closeDetails() {
     if (document.getElementById('details-overlay').style.display === 'flex') {
-        window.history.back(); // Cela déclenchera popstate qui fermera l'overlay
+        window.history.back();
     }
 }
 
