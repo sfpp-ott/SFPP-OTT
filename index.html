@@ -73,7 +73,7 @@
         .btn-icon { background: none; border: none; color: white; font-size: 18px; cursor: pointer; }
         .btn-logout { background: #333; color: white; border: 1px solid #444; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-size: 10px; flex-shrink: 0; }
 
-        #player-section { display: none; width: 100%; background: #000; padding-top: 60px; position: fixed; inset: 0; z-index: 4000; overflow-y: auto; }
+        #player-section { display: none; width: 100%; background: #000; padding-top: 60px; position: fixed; inset: 0; z-index: 4500; overflow-y: auto; }
         .video-container { position: relative; width: 100%; background: #000; min-height: 200px; }
         
         .vjs-blur-bg {
@@ -89,7 +89,6 @@
         
         .video-js { z-index: 1 !important; }
         .video-js.vjs-playing .vjs-blur-bg { display: none; }
-
         .video-js video { object-fit: cover !important; }
 
         #next-episode-btn {
@@ -436,20 +435,18 @@ window.addEventListener('popstate', function (event) {
     const seriesOverlay = document.getElementById('series-overlay');
     const playerSection = document.getElementById('player-section');
 
-    if (detailsOverlay.style.display === 'flex' || 
-        seriesOverlay.style.display === 'block' || 
-        playerSection.style.display === 'block') {
-        
-        // On ferme tout sans reculer dans l'historique (car popstate est déjà le recul)
-        document.getElementById('details-overlay').style.display = 'none';
+    // On ne ferme les éléments que s'ils sont visibles
+    if (detailsOverlay.style.display === 'flex') {
+        detailsOverlay.style.display = 'none';
         document.getElementById('details-trailer-box').innerHTML = "";
-        document.getElementById('series-overlay').style.display = 'none';
-        
-        if(playerSection.style.display === 'block') {
-            saveP(); 
-            player.pause(); 
-            document.getElementById('player-section').style.display = 'none';
-        }
+    }
+    if (seriesOverlay.style.display === 'block') {
+        seriesOverlay.style.display = 'none';
+    }
+    if (playerSection.style.display === 'block') {
+        saveP(); 
+        player.pause(); 
+        playerSection.style.display = 'none';
         render();
     }
 });
@@ -466,8 +463,8 @@ function closeSearch() { document.getElementById('search-overlay').style.display
 async function loadPlaylist() { try { const response = await fetch('films.json'); playlistData = await response.json(); render(); } catch (e) {} }
 
 function openDetails(idx) {
-    // Ajouter une étape dans l'historique pour le bouton retour
-    history.pushState({ overlay: true }, "");
+    // Ajouter une étape dans l'historique
+    history.pushState({ overlay: 'details' }, "");
 
     const m = playlistData[idx];
     document.getElementById('details-img').src = m.img;
@@ -497,16 +494,16 @@ function openDetails(idx) {
     document.getElementById('details-desc').innerText = m.desc || "Aucun résumé disponible.";
     
     const playBtn = document.getElementById('details-play-btn');
-    playBtn.onclick = () => { closeDetails(); playMovie(idx); };
+    playBtn.onclick = () => { playMovie(idx); };
     
     document.getElementById('details-overlay').style.display = 'flex';
     playBtn.focus();
 }
 
 function closeDetails() {
-    if (history.state && history.state.overlay) history.back();
-    document.getElementById('details-overlay').style.display = 'none';
-    document.getElementById('details-trailer-box').innerHTML = "";
+    if (document.getElementById('details-overlay').style.display === 'flex') {
+        history.back();
+    }
 }
 
 function initProfiles() {
@@ -621,7 +618,7 @@ function render(search = "") {
 }
 
 function openSeries(name) {
-    history.pushState({ overlay: true }, "");
+    history.pushState({ overlay: 'series' }, "");
     const overlay = document.getElementById('series-overlay');
     const content = document.getElementById('series-detail-content');
     const eps = playlistData.filter(m => m.t.startsWith(name));
@@ -650,7 +647,9 @@ function openSeries(name) {
 }
 
 function playMovie(idx) {
-    history.pushState({ overlay: true }, "");
+    // Si on vient des détails, on remplace l'état actuel de l'historique pour le lecteur
+    history.replaceState({ overlay: 'player' }, "");
+    
     const m = playlistData[idx];
     currentPlayingTitle = m.t;
     document.getElementById('next-episode-btn').style.display = 'none';
@@ -662,6 +661,12 @@ function playMovie(idx) {
         localStorage.setItem(key, JSON.stringify(hist));
     }
     
+    // Fermeture propre des overlays
+    document.getElementById('details-overlay').style.display = 'none';
+    document.getElementById('details-trailer-box').innerHTML = "";
+    document.getElementById('series-overlay').style.display = 'none';
+
+    // Affichage du lecteur
     document.getElementById('player-section').style.display = 'block';
     document.getElementById('display-title').innerText = m.t;
     document.getElementById('display-desc').innerText = m.desc || "";
@@ -691,13 +696,15 @@ function playNextEpisode() {
 }
 
 function closeP() { 
-    if (history.state && history.state.overlay) history.back();
-    saveP(); player.pause(); document.getElementById('player-section').style.display = 'none'; render(); 
+    if (document.getElementById('player-section').style.display === 'block') {
+        history.back();
+    }
 }
 
 function closeSeries() { 
-    if (history.state && history.state.overlay) history.back();
-    document.getElementById('series-overlay').style.display = 'none'; 
+    if (document.getElementById('series-overlay').style.display === 'block') {
+        history.back();
+    }
 }
 
 function changeView(v) { currentView = v; document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active')); document.getElementById('btn-'+v).classList.add('active'); render(); }
