@@ -20,7 +20,6 @@
         :root { --accent: #e50914; --gold: #ffcc00; --bg: #050505; --card-w: 160px; }
         body { background: var(--bg); color: white; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; margin: 0; padding-bottom: 50px; overflow-x: hidden; }
         
-        /* Focus TV / Navigation */
         [tabindex="0"]:focus {
             outline: 4px solid white !important;
             outline-offset: 4px;
@@ -30,7 +29,6 @@
             border-radius: 8px;
         }
 
-        /* Ecrans de Connexion & Profils */
         #login-screen, #profile-screen { position: fixed; inset: 0; background: #000; z-index: 5000; display: flex; align-items: center; justify-content: center; flex-direction: column; }
         .login-box { background: #0a0a0a; padding: 40px; border-radius: 15px; width: 300px; text-align: center; border: 1px solid #222; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
         .login-box input { width: 100%; padding: 15px; margin: 10px 0; background: #1a1a1a; border: 1px solid #333; color: white; border-radius: 8px; box-sizing: border-box; font-size: 16px; }
@@ -42,7 +40,6 @@
         .profile-item:hover .profile-avatar { border-color: white; transform: translateY(-10px); }
         .profile-name { font-size: 16px; color: #aaa; font-weight: 500; }
 
-        /* Header */
         header { 
             position: fixed; top: 0; width: 100%; height: 70px; 
             background: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%); 
@@ -59,21 +56,20 @@
         #search-overlay { position: absolute; inset: 0; background: #000; display: none; align-items: center; padding: 0 4%; z-index: 2001; }
         #searchBar { flex: 1; background: #111; border: 1px solid #333; color: white; padding: 12px 20px; border-radius: 30px; outline: none; font-size: 16px; }
 
-        /* Contenu & Carrousels */
         #main-content { padding-top: 80px; }
         .category-title { font-size: 20px; font-weight: 800; margin: 30px 4% 15px; color: #e5e5e5; letter-spacing: 0.5px; }
         .category-row { position: relative; margin-bottom: 25px; }
         .carousel { display: flex; overflow-x: auto; gap: 15px; padding: 10px 4% 20px; scrollbar-width: none; scroll-behavior: smooth; }
         .carousel::-webkit-scrollbar { display: none; }
 
-        /* CORRECTIF DES JAQUETTES (TAILLE UNIQUE) */
+        /* CORRECTIF DES JAQUETTES */
         .card { flex: 0 0 var(--card-w); width: var(--card-w); cursor: pointer; transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); position: relative; }
         .card:hover { transform: scale(1.1); z-index: 10; }
         .card img { 
             width: 100%; 
-            height: 240px; /* Fixe la hauteur */
-            aspect-ratio: 2/3; /* Fixe le ratio */
-            object-fit: cover; /* Évite la déformation */
+            height: 240px; 
+            aspect-ratio: 2/3; 
+            object-fit: cover; 
             border-radius: 8px; 
             box-shadow: 0 10px 20px rgba(0,0,0,0.5);
             background: #1a1a1a;
@@ -83,7 +79,6 @@
         .prog-bg { position: absolute; bottom: 30px; left: 0; width: 100%; height: 4px; background: rgba(255,255,255,0.2); border-radius: 0 0 8px 8px; overflow: hidden; }
         .prog-fill { height: 100%; background: var(--accent); box-shadow: 0 0 10px var(--accent); }
 
-        /* Overlays Détails & Séries */
         #details-overlay, #series-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.92); backdrop-filter: blur(15px); z-index: 3500; display: none; align-items: center; justify-content: center; }
         .details-content { background: #111; max-width: 900px; width: 92%; border-radius: 15px; display: flex; overflow: hidden; border: 1px solid #222; box-shadow: 0 0 50px rgba(0,0,0,1); }
         .details-poster { width: 35%; height: auto; object-fit: cover; border-right: 1px solid #222; }
@@ -91,7 +86,6 @@
         .details-info h2 { font-size: 32px; font-weight: 900; margin: 0; }
         .btn-play-main { background: white; color: black; border: none; padding: 15px; border-radius: 8px; font-weight: 800; cursor: pointer; font-size: 18px; transition: 0.2s; }
 
-        /* Lecteur Vidéo */
         #player-section { position: fixed; inset: 0; background: #000; z-index: 4000; display: none; overflow-y: auto; }
         .vjs-blur-bg { position: absolute; inset: 0; background-size: cover; background-position: center; filter: blur(35px) brightness(0.3); opacity: 0.7; z-index: 0; }
         
@@ -114,90 +108,85 @@
 <body>
 
 <div id="login-screen">
-    <form class="login-box" onsubmit="event.preventDefault(); checkLogin();">
+    <form class="login-box" onsubmit="event.preventDefault(); window.checkLogin();">
         <div class="logo" style="margin-bottom:20px">SFPP ELITE</div>
-        <input type="email" id="user" name="email" placeholder="E-mail" autocapitalize="none" autocomplete="username" required>
-        <input type="password" id="pass" name="password" placeholder="Mot de passe" autocomplete="current-password" required>
-        <button type="submit" tabindex="0">CONNEXION</button>
-        <button type="button" onclick="requestAccess()" style="background:none; border:none; color:#666; font-size:11px; margin-top:15px; cursor:pointer; text-decoration:underline;" tabindex="0">Demander un accès</button>
+        <input type="email" id="user" placeholder="E-mail" required>
+        <input type="password" id="pass" placeholder="Mot de passe" required>
+        <button type="submit">CONNEXION</button>
+        <button type="button" onclick="requestAccess()" style="background:none; border:none; color:#666; font-size:11px; margin-top:15px; cursor:pointer;">Demander un accès</button>
     </form>
 </div>
 
-<div id="profile-screen">
-    <h1 style="font-size: 32px; font-weight: 800;">Qui regarde ?</h1>
+<div id="profile-screen" style="display:none;">
+    <h1>Qui regarde ?</h1>
     <div class="profile-grid" id="profile-list"></div>
-    <button class="btn-manage" id="manage-btn" onclick="toggleEditMode()" style="margin-top: 40px; background: none; border: 1px solid #444; color: #888; padding: 10px 20px; cursor: pointer; border-radius: 4px;" tabindex="0">GÉRER LES PROFILS</button>
-    <button onclick="logout()" style="margin-top: 20px; background:none; border:none; color:#444; cursor:pointer; font-size: 12px;" tabindex="0">DÉCONNEXION</button>
+    <button id="manage-btn" onclick="toggleEditMode()" style="margin-top:40px; background:none; border:1px solid #444; color:#888; padding:10px 20px; border-radius:4px;">GÉRER LES PROFILS</button>
+    <button onclick="logout()" style="margin-top:20px; background:none; border:none; color:#444; font-size:12px;">DÉCONNEXION</button>
 </div>
 
 <header>
-    <div class="logo" id="header-logo">SFPP</div>
+    <div class="logo">SFPP</div>
     <div class="nav-links">
-        <button class="nav-btn active" id="btn-all" onclick="changeView('all')" tabindex="0">Accueil</button>
-        <button class="nav-btn" id="btn-movies" onclick="changeView('movies')" tabindex="0">Films</button>
-        <button class="nav-btn" id="btn-series" onclick="changeView('series')" tabindex="0">Séries</button>
-        <button class="nav-btn" id="btn-fav" onclick="changeView('fav')" tabindex="0">Ma Liste ❤️</button>
-        <button class="nav-btn" onclick="location.reload()" tabindex="0">🔄</button>
+        <button class="nav-btn active" id="btn-all" onclick="changeView('all')">Accueil</button>
+        <button class="nav-btn" id="btn-movies" onclick="changeView('movies')">Films</button>
+        <button class="nav-btn" id="btn-series" onclick="changeView('series')">Séries</button>
+        <button class="nav-btn" id="btn-fav" onclick="changeView('fav')">Ma Liste ❤️</button>
     </div>
-    <div class="header-actions" style="display: flex; align-items: center; gap: 12px;">
-        <button onclick="openSearch()" style="background:none; border:none; color:white; font-size:18px; cursor:pointer;" tabindex="0">🔍</button>
-        <button onclick="switchProfile()" style="background:#333; color:white; border:1px solid #444; padding:5px 10px; border-radius:4px; cursor:pointer; font-size:10px;" tabindex="0">PROFILS</button>
+    <div class="header-actions">
+        <button onclick="openSearch()" style="background:none; border:none; color:white; font-size:18px;">🔍</button>
+        <button onclick="switchProfile()" style="background:#333; color:white; border:none; padding:5px 10px; border-radius:4px; font-size:10px;">PROFILS</button>
     </div>
     <div id="search-overlay">
-        <input type="text" id="searchBar" onkeyup="filter()" placeholder="Rechercher par titre, acteur ou genre..." tabindex="0">
-        <button onclick="closeSearch()" style="margin-left:10px; background:none; border:none; color:white; font-size:18px;" tabindex="0">✕</button>
+        <input type="text" id="searchBar" onkeyup="filter()" placeholder="Rechercher...">
+        <button onclick="closeSearch()">✕</button>
     </div>
 </header>
 
 <div id="details-overlay">
     <div class="details-content">
-        <button onclick="closeDetails()" style="position:absolute; top:15px; right:15px; background:rgba(255,255,255,0.1); border:none; color:white; width:35px; height:35px; border-radius:50%; cursor:pointer; z-index:10;">✕</button>
-        <img id="details-img" class="details-poster" src="" alt="">
+        <button onclick="closeDetails()" style="position:absolute; top:15px; right:15px; color:white; background:none; border:none; font-size:24px;">✕</button>
+        <img id="details-img" class="details-poster" src="">
         <div class="details-info">
-            <h2 id="details-title">Titre du Film</h2>
-            <div id="details-meta" style="color:var(--gold); font-weight:bold; font-size:14px;"></div>
+            <h2 id="details-title"></h2>
+            <div id="details-meta"></div>
             <div id="details-trailer-box"></div>
-            <p id="details-desc" style="color:#ccc; line-height:1.6; font-size:15px;"></p>
-            <div class="details-actions" style="display:flex; gap:15px; align-items:center;">
-                <button id="details-play-btn" class="btn-play-main" tabindex="0">▶ Lancer</button>
-                <button id="details-fav-btn" onclick="toggleFavFromDetails()" style="background:rgba(255,255,255,0.1); color:white; border:1px solid #444; padding:15px 25px; border-radius:8px; font-weight:bold; cursor:pointer;" tabindex="0">+ Ma Liste</button>
+            <p id="details-desc"></p>
+            <div class="details-actions">
+                <button id="details-play-btn" class="btn-play-main">▶ Lancer</button>
+                <button id="details-fav-btn" onclick="toggleFavFromDetails()" style="background:rgba(255,255,255,0.1); color:white; border:1px solid #444; padding:15px 25px; border-radius:8px;">+ Ma Liste</button>
             </div>
         </div>
     </div>
 </div>
 
 <div id="series-overlay">
-    <div style="background: #000; width: 100%; height: 100%; overflow-y: auto; padding: 80px 5% 40px;">
-        <button onclick="closeSeries()" style="background:#333; color:#fff; border:none; padding:10px 22px; border-radius:4px; cursor:pointer; margin-bottom: 20px;" tabindex="0">← Retour</button>
+    <div style="background:#000; width:100%; height:100%; overflow-y:auto; padding:80px 5% 40px;">
+        <button onclick="closeSeries()" style="background:#333; color:#fff; border:none; padding:10px 22px; border-radius:4px; margin-bottom:20px;">← Retour</button>
         <div id="series-detail-content"></div>
     </div>
 </div>
 
 <section id="player-section">
-    <div class="video-container" id="video-container">
+    <div class="video-container">
         <div id="player-blur-bg" class="vjs-blur-bg"></div>
         <video id="main-video" class="video-js vjs-theme-fantasy vjs-16-9 vjs-big-play-centered" controls preload="auto" width="100%"></video>
-        <button id="next-episode-btn" onclick="playNextEpisode()" style="display:none;" tabindex="0">ÉPISODE SUIVANT ⏭️</button>
+        <button id="next-episode-btn" onclick="playNextEpisode()" style="display:none;">ÉPISODE SUIVANT ⏭️</button>
     </div>
-    <div class="movie-info" style="padding: 40px 6%; background: linear-gradient(to bottom, #0a0a0a, #000); position:relative; z-index:2;">
-        <div class="movie-title" style="font-size:26px; font-weight:bold; margin-bottom:8px; color:#fff; display:flex; align-items:center; gap:15px;">
+    <div style="padding:40px 6%;">
+        <div style="font-size:26px; font-weight:bold; margin-bottom:8px; display:flex; align-items:center; gap:15px;">
             <span id="display-title"></span>
-            <button id="player-fav-btn" onclick="toggleFavCurrent()" style="background:#222; color:white; border:1px solid #444; padding:6px 12px; border-radius:4px; font-size:12px; cursor:pointer;" tabindex="0">+ Ma Liste</button>
+            <button id="player-fav-btn" onclick="toggleFavCurrent()">+ Ma Liste</button>
         </div>
-        <div id="display-desc" style="color: #bbb; margin-bottom: 10px; max-width: 800px; line-height: 1.5;"></div>
-        <div id="display-actors" style="color: var(--gold); font-weight: bold; font-size: 14px; margin-bottom: 20px;"></div>
-        <button onclick="closeP()" style="background:#333; color:#fff; border:none; padding:10px 22px; border-radius:4px; cursor:pointer;" tabindex="0">Fermer le lecteur</button>
+        <div id="display-desc" style="color:#bbb; margin-bottom:20px;"></div>
+        <button onclick="closeP()" style="background:#333; color:#fff; border:none; padding:10px 22px; border-radius:4px;">Fermer</button>
     </div>
 </section>
 
 <div id="main-content">
-    <div id="expiration-banner" style="display:none; background:#ffcc00; color:#000; text-align:center; padding:10px; font-size:13px; font-weight:bold; position:relative; z-index:1500;"></div>
-    
     <div id="history-sec" style="display:none">
         <div class="category-title">Reprendre avec <span id="current-user-name"></span></div>
         <div class="category-row"><div class="carousel" id="history-container"></div></div>
     </div>
-
     <div id="categories-container"></div>
 </div>
 
@@ -224,50 +213,16 @@
     let deviceId = localStorage.getItem('sfpp_device_id') || Math.random().toString(36).substring(7);
     localStorage.setItem('sfpp_device_id', deviceId);
 
-    async function verifyExpiration(user) {
-        if (!user) return false;
-        const snapshot = await get(ref(db, 'users_data/' + user.uid + '/expire'));
-        const expireValue = snapshot.val();
-        if (!expireValue) return false;
-        const now = new Date();
-        const y = now.getFullYear();
-        const m = String(now.getMonth() + 1).padStart(2, '0');
-        const d = String(now.getDate()).padStart(2, '0');
-        const todayStr = `${y}-${m}-${d}`;
-        if (todayStr >= expireValue) {
-            alert("⚠️ Accès expiré le " + expireValue + ". Veuillez contacter l'administrateur.");
-            await signOut(auth);
-            location.reload();
-            return true;
-        }
-        return false;
-    }
-
-    window.startSessionSync = function(uid) {
-        onValue(ref(db, 'sessions/' + uid), (snapshot) => {
-            const session = snapshot.val();
-            if (session && session.deviceId !== deviceId) {
-                alert("⚠️ Ce compte est utilisé sur un autre appareil.");
-                signOut(auth).then(() => location.reload());
-            }
-        });
-    };
-
     window.checkLogin = function() {
         const email = document.getElementById('user').value.trim();
         const pass = document.getElementById('pass').value;
-        signInWithEmailAndPassword(auth, email, pass).then(async (u) => {
-            localStorage.setItem('sfpp_last_email', email);
-            if (!(await verifyExpiration(u.user))) { 
-                set(ref(db, 'sessions/' + u.user.uid), { deviceId: deviceId, lastLogin: Date.now() }); 
-            }
-        }).catch(() => alert("Identifiants incorrects ou compte expiré."));
+        signInWithEmailAndPassword(auth, email, pass).then((u) => {
+            set(ref(db, 'sessions/' + u.user.uid), { deviceId: deviceId, lastLogin: Date.now() });
+        }).catch(() => alert("Erreur d'identification."));
     };
 
-    onAuthStateChanged(auth, async (user) => {
+    onAuthStateChanged(auth, (user) => {
         if (user) {
-            if (await verifyExpiration(user)) return;
-            window.startSessionSync(user.uid);
             document.getElementById('login-screen').style.display = 'none';
             loadPlaylist();
             initProfiles();
@@ -276,19 +231,8 @@
             else document.getElementById('profile-screen').style.display = 'flex';
         } else {
             document.getElementById('login-screen').style.display = 'flex';
-            const last = localStorage.getItem('sfpp_last_email');
-            if(last) document.getElementById('user').value = last;
         }
     });
-
-    window.selectProfile = async function(name, icon) {
-        currentProfile = name;
-        localStorage.setItem('sfpp_profile', name);
-        localStorage.setItem('sfpp_profile_icon', icon);
-        document.getElementById('profile-screen').style.display = 'none';
-        document.getElementById('current-user-name').innerText = name;
-        render();
-    };
 
     window.logout = function() { signOut(auth).then(() => { localStorage.clear(); location.reload(); }); };
 </script>
@@ -296,29 +240,20 @@
 <script>
 let player, playlistData = [], currentProfile = null, isEditMode = false, currentView = 'all', currentPlayingTitle = "";
 
-document.addEventListener('focusin', (e) => {
-    if (e.target.hasAttribute('tabindex')) e.target.scrollIntoView({ behavior: 'smooth', block: 'center' });
-});
-
-function openSearch() { document.getElementById('search-overlay').style.display = 'flex'; document.getElementById('searchBar').focus(); }
-function closeSearch() { document.getElementById('search-overlay').style.display = 'none'; document.getElementById('searchBar').value = ''; filter(); }
-
 async function loadPlaylist() {
     try {
         const response = await fetch('films.json');
         playlistData = await response.json();
         render();
-    } catch (e) {
-        console.error("Erreur playlist:", e);
-    }
+    } catch (e) {}
 }
 
 function initProfiles() {
     let profiles = JSON.parse(localStorage.getItem('sfpp_profiles_data')) || [
-        { id: 1, name: "SFPP 1", icon: "🟦", color: "#1e90ff" },
-        { id: 2, name: "SFPP 2", icon: "🟩", color: "#2ecc71" },
-        { id: 3, name: "SFPP 3", icon: "🟧", color: "#e67e22" },
-        { id: 4, name: "SFPP 4", icon: "🟪", color: "#9b59b6" }
+        { id: 1, name: "Profil 1", icon: "🟦", color: "#1e90ff" },
+        { id: 2, name: "Profil 2", icon: "🟩", color: "#2ecc71" },
+        { id: 3, name: "Profil 3", icon: "🟧", color: "#e67e22" },
+        { id: 4, name: "Profil 4", icon: "🟪", color: "#9b59b6" }
     ];
     const list = document.getElementById('profile-list');
     list.innerHTML = profiles.map(p => `
@@ -328,124 +263,49 @@ function initProfiles() {
         </div>`).join('');
 }
 
+function selectProfile(name, icon) {
+    currentProfile = name;
+    localStorage.setItem('sfpp_profile', name);
+    localStorage.setItem('sfpp_profile_icon', icon);
+    document.getElementById('profile-screen').style.display = 'none';
+    document.getElementById('current-user-name').innerText = name;
+    render();
+}
+
 function handleProfileClick(id, name, icon) {
     if(isEditMode) {
-        let n = prompt("Nouveau nom du profil :", name);
+        let n = prompt("Nom :", name);
         if(n) {
             let saved = JSON.parse(localStorage.getItem('sfpp_profiles_data') || "[]");
-            if(saved.length === 0) saved = [
-                { id: 1, name: "SFPP 1", icon: "🟦", color: "#1e90ff" },
-                { id: 2, name: "SFPP 2", icon: "🟩", color: "#2ecc71" },
-                { id: 3, name: "SFPP 3", icon: "🟧", color: "#e67e22" },
-                { id: 4, name: "SFPP 4", icon: "🟪", color: "#9b59b6" }
-            ];
+            if(saved.length === 0) saved = [{id:1, name:"SFPP 1", icon:"🟦", color:"#1e90ff"},{id:2, name:"SFPP 2", icon:"🟩", color:"#2ecc71"},{id:3, name:"SFPP 3", icon:"🟧", color:"#e67e22"},{id:4, name:"SFPP 4", icon:"🟪", color:"#9b59b6"}];
             const idx = saved.findIndex(p => p.id === id);
-            if(idx !== -1) {
-                saved[idx].name = n;
-                localStorage.setItem('sfpp_profiles_data', JSON.stringify(saved));
-                initProfiles();
-            }
+            if(idx !== -1) { saved[idx].name = n; localStorage.setItem('sfpp_profiles_data', JSON.stringify(saved)); initProfiles(); }
         }
-    } else {
-        selectProfile(name, icon);
-    }
-}
-
-function toggleEditMode() {
-    isEditMode = !isEditMode;
-    document.getElementById('manage-btn').innerText = isEditMode ? "TERMINÉ" : "GÉRER LES PROFILS";
-}
-
-function saveP() {
-    if(!currentPlayingTitle || !currentProfile) return;
-    const cur = player.currentTime(), dur = player.duration();
-    if(dur > 0) {
-        let prog = JSON.parse(localStorage.getItem('sfpp_p_'+currentProfile) || "{}");
-        prog[currentPlayingTitle] = { t: cur, p: (cur/dur)*100 };
-        localStorage.setItem('sfpp_p_'+currentProfile, JSON.stringify(prog));
-        
-        let hist = JSON.parse(localStorage.getItem('sfpp_hist_'+currentProfile) || "[]");
-        hist = hist.filter(t => t !== currentPlayingTitle);
-        hist.push(currentPlayingTitle);
-        if(hist.length > 20) hist.shift();
-        localStorage.setItem('sfpp_hist_'+currentProfile, JSON.stringify(hist));
-    }
+    } else selectProfile(name, icon);
 }
 
 function render(search = "") {
     const cont = document.getElementById('categories-container');
-    const histSec = document.getElementById('history-sec');
-    const histCont = document.getElementById('history-container');
-    cont.innerHTML = ""; histCont.innerHTML = "";
-    
+    cont.innerHTML = "";
     const s = search.toLowerCase();
     const favs = JSON.parse(localStorage.getItem('sfpp_fav_' + currentProfile) || "[]");
-    const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
     
     let data = playlistData;
     if(currentView === 'movies') data = playlistData.filter(m => m.cat !== "SÉRIES");
     else if(currentView === 'series') data = playlistData.filter(m => m.cat === "SÉRIES");
     else if(currentView === 'fav') data = playlistData.filter(m => favs.includes(m.t));
 
-    if(currentProfile && s === "" && currentView === 'all') {
-        let history = JSON.parse(localStorage.getItem('sfpp_hist_' + currentProfile) || "[]");
-        if(history.length > 0) {
-            histSec.style.display = "block";
-            history.slice().reverse().forEach(title => {
-                const m = playlistData.find(item => item.t === title);
-                if(m) {
-                    const pct = (prog[m.t] && prog[m.t].p > 1) ? `<div class="prog-bg"><div class="prog-fill" style="width:${prog[m.t].p}%"></div></div>` : "";
-                    histCont.innerHTML += `
-                        <div class="card" onclick="openDetails(${playlistData.indexOf(m)})" tabindex="0">
-                            <img src="${m.img}">${pct}
-                            <div class="card-name">${m.t}</div>
-                        </div>`;
-                }
-            });
-        }
-    } else histSec.style.display = "none";
-
     const cats = [...new Set(data.map(m => m.cat))];
-    let addedSeries = [];
-
     cats.forEach(c => {
-        const filtered = data.filter(m => m.cat === c && (m.t.toLowerCase().includes(s) || (m.actors && m.actors.toLowerCase().includes(s))));
+        const filtered = data.filter(m => m.cat === c && m.t.toLowerCase().includes(s));
         if (filtered.length === 0) return;
-        
         let html = `<div class="category-title">${c}</div><div class="category-row"><div class="carousel">`;
         filtered.forEach(m => {
-            const isS = /S\d{2}E\d{2}/i.test(m.t);
-            const pct = (prog[m.t] && prog[m.t].p > 1) ? `<div class="prog-bg"><div class="prog-fill" style="width:${prog[m.t].p}%"></div></div>` : "";
-            
-            if(isS) {
-                const sName = m.t.split(' - ')[0];
-                if(!addedSeries.includes(sName)) {
-                    addedSeries.push(sName);
-                    html += `<div class="card" onclick="openSeries('${sName}')" tabindex="0"><img src="${m.img}"><div class="card-name">${sName}</div></div>`;
-                }
-            } else {
-                html += `<div class="card" onclick="openDetails(${playlistData.indexOf(m)})" tabindex="0"><img src="${m.img}">${pct}<div class="card-name">${m.t}</div></div>`;
-            }
+            html += `<div class="card" onclick="openDetails(${playlistData.indexOf(m)})" tabindex="0"><img src="${m.img}"><div class="card-name">${m.t}</div></div>`;
         });
         html += `</div></div>`;
         cont.innerHTML += html;
     });
-}
-
-function openSeries(name) {
-    const overlay = document.getElementById('series-overlay');
-    const content = document.getElementById('series-detail-content');
-    const eps = playlistData.filter(m => m.t.startsWith(name));
-    overlay.style.display = 'block';
-    let html = `<h2 style="font-size:30px; margin-bottom:30px;">${name}</h2><div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap:15px;">`;
-    eps.forEach(ep => {
-        html += `<div class="episode-item" onclick="openDetails(${playlistData.indexOf(ep)}); closeSeries();" tabindex="0" style="background:#111; padding:20px; border-radius:10px; cursor:pointer; border:1px solid #222; transition:0.2s;">
-            <div style="font-weight:bold; margin-bottom:5px;">${ep.t}</div>
-            <div style="font-size:12px; color:#666;">▶ Regarder l'épisode</div>
-        </div>`;
-    });
-    html += `</div>`;
-    content.innerHTML = html;
 }
 
 function openDetails(idx) {
@@ -453,98 +313,28 @@ function openDetails(idx) {
     currentPlayingTitle = m.t;
     document.getElementById('details-img').src = m.img;
     document.getElementById('details-title').innerText = m.t;
-    document.getElementById('details-meta').innerHTML = (m.actors) ? "Avec : " + m.actors : "";
-    document.getElementById('details-desc').innerText = m.desc || "Aucune description disponible pour ce titre.";
-    
-    let trailerHtml = "";
-    if (m.trailer) {
-        trailerHtml = `<div style="width:100%; aspect-ratio:16/9; margin-bottom:15px; border-radius:8px; overflow:hidden;"><iframe width="100%" height="100%" src="https://www.youtube.com/embed/${m.trailer}?autoplay=0" frameborder="0" allowfullscreen></iframe></div>`;
-    }
-    document.getElementById('details-trailer-box').innerHTML = trailerHtml;
-    
-    updateDetailsFavUI();
+    document.getElementById('details-desc').innerText = m.desc || "";
     document.getElementById('details-play-btn').onclick = () => { closeDetails(); playMovie(idx); };
     document.getElementById('details-overlay').style.display = 'flex';
-    document.getElementById('details-play-btn').focus();
-}
-
-function closeDetails() { document.getElementById('details-overlay').style.display = 'none'; }
-function closeSeries() { document.getElementById('series-overlay').style.display = 'none'; }
-
-function toggleFavFromDetails() { toggleFavCurrent(); updateDetailsFavUI(); }
-function updateDetailsFavUI() {
-    let favs = JSON.parse(localStorage.getItem('sfpp_fav_' + currentProfile) || "[]");
-    document.getElementById('details-fav-btn').innerText = favs.includes(currentPlayingTitle) ? "❤️ Retirer" : "+ Ma Liste";
-}
-
-function toggleFavCurrent() {
-    let key = 'sfpp_fav_' + currentProfile;
-    let favs = JSON.parse(localStorage.getItem(key) || "[]");
-    if(favs.includes(currentPlayingTitle)) favs = favs.filter(t => t !== currentPlayingTitle);
-    else favs.push(currentPlayingTitle);
-    localStorage.setItem(key, JSON.stringify(favs));
-    updatePlayerFavUI();
-    render();
-}
-
-function updatePlayerFavUI() {
-    let favs = JSON.parse(localStorage.getItem('sfpp_fav_' + currentProfile) || "[]");
-    const btn = document.getElementById('player-fav-btn');
-    if(btn) btn.innerText = favs.includes(currentPlayingTitle) ? "❤️ Dans Ma Liste" : "+ Ma Liste";
 }
 
 function playMovie(idx) {
     const m = playlistData[idx];
-    currentPlayingTitle = m.t;
     document.getElementById('player-section').style.display = 'block';
     document.getElementById('display-title').innerText = m.t;
-    document.getElementById('display-desc').innerText = m.desc || "";
-    document.getElementById('display-actors').innerText = m.actors ? "Casting: " + m.actors : "";
-    document.getElementById('player-blur-bg').style.backgroundImage = `url('${m.img}')`;
-    
     player.src({ src: m.url, type: 'video/mp4' });
-    
-    const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
-    if(prog[m.t]) player.currentTime(prog[m.t].t);
-    
     player.play();
-    updatePlayerFavUI();
-    
-    const isS = /S\d{2}E\d{2}/i.test(m.t);
-    const nextBtn = document.getElementById('next-episode-btn');
-    if(isS) {
-        nextBtn.style.display = "block";
-    } else {
-        nextBtn.style.display = "none";
-    }
 }
 
-function playNextEpisode() {
-    const curIdx = playlistData.findIndex(m => m.t === currentPlayingTitle);
-    if(curIdx !== -1 && curIdx < playlistData.length - 1) {
-        saveP();
-        playMovie(curIdx + 1);
-    }
-}
-
-function closeP() { saveP(); player.pause(); document.getElementById('player-section').style.display = 'none'; render(); }
-function changeView(v) { 
-    currentView = v; 
-    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-    document.getElementById('btn-'+v)?.classList.add('active');
-    render(); 
-}
-function filter() { render(document.getElementById('searchBar').value); }
+function closeDetails() { document.getElementById('details-overlay').style.display = 'none'; }
+function closeP() { player.pause(); document.getElementById('player-section').style.display = 'none'; }
+function toggleEditMode() { isEditMode = !isEditMode; }
+function changeView(v) { currentView = v; render(); }
 function switchProfile() { localStorage.removeItem('sfpp_profile'); location.reload(); }
 function requestAccess() { window.location.href = "mailto:sfpp.ott@gmail.com"; }
 
 document.addEventListener('DOMContentLoaded', () => {
-    player = videojs('main-video', { 
-        controls: true, 
-        fluid: true, 
-        plugins: { chromecast: { addButtonToControlBar: true } } 
-    });
-    player.on('timeupdate', () => { if(Math.floor(player.currentTime()) % 10 === 0) saveP(); });
+    player = videojs('main-video', { controls: true, fluid: true });
 });
 </script>
 </body>
