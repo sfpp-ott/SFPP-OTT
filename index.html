@@ -90,7 +90,6 @@
         .video-js { z-index: 1 !important; }
         .video-js.vjs-playing .vjs-blur-bg { display: none; }
 
-        /* AJOUT POUR PLEIN ÉCRAN SANS BANDES NOIRES */
         .video-js video { object-fit: cover !important; }
 
         #next-episode-btn {
@@ -151,7 +150,6 @@
         .arrow-left { left: 0; }
         .arrow-right { right: 0; }
 
-        /* --- SECTION CORRIGÉE POUR ALIGNEMENT PARFAIT --- */
         .card { 
             flex: 0 0 150px; 
             width: 150px;
@@ -163,7 +161,7 @@
         
         .card img { 
             width: 150px !important; 
-            height: 225px !important; /* Hauteur fixe 2:3 */
+            height: 225px !important; 
             object-fit: cover !important; 
             border-radius: 4px; 
             background: #222;
@@ -432,6 +430,30 @@
 <script>
 let player, playlistData = [], currentProfile = null, isEditMode = false, currentView = 'all', currentPlayingTitle = "";
 
+// GESTION DU BOUTON RETOUR
+window.addEventListener('popstate', function (event) {
+    const detailsOverlay = document.getElementById('details-overlay');
+    const seriesOverlay = document.getElementById('series-overlay');
+    const playerSection = document.getElementById('player-section');
+
+    if (detailsOverlay.style.display === 'flex' || 
+        seriesOverlay.style.display === 'block' || 
+        playerSection.style.display === 'block') {
+        
+        // On ferme tout sans reculer dans l'historique (car popstate est déjà le recul)
+        document.getElementById('details-overlay').style.display = 'none';
+        document.getElementById('details-trailer-box').innerHTML = "";
+        document.getElementById('series-overlay').style.display = 'none';
+        
+        if(playerSection.style.display === 'block') {
+            saveP(); 
+            player.pause(); 
+            document.getElementById('player-section').style.display = 'none';
+        }
+        render();
+    }
+});
+
 document.addEventListener('focusin', (e) => {
     if (e.target.hasAttribute('tabindex')) {
         e.target.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });
@@ -444,6 +466,9 @@ function closeSearch() { document.getElementById('search-overlay').style.display
 async function loadPlaylist() { try { const response = await fetch('films.json'); playlistData = await response.json(); render(); } catch (e) {} }
 
 function openDetails(idx) {
+    // Ajouter une étape dans l'historique pour le bouton retour
+    history.pushState({ overlay: true }, "");
+
     const m = playlistData[idx];
     document.getElementById('details-img').src = m.img;
     document.getElementById('details-title').innerText = m.t;
@@ -479,6 +504,7 @@ function openDetails(idx) {
 }
 
 function closeDetails() {
+    if (history.state && history.state.overlay) history.back();
     document.getElementById('details-overlay').style.display = 'none';
     document.getElementById('details-trailer-box').innerHTML = "";
 }
@@ -595,6 +621,7 @@ function render(search = "") {
 }
 
 function openSeries(name) {
+    history.pushState({ overlay: true }, "");
     const overlay = document.getElementById('series-overlay');
     const content = document.getElementById('series-detail-content');
     const eps = playlistData.filter(m => m.t.startsWith(name));
@@ -613,7 +640,7 @@ function openSeries(name) {
         seasons[s].forEach(ep => {
             const epName = ep.t.split(' - ')[1] || ep.t;
             const pct = (prog[ep.t] && prog[ep.t].p > 1) ? `<div style="height:3px; background:#444; width:100px; margin-top:5px;"><div style="height:100%; background:var(--accent); width:${prog[ep.t].p}%"></div></div>` : "";
-            html += `<div class="episode-item" onclick="openDetails(${playlistData.indexOf(ep)}); closeSeries();" tabindex="0">
+            html += `<div class="episode-item" onclick="openDetails(${playlistData.indexOf(ep)});" tabindex="0">
                         <div style="flex:1"><b>${epName}</b>${pct}</div>
                         <div style="color:var(--accent)">DÉTAILS</div>
                      </div>`;
@@ -623,6 +650,7 @@ function openSeries(name) {
 }
 
 function playMovie(idx) {
+    history.pushState({ overlay: true }, "");
     const m = playlistData[idx];
     currentPlayingTitle = m.t;
     document.getElementById('next-episode-btn').style.display = 'none';
@@ -662,8 +690,16 @@ function playNextEpisode() {
     if (nextIdx !== -1) playMovie(nextIdx);
 }
 
-function closeP() { saveP(); player.pause(); document.getElementById('player-section').style.display = 'none'; render(); }
-function closeSeries() { document.getElementById('series-overlay').style.display = 'none'; }
+function closeP() { 
+    if (history.state && history.state.overlay) history.back();
+    saveP(); player.pause(); document.getElementById('player-section').style.display = 'none'; render(); 
+}
+
+function closeSeries() { 
+    if (history.state && history.state.overlay) history.back();
+    document.getElementById('series-overlay').style.display = 'none'; 
+}
+
 function changeView(v) { currentView = v; document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active')); document.getElementById('btn-'+v).classList.add('active'); render(); }
 function filter() { render(document.getElementById('searchBar').value); }
 function toggleEditMode() { isEditMode = !isEditMode; document.getElementById('profile-screen').classList.toggle('is-editing'); }
@@ -674,7 +710,7 @@ document.addEventListener('DOMContentLoaded', () => {
     player = videojs('main-video', { 
         controls: true, 
         fluid: true,
-        fill: true, // AJOUT POUR REMPLIR LE LECTEUR
+        fill: true,
         techOrder: ['chromecast', 'html5'], 
         plugins: { chromecast: { addButtonToControlBar: true } }
     });
