@@ -413,7 +413,10 @@
             document.getElementById('header-logo').innerHTML = `SFPP | ${icon} <span style="font-size:10px; color:#666;">(${snap.val()})</span>`;
         }
         render();
-        pushInitialState();
+        // Blocage initial du bouton retour sur l'accueil
+        if (window.history.state?.overlay !== 'home') {
+            window.history.pushState({ overlay: 'home' }, "");
+        }
     };
 
     window.logout = function() { 
@@ -425,23 +428,18 @@
             location.reload(); 
         }); 
     };
-
-    function pushInitialState() {
-        if (window.history.state?.overlay !== 'home') {
-            window.history.pushState({ overlay: 'home' }, "");
-        }
-    }
 </script>
 
 <script>
 let player, playlistData = [], currentProfile = null, isEditMode = false, currentView = 'all', currentPlayingTitle = "", exitConfirmed = false;
 
-// GESTION DU BOUTON RETOUR ET HISTORIQUE
+// GESTION DU BOUTON RETOUR (Navigation Mobile)
 window.addEventListener('popstate', function (event) {
     const detailsOverlay = document.getElementById('details-overlay');
     const seriesOverlay = document.getElementById('series-overlay');
     const playerSection = document.getElementById('player-section');
 
+    // Fermeture des menus ou du lecteur
     if (detailsOverlay.style.display === 'flex') {
         detailsOverlay.style.display = 'none';
         document.getElementById('details-trailer-box').innerHTML = "";
@@ -459,10 +457,10 @@ window.addEventListener('popstate', function (event) {
         return;
     }
 
+    // Confirmation avant de quitter l'accueil
     if (!exitConfirmed) {
         history.pushState({ overlay: 'home' }, "");
-        const quitter = confirm("Souhaitez-vous vraiment quitter l'application ?");
-        if (quitter) {
+        if (confirm("Souhaitez-vous vraiment quitter l'application ?")) {
             exitConfirmed = true;
             history.back();
         }
@@ -683,10 +681,13 @@ function playMovie(idx) {
     document.getElementById('display-desc').innerText = m.desc || "";
     document.getElementById('display-actors').innerText = (m.actors || m.cast) ? "Avec : " + (m.actors || m.cast) : "";
     updatePlayerFavUI();
+    
     document.getElementById('player-blur-bg').style.backgroundImage = `url('${m.img}')`;
     player.poster(m.img); 
+    
     window.scrollTo({top:0, behavior:'smooth'});
     player.src({ src: m.url, type: 'video/mp4' });
+    
     const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
     if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
     player.play();
@@ -716,6 +717,7 @@ document.addEventListener('DOMContentLoaded', () => {
         techOrder: ['chromecast', 'html5'], 
         plugins: { chromecast: { addButtonToControlBar: true } }
     });
+    
     player.on('timeupdate', function() {
         const dur = player.duration(), cur = player.currentTime();
         if (/S\d{2}E\d{2}/i.test(currentPlayingTitle) && dur > 0 && (dur - cur) < 80) {
@@ -724,6 +726,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else document.getElementById('next-episode-btn').style.display = 'none';
         if(Math.floor(cur) % 10 === 0) saveP();
     });
+
     let lastTap = 0;
     player.on('touchend', function(e) {
         let now = Date.now();
@@ -734,6 +737,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         lastTap = now;
     });
+
     const Button = videojs.getComponent('Button');
     class Back extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-replay-10'; } handleClick() { player.currentTime(player.currentTime()-10); } }
     class Forward extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-forward-10'; } handleClick() { player.currentTime(player.currentTime()+10); } }
