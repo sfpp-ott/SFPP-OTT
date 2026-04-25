@@ -102,7 +102,6 @@
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         .vjs-skip-button { font-size: 1.5em !important; cursor: pointer; }
         
-        /* DESIGN DETAILS MODERNE */
         #details-overlay {
             position: fixed; inset: 0; background: rgba(0,0,0,0.9);
             z-index: 3500; display: none; align-items: center; justify-content: center;
@@ -366,13 +365,6 @@ window.addEventListener('popstate', function (event) {
         render();
         return;
     }
-    if (!exitConfirmed) {
-        history.pushState({ overlay: 'home' }, "");
-        if (confirm("Souhaitez-vous vraiment quitter l'application ?")) {
-            exitConfirmed = true;
-            history.back();
-        }
-    }
 });
 
 function openSearch() { document.getElementById('search-overlay').style.display = 'flex'; document.getElementById('searchBar').focus(); }
@@ -601,9 +593,12 @@ document.addEventListener('DOMContentLoaded', () => {
         if(Math.floor(cur) % 10 === 0) saveP();
     });
 
-    // RE-CORRECTION : Double-clic pour le plein écran
+    // --- CORRECTION DOUBLE CLIQUE ---
     let lastTap = 0;
-    player.on('touchstart', function(e) {
+    const playerEl = document.getElementById('main-video');
+
+    // Gestion Mobile (Double-Tap)
+    playerEl.addEventListener('touchstart', function(e) {
         let now = Date.now();
         if (now - lastTap < 300) {
             if (player.isFullscreen()) player.exitFullscreen();
@@ -612,6 +607,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         lastTap = now;
     });
+
+    // Gestion Ordinateur (Double-Clic)
+    playerEl.addEventListener('dblclick', function(e) {
+        if (player.isFullscreen()) player.exitFullscreen();
+        else player.requestFullscreen();
+    });
+    // -------------------------------
 
     const Button = videojs.getComponent('Button');
     class Back extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-replay-10'; } handleClick() { player.currentTime(player.currentTime()-10); } }
