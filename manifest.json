@@ -5,9 +5,10 @@
   "display": "standalone",
   "background_color": "#050505",
   "theme_color": "#e50914",
+  "description": "Plateforme de streaming SFPP ÉLITE",
   "icons": [
     {
-      "src": "https://i.ibb.co/mS6p9Xv/icon-sfpp.png",
+      "src": "icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
