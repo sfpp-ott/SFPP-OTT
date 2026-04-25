@@ -28,6 +28,7 @@
             z-index: 100;
         }
 
+        /* CORRECTION : LOGIN SCREEN EN PRIORITÉ ABSOLUE */
         #login-screen { position: fixed; inset: 0; background: #000; z-index: 9999; display: flex; align-items: center; justify-content: center; }
         .login-box { background: #111; padding: 30px; border-radius: 8px; width: 280px; text-align: center; border: 1px solid #333; position: relative; z-index: 10000; }
         .login-box input { width: 100%; padding: 12px; margin: 10px 0; background: #222; border: 1px solid #444; color: white; border-radius: 4px; box-sizing: border-box; font-size: 16px; }
@@ -73,6 +74,7 @@
         .btn-icon { background: none; border: none; color: white; font-size: 18px; cursor: pointer; }
         .btn-logout { background: #333; color: white; border: 1px solid #444; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-size: 10px; flex-shrink: 0; }
 
+        /* LECTEUR : PLEIN ÉCRAN ET FLOU */
         #player-section { display: none; position: fixed; inset: 0; background: #000; z-index: 4500; overflow: hidden; }
         .video-container { position: relative; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: #000; }
         
@@ -102,6 +104,7 @@
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         .vjs-skip-button { font-size: 1.5em !important; cursor: pointer; }
         
+        /* --- DESIGN OVERLAY DETAILS --- */
         #details-overlay {
             position: fixed; inset: 0; background: var(--bg);
             z-index: 3500; display: none; flex-direction: column; overflow-y: auto;
@@ -440,6 +443,7 @@ async function loadPlaylist() { try { const response = await fetch('films.json')
 function openDetails(idx) {
     history.pushState({ overlay: 'details' }, "");
     const m = playlistData[idx];
+    
     document.getElementById('details-header-bg').style.backgroundImage = `url('${m.img}')`;
     document.getElementById('details-title').innerText = m.t;
     document.getElementById('details-desc').innerText = m.desc || "Aucun résumé disponible.";
@@ -454,16 +458,22 @@ function openDetails(idx) {
             `).join('');
     }
     document.getElementById('details-meta-cast').innerHTML = castHtml;
+
     document.getElementById('details-trailer-box').innerHTML = m.trailer ? 
         `<iframe width="100%" height="100%" src="https://www.youtube.com/embed/${m.trailer}?rel=0" frameborder="0" allowfullscreen></iframe>` : "";
     
     const playBtn = document.getElementById('details-play-btn');
     playBtn.onclick = () => { playMovie(idx); };
+    
     document.getElementById('details-overlay').style.display = 'flex';
     playBtn.focus();
 }
 
-function closeDetails() { if (document.getElementById('details-overlay').style.display === 'flex') history.back(); }
+function closeDetails() {
+    if (document.getElementById('details-overlay').style.display === 'flex') {
+        history.back();
+    }
+}
 
 function initProfiles() {
     let profiles = JSON.parse(localStorage.getItem('sfpp_profiles_data')) || [
@@ -490,6 +500,23 @@ function handleProfileClick(id, name, icon) {
             if(idx !== -1) { saved[idx].name = n; localStorage.setItem('sfpp_profiles_data', JSON.stringify(saved)); initProfiles(); }
         }
     } else selectProfile(name, icon);
+}
+
+function toggleFavCurrent() {
+    let key = 'sfpp_fav_' + currentProfile;
+    let favs = JSON.parse(localStorage.getItem(key) || "[]");
+    if(favs.includes(currentPlayingTitle)) favs = favs.filter(t => t !== currentPlayingTitle);
+    else favs.push(currentPlayingTitle);
+    localStorage.setItem(key, JSON.stringify(favs));
+    updatePlayerFavUI();
+    render(document.getElementById('searchBar').value);
+}
+
+function updatePlayerFavUI() {
+    let favs = JSON.parse(localStorage.getItem('sfpp_fav_' + currentProfile) || "[]");
+    const btn = document.getElementById('player-fav-btn');
+    if(favs.includes(currentPlayingTitle)) { btn.innerText = "❤️ Dans Ma Liste"; btn.classList.add('is-fav'); }
+    else { btn.innerText = "+ Ma Liste"; btn.classList.remove('is-fav'); }
 }
 
 function saveP() {
@@ -535,6 +562,7 @@ function render(search = "") {
 
     const cats = [...new Set(data.map(m => m.cat))];
     let addedSeries = [];
+
     cats.forEach(c => {
         const filtered = data.filter(m => m.cat === c && m.t.toLowerCase().includes(s));
         if (filtered.length === 0) return;
@@ -592,20 +620,25 @@ function playMovie(idx) {
     const m = playlistData[idx];
     currentPlayingTitle = m.t;
     document.getElementById('next-episode-btn').style.display = 'none';
+    
     if(currentProfile) {
         let key = 'sfpp_hist_' + currentProfile;
         let hist = JSON.parse(localStorage.getItem(key) || "[]").filter(t => t !== m.t);
         hist.push(m.t); if(hist.length > 15) hist.shift();
         localStorage.setItem(key, JSON.stringify(hist));
     }
+    
     document.getElementById('details-overlay').style.display = 'none';
     document.getElementById('details-trailer-box').innerHTML = "";
     document.getElementById('series-overlay').style.display = 'none';
+    
     const pSection = document.getElementById('player-section');
     pSection.style.display = 'block';
     document.getElementById('player-blur-bg').style.backgroundImage = `url('${m.img}')`;
+    
     player.poster(m.img); 
     player.src({ src: m.url, type: 'video/mp4' });
+    
     const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
     if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
     player.play();
@@ -626,6 +659,7 @@ function filter() { render(document.getElementById('searchBar').value); }
 function toggleEditMode() { isEditMode = !isEditMode; document.getElementById('profile-screen').classList.toggle('is-editing'); }
 function switchProfile() { localStorage.removeItem('sfpp_profile'); location.reload(); }
 function requestAccess() { window.location.href = "mailto:sfpp.ott@gmail.com"; }
+
 function openSearch() { document.getElementById('search-overlay').style.display = 'flex'; document.getElementById('searchBar').focus(); }
 function closeSearch() { document.getElementById('search-overlay').style.display = 'none'; document.getElementById('searchBar').value = ''; filter(); }
 
@@ -634,34 +668,6 @@ document.addEventListener('DOMContentLoaded', () => {
         controls: true, fluid: false,
         techOrder: ['chromecast', 'html5'], plugins: { chromecast: { addButtonToControlBar: true } }
     });
-
-    player.ready(() => { 
-        player.getChild('controlBar').addChild('Back', {}, 1); 
-        player.getChild('controlBar').addChild('Forward', {}, 2); 
-
-        // GESTION DU DOUBLE CLIQUE (SAUT + PLEIN ÉCRAN)
-        const playerEl = player.el();
-        playerEl.addEventListener('dblclick', (event) => {
-            event.preventDefault();
-            const rect = playerEl.getBoundingClientRect();
-            const x = event.clientX - rect.left;
-            
-            // Si on clique sur les côtés : saut de 10s
-            if (x < rect.width / 4) {
-                player.currentTime(player.currentTime() - 10);
-            } else if (x > (rect.width * 3) / 4) {
-                player.currentTime(player.currentTime() + 10);
-            } else {
-                // Si on clique au milieu : bascule Plein Écran
-                if (player.isFullscreen()) {
-                    player.exitFullscreen();
-                } else {
-                    player.requestFullscreen();
-                }
-            }
-        });
-    });
-
     player.on('timeupdate', function() {
         const dur = player.duration(), cur = player.currentTime();
         if (/S\d{2}E\d{2}/i.test(currentPlayingTitle) && dur > 0 && (dur - cur) < 80) {
@@ -670,11 +676,27 @@ document.addEventListener('DOMContentLoaded', () => {
         } else document.getElementById('next-episode-btn').style.display = 'none';
         if(Math.floor(cur) % 10 === 0) saveP();
     });
-
     const Button = videojs.getComponent('Button');
     class Back extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-replay-10'; } handleClick() { player.currentTime(player.currentTime()-10); } }
     class Forward extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-forward-10'; } handleClick() { player.currentTime(player.currentTime()+10); } }
     videojs.registerComponent('Back', Back); videojs.registerComponent('Forward', Forward);
+    player.ready(() => { 
+        player.getChild('controlBar').addChild('Back', {}, 1); 
+        player.getChild('controlBar').addChild('Forward', {}, 2); 
+        
+        // --- AJOUT DOUBLE CLIC PLEIN ÉCRAN ---
+        const vCont = document.getElementById('video-container');
+        let lastClick = 0;
+        vCont.addEventListener('click', (e) => {
+            const now = Date.now();
+            if (now - lastClick < 300) {
+                if (player.isFullscreen()) player.exitFullscreen();
+                else player.requestFullscreen();
+            }
+            lastClick = now;
+        });
+        // ------------------------------------
+    });
 });
 </script>
 </body>
