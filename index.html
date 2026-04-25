@@ -280,13 +280,20 @@
         if (!user) return false;
         const snapshot = await get(ref(db, 'users_data/' + user.uid + '/expire'));
         const expireValue = snapshot.val();
-        if (!expireValue) return false;
+        
         const now = new Date();
         const y = now.getFullYear();
         const m = String(now.getMonth() + 1).padStart(2, '0');
         const d = String(now.getDate()).padStart(2, '0');
         const todayStr = `${y}-${m}-${d}`;
-        if (todayStr >= expireValue) {
+        
+        const banner = document.getElementById('expiration-banner');
+        if (expireValue) {
+            banner.style.display = 'block';
+            banner.innerText = "Abonnement Elite actif jusqu'au : " + expireValue;
+        }
+
+        if (expireValue && todayStr >= expireValue) {
             alert("Accès expiré le " + expireValue);
             await signOut(auth);
             localStorage.clear();
@@ -364,11 +371,8 @@ window.addEventListener('popstate', function (event) {
         return;
     }
     if (playerSection.style.display === 'block') {
-        saveP(); 
-        player.pause(); 
-        playerSection.style.display = 'none';
-        render();
-        return;
+        saveP(); player.pause(); playerSection.style.display = 'none';
+        render(); return;
     }
 
     if (!exitConfirmed) {
@@ -386,37 +390,22 @@ async function loadPlaylist() { try { const response = await fetch('films.json')
 function openDetails(idx) {
     history.pushState({ overlay: 'details' }, "");
     const m = playlistData[idx];
-    
     document.getElementById('details-header-bg').style.backgroundImage = `url('${m.img}')`;
     document.getElementById('details-title').innerText = m.t;
     document.getElementById('details-desc').innerText = m.desc || "Aucun résumé disponible.";
-    
     let castHtml = "";
     if (m.actors_pics && m.actors_pics.length > 0) {
-        castHtml = m.actors_pics.map(a => `
-                <div class="actor-item">
-                    <img src="${a.img}" onerror="this.src='https://via.placeholder.com/80x80?text=?'">
-                    <div class="actor-name">${a.name}</div>
-                </div>
-            `).join('');
+        castHtml = m.actors_pics.map(a => `<div class="actor-item"><img src="${a.img}" onerror="this.src='https://via.placeholder.com/80x80?text=?'"><div class="actor-name">${a.name}</div></div>`).join('');
     }
     document.getElementById('details-meta-cast').innerHTML = castHtml;
-
-    document.getElementById('details-trailer-box').innerHTML = m.trailer ? 
-        `<iframe width="100%" height="100%" src="https://www.youtube.com/embed/${m.trailer}?rel=0" frameborder="0" allowfullscreen></iframe>` : "";
-    
+    document.getElementById('details-trailer-box').innerHTML = m.trailer ? `<iframe width="100%" height="100%" src="https://www.youtube.com/embed/${m.trailer}?rel=0" frameborder="0" allowfullscreen></iframe>` : "";
     const playBtn = document.getElementById('details-play-btn');
     playBtn.onclick = () => { playMovie(idx); };
-    
     document.getElementById('details-overlay').style.display = 'flex';
     playBtn.focus();
 }
 
-function closeDetails() {
-    if (document.getElementById('details-overlay').style.display === 'flex') {
-        history.back();
-    }
-}
+function closeDetails() { if (document.getElementById('details-overlay').style.display === 'flex') history.back(); }
 
 function initProfiles() {
     let profiles = JSON.parse(localStorage.getItem('sfpp_profiles_data')) || [
@@ -425,8 +414,7 @@ function initProfiles() {
         { id: 3, name: "Profil 3", icon: "🟧", color: "#e67e22" },
         { id: 4, name: "Profil 4", icon: "🟪", color: "#9b59b6" }
     ];
-    const list = document.getElementById('profile-list');
-    list.innerHTML = profiles.map(p => `
+    document.getElementById('profile-list').innerHTML = profiles.map(p => `
         <div class="profile-item" onclick="handleProfileClick(${p.id}, '${p.name}', '${p.icon}')" tabindex="0">
             <div class="profile-avatar" style="background:${p.color}">${p.icon}</div>
             <div class="edit-icon">✏️</div>
@@ -451,8 +439,7 @@ function toggleFavCurrent() {
     if(favs.includes(currentPlayingTitle)) favs = favs.filter(t => t !== currentPlayingTitle);
     else favs.push(currentPlayingTitle);
     localStorage.setItem(key, JSON.stringify(favs));
-    updatePlayerFavUI();
-    render(document.getElementById('searchBar').value);
+    updatePlayerFavUI(); render(document.getElementById('searchBar').value);
 }
 
 function updatePlayerFavUI() {
@@ -464,8 +451,7 @@ function updatePlayerFavUI() {
 
 function saveP() {
     if(!currentPlayingTitle || !currentProfile) return;
-    const cur = player.currentTime();
-    const dur = player.duration();
+    const cur = player.currentTime(), dur = player.duration();
     if(dur > 0) {
         let prog = JSON.parse(localStorage.getItem('sfpp_p_'+currentProfile) || "{}");
         prog[currentPlayingTitle] = { t: cur, p: (cur/dur)*100 };
@@ -473,17 +459,13 @@ function saveP() {
     }
 }
 
-function scrollSide(btn, amt) { const car = btn.parentElement.querySelector('.carousel'); car.scrollBy({ left: amt, behavior: 'smooth' }); }
+function scrollSide(btn, amt) { btn.parentElement.querySelector('.carousel').scrollBy({ left: amt, behavior: 'smooth' }); }
 
 function render(search = "") {
-    const cont = document.getElementById('categories-container');
-    const histSec = document.getElementById('history-sec');
-    const histCont = document.getElementById('history-container');
+    const cont = document.getElementById('categories-container'), histSec = document.getElementById('history-sec'), histCont = document.getElementById('history-container');
     cont.innerHTML = ""; histCont.innerHTML = "";
     const s = search.toLowerCase();
-    const favs = JSON.parse(localStorage.getItem('sfpp_fav_' + currentProfile) || "[]");
-    const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
-    
+    const favs = JSON.parse(localStorage.getItem('sfpp_fav_' + currentProfile) || "[]"), prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
     let data = playlistData;
     if(currentView === 'movies') data = playlistData.filter(m => m.cat !== "SÉRIES");
     else if(currentView === 'series') data = playlistData.filter(m => m.cat === "SÉRIES");
@@ -505,24 +487,17 @@ function render(search = "") {
 
     const cats = [...new Set(data.map(m => m.cat))];
     let addedSeries = [];
-
     cats.forEach(c => {
         const filtered = data.filter(m => m.cat === c && m.t.toLowerCase().includes(s));
         if (filtered.length === 0) return;
         let html = `<div class="category-title">${c}</div><div class="category-row"><div class="nav-arrow arrow-left" onclick="scrollSide(this, -400)">‹</div><div class="carousel">`;
         filtered.forEach(m => {
-            const isS = /S\d{2}E\d{2}/i.test(m.t);
-            const heart = favs.includes(m.t) ? `<div style="position:absolute; top:5px; right:5px; z-index:5;">❤️</div>` : "";
+            const isS = /S\d{2}E\d{2}/i.test(m.t), heart = favs.includes(m.t) ? `<div style="position:absolute; top:5px; right:5px; z-index:5;">❤️</div>` : "";
             const pct = (prog[m.t] && prog[m.t].p > 1) ? `<div class="prog-bg"><div class="prog-fill" style="width:${prog[m.t].p}%"></div></div>` : "";
             if(isS) {
                 const sName = m.t.split(' - ')[0];
-                if(!addedSeries.includes(sName)) {
-                    addedSeries.push(sName);
-                    html += `<div class="card" onclick="openSeries('${sName}')" tabindex="0"><img src="${m.img}">${heart}<div class="card-name">${sName}</div></div>`;
-                }
-            } else {
-                html += `<div class="card" onclick="openDetails(${playlistData.indexOf(m)})" tabindex="0"><img src="${m.img}">${heart}${pct}<div class="card-name">${m.t}</div></div>`;
-            }
+                if(!addedSeries.includes(sName)) { addedSeries.push(sName); html += `<div class="card" onclick="openSeries('${sName}')" tabindex="0"><img src="${m.img}">${heart}<div class="card-name">${sName}</div></div>`; }
+            } else html += `<div class="card" onclick="openDetails(${playlistData.indexOf(m)})" tabindex="0"><img src="${m.img}">${heart}${pct}<div class="card-name">${m.t}</div></div>`;
         });
         html += `</div><div class="nav-arrow arrow-right" onclick="scrollSide(this, 400)">›</div></div>`;
         cont.innerHTML += html;
@@ -531,28 +506,19 @@ function render(search = "") {
 
 function openSeries(name) {
     history.pushState({ overlay: 'series' }, "");
-    const overlay = document.getElementById('series-overlay');
-    const content = document.getElementById('series-detail-content');
-    const eps = playlistData.filter(m => m.t.startsWith(name));
-    overlay.style.display = 'block';
+    const content = document.getElementById('series-detail-content'), eps = playlistData.filter(m => m.t.startsWith(name));
+    document.getElementById('series-overlay').style.display = 'block';
     let html = `<div class="overlay-header"><img src="${eps[0].img}" class="overlay-img"><div><h2>${name}</h2></div></div>`;
-    const seasons = {};
-    const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
+    const seasons = {}, prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
     eps.forEach(ep => {
-        const sMatch = ep.t.match(/S(\d{2})/);
-        const sNum = sMatch ? sMatch[1] : "01";
-        if(!seasons[sNum]) seasons[sNum] = [];
-        seasons[sNum].push(ep);
+        const sMatch = ep.t.match(/S(\d{2})/), sNum = sMatch ? sMatch[1] : "01";
+        if(!seasons[sNum]) seasons[sNum] = []; seasons[sNum].push(ep);
     });
     Object.keys(seasons).sort().forEach(s => {
         html += `<div class="season-title">SAISON ${s}</div>`;
         seasons[s].forEach(ep => {
-            const epName = ep.t.split(' - ')[1] || ep.t;
-            const pct = (prog[ep.t] && prog[ep.t].p > 1) ? `<div style="height:3px; background:#444; width:100px; margin-top:5px;"><div style="height:100%; background:var(--accent); width:${prog[ep.t].p}%"></div></div>` : "";
-            html += `<div class="episode-item" onclick="openDetails(${playlistData.indexOf(ep)});" tabindex="0">
-                        <div style="flex:1"><b>${epName}</b>${pct}</div>
-                        <div style="color:var(--accent)">DÉTAILS</div>
-                     </div>`;
+            const epName = ep.t.split(' - ')[1] || ep.t, pct = (prog[ep.t] && prog[ep.t].p > 1) ? `<div style="height:3px; background:#444; width:100px; margin-top:5px;"><div style="height:100%; background:var(--accent); width:${prog[ep.t].p}%"></div></div>` : "";
+            html += `<div class="episode-item" onclick="openDetails(${playlistData.indexOf(ep)});" tabindex="0"><div style="flex:1"><b>${epName}</b>${pct}</div><div style="color:var(--accent)">DÉTAILS</div></div>`;
         });
     });
     content.innerHTML = html;
@@ -560,19 +526,13 @@ function openSeries(name) {
 
 function playMovie(idx) {
     history.replaceState({ overlay: 'player' }, "");
-    const m = playlistData[idx];
-    currentPlayingTitle = m.t;
+    const m = playlistData[idx]; currentPlayingTitle = m.t;
     document.getElementById('next-episode-btn').style.display = 'none';
-    
     if(currentProfile) {
-        let key = 'sfpp_hist_' + currentProfile;
-        let hist = JSON.parse(localStorage.getItem(key) || "[]").filter(t => t !== m.t);
-        hist.push(m.t); if(hist.length > 15) hist.shift();
-        localStorage.setItem(key, JSON.stringify(hist));
+        let key = 'sfpp_hist_' + currentProfile, hist = JSON.parse(localStorage.getItem(key) || "[]").filter(t => t !== m.t);
+        hist.push(m.t); if(hist.length > 15) hist.shift(); localStorage.setItem(key, JSON.stringify(hist));
     }
-    
     document.getElementById('details-overlay').style.display = 'none';
-    document.getElementById('details-trailer-box').innerHTML = "";
     document.getElementById('series-overlay').style.display = 'none';
     document.getElementById('player-section').style.display = 'block';
     document.getElementById('display-title').innerText = m.t;
@@ -580,18 +540,14 @@ function playMovie(idx) {
     document.getElementById('display-actors').innerText = (m.actors || m.cast) ? "Avec : " + (m.actors || m.cast) : "";
     updatePlayerFavUI();
     document.getElementById('player-blur-bg').style.backgroundImage = `url('${m.img}')`;
-    player.poster(m.img); 
-    window.scrollTo({top:0, behavior:'smooth'});
-    player.src({ src: m.url, type: 'video/mp4' });
-    
+    player.poster(m.img); player.src({ src: m.url, type: 'video/mp4' });
     const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
     if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
     player.play();
 }
 
 function playNextEpisode() {
-    const parts = currentPlayingTitle.match(/(.*[SE])(\d+)(.*)/i);
-    if (!parts) return;
+    const parts = currentPlayingTitle.match(/(.*[SE])(\d+)(.*)/i); if (!parts) return;
     const nextTitleSearch = (parts[1] + (parseInt(parts[2]) + 1).toString().padStart(2, '0')).toUpperCase();
     const nextIdx = playlistData.findIndex(m => m.t.toUpperCase().includes(nextTitleSearch));
     if (nextIdx !== -1) playMovie(nextIdx);
@@ -608,11 +564,7 @@ function closeSearch() { document.getElementById('search-overlay').style.display
 function requestAccess() { window.location.href = "mailto:sfpp.ott@gmail.com"; }
 
 document.addEventListener('DOMContentLoaded', () => {
-    player = videojs('main-video', { 
-        controls: true, fluid: true, fill: true,
-        techOrder: ['chromecast', 'html5'], plugins: { chromecast: { addButtonToControlBar: true } }
-    });
-
+    player = videojs('main-video', { controls: true, fluid: true, fill: true, techOrder: ['chromecast', 'html5'], plugins: { chromecast: { addButtonToControlBar: true } } });
     player.on('timeupdate', function() {
         const dur = player.duration(), cur = player.currentTime();
         if (/S\d{2}E\d{2}/i.test(currentPlayingTitle) && dur > 0 && (dur - cur) < 80) {
@@ -622,7 +574,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if(Math.floor(cur) % 10 === 0) saveP();
     });
 
-    // --- REINTEGRATION DU DOUBLE-CLIC ---
     let lastTap = 0;
     player.on('touchend', function(e) {
         let now = Date.now();
@@ -638,10 +589,7 @@ document.addEventListener('DOMContentLoaded', () => {
     class Back extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-replay-10'; } handleClick() { player.currentTime(player.currentTime()-10); } }
     class Forward extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-forward-10'; } handleClick() { player.currentTime(player.currentTime()+10); } }
     videojs.registerComponent('Back', Back); videojs.registerComponent('Forward', Forward);
-    player.ready(() => { 
-        player.getChild('controlBar').addChild('Back', {}, 1); 
-        player.getChild('controlBar').addChild('Forward', {}, 2); 
-    });
+    player.ready(() => { player.getChild('controlBar').addChild('Back', {}, 1); player.getChild('controlBar').addChild('Forward', {}, 2); });
 });
 </script>
 </body>
