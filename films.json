@@ -56,9 +56,11 @@
   },
   {
     "t": "Qui brille au combat (2025)",
+    "year": "2025",
+    "note": 4,
     "img": "https://image.tmdb.org/t/p/w220_and_h330_face/kpUkx4nxuH9ssoTi4NLunlRcXgu.jpg",
     "cat": "LES DERNIÈRES SORTIES",
-    "desc": "Équilibre fragile d'une famille autour d'un handicap lourd.",
+    "desc": "Qui brille au combat est le sens étymologique du prénom Bertille, la plus jeune des deux sœurs de la famille Roussier, atteinte d’un handicap lourd au diagnostic incertain. La famille vit dans un équilibre fragile autour de cet enfant qui accapare les efforts et pensées de chacun, et qui pourrait perdre la vie à tout moment. Chacun se construit, vit comme il peut avec les exigences de ce rythme et les incertitudes qui l’accompagnent. Les parents, Madeleine et Gilles, la sœur aînée, Marion. Quel quotidien et quels avenirs pour une mère, un père, un couple, une adolescente que la responsabilité ​ de sa cadette a rendu trop vite adulte ? Lorsqu’un nouveau diagnostic est posé, les cartes sont rebattues et un nouvel horizon se dessine...",
     "actors_pics": [{"name": "Mélanie Laurent", "img": "https://image.tmdb.org/t/p/w185/6oYf2R70fP2O49jBvF6I2v2vXk3.jpg"}],
     "url": "aHR0cHM6Ly9hcmNoaXZlLm9yZy9kb3dubG9hZC8xMjg1NzE2LzEyODU3MTYuaWEubXA0"
   },
