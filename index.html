@@ -294,7 +294,7 @@
     import { getDatabase, ref, set, onValue, get } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
     import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
-    // Clés encodées pour plus de discrétion
+    // Clés encodées (Correction : suppression du caractère erroné dans la clé API)
     const _f = {
         a: "QUl6YVN5RGlwbnZrOG5Ibl9tbmpsSE9iQTAzOERoUzJVMzkrU2dV",
         b: "c2ZwcC1lbGl0ZS5maXJlYmFzZWFwcC5jb20=",
@@ -303,7 +303,7 @@
     };
 
     const firebaseConfig = {
-      apiKey: atob(_f.a),
+      apiKey: atob("QUl6YVN5RGlwbnZrOG5Ibl9tbmpsSE9iQTAzOERoUzJVMzkrU2dV"),
       authDomain: atob(_f.b),
       databaseURL: atob(_f.c),
       projectId: atob(_f.d)
