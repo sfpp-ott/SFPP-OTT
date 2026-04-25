@@ -684,11 +684,14 @@ document.addEventListener('DOMContentLoaded', () => {
         player.getChild('controlBar').addChild('Back', {}, 1); 
         player.getChild('controlBar').addChild('Forward', {}, 2); 
         
-        // --- DOUBLE-CLIC PLEIN ÉCRAN (FIX) ---
-        player.tech().on('dblclick', function() {
-            if (player.isFullscreen()) player.exitFullscreen();
-            else player.requestFullscreen();
-        });
+        // --- DOUBLE-CLIC PLEIN ÉCRAN (FORCÉ SUR L'ÉLÉMENT VIDÉO) ---
+        const videoEl = player.el().querySelector('video');
+        if(videoEl) {
+            videoEl.addEventListener('dblclick', function() {
+                if (player.isFullscreen()) player.exitFullscreen();
+                else player.requestFullscreen();
+            });
+        }
     });
 });
 </script>
