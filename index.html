@@ -75,7 +75,7 @@
         .btn-icon { background: none; border: none; color: white; font-size: 20px; cursor: pointer; opacity: 0.8; transition: 0.3s; }
         .btn-logout { background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.2); padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 11px; font-weight: bold; }
 
-        /* OVERLAY DETAILS - DESIGN PROFESSIONNEL */
+        /* OVERLAY DETAILS */
         #details-overlay {
             position: fixed; inset: 0; background: #000;
             z-index: 3500; display: none; align-items: flex-start; justify-content: center;
@@ -142,12 +142,29 @@
             display: flex; align-items: center; justify-content: center; backdrop-filter: blur(10px);
         }
 
-        /* CARDS - CORRECTION DES PROPORTIONS */
+        /* CARDS & CAROUSEL NAVIGATION */
         .category-row { position: relative; width: 100%; margin-bottom: 30px; }
         .category-title { font-size: clamp(16px, 3vw, 20px); font-weight: 700; margin: 0 4% 15px; color: #fff; }
         
-        .carousel { display: flex; overflow-x: auto; gap: 12px; padding: 0 4% 20px; scrollbar-width: none; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; }
+        .carousel-container { position: relative; width: 100%; display: flex; align-items: center; }
+        
+        .carousel { 
+            display: flex; overflow-x: auto; gap: 12px; padding: 0 4% 20px; 
+            scrollbar-width: none; scroll-behavior: smooth; -webkit-overflow-scrolling: touch;
+            width: 100%;
+        }
         .carousel::-webkit-scrollbar { display: none; }
+
+        .nav-arrow {
+            position: absolute; top: 0; bottom: 20px; width: 4%;
+            background: rgba(0,0,0,0.2); color: white; border: none;
+            cursor: pointer; z-index: 100; font-size: 24px; opacity: 0;
+            transition: opacity 0.3s, background 0.3s; display: flex; align-items: center; justify-content: center;
+        }
+        .category-row:hover .nav-arrow { opacity: 1; }
+        .nav-arrow:hover { background: rgba(0,0,0,0.7); }
+        .nav-arrow.left { left: 0; }
+        .nav-arrow.right { right: 0; }
 
         .card { 
             flex: 0 0 160px; 
@@ -160,7 +177,7 @@
         
         .card img { 
             width: 100% !important; 
-            height: 240px !important; /* Ratio 2:3 forcé */
+            height: 240px !important; /* Ratio 2:3 strict */
             object-fit: cover !important; 
             border-radius: var(--card-radius); 
             background: #1a1a1a;
@@ -184,6 +201,7 @@
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
         @media (max-width: 768px) {
+            .nav-arrow { display: none; }
             .card { flex: 0 0 130px; width: 130px; }
             .card img { height: 195px !important; }
             .details-body { grid-template-columns: 1fr; padding-top: 20px; }
@@ -290,7 +308,9 @@
     <div id="history-sec" style="display:none">
         <div class="category-title">Reprendre avec <span id="current-user-name"></span></div>
         <div class="category-row">
+            <button class="nav-arrow left" onclick="scrollCarousel(this, -1)">‹</button>
             <div class="carousel" id="history-container"></div>
+            <button class="nav-arrow right" onclick="scrollCarousel(this, 1)">›</button>
         </div>
     </div>
     <div id="categories-container"></div>
@@ -319,9 +339,6 @@
     let deviceId = localStorage.getItem('sfpp_device_id') || Math.random().toString(36).substring(7);
     localStorage.setItem('sfpp_device_id', deviceId);
 
-    const savedEmail = localStorage.getItem('sfpp_last_email');
-    if(savedEmail) document.getElementById('user').value = savedEmail;
-
     async function verifyExpiration(user) {
         if (!user) return false;
         const snapshot = await get(ref(db, 'users_data/' + user.uid + '/expire'));
@@ -335,10 +352,6 @@
         if (todayStr >= expireValue) {
             alert("Accès expiré le " + expireValue);
             await signOut(auth);
-            const mail = localStorage.getItem('sfpp_last_email');
-            localStorage.clear();
-            localStorage.setItem('sfpp_last_email', mail);
-            localStorage.setItem('sfpp_device_id', deviceId);
             location.reload();
             return true;
         }
@@ -349,8 +362,7 @@
         onValue(ref(db, 'sessions/' + uid), (snapshot) => {
             const session = snapshot.val();
             if (session && session.deviceId !== deviceId) {
-                alert("⚠️ Ce compte est utilisé sur un autre appareil.");
-                localStorage.removeItem('sfpp_profile'); 
+                alert("⚠️ Ce compte est utilisé ailleurs.");
                 signOut(auth).then(() => location.reload());
             }
         });
@@ -376,9 +388,7 @@
             const snap = await get(ref(db, 'users_data/' + user.uid + '/expire'));
             const expireValue = snap.val();
             if(expireValue) {
-                const today = new Date();
-                const expireDate = new Date(expireValue);
-                const diffDays = Math.ceil((expireDate - today) / (1000 * 60 * 60 * 24));
+                const diffDays = Math.ceil((new Date(expireValue) - new Date()) / (1000 * 60 * 60 * 24));
                 const banner = document.getElementById('expiration-banner');
                 if(diffDays > 0 && diffDays <= 5) {
                     banner.style.display = 'block';
@@ -399,70 +409,45 @@
         localStorage.setItem('sfpp_profile_icon', icon);
         document.getElementById('profile-screen').style.display = 'none';
         document.getElementById('current-user-name').innerText = name;
-        const user = auth.currentUser;
-        if(user) {
-            const snap = await get(ref(db, 'users_data/' + user.uid + '/expire'));
-            document.getElementById('header-logo').innerHTML = `SFPP | ${icon} <span style="font-size:10px; color:#666;">(${snap.val()})</span>`;
-        }
+        const snap = await get(ref(db, 'users_data/' + auth.currentUser.uid + '/expire'));
+        document.getElementById('header-logo').innerHTML = `SFPP | ${icon} <span style="font-size:10px; color:#666;">(${snap.val()})</span>`;
         render();
-        if (window.history.state?.overlay !== 'home') window.history.pushState({ overlay: 'home' }, "");
     };
 
-    window.logout = function() { 
-        const mail = localStorage.getItem('sfpp_last_email');
-        signOut(auth).then(() => { localStorage.clear(); localStorage.setItem('sfpp_last_email', mail); localStorage.setItem('sfpp_device_id', deviceId); location.reload(); }); 
-    };
+    window.logout = function() { signOut(auth).then(() => { localStorage.clear(); location.reload(); }); };
 </script>
 
 <script>
-let player, playlistData = [], currentProfile = null, isEditMode = false, currentView = 'all', currentPlayingTitle = "", exitConfirmed = false;
+let player, playlistData = [], currentProfile = null, isEditMode = false, currentView = 'all', currentPlayingTitle = "";
 
-window.addEventListener('popstate', function (event) {
-    if (document.getElementById('details-overlay').style.display === 'flex') { closeDetails(); return; }
-    if (document.getElementById('series-overlay').style.display === 'block') { document.getElementById('series-overlay').style.display = 'none'; return; }
-    if (document.getElementById('player-section').style.display === 'block') { closeP(); return; }
-    if (!exitConfirmed) {
-        history.pushState({ overlay: 'home' }, "");
-        if (confirm("Quitter l'application ?")) { exitConfirmed = true; history.back(); }
-    }
-});
-
-function openSearch() { document.getElementById('search-overlay').style.display = 'flex'; document.getElementById('searchBar').focus(); }
-function closeSearch() { document.getElementById('search-overlay').style.display = 'none'; document.getElementById('searchBar').value = ''; filter(); }
+function scrollCarousel(btn, dir) {
+    const carousel = btn.parentElement.querySelector('.carousel');
+    const scrollAmount = carousel.offsetWidth * 0.8;
+    carousel.scrollBy({ left: scrollAmount * dir, behavior: 'smooth' });
+}
 
 async function loadPlaylist() { try { const response = await fetch('films.json'); playlistData = await response.json(); render(); } catch (e) {} }
 
 function openDetails(idx) {
-    history.pushState({ overlay: 'details' }, "");
     const m = playlistData[idx];
-    
     document.getElementById('hero-bg-img').style.backgroundImage = `url('${m.img}')`;
     document.getElementById('details-title').innerText = m.t;
-    document.getElementById('details-desc').innerText = m.desc || "Aucun synopsis disponible.";
+    document.getElementById('details-desc').innerText = m.desc || "Aucun synopsis.";
     
     const castCont = document.getElementById('details-cast-list');
-    castCont.innerHTML = "";
-    if (m.actors_pics && m.actors_pics.length > 0) {
-        m.actors_pics.forEach(a => {
-            castCont.innerHTML += `<div class="actor-card"><img src="${a.img}" onerror="this.src='https://via.placeholder.com/65'"><span>${a.name}</span></div>`;
-        });
-    } else {
-        castCont.innerHTML = `<p style="color:#666; font-size:13px;">${m.actors || m.cast || 'Casting non renseigné'}</p>`;
-    }
+    castCont.innerHTML = (m.actors_pics && m.actors_pics.length > 0) 
+        ? m.actors_pics.map(a => `<div class="actor-card"><img src="${a.img}" onerror="this.src='https://via.placeholder.com/65'"><span>${a.name}</span></div>`).join('')
+        : `<p style="color:#666; font-size:13px;">${m.actors || m.cast || 'Casting non renseigné'}</p>`;
 
-    const tBox = document.getElementById('details-trailer-box');
-    tBox.innerHTML = m.trailer ? `<iframe width="100%" height="100%" src="https://www.youtube.com/embed/${m.trailer}?rel=0&modestbranding=1" frameborder="0" allowfullscreen></iframe>` : `<div style="display:flex; align-items:center; justify-content:center; height:100%; color:#444;">Bande-annonce non disponible</div>`;
+    document.getElementById('details-trailer-box').innerHTML = m.trailer 
+        ? `<iframe width="100%" height="100%" src="https://www.youtube.com/embed/${m.trailer}?rel=0" frameborder="0" allowfullscreen></iframe>` 
+        : `<div style="display:flex; align-items:center; justify-content:center; height:100%; color:#444;">Bande-annonce indisponible</div>`;
     
     document.getElementById('details-play-btn').onclick = () => playMovie(idx);
     document.getElementById('details-overlay').style.display = 'flex';
-    document.body.style.overflow = 'hidden';
 }
 
-function closeDetails() {
-    document.getElementById('details-overlay').style.display = 'none';
-    document.getElementById('details-trailer-box').innerHTML = "";
-    document.body.style.overflow = 'auto';
-}
+function closeDetails() { document.getElementById('details-overlay').style.display = 'none'; document.getElementById('details-trailer-box').innerHTML = ""; }
 
 function initProfiles() {
     let profiles = JSON.parse(localStorage.getItem('sfpp_profiles_data')) || [
@@ -481,29 +466,13 @@ function initProfiles() {
 
 function handleProfileClick(id, name, icon) {
     if(isEditMode) {
-        let n = prompt("Nouveau nom :", name);
+        let n = prompt("Nom :", name);
         if(n) {
             let saved = JSON.parse(localStorage.getItem('sfpp_profiles_data') || "[]");
             const idx = saved.findIndex(p => p.id === id);
             if(idx !== -1) { saved[idx].name = n; localStorage.setItem('sfpp_profiles_data', JSON.stringify(saved)); initProfiles(); }
         }
     } else selectProfile(name, icon);
-}
-
-function toggleFavCurrent() {
-    let key = 'sfpp_fav_' + currentProfile;
-    let favs = JSON.parse(localStorage.getItem(key) || "[]");
-    if(favs.includes(currentPlayingTitle)) favs = favs.filter(t => t !== currentPlayingTitle);
-    else favs.push(currentPlayingTitle);
-    localStorage.setItem(key, JSON.stringify(favs));
-    updatePlayerFavUI();
-    render(document.getElementById('searchBar').value);
-}
-
-function updatePlayerFavUI() {
-    let favs = JSON.parse(localStorage.getItem('sfpp_fav_' + currentProfile) || "[]");
-    const btn = document.getElementById('player-fav-btn');
-    btn.innerText = favs.includes(currentPlayingTitle) ? "❤️ Dans Ma Liste" : "+ Ma Liste";
 }
 
 function saveP() {
@@ -550,84 +519,66 @@ function render(search = "") {
     cats.forEach(c => {
         const filtered = data.filter(m => m.cat === c && m.t.toLowerCase().includes(s));
         if (filtered.length === 0) return;
-        let html = `<div class="category-title">${c}</div><div class="carousel">`;
+        let html = `<div class="category-title">${c}</div><div class="category-row"><button class="nav-arrow left" onclick="scrollCarousel(this, -1)">‹</button><div class="carousel">`;
         filtered.forEach(m => {
             const isS = /S\d{2}E\d{2}/i.test(m.t);
-            const heart = favs.includes(m.t) ? `<div style="position:absolute; top:8px; right:8px; z-index:5; font-size:12px;">❤️</div>` : "";
             const pct = (prog[m.t] && prog[m.t].p > 1) ? `<div class="prog-bg"><div class="prog-fill" style="width:${prog[m.t].p}%"></div></div>` : "";
             if(isS) {
                 const sName = m.t.split(' - ')[0];
                 if(!addedSeries.includes(sName)) {
                     addedSeries.push(sName);
-                    html += `<div class="card" onclick="openSeries('${sName}')" tabindex="0"><img src="${m.img}">${heart}<div class="card-name">${sName}</div></div>`;
+                    html += `<div class="card" onclick="openSeries('${sName}')" tabindex="0"><img src="${m.img}"><div class="card-name">${sName}</div></div>`;
                 }
             } else {
-                html += `<div class="card" onclick="openDetails(${playlistData.indexOf(m)})" tabindex="0"><img src="${m.img}">${heart}${pct}<div class="card-name">${m.t}</div></div>`;
+                html += `<div class="card" onclick="openDetails(${playlistData.indexOf(m)})" tabindex="0"><img src="${m.img}">${pct}<div class="card-name">${m.t}</div></div>`;
             }
         });
-        html += `</div>`;
+        html += `</div><button class="nav-arrow right" onclick="scrollCarousel(this, 1)">›</button></div>`;
         cont.innerHTML += html;
     });
 }
 
 function openSeries(name) {
-    history.pushState({ overlay: 'series' }, "");
     const overlay = document.getElementById('series-overlay');
     const content = document.getElementById('series-detail-content');
     const eps = playlistData.filter(m => m.t.startsWith(name));
     overlay.style.display = 'block';
-    let html = `<div style="display:flex; gap:25px; align-items:center; margin-bottom:40px;"><img src="${eps[0].img}" style="width:140px; border-radius:8px;"><div><h1 style="margin:0">${name}</h1><p style="color:#666">${eps.length} Épisodes disponibles</p></div></div>`;
-    const seasons = {};
+    let html = `<div style="display:flex; gap:25px; align-items:center; margin-bottom:40px;"><img src="${eps[0].img}" style="width:140px; border-radius:8px;"><h1>${name}</h1></div>`;
     eps.forEach(ep => {
-        const sMatch = ep.t.match(/S(\d{2})/);
-        const sNum = sMatch ? sMatch[1] : "01";
-        if(!seasons[sNum]) seasons[sNum] = [];
-        seasons[sNum].push(ep);
-    });
-    Object.keys(seasons).sort().forEach(s => {
-        html += `<h3 style="color:var(--accent); margin:30px 0 15px; border-bottom:1px solid #222; padding-bottom:10px;">SAISON ${s}</h3>`;
-        seasons[s].forEach(ep => {
-            const epName = ep.t.split(' - ')[1] || ep.t;
-            html += `<div class="episode-item" onclick="openDetails(${playlistData.indexOf(ep)});" tabindex="0"><div style="flex:1"><b>${epName}</b></div><div style="color:var(--accent); font-size:12px; font-weight:bold;">DETAILS</div></div>`;
-        });
+        html += `<div class="episode-item" onclick="openDetails(${playlistData.indexOf(ep)})"><b>${ep.t.split(' - ')[1] || ep.t}</b></div>`;
     });
     content.innerHTML = html;
 }
 
 function playMovie(idx) {
-    history.replaceState({ overlay: 'player' }, "");
     const m = playlistData[idx];
     currentPlayingTitle = m.t;
     if(currentProfile) {
-        let key = 'sfpp_hist_' + currentProfile;
-        let hist = JSON.parse(localStorage.getItem(key) || "[]").filter(t => t !== m.t);
-        hist.push(m.t); if(hist.length > 20) hist.shift();
-        localStorage.setItem(key, JSON.stringify(hist));
+        let hist = JSON.parse(localStorage.getItem('sfpp_hist_' + currentProfile) || "[]").filter(t => t !== m.t);
+        hist.push(m.t); localStorage.setItem('sfpp_hist_' + currentProfile, JSON.stringify(hist));
     }
     closeDetails();
     document.getElementById('series-overlay').style.display = 'none';
     document.getElementById('player-section').style.display = 'block';
     document.getElementById('display-title').innerText = m.t;
-    document.getElementById('display-desc').innerText = m.desc || "";
-    updatePlayerFavUI();
     document.getElementById('player-blur-bg').style.backgroundImage = `url('${m.img}')`;
-    player.poster(m.img); 
     player.src({ src: m.url, type: 'video/mp4' });
     const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
-    if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
+    if(prog[m.t]) player.currentTime(prog[m.t].t);
     player.play();
 }
 
 function playNextEpisode() {
     const parts = currentPlayingTitle.match(/(.*[SE])(\d+)(.*)/i);
     if (!parts) return;
-    const nextSearch = (parts[1] + (parseInt(parts[2]) + 1).toString().padStart(2, '0')).toUpperCase();
-    const nextIdx = playlistData.findIndex(m => m.t.toUpperCase().includes(nextSearch));
+    const nextIdx = playlistData.findIndex(m => m.t.toUpperCase().includes((parts[1] + (parseInt(parts[2]) + 1).toString().padStart(2, '0')).toUpperCase()));
     if (nextIdx !== -1) playMovie(nextIdx);
 }
 
 function closeP() { saveP(); player.pause(); document.getElementById('player-section').style.display = 'none'; render(); }
 function closeSeries() { document.getElementById('series-overlay').style.display = 'none'; }
+function openSearch() { document.getElementById('search-overlay').style.display = 'flex'; document.getElementById('searchBar').focus(); }
+function closeSearch() { document.getElementById('search-overlay').style.display = 'none'; document.getElementById('searchBar').value = ''; render(); }
 function changeView(v) { currentView = v; document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active')); document.getElementById('btn-'+v).classList.add('active'); render(); }
 function filter() { render(document.getElementById('searchBar').value); }
 function toggleEditMode() { isEditMode = !isEditMode; document.getElementById('profile-screen').classList.toggle('is-editing'); }
@@ -638,7 +589,7 @@ document.addEventListener('DOMContentLoaded', () => {
     player = videojs('main-video', { controls: true, fluid: true, techOrder: ['chromecast', 'html5'], plugins: { chromecast: { addButtonToControlBar: true } } });
     player.on('timeupdate', () => {
         const dur = player.duration(), cur = player.currentTime();
-        if (/S\d{2}E\d{2}/i.test(currentPlayingTitle) && dur > 0 && (dur - cur) < 80) document.getElementById('next-episode-btn').style.display = 'block';
+        if (/S\d{2}E\d{2}/i.test(currentPlayingTitle) && (dur - cur) < 80) document.getElementById('next-episode-btn').style.display = 'block';
         if(Math.floor(cur) % 10 === 0) saveP();
     });
     const Button = videojs.getComponent('Button');
