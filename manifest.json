@@ -1,11 +1,16 @@
 {
   "name": "SFPP ELITE",
   "short_name": "SFPP",
-  "start_url": "index.html",
+  "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#050505",
   "theme_color": "#e50914",
   "icons": [
-    { "src": "https://i.ibb.co/mS6p9Xv/icon-sfpp.png", "sizes": "512x512", "type": "image/png" }
+    {
+      "src": "https://i.ibb.co/mS6p9Xv/icon-sfpp.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
   ]
 }
