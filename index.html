@@ -727,16 +727,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 </script>
-
 <script>
-  // ENREGISTREMENT DU SERVICE WORKER POUR L'INSTALLATION PWA
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('./sw.js')
-        .then(reg => console.log('SFPP : App prête pour installation'))
-        .catch(err => console.log('SFPP : Erreur PWA', err));
-    });
-  }
+    // --- ENREGISTREMENT DU SERVICE WORKER POUR L'INSTALLATION ---
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js')
+          .then(reg => console.log('SW enregistré.'))
+          .catch(err => console.log('Erreur SW:', err));
+      });
+    }
 </script>
 </body>
 </html>
