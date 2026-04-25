@@ -684,18 +684,11 @@ document.addEventListener('DOMContentLoaded', () => {
         player.getChild('controlBar').addChild('Back', {}, 1); 
         player.getChild('controlBar').addChild('Forward', {}, 2); 
         
-        // --- AJOUT DOUBLE CLIC PLEIN ÉCRAN ---
-        const vCont = document.getElementById('video-container');
-        let lastClick = 0;
-        vCont.addEventListener('click', (e) => {
-            const now = Date.now();
-            if (now - lastClick < 300) {
-                if (player.isFullscreen()) player.exitFullscreen();
-                else player.requestFullscreen();
-            }
-            lastClick = now;
+        // --- DOUBLE-CLIC PLEIN ÉCRAN ---
+        player.on('dblclick', function() {
+            if (player.isFullscreen()) { player.exitFullscreen(); }
+            else { player.requestFullscreen(); }
         });
-        // ------------------------------------
     });
 });
 </script>
