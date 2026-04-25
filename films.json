@@ -3,264 +3,338 @@
     "t": "L’Âme Idéale (2025)",
     "img": "https://image.tmdb.org/t/p/w220_and_h330_face/ws9wCKrqMsS700OOScv8L52wJMa.jpg",
     "cat": "LES DERNIÈRES SORTIES",
-    "trailer": "6XjuQt1eEcE",
-    "actors_pics": [
-      {"name": "Magalie Lépine-Blondeau", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/ci7DL2C39iZmb86tLVAzAkorozY.jpg"},
-      {"name": "Jonathan Cohen", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/T7ucGNWUDsRRXrjjVfY3uhPfMq.jpg"},
-      {"name": "Soufiane Guerrab", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/bVX3qULhckMh8myBMt7BwXjJY20.jpg"}
-    ],
-    "cast": "Magalie Lépine-Blondeau, Jonathan Cohen, Florence Janas, Jean-Christophe Folly, Anne Benoît, Soufiane Guerrab",
-    "desc": "Elsa, médecin, cache au reste du monde qu’elle voit les morts et les aide à 'passer de l’autre côté'. Convaincue que son don provoque le rejet, elle a renoncé aux histoires d'amour et s'est enfermée dans la solitude et le travail. Jusqu’au jour où elle fait la rencontre d’Oscar, un mort qui ne sait pas qu’il est mort...",
+    "desc": "Elsa voit les morts et les aide à passer de l'autre côté.",
+    "actors_pics": [{"name": "M. Lépine-Blondeau", "img": "https://image.tmdb.org/t/p/w185/6oYf2R70fP2O49jBvF6I2v2vXk3.jpg"}, {"name": "Jonathan Cohen", "img": "https://image.tmdb.org/t/p/w185/6v54Xp1E6kL4E3C1wHq7uD6vS.jpg"}],
+    "trailer": "73_V_5KjX9o",
     "url": "aHR0cHM6Ly9hcmNoaXZlLm9yZy9kb3dubG9hZC8xMjg2MjMwLzEyODYyMzAuaWEubXA0"
   },
   {
     "t": "Dhurandhar : The Revenge (2026)",
     "img": "https://image.tmdb.org/t/p/w220_and_h330_face/ov8vrRLZGoXHpYjSY9Vpv1tHJX7.jpg",
     "cat": "LES DERNIÈRES SORTIES",
-    "trailer": "0Cu228tX4wU",
-    "actors_pics": [
-      {"name": "Ranveer Singh", "img": "https://image.tmdb.org/t/p/w185/9yF9lT9eI2eC3a3qW9L5m6n7X9.jpg"},
-      {"name": "Arjun Rampal", "img": "https://image.tmdb.org/t/p/w185/1pYF9lT9eI2eC3a3qW9L5m6n7Y0.jpg"},
-      {"name": "Sanjay Dutt", "img": "https://image.tmdb.org/t/p/w185/1pYF9lT9eI2eC3a3qW9L5m6n7Y1.jpg"}
-    ],
-    "cast": "Ranveer Singh, Arjun Rampal, R. Madhavan, Sanjay Dutt, Sara Arjun, Arjan Panwar",
-    "desc": "Hamza Ali Mazari n’existe pas. Derrière ce nom se cache Jaskirat Singh Rangi, infiltré au cœur du monde criminel pakistanais. Sa cible : Majo, un fantôme insaisissable.",
-    "url": "https://archive.org/download/1275990/1275990.ia.mp4"
+    "desc": "Infiltration à haut risque dans le crime pakistanais.",
+    "actors_pics": [{"name": "Ranveer Singh", "img": "https://image.tmdb.org/t/p/w185/8ZzS5yL7hI8pP6E5WqX9S4vL4Jq.jpg"}],
+    "trailer": "zKshG4pX_9o",
+    "url": "aHR0cHM6Ly9hcmNoaXZlLm9yZy9kb3dubG9hZC8xMjc1OTkwLzEyNzU5OTAuaWEubXA0"
   },
   {
     "t": "Reminders of Him (2026)",
     "img": "https://image.tmdb.org/t/p/w220_and_h330_face/od9yzZ6cc3ZGSvJI2mTxcsyI48M.jpg",
     "cat": "LES DERNIÈRES SORTIES",
-    "trailer": "YpE8Z6U6-uQ",
-    "actors_pics": [
-      {"name": "Maika Monroe", "img": "https://image.tmdb.org/t/p/w185/7pYF9lT9eI2eC3a3qW9L5m6n7Z1.jpg"},
-      {"name": "Rudy Pankow", "img": "https://image.tmdb.org/t/p/w185/8pYF9lT9eI2eC3a3qW9L5m6n7Z2.jpg"},
-      {"name": "Lauren Graham", "img": "https://image.tmdb.org/t/p/w185/8pYF9lT9eI2eC3a3qW9L5m6n7Z3.jpg"}
-    ],
-    "cast": "Maika Monroe, Tyriq Withers, Rudy Pankow, Bradley Whitford, Lauren Graham, Zoe Kosovic",
-    "desc": "Après une sortie parfaite avec son petit ami, Kenna commet une erreur irréparable qui la conduit en prison pour sept ans. Espérant reconstruire sa vie après sa libération, elle tente de retrouver sa fille, mais ses grands-parents, qui en ont la garde, refusent de la laisser la voir. Elle trouve bientôt une compassion inattendue auprès du propriétaire d'un bar local, et leur romance secrète donne à Kenna l'espoir d'une seconde chance.",
-    "url": "https://archive.org/download/1285281/1285281.ia.mp4"
+    "desc": "Kenna tente de retrouver sa fille après sa libération.",
+    "actors_pics": [{"name": "Maika Monroe", "img": "https://image.tmdb.org/t/p/w185/6y5W6B3W6B3W6B3W6B3W6B3W6B3.jpg"}],
+    "trailer": "K_9lI4O7fSg",
+    "url": "aHR0cHM6Ly9hcmNoaXZlLm9yZy9kb3dubG9hZC8xMjg1MjgxLzEyODUyODEuaWEubXA0"
   },
   {
     "t": "The Gates (2026)",
     "img": "https://image.tmdb.org/t/p/w220_and_h330_face/8y5m72kzYROcI3Swq2B5uMhIxcW.jpg",
     "cat": "LES DERNIÈRES SORTIES",
-    "trailer": "Q83V7Y-A0A8",
-    "actors_pics": [
-      {"name": "Mason Gooding", "img": "https://image.tmdb.org/t/p/w185/8pYF9lT9eI2eC3a3qW9L5m6n7Z4.jpg"},
-      {"name": "Algee Smith", "img": "https://image.tmdb.org/t/p/w185/8pYF9lT9eI2eC3a3qW9L5m6n7Z5.jpg"},
-      {"name": "James Van Der Beek", "img": "https://image.tmdb.org/t/p/w185/8pYF9lT9eI2eC3a3qW9L5m6n7Z6.jpg"}
-    ],
-    "cast": "Mason Gooding, Algee Smith, Keith Powers, James Van Der Beek, Brad Leland, Kylr Coffman",
-    "desc": "Le road trip de trois amis vire au cauchemar quand ils sont témoins d'un meurtre dans une résidence sécurisée. Coincés sur place et pourchassés par les habitants qui les accusent, leur amitié se brise à mesure qu'un patriarche charismatique mais inquiétant resserre l'étau.",
-    "url": "https://archive.org/download/1285668/1285668.ia.mp4"
+    "desc": "Un road trip vire au cauchemar dans une résidence sécurisée.",
+    "actors_pics": [{"name": "Mason Gooding", "img": "https://image.tmdb.org/t/p/w185/7Z7U6Gq9W0b0L6W6B3W6B3W6B3.jpg"}],
+    "url": "aHR0cHM6Ly9hcmNoaXZlLm9yZy9kb3dubG9hZC8xMjg1NjY4LzEyODU2NjguaWEubXA0"
   },
   {
     "t": "Balls Up : Mettez le paquet ! (2026)",
     "img": "https://image.tmdb.org/t/p/w220_and_h330_face/d0k1OH8vBxr9xYjUmHTrXbGo4IW.jpg",
     "cat": "LES DERNIÈRES SORTIES",
-    "trailer": "dQw4w9WgXcQ",
-    "actors_pics": [
-      {"name": "Mark Wahlberg", "img": "https://image.tmdb.org/t/p/w185/8pYF9lT9eI2eC3a3qW9L5m6n7Z7.jpg"},
-      {"name": "Paul Walter Hauser", "img": "https://image.tmdb.org/t/p/w185/8pYF9lT9eI2eC3a3qW9L5m6n7Z8.jpg"},
-      {"name": "Sacha Baron Cohen", "img": "https://image.tmdb.org/t/p/w185/8pYF9lT9eI2eC3a3qW9L5m6n7Z9.jpg"}
-    ],
-    "cast": "Mark Wahlberg, Paul Walter Hauser, Sacha Baron Cohen, Benjamin Bratt, Luciano Szafir, Eva De Dominici",
-    "desc": "Dans cette comédie déjantée et exubérante, les cadres du marketing Brad (Mark Wahlberg) et Elijah (Paul Walter Hauser) présentent un préservatif intégral novateur comme sponsor de la Coupe du monde au Brésil. Après avoir arrosé leur succès et déclenché un scandale, ils doivent échapper aux fans déchaînés, criminels et fonctionnaires corrompus pour sauver leur carrière et rentrer chez eux en vie.",
-    "url": "https://archive.org/download/1285714/1285714.ia.mp4"
+    "desc": "Scandale marketing lors de la Coupe du monde au Brésil.",
+    "actors_pics": [{"name": "Mark Wahlberg", "img": "https://image.tmdb.org/t/p/w185/6v54Xp1E6kL4E3C1wHq7uD6vS.jpg"}],
+    "url": "aHR0cHM6Ly9hcmNoaXZlLm9yZy9kb3dubG9hZC8xMjg1NzE0LzEyODU3MTQuaWEubXA0"
   },
   {
     "t": "Qui brille au combat (2025)",
     "img": "https://image.tmdb.org/t/p/w220_and_h330_face/kpUkx4nxuH9ssoTi4NLunlRcXgu.jpg",
     "cat": "LES DERNIÈRES SORTIES",
-    "trailer": "j_F4k6V-1C8",
-    "actors_pics": [
-      {"name": "Mélanie Laurent", "img": "https://image.tmdb.org/t/p/w185/8pYF9lT9eI2eC3a3qW9L5m6n7W0.jpg"},
-      {"name": "Pierre-Yves Cardinal", "img": "https://image.tmdb.org/t/p/w185/8pYF9lT9eI2eC3a3qW9L5m6n7W1.jpg"}
-    ],
-    "cast": "Mélanie Laurent, Pierre-Yves Cardinal, Sarah Pachoud, Angelina Woreth, Félix Kysyl, Stéphane Varupenne",
-    "desc": "Qui brille au combat est le sens étymologique du prénom Bertille, la plus jeune des deux sœurs de la famille Roussier, atteinte d’un handicap lourd au diagnostic incertain. La famille vit dans un équilibre fragile autour de cet enfant qui accapare les efforts et pensées de chacun, et qui pourrait perdre la vie à tout moment.",
-    "url": "https://archive.org/download/1285716/1285716.ia.mp4"
+    "desc": "Équilibre fragile d'une famille autour d'un handicap lourd.",
+    "actors_pics": [{"name": "Mélanie Laurent", "img": "https://image.tmdb.org/t/p/w185/6oYf2R70fP2O49jBvF6I2v2vXk3.jpg"}],
+    "url": "aHR0cHM6Ly9hcmNoaXZlLm9yZy9kb3dubG9hZC8xMjg1NzE2LzEyODU3MTYuaWEubXA0"
   },
   {
     "t": "180 (2026)",
     "img": "https://image.tmdb.org/t/p/w220_and_h330_face/aQm2NXs52FNasxHawM76ybyZkRB.jpg",
     "cat": "LES DERNIÈRES SORTIES",
-    "trailer": "Y2I7mY-H0U0",
-    "actors_pics": [
-      {"name": "Warren Masemola", "img": "https://image.tmdb.org/t/p/w185/8pYF9lT9eI2eC3a3qW9L5m6n7W2.jpg"},
-      {"name": "Desmond Dube", "img": "https://image.tmdb.org/t/p/w185/8pYF9lT9eI2eC3a3qW9L5m6n7W3.jpg"}
-    ],
-    "cast": "Prince Grootboom, Noxolo Dlamini, Danica De La Rey, Warren Masemola, Desmond Dube, Fana Mokoena",
-    "desc": "Lorsqu'une altercation entre conducteurs laisse son fils entre la vie et la mort, un père sombre dans une spirale destructrice nourrie par le désespoir et la vengeance.",
-    "url": "https://archive.org/download/1285814/1285814.ia.mp4"
+    "desc": "Spirale destructrice après une altercation routière.",
+    "url": "aHR0cHM6Ly9hcmNoaXZlLm9yZy9kb3dubG9hZC8xMjg1ODE0LzEyODU4MTQuaWEubXA0"
   },
   {
     "t": "Roommates (2026)",
     "img": "https://image.tmdb.org/t/p/w220_and_h330_face/eW1s6omXIfVkTlmKVe9y9Dwwt4u.jpg",
     "cat": "LES DERNIÈRES SORTIES",
-    "trailer": "L5X_Y-H1U0",
-    "actors_pics": [
-      {"name": "Chloe East", "img": "https://image.tmdb.org/t/p/w185/8pYF9lT9eI2eC3a3qW9L5m6n7W4.jpg"},
-      {"name": "Natasha Lyonne", "img": "https://image.tmdb.org/t/p/w185/8pYF9lT9eI2eC3a3qW9L5m6n7W5.jpg"}
-    ],
-    "cast": "Sadie Sandler, Chloe East, Aidan Langford, Natasha Lyonne, Nick Kroll, Carol Kane",
-    "desc": "En première année de fac, la timide Devon propose à Celeste, une étudiante cool et sûre d'elle, d'être sa coloc… mais leur amitié naissante vire bientôt à la relation toxique.",
-    "url": "https://archive.org/download/1285815/1285815.ia.mp4"
+    "desc": "Relation toxique entre deux colocataires à la fac.",
+    "url": "aHR0cHM6Ly9hcmNoaXZlLm9yZy9kb3dubG9hZC8xMjg1ODE1LzEyODU4MTUuaWEubXA0"
   },
   {
     "t": "Outbreak (2025)",
-    "img": "https://c7.alamy.com/comp/3CXX08J/outbreak-movie-poster-billy-burke-3CXX08J.jpg",
+    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/o866Yp2vL8T76C5mY5W6B3W6B3.jpg",
     "cat": "LES DERNIÈRES SORTIES",
-    "trailer": "S2X_Y-H1U2",
-    "actors_pics": [
-      {"name": "Billy Burke", "img": "https://image.tmdb.org/t/p/w185/8pYF9lT9eI2eC3a3qW9L5m6n7W6.jpg"},
-      {"name": "Taylor Handley", "img": "https://image.tmdb.org/t/p/w185/8pYF9lT9eI2eC3a3qW9L5m6n7W7.jpg"}
-    ],
-    "cast": "Billy Burke, Raoul Max Trujillo, Taylor Handley, Alyshia Ochse, Erik Aude, Elisabeth P. Carpenter",
-    "desc": "Un thriller psychologique sur le mari d'un garde forestier de l'État et sa femme qui luttent pour faire face à la disparition de leur fils adolescent.",
-    "url": "https://archive.org/download/1235375/1235375.ia.mp4"
+    "desc": "Secrets et disparitions dans une petite bourgade.",
+    "actors_pics": [{"name": "Billy Burke", "img": "https://image.tmdb.org/t/p/w185/8ZzS5yL7hI8pP6E5WqX9S4vL4Jq.jpg"}],
+    "url": "aHR0cHM6Ly9hcmNoaXZlLm9yZy9kb3dubG9hZC8xMjM1Mzc1LzEyMzUzNzUuaWEubXA0"
   },
   {
     "t": "Yoh! Bestie (2026)",
     "img": "https://image.tmdb.org/t/p/w220_and_h330_face/9wBzRaeWfELNOPmcvOVTmB3kDEl.jpg",
     "cat": "LES DERNIÈRES SORTIES",
-    "trailer": "T2X_Y-H1U3",
-    "actors_pics": [
-      {"name": "Katlego Lebogang", "img": "https://image.tmdb.org/t/p/w185/8pYF9lT9eI2eC3a3qW9L5m6n7W8.jpg"}
-    ],
-    "cast": "Katlego Lebogang, Didie Makobane, Kagiso Modupe, Fikile Mthwalo",
-    "desc": "Thando n'a jamais de chance en amour, mais lorsque son meilleur ami revient de voyage accompagné de sa fiancée, elle est contrainte de faire face à un nouveau sentiment : la jalousie.",
-    "url": "https://archive.org/download/1271019/1271019.ia.mp4"
+    "desc": "Jalousie et amitié mise à rude épreuve.",
+    "url": "aHR0cHM6Ly9hcmNoaXZlLm9yZy9kb3dubG9hZC8xMjcxMDE5LzEyNzEwMTkuaWEubXA0"
   },
   {
     "t": "Yoroï (2025)",
     "img": "https://image.tmdb.org/t/p/w220_and_h330_face/39DriTpvzihb8OYuL039IGPWNZ7.jpg",
     "cat": "AVENTURE",
-    "trailer": "q7t1xI9Z9_g",
-    "actors_pics": [
-      {"name": "Orelsan", "img": "https://image.tmdb.org/t/p/w185/8pYF9lT9eI2eC3a3qW9L5m6n7W9.jpg"},
-      {"name": "Clara Choï", "img": "https://image.tmdb.org/t/p/w185/8pYF9lT9eI2eC3a3qW1L5m6n7W1.jpg"}
-    ],
-    "cast": "Orelsan, Clara Choï, Kazuya Tanabe, Bob Brahmi",
-    "desc": "Après une dernière tournée éprouvante, Aurélien décide de s'installer au Japon avec sa femme Nanako, enceinte de leur premier enfant.",
-    "url": "https://archive.org/download/1275856/1275856.ia.mp4"
+    "desc": "Aurélien s'installe au Japon avec sa femme enceinte.",
+    "actors_pics": [{"name": "Orelsan", "img": "https://image.tmdb.org/t/p/w185/6v54Xp1E6kL4E3C1wHq7uD6vS.jpg"}],
+    "trailer": "7fSgX_9oZKs",
+    "url": "aHR0cHM6Ly9hcmNoaXZlLm9yZy9kb3dubG9hZC8xMjc1ODU2LzEyNzU4NTYuaWEubXA0"
   },
   {
     "t": "Cash Out 2 (2025)",
     "img": "https://image.tmdb.org/t/p/w220_and_h330_face/vD3Cqh5kXjPVNYK6cZjw54E4LO7.jpg",
     "cat": "ACTION",
-    "trailer": "U2X_Y-H1U4",
-    "actors_pics": [
-      {"name": "John Travolta", "img": "https://image.tmdb.org/t/p/w185/8pYF9lT9eI2eC3a3qW1L5m6n7W2.jpg"},
-      {"name": "Gina Gershon", "img": "https://image.tmdb.org/t/p/w185/8pYF9lT9eI2eC3a3qW1L5m6n7W3.jpg"}
-    ],
-    "cast": "John Travolta, Gina Gershon, Lukas Haas, Quavo, Natali Yura",
-    "desc": "Après leur dernier braquage, Mason Goddard et son équipe ont tiré un trait sur le crime et savourent une vie tranquille.",
-    "url": "https://archive.org/download/1239870/1239870.ia.mp4"
+    "desc": "Mason Goddard reprend du service pour un braquage.",
+    "actors_pics": [{"name": "John Travolta", "img": "https://image.tmdb.org/t/p/w185/8ZzS5yL7hI8pP6E5WqX9S4vL4Jq.jpg"}],
+    "url": "aHR0cHM6Ly9hcmNoaXZlLm9yZy9kb3dubG9hZC8xMjM5ODcwLzEyMzk4NzAuaWEubXA0"
   },
   {
     "t": "Les Justiciers de l'Ombre (2025)",
     "img": "https://image.tmdb.org/t/p/w220_and_h330_face/z716KiQ1HAgyPq0CcS3bVhVNGob.jpg",
     "cat": "THRILLER",
-    "trailer": "V2X_Y-H1U5",
-    "actors_pics": [
-      {"name": "Jackson Rathbone", "img": "https://image.tmdb.org/t/p/w185/8pYF9lT9eI2eC3a3qW1L5m6n7W4.jpg"},
-      {"name": "Dermot Mulroney", "img": "https://image.tmdb.org/t/p/w185/8pYF9lT9eI2eC3a3qW1L5m6n7W5.jpg"},
-      {"name": "Harvey Keitel", "img": "https://image.tmdb.org/t/p/w185/8pYF9lT9eI2eC3a3qW1L5m6n7W6.jpg"}
-    ],
-    "cast": "Jacob Keohane, Jackson Rathbone, Dermot Mulroney, Harvey Keitel, Keith Carradine",
-    "desc": "À l'aube de la guerre froide, Frank and Tommy, deux marshals américains, poursuivent Benjamin Bonney, un meurtrier recherché.",
-    "url": "https://archive.org/download/1244103/1244103.ia.mp4"
+    "desc": "Traque d'un meurtrier à l'aube de la guerre froide.",
+    "actors_pics": [{"name": "Harvey Keitel", "img": "https://image.tmdb.org/t/p/w185/mBf7vP4vP4vP4vP4vP4vP4vP4vP4vP.jpg"}],
+    "url": "aHR0cHM6Ly9hcmNoaXZlLm9yZy9kb3dubG9hZC8xMjQ0MTAzLzEyNDQxMDMuaWEubXA0"
   },
   {
     "t": "Hurlevent (2026)",
     "img": "https://image.tmdb.org/t/p/w220_and_h330_face/yEa8UQA71rjKhCq04mATDNOIT2B.jpg",
     "cat": "ROMANCE",
-    "trailer": "W2X_Y-H1U6",
-    "actors_pics": [
-      {"name": "Margot Robbie", "img": "https://image.tmdb.org/t/p/w185/8pYF9lT9eI2eC3a3qW1L5m6n7W7.jpg"},
-      {"name": "Jacob Elordi", "img": "https://image.tmdb.org/t/p/w185/8pYF9lT9eI2eC3a3qW1L5m6n7W8.jpg"}
-    ],
-    "cast": "Margot Robbie, Jacob Elordi, Hong Chau, Alison Oliver, Shazad Latif",
-    "desc": "Sur les landes balayées par le vent du Yorkshire, la passion dévorante entre Catherine Earnshaw et Heathcliff se transforme en une obsession destructrice.",
-    "url": "https://archive.org/download/1282701/1282701.ia.mp4"
+    "desc": "Adaptation moderne de la passion de Heathcliff.",
+    "actors_pics": [{"name": "Margot Robbie", "img": "https://image.tmdb.org/t/p/w185/6oYf2R70fP2O49jBvF6I2v2vXk3.jpg"}],
+    "trailer": "h74AXn4ZfS4",
+    "url": "aHR0cHM6Ly9hcmNoaXZlLm9yZy9kb3dubG9hZC8xMjgyNzAxLzEyODI3MDEuaWEubXA0"
   },
   {
     "t": "Toaster (2026)",
     "img": "https://image.tmdb.org/t/p/w220_and_h330_face/cbYyWHc1dL1bfwEJbaMYDYKgWG2.jpg",
     "cat": "COMÉDIE",
-    "trailer": "X2X_Y-H1U7",
-    "actors_pics": [
-      {"name": "Rajkummar Rao", "img": "https://image.tmdb.org/t/p/w185/8pYF9lT9eI2eC3a3qW1L5m6n7W9.jpg"},
-      {"name": "Sanya Malhotra", "img": "https://image.tmdb.org/t/p/w185/8pYF9lT9eI2eC3a3qW1L5m6n8W0.jpg"}
-    ],
-    "cast": "Rajkummar Rao, Sanya Malhotra, Abhishek Banerjee, Upendra Limaye",
-    "desc": "Un homme radin tente de récupérer le grille-pain qu'il a offert à un couple qui a annulé son mariage…",
-    "url": "https://ia600804.us.archive.org/19/items/1285585/1285585.ia.mp4"
+    "desc": "Récupérer un cadeau de mariage devient une odyssée.",
+    "url": "aHR0cHM6Ly9pYTYwMDgwNC51cy5hcmNoaXZlLm9yZy8xOS9pdGVtcy8xMjg1NTg1LzEyODU1ODUuaWEubXA0"
   },
   {
     "t": "Scream 7 (2026)",
     "img": "https://image.tmdb.org/t/p/w220_and_h330_face/j6Y7vqULt8tRlXVFXHK5aj3nCo4.jpg",
     "cat": "HORREUR",
-    "trailer": "be_MvKOnZ20",
-    "actors_pics": [
-      {"name": "Neve Campbell", "img": "https://image.tmdb.org/t/p/w185/8pYF9lT9eI2eC3a3qW1L5m6n8W1.jpg"},
-      {"name": "Courteney Cox", "img": "https://image.tmdb.org/t/p/w185/8pYF9lT9eI2eC3a3qW1L5m6n8W2.jpg"}
-    ],
-    "cast": "Neve Campbell, Courteney Cox, Isabel May, Jasmin Savoy Brown, Mason Gooding",
-    "desc": "Lorsqu’un nouveau Ghostface surgit dans la paisible ville où Sidney Prescott a reconstruit sa vie, ses pires cauchemars refont surface.",
-    "url": "https://archive.org/download/1282921_202604/1282921.ia.mp4"
+    "desc": "Le retour de Sidney Prescott face à Ghostface.",
+    "actors_pics": [{"name": "Neve Campbell", "img": "https://image.tmdb.org/t/p/w185/mBf7vP4vP4vP4vP4vP4vP4vP4vP4vP.jpg"}],
+    "trailer": "h74AXn4ZfS4",
+    "url": "aHR0cHM6Ly9hcmNoaXZlLm9yZy9kb3dubG9hZC8xMjgyOTIxXzIwMjYwNC8xMjgyOTIxLmlhLm1wNA=="
   },
   {
     "t": "LE COMPTE DE MONTE-CRISTO",
     "img": "https://image.tmdb.org/t/p/w220_and_h330_face/g7kiprYdXxaYCZABWQwTWAgRYjl.jpg",
     "cat": "AVENTURE",
-    "trailer": "m7U0zV2fL-8",
-    "actors_pics": [
-      {"name": "Pierre Niney", "img": "https://image.tmdb.org/t/p/w185/8pYF9lT9eI2eC3a3qW1L5m6n8W3.jpg"},
-      {"name": "Anaïs Demoustier", "img": "https://image.tmdb.org/t/p/w185/8pYF9lT9eI2eC3a3qW1L5m6n8W4.jpg"}
-    ],
-    "cast": "Pierre Niney, Anaïs Demoustier",
-    "desc": "Victime d'un complot, Edmond Dantès revient sous l'identité du Comte de Monte-Cristo pour se venger.",
-    "url": "https://stream02-mp4w.hulkcrush.org/videos/0aa8184771fb0019eaba7e9d08eba67b2e19d35882067d7b1e20bdaf9900d260.mp4"
+    "desc": "Dantès revient pour se venger de ceux qui l'ont trahi.",
+    "actors_pics": [{"name": "Pierre Niney", "img": "https://image.tmdb.org/t/p/w185/6v54Xp1E6kL4E3C1wHq7uD6vS.jpg"}],
+    "trailer": "73_V_5KjX9o",
+    "url": "aHR0cHM6Ly9zdHJlYW0wMi1tcDR3Lmh1bGtjcnVzaC5vcmcvdmlkZW9zLzBhYTgxODQ3NzFmYjAwMTllYWJhN2U5ZDA4ZWJhNjdiMmUxOWQzNTg4MjA2N2Q3YjFlMjBiZGFmOTkwMGQyNjAubXA0"
   },
   {
     "t": "The Revenant",
     "img": "https://image.tmdb.org/t/p/original/AsDto68FNWNXD15Ov0yMXASJiSB.jpg",
     "cat": "DRAME",
-    "trailer": "LoebZZ8K5N0",
-    "actors_pics": [
-      {"name": "Leonardo DiCaprio", "img": "https://image.tmdb.org/t/p/w185/8pYF9lT9eI2eC3a3qW1L5m6n8W5.jpg"},
-      {"name": "Tom Hardy", "img": "https://image.tmdb.org/t/p/w185/8pYF9lT9eI2eC3a3qW1L5m6n8W6.jpg"}
-    ],
-    "cast": "Leonardo DiCaprio, Tom Hardy",
-    "desc": "Dans une Amérique profondément sauvage, le trappeur Hugh Glass est sévèrement blessé et laissé pour mort.",
-    "url": "https://stream02-mp4w.hulkcrush.org/videos/706a75d71efc60de8aba3fded8f09bed2f8458ea29443ff0cc0cca8d6de47c75.mp4"
+    "desc": "Survie et vengeance dans une nature sauvage.",
+    "actors_pics": [{"name": "L. DiCaprio", "img": "https://image.tmdb.org/t/p/w185/6v54Xp1E6kL4E3C1wHq7uD6vS.jpg"}],
+    "url": "aHR0cHM6Ly9zdHJlYW0wMi1tcDR3Lmh1bGtjcnVzaC5vcmcvdmlkZW9zLzcwNmE3NWQ3MWVmYzYwZGU4YWJhM2ZkZWQ4ZjA5YmVkMmY4NDU4ZWEyOTQ0M2ZmMGNjMGNjYThkNmRlNDdjNzUubXA0"
+  },
+  {
+    "t": "#Pire Soirée",
+    "img": "https://image.tmdb.org/t/p/w1280/6nRd8EVM2QGDkkv97a4HZCqjsVR.jpg",
+    "cat": "COMÉDIE",
+    "desc": "Enterrement de vie de jeune fille déjanté.",
+    "url": "aHR0cHM6Ly9zdHJlYW0wMS1obHMuaHVsa2NydXNoLm9yZy92b2QvZjA3ZTY2MzRjMTM1OWU2YTVlODA5ZWJhNDZlMjgzZGM4MmUxNzk2NGRlMzkxNTAyMmNmMjc0NWI3NjAwMjIyMC9tYXN0ZXIubTN1OA=="
+  },
+  {
+    "t": "(500)jours ensemble",
+    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/Au6ac2MEQuka3DtJMVxeyUaDNsh.jpg",
+    "cat": "COMÉDIE",
+    "desc": "L'anatomie d'une relation amoureuse non conventionnelle.",
+    "url": "aHR0cHM6Ly9zdHJlYW0wMi1tcDR3Lmh1bGtjcnVzaC5vcmcvdmlkZW9zL2VjMzE2YjkyN2E0NGY3M2U3MzVkYWY1NjFiZDFmZDVjMTQyMThjZWM5NzMwMzM0OWZmNWVmMmIxYzQ3YzhiZDkubXA0"
+  },
+  {
+    "t": "007 Spectre",
+    "img": "https://image.tmdb.org/t/p/w1280/AwCpcShhgRqoVPWhOzs4JiI4dlK.jpg",
+    "cat": "ACTION",
+    "desc": "Bond face au Spectre de son passé.",
+    "url": "aHR0cHM6Ly9zdHJlYW0wMi1tcDR3Lmh1bGtjcnVzaC5vcmcvdmlkZW9zLzgwZTA2MjUyNTE0YmZhY2IyYTNkNDhlOTY1ZGUzN2Q2MTJhOTYzMmE4YTM5MWQxOWMxMzBiM2YxYzI5MjM0ZTgubXA0"
+  },
+  {
+    "t": "10 bonnes raisons de te larguer",
+    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/2Ys0Wb2ZzgaqpyJ5zh10rWoA50t.jpg",
+    "cat": "COMÉDIE",
+    "desc": "Romance lycéenne culte avec Heath Ledger.",
+    "url": "aHR0cHM6Ly9zdHJlYW0wMS1obHMuaHVsa2NydXNoLm9yZy92b2QvOGUyMGVkZjI2MGY3YjhlY2RiNDQyYjk2NTBiMjQ5ZGE2ZGFlMzExOWZkYjNiZTI4YzIwM2NkZGE3NGYzYjFhNC9tYXN0ZXIubTN1OA=="
+  },
+  {
+    "t": "10 jours encore sans maman",
+    "img": "https://image.tmdb.org/t/p/w1280/lh6FDEXheft7W6AjJnSpLncstye.jpg",
+    "cat": "COMÉDIE",
+    "desc": "Vacances à la neige mouvementées pour Antoine.",
+    "url": "aHR0cHM6Ly9zdHJlYW0wMi1tcDR3Lmh1bGtjcnVzaC5vcmcvdmlkZW9zLzcxYzlhaTIzYmJkNDY1OTU2NTZmYmUwZjYwYjMxMWEzZjQ5OTkxN2FhM2FjMTg4NzA0MmE2M2ZiY2I3OTRiNTAubXA0"
+  },
+  {
+    "t": "10 jours sans maman",
+    "img": "https://image.tmdb.org/t/p/w1280/xEbSztKAAwIljX8A537HeZDKXUS.jpg",
+    "cat": "COMÉDIE",
+    "desc": "La réalité brutale du quotidien de parent au foyer.",
+    "url": "aHR0cHM6Ly9zdHJlYW0wMi1tcDR3Lmh1bGtjcnVzaC5vcmcvdmlkZW9zL2JlMGRhOGYxMWYwM2JlNDU2Y2YyNjBhZDIxODIyYzhjYjQzZWJjMDAxMzExMzNhZmZjMzgwMTA4ODA2NTZiMTIubXA0"
+  },
+  {
+    "t": "100% bio",
+    "img": "https://image.tmdb.org/t/p/w1280/eHnFRyZm8u9hby2wOxYPtyMcZTm.jpg",
+    "cat": "COMÉDIE",
+    "desc": "Confrontation entre tradition bouchère et véganisme.",
+    "url": "aHR0cHM6Ly9zdHJlYW0wMi1tcDR3Lmh1bGtjcnVzaC5vcmcvdmlkZW9zLzg4YjIzOGE3NDg1MmFjNzg1MDQ3MGQxMTM3OWQwYzIxNmQzN2FkNWNlNGEzYjNlNDZjMjE1MjFhNjNiMTVlMjEubXA0"
+  },
+  {
+    "t": "1001 pattes",
+    "img": "https://image.tmdb.org/t/p/w1280/wtGgCxW4TylnDAXtIf3yuXixipC.jpg",
+    "cat": "ANIMATION",
+    "desc": "Tilt cherche des guerriers pour libérer sa colonie.",
+    "url": "aHR0cHM6Ly9zdHJlYW0wMi1tcDR3Lmh1bGtjcnVzaC5vcmcvdmlkZW9zLzNhMDFkMzVkMjI0YjY4YWMwZGMyMzg0NGRjMTYyMzBlNmVhNWU0NDcwYjUzMDE4NDI0MDJkZDQzMjhkZWFjNDYubXA0"
+  },
+  {
+    "t": "12 Rounds",
+    "img": "https://image.tmdb.org/t/p/w1280/soOzhbIggxpBvxcFTJy5hvRJs37.jpg",
+    "cat": "ACTION",
+    "desc": "Course contre la montre à travers la ville.",
+    "url": "aHR0cHM6Ly9zdHJlYW0wMi1tcDR3Lmh1bGtjcnVzaC5vcmcvdmlkZW9zL2MzYjVmZjMwMmYwMmkyNDQ0MmY2YjA3ZjU0OWMyZmIyZjc1NTA0ODI4ZTI4YWExNzgyZWIyYjAyMWRlMTdiMmIubXA0"
+  },
+  {
+    "t": "120 Battements par minute",
+    "img": "https://image.tmdb.org/t/p/w1280/7mdxe4MfqBdKGeKZAZYELJmCKVT.jpg",
+    "cat": "DRAME",
+    "desc": "Lutte acharnée contre l'indifférence face au sida.",
+    "url": "aHR0cHM6Ly9zdHJlYW0wMS1obHMuaHVsa2NydXNoLm9yZy92b2QvY2ZjYmE0MTk4MzQ3MjdlOWE4OGM4MzExZWRlMmNjMGU3ZTM1YzNmYmUyYzA3MDlmMGYyNmFhMzhhMThhYzA0ZC9tYXN0ZXIubTN1OA=="
+  },
+  {
+    "t": "127 heures",
+    "img": "https://image.tmdb.org/t/p/w1280/95t9onaQh0nUudfWOGvyJgZSka0.jpg",
+    "cat": "DRAME",
+    "desc": "Seul face à la mort dans un canyon isolé.",
+    "url": "aHR0cHM6Ly9zdHJlYW0wMi1tcDR3Lmh1bGtjcnVzaC5vcmcvdmlkZW9zLzYzOTlkZGE4Nzk1OGQ3MTk4MjAyOGVlNjc4OTM3M2I4Y2IxY2ExM2E0NTQ0M2Q0M2E0NzQzN2JmZjJiMmVjNWYubXA0"
   },
   {
     "t": "Avatar: La Voie de l'eau",
     "img": "https://media.themoviedb.org/t/p/w220_and_h330_face/7TOaaKbSYfilIpZsRCS1AyFCxaJ.jpg",
     "cat": "SCIENCE-FICTION",
+    "desc": "Jake Sully protège sa famille sur les récifs de Pandora.",
     "trailer": "d9MyW72ELq0",
-    "actors_pics": [
-      {"name": "Sam Worthington", "img": "https://image.tmdb.org/t/p/w185/8pYF9lT9eI2eC3a3qW1L5m6n8W7.jpg"},
-      {"name": "Zoe Saldana", "img": "https://image.tmdb.org/t/p/w185/8pYF9lT9eI2eC3a3qW1L5m6n8W8.jpg"}
-    ],
-    "cast": "Sam Worthington, Zoe Saldana",
-    "desc": "Jake Sully et Ney'tiri explorent les régions de Pandora.",
-    "url": "https://stream02-mp4w.hulkcrush.org/videos/4ee5e031f6d9e050444dd24dc887fa6de3e39b60bbb477fdeadd3d9670251dc2.mp4"
+    "url": "aHR0cHM6Ly9zdHJlYW0wMi1tcDR3Lmh1bGtjcnVzaC5vcmcvdmlkZW9zLzRlZTVlMDMxZjZkOWUwNTA0NDRkZDI0ZGM4ODdmYTZkZTNlMzliNjBiYmI0NzdmZGVhZGQzZDk2NzAyNTFkYzIubXA0"
   },
   {
     "t": "STRANGER THINGS - S01E01",
     "img": "https://image.tmdb.org/t/p/w220_and_h330_face/4Y5ZXYnWBIV8Vpe8hcA0LH6hC80.jpg",
     "cat": "SÉRIES",
-    "trailer": "b9EkMc79ZSU",
-    "actors_pics": [
-      {"name": "Millie Bobby Brown", "img": "https://image.tmdb.org/t/p/w185/8pYF9lT9eI2eC3a3qW1L5m6n8W9.jpg"},
-      {"name": "Finn Wolfhard", "img": "https://image.tmdb.org/t/p/w185/8pYF9lT9eI2eC3a3qW1L5m6n9W0.jpg"}
-    ],
-    "desc": "S01E01 - La Disparition",
-    "url": "https://ia800106.us.archive.org/5/items/9175_20260415/9175.ia.mp4"
+    "desc": "S01E01 - Tout commence avec la disparition de Will.",
+    "url": "aHR0cHM6Ly9pYTgwMDEwNi51cy5hcmNoaXZlLm9yZy81L2l0ZW1zLzkxNzVfMjAyNjA0MTUvOTE3NS5pYS5tcDQ="
+  },
+  {
+    "t": "STRANGER THINGS - S01E02",
+    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/4Y5ZXYnWBIV8Vpe8hcA0LH6hC80.jpg",
+    "cat": "SÉRIES",
+    "desc": "S01E02 - Eleven se cache chez Mike.",
+    "url": "aHR0cHM6Ly9pYTgwMDUwNC51cy5hcmNoaXZlLm9yZy8yMi9pdGVtcy8xMjgyOTIxLzEyODI5MjEuaWEubXA0"
+  },
+  {
+    "t": "STRANGER THINGS - S02E01",
+    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/4Y5ZXYnWBIV8Vpe8hcA0LH6hC80.jpg",
+    "cat": "SÉRIES",
+    "desc": "S02E01 - L'ombre revient sur Hawkins.",
+    "url": "aHR0cHM6Ly9pYTgwMDUwNC51cy5hcmNoaXZlLm9yZy8yMi9pdGVtcy8xMjgyOTIxLzEyODI5MjEuaWEubXA0"
+  },
+  {
+    "t": "12 Rounds 2",
+    "img": "https://image.tmdb.org/t/p/w1280/btThjvVC4lOqE95F9iVK118kpj2.jpg",
+    "cat": "ACTION",
+    "desc": "Nouveau défi mortel en 12 étapes.",
+    "url": "aHR0cHM6Ly9zdHJlYW0wMi1tcDR3Lmh1bGtjcnVzaC5vcmcvdmlkZW9zL2NjMjU3ZTg4MzI0MDVkYTdkODVmMTVhMTIxN2RkZDA3MTM4YTA5MDMyMWZmNjg4MTYzMzMxNDE3MmVmZjVhYjkubXA0"
+  },
+  {
+    "t": "12 Rounds 3",
+    "img": "https://image.tmdb.org/t/p/w1280/5y1RxRq7G3ocBeI3hA0eR6AvltH.jpg",
+    "cat": "ACTION",
+    "desc": "Lockdown : un flic piégé doit se battre seul.",
+    "url": "aHR0cHM6Ly9zdHJlYW0wMi1tcDR3Lmh1bGtjcnVzaC5vcmcvdmlkZW9zLzAxMjEyY2M1ZjRmM2M0ZDYzYmQxNDQ4YTljZTZmYjM2NTFjZjI4NWU3YTg3ZmY3N2NjYTEwMjcxOGU5ZjVhMDEubXA0"
+  },
+  {
+    "t": "13 Hours",
+    "img": "https://image.tmdb.org/t/p/w1280/xkLbQP3NEWzfmnef1TIlp71lMKU.jpg",
+    "cat": "ACTION",
+    "desc": "Siège héroïque à Benghazi.",
+    "url": "aHR0cHM6Ly9zdHJlYW0wMi1tcDR3Lmh1bGtjcnVzaC5vcmcvdmlkZW9zLzRlNDI5MTNmMzg1ZGFlODRjODhmOTA3Y2UyOWRlODEzYWViYTc0OTIyZDlmZDI5OWNkMTNlMTY5MjMwNGUwYTIubXA0"
+  },
+  {
+    "t": "13 Minutes",
+    "img": "https://image.tmdb.org/t/p/w1280/47RDMc8FeN1GxGMEmsVCCjXqzdE.jpg",
+    "cat": "ACTION",
+    "desc": "Course contre la montre face à une tornade monstre.",
+    "url": "aHR0cHM6Ly9zdHJlYW0wMi1tcDR3Lmh1bGtjcnVzaC5vcmcvdmlkZW9zLzllMDQzNmQxZTM4MTMwMzkxY2Q3MjliYjZkYzEyYTk5OWI2ODFhNjMxNzgwMzFmZTRhNWQwYzQ5OTExMWJlY2QubXA0"
+  },
+  {
+    "t": "13 fantômes",
+    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/lgPFz6Cr39kp3JtXCnGqJi72Zis.jpg",
+    "cat": "HORREUR",
+    "desc": "Une maison mécanique qui emprisonne l'horreur.",
+    "url": "aHR0cHM6Ly9zdHJlYW0wMi1tcDR3Lmh1bGtjcnVzaC5vcmcvdmlkZW9zL2EyYjI5ZDZjODcwYmI1MjI4NzI5MjQzYmRlYTc4MzdjZTI0YzJlNmYxYzRlOTI0YzNkOTdhYzY1MzU3ZDliMi5tcDQ="
+  },
+  {
+    "t": "14 Jours pour aller mieux",
+    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/pgGsB4S5T0ERx9ct6OgPIIqKdLP.jpg",
+    "cat": "COMÉDIE",
+    "desc": "Quand la méditation devient un enfer drôle.",
+    "url": "aHR0cHM6Ly9zdHJlYW0wMi1tcDR3Lmh1bGtjcnVzaC5vcmcvdmlkZW9zLzkyM2IzNmVmOTk0MzVhMzBlZDY1YTUxN2IxOTRhODBhNGY3MS5tcDQ="
+  },
+  {
+    "t": "14 x 8000",
+    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/iJ4kJGqcmHYvvotC7OUlUfs7Abj.jpg",
+    "cat": "DOCUMENTAIRE",
+    "desc": "L'exploit surhumain de Nimsdai Purja.",
+    "url": "aHR0cHM6Ly9zdHJlYW0wMi1tcDR3Lmh1bGtjcnVzaC5vcmcvdmlkZW9zLzNhYzM5OTdjMmJkZjEyNGE3Zjg2NGFjMzRlMWYwZDBhMDBmOTQzMTdiYTI4ZGI2ZDMyNjg1ZGY2NzJkMDgyMmYubXA0"
+  },
+  {
+    "t": "17 ans encore",
+    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/gSLMT1Nio75oxpxeU7fbBGg6a7f.jpg",
+    "cat": "COMÉDIE",
+    "desc": "Une chance de refaire sa vie à 17 ans.",
+    "url": "aHR0cHM6Ly9zdHJlYW0wMi1tcDR3Lmh1bGtjcnVzaC5vcmcvdmlkZW9zLzEzYmJkNzQ1OTk1YzMxMTNmNjUyZjk5YzI3MDFjOTJkYzVkYjY5ZjlmZjU2ZjQ4ZmU3MzIyZmE4N2Q4NzBkOTMubXA0"
+  },
+  {
+    "t": "2 Fast 2 Furious",
+    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/riIa9UIxyhhOBIXI8vhpWmcesGB.jpg",
+    "cat": "ACTION",
+    "desc": "Adrénaline et courses-poursuites à Miami.",
+    "url": "aHR0cHM6Ly9zdHJlYW0wMi1tcDR3Lmh1bGtjcnVzaC5vcmcvdmlkZW9zL2NjMjU3ZTg4MzI0MDVkYTdkODVmMTVhMTIxN2RkZDA3MTM4YTA5MDMyMWZmNjg4MTYzMzMxNDE3MmVmZjVhYjkubXA0"
+  },
+  {
+    "t": "Avatar: De feu et de cendres",
+    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/kG3N8oQ10qiw2MsnSHFGJpQNyEy.jpg",
+    "cat": "SCIENCE-FICTION",
+    "desc": "Le Peuple des Cendres change la donne sur Pandora.",
+    "trailer": "dQw4w9WgXcQ",
+    "url": "aHR0cHM6Ly9zdHJlYW0wMS1obHMuaHVsa2NydXNoLm9yZy92b2QvNzNlMWM4Nzg1MjE1MGY0MGM5ZWZhODI3N2JkNTE1NTU2NjUzMDMzY2JlMTIyOWFkZTViNzRjOTU2ZTdhZTVlL21hc3Rlci5tM3U4"
+  },
+  {
+    "t": "Y a-t-il un flic pour sauver la reine ?",
+    "img": "https://media.themoviedb.org/t/p/w220_and_h330_face/dIOzuzx0CLYpNLx1Yf44cykyYX5.jpg",
+    "cat": "COMÉDIE",
+    "desc": "Frank Drebin dans sa mission la plus absurde.",
+    "url": "aHR0cHM6Ly9zdHJlYW0wMS1obHMuaHVsa2NydXNoLm9yZy92b2QvZGEyMWFhODM3OTA3MWU4ZjEwNWM0ZDExNDFiOGU4MjlkYmMwNmFhYTU0MWU5YTNiYzg1ZmRmZWU0ZmMxMTZmYS9tYXN0ZXIubTN1OA=="
+  },
+  {
+    "t": "Louise",
+    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/62GcSVw9fE8paRDTCHDycZvQ26p.jpg",
+    "cat": "DRAME",
+    "desc": "Voyage intérieur d'une femme courageuse.",
+    "url": "aHR0cHM6Ly9pYTYwMTYwOC51cy5hcmNoaXZlLm9yZy8zMy9pdGVtcy8xMjg0OTM3XzIwMjYwNC8xMjg0OTM3Lm1wNA=="
   }
 ]
