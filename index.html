@@ -669,15 +669,22 @@ document.addEventListener('DOMContentLoaded', () => {
         techOrder: ['chromecast', 'html5'], plugins: { chromecast: { addButtonToControlBar: true } }
     });
 
-    // DOUBLE CLIQUE SUR LE LECTEUR (SAUT 10S)
-    player.on('dblclick', function(event) {
-        const rect = player.el().getBoundingClientRect();
-        const x = event.clientX - rect.left;
-        if (x < rect.width / 2) {
-            player.currentTime(player.currentTime() - 10);
-        } else {
-            player.currentTime(player.currentTime() + 10);
-        }
+    player.ready(() => { 
+        player.getChild('controlBar').addChild('Back', {}, 1); 
+        player.getChild('controlBar').addChild('Forward', {}, 2); 
+
+        // GESTION DU DOUBLE CLIQUE
+        const playerEl = player.el();
+        playerEl.addEventListener('dblclick', (event) => {
+            event.preventDefault();
+            const rect = playerEl.getBoundingClientRect();
+            const x = event.clientX - rect.left;
+            if (x < rect.width / 2) {
+                player.currentTime(player.currentTime() - 10);
+            } else {
+                player.currentTime(player.currentTime() + 10);
+            }
+        });
     });
 
     player.on('timeupdate', function() {
@@ -688,14 +695,11 @@ document.addEventListener('DOMContentLoaded', () => {
         } else document.getElementById('next-episode-btn').style.display = 'none';
         if(Math.floor(cur) % 10 === 0) saveP();
     });
+
     const Button = videojs.getComponent('Button');
     class Back extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-replay-10'; } handleClick() { player.currentTime(player.currentTime()-10); } }
     class Forward extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-forward-10'; } handleClick() { player.currentTime(player.currentTime()+10); } }
     videojs.registerComponent('Back', Back); videojs.registerComponent('Forward', Forward);
-    player.ready(() => { 
-        player.getChild('controlBar').addChild('Back', {}, 1); 
-        player.getChild('controlBar').addChild('Forward', {}, 2); 
-    });
 });
 </script>
 </body>
