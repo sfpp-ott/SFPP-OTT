@@ -100,32 +100,42 @@
 
         #expiration-banner { display: none; background: #ffcc00; color: #000; text-align: center; padding: 10px; font-size: 13px; font-weight: bold; position: relative; z-index: 1500; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .vjs-skip-button { font-size: 1.5em !important; cursor: pointer; }
         
-        /* --- NOUVEAU DESIGN OVERLAY DETAILS CINÉMA --- */
+        /* MODIFICATION DES PROPORTIONS DE L'OVERLAY DE DÉTAILS */
         #details-overlay {
-            position: fixed; inset: 0; background: #000;
-            z-index: 3500; display: none; overflow-y: auto;
+            position: fixed; inset: 0; background: rgba(0,0,0,0.95);
+            z-index: 3500; display: none; align-items: center; justify-content: center;
+            padding: 10px; /* Réduit pour gagner de la place sur petit écran */
         }
-        .details-hero {
-            position: relative; width: 100%; height: 75vh;
-            background-size: cover; background-position: center top;
-            display: flex; align-items: flex-end; padding: 0 5% 50px; box-sizing: border-box;
+        .details-content {
+            background: #111; max-width: 850px; width: 100%; border-radius: 12px;
+            display: flex; position: relative; overflow: hidden; border: 1px solid #333;
+            animation: slideUp 0.4s ease;
+            max-height: 95vh; /* Assure que la boîte ne sorte pas de l'écran */
         }
-        .details-hero::after {
-            content: ''; position: absolute; inset: 0;
-            background: linear-gradient(to top, #000 15%, transparent 80%), linear-gradient(to right, #000 10%, transparent 80%);
+        @keyframes slideUp { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        
+        .details-poster { width: 35%; object-fit: cover; border-right: 1px solid #222; }
+        .details-info { 
+            width: 65%; padding: 30px; display: flex; flex-direction: column; gap: 12px; 
+            overflow-y: auto; /* Autorise le scroll interne si le contenu est long */
         }
-        .details-ui { position: relative; z-index: 2; max-width: 850px; width: 100%; animation: fadeIn 0.6s ease; }
-        .details-title-xl { font-size: clamp(32px, 6vw, 64px); font-weight: 900; margin: 0 0 20px; text-shadow: 2px 2px 10px rgba(0,0,0,0.8); }
-        .btn-play-lg { background: white; color: black; border: none; padding: 15px 45px; border-radius: 4px; font-weight: bold; font-size: 18px; cursor: pointer; transition: 0.2s; display: flex; align-items: center; gap: 10px; }
-        .btn-play-lg:hover { background: #e5e5e5; transform: scale(1.05); }
-        .btn-close-circle { position: fixed; top: 25px; right: 25px; z-index: 100; background: rgba(0,0,0,0.5); color: white; border: 1px solid #666; width: 45px; height: 45px; border-radius: 50%; cursor: pointer; font-size: 20px; }
+        .details-info h2 { margin: 0; font-size: 24px; }
+        .details-info .meta { color: var(--gold); font-weight: bold; font-size: 13px; }
+        .details-info .synopsis { color: #ccc; line-height: 1.5; font-size: 14px; margin: 0; }
+        .details-actions { margin-top: auto; padding-top: 15px; display: flex; gap: 15px; }
+        
+        .btn-play-main { background: white; color: black; border: none; padding: 12px 25px; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 16px; flex: 1; min-height: 48px; }
+        .btn-play-main:hover { background: #ddd; }
+        .btn-close-details { position: absolute; top: 15px; right: 15px; background: rgba(0,0,0,0.6); border: none; color: white; width: 35px; height: 35px; border-radius: 50%; cursor: pointer; z-index: 100; border: 1px solid #444; }
 
-        .trailer-box { width: 100%; max-width: 500px; aspect-ratio: 16/9; background: #000; border-radius: 8px; margin-top: 30px; overflow: hidden; border: 1px solid #333; }
-        .cast-row { display: flex; gap: 12px; overflow-x: auto; padding: 15px 0; scrollbar-width: none; }
-        .actor-item { flex: 0 0 70px; text-align: center; }
-        .actor-item img { width: 60px; height: 60px; border-radius: 50%; object-fit: cover; border: 2px solid var(--accent); }
-        /* ------------------------------------------- */
+        .trailer-box { width: 100%; aspect-ratio: 16/9; background: #000; border-radius: 8px; margin-bottom: 5px; overflow: hidden; flex-shrink: 0; }
+        .cast-row { display: flex; gap: 12px; overflow-x: auto; padding: 5px 0 10px; scrollbar-width: none; flex-shrink: 0; }
+        .cast-row::-webkit-scrollbar { display: none; }
+        .actor-item { flex: 0 0 60px; text-align: center; }
+        .actor-item img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid var(--accent); }
+        .actor-name { font-size: 9px; color: #aaa; margin-top: 5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
         .movie-info { padding: 20px 5%; background: #0a0a0a; min-height: 150px; border-bottom: 3px solid var(--accent); }
         .movie-title { font-size: 26px; font-weight: bold; margin-bottom: 8px; color: #fff; display: flex; align-items: center; gap: 15px; }
@@ -183,11 +193,45 @@
         .episode-item { background: #111; padding: 15px; border-radius: 6px; margin-bottom: 8px; cursor: pointer; display: flex; align-items: center; gap: 15px; border: 1px solid #222; }
         .btn-close { background: #333; color: #fff; border: none; padding: 10px 22px; border-radius: 4px; cursor: pointer; }
 
+        .vjs-loading-spinner {
+            border: 6px solid rgba(255, 255, 255, 0.2) !important;
+            border-top-color: var(--accent) !important;
+            width: 80px !important;
+            height: 80px !important;
+            margin-top: -40px !important;
+            margin-left: -40px !important;
+            border-radius: 50% !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+        }
+
+        /* AJUSTEMENT MOBILE ET PAYSAGE */
         @media (max-width: 768px) {
             .card { flex: 0 0 130px; width: 130px; }
             .card img { width: 130px !important; height: 195px !important; }
-            .details-hero { height: 65vh; padding-bottom: 30px; }
-            .details-title-xl { font-size: 32px; }
+            .details-content { flex-direction: column; max-height: 95vh; }
+            
+            /* En portrait mobile, l'image est en haut avec un dégradé pour la lisibilité */
+            .details-poster { 
+                width: 100%; 
+                height: 200px; 
+                border-right: none; 
+                border-bottom: 1px solid #333;
+                mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+                -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+            }
+            .details-info { width: 100%; padding: 20px; gap: 10px; }
+            .details-info h2 { font-size: 20px; }
+            .btn-play-main { font-size: 14px; }
+        }
+
+        /* Spécifique au mode paysage mobile pour éviter que tout disparaisse */
+        @media (max-height: 500px) {
+            .details-content { flex-direction: row; height: 95vh; }
+            .details-poster { width: 30%; height: 100%; }
+            .details-info { width: 70%; padding: 15px; }
+            .trailer-box { aspect-ratio: 21/9; } /* Plus compact en paysage */
+            .details-actions { margin-top: 10px; }
         }
     </style>
 </head>
@@ -230,14 +274,17 @@
 </header>
 
 <div id="details-overlay">
-    <button class="btn-close-circle" onclick="closeDetails()">✕</button>
-    <div id="details-hero-bg" class="details-hero">
-        <div class="details-ui">
-            <h1 id="details-title" class="details-title-xl">Titre</h1>
-            <div id="details-meta" style="color: var(--gold); font-weight: bold; margin-bottom: 20px;"></div>
-            <button id="details-play-btn" class="btn-play-lg">▶ LECTURE</button>
-            <p id="details-desc" style="font-size: 17px; line-height: 1.6; color: #ccc; max-width: 650px; margin-top: 25px;"></p>
+    <div class="details-content">
+        <button class="btn-close-details" onclick="closeDetails()">✕</button>
+        <img id="details-img" class="details-poster" src="" alt="">
+        <div class="details-info">
+            <h2 id="details-title">Titre du film</h2>
+            <div id="details-meta" class="meta"></div>
             <div id="details-trailer-box"></div>
+            <p id="details-desc" class="synopsis"></p>
+            <div class="details-actions">
+                <button id="details-play-btn" class="btn-play-main" tabindex="0">▶ Lancer le film</button>
+            </div>
         </div>
     </div>
 </div>
@@ -420,7 +467,7 @@ window.addEventListener('popstate', function (event) {
     const seriesOverlay = document.getElementById('series-overlay');
     const playerSection = document.getElementById('player-section');
 
-    if (detailsOverlay.style.display === 'block') {
+    if (detailsOverlay.style.display === 'flex') {
         detailsOverlay.style.display = 'none';
         document.getElementById('details-trailer-box').innerHTML = "";
         return;
@@ -458,14 +505,11 @@ function closeSearch() { document.getElementById('search-overlay').style.display
 
 async function loadPlaylist() { try { const response = await fetch('films.json'); playlistData = await response.json(); render(); } catch (e) {} }
 
-// FONCTION OPEN DETAILS MISE À JOUR POUR LE NOUVEL UI
 function openDetails(idx) {
     history.pushState({ overlay: 'details' }, "");
     const m = playlistData[idx];
-    
-    document.getElementById('details-hero-bg').style.backgroundImage = `url('${m.img}')`;
+    document.getElementById('details-img').src = m.img;
     document.getElementById('details-title').innerText = m.t;
-    document.getElementById('details-desc').innerText = m.desc || "Aucun résumé disponible.";
     
     let castHtml = "";
     if (m.actors_pics && m.actors_pics.length > 0) {
@@ -488,16 +532,17 @@ function openDetails(idx) {
         </div>`;
     }
     document.getElementById('details-trailer-box').innerHTML = trailerHtml;
+    document.getElementById('details-desc').innerText = m.desc || "Aucun résumé disponible.";
     
     const playBtn = document.getElementById('details-play-btn');
     playBtn.onclick = () => { playMovie(idx); };
     
-    document.getElementById('details-overlay').style.display = 'block';
+    document.getElementById('details-overlay').style.display = 'flex';
     playBtn.focus();
 }
 
 function closeDetails() {
-    if (document.getElementById('details-overlay').style.display === 'block') {
+    if (document.getElementById('details-overlay').style.display === 'flex') {
         history.back();
     }
 }
@@ -647,35 +692,26 @@ function playMovie(idx) {
     const m = playlistData[idx];
     currentPlayingTitle = m.t;
     document.getElementById('next-episode-btn').style.display = 'none';
-    
     if(currentProfile) {
         let key = 'sfpp_hist_' + currentProfile;
         let hist = JSON.parse(localStorage.getItem(key) || "[]").filter(t => t !== m.t);
         hist.push(m.t); if(hist.length > 15) hist.shift();
         localStorage.setItem(key, JSON.stringify(hist));
     }
-    
     document.getElementById('details-overlay').style.display = 'none';
     document.getElementById('details-trailer-box').innerHTML = "";
     document.getElementById('series-overlay').style.display = 'none';
-
     document.getElementById('player-section').style.display = 'block';
     document.getElementById('display-title').innerText = m.t;
     document.getElementById('display-desc').innerText = m.desc || "";
     document.getElementById('display-actors').innerText = (m.actors || m.cast) ? "Avec : " + (m.actors || m.cast) : "";
     updatePlayerFavUI();
-    
     document.getElementById('player-blur-bg').style.backgroundImage = `url('${m.img}')`;
     player.poster(m.img); 
-    
     window.scrollTo({top:0, behavior:'smooth'});
     player.src({ src: m.url, type: 'video/mp4' });
-    
     const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
-    if(prog[m.t] && prog[m.t].t > 10) {
-        player.currentTime(prog[m.t].t);
-    }
-    
+    if(prog[m.t] && prog[m.t].t > 10) { player.currentTime(prog[m.t].t); }
     player.play();
 }
 
@@ -687,18 +723,8 @@ function playNextEpisode() {
     if (nextIdx !== -1) playMovie(nextIdx);
 }
 
-function closeP() { 
-    if (document.getElementById('player-section').style.display === 'block') {
-        history.back();
-    }
-}
-
-function closeSeries() { 
-    if (document.getElementById('series-overlay').style.display === 'block') {
-        history.back();
-    }
-}
-
+function closeP() { if (document.getElementById('player-section').style.display === 'block') { history.back(); } }
+function closeSeries() { if (document.getElementById('series-overlay').style.display === 'block') { history.back(); } }
 function changeView(v) { currentView = v; document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active')); document.getElementById('btn-'+v).classList.add('active'); render(); }
 function filter() { render(document.getElementById('searchBar').value); }
 function toggleEditMode() { isEditMode = !isEditMode; document.getElementById('profile-screen').classList.toggle('is-editing'); }
@@ -707,13 +733,9 @@ function requestAccess() { window.location.href = "mailto:sfpp.ott@gmail.com"; }
 
 document.addEventListener('DOMContentLoaded', () => {
     player = videojs('main-video', { 
-        controls: true, 
-        fluid: true,
-        fill: true,
-        techOrder: ['chromecast', 'html5'], 
-        plugins: { chromecast: { addButtonToControlBar: true } }
+        controls: true, fluid: true, fill: true,
+        techOrder: ['chromecast', 'html5'], plugins: { chromecast: { addButtonToControlBar: true } }
     });
-    
     player.on('timeupdate', function() {
         const dur = player.duration(), cur = player.currentTime();
         if (/S\d{2}E\d{2}/i.test(currentPlayingTitle) && dur > 0 && (dur - cur) < 80) {
@@ -722,7 +744,6 @@ document.addEventListener('DOMContentLoaded', () => {
         } else document.getElementById('next-episode-btn').style.display = 'none';
         if(Math.floor(cur) % 10 === 0) saveP();
     });
-
     let lastTap = 0;
     player.on('touchend', function(e) {
         let now = Date.now();
@@ -733,15 +754,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         lastTap = now;
     });
-
     const Button = videojs.getComponent('Button');
     class Back extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-replay-10'; } handleClick() { player.currentTime(player.currentTime()-10); } }
     class Forward extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-forward-10'; } handleClick() { player.currentTime(player.currentTime()+10); } }
     videojs.registerComponent('Back', Back); videojs.registerComponent('Forward', Forward);
-    player.ready(() => { 
-        player.getChild('controlBar').addChild('Back', {}, 1); 
-        player.getChild('controlBar').addChild('Forward', {}, 2); 
-    });
+    player.ready(() => { player.getChild('controlBar').addChild('Back', {}, 1); player.getChild('controlBar').addChild('Forward', {}, 2); });
 });
 </script>
 </body>
