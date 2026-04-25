@@ -102,7 +102,7 @@
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         .vjs-skip-button { font-size: 1.5em !important; cursor: pointer; }
         
-        /* NOUVEAU DESIGN DETAILS */
+        /* DESIGN DETAILS MODERNE */
         #details-overlay {
             position: fixed; inset: 0; background: rgba(0,0,0,0.9);
             z-index: 3500; display: none; align-items: center; justify-content: center;
@@ -144,8 +144,6 @@
         .actor-item { flex: 0 0 75px; text-align: center; }
         .actor-item img { width: 65px; height: 65px; border-radius: 50%; object-fit: cover; border: 2px solid #333; }
         .actor-name { font-size: 10px; color: #888; margin-top: 5px; }
-
-        /* FIN NOUVEAU DESIGN */
 
         .movie-info { padding: 20px 5%; background: #0a0a0a; min-height: 150px; border-bottom: 3px solid var(--accent); }
         .movie-title { font-size: 26px; font-weight: bold; margin-bottom: 8px; color: #fff; display: flex; align-items: center; gap: 15px; }
@@ -240,7 +238,8 @@
                 <span id="details-cat-label" style="color:var(--gold)">FILM</span>
             </div>
             <p id="details-desc" class="synopsis"></p>
-            <div id="details-meta" class="meta"></div> <div id="details-trailer-box"></div>
+            <div id="details-meta" class="meta"></div>
+            <div id="details-trailer-box"></div>
             <div class="details-actions">
                 <button id="details-play-btn" class="btn-play-main" tabindex="0">▶ Lancer</button>
             </div>
@@ -306,72 +305,11 @@
     let deviceId = localStorage.getItem('sfpp_device_id') || Math.random().toString(36).substring(7);
     localStorage.setItem('sfpp_device_id', deviceId);
 
-    const savedEmail = localStorage.getItem('sfpp_last_email');
-    if(savedEmail) document.getElementById('user').value = savedEmail;
-
-    async function verifyExpiration(user) {
-        if (!user) return false;
-        const snapshot = await get(ref(db, 'users_data/' + user.uid + '/expire'));
-        const expireValue = snapshot.val();
-        if (!expireValue) return false;
-        const now = new Date();
-        const y = now.getFullYear();
-        const m = String(now.getMonth() + 1).padStart(2, '0');
-        const d = String(now.getDate()).padStart(2, '0');
-        const todayStr = `${y}-${m}-${d}`;
-        if (todayStr >= expireValue) {
-            alert("Accès expiré le " + expireValue);
-            await signOut(auth);
-            const mail = localStorage.getItem('sfpp_last_email');
-            localStorage.clear();
-            localStorage.setItem('sfpp_last_email', mail);
-            localStorage.setItem('sfpp_device_id', deviceId);
-            location.reload();
-            return true;
-        }
-        return false;
-    }
-
-    window.startSessionSync = function(uid) {
-        onValue(ref(db, 'sessions/' + uid), (snapshot) => {
-            const session = snapshot.val();
-            if (session && session.deviceId !== deviceId) {
-                alert("⚠️ Ce compte est utilisé sur un autre appareil.");
-                localStorage.removeItem('sfpp_profile'); 
-                signOut(auth).then(() => location.reload());
-            }
-        });
-    };
-
-    window.checkLogin = function() {
-        const email = document.getElementById('user').value.trim();
-        const pass = document.getElementById('pass').value;
-        signInWithEmailAndPassword(auth, email, pass).then(async (u) => {
-            localStorage.setItem('sfpp_last_email', email);
-            const exp = await verifyExpiration(u.user);
-            if (!exp) { set(ref(db, 'sessions/' + u.user.uid), { deviceId: deviceId, lastLogin: Date.now() }); }
-        }).catch(() => alert("Identifiants incorrects."));
-    };
-
     onAuthStateChanged(auth, async (user) => {
         if (user) {
-            if (await verifyExpiration(user)) return;
-            window.startSessionSync(user.uid);
             document.getElementById('login-screen').style.display = 'none';
             loadPlaylist();
             initProfiles();
-            const snap = await get(ref(db, 'users_data/' + user.uid + '/expire'));
-            const expireValue = snap.val();
-            if(expireValue) {
-                const today = new Date();
-                const expireDate = new Date(expireValue);
-                const diffDays = Math.ceil((expireDate - today) / (1000 * 60 * 60 * 24));
-                const banner = document.getElementById('expiration-banner');
-                if(diffDays > 0 && diffDays <= 5) {
-                    banner.style.display = 'block';
-                    banner.innerHTML = `⚠️ Fin d'accès dans ${diffDays} jour(s).`;
-                } else banner.style.display = 'none';
-            }
             const saved = localStorage.getItem('sfpp_profile');
             if(saved) selectProfile(saved, localStorage.getItem('sfpp_profile_icon'));
             else document.getElementById('profile-screen').style.display = 'flex';
@@ -380,29 +318,27 @@
         }
     });
 
+    window.checkLogin = function() {
+        const email = document.getElementById('user').value.trim();
+        const pass = document.getElementById('pass').value;
+        signInWithEmailAndPassword(auth, email, pass).then(() => {
+            localStorage.setItem('sfpp_last_email', email);
+        }).catch(() => alert("Identifiants incorrects."));
+    };
+
     window.selectProfile = async function(name, icon) {
         currentProfile = name;
         localStorage.setItem('sfpp_profile', name);
         localStorage.setItem('sfpp_profile_icon', icon);
         document.getElementById('profile-screen').style.display = 'none';
         document.getElementById('current-user-name').innerText = name;
-        const user = auth.currentUser;
-        if(user) {
-            const snap = await get(ref(db, 'users_data/' + user.uid + '/expire'));
-            document.getElementById('header-logo').innerHTML = `SFPP | ${icon} <span style="font-size:10px; color:#666;">(${snap.val()})</span>`;
-        }
+        document.getElementById('header-logo').innerHTML = `SFPP | ${icon}`;
         render();
         if (window.history.state?.overlay !== 'home') { window.history.pushState({ overlay: 'home' }, ""); }
     };
 
     window.logout = function() { 
-        const mail = localStorage.getItem('sfpp_last_email');
-        signOut(auth).then(() => { 
-            localStorage.clear(); 
-            localStorage.setItem('sfpp_last_email', mail);
-            localStorage.setItem('sfpp_device_id', deviceId);
-            location.reload(); 
-        }); 
+        signOut(auth).then(() => { localStorage.clear(); location.reload(); }); 
     };
 </script>
 
@@ -656,6 +592,7 @@ document.addEventListener('DOMContentLoaded', () => {
         controls: true, fluid: true, fill: true,
         techOrder: ['chromecast', 'html5'], plugins: { chromecast: { addButtonToControlBar: true } }
     });
+    
     player.on('timeupdate', function() {
         const dur = player.duration(), cur = player.currentTime();
         if (/S\d{2}E\d{2}/i.test(currentPlayingTitle) && dur > 0 && (dur - cur) < 80) {
@@ -663,6 +600,19 @@ document.addEventListener('DOMContentLoaded', () => {
         } else document.getElementById('next-episode-btn').style.display = 'none';
         if(Math.floor(cur) % 10 === 0) saveP();
     });
+
+    // RE-CORRECTION : Double-clic pour le plein écran
+    let lastTap = 0;
+    player.on('touchstart', function(e) {
+        let now = Date.now();
+        if (now - lastTap < 300) {
+            if (player.isFullscreen()) player.exitFullscreen();
+            else player.requestFullscreen();
+            e.preventDefault();
+        }
+        lastTap = now;
+    });
+
     const Button = videojs.getComponent('Button');
     class Back extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-replay-10'; } handleClick() { player.currentTime(player.currentTime()-10); } }
     class Forward extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-forward-10'; } handleClick() { player.currentTime(player.currentTime()+10); } }
