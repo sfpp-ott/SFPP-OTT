@@ -684,10 +684,10 @@ document.addEventListener('DOMContentLoaded', () => {
         player.getChild('controlBar').addChild('Back', {}, 1); 
         player.getChild('controlBar').addChild('Forward', {}, 2); 
         
-        // --- DOUBLE-CLIC PLEIN ÉCRAN ---
-        player.on('dblclick', function() {
-            if (player.isFullscreen()) { player.exitFullscreen(); }
-            else { player.requestFullscreen(); }
+        // --- DOUBLE-CLIC PLEIN ÉCRAN (FIX) ---
+        player.tech().on('dblclick', function() {
+            if (player.isFullscreen()) player.exitFullscreen();
+            else player.requestFullscreen();
         });
     });
 });
