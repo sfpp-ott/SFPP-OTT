@@ -102,30 +102,65 @@
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         .vjs-skip-button { font-size: 1.5em !important; cursor: pointer; }
         
+        /* --- NOUVEAU DESIGN IMMERSIF (CONFORME PHOTO) --- */
         #details-overlay {
-            position: fixed; inset: 0; background: rgba(0,0,0,0.95);
-            z-index: 3500; display: none; align-items: center; justify-content: center;
-            padding: 20px;
+            position: fixed; inset: 0; background: #000;
+            z-index: 3500; display: none; flex-direction: column;
+            overflow-y: auto; overflow-x: hidden;
         }
-        .details-content {
-            background: #111; max-width: 850px; width: 100%; border-radius: 12px;
-            display: flex; position: relative; overflow: hidden; border: 1px solid #333;
-            animation: slideUp 0.4s ease;
+        .details-hero {
+            position: relative;
+            width: 100%;
+            height: 60vh;
+            background-size: cover;
+            background-position: center 10%;
         }
-        @keyframes slideUp { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-        
-        .details-poster { width: 35%; object-fit: cover; border-right: 1px solid #222; }
-        .details-info { width: 65%; padding: 40px; display: flex; flex-direction: column; gap: 15px; overflow-y: auto; max-height: 90vh; }
-        .details-info h2 { margin: 0; font-size: 28px; }
-        .details-info .meta { color: var(--gold); font-weight: bold; font-size: 14px; }
-        .details-info .synopsis { color: #ccc; line-height: 1.6; font-size: 15px; }
-        .details-actions { margin-top: 20px; display: flex; gap: 15px; }
-        
-        .btn-play-main { background: white; color: black; border: none; padding: 12px 25px; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 16px; flex: 1; }
-        .btn-play-main:hover { background: #ddd; }
-        .btn-close-details { position: absolute; top: 15px; right: 15px; background: rgba(255,255,255,0.1); border: none; color: white; width: 35px; height: 35px; border-radius: 50%; cursor: pointer; z-index: 10; }
+        .details-hero::after {
+            content: '';
+            position: absolute; inset: 0;
+            background: linear-gradient(to top, #000 5%, transparent 70%),
+                        linear-gradient(to right, rgba(0,0,0,0.8) 0%, transparent 100%);
+        }
+        .details-body {
+            position: relative;
+            padding: 0 6% 80px;
+            margin-top: -160px;
+            z-index: 10;
+        }
+        .details-title-large { font-size: clamp(30px, 8vw, 50px); font-weight: 800; margin-bottom: 15px; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+        .details-meta-row { display: flex; align-items: center; gap: 15px; margin-bottom: 30px; color: #bbb; font-size: 15px; font-weight: 500; }
+        .badge-year { border: 1px solid #777; padding: 2px 8px; border-radius: 4px; color: #fff; }
+        .rating-stars { color: var(--gold); letter-spacing: 2px; }
 
-        .trailer-box { width: 100%; aspect-ratio: 16/9; background: #000; border-radius: 8px; margin-bottom: 15px; overflow: hidden; }
+        .btn-play-large {
+            background: white; color: black; border: none;
+            padding: 14px 45px; border-radius: 6px; font-weight: 900;
+            font-size: 18px; cursor: pointer; display: flex; align-items: center; gap: 12px;
+            width: fit-content; margin-bottom: 45px; box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            transition: 0.2s;
+        }
+        .btn-play-large:hover { transform: scale(1.05); background: #f0f0f0; }
+
+        .section-label { font-size: 18px; font-weight: 700; margin-bottom: 15px; display: block; color: #fff; border-left: 4px solid var(--accent); padding-left: 12px; }
+        
+        .trailer-container {
+            width: 100%; max-width: 850px; aspect-ratio: 16/9;
+            background: #111; border-radius: 12px; overflow: hidden;
+            margin-bottom: 40px; border: 1px solid #333; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .synopsis-text {
+            color: #ccc; line-height: 1.7; font-size: 16px;
+            max-width: 850px; margin-bottom: 40px;
+        }
+        .btn-close-details {
+            position: fixed; top: 25px; right: 25px;
+            background: rgba(0,0,0,0.6); border: 1.5px solid rgba(255,255,255,0.4);
+            color: white; width: 45px; height: 45px; border-radius: 50%;
+            cursor: pointer; z-index: 100; font-size: 22px; display: flex; align-items: center; justify-content: center;
+            backdrop-filter: blur(5px);
+        }
+        /* ----------------------------------------------------- */
+
         .cast-row { display: flex; gap: 12px; overflow-x: auto; padding: 5px 0 15px; scrollbar-width: none; }
         .cast-row::-webkit-scrollbar { display: none; }
         .actor-item { flex: 0 0 70px; text-align: center; }
@@ -203,9 +238,8 @@
         @media (max-width: 768px) {
             .card { flex: 0 0 130px; width: 130px; }
             .card img { width: 130px !important; height: 195px !important; }
-            .details-content { flex-direction: column; max-height: 90vh; overflow-y: auto; }
-            .details-poster { width: 100%; height: 250px; }
-            .details-info { width: 100%; padding: 20px; }
+            .details-hero { height: 50vh; }
+            .details-body { margin-top: -120px; }
         }
     </style>
 </head>
@@ -248,18 +282,31 @@
 </header>
 
 <div id="details-overlay">
-    <div class="details-content">
-        <button class="btn-close-details" onclick="closeDetails()">✕</button>
-        <img id="details-img" class="details-poster" src="" alt="">
-        <div class="details-info">
-            <h2 id="details-title">Titre du film</h2>
-            <div id="details-meta" class="meta"></div>
-            <div id="details-trailer-box"></div>
-            <p id="details-desc" class="synopsis"></p>
-            <div class="details-actions">
-                <button id="details-play-btn" class="btn-play-main" tabindex="0">▶ Lancer le film</button>
-            </div>
+    <button class="btn-close-details" onclick="closeDetails()">✕</button>
+    
+    <div id="details-hero-img" class="details-hero"></div>
+    
+    <div class="details-body">
+        <h1 id="details-title" class="details-title-large"></h1>
+        
+        <div class="details-meta-row">
+            <span id="details-year" class="badge-year"></span>
+            <span>HD / 4K</span>
+            <span class="rating-stars">★★★★★</span>
         </div>
+
+        <button id="details-play-btn" class="btn-play-large" tabindex="0">
+            <span>▶</span> LECTURE
+        </button>
+
+        <span class="section-label">Bande-annonce</span>
+        <div id="details-trailer-box" class="trailer-container"></div>
+
+        <span class="section-label">Synopsis</span>
+        <p id="details-desc" class="synopsis-text"></p>
+
+        <span class="section-label">Casting</span>
+        <div id="details-meta"></div>
     </div>
 </div>
 
@@ -463,7 +510,7 @@ window.addEventListener('popstate', function (event) {
         const quitter = confirm("Souhaitez-vous vraiment quitter l'application ?");
         if (quitter) {
             exitConfirmed = true;
-            history.back();
+            history.back(); 
         }
     }
 });
@@ -477,39 +524,19 @@ document.addEventListener('focusin', (e) => {
 function openSearch() { document.getElementById('search-overlay').style.display = 'flex'; document.getElementById('searchBar').focus(); }
 function closeSearch() { document.getElementById('search-overlay').style.display = 'none'; document.getElementById('searchBar').value = ''; filter(); }
 
-// LES DONNÉES DU FILM SONT ICI
-async function loadPlaylist() { 
-    try { 
-        // Note: Dans ton usage réel, garde 'films.json'. J'ajoute ici le film pour l'exemple.
-        const response = await fetch('films.json'); 
-        playlistData = await response.json(); 
-        
-        // Ajout dynamique du film de l'image (si pas déjà présent dans ton JSON)
-        const filmImage = {
-            "t": "L'Âme Idéale (2025)",
-            "cat": "NOUVEAUTÉS",
-            "img": "https://image.tmdb.org/t/p/w500/v9Y76C2K2u8f6l1k1l1k1l1k1l.jpg", // Remplace par l'url réelle de ton poster
-            "desc": "Elsa, médecin, cache au reste du monde qu'elle voit les morts et les aide à 'passer de l'autre côté'. Convaincue que son don provoque le rejet, elle a renoncé aux histoires d'amour et s'est enfermée dans la solitude et le travail. Jusqu'au jour où elle fait la rencontre d'Oscar, un mort qui ne sait pas pourquoi il est là.",
-            "trailer": "YOUTUBE_ID", // Remplace par l'ID réel après "v=" de YouTube
-            "url": "LIEN_DU_FILM.mp4",
-            "actors_pics": [
-                {"name": "Acteur 1", "img": "Lien_Photo_1"},
-                {"name": "Actrice 2", "img": "Lien_Photo_2"}
-            ]
-        };
-        // playlistData.unshift(filmImage); // Activer si tu veux forcer l'ajout
+async function loadPlaylist() { try { const response = await fetch('films.json'); playlistData = await response.json(); render(); } catch (e) {} }
 
-        render(); 
-    } catch (e) {} 
-}
-
+// LOGIQUE MISE À JOUR POUR LE DESIGN PHOTO
 function openDetails(idx) {
     history.pushState({ overlay: 'details' }, "");
     const m = playlistData[idx];
-    document.getElementById('details-img').src = m.img;
+
+    // Image de fond
+    document.getElementById('details-hero-img').style.backgroundImage = `url('${m.img}')`;
     document.getElementById('details-title').innerText = m.t;
+    document.getElementById('details-year').innerText = m.year || "2024";
     
-    // Gestion dynamique du casting avec images
+    // Casting
     let castHtml = "";
     if (m.actors_pics && m.actors_pics.length > 0) {
         castHtml = `<div class="cast-row">` + 
@@ -520,27 +547,32 @@ function openDetails(idx) {
                 </div>
             `).join('') + `</div>`;
     } else {
-        castHtml = (m.actors || m.cast) ? "Casting : " + (m.actors || m.cast) : "";
+        castHtml = (m.actors || m.cast) ? "<p style='color:#aaa;'>Casting : " + (m.actors || m.cast) + "</p>" : "";
     }
     document.getElementById('details-meta').innerHTML = castHtml;
 
-    let trailerHtml = "";
+    // Trailer
     if (m.trailer) {
-        trailerHtml = `<div class="trailer-box">
-            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/${m.trailer}?rel=0" frameborder="0" allowfullscreen></iframe>
-        </div>`;
+        document.getElementById('details-trailer-box').innerHTML = `
+            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/${m.trailer}?rel=0&modestbranding=1" 
+            frameborder="0" allowfullscreen></iframe>`;
+    } else {
+        document.getElementById('details-trailer-box').innerHTML = "<p style='padding:20px; color:#555;'>Bande-annonce non disponible.</p>";
     }
-    document.getElementById('details-trailer-box').innerHTML = trailerHtml;
+
     document.getElementById('details-desc').innerText = m.desc || "Aucun résumé disponible.";
-    
-    const playBtn = document.getElementById('details-play-btn');
-    playBtn.onclick = () => { playMovie(idx); };
+    document.getElementById('details-play-btn').onclick = () => { playMovie(idx); };
     
     document.getElementById('details-overlay').style.display = 'flex';
-    playBtn.focus();
+    document.getElementById('details-overlay').scrollTo(0,0);
+    document.getElementById('details-play-btn').focus();
 }
 
-function closeDetails() { if (document.getElementById('details-overlay').style.display === 'flex') history.back(); }
+function closeDetails() {
+    if (document.getElementById('details-overlay').style.display === 'flex') {
+        history.back();
+    }
+}
 
 function initProfiles() {
     let profiles = JSON.parse(localStorage.getItem('sfpp_profiles_data')) || [
@@ -575,7 +607,8 @@ function toggleFavCurrent() {
     if(favs.includes(currentPlayingTitle)) favs = favs.filter(t => t !== currentPlayingTitle);
     else favs.push(currentPlayingTitle);
     localStorage.setItem(key, JSON.stringify(favs));
-    updatePlayerFavUI(); render(document.getElementById('searchBar').value);
+    updatePlayerFavUI();
+    render(document.getElementById('searchBar').value);
 }
 
 function updatePlayerFavUI() {
@@ -686,26 +719,34 @@ function playMovie(idx) {
     const m = playlistData[idx];
     currentPlayingTitle = m.t;
     document.getElementById('next-episode-btn').style.display = 'none';
+    
     if(currentProfile) {
         let key = 'sfpp_hist_' + currentProfile;
         let hist = JSON.parse(localStorage.getItem(key) || "[]").filter(t => t !== m.t);
         hist.push(m.t); if(hist.length > 15) hist.shift();
         localStorage.setItem(key, JSON.stringify(hist));
     }
+    
     document.getElementById('details-overlay').style.display = 'none';
     document.getElementById('details-trailer-box').innerHTML = "";
     document.getElementById('series-overlay').style.display = 'none';
+
     document.getElementById('player-section').style.display = 'block';
     document.getElementById('display-title').innerText = m.t;
     document.getElementById('display-desc').innerText = m.desc || "";
     document.getElementById('display-actors').innerText = (m.actors || m.cast) ? "Avec : " + (m.actors || m.cast) : "";
     updatePlayerFavUI();
+    
     document.getElementById('player-blur-bg').style.backgroundImage = `url('${m.img}')`;
     player.poster(m.img); 
+    
     window.scrollTo({top:0, behavior:'smooth'});
     player.src({ src: m.url, type: 'video/mp4' });
+    
     const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
-    if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
+    if(prog[m.t] && prog[m.t].t > 10) {
+        player.currentTime(prog[m.t].t);
+    }
     player.play();
 }
 
@@ -717,8 +758,18 @@ function playNextEpisode() {
     if (nextIdx !== -1) playMovie(nextIdx);
 }
 
-function closeP() { if (document.getElementById('player-section').style.display === 'block') history.back(); }
-function closeSeries() { if (document.getElementById('series-overlay').style.display === 'block') history.back(); }
+function closeP() { 
+    if (document.getElementById('player-section').style.display === 'block') {
+        history.back();
+    }
+}
+
+function closeSeries() { 
+    if (document.getElementById('series-overlay').style.display === 'block') {
+        history.back();
+    }
+}
+
 function changeView(v) { currentView = v; document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active')); document.getElementById('btn-'+v).classList.add('active'); render(); }
 function filter() { render(document.getElementById('searchBar').value); }
 function toggleEditMode() { isEditMode = !isEditMode; document.getElementById('profile-screen').classList.toggle('is-editing'); }
@@ -726,7 +777,14 @@ function switchProfile() { localStorage.removeItem('sfpp_profile'); location.rel
 function requestAccess() { window.location.href = "mailto:sfpp.ott@gmail.com"; }
 
 document.addEventListener('DOMContentLoaded', () => {
-    player = videojs('main-video', { controls: true, fluid: true, fill: true, techOrder: ['chromecast', 'html5'], plugins: { chromecast: { addButtonToControlBar: true } } });
+    player = videojs('main-video', { 
+        controls: true, 
+        fluid: true,
+        fill: true,
+        techOrder: ['chromecast', 'html5'], 
+        plugins: { chromecast: { addButtonToControlBar: true } }
+    });
+    
     player.on('timeupdate', function() {
         const dur = player.duration(), cur = player.currentTime();
         if (/S\d{2}E\d{2}/i.test(currentPlayingTitle) && dur > 0 && (dur - cur) < 80) {
@@ -751,7 +809,10 @@ document.addEventListener('DOMContentLoaded', () => {
     class Back extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-replay-10'; } handleClick() { player.currentTime(player.currentTime()-10); } }
     class Forward extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-forward-10'; } handleClick() { player.currentTime(player.currentTime()+10); } }
     videojs.registerComponent('Back', Back); videojs.registerComponent('Forward', Forward);
-    player.ready(() => { player.getChild('controlBar').addChild('Back', {}, 1); player.getChild('controlBar').addChild('Forward', {}, 2); });
+    player.ready(() => { 
+        player.getChild('controlBar').addChild('Back', {}, 1); 
+        player.getChild('controlBar').addChild('Forward', {}, 2); 
+    });
 });
 </script>
 </body>
