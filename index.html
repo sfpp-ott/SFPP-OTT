@@ -241,8 +241,7 @@
             <div class="meta">
                 <span id="details-meta-year">2024</span>
                 <span id="details-meta-cat">Film</span>
-                <span style="color:#46d369">98% match</span>
-            </div>
+                <span id="details-stars-display" style="color:var(--gold)"></span> </div>
             <div class="details-actions">
                 <button id="details-play-btn" class="btn-play-main" tabindex="0">▶ Lancer le film</button>
                 <button id="details-fav-btn" class="btn-fav-details" tabindex="0">+ Ma Liste</button>
@@ -422,13 +421,11 @@
 
 <script>
 // --- SÉCURITÉ ROBUSTE AJOUTÉE ---
-// Désactivation des raccourcis claviers F12, Ctrl+U, etc.
 document.onkeydown = function(e) {
     if (e.keyCode == 123 || (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74)) || (e.ctrlKey && e.keyCode == 85)) {
         return false;
     }
 };
-// Boucle anti-débogage
 setInterval(function() { (function() { debugger; }).call(); }, 5000);
 
 let player, playlistData = [], currentProfile = null, isEditMode = false, currentView = 'all', currentPlayingTitle = "", exitConfirmed = false;
@@ -450,7 +447,7 @@ window.addEventListener('popstate', function (event) {
     if (playerSection.style.display === 'block') {
         saveP(); 
         player.pause(); 
-        player.src(""); // Sécurité : on vide la source
+        player.src("");
         playerSection.style.display = 'none';
         render();
         return;
@@ -475,9 +472,17 @@ function openDetails(idx) {
     document.getElementById('details-header-bg').style.backgroundImage = `url('${m.img}')`;
     document.getElementById('details-title').innerText = m.t;
     document.getElementById('details-desc').innerText = m.desc || "Aucun résumé disponible.";
-    
-    // Modification pour afficher l'année du JSON
     document.getElementById('details-meta-year').innerText = m.year || "2024";
+    document.getElementById('details-meta-cat').innerText = m.cat;
+
+    // --- SYSTÈME D'ÉTOILES ---
+    const note = m.note || 5; 
+    let stars = "";
+    for (let i = 0; i < 5; i++) {
+        stars += (i < note) ? "★" : "☆";
+    }
+    document.getElementById('details-stars-display').innerText = stars;
+    // ------------------------
 
     let castHtml = "";
     if (m.actors_pics && m.actors_pics.length > 0) {
@@ -650,7 +655,6 @@ function openSeries(name) {
     content.innerHTML = html;
 }
 
-// RESTAURATION STRICTE DU DÉCODAGE BASE64 ORIGINAL
 function playMovie(idx) {
     history.replaceState({ overlay: 'player' }, "");
     const m = playlistData[idx];
@@ -674,12 +678,10 @@ function playMovie(idx) {
     
     player.poster(m.img); 
     
-    // LOGIQUE ORIGINALE : On décode et on lance
     try {
         const decodedUrl = atob(m.url);
         player.src({ src: decodedUrl, type: 'video/mp4' });
     } catch(e) {
-        // Fallback si l'URL n'est pas encore encodée
         player.src({ src: m.url, type: 'video/mp4' });
     }
     
@@ -729,15 +731,14 @@ document.addEventListener('DOMContentLoaded', () => {
         player.getChild('controlBar').addChild('Forward', {}, 2); 
     });
 });
-</script>
-<script>
-    if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-            navigator.serviceWorker.register('./sw.js')
-                .then(reg => console.log('SW enregistré !'))
-                .catch(err => console.log('Erreur SW:', err));
-        });
-    }
+
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js')
+            .then(reg => console.log('SW enregistré !'))
+            .catch(err => console.log('Erreur SW:', err));
+    });
+}
 </script>
 </body>
 </html>
