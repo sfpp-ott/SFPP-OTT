@@ -103,46 +103,34 @@
         .vjs-skip-button { font-size: 1.5em !important; cursor: pointer; }
         
         #details-overlay {
-            position: fixed; inset: 0; background: rgba(0,0,0,0.9);
+            position: fixed; inset: 0; background: rgba(0,0,0,0.95);
             z-index: 3500; display: none; align-items: center; justify-content: center;
-            backdrop-filter: blur(10px);
+            padding: 20px;
         }
         .details-content {
-            background: #141414; max-width: 900px; width: 95%; border-radius: 15px;
-            position: relative; overflow: hidden; border: 1px solid #333;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5); display: flex; flex-direction: column;
+            background: #111; max-width: 850px; width: 100%; border-radius: 12px;
+            display: flex; position: relative; overflow: hidden; border: 1px solid #333;
             animation: slideUp 0.4s ease;
         }
         @keyframes slideUp { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
         
-        .details-header-img { 
-            width: 100%; height: 280px; object-fit: cover; 
-            mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
-            -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
-        }
-        .details-info { padding: 30px; margin-top: -60px; overflow-y: auto; max-height: 70vh; }
-        .details-info h2 { margin: 0 0 10px 0; font-size: 32px; font-weight: 800; }
-        .details-meta-row { display: flex; gap: 15px; color: #46d369; font-weight: bold; font-size: 14px; margin-bottom: 15px; align-items: center; }
-        .details-info .synopsis { color: #d2d2d2; line-height: 1.5; font-size: 16px; margin-bottom: 20px; }
-        .details-actions { display: flex; gap: 15px; }
+        .details-poster { width: 35%; object-fit: cover; border-right: 1px solid #222; }
+        .details-info { width: 65%; padding: 40px; display: flex; flex-direction: column; gap: 15px; overflow-y: auto; max-height: 90vh; }
+        .details-info h2 { margin: 0; font-size: 28px; }
+        .details-info .meta { color: var(--gold); font-weight: bold; font-size: 14px; }
+        .details-info .synopsis { color: #ccc; line-height: 1.6; font-size: 15px; }
+        .details-actions { margin-top: 20px; display: flex; gap: 15px; }
         
-        .btn-play-main { 
-            background: white; color: black; border: none; padding: 14px 30px; 
-            border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 18px; 
-            display: flex; align-items: center; gap: 10px; transition: 0.2s;
-        }
-        .btn-play-main:hover { transform: scale(1.05); background: #e6e6e6; }
-        .btn-close-details { 
-            position: absolute; top: 20px; right: 20px; background: rgba(0,0,0,0.6); 
-            border: none; color: white; width: 40px; height: 40px; border-radius: 50%; 
-            cursor: pointer; z-index: 100; font-size: 18px;
-        }
+        .btn-play-main { background: white; color: black; border: none; padding: 12px 25px; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 16px; flex: 1; }
+        .btn-play-main:hover { background: #ddd; }
+        .btn-close-details { position: absolute; top: 15px; right: 15px; background: rgba(255,255,255,0.1); border: none; color: white; width: 35px; height: 35px; border-radius: 50%; cursor: pointer; z-index: 10; }
 
-        .trailer-box { width: 100%; aspect-ratio: 16/9; background: #000; border-radius: 10px; margin: 15px 0; overflow: hidden; border: 1px solid #333; }
-        .cast-row { display: flex; gap: 12px; overflow-x: auto; padding: 10px 0; scrollbar-width: none; }
-        .actor-item { flex: 0 0 75px; text-align: center; }
-        .actor-item img { width: 65px; height: 65px; border-radius: 50%; object-fit: cover; border: 2px solid #333; }
-        .actor-name { font-size: 10px; color: #888; margin-top: 5px; }
+        .trailer-box { width: 100%; aspect-ratio: 16/9; background: #000; border-radius: 8px; margin-bottom: 15px; overflow: hidden; }
+        .cast-row { display: flex; gap: 12px; overflow-x: auto; padding: 5px 0 15px; scrollbar-width: none; }
+        .cast-row::-webkit-scrollbar { display: none; }
+        .actor-item { flex: 0 0 70px; text-align: center; }
+        .actor-item img { width: 60px; height: 60px; border-radius: 50%; object-fit: cover; border: 2px solid var(--accent); }
+        .actor-name { font-size: 10px; color: #aaa; margin-top: 5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
         .movie-info { padding: 20px 5%; background: #0a0a0a; min-height: 150px; border-bottom: 3px solid var(--accent); }
         .movie-title { font-size: 26px; font-weight: bold; margin-bottom: 8px; color: #fff; display: flex; align-items: center; gap: 15px; }
@@ -161,9 +149,34 @@
         .arrow-left { left: 0; }
         .arrow-right { right: 0; }
 
-        .card { flex: 0 0 150px; width: 150px; cursor: pointer; position: relative; display: flex; flex-direction: column; }
-        .card img { width: 150px !important; height: 225px !important; object-fit: cover !important; border-radius: 4px; background: #222; display: block; }
-        .card-name { margin-top: 6px; font-size: 12px; text-align: center; color: #bbb; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; width: 100%; }
+        .card { 
+            flex: 0 0 150px; 
+            width: 150px;
+            cursor: pointer; 
+            position: relative; 
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .card img { 
+            width: 150px !important; 
+            height: 225px !important; 
+            object-fit: cover !important; 
+            border-radius: 4px; 
+            background: #222;
+            display: block;
+        }
+
+        .card-name { 
+            margin-top: 6px; 
+            font-size: 12px; 
+            text-align: center; 
+            color: #bbb; 
+            overflow: hidden; 
+            white-space: nowrap; 
+            text-overflow: ellipsis; 
+            width: 100%;
+        }
 
         .prog-bg { position: absolute; bottom: 25px; left: 0; width: 100%; height: 4px; background: rgba(255,255,255,0.2); border-radius: 0 0 4px 4px; overflow: hidden; }
         .prog-fill { height: 100%; background: var(--accent); transition: width 0.3s; }
@@ -175,15 +188,24 @@
         .episode-item { background: #111; padding: 15px; border-radius: 6px; margin-bottom: 8px; cursor: pointer; display: flex; align-items: center; gap: 15px; border: 1px solid #222; }
         .btn-close { background: #333; color: #fff; border: none; padding: 10px 22px; border-radius: 4px; cursor: pointer; }
 
-        @media (min-width: 768px) {
-            .details-content { flex-direction: row; height: 550px; }
-            .details-header-img { width: 40%; height: 100%; mask-image: linear-gradient(to right, black 80%, transparent 100%); }
-            .details-info { margin-top: 0; width: 60%; align-self: center; }
+        .vjs-loading-spinner {
+            border: 6px solid rgba(255, 255, 255, 0.2) !important;
+            border-top-color: var(--accent) !important;
+            width: 80px !important;
+            height: 80px !important;
+            margin-top: -40px !important;
+            margin-left: -40px !important;
+            border-radius: 50% !important;
+            visibility: visible !important;
+            opacity: 1 !important;
         }
 
         @media (max-width: 768px) {
             .card { flex: 0 0 130px; width: 130px; }
             .card img { width: 130px !important; height: 195px !important; }
+            .details-content { flex-direction: column; max-height: 90vh; overflow-y: auto; }
+            .details-poster { width: 100%; height: 250px; }
+            .details-info { width: 100%; padding: 20px; }
         }
     </style>
 </head>
@@ -228,19 +250,14 @@
 <div id="details-overlay">
     <div class="details-content">
         <button class="btn-close-details" onclick="closeDetails()">✕</button>
-        <img id="details-img" class="details-header-img" src="" alt="">
+        <img id="details-img" class="details-poster" src="" alt="">
         <div class="details-info">
             <h2 id="details-title">Titre du film</h2>
-            <div class="details-meta-row">
-                <span id="details-year">2026</span>
-                <span style="border:1px solid #444; padding:0 5px; border-radius:3px; color:#aaa">HD</span>
-                <span id="details-cat-label" style="color:var(--gold)">FILM</span>
-            </div>
-            <p id="details-desc" class="synopsis"></p>
             <div id="details-meta" class="meta"></div>
             <div id="details-trailer-box"></div>
+            <p id="details-desc" class="synopsis"></p>
             <div class="details-actions">
-                <button id="details-play-btn" class="btn-play-main" tabindex="0">▶ Lancer</button>
+                <button id="details-play-btn" class="btn-play-main" tabindex="0">▶ Lancer le film</button>
             </div>
         </div>
     </div>
@@ -304,11 +321,78 @@
     let deviceId = localStorage.getItem('sfpp_device_id') || Math.random().toString(36).substring(7);
     localStorage.setItem('sfpp_device_id', deviceId);
 
+    const savedEmail = localStorage.getItem('sfpp_last_email');
+    if(savedEmail) document.getElementById('user').value = savedEmail;
+
+    async function verifyExpiration(user) {
+        if (!user) return false;
+        const snapshot = await get(ref(db, 'users_data/' + user.uid + '/expire'));
+        const expireValue = snapshot.val();
+        if (!expireValue) return false;
+        
+        const now = new Date();
+        const y = now.getFullYear();
+        const m = String(now.getMonth() + 1).padStart(2, '0');
+        const d = String(now.getDate()).padStart(2, '0');
+        const todayStr = `${y}-${m}-${d}`;
+        
+        if (todayStr >= expireValue) {
+            alert("Accès expiré le " + expireValue);
+            await signOut(auth);
+            const mail = localStorage.getItem('sfpp_last_email');
+            localStorage.clear();
+            localStorage.setItem('sfpp_last_email', mail);
+            localStorage.setItem('sfpp_device_id', deviceId);
+            location.reload();
+            return true;
+        }
+        return false;
+    }
+
+    window.startSessionSync = function(uid) {
+        onValue(ref(db, 'sessions/' + uid), (snapshot) => {
+            const session = snapshot.val();
+            if (session && session.deviceId !== deviceId) {
+                alert("⚠️ Ce compte est utilisé sur un autre appareil.");
+                localStorage.removeItem('sfpp_profile'); 
+                signOut(auth).then(() => location.reload());
+            }
+        });
+    };
+
+    window.checkLogin = function() {
+        const email = document.getElementById('user').value.trim();
+        const pass = document.getElementById('pass').value;
+        signInWithEmailAndPassword(auth, email, pass).then(async (u) => {
+            localStorage.setItem('sfpp_last_email', email);
+            const exp = await verifyExpiration(u.user);
+            if (!exp) { 
+                set(ref(db, 'sessions/' + u.user.uid), { deviceId: deviceId, lastLogin: Date.now() }); 
+            }
+        }).catch(() => alert("Identifiants incorrects."));
+    };
+
     onAuthStateChanged(auth, async (user) => {
         if (user) {
+            if (await verifyExpiration(user)) return;
+            window.startSessionSync(user.uid);
             document.getElementById('login-screen').style.display = 'none';
             loadPlaylist();
             initProfiles();
+            
+            const snap = await get(ref(db, 'users_data/' + user.uid + '/expire'));
+            const expireValue = snap.val();
+            if(expireValue) {
+                const today = new Date();
+                const expireDate = new Date(expireValue);
+                const diffDays = Math.ceil((expireDate - today) / (1000 * 60 * 60 * 24));
+                const banner = document.getElementById('expiration-banner');
+                if(diffDays > 0 && diffDays <= 5) {
+                    banner.style.display = 'block';
+                    banner.innerHTML = `⚠️ Fin d'accès dans ${diffDays} jour(s).`;
+                } else banner.style.display = 'none';
+            }
+            
             const saved = localStorage.getItem('sfpp_profile');
             if(saved) selectProfile(saved, localStorage.getItem('sfpp_profile_icon'));
             else document.getElementById('profile-screen').style.display = 'flex';
@@ -317,28 +401,36 @@
         }
     });
 
-    window.checkLogin = function() {
-        const email = document.getElementById('user').value.trim();
-        const pass = document.getElementById('pass').value;
-        signInWithEmailAndPassword(auth, email, pass).then(() => {
-            localStorage.setItem('sfpp_last_email', email);
-        }).catch(() => alert("Identifiants incorrects."));
-    };
-
     window.selectProfile = async function(name, icon) {
         currentProfile = name;
         localStorage.setItem('sfpp_profile', name);
         localStorage.setItem('sfpp_profile_icon', icon);
         document.getElementById('profile-screen').style.display = 'none';
         document.getElementById('current-user-name').innerText = name;
-        document.getElementById('header-logo').innerHTML = `SFPP | ${icon}`;
+        const user = auth.currentUser;
+        if(user) {
+            const snap = await get(ref(db, 'users_data/' + user.uid + '/expire'));
+            document.getElementById('header-logo').innerHTML = `SFPP | ${icon} <span style="font-size:10px; color:#666;">(${snap.val()})</span>`;
+        }
         render();
-        if (window.history.state?.overlay !== 'home') { window.history.pushState({ overlay: 'home' }, ""); }
+        pushInitialState();
     };
 
     window.logout = function() { 
-        signOut(auth).then(() => { localStorage.clear(); location.reload(); }); 
+        const mail = localStorage.getItem('sfpp_last_email');
+        signOut(auth).then(() => { 
+            localStorage.clear(); 
+            localStorage.setItem('sfpp_last_email', mail);
+            localStorage.setItem('sfpp_device_id', deviceId);
+            location.reload(); 
+        }); 
     };
+
+    function pushInitialState() {
+        if (window.history.state?.overlay !== 'home') {
+            window.history.pushState({ overlay: 'home' }, "");
+        }
+    }
 </script>
 
 <script>
@@ -365,6 +457,21 @@ window.addEventListener('popstate', function (event) {
         render();
         return;
     }
+
+    if (!exitConfirmed) {
+        history.pushState({ overlay: 'home' }, "");
+        const quitter = confirm("Souhaitez-vous vraiment quitter l'application ?");
+        if (quitter) {
+            exitConfirmed = true;
+            history.back(); 
+        }
+    }
+});
+
+document.addEventListener('focusin', (e) => {
+    if (e.target.hasAttribute('tabindex')) {
+        e.target.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });
+    }
 });
 
 function openSearch() { document.getElementById('search-overlay').style.display = 'flex'; document.getElementById('searchBar').focus(); }
@@ -377,7 +484,6 @@ function openDetails(idx) {
     const m = playlistData[idx];
     document.getElementById('details-img').src = m.img;
     document.getElementById('details-title').innerText = m.t;
-    document.getElementById('details-cat-label').innerText = m.cat;
     
     let castHtml = "";
     if (m.actors_pics && m.actors_pics.length > 0) {
@@ -389,7 +495,7 @@ function openDetails(idx) {
                 </div>
             `).join('') + `</div>`;
     } else {
-        castHtml = (m.actors || m.cast) ? "<div style='color:#888; font-size:12px; margin-bottom:10px;'>Casting : " + (m.actors || m.cast) + "</div>" : "";
+        castHtml = (m.actors || m.cast) ? "Casting : " + (m.actors || m.cast) : "";
     }
     document.getElementById('details-meta').innerHTML = castHtml;
 
@@ -410,7 +516,9 @@ function openDetails(idx) {
 }
 
 function closeDetails() {
-    if (document.getElementById('details-overlay').style.display === 'flex') { history.back(); }
+    if (document.getElementById('details-overlay').style.display === 'flex') {
+        history.back();
+    }
 }
 
 function initProfiles() {
@@ -532,6 +640,7 @@ function openSeries(name) {
     overlay.style.display = 'block';
     let html = `<div class="overlay-header"><img src="${eps[0].img}" class="overlay-img"><div><h2>${name}</h2></div></div>`;
     const seasons = {};
+    const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
     eps.forEach(ep => {
         const sMatch = ep.t.match(/S(\d{2})/);
         const sNum = sMatch ? sMatch[1] : "01";
@@ -542,8 +651,9 @@ function openSeries(name) {
         html += `<div class="season-title">SAISON ${s}</div>`;
         seasons[s].forEach(ep => {
             const epName = ep.t.split(' - ')[1] || ep.t;
+            const pct = (prog[ep.t] && prog[ep.t].p > 1) ? `<div style="height:3px; background:#444; width:100px; margin-top:5px;"><div style="height:100%; background:var(--accent); width:${prog[ep.t].p}%"></div></div>` : "";
             html += `<div class="episode-item" onclick="openDetails(${playlistData.indexOf(ep)});" tabindex="0">
-                        <div style="flex:1"><b>${epName}</b></div>
+                        <div style="flex:1"><b>${epName}</b>${pct}</div>
                         <div style="color:var(--accent)">DÉTAILS</div>
                      </div>`;
         });
@@ -555,6 +665,13 @@ function playMovie(idx) {
     history.replaceState({ overlay: 'player' }, "");
     const m = playlistData[idx];
     currentPlayingTitle = m.t;
+    document.getElementById('next-episode-btn').style.display = 'none';
+    if(currentProfile) {
+        let key = 'sfpp_hist_' + currentProfile;
+        let hist = JSON.parse(localStorage.getItem(key) || "[]").filter(t => t !== m.t);
+        hist.push(m.t); if(hist.length > 15) hist.shift();
+        localStorage.setItem(key, JSON.stringify(hist));
+    }
     document.getElementById('details-overlay').style.display = 'none';
     document.getElementById('details-trailer-box').innerHTML = "";
     document.getElementById('series-overlay').style.display = 'none';
@@ -565,10 +682,19 @@ function playMovie(idx) {
     updatePlayerFavUI();
     document.getElementById('player-blur-bg').style.backgroundImage = `url('${m.img}')`;
     player.poster(m.img); 
+    window.scrollTo({top:0, behavior:'smooth'});
     player.src({ src: m.url, type: 'video/mp4' });
     const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
     if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
     player.play();
+}
+
+function playNextEpisode() {
+    const parts = currentPlayingTitle.match(/(.*[SE])(\d+)(.*)/i);
+    if (!parts) return;
+    const nextTitleSearch = (parts[1] + (parseInt(parts[2]) + 1).toString().padStart(2, '0')).toUpperCase();
+    const nextIdx = playlistData.findIndex(m => m.t.toUpperCase().includes(nextTitleSearch));
+    if (nextIdx !== -1) playMovie(nextIdx);
 }
 
 function closeP() { if (document.getElementById('player-section').style.display === 'block') history.back(); }
@@ -588,16 +714,17 @@ document.addEventListener('DOMContentLoaded', () => {
     player.on('timeupdate', function() {
         const dur = player.duration(), cur = player.currentTime();
         if (/S\d{2}E\d{2}/i.test(currentPlayingTitle) && dur > 0 && (dur - cur) < 80) {
+            if (player.isFullscreen()) player.exitFullscreen();
             document.getElementById('next-episode-btn').style.display = 'block';
         } else document.getElementById('next-episode-btn').style.display = 'none';
         if(Math.floor(cur) % 10 === 0) saveP();
     });
 
-    // --- CORRECTION DOUBLE CLIQUE ---
-    let lastTap = 0;
+    // --- CORRECTION DOUBLE CLIC (MOBILE & PC) ---
     const playerEl = document.getElementById('main-video');
+    let lastTap = 0;
 
-    // Gestion Mobile (Double-Tap)
+    // Mobile
     playerEl.addEventListener('touchstart', function(e) {
         let now = Date.now();
         if (now - lastTap < 300) {
@@ -608,12 +735,11 @@ document.addEventListener('DOMContentLoaded', () => {
         lastTap = now;
     });
 
-    // Gestion Ordinateur (Double-Clic)
-    playerEl.addEventListener('dblclick', function(e) {
+    // PC
+    playerEl.addEventListener('dblclick', function() {
         if (player.isFullscreen()) player.exitFullscreen();
         else player.requestFullscreen();
     });
-    // -------------------------------
 
     const Button = videojs.getComponent('Button');
     class Back extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-replay-10'; } handleClick() { player.currentTime(player.currentTime()-10); } }
