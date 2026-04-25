@@ -727,5 +727,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 </script>
+
+<script>
+  // ENREGISTREMENT DU SERVICE WORKER POUR L'INSTALLATION PWA
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('./sw.js')
+        .then(reg => console.log('SFPP : App prête pour installation'))
+        .catch(err => console.log('SFPP : Erreur PWA', err));
+    });
+  }
+</script>
 </body>
 </html>
