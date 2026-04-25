@@ -17,7 +17,7 @@
     <link href="https://unpkg.com/@silvermine/videojs-chromecast@1.5.0/dist/silvermine-videojs-chromecast.css" rel="stylesheet">
 
     <style>
-        :root { --accent: #e50914; --gold: #ffcc00; --bg: #050505; --gray-badge: #333; }
+        :root { --accent: #e50914; --gold: #ffcc00; --bg: #050505; --gray-card: #1a1a1a; }
         body { background: var(--bg); color: white; font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; padding-bottom: 50px; }
         
         [tabindex="0"]:focus {
@@ -102,49 +102,52 @@
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         .vjs-skip-button { font-size: 1.5em !important; cursor: pointer; }
         
-        /* --- DESIGN PAGE DETAILS (IMAGE PHOTO) --- */
+        /* ============================================================
+           NOUVEAU DESIGN DETAILS (FIDÈLE À LA PHOTO)
+        ============================================================ */
         #details-overlay {
             position: fixed; inset: 0; background: #000;
             z-index: 3500; display: none; flex-direction: column;
-            overflow-y: auto; overflow-x: hidden;
+            overflow-y: auto; scrollbar-width: none;
         }
-        .details-hero {
-            position: relative; width: 100%; height: 55vh;
-            background-size: cover; background-position: center top;
-        }
-        .details-hero-gradient {
-            position: absolute; inset: 0;
-            background: linear-gradient(to top, #000 0%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0) 100%);
-        }
-        .btn-close-details {
-            position: fixed; top: 20px; right: 20px;
-            background: rgba(0,0,0,0.5); border: none; color: white;
-            width: 40px; height: 40px; border-radius: 50%; font-size: 20px;
-            z-index: 3600; cursor: pointer; display: flex; align-items: center; justify-content: center;
-        }
-        .details-content-inner {
-            position: relative; margin-top: -120px;
-            padding: 0 6% 100px; z-index: 10;
-        }
-        .details-title-large {
-            font-size: 32px; font-weight: bold; margin: 0 0 15px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.8);
-        }
-        .details-meta-badges { display: flex; align-items: center; gap: 12px; margin-bottom: 25px; }
-        .badge-gray { background: var(--gray-badge); color: white; padding: 4px 10px; border-radius: 4px; font-size: 13px; font-weight: bold; }
-        .meta-text-light { color: #aaa; font-size: 14px; }
-        .stars-gold { color: var(--gold); letter-spacing: 2px; font-size: 14px; }
+        #details-overlay::-webkit-scrollbar { display: none; }
 
-        .btn-play-white {
-            background: white; color: black; border: none;
-            width: 100%; max-width: 250px; height: 50px; border-radius: 6px;
-            font-size: 16px; font-weight: 900; cursor: pointer;
-            display: flex; align-items: center; justify-content: center; gap: 10px;
-            margin-bottom: 40px; text-transform: uppercase;
+        .hero-banner {
+            position: relative; width: 100%; height: 55vh;
+            background-size: cover; background-position: center 10%;
         }
-        .section-label-bold { font-size: 18px; font-weight: bold; margin-bottom: 15px; display: block; }
-        .details-trailer-frame { width: 100%; aspect-ratio: 16/9; border-radius: 12px; overflow: hidden; margin-bottom: 30px; border: 1px solid #222; background: #111; }
-        .details-synopsis-text { color: #ddd; line-height: 1.6; font-size: 16px; margin-bottom: 30px; }
+        .hero-gradient {
+            position: absolute; inset: 0;
+            background: linear-gradient(to top, #000 5%, rgba(0,0,0,0) 50%, rgba(0,0,0,0.4) 100%);
+        }
+        .btn-back-round {
+            position: absolute; top: 20px; right: 20px; width: 40px; height: 40px;
+            background: rgba(0,0,0,0.6); color: white; border: none; border-radius: 50%;
+            font-size: 20px; cursor: pointer; z-index: 100;
+        }
+
+        .details-body {
+            position: relative; margin-top: -80px; padding: 0 25px 50px;
+        }
+        .details-title-big { font-size: 32px; font-weight: 800; margin: 0 0 15px; }
+        
+        .meta-row { display: flex; align-items: center; gap: 10px; margin-bottom: 25px; }
+        .badge-meta { background: #333; color: #eee; padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: bold; }
+        .meta-text { color: #888; font-size: 14px; }
+        .rating-stars { color: var(--gold); letter-spacing: 2px; }
+
+        .btn-play-hero {
+            background: #fff; color: #000; border: none; width: 100%; max-width: 300px;
+            padding: 15px; border-radius: 6px; font-weight: 900; font-size: 16px;
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+            cursor: pointer; margin-bottom: 30px; text-transform: uppercase;
+        }
+        .btn-play-hero:active { transform: scale(0.98); }
+
+        .section-title { font-size: 18px; font-weight: bold; margin-bottom: 15px; display: block; }
+        .trailer-container { width: 100%; aspect-ratio: 16/9; border-radius: 12px; overflow: hidden; background: #111; margin-bottom: 25px; }
+        .synopsis-text { font-size: 15px; line-height: 1.6; color: #ccc; margin-bottom: 30px; }
+        /* ============================================================ */
 
         .cast-row { display: flex; gap: 12px; overflow-x: auto; padding: 5px 0 15px; scrollbar-width: none; }
         .cast-row::-webkit-scrollbar { display: none; }
@@ -188,8 +191,7 @@
         @media (max-width: 768px) {
             .card { flex: 0 0 130px; width: 130px; }
             .card img { width: 130px !important; height: 195px !important; }
-            .btn-play-white { max-width: 100%; }
-            .details-title-large { font-size: 26px; }
+            .details-title-big { font-size: 26px; }
         }
     </style>
 </head>
@@ -232,31 +234,32 @@
 </header>
 
 <div id="details-overlay">
-    <button class="btn-close-details" onclick="closeDetails()">✕</button>
-    
-    <div id="details-hero-img" class="details-hero">
-        <div class="details-hero-gradient"></div>
+    <div id="details-hero" class="hero-banner">
+        <div class="hero-gradient"></div>
+        <button class="btn-back-round" onclick="closeDetails()">✕</button>
     </div>
-
-    <div class="details-content-inner">
-        <h2 id="details-title" class="details-title-large">Titre du film</h2>
+    
+    <div class="details-body">
+        <h2 id="details-title" class="details-title-big"></h2>
         
-        <div class="details-meta-badges">
-            <span id="details-year-badge" class="badge-gray">2025</span>
-            <span id="details-cat-label" class="meta-text-light">Film</span>
-            <span class="stars-gold">★★★★★</span>
+        <div class="meta-row">
+            <span id="details-year" class="badge-meta">2024</span>
+            <span id="details-cat-label" class="meta-text">FILM</span>
+            <div class="rating-stars">★★★★★</div>
         </div>
 
-        <button id="details-play-btn" class="btn-play-white" tabindex="0">
-            <span style="font-size:20px">▶</span> LECTURE
+        <button id="details-play-btn" class="btn-play-hero" tabindex="0">
+            <span style="font-size:22px">▶</span> Lancer le film
         </button>
 
-        <span class="section-label-bold">Bande-annonce</span>
-        <div id="details-trailer-box" class="details-trailer-frame"></div>
+        <span class="section-title">Bande-annonce</span>
+        <div id="details-trailer-box" class="trailer-container"></div>
 
-        <p id="details-desc" class="details-synopsis-text"></p>
-        
-        <div id="details-meta-cast"></div>
+        <span class="section-title">Résumé</span>
+        <p id="details-desc" class="synopsis-text"></p>
+
+        <span class="section-title">Casting</span>
+        <div id="details-cast-container"></div>
     </div>
 </div>
 
@@ -476,15 +479,14 @@ function closeSearch() { document.getElementById('search-overlay').style.display
 
 async function loadPlaylist() { try { const response = await fetch('films.json'); playlistData = await response.json(); render(); } catch (e) {} }
 
-// --- LOGIQUE OPEN DETAILS MISE À JOUR (PHOTO) ---
 function openDetails(idx) {
     history.pushState({ overlay: 'details' }, "");
 
     const m = playlistData[idx];
-    document.getElementById('details-hero-img').style.backgroundImage = `url('${m.img}')`;
+    document.getElementById('details-hero').style.backgroundImage = `url('${m.img}')`;
     document.getElementById('details-title').innerText = m.t;
-    document.getElementById('details-year-badge').innerText = m.year || "2025";
-    document.getElementById('details-cat-label').innerText = m.cat === "SÉRIES" ? "Série" : "Film";
+    document.getElementById('details-year').innerText = m.year || "2024";
+    document.getElementById('details-cat-label').innerText = m.cat === "SÉRIES" ? "SÉRIE" : "FILM";
     
     let castHtml = "";
     if (m.actors_pics && m.actors_pics.length > 0) {
@@ -496,15 +498,13 @@ function openDetails(idx) {
                 </div>
             `).join('') + `</div>`;
     } else {
-        castHtml = (m.actors || m.cast) ? "<div style='color:#aaa; font-size:14px'>Casting : " + (m.actors || m.cast) + "</div>" : "";
+        castHtml = (m.actors || m.cast) ? "<div style='color:#888; font-size:14px; margin-top:10px;'>" + (m.actors || m.cast) + "</div>" : "";
     }
-    document.getElementById('details-meta-cast').innerHTML = castHtml;
+    document.getElementById('details-cast-container').innerHTML = castHtml;
 
     let trailerHtml = "";
     if (m.trailer) {
         trailerHtml = `<iframe width="100%" height="100%" src="https://www.youtube.com/embed/${m.trailer}?rel=0" frameborder="0" allowfullscreen></iframe>`;
-    } else {
-        trailerHtml = `<div style="display:flex; height:100%; align-items:center; justify-content:center; color:#444;">Aperçu non disponible</div>`;
     }
     document.getElementById('details-trailer-box').innerHTML = trailerHtml;
     document.getElementById('details-desc').innerText = m.desc || "Aucun résumé disponible.";
@@ -665,7 +665,6 @@ function openSeries(name) {
 
 function playMovie(idx) {
     history.replaceState({ overlay: 'player' }, "");
-    
     const m = playlistData[idx];
     currentPlayingTitle = m.t;
     document.getElementById('next-episode-btn').style.display = 'none';
