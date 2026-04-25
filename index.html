@@ -618,6 +618,7 @@ function openSeries(name) {
     content.innerHTML = html;
 }
 
+// SÉCURITÉ : Décodage Base64 au lancement du flux
 function playMovie(idx) {
     history.replaceState({ overlay: 'player' }, "");
     const m = playlistData[idx];
@@ -640,7 +641,15 @@ function playMovie(idx) {
     document.getElementById('player-blur-bg').style.backgroundImage = `url('${m.img}')`;
     
     player.poster(m.img); 
-    player.src({ src: m.url, type: 'video/mp4' });
+    
+    // Décodage de l'URL sécurisée
+    try {
+        const decodedUrl = atob(m.url);
+        player.src({ src: decodedUrl, type: 'video/mp4' });
+    } catch(e) {
+        // Fallback si l'URL n'est pas encore encodée
+        player.src({ src: m.url, type: 'video/mp4' });
+    }
     
     const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
     if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
