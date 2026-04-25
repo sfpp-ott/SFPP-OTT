@@ -466,7 +466,8 @@ window.addEventListener('popstate', function (event) {
     }
 });
 
-async function loadPlaylist() { try { const response = await fetch('films.json'); playlistData = await response.json(); render(); } catch (e) {} }
+// MODIFICATION CACHE BUSTING : Ajout du paramètre temps pour forcer la mise à jour
+async function loadPlaylist() { try { const response = await fetch('films.json?v=' + Date.now()); playlistData = await response.json(); render(); } catch (e) {} }
 
 function openDetails(idx) {
     history.pushState({ overlay: 'details' }, "");
@@ -476,6 +477,9 @@ function openDetails(idx) {
     document.getElementById('details-title').innerText = m.t;
     document.getElementById('details-desc').innerText = m.desc || "Aucun résumé disponible.";
     
+    // MODIFICATION ANNÉE : On utilise m.year si présent, sinon 2024
+    document.getElementById('details-meta-year').innerText = m.year || "2024";
+
     let castHtml = "";
     if (m.actors_pics && m.actors_pics.length > 0) {
         castHtml = m.actors_pics.map(a => `
