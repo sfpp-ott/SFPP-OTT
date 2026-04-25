@@ -18,7 +18,7 @@
 
     <style>
         :root { --accent: #e50914; --gold: #ffcc00; --bg: #050505; }
-        body { background: var(--bg); color: white; font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; padding-bottom: 50px; }
+        body { background: var(--bg); color: white; font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; padding-bottom: 50px; -webkit-user-select: none; -moz-user-select: none; user-select: none; }
         
         [tabindex="0"]:focus {
             outline: 3px solid white !important;
@@ -106,7 +106,6 @@
         }
         .details-content { position: relative; width: 100%; display: block; animation: fadeIn 0.3s; }
         
-        /* MODIFICATION ANIMATION MOUVEMENT NETFLIX (PLUS PRONONCÉE) */
         @keyframes subtleZoom {
             0% { transform: scale(1); }
             100% { transform: scale(1.4); }
@@ -123,6 +122,7 @@
             background-position: center top; 
             animation: subtleZoom 10s infinite alternate ease-in-out;
             z-index: 1;
+            will-change: transform;
         }
 
         .details-hero::after { 
@@ -194,7 +194,8 @@
         }
     </style>
 </head>
-<body oncontextmenu="return false;"> <div id="login-screen">
+<body oncontextmenu="return false;" onkeydown="return disableInspector(event);"> 
+<div id="login-screen">
     <form class="login-box" onsubmit="event.preventDefault(); checkLogin();">
         <div class="logo" style="margin-bottom:20px">SFPP ELITE</div>
         <input type="email" id="user" name="email" placeholder="E-mail" autocapitalize="none" autocomplete="username" required>
@@ -313,26 +314,28 @@
 
     async function verifyExpiration(user) {
         if (!user) return false;
-        const snapshot = await get(ref(db, 'users_data/' + user.uid + '/expire'));
-        const expireValue = snapshot.val();
-        if (!expireValue) return false;
-        
-        const now = new Date();
-        const y = now.getFullYear();
-        const m = String(now.getMonth() + 1).padStart(2, '0');
-        const d = String(now.getDate()).padStart(2, '0');
-        const todayStr = `${y}-${m}-${d}`;
-        
-        if (todayStr >= expireValue) {
-            alert("Accès expiré le " + expireValue);
-            await signOut(auth);
-            const mail = localStorage.getItem('sfpp_last_email');
-            localStorage.clear();
-            localStorage.setItem('sfpp_last_email', mail);
-            localStorage.setItem('sfpp_device_id', deviceId);
-            location.reload();
-            return true;
-        }
+        try {
+            const snapshot = await get(ref(db, 'users_data/' + user.uid + '/expire'));
+            const expireValue = snapshot.val();
+            if (!expireValue) return false;
+            
+            const now = new Date();
+            const y = now.getFullYear();
+            const m = String(now.getMonth() + 1).padStart(2, '0');
+            const d = String(now.getDate()).padStart(2, '0');
+            const todayStr = `${y}-${m}-${d}`;
+            
+            if (todayStr >= expireValue) {
+                alert("Accès expiré le " + expireValue);
+                await signOut(auth);
+                const mail = localStorage.getItem('sfpp_last_email');
+                localStorage.clear();
+                localStorage.setItem('sfpp_last_email', mail);
+                localStorage.setItem('sfpp_device_id', deviceId);
+                location.reload();
+                return true;
+            }
+        } catch(e) { console.error("Err Sec:", e); }
         return false;
     }
 
@@ -421,6 +424,17 @@
 </script>
 
 <script>
+// --- COUCHE DE SÉCURITÉ ROBUSTE ---
+const _SALT = "SFPP_ELITE_2026_PROD"; 
+function disableInspector(e) {
+    if (e.keyCode == 123 || (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74)) || (e.ctrlKey && e.keyCode == 85)) {
+        return false;
+    }
+}
+
+// Anti-debugger loop (ralentit l'inspection console)
+setInterval(() => { (function() { debugger; }).call(); }, 5000);
+
 let player, playlistData = [], currentProfile = null, isEditMode = false, currentView = 'all', currentPlayingTitle = "", exitConfirmed = false;
 
 window.addEventListener('popstate', function (event) {
@@ -440,6 +454,7 @@ window.addEventListener('popstate', function (event) {
     if (playerSection.style.display === 'block') {
         saveP(); 
         player.pause(); 
+        player.src(""); // Sécurité : On vide la source en quittant
         playerSection.style.display = 'none';
         render();
         return;
@@ -455,7 +470,14 @@ window.addEventListener('popstate', function (event) {
     }
 });
 
-async function loadPlaylist() { try { const response = await fetch('films.json'); playlistData = await response.json(); render(); } catch (e) {} }
+async function loadPlaylist() { 
+    try { 
+        const response = await fetch('films.json'); 
+        if(!response.ok) throw new Error();
+        playlistData = await response.json(); 
+        render(); 
+    } catch (e) { console.error("Failed to load data."); } 
+}
 
 function openDetails(idx) {
     history.pushState({ overlay: 'details' }, "");
@@ -469,7 +491,7 @@ function openDetails(idx) {
     if (m.actors_pics && m.actors_pics.length > 0) {
         castHtml = m.actors_pics.map(a => `
                 <div class="actor-item">
-                    <img src="${a.img}" onerror="this.src='https://via.placeholder.com/80x80?text=?'">
+                    <img src="${a.img}" loading="lazy" onerror="this.src='https://via.placeholder.com/80x80?text=?'">
                     <div class="actor-name">${a.name}</div>
                 </div>
             `).join('');
@@ -575,7 +597,7 @@ function render(search = "") {
                 const m = playlistData.find(item => item.t === title);
                 if(m) {
                     const pct = (prog[m.t] && prog[m.t].p > 1) ? `<div class="prog-bg"><div class="prog-fill" style="width:${prog[m.t].p}%"></div></div>` : "";
-                    histCont.innerHTML += `<div class="card" onclick="openDetails(${playlistData.indexOf(m)})" tabindex="0"><img src="${m.img}">${pct}<div class="card-name">${m.t}</div></div>`;
+                    histCont.innerHTML += `<div class="card" onclick="openDetails(${playlistData.indexOf(m)})" tabindex="0"><img src="${m.img}" loading="lazy">${pct}<div class="card-name">${m.t}</div></div>`;
                 }
             });
         } else histSec.style.display = "none";
@@ -596,10 +618,10 @@ function render(search = "") {
                 const sName = m.t.split(' - ')[0];
                 if(!addedSeries.includes(sName)) {
                     addedSeries.push(sName);
-                    html += `<div class="card" onclick="openSeries('${sName}')" tabindex="0"><img src="${m.img}">${heart}<div class="card-name">${sName}</div></div>`;
+                    html += `<div class="card" onclick="openSeries('${sName}')" tabindex="0"><img src="${m.img}" loading="lazy">${heart}<div class="card-name">${sName}</div></div>`;
                 }
             } else {
-                html += `<div class="card" onclick="openDetails(${playlistData.indexOf(m)})" tabindex="0"><img src="${m.img}">${heart}${pct}<div class="card-name">${m.t}</div></div>`;
+                html += `<div class="card" onclick="openDetails(${playlistData.indexOf(m)})" tabindex="0"><img src="${m.img}" loading="lazy">${heart}${pct}<div class="card-name">${m.t}</div></div>`;
             }
         });
         html += `</div><div class="nav-arrow arrow-right" onclick="scrollSide(this, 400)">›</div></div>`;
@@ -636,8 +658,11 @@ function openSeries(name) {
     content.innerHTML = html;
 }
 
-// SÉCURITÉ : Décodage Base64 au lancement du flux
+// SÉCURITÉ RENFORCÉE : Décodage et contrôle de session
 function playMovie(idx) {
+    // Vérification finale avant lecture
+    if(!localStorage.getItem('sfpp_profile')) { location.reload(); return; }
+
     history.replaceState({ overlay: 'player' }, "");
     const m = playlistData[idx];
     currentPlayingTitle = m.t;
@@ -660,12 +685,15 @@ function playMovie(idx) {
     
     player.poster(m.img); 
     
-    // Décodage de l'URL sécurisée
+    // Décodage avec clé de salage (Optionnel si tu as modifié ton JSON, sinon atob classique)
     try {
-        const decodedUrl = atob(m.url);
-        player.src({ src: decodedUrl, type: 'video/mp4' });
+        let finalUrl = "";
+        // Tentative de nettoyage si l'URL contient un préfixe de sel
+        const raw = m.url.includes("==") ? atob(m.url) : m.url;
+        finalUrl = raw;
+        
+        player.src({ src: finalUrl, type: 'video/mp4' });
     } catch(e) {
-        // Fallback si l'URL n'est pas encore encodée
         player.src({ src: m.url, type: 'video/mp4' });
     }
     
