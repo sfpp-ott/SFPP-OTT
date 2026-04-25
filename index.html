@@ -294,16 +294,16 @@
     import { getDatabase, ref, set, onValue, get } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
     import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
-    // Clés encodées (Correction : suppression du caractère erroné dans la clé API)
+    // Clés encodées (Correction : remplacement du + par un / dans la chaîne base64)
     const _f = {
-        a: "QUl6YVN5RGlwbnZrOG5Ibl9tbmpsSE9iQTAzOERoUzJVMzkrU2dV",
+        a: "QUl6YVN5RGlwbnZrOG5Ibl9tbmpsSE9iQTAzOERoUzJVMzkvU2dV",
         b: "c2ZwcC1lbGl0ZS5maXJlYmFzZWFwcC5jb20=",
         c: "aHR0cHM6Ly9zZnBwLWVsaXRlLWRlZmF1bHQtcnRkYi5ldXJvcGUtd2VzdDEuZmlyZWJhc2VkYXRhYmFzZS5hcHA=",
         d: "c2ZwcC1lbGl0ZQ=="
     };
 
     const firebaseConfig = {
-      apiKey: atob("QUl6YVN5RGlwbnZrOG5Ibl9tbmpsSE9iQTAzOERoUzJVMzkrU2dV"),
+      apiKey: atob(_f.a),
       authDomain: atob(_f.b),
       databaseURL: atob(_f.c),
       projectId: atob(_f.d)
@@ -429,7 +429,7 @@
 </script>
 
 <script>
-// --- SÉCURITÉ ROBUSTE AJOUTÉE ---
+// --- SÉCURITÉ ---
 document.onkeydown = function(e) {
     if (e.keyCode == 123 || (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74)) || (e.ctrlKey && e.keyCode == 85)) {
         return false;
