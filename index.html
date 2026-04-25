@@ -477,7 +477,31 @@ document.addEventListener('focusin', (e) => {
 function openSearch() { document.getElementById('search-overlay').style.display = 'flex'; document.getElementById('searchBar').focus(); }
 function closeSearch() { document.getElementById('search-overlay').style.display = 'none'; document.getElementById('searchBar').value = ''; filter(); }
 
-async function loadPlaylist() { try { const response = await fetch('films.json'); playlistData = await response.json(); render(); } catch (e) {} }
+// LES DONNÉES DU FILM SONT ICI
+async function loadPlaylist() { 
+    try { 
+        // Note: Dans ton usage réel, garde 'films.json'. J'ajoute ici le film pour l'exemple.
+        const response = await fetch('films.json'); 
+        playlistData = await response.json(); 
+        
+        // Ajout dynamique du film de l'image (si pas déjà présent dans ton JSON)
+        const filmImage = {
+            "t": "L'Âme Idéale (2025)",
+            "cat": "NOUVEAUTÉS",
+            "img": "https://image.tmdb.org/t/p/w500/v9Y76C2K2u8f6l1k1l1k1l1k1l.jpg", // Remplace par l'url réelle de ton poster
+            "desc": "Elsa, médecin, cache au reste du monde qu'elle voit les morts et les aide à 'passer de l'autre côté'. Convaincue que son don provoque le rejet, elle a renoncé aux histoires d'amour et s'est enfermée dans la solitude et le travail. Jusqu'au jour où elle fait la rencontre d'Oscar, un mort qui ne sait pas pourquoi il est là.",
+            "trailer": "YOUTUBE_ID", // Remplace par l'ID réel après "v=" de YouTube
+            "url": "LIEN_DU_FILM.mp4",
+            "actors_pics": [
+                {"name": "Acteur 1", "img": "Lien_Photo_1"},
+                {"name": "Actrice 2", "img": "Lien_Photo_2"}
+            ]
+        };
+        // playlistData.unshift(filmImage); // Activer si tu veux forcer l'ajout
+
+        render(); 
+    } catch (e) {} 
+}
 
 function openDetails(idx) {
     history.pushState({ overlay: 'details' }, "");
@@ -485,7 +509,7 @@ function openDetails(idx) {
     document.getElementById('details-img').src = m.img;
     document.getElementById('details-title').innerText = m.t;
     
-    // Modification ICI : Gestion dynamique du casting avec images
+    // Gestion dynamique du casting avec images
     let castHtml = "";
     if (m.actors_pics && m.actors_pics.length > 0) {
         castHtml = `<div class="cast-row">` + 
