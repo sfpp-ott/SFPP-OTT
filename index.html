@@ -668,6 +668,18 @@ document.addEventListener('DOMContentLoaded', () => {
         controls: true, fluid: false,
         techOrder: ['chromecast', 'html5'], plugins: { chromecast: { addButtonToControlBar: true } }
     });
+
+    // DOUBLE CLIQUE SUR LE LECTEUR (SAUT 10S)
+    player.on('dblclick', function(event) {
+        const rect = player.el().getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        if (x < rect.width / 2) {
+            player.currentTime(player.currentTime() - 10);
+        } else {
+            player.currentTime(player.currentTime() + 10);
+        }
+    });
+
     player.on('timeupdate', function() {
         const dur = player.duration(), cur = player.currentTime();
         if (/S\d{2}E\d{2}/i.test(currentPlayingTitle) && dur > 0 && (dur - cur) < 80) {
