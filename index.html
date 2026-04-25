@@ -294,19 +294,11 @@
     import { getDatabase, ref, set, onValue, get } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
     import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
-    // Configuration Firebase encodée
-    const _f = {
-        a: "QUl6YVN5RGlwbnZrOG5Ibl9tbmpsSE9iQTAzOERoUzJVMzkvU2dV",
-        b: "c2ZwcC1lbGl0ZS5maXJlYmFzZWFwcC5jb20=",
-        c: "aHR0cHM6Ly9zZnBwLWVsaXRlLWRlZmF1bHQtcnRkYi5ldXJvcGUtd2VzdDEuZmlyZWJhc2VkYXRhYmFzZS5hcHA=",
-        d: "c2ZwcC1lbGl0ZQ=="
-    };
-
     const firebaseConfig = {
-      apiKey: atob(_f.a),
-      authDomain: atob(_f.b),
-      databaseURL: atob(_f.c),
-      projectId: atob(_f.d)
+      apiKey: "AIzaSyDipnvk8nHn_mnj6HObA038DhS2U39kSgU",
+      authDomain: "sfpp-elite.firebaseapp.com",
+      databaseURL: "https://sfpp-elite-default-rtdb.europe-west1.firebasedatabase.app",
+      projectId: "sfpp-elite"
     };
 
     const app = initializeApp(firebaseConfig);
@@ -364,10 +356,7 @@
             if (!exp) { 
                 set(ref(db, 'sessions/' + u.user.uid), { deviceId: deviceId, lastLogin: Date.now() }); 
             }
-        }).catch((err) => {
-            console.error(err);
-            alert("Identifiants incorrects ou erreur de connexion.");
-        });
+        }).catch(() => alert("Identifiants incorrects."));
     };
 
     onAuthStateChanged(auth, async (user) => {
@@ -432,12 +421,14 @@
 </script>
 
 <script>
-// --- SÉCURITÉ ---
+// --- SÉCURITÉ ROBUSTE AJOUTÉE ---
+// Désactivation des raccourcis claviers F12, Ctrl+U, etc.
 document.onkeydown = function(e) {
     if (e.keyCode == 123 || (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74)) || (e.ctrlKey && e.keyCode == 85)) {
         return false;
     }
 };
+// Boucle anti-débogage
 setInterval(function() { (function() { debugger; }).call(); }, 5000);
 
 let player, playlistData = [], currentProfile = null, isEditMode = false, currentView = 'all', currentPlayingTitle = "", exitConfirmed = false;
@@ -459,7 +450,7 @@ window.addEventListener('popstate', function (event) {
     if (playerSection.style.display === 'block') {
         saveP(); 
         player.pause(); 
-        player.src("");
+        player.src(""); // Sécurité : on vide la source
         playerSection.style.display = 'none';
         render();
         return;
@@ -480,9 +471,11 @@ async function loadPlaylist() { try { const response = await fetch('films.json')
 function openDetails(idx) {
     history.pushState({ overlay: 'details' }, "");
     const m = playlistData[idx];
+    
     document.getElementById('details-header-bg').style.backgroundImage = `url('${m.img}')`;
     document.getElementById('details-title').innerText = m.t;
     document.getElementById('details-desc').innerText = m.desc || "Aucun résumé disponible.";
+    
     let castHtml = "";
     if (m.actors_pics && m.actors_pics.length > 0) {
         castHtml = m.actors_pics.map(a => `
@@ -493,13 +486,17 @@ function openDetails(idx) {
             `).join('');
     }
     document.getElementById('details-meta-cast').innerHTML = castHtml;
+
     document.getElementById('details-trailer-box').innerHTML = m.trailer ? 
         `<iframe width="100%" height="100%" src="https://www.youtube.com/embed/${m.trailer}?rel=0" frameborder="0" allowfullscreen></iframe>` : "";
+    
     const playBtn = document.getElementById('details-play-btn');
     playBtn.onclick = () => { playMovie(idx); };
+    
     const favBtn = document.getElementById('details-fav-btn');
     favBtn.onclick = () => { toggleFav(m.t); };
     updateFavBtnUI(m.t);
+
     document.getElementById('details-overlay').style.display = 'flex';
     playBtn.focus();
 }
@@ -575,10 +572,12 @@ function render(search = "") {
     const s = search.toLowerCase();
     const favs = JSON.parse(localStorage.getItem('sfpp_fav_' + currentProfile) || "[]");
     const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
+    
     let data = playlistData;
     if(currentView === 'movies') data = playlistData.filter(m => m.cat !== "SÉRIES");
     else if(currentView === 'series') data = playlistData.filter(m => m.cat === "SÉRIES");
     else if(currentView === 'fav') data = playlistData.filter(m => favs.includes(m.t));
+
     if(currentProfile && s === "" && currentView === 'all') {
         let history = JSON.parse(localStorage.getItem('sfpp_hist_' + currentProfile) || "[]");
         if(history.length > 0) {
@@ -592,8 +591,10 @@ function render(search = "") {
             });
         } else histSec.style.display = "none";
     } else histSec.style.display = "none";
+
     const cats = [...new Set(data.map(m => m.cat))];
     let addedSeries = [];
+
     cats.forEach(c => {
         const filtered = data.filter(m => m.cat === c && m.t.toLowerCase().includes(s));
         if (filtered.length === 0) return;
@@ -646,30 +647,39 @@ function openSeries(name) {
     content.innerHTML = html;
 }
 
+// RESTAURATION STRICTE DU DÉCODAGE BASE64 ORIGINAL
 function playMovie(idx) {
     history.replaceState({ overlay: 'player' }, "");
     const m = playlistData[idx];
     currentPlayingTitle = m.t;
     document.getElementById('next-episode-btn').style.display = 'none';
+    
     if(currentProfile) {
         let key = 'sfpp_hist_' + currentProfile;
         let hist = JSON.parse(localStorage.getItem(key) || "[]").filter(t => t !== m.t);
         hist.push(m.t); if(hist.length > 15) hist.shift();
         localStorage.setItem(key, JSON.stringify(hist));
     }
+    
     document.getElementById('details-overlay').style.display = 'none';
     document.getElementById('details-trailer-box').innerHTML = "";
     document.getElementById('series-overlay').style.display = 'none';
+    
     const pSection = document.getElementById('player-section');
     pSection.style.display = 'block';
     document.getElementById('player-blur-bg').style.backgroundImage = `url('${m.img}')`;
+    
     player.poster(m.img); 
+    
+    // LOGIQUE ORIGINALE : On décode et on lance
     try {
         const decodedUrl = atob(m.url);
         player.src({ src: decodedUrl, type: 'video/mp4' });
     } catch(e) {
+        // Fallback si l'URL n'est pas encore encodée
         player.src({ src: m.url, type: 'video/mp4' });
     }
+    
     const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
     if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
     player.play();
@@ -690,6 +700,7 @@ function filter() { render(document.getElementById('searchBar').value); }
 function toggleEditMode() { isEditMode = !isEditMode; document.getElementById('profile-screen').classList.toggle('is-editing'); }
 function switchProfile() { localStorage.removeItem('sfpp_profile'); location.reload(); }
 function requestAccess() { window.location.href = "mailto:sfpp.ott@gmail.com"; }
+
 function openSearch() { document.getElementById('search-overlay').style.display = 'flex'; document.getElementById('searchBar').focus(); }
 function closeSearch() { document.getElementById('search-overlay').style.display = 'none'; document.getElementById('searchBar').value = ''; filter(); }
 
