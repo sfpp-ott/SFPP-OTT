@@ -17,8 +17,8 @@
     <link href="https://unpkg.com/@silvermine/videojs-chromecast@1.5.0/dist/silvermine-videojs-chromecast.css" rel="stylesheet">
 
     <style>
-        :root { --accent: #e50914; --gold: #ffcc00; --bg: #050505; --card-radius: 8px; }
-        body { background: var(--bg); color: white; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; margin: 0; padding-bottom: 50px; -webkit-font-smoothing: antialiased; }
+        :root { --accent: #e50914; --gold: #ffcc00; --bg: #050505; }
+        body { background: var(--bg); color: white; font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; padding-bottom: 50px; }
         
         [tabindex="0"]:focus {
             outline: 3px solid white !important;
@@ -45,168 +45,133 @@
         .btn-manage { margin-top: 40px; background: none; border: 1px solid #444; color: #888; padding: 10px 20px; cursor: pointer; font-size: 14px; letter-spacing: 1px; }
 
         header { 
-            position: fixed; top: 0; width: 100%; height: 65px; 
-            background: linear-gradient(to bottom, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0) 100%); 
-            display: flex; align-items: center; 
-            padding: 0 4%; z-index: 2000; 
+            position: fixed; top: 0; width: 100%; height: 60px; 
+            background: rgba(0,0,0,0.95); display: flex; align-items: center; 
+            padding: 0 15px; z-index: 2000; border-bottom: 1px solid #222; 
             justify-content: space-between; box-sizing: border-box; gap: 10px;
         }
-        .logo { color: var(--accent); font-weight: 900; font-size: 22px; flex-shrink: 0; letter-spacing: 1px; }
+        .logo { color: var(--accent); font-weight: 900; font-size: 18px; flex-shrink: 0; }
         
         .nav-links { 
-            display: flex; gap: 20px; flex: 1; overflow-x: auto; 
+            display: flex; gap: 15px; flex: 1; overflow-x: auto; 
             white-space: nowrap; align-items: center; scrollbar-width: none;
             -webkit-overflow-scrolling: touch; justify-content: flex-start;
-            margin: 0 20px;
         }
         .nav-links::-webkit-scrollbar { display: none; }
         
-        .nav-btn { background: none; border: none; color: #e5e5e5; cursor: pointer; font-size: 14px; font-weight: 400; padding: 10px 0; transition: 0.3s; flex-shrink: 0; }
-        .nav-btn.active { color: white; font-weight: 700; border-bottom: 3px solid var(--accent); }
+        .nav-btn { background: none; border: none; color: #bbb; cursor: pointer; font-size: 13px; font-weight: 500; padding: 10px 5px; transition: color 0.3s; flex-shrink: 0; border-radius: 4px; }
+        .nav-btn.active { color: white; font-weight: bold; border-bottom: 2px solid var(--accent); }
 
         #search-overlay {
-            position: absolute; top: 0; left: 0; width: 100%; height: 65px;
+            position: absolute; top: 0; left: 0; width: 100%; height: 60px;
             background: #000; display: none; align-items: center; padding: 0 15px;
             box-sizing: border-box; z-index: 2001;
         }
-        #searchBar { flex: 1; background: #222; border: 1px solid #444; color: white; padding: 10px 20px; border-radius: 4px; outline: none; font-size: 15px; }
+        #searchBar { flex: 1; background: #222; border: 1px solid #444; color: white; padding: 8px 15px; border-radius: 20px; outline: none; font-size: 14px; }
         
-        .header-actions { display: flex; align-items: center; gap: 15px; flex-shrink: 0; }
-        .btn-icon { background: none; border: none; color: white; font-size: 20px; cursor: pointer; opacity: 0.8; transition: 0.3s; }
-        .btn-logout { background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.2); padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 11px; font-weight: bold; }
+        .header-actions { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+        .btn-icon { background: none; border: none; color: white; font-size: 18px; cursor: pointer; }
+        .btn-logout { background: #333; color: white; border: 1px solid #444; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-size: 10px; flex-shrink: 0; }
 
-        /* OVERLAY DETAILS */
-        #details-overlay {
-            position: fixed; inset: 0; background: #000;
-            z-index: 3500; display: none; align-items: flex-start; justify-content: center;
-            overflow-y: auto; -webkit-overflow-scrolling: touch;
-        }
-        .details-content {
-            width: 100%; max-width: 1000px; min-height: 100vh;
-            display: flex; flex-direction: column; position: relative;
-            background: var(--bg); animation: fadeIn 0.4s ease;
-        }
-        .details-hero {
-            position: relative; width: 100%; height: 60vh;
-            display: flex; align-items: flex-end; padding: 40px 6%;
-            box-sizing: border-box; overflow: hidden;
-        }
-        .hero-bg {
-            position: absolute; inset: 0; 
-            background-size: cover; background-position: center 20%;
-            z-index: 0; transform: scale(1.05); filter: brightness(0.7);
-        }
-        .hero-gradient {
-            position: absolute; inset: 0;
-            background: linear-gradient(to top, var(--bg) 5%, transparent 60%),
-                        linear-gradient(to right, rgba(0,0,0,0.8) 0%, transparent 100%);
-            z-index: 1;
-        }
-        .hero-info { position: relative; z-index: 2; max-width: 600px; }
-        .hero-info h2 { font-size: clamp(28px, 5vw, 48px); margin: 0 0 15px 0; font-weight: 800; line-height: 1.1; }
+        #player-section { display: none; width: 100%; background: #000; padding-top: 60px; position: fixed; inset: 0; z-index: 4500; overflow-y: auto; }
+        .video-container { position: relative; width: 100%; background: #000; min-height: 200px; }
         
-        .details-body { 
-            position: relative; z-index: 3; padding: 0 6% 60px; 
-            display: grid; grid-template-columns: 1fr 300px; gap: 40px;
-            margin-top: -20px;
-        }
-        .details-main-col { display: flex; flex-direction: column; gap: 25px; }
-        .details-side-col { display: flex; flex-direction: column; gap: 25px; }
-
-        .meta-row { display: flex; align-items: center; gap: 15px; color: #a3a3a3; font-size: 14px; font-weight: 600; margin-bottom: 20px; }
-        .meta-badge { border: 1px solid #666; padding: 2px 8px; border-radius: 3px; color: #fff; font-size: 12px; }
-        .synopsis-text { font-size: 17px; line-height: 1.6; color: #e5e5e5; margin: 0; }
-        
-        .cast-section h3 { font-size: 14px; color: #666; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px; }
-        .cast-list { display: flex; flex-wrap: wrap; gap: 15px; }
-        .actor-card { width: 80px; text-align: center; }
-        .actor-card img { width: 65px; height: 65px; border-radius: 50%; object-fit: cover; margin-bottom: 8px; border: 2px solid #333; }
-        .actor-card span { font-size: 11px; color: #bbb; display: block; line-height: 1.2; }
-
-        .trailer-preview { 
-            width: 100%; aspect-ratio: 16/9; background: #111; 
-            border-radius: var(--card-radius); overflow: hidden; border: 1px solid #333;
-        }
-
-        .btn-play-hero { 
-            background: white; color: black; border: none; 
-            padding: 14px 35px; border-radius: 4px; font-weight: 700; 
-            cursor: pointer; font-size: 18px; display: flex; align-items: center; gap: 10px;
-            transition: 0.2s; width: fit-content;
-        }
-        .btn-close-overlay { 
-            position: fixed; top: 20px; right: 20px; 
-            background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.3); 
-            color: white; width: 45px; height: 45px; border-radius: 50%; 
-            cursor: pointer; z-index: 4000; font-size: 20px;
-            display: flex; align-items: center; justify-content: center; backdrop-filter: blur(10px);
-        }
-
-        /* CARDS & CAROUSEL NAVIGATION */
-        .category-row { position: relative; width: 100%; margin-bottom: 30px; }
-        .category-title { font-size: clamp(16px, 3vw, 20px); font-weight: 700; margin: 0 4% 15px; color: #fff; }
-        
-        .carousel-container { position: relative; width: 100%; display: flex; align-items: center; }
-        
-        .carousel { 
-            display: flex; overflow-x: auto; gap: 12px; padding: 0 4% 20px; 
-            scrollbar-width: none; scroll-behavior: smooth; -webkit-overflow-scrolling: touch;
-            width: 100%;
-        }
-        .carousel::-webkit-scrollbar { display: none; }
-
-        .nav-arrow {
-            position: absolute; top: 0; bottom: 20px; width: 4%;
-            background: rgba(0,0,0,0.2); color: white; border: none;
-            cursor: pointer; z-index: 100; font-size: 24px; opacity: 0;
-            transition: opacity 0.3s, background 0.3s; display: flex; align-items: center; justify-content: center;
-        }
-        .category-row:hover .nav-arrow { opacity: 1; }
-        .nav-arrow:hover { background: rgba(0,0,0,0.7); }
-        .nav-arrow.left { left: 0; }
-        .nav-arrow.right { right: 0; }
-
-        .card { 
-            flex: 0 0 160px; 
-            width: 160px;
-            cursor: pointer; 
-            transition: 0.3s ease; 
-            position: relative; 
-        }
-        .card:hover { transform: scale(1.05); z-index: 10; }
-        
-        .card img { 
-            width: 100% !important; 
-            height: 240px !important; /* Ratio 2:3 strict */
-            object-fit: cover !important; 
-            border-radius: var(--card-radius); 
-            background: #1a1a1a;
+        .vjs-blur-bg {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 0;
+            background-size: cover;
+            background-position: center;
+            filter: blur(25px) brightness(0.4);
+            transform: scale(1.1); 
             display: block;
         }
-
-        .card-name { margin-top: 8px; font-size: 13px; color: #a3a3a3; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; text-align: left; }
-
-        .prog-bg { position: absolute; bottom: 30px; left: 0; width: 100%; height: 4px; background: rgba(255,255,255,0.2); border-radius: 0 0 var(--card-radius) var(--card-radius); overflow: hidden; }
-        .prog-fill { height: 100%; background: var(--accent); }
-
-        /* PLAYER */
-        #player-section { display: none; width: 100%; background: #000; position: fixed; inset: 0; z-index: 4500; overflow-y: auto; }
-        .video-container { position: relative; width: 100%; background: #000; }
-        .vjs-blur-bg { position: absolute; inset: 0; z-index: 0; background-size: cover; background-position: center; filter: blur(30px) brightness(0.3); transform: scale(1.2); }
         
-        #main-content { padding-top: 80px; }
-        #series-overlay { position: fixed; inset: 0; background: var(--bg); z-index: 3000; display: none; overflow-y: auto; padding: 80px 5% 40px; }
-        .episode-item { background: #161616; padding: 15px; border-radius: 8px; margin-bottom: 10px; cursor: pointer; display: flex; align-items: center; gap: 15px; border: 1px solid #222; }
+        .video-js { z-index: 1 !important; }
+        .video-js.vjs-playing .vjs-blur-bg { display: none; }
+        .video-js video { object-fit: cover !important; }
 
+        #next-episode-btn {
+            position: absolute; bottom: 85px; right: 25px; z-index: 99999 !important;
+            background: #e50914; color: white; border: 2px solid #fff; padding: 15px 25px;
+            border-radius: 8px; font-weight: bold; font-size: 15px; display: none; cursor: pointer;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.9); animation: fadeIn 0.5s;
+        }
+
+        #expiration-banner { display: none; background: #ffcc00; color: #000; text-align: center; padding: 10px; font-size: 13px; font-weight: bold; position: relative; z-index: 1500; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .vjs-skip-button { font-size: 1.5em !important; cursor: pointer; }
+        
+        /* STYLE MISE À JOUR PAGE DETAILS (COMME PHOTO) */
+        #details-overlay {
+            position: fixed; inset: 0; background: rgba(0,0,0,0.95);
+            z-index: 3500; display: none; align-items: center; justify-content: center;
+        }
+        .details-content {
+            background: #111; width: 100%; height: 100%;
+            display: flex; position: relative; overflow-y: auto;
+            flex-direction: column;
+            animation: slideUp 0.4s ease;
+        }
+        @keyframes slideUp { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        
+        .details-header-bg {
+            position: relative;
+            width: 100%;
+            height: 40vh;
+            background-size: cover;
+            background-position: center top;
+        }
+        .details-header-bg::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to top, #111, transparent);
+        }
+        .details-body {
+            padding: 20px;
+            margin-top: -60px;
+            z-index: 2;
+            position: relative;
+        }
+        .details-title-row { font-size: 24px; font-weight: bold; margin-bottom: 10px; }
+        .details-meta-row { display: flex; gap: 15px; align-items: center; color: #888; font-size: 14px; margin-bottom: 20px; }
+        .meta-year { background: #333; padding: 2px 6px; border-radius: 4px; color: #eee; }
+        .meta-rating { color: var(--gold); }
 
-        @media (max-width: 768px) {
-            .nav-arrow { display: none; }
-            .card { flex: 0 0 130px; width: 130px; }
-            .card img { height: 195px !important; }
-            .details-body { grid-template-columns: 1fr; padding-top: 20px; }
-            .details-hero { height: 50vh; }
-            .details-side-col { order: -1; }
+        .btn-lecture-big {
+            background: white; color: black; border: none; width: 100%;
+            padding: 12px; border-radius: 4px; font-weight: bold;
+            font-size: 18px; cursor: pointer; margin-bottom: 30px;
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+        }
+        
+        .section-label { font-size: 18px; font-weight: bold; margin: 25px 0 15px; color: #fff; }
+        
+        .details-poster { display: none; } /* Caché sur la nouvelle version car on utilise le header-bg */
+        
+        .trailer-box { width: 100%; aspect-ratio: 16/9; background: #000; border-radius: 8px; margin-bottom: 15px; overflow: hidden; border: 1px solid #333; }
+        
+        .cast-row { display: flex; gap: 15px; overflow-x: auto; padding: 5px 0 15px; scrollbar-width: none; }
+        .cast-row::-webkit-scrollbar { display: none; }
+        .actor-item { flex: 0 0 80px; text-align: center; }
+        .actor-item img { width: 70px; height: 70px; border-radius: 50%; object-fit: cover; border: 2px solid #444; }
+        .actor-name { font-size: 11px; color: #aaa; margin-top: 8px; }
+
+        .btn-close-details { 
+            position: absolute; top: 15px; right: 15px; 
+            background: rgba(0,0,0,0.6); border: none; color: white; 
+            width: 35px; height: 35px; border-radius: 50%; cursor: pointer; z-index: 100;
+            font-size: 20px; display: flex; align-items: center; justify-content: center;
+        }
+
+        /* CARD STYLE */
+        .card { flex: 0 0 150px; width: 150px; cursor: pointer; position: relative; }
+        .card img { width: 150px !important; height: 225px !important; object-fit: cover !important; border-radius: 4px; display: block; }
+        .card-name { margin-top: 6px; font-size: 12px; text-align: center; color: #bbb; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; width: 100%; }
+
+        @media (min-width: 768px) {
+            .details-content { width: 80%; height: 90%; border-radius: 12px; border: 1px solid #333; }
         }
     </style>
 </head>
@@ -236,54 +201,48 @@
         <button class="nav-btn" id="btn-movies" onclick="changeView('movies')" tabindex="0">Films</button>
         <button class="nav-btn" id="btn-series" onclick="changeView('series')" tabindex="0">Séries</button>
         <button class="nav-btn" id="btn-fav" onclick="changeView('fav')" tabindex="0">Ma Liste ❤️</button>
+        <button class="nav-btn" onclick="location.reload()" tabindex="0">🔄</button>
     </div>
     <div class="header-actions">
         <button class="btn-icon" onclick="openSearch()" tabindex="0">🔍</button>
         <button class="btn-logout" onclick="switchProfile()" tabindex="0">PROFILS</button>
     </div>
     <div id="search-overlay">
-        <input type="text" id="searchBar" onkeyup="filter()" placeholder="Rechercher un titre, un acteur..." tabindex="0">
+        <input type="text" id="searchBar" onkeyup="filter()" placeholder="Rechercher..." tabindex="0">
         <button class="btn-icon" onclick="closeSearch()" style="margin-left:10px" tabindex="0">✕</button>
     </div>
 </header>
 
 <div id="details-overlay">
-    <button class="btn-close-overlay" onclick="closeDetails()">✕</button>
     <div class="details-content">
-        <div class="details-hero">
-            <div id="hero-bg-img" class="hero-bg"></div>
-            <div class="hero-gradient"></div>
-            <div class="hero-info">
-                <h2 id="details-title"></h2>
-                <div class="meta-row">
-                    <span class="meta-badge" id="meta-year">2026</span>
-                    <span id="meta-duration">Film</span>
-                    <span style="color:var(--gold)">★★★★★</span>
-                </div>
-                <button id="details-play-btn" class="btn-play-hero" tabindex="0">
-                    <span>▶</span> LECTURE
-                </button>
-            </div>
-        </div>
-
+        <button class="btn-close-details" onclick="closeDetails()">✕</button>
+        <div id="details-header-bg" class="details-header-bg"></div>
+        
         <div class="details-body">
-            <div class="details-main-col">
-                <p id="details-desc" class="synopsis-text"></p>
-                <div class="cast-section">
-                    <h3>Distribution</h3>
-                    <div id="details-cast-list" class="cast-list"></div>
-                </div>
+            <div id="details-title" class="details-title-row">Titre</div>
+            <div class="details-meta-row">
+                <span id="details-year" class="meta-year">2025</span>
+                <span id="details-type">Film</span>
+                <span id="details-stars" class="meta-rating">★★★★★</span>
             </div>
-            <div class="details-side-col">
-                <h3>Bande-annonce</h3>
-                <div id="details-trailer-box" class="trailer-preview"></div>
-            </div>
+
+            <button id="details-play-btn" class="btn-lecture-big">
+                ▶ LECTURE
+            </button>
+
+            <div class="section-label">Bande-annonce</div>
+            <div id="details-trailer-box"></div>
+
+            <p id="details-desc" style="color:#ccc; line-height:1.6; font-size: 15px; margin-bottom: 30px;"></p>
+
+            <div class="section-label">Distribution</div>
+            <div id="details-cast" class="cast-row"></div>
         </div>
     </div>
 </div>
 
 <div id="series-overlay">
-    <button class="btn-close" onclick="closeSeries()" style="margin-bottom: 20px; background:#333; color:white; border:none; padding:10px 20px; border-radius:4px;" tabindex="0">← Retour</button>
+    <button class="btn-close" onclick="closeSeries()" style="margin-bottom: 20px;" tabindex="0">← Retour</button>
     <div id="series-detail-content"></div>
 </div>
 
@@ -291,26 +250,27 @@
     <div class="video-container" id="video-container">
         <div id="player-blur-bg" class="vjs-blur-bg"></div>
         <video id="main-video" class="video-js vjs-theme-fantasy vjs-16-9 vjs-big-play-centered" controls preload="auto" width="100%"></video>
-        <button id="next-episode-btn" style="position: absolute; bottom: 85px; right: 25px; z-index: 99; background: var(--accent); color: white; border: 2px solid #fff; padding: 15px 25px; border-radius: 8px; font-weight: bold; display: none; cursor: pointer;" onclick="playNextEpisode()" tabindex="0">ÉPISODE SUIVANT ⏭️</button>
+        <button id="next-episode-btn" onclick="playNextEpisode()" tabindex="0">ÉPISODE SUIVANT ⏭️</button>
     </div>
-    <div style="padding: 30px 6%; background: #0a0a0a;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-            <h1 id="display-title" style="margin:0; font-size: 24px;"></h1>
-            <button id="player-fav-btn" onclick="toggleFavCurrent()" style="background: #222; border: 1px solid #444; color: white; padding: 10px 20px; border-radius: 4px; cursor: pointer;" tabindex="0">+ Ma Liste</button>
+    <div class="movie-info">
+        <div class="movie-title">
+            <span id="display-title"></span>
+            <button id="player-fav-btn" onclick="toggleFavCurrent()" tabindex="0">+ Ma Liste</button>
         </div>
-        <p id="display-desc" style="color: #bbb; line-height: 1.6; max-width: 800px;"></p>
-        <button onclick="closeP()" style="background: #333; color: white; border: none; padding: 10px 25px; border-radius: 4px; margin-top: 20px; cursor: pointer;" tabindex="0">Quitter le lecteur</button>
+        <div id="display-desc" style="color: #bbb; margin-bottom: 10px;"></div>
+        <div id="display-actors" style="color: var(--gold); font-weight: bold; font-size: 14px; margin-bottom: 20px;"></div>
+        <button class="btn-close" onclick="closeP()" tabindex="0">Fermer</button>
     </div>
 </section>
 
 <div id="main-content">
-    <div id="expiration-banner" style="display: none; background: var(--gold); color: #000; text-align: center; padding: 10px; font-weight: bold;"></div>
+    <div id="expiration-banner"></div>
     <div id="history-sec" style="display:none">
-        <div class="category-title">Reprendre avec <span id="current-user-name"></span></div>
+        <div class="category-title">Reprendre la lecture</div>
         <div class="category-row">
-            <button class="nav-arrow left" onclick="scrollCarousel(this, -1)">‹</button>
+            <div class="nav-arrow arrow-left" onclick="scrollSide(this, -300)">‹</div>
             <div class="carousel" id="history-container"></div>
-            <button class="nav-arrow right" onclick="scrollCarousel(this, 1)">›</button>
+            <div class="nav-arrow arrow-right" onclick="scrollSide(this, 300)">›</div>
         </div>
     </div>
     <div id="categories-container"></div>
@@ -339,62 +299,23 @@
     let deviceId = localStorage.getItem('sfpp_device_id') || Math.random().toString(36).substring(7);
     localStorage.setItem('sfpp_device_id', deviceId);
 
-    async function verifyExpiration(user) {
-        if (!user) return false;
-        const snapshot = await get(ref(db, 'users_data/' + user.uid + '/expire'));
-        const expireValue = snapshot.val();
-        if (!expireValue) return false;
-        const now = new Date();
-        const y = now.getFullYear();
-        const m = String(now.getMonth() + 1).padStart(2, '0');
-        const d = String(now.getDate()).padStart(2, '0');
-        const todayStr = `${y}-${m}-${d}`;
-        if (todayStr >= expireValue) {
-            alert("Accès expiré le " + expireValue);
-            await signOut(auth);
-            location.reload();
-            return true;
-        }
-        return false;
-    }
-
-    window.startSessionSync = function(uid) {
-        onValue(ref(db, 'sessions/' + uid), (snapshot) => {
-            const session = snapshot.val();
-            if (session && session.deviceId !== deviceId) {
-                alert("⚠️ Ce compte est utilisé ailleurs.");
-                signOut(auth).then(() => location.reload());
-            }
-        });
-    };
+    const savedEmail = localStorage.getItem('sfpp_last_email');
+    if(savedEmail) document.getElementById('user').value = savedEmail;
 
     window.checkLogin = function() {
         const email = document.getElementById('user').value.trim();
         const pass = document.getElementById('pass').value;
         signInWithEmailAndPassword(auth, email, pass).then(async (u) => {
             localStorage.setItem('sfpp_last_email', email);
-            const exp = await verifyExpiration(u.user);
-            if (!exp) { set(ref(db, 'sessions/' + u.user.uid), { deviceId: deviceId, lastLogin: Date.now() }); }
+            set(ref(db, 'sessions/' + u.user.uid), { deviceId: deviceId, lastLogin: Date.now() }); 
         }).catch(() => alert("Identifiants incorrects."));
     };
 
     onAuthStateChanged(auth, async (user) => {
         if (user) {
-            if (await verifyExpiration(user)) return;
-            window.startSessionSync(user.uid);
             document.getElementById('login-screen').style.display = 'none';
             loadPlaylist();
             initProfiles();
-            const snap = await get(ref(db, 'users_data/' + user.uid + '/expire'));
-            const expireValue = snap.val();
-            if(expireValue) {
-                const diffDays = Math.ceil((new Date(expireValue) - new Date()) / (1000 * 60 * 60 * 24));
-                const banner = document.getElementById('expiration-banner');
-                if(diffDays > 0 && diffDays <= 5) {
-                    banner.style.display = 'block';
-                    banner.innerHTML = `⚠️ Fin d'accès dans ${diffDays} jour(s).`;
-                }
-            }
             const saved = localStorage.getItem('sfpp_profile');
             if(saved) selectProfile(saved, localStorage.getItem('sfpp_profile_icon'));
             else document.getElementById('profile-screen').style.display = 'flex';
@@ -408,10 +329,9 @@
         localStorage.setItem('sfpp_profile', name);
         localStorage.setItem('sfpp_profile_icon', icon);
         document.getElementById('profile-screen').style.display = 'none';
-        document.getElementById('current-user-name').innerText = name;
-        const snap = await get(ref(db, 'users_data/' + auth.currentUser.uid + '/expire'));
-        document.getElementById('header-logo').innerHTML = `SFPP | ${icon} <span style="font-size:10px; color:#666;">(${snap.val()})</span>`;
+        document.getElementById('header-logo').innerHTML = `SFPP | ${icon}`;
         render();
+        history.pushState({ overlay: 'home' }, "");
     };
 
     window.logout = function() { signOut(auth).then(() => { localStorage.clear(); location.reload(); }); };
@@ -420,43 +340,65 @@
 <script>
 let player, playlistData = [], currentProfile = null, isEditMode = false, currentView = 'all', currentPlayingTitle = "";
 
-function scrollCarousel(btn, dir) {
-    const carousel = btn.parentElement.querySelector('.carousel');
-    const scrollAmount = carousel.offsetWidth * 0.8;
-    carousel.scrollBy({ left: scrollAmount * dir, behavior: 'smooth' });
-}
+window.addEventListener('popstate', function (event) {
+    if (document.getElementById('details-overlay').style.display === 'flex') {
+        document.getElementById('details-overlay').style.display = 'none';
+        document.getElementById('details-trailer-box').innerHTML = "";
+        return;
+    }
+    if (document.getElementById('series-overlay').style.display === 'block') {
+        document.getElementById('series-overlay').style.display = 'none';
+        return;
+    }
+    if (document.getElementById('player-section').style.display === 'block') {
+        saveP(); player.pause(); document.getElementById('player-section').style.display = 'none';
+        render(); return;
+    }
+});
 
-async function loadPlaylist() { try { const response = await fetch('films.json'); playlistData = await response.json(); render(); } catch (e) {} }
+async function loadPlaylist() { try { const r = await fetch('films.json'); playlistData = await r.json(); render(); } catch(e){} }
 
 function openDetails(idx) {
+    history.pushState({ overlay: 'details' }, "");
     const m = playlistData[idx];
-    document.getElementById('hero-bg-img').style.backgroundImage = `url('${m.img}')`;
+    
+    document.getElementById('details-header-bg').style.backgroundImage = `url('${m.img}')`;
     document.getElementById('details-title').innerText = m.t;
-    document.getElementById('details-desc').innerText = m.desc || "Aucun synopsis.";
+    document.getElementById('details-desc').innerText = m.desc || "Aucun résumé.";
+    document.getElementById('details-year').innerText = m.year || "2025";
+    document.getElementById('details-type').innerText = m.cat === "SÉRIES" ? "Série" : "Film";
     
-    const castCont = document.getElementById('details-cast-list');
-    castCont.innerHTML = (m.actors_pics && m.actors_pics.length > 0) 
-        ? m.actors_pics.map(a => `<div class="actor-card"><img src="${a.img}" onerror="this.src='https://via.placeholder.com/65'"><span>${a.name}</span></div>`).join('')
-        : `<p style="color:#666; font-size:13px;">${m.actors || m.cast || 'Casting non renseigné'}</p>`;
+    // Casting
+    const castDiv = document.getElementById('details-cast');
+    if (m.actors_pics && m.actors_pics.length > 0) {
+        castDiv.innerHTML = m.actors_pics.map(a => `
+            <div class="actor-item">
+                <img src="${a.img}" onerror="this.src='https://via.placeholder.com/70x70?text=?'">
+                <div class="actor-name">${a.name}</div>
+            </div>
+        `).join('');
+    } else castDiv.innerHTML = "<p style='color:#666'>Non renseigné</p>";
 
-    document.getElementById('details-trailer-box').innerHTML = m.trailer 
-        ? `<iframe width="100%" height="100%" src="https://www.youtube.com/embed/${m.trailer}?rel=0" frameborder="0" allowfullscreen></iframe>` 
-        : `<div style="display:flex; align-items:center; justify-content:center; height:100%; color:#444;">Bande-annonce indisponible</div>`;
-    
+    // Trailer
+    const trailerDiv = document.getElementById('details-trailer-box');
+    if (m.trailer) {
+        trailerDiv.innerHTML = `<div class="trailer-box"><iframe width="100%" height="100%" src="https://www.youtube.com/embed/${m.trailer}?rel=0" frameborder="0" allowfullscreen></iframe></div>`;
+    } else trailerDiv.innerHTML = "";
+
     document.getElementById('details-play-btn').onclick = () => playMovie(idx);
     document.getElementById('details-overlay').style.display = 'flex';
 }
 
-function closeDetails() { document.getElementById('details-overlay').style.display = 'none'; document.getElementById('details-trailer-box').innerHTML = ""; }
+function closeDetails() { history.back(); }
 
 function initProfiles() {
-    let profiles = JSON.parse(localStorage.getItem('sfpp_profiles_data')) || [
+    let p = JSON.parse(localStorage.getItem('sfpp_profiles_data')) || [
         { id: 1, name: "Profil 1", icon: "🟦", color: "#1e90ff" },
         { id: 2, name: "Profil 2", icon: "🟩", color: "#2ecc71" },
         { id: 3, name: "Profil 3", icon: "🟧", color: "#e67e22" },
         { id: 4, name: "Profil 4", icon: "🟪", color: "#9b59b6" }
     ];
-    document.getElementById('profile-list').innerHTML = profiles.map(p => `
+    document.getElementById('profile-list').innerHTML = p.map(p => `
         <div class="profile-item" onclick="handleProfileClick(${p.id}, '${p.name}', '${p.icon}')" tabindex="0">
             <div class="profile-avatar" style="background:${p.color}">${p.icon}</div>
             <div class="edit-icon">✏️</div>
@@ -466,24 +408,26 @@ function initProfiles() {
 
 function handleProfileClick(id, name, icon) {
     if(isEditMode) {
-        let n = prompt("Nom :", name);
+        let n = prompt("Nouveau nom :", name);
         if(n) {
-            let saved = JSON.parse(localStorage.getItem('sfpp_profiles_data') || "[]");
-            const idx = saved.findIndex(p => p.id === id);
-            if(idx !== -1) { saved[idx].name = n; localStorage.setItem('sfpp_profiles_data', JSON.stringify(saved)); initProfiles(); }
+            let s = JSON.parse(localStorage.getItem('sfpp_profiles_data') || "[]");
+            const i = s.findIndex(x => x.id === id);
+            if(i !== -1) { s[i].name = n; localStorage.setItem('sfpp_profiles_data', JSON.stringify(s)); initProfiles(); }
         }
     } else selectProfile(name, icon);
 }
 
 function saveP() {
-    if(!currentPlayingTitle || !currentProfile) return;
+    if(!currentPlayingTitle) return;
     const cur = player.currentTime(), dur = player.duration();
     if(dur > 0) {
-        let prog = JSON.parse(localStorage.getItem('sfpp_p_'+currentProfile) || "{}");
-        prog[currentPlayingTitle] = { t: cur, p: (cur/dur)*100 };
-        localStorage.setItem('sfpp_p_'+currentProfile, JSON.stringify(prog));
+        let p = JSON.parse(localStorage.getItem('sfpp_p_'+currentProfile) || "{}");
+        p[currentPlayingTitle] = { t: cur, p: (cur/dur)*100 };
+        localStorage.setItem('sfpp_p_'+currentProfile, JSON.stringify(p));
     }
 }
+
+function scrollSide(btn, amt) { btn.parentElement.querySelector('.carousel').scrollBy({ left: amt, behavior: 'smooth' }); }
 
 function render(search = "") {
     const cont = document.getElementById('categories-container');
@@ -495,108 +439,118 @@ function render(search = "") {
     const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
     
     let data = playlistData;
-    if(currentView === 'movies') data = playlistData.filter(m => m.cat !== "SÉRIES");
-    else if(currentView === 'series') data = playlistData.filter(m => m.cat === "SÉRIES");
-    else if(currentView === 'fav') data = playlistData.filter(m => favs.includes(m.t));
+    if(currentView === 'movies') data = data.filter(m => m.cat !== "SÉRIES");
+    else if(currentView === 'series') data = data.filter(m => m.cat === "SÉRIES");
+    else if(currentView === 'fav') data = data.filter(m => favs.includes(m.t));
 
     if(currentProfile && s === "" && currentView === 'all') {
-        let history = JSON.parse(localStorage.getItem('sfpp_hist_' + currentProfile) || "[]");
-        if(history.length > 0) {
+        let h = JSON.parse(localStorage.getItem('sfpp_hist_' + currentProfile) || "[]");
+        if(h.length > 0) {
             histSec.style.display = "block";
-            history.slice().reverse().forEach(title => {
-                const m = playlistData.find(item => item.t === title);
+            h.slice().reverse().forEach(t => {
+                const m = playlistData.find(x => x.t === t);
                 if(m) {
                     const pct = (prog[m.t] && prog[m.t].p > 1) ? `<div class="prog-bg"><div class="prog-fill" style="width:${prog[m.t].p}%"></div></div>` : "";
                     histCont.innerHTML += `<div class="card" onclick="openDetails(${playlistData.indexOf(m)})" tabindex="0"><img src="${m.img}">${pct}<div class="card-name">${m.t}</div></div>`;
                 }
             });
-        }
+        } else histSec.style.display = "none";
     }
 
     const cats = [...new Set(data.map(m => m.cat))];
-    let addedSeries = [];
-
+    let added = [];
     cats.forEach(c => {
         const filtered = data.filter(m => m.cat === c && m.t.toLowerCase().includes(s));
         if (filtered.length === 0) return;
-        let html = `<div class="category-title">${c}</div><div class="category-row"><button class="nav-arrow left" onclick="scrollCarousel(this, -1)">‹</button><div class="carousel">`;
+        let html = `<div class="category-title">${c}</div><div class="category-row"><div class="nav-arrow arrow-left" onclick="scrollSide(this, -400)">‹</div><div class="carousel">`;
         filtered.forEach(m => {
             const isS = /S\d{2}E\d{2}/i.test(m.t);
             const pct = (prog[m.t] && prog[m.t].p > 1) ? `<div class="prog-bg"><div class="prog-fill" style="width:${prog[m.t].p}%"></div></div>` : "";
             if(isS) {
                 const sName = m.t.split(' - ')[0];
-                if(!addedSeries.includes(sName)) {
-                    addedSeries.push(sName);
+                if(!added.includes(sName)) {
+                    added.push(sName);
                     html += `<div class="card" onclick="openSeries('${sName}')" tabindex="0"><img src="${m.img}"><div class="card-name">${sName}</div></div>`;
                 }
             } else {
                 html += `<div class="card" onclick="openDetails(${playlistData.indexOf(m)})" tabindex="0"><img src="${m.img}">${pct}<div class="card-name">${m.t}</div></div>`;
             }
         });
-        html += `</div><button class="nav-arrow right" onclick="scrollCarousel(this, 1)">›</button></div>`;
+        html += `</div><div class="nav-arrow arrow-right" onclick="scrollSide(this, 400)">›</div></div>`;
         cont.innerHTML += html;
     });
 }
 
 function openSeries(name) {
+    history.pushState({ overlay: 'series' }, "");
     const overlay = document.getElementById('series-overlay');
-    const content = document.getElementById('series-detail-content');
     const eps = playlistData.filter(m => m.t.startsWith(name));
     overlay.style.display = 'block';
-    let html = `<div style="display:flex; gap:25px; align-items:center; margin-bottom:40px;"><img src="${eps[0].img}" style="width:140px; border-radius:8px;"><h1>${name}</h1></div>`;
+    let html = `<div class="overlay-header"><img src="${eps[0].img}" class="overlay-img"><div><h2>${name}</h2></div></div>`;
+    const seasons = {};
     eps.forEach(ep => {
-        html += `<div class="episode-item" onclick="openDetails(${playlistData.indexOf(ep)})"><b>${ep.t.split(' - ')[1] || ep.t}</b></div>`;
+        const sMatch = ep.t.match(/S(\d{2})/);
+        const sNum = sMatch ? sMatch[1] : "01";
+        if(!seasons[sNum]) seasons[sNum] = [];
+        seasons[sNum].push(ep);
     });
-    content.innerHTML = html;
+    Object.keys(seasons).sort().forEach(s => {
+        html += `<div class="season-title">SAISON ${s}</div>`;
+        seasons[s].forEach(ep => {
+            html += `<div class="episode-item" onclick="openDetails(${playlistData.indexOf(ep)});" tabindex="0">
+                        <div style="flex:1"><b>${ep.t.split(' - ')[1] || ep.t}</b></div>
+                        <div style="color:var(--accent)">VOIR</div>
+                     </div>`;
+        });
+    });
+    document.getElementById('series-detail-content').innerHTML = html;
 }
 
 function playMovie(idx) {
+    history.replaceState({ overlay: 'player' }, "");
     const m = playlistData[idx];
     currentPlayingTitle = m.t;
-    if(currentProfile) {
-        let hist = JSON.parse(localStorage.getItem('sfpp_hist_' + currentProfile) || "[]").filter(t => t !== m.t);
-        hist.push(m.t); localStorage.setItem('sfpp_hist_' + currentProfile, JSON.stringify(hist));
-    }
-    closeDetails();
+    
+    let key = 'sfpp_hist_' + currentProfile;
+    let h = JSON.parse(localStorage.getItem(key) || "[]").filter(t => t !== m.t);
+    h.push(m.t); if(h.length > 15) h.shift();
+    localStorage.setItem(key, JSON.stringify(h));
+    
+    document.getElementById('details-overlay').style.display = 'none';
     document.getElementById('series-overlay').style.display = 'none';
     document.getElementById('player-section').style.display = 'block';
     document.getElementById('display-title').innerText = m.t;
     document.getElementById('player-blur-bg').style.backgroundImage = `url('${m.img}')`;
+    
     player.src({ src: m.url, type: 'video/mp4' });
-    const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
-    if(prog[m.t]) player.currentTime(prog[m.t].t);
+    const p = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
+    if(p[m.t]) player.currentTime(p[m.t].t);
     player.play();
 }
 
-function playNextEpisode() {
-    const parts = currentPlayingTitle.match(/(.*[SE])(\d+)(.*)/i);
-    if (!parts) return;
-    const nextIdx = playlistData.findIndex(m => m.t.toUpperCase().includes((parts[1] + (parseInt(parts[2]) + 1).toString().padStart(2, '0')).toUpperCase()));
-    if (nextIdx !== -1) playMovie(nextIdx);
-}
-
-function closeP() { saveP(); player.pause(); document.getElementById('player-section').style.display = 'none'; render(); }
-function closeSeries() { document.getElementById('series-overlay').style.display = 'none'; }
-function openSearch() { document.getElementById('search-overlay').style.display = 'flex'; document.getElementById('searchBar').focus(); }
-function closeSearch() { document.getElementById('search-overlay').style.display = 'none'; document.getElementById('searchBar').value = ''; render(); }
+function closeP() { history.back(); }
+function closeSeries() { history.back(); }
 function changeView(v) { currentView = v; document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active')); document.getElementById('btn-'+v).classList.add('active'); render(); }
 function filter() { render(document.getElementById('searchBar').value); }
 function toggleEditMode() { isEditMode = !isEditMode; document.getElementById('profile-screen').classList.toggle('is-editing'); }
 function switchProfile() { localStorage.removeItem('sfpp_profile'); location.reload(); }
-function requestAccess() { window.location.href = "mailto:sfpp.ott@gmail.com"; }
 
 document.addEventListener('DOMContentLoaded', () => {
-    player = videojs('main-video', { controls: true, fluid: true, techOrder: ['chromecast', 'html5'], plugins: { chromecast: { addButtonToControlBar: true } } });
-    player.on('timeupdate', () => {
-        const dur = player.duration(), cur = player.currentTime();
-        if (/S\d{2}E\d{2}/i.test(currentPlayingTitle) && (dur - cur) < 80) document.getElementById('next-episode-btn').style.display = 'block';
-        if(Math.floor(cur) % 10 === 0) saveP();
+    player = videojs('main-video', { 
+        controls: true, fluid: true, fill: true,
+        techOrder: ['chromecast', 'html5'], plugins: { chromecast: { addButtonToControlBar: true } }
     });
+    
+    player.on('timeupdate', () => { if(Math.floor(player.currentTime()) % 10 === 0) saveP(); });
+
     const Button = videojs.getComponent('Button');
     class Back extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-replay-10'; } handleClick() { player.currentTime(player.currentTime()-10); } }
     class Forward extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-forward-10'; } handleClick() { player.currentTime(player.currentTime()+10); } }
     videojs.registerComponent('Back', Back); videojs.registerComponent('Forward', Forward);
-    player.ready(() => { player.getChild('controlBar').addChild('Back', {}, 1); player.getChild('controlBar').addChild('Forward', {}, 2); });
+    player.ready(() => { 
+        player.getChild('controlBar').addChild('Back', {}, 1); 
+        player.getChild('controlBar').addChild('Forward', {}, 2); 
+    });
 });
 </script>
 </body>
