@@ -131,6 +131,10 @@
             border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 16px; 
             display: flex; align-items: center; gap: 10px;
         }
+        .btn-fav-details {
+            background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.3); padding: 15px 25px; 
+            border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 16px;
+        }
 
         .section-label { font-weight: bold; color: white; margin: 30px 0 15px; font-size: 18px; border-left: 4px solid var(--accent); padding-left: 10px; }
         .trailer-box { width: 100%; max-width: 800px; aspect-ratio: 16/9; background: #000; border-radius: 8px; margin-bottom: 25px; overflow: hidden; border: 1px solid #333; }
@@ -229,6 +233,7 @@
             </div>
             <div class="details-actions">
                 <button id="details-play-btn" class="btn-play-main" tabindex="0">▶ Lancer le film</button>
+                <button id="details-fav-btn" class="btn-fav-details" tabindex="0">+ Ma Liste</button>
             </div>
             <p id="details-desc" class="synopsis"></p>
             
@@ -465,8 +470,29 @@ function openDetails(idx) {
     const playBtn = document.getElementById('details-play-btn');
     playBtn.onclick = () => { playMovie(idx); };
     
+    const favBtn = document.getElementById('details-fav-btn');
+    favBtn.onclick = () => { toggleFav(m.t); };
+    updateFavBtnUI(m.t);
+
     document.getElementById('details-overlay').style.display = 'flex';
     playBtn.focus();
+}
+
+function toggleFav(title) {
+    let key = 'sfpp_fav_' + currentProfile;
+    let favs = JSON.parse(localStorage.getItem(key) || "[]");
+    if(favs.includes(title)) favs = favs.filter(t => t !== title);
+    else favs.push(title);
+    localStorage.setItem(key, JSON.stringify(favs));
+    updateFavBtnUI(title);
+    render(document.getElementById('searchBar').value);
+}
+
+function updateFavBtnUI(title) {
+    let favs = JSON.parse(localStorage.getItem('sfpp_fav_' + currentProfile) || "[]");
+    const btn = document.getElementById('details-fav-btn');
+    if(favs.includes(title)) btn.innerText = "❤️ Dans Ma Liste";
+    else btn.innerText = "+ Ma Liste";
 }
 
 function closeDetails() {
@@ -500,23 +526,6 @@ function handleProfileClick(id, name, icon) {
             if(idx !== -1) { saved[idx].name = n; localStorage.setItem('sfpp_profiles_data', JSON.stringify(saved)); initProfiles(); }
         }
     } else selectProfile(name, icon);
-}
-
-function toggleFavCurrent() {
-    let key = 'sfpp_fav_' + currentProfile;
-    let favs = JSON.parse(localStorage.getItem(key) || "[]");
-    if(favs.includes(currentPlayingTitle)) favs = favs.filter(t => t !== currentPlayingTitle);
-    else favs.push(currentPlayingTitle);
-    localStorage.setItem(key, JSON.stringify(favs));
-    updatePlayerFavUI();
-    render(document.getElementById('searchBar').value);
-}
-
-function updatePlayerFavUI() {
-    let favs = JSON.parse(localStorage.getItem('sfpp_fav_' + currentProfile) || "[]");
-    const btn = document.getElementById('player-fav-btn');
-    if(favs.includes(currentPlayingTitle)) { btn.innerText = "❤️ Dans Ma Liste"; btn.classList.add('is-fav'); }
-    else { btn.innerText = "+ Ma Liste"; btn.classList.remove('is-fav'); }
 }
 
 function saveP() {
@@ -683,14 +692,6 @@ document.addEventListener('DOMContentLoaded', () => {
     player.ready(() => { 
         player.getChild('controlBar').addChild('Back', {}, 1); 
         player.getChild('controlBar').addChild('Forward', {}, 2); 
-        
-        // --- DOUBLE-CLIC PLEIN ÉCRAN (FIX FINAL) ---
-        player.el().addEventListener('dblclick', function(e) {
-            // Empêche le double-clic si on touche à la barre de contrôle
-            if (e.target.closest('.vjs-control-bar')) return;
-            if (player.isFullscreen()) player.exitFullscreen();
-            else player.requestFullscreen();
-        });
     });
 });
 </script>
