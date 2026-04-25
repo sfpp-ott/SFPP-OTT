@@ -102,60 +102,48 @@
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         .vjs-skip-button { font-size: 1.5em !important; cursor: pointer; }
         
-        /* --- DESIGN OVERLAY MIS À JOUR SELON VOS PHOTOS --- */
+        /* --- DESIGN OVERLAY DETAILS (COMME SUR TES PHOTOS) --- */
         #details-overlay {
-            position: fixed; inset: 0; background: #000;
-            z-index: 3500; display: none; flex-direction: column;
-            overflow-y: auto; scrollbar-width: none;
+            position: fixed; inset: 0; background: var(--bg);
+            z-index: 3500; display: none; flex-direction: column; overflow-y: auto;
         }
-        .details-content { background: transparent; width: 100%; border: none; display: block; animation: none; padding: 0; }
+        .details-content { position: relative; width: 100%; display: block; animation: fadeIn 0.3s; }
         
-        .details-poster { 
-            width: 100%; height: 55vh; object-fit: cover; border: none; 
-            mask-image: linear-gradient(to top, transparent, black 25%);
-            -webkit-mask-image: linear-gradient(to top, transparent, black 25%);
+        .details-hero { 
+            position: relative; width: 100%; height: 55vh; 
+            background-size: cover; background-position: center top; 
         }
-        
-        .details-info { 
-            width: 100% !important; padding: 0 25px 60px !important; 
-            margin-top: -80px; position: relative; box-sizing: border-box;
-            background: linear-gradient(to bottom, transparent, #000 10%);
+        .details-hero::after { 
+            content: ''; position: absolute; inset: 0; 
+            background: linear-gradient(to top, var(--bg) 10%, transparent 70%); 
         }
-        .details-info h2 { font-size: 32px !important; font-weight: 900; margin-bottom: 8px; }
-        
-        .meta-row { display: flex; align-items: center; gap: 15px; margin-bottom: 25px; font-weight: bold; font-size: 14px; }
-        .tag-year { background: #333; padding: 4px 10px; border-radius: 4px; }
 
-        /* BOUTON LECTURE BLANC (PHOTO 1) */
+        .details-info { padding: 0 5% 40px; margin-top: -80px; position: relative; z-index: 5; }
+        .details-info h2 { font-size: 32px; font-weight: bold; margin-bottom: 10px; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
+        .details-info .meta { color: #888; font-size: 14px; margin-bottom: 15px; display: flex; gap: 15px; }
+        .details-info .synopsis { color: #ddd; line-height: 1.6; font-size: 15px; max-width: 850px; margin-bottom: 25px; }
+        
+        .details-actions { display: flex; gap: 15px; margin-bottom: 30px; }
         .btn-play-main { 
-            background: #ffffff !important; color: #000000 !important; 
-            width: 100%; padding: 15px !important; border-radius: 6px !important;
-            font-size: 18px !important; font-weight: 900 !important;
-            display: flex; align-items: center; justify-content: center; gap: 12px;
-            border: none; text-transform: uppercase; margin: 20px 0 35px;
-            cursor: pointer;
+            background: white; color: black; border: none; padding: 15px 35px; 
+            border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 16px; 
+            display: flex; align-items: center; gap: 10px;
         }
 
-        .section-label { font-size: 18px; font-weight: 700; margin: 30px 0 15px; display: block; color: white; }
-        .synopsis { color: #ccc; line-height: 1.6; font-size: 15px; margin-bottom: 30px; }
-
-        /* CASTING EN BULLES (PHOTO 2) */
-        .cast-row { display: flex; gap: 18px; overflow-x: auto; padding: 10px 0 20px; scrollbar-width: none; }
-        .actor-item { flex: 0 0 75px; text-align: center; }
-        .actor-item img { 
-            width: 65px !important; height: 65px !important; 
-            border-radius: 50% !important; border: 2px solid var(--accent); 
-            object-fit: cover;
-        }
-        .actor-name { font-size: 10px; color: #888; margin-top: 8px; line-height: 1.2; }
+        .section-label { font-weight: bold; color: white; margin: 30px 0 15px; font-size: 18px; border-left: 4px solid var(--accent); padding-left: 10px; }
+        .trailer-box { width: 100%; max-width: 800px; aspect-ratio: 16/9; background: #000; border-radius: 8px; margin-bottom: 25px; overflow: hidden; border: 1px solid #333; }
+        
+        .cast-row { display: flex; gap: 15px; overflow-x: auto; padding-bottom: 15px; scrollbar-width: none; }
+        .actor-item { flex: 0 0 90px; text-align: center; }
+        .actor-item img { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 2px solid #333; }
+        .actor-name { font-size: 11px; color: #aaa; margin-top: 8px; }
 
         .btn-close-details { 
-            position: absolute; top: 25px; right: 20px; background: rgba(0,0,0,0.5); 
-            border: 1px solid #444; color: white; width: 40px; height: 40px; 
-            border-radius: 50%; cursor: pointer; z-index: 4000; 
+            position: absolute; top: 20px; right: 20px; 
+            background: rgba(0,0,0,0.5); border: none; color: white; 
+            width: 40px; height: 40px; border-radius: 50%; cursor: pointer; z-index: 100; font-size: 20px;
         }
-
-        /* --- FIN DU DESIGN MIS À JOUR --- */
+        /* --- FIN DESIGN OVERLAY --- */
 
         .movie-info { padding: 20px 5%; background: #0a0a0a; min-height: 150px; border-bottom: 3px solid var(--accent); }
         .movie-title { font-size: 26px; font-weight: bold; margin-bottom: 8px; color: #fff; display: flex; align-items: center; gap: 15px; }
@@ -167,8 +155,6 @@
         .category-title { font-size: 18px; font-weight: bold; margin: 20px 4% 10px; color: #fff; text-transform: uppercase; }
         
         .carousel { display: flex; overflow-x: auto; gap: 12px; padding: 0 4% 10px; scrollbar-width: none; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; }
-        .carousel::-webkit-scrollbar { display: none; }
-
         .nav-arrow { position: absolute; top: 0; bottom: 30px; width: 50px; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; z-index: 10; cursor: pointer; color: white; font-size: 30px; opacity: 0; transition: opacity 0.3s; }
         .category-row:hover .nav-arrow { opacity: 1; }
         .arrow-left { left: 0; }
@@ -188,21 +174,10 @@
         .episode-item { background: #111; padding: 15px; border-radius: 6px; margin-bottom: 8px; cursor: pointer; display: flex; align-items: center; gap: 15px; border: 1px solid #222; }
         .btn-close { background: #333; color: #fff; border: none; padding: 10px 22px; border-radius: 4px; cursor: pointer; }
 
-        .vjs-loading-spinner {
-            border: 6px solid rgba(255, 255, 255, 0.2) !important;
-            border-top-color: var(--accent) !important;
-            width: 80px !important;
-            height: 80px !important;
-            margin-top: -40px !important;
-            margin-left: -40px !important;
-            border-radius: 50% !important;
-            visibility: visible !important;
-            opacity: 1 !important;
-        }
-
         @media (max-width: 768px) {
             .card { flex: 0 0 130px; width: 130px; }
             .card img { width: 130px !important; height: 195px !important; }
+            .details-hero { height: 45vh; }
         }
     </style>
 </head>
@@ -247,24 +222,25 @@
 <div id="details-overlay">
     <div class="details-content">
         <button class="btn-close-details" onclick="closeDetails()">✕</button>
-        <img id="details-img" class="details-poster" src="" alt="">
+        <div id="details-header-bg" class="details-hero"></div>
         <div class="details-info">
             <h2 id="details-title">Titre du film</h2>
-            <div class="meta-row">
-                <span class="tag-year" id="details-year">2024</span>
-                <span style="color:var(--gold)">★★★★★</span>
+            <div class="meta">
+                <span id="details-meta-year">2024</span>
+                <span id="details-meta-cat">Film</span>
+                <span style="color:#46d369">98% match</span>
             </div>
-            
-            <button id="details-play-btn" class="btn-play-main" tabindex="0">▶ LECTURE</button>
-            
-            <span class="section-label">Bande-annonce</span>
-            <div id="details-trailer-box"></div>
-            
-            <span class="section-label">Résumé</span>
+            <div class="details-actions">
+                <button id="details-play-btn" class="btn-play-main" tabindex="0">▶ Lancer le film</button>
+            </div>
             <p id="details-desc" class="synopsis"></p>
             
-            <span class="section-label">Casting</span>
-            <div id="details-meta"></div> </div>
+            <div class="section-label">Bande-annonce</div>
+            <div id="details-trailer-box"></div>
+
+            <div class="section-label">Casting principal</div>
+            <div id="details-meta-cast" class="cast-row"></div>
+        </div>
     </div>
 </div>
 
@@ -473,46 +449,32 @@ window.addEventListener('popstate', function (event) {
     }
 });
 
-function openSearch() { document.getElementById('search-overlay').style.display = 'flex'; document.getElementById('searchBar').focus(); }
-function closeSearch() { document.getElementById('search-overlay').style.display = 'none'; document.getElementById('searchBar').value = ''; filter(); }
-
 async function loadPlaylist() { try { const response = await fetch('films.json'); playlistData = await response.json(); render(); } catch (e) {} }
 
-/* --- FONCTION DE DÉTAILS MISE À JOUR POUR VOS PHOTOS --- */
 function openDetails(idx) {
     history.pushState({ overlay: 'details' }, "");
-
     const m = playlistData[idx];
-    document.getElementById('details-img').src = m.img;
+    
+    // Header visuel
+    document.getElementById('details-header-bg').style.backgroundImage = `url('${m.img}')`;
     document.getElementById('details-title').innerText = m.t;
     document.getElementById('details-desc').innerText = m.desc || "Aucun résumé disponible.";
     
-    // Année (si présente dans vos données, sinon 2024 par défaut)
-    document.getElementById('details-year').innerText = m.year || "2024";
-
-    // CASTING EN BULLES (PHOTO 2)
+    // Casting
     let castHtml = "";
     if (m.actors_pics && m.actors_pics.length > 0) {
-        castHtml = `<div class="cast-row">` + 
-            m.actors_pics.map(a => `
+        castHtml = m.actors_pics.map(a => `
                 <div class="actor-item">
-                    <img src="${a.img}" onerror="this.src='https://via.placeholder.com/65x65?text=?'">
+                    <img src="${a.img}" onerror="this.src='https://via.placeholder.com/80x80?text=?'">
                     <div class="actor-name">${a.name}</div>
                 </div>
-            `).join('') + `</div>`;
-    } else {
-        castHtml = `<div style="color:#888; font-size:14px;">Information casting non disponible.</div>`;
+            `).join('');
     }
-    document.getElementById('details-meta').innerHTML = castHtml;
+    document.getElementById('details-meta-cast').innerHTML = castHtml;
 
-    // BANDE ANNONCE
-    let trailerHtml = "";
-    if (m.trailer) {
-        trailerHtml = `<div class="trailer-box" style="width:100%; aspect-ratio:16/9; background:#111; border-radius:8px; overflow:hidden; margin-bottom:20px;">
-            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/${m.trailer}?rel=0" frameborder="0" allowfullscreen></iframe>
-        </div>`;
-    }
-    document.getElementById('details-trailer-box').innerHTML = trailerHtml;
+    // Trailer
+    document.getElementById('details-trailer-box').innerHTML = m.trailer ? 
+        `<iframe width="100%" height="100%" src="https://www.youtube.com/embed/${m.trailer}?rel=0" frameborder="0" allowfullscreen></iframe>` : "";
     
     const playBtn = document.getElementById('details-play-btn');
     playBtn.onclick = () => { playMovie(idx); };
@@ -683,16 +645,13 @@ function playMovie(idx) {
     document.getElementById('details-overlay').style.display = 'none';
     document.getElementById('details-trailer-box').innerHTML = "";
     document.getElementById('series-overlay').style.display = 'none';
-
     document.getElementById('player-section').style.display = 'block';
     document.getElementById('display-title').innerText = m.t;
     document.getElementById('display-desc').innerText = m.desc || "";
     document.getElementById('display-actors').innerText = (m.actors || m.cast) ? "Avec : " + (m.actors || m.cast) : "";
     updatePlayerFavUI();
-    
     document.getElementById('player-blur-bg').style.backgroundImage = `url('${m.img}')`;
     player.poster(m.img); 
-    
     window.scrollTo({top:0, behavior:'smooth'});
     player.src({ src: m.url, type: 'video/mp4' });
     
@@ -722,7 +681,6 @@ document.addEventListener('DOMContentLoaded', () => {
         controls: true, fluid: true, fill: true,
         techOrder: ['chromecast', 'html5'], plugins: { chromecast: { addButtonToControlBar: true } }
     });
-    
     player.on('timeupdate', function() {
         const dur = player.duration(), cur = player.currentTime();
         if (/S\d{2}E\d{2}/i.test(currentPlayingTitle) && dur > 0 && (dur - cur) < 80) {
@@ -731,12 +689,14 @@ document.addEventListener('DOMContentLoaded', () => {
         } else document.getElementById('next-episode-btn').style.display = 'none';
         if(Math.floor(cur) % 10 === 0) saveP();
     });
-
     const Button = videojs.getComponent('Button');
     class Back extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-replay-10'; } handleClick() { player.currentTime(player.currentTime()-10); } }
     class Forward extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-forward-10'; } handleClick() { player.currentTime(player.currentTime()+10); } }
     videojs.registerComponent('Back', Back); videojs.registerComponent('Forward', Forward);
-    player.ready(() => { player.getChild('controlBar').addChild('Back', {}, 1); player.getChild('controlBar').addChild('Forward', {}, 2); });
+    player.ready(() => { 
+        player.getChild('controlBar').addChild('Back', {}, 1); 
+        player.getChild('controlBar').addChild('Forward', {}, 2); 
+    });
 });
 </script>
 </body>
