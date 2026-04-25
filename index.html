@@ -249,62 +249,22 @@
     <div id="series-detail-content"></div>
 </div>
 
-<section id="player-section" style="display: none; position: fixed; inset: 0; background: #000; z-index: 4500; overflow: hidden;">
-    <div class="video-container" style="position: relative; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
-        
-        <div id="player-blur-bg" style="position: absolute; inset: 0; background-size: cover; background-position: center; filter: blur(40px) brightness(0.3); transform: scale(1.1); z-index: 0;"></div>
-        
-        <video id="main-video" class="video-js vjs-theme-fantasy vjs-big-play-centered" controls preload="auto" style="width: 100%; height: 100%; z-index: 1;"></video>
-        
-        <button onclick="closeP()" style="position: absolute; top: 25px; left: 25px; z-index: 10; background: rgba(0,0,0,0.5); color: white; border: none; width: 45px; height: 45px; border-radius: 50%; cursor: pointer; font-size: 20px;">✕</button>
-        
+<section id="player-section">
+    <div class="video-container" id="video-container">
+        <div id="player-blur-bg" class="vjs-blur-bg"></div>
+        <video id="main-video" class="video-js vjs-theme-fantasy vjs-16-9 vjs-big-play-centered" controls preload="auto" width="100%"></video>
         <button id="next-episode-btn" onclick="playNextEpisode()" tabindex="0">ÉPISODE SUIVANT ⏭️</button>
     </div>
+    <div class="movie-info">
+        <div class="movie-title">
+            <span id="display-title"></span>
+            <button id="player-fav-btn" onclick="toggleFavCurrent()" tabindex="0">+ Ma Liste</button>
+        </div>
+        <div id="display-desc" style="color: #bbb; margin-bottom: 10px;"></div>
+        <div id="display-actors" style="color: var(--gold); font-weight: bold; font-size: 14px; margin-bottom: 20px;"></div>
+        <button class="btn-close" onclick="closeP()" tabindex="0">Fermer</button>
+    </div>
 </section>
-
-<script>
-// La fonction playMovie mise à jour pour activer le visuel
-function playMovie(idx) {
-    history.replaceState({ overlay: 'player' }, "");
-    const m = playlistData[idx];
-    currentPlayingTitle = m.t;
-    document.getElementById('next-episode-btn').style.display = 'none';
-    
-    if(currentProfile) {
-        let key = 'sfpp_hist_' + currentProfile;
-        let hist = JSON.parse(localStorage.getItem(key) || "[]").filter(t => t !== m.t);
-        hist.push(m.t); if(hist.length > 15) hist.shift();
-        localStorage.setItem(key, JSON.stringify(hist));
-    }
-    
-    // Fermeture des overlays
-    document.getElementById('details-overlay').style.display = 'none';
-    if(document.getElementById('details-trailer-box')) document.getElementById('details-trailer-box').innerHTML = "";
-    document.getElementById('series-overlay').style.display = 'none';
-    
-    // Activation du lecteur Elite
-    const pSection = document.getElementById('player-section');
-    pSection.style.display = 'block';
-    
-    // Mise à jour de l'UI et du flou
-    document.getElementById('display-title').innerText = m.t;
-    document.getElementById('display-desc').innerText = m.desc || "";
-    document.getElementById('display-actors').innerText = (m.actors || m.cast) ? "Avec : " + (m.actors || m.cast) : "";
-    updatePlayerFavUI();
-    
-    // Application du flou dynamique sur l'image du film
-    document.getElementById('player-blur-bg').style.backgroundImage = `url('${m.img}')`;
-    
-    player.poster(m.img); 
-    player.src({ src: m.url, type: 'video/mp4' });
-    
-    const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
-    if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
-    
-    player.play();
-}
-</script>
-
 
 <div id="main-content">
     <div id="expiration-banner"></div>
