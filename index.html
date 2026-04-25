@@ -106,20 +106,23 @@
         }
         .details-content { position: relative; width: 100%; display: block; animation: fadeIn 0.3s; }
         
-        /* NOUVEAU: Animation de l'image (Effet Netflix) */
+        /* AJOUT ANIMATION MOUVEMENT NETFLIX */
+        @keyframes subtleZoom {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.15); }
+        }
+
         .details-hero { 
             position: relative; width: 100%; height: 55vh; 
-            overflow: hidden; /* Important pour ne pas dépasser */
+            overflow: hidden; background: #000;
         }
+
         #details-header-bg {
             position: absolute; inset: 0;
-            background-size: cover; background-position: center top;
-            animation: netflixZoom 20s infinite alternate ease-in-out;
-            will-change: transform;
-        }
-        @keyframes netflixZoom {
-            from { transform: scale(1) translateY(0); }
-            to { transform: scale(1.15) translateY(-10px); }
+            background-size: cover; 
+            background-position: center top; 
+            animation: subtleZoom 20s infinite alternate ease-in-out;
+            z-index: 1;
         }
 
         .details-hero::after { 
@@ -231,7 +234,7 @@
     <div class="details-content">
         <button class="btn-close-details" onclick="closeDetails()">✕</button>
         <div class="details-hero">
-            <div id="details-header-bg"></div>
+             <div id="details-header-bg"></div>
         </div>
         <div class="details-info">
             <h2 id="details-title">Titre du film</h2>
