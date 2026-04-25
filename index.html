@@ -294,7 +294,7 @@
     import { getDatabase, ref, set, onValue, get } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
     import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
-    // Clés encodées (Version corrigée avec le bon séparateur Base64)
+    // Configuration Firebase encodée
     const _f = {
         a: "QUl6YVN5RGlwbnZrOG5Ibl9tbmpsSE9iQTAzOERoUzJVMzkvU2dV",
         b: "c2ZwcC1lbGl0ZS5maXJlYmFzZWFwcC5jb20=",
@@ -364,7 +364,10 @@
             if (!exp) { 
                 set(ref(db, 'sessions/' + u.user.uid), { deviceId: deviceId, lastLogin: Date.now() }); 
             }
-        }).catch(() => alert("Identifiants incorrects."));
+        }).catch((err) => {
+            console.error(err);
+            alert("Identifiants incorrects ou erreur de connexion.");
+        });
     };
 
     onAuthStateChanged(auth, async (user) => {
