@@ -96,10 +96,13 @@
   },
   {
     "t": "Outbreak (2025)",
-    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/o866Yp2vL8T76C5mY5W6B3W6B3.jpg",
+    "year": "2025",
+    "note": 2,
+    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/zI3XabrSWjD9TanTHWqfzNL86qY.jpg",
     "cat": "LES DERNIÈRES SORTIES",
-    "desc": "Secrets et disparitions dans une petite bourgade.",
-    "actors_pics": [{"name": "Billy Burke", "img": "https://image.tmdb.org/t/p/w185/8ZzS5yL7hI8pP6E5WqX9S4vL4Jq.jpg"}],
+    "desc": "Un mari et sa femme, gardes forestiers dans un parc national, luttent pour faire face à la disparition leur fils adolescent tout en se confrontant face à un mystère local qui remet en question leur relation ainsi que leur emprise sur la réalité.",
+    "actors_pics": [{"name": "Billy Burke", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/AoyN5a1TNRa4OCeylcXusQM1bD4.jpg"}, {"name": "Alyshia Ochse", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/6gI5qlYJrWZkAqt167B5BNq9M6W.jpg"}, {"name": "Taylor Handley", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/4LHuGBcwUOL0iwjtBXNPQOsSfC9.jpg"}, {"name": "Raoul Max Trujillo", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/dIfHIt1pgnYW9oCksc0DdoY5Mt5.jpg"}],
+    "trailer": "nq7gvzQR3I4",
     "url": "aHR0cHM6Ly9hcmNoaXZlLm9yZy9kb3dubG9hZC8xMjM1Mzc1LzEyMzUzNzUuaWEubXA0"
   },
   {
