@@ -85,9 +85,13 @@
   },
   {
     "t": "Roommates (2026)",
+    "year": "2026",
+    "note": 2,
     "img": "https://image.tmdb.org/t/p/w220_and_h330_face/eW1s6omXIfVkTlmKVe9y9Dwwt4u.jpg",
     "cat": "LES DERNIÈRES SORTIES",
-    "desc": "Relation toxique entre deux colocataires à la fac.",
+    "desc": "En première année de fac, la timide Devon propose à Celeste, une étudiante cool et sûre d'elle, d'être sa coloc... mais leur amitié naissante vire bientôt à la relation toxique.",
+    "actors_pics": [{"name": "Sadie Sandler", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/a5DWcAnDDf3aZTryiYpY1ehqDyW.jpg"}, {"name": "Chloe East", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/smyAAPBxNrpBFVQauAswQzPgBRu.jpg"}, {"name": "Billy Bryk", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/aMJx13CGtBxfAaHE8G2BqY15sou.jpg"}, {"name": "Sarah Sherman", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/sPLNz5GGee26tZDFv4eZeyVng6d.jpg"}],
+    "trailer": "aob-34vmXdo",
     "url": "aHR0cHM6Ly9hcmNoaXZlLm9yZy9kb3dubG9hZC8xMjg1ODE1LzEyODU4MTUuaWEubXA0"
   },
   {
