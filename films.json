@@ -140,10 +140,13 @@
   },
   {
     "t": "Les Justiciers de l'Ombre (2025)",
+    "year": "2025",
+    "note": 3,
     "img": "https://image.tmdb.org/t/p/w220_and_h330_face/z716KiQ1HAgyPq0CcS3bVhVNGob.jpg",
     "cat": "THRILLER",
-    "desc": "Traque d'un meurtrier à l'aube de la guerre froide.",
-    "actors_pics": [{"name": "Harvey Keitel", "img": "https://image.tmdb.org/t/p/w185/mBf7vP4vP4vP4vP4vP4vP4vP4vP4vP.jpg"}],
+    "desc": "À l'aube de la guerre froide, Frank and Tommy, deux marshals américains, poursuivent Benjamin Bonney, un meurtrier recherché, dans les déserts du Nevada.",
+    "actors_pics": [{"name": "Jacob Keohane", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/vrkfGjx0Pk8nx0GwLeCgS8hYoSP.jpg"}, {"name": "Jackson Rathbone", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/bTf1lKi9JpIryUgd2L5PWZaF8kZ.jpg"}, {"name": "Dermot Mulroney", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/zemTC606JcuMgIGbJMYAocrS5Gm.jpg"}, {"name": "Harvey Keitel", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/7P30hza1neYWW3r7rSQOC736K2Z.jpg"}],
+    "trailer": "",
     "url": "aHR0cHM6Ly9hcmNoaXZlLm9yZy9kb3dubG9hZC8xMjQ0MTAzLzEyNDQxMDMuaWEubXA0"
   },
   {
