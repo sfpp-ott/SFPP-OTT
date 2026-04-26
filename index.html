@@ -16,6 +16,8 @@
     <link href="https://unpkg.com/@videojs/themes@1.0.1/dist/fantasy/index.css" rel="stylesheet">
     <link href="https://unpkg.com/@silvermine/videojs-chromecast@1.5.0/dist/silvermine-videojs-chromecast.css" rel="stylesheet">
 
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+
     <style>
         :root { --accent: #e50914; --gold: #ffcc00; --bg: #050505; }
         body { background: var(--bg); color: white; font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; padding-bottom: 50px; -webkit-user-select: none; user-select: none; }
@@ -678,16 +680,30 @@ function playMovie(idx) {
     
     player.poster(m.img); 
     
+    let decodedUrl = "";
     try {
-        const decodedUrl = atob(m.url);
-        player.src({ src: decodedUrl, type: 'video/mp4' });
+        decodedUrl = atob(m.url);
     } catch(e) {
-        player.src({ src: m.url, type: 'video/mp4' });
+        decodedUrl = m.url;
     }
-    
-    const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
-    if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
-    player.play();
+
+    // --- LOGIQUE DE LECTURE ADAPTÉE (MP4 ou M3U8) ---
+    if (decodedUrl.includes('.m3u8')) {
+        if (Hls.isSupported()) {
+            const hls = new Hls();
+            hls.loadSource(decodedUrl);
+            hls.attachMedia(document.querySelector('#main-video_html5_api'));
+            hls.on(Hls.Events.MANIFEST_PARSED, function() { player.play(); });
+        } else if (document.querySelector('#main-video_html5_api').canPlayType('application/vnd.apple.mpegurl')) {
+            player.src({ src: decodedUrl, type: 'application/x-mpegURL' });
+            player.play();
+        }
+    } else {
+        player.src({ src: decodedUrl, type: 'video/mp4' });
+        const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
+        if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
+        player.play();
+    }
 }
 
 function playNextEpisode() {
