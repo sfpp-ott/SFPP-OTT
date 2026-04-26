@@ -173,11 +173,13 @@
   },
   {
     "t": "Scream 7 (2026)",
+    "year": "2026",
+    "note": 3,
     "img": "https://image.tmdb.org/t/p/w220_and_h330_face/j6Y7vqULt8tRlXVFXHK5aj3nCo4.jpg",
     "cat": "HORREUR",
-    "desc": "Le retour de Sidney Prescott face à Ghostface.",
-    "actors_pics": [{"name": "Neve Campbell", "img": "https://image.tmdb.org/t/p/w185/mBf7vP4vP4vP4vP4vP4vP4vP4vP4vP.jpg"}],
-    "trailer": "h74AXn4ZfS4",
+    "desc": "Lorsqu’un nouveau Ghostface surgit dans la paisible ville où Sidney Prescott a reconstruit sa vie, ses pires cauchemars refont surface. Alors que sa fille devient la prochaine cible, Sidney n’a d’autre choix que de reprendre le combat. Déterminée à protéger les siens, elle doit alors affronter les démons de son passé pour tenter de mettre fin une bonne fois pour toutes au bain de sang.",
+    "actors_pics": [{"name": "Neve Campbell", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/zQzNg6Kiufj2VCltprI6jilNtl3.jpg"}, {"name": "Courteney Cox", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/cSOORhCRPJiwKghozXVXrOBi3Tp.jpg"}, {"name": "Isabel May", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/RJ4djIbfvUHXCCgniiAi0ebhED.jpg"}, {"name": "Jasmin Savoy Brown", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/yWaCA2iKmVps20SFxwiB1DvbN6j.jpg"}],
+    "trailer": "Lvp_6uzL9q8",
     "url": "aHR0cHM6Ly9hcmNoaXZlLm9yZy9kb3dubG9hZC8xMjgyOTIxXzIwMjYwNC8xMjgyOTIxLmlhLm1wNA=="
   },
   {
