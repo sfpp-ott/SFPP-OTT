@@ -74,9 +74,13 @@
   },
   {
     "t": "180 (2026)",
+    "year": "2026",
+    "note": 2,
     "img": "https://image.tmdb.org/t/p/w220_and_h330_face/aQm2NXs52FNasxHawM76ybyZkRB.jpg",
     "cat": "LES DERNIÈRES SORTIES",
     "desc": "Spirale destructrice après une altercation routière.",
+    "actors_pics": [{"name": "Billy Burke", "img": "https://image.tmdb.org/t/p/w185/8ZzS5yL7hI8pP6E5WqX9S4vL4Jq.jpg"}],
+    "trailer": "jHtGZS-TFOI",
     "url": "aHR0cHM6Ly9hcmNoaXZlLm9yZy9kb3dubG9hZC8xMjg1ODE0LzEyODU4MTQuaWEubXA0"
   },
   {
