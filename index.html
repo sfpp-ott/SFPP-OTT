@@ -149,6 +149,13 @@
             border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 16px;
         }
 
+        /* CORRECTION FOCUS DÉTAILS */
+        .btn-play-main:focus, .btn-fav-details:focus, .btn-close-details:focus {
+            outline: 4px solid white !important;
+            background: var(--accent) !important;
+            color: white !important;
+        }
+
         .section-label { font-weight: bold; color: white; margin: 30px 0 15px; font-size: 18px; border-left: 4px solid var(--accent); padding-left: 10px; }
         .trailer-box { width: 100%; max-width: 800px; aspect-ratio: 16/9; background: #000; border-radius: 8px; margin-bottom: 25px; overflow: hidden; border: 1px solid #333; }
         
@@ -176,11 +183,15 @@
         .arrow-right { right: 0; }
 
         .card { flex: 0 0 150px; width: 150px; cursor: pointer; position: relative; display: flex; flex-direction: column; }
-        .card img { width: 150px !important; height: 225px !important; object-fit: cover !important; border-radius: 4px; background: #222; display: block; }
+        .card img { width: 150px !important; height: 225px !important; object-fit: cover !important; border-radius: 4px; background: #222; display: block; position: relative; z-index: 2; }
         .card-name { margin-top: 6px; font-size: 12px; text-align: center; color: #bbb; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; width: 100%; }
 
-        /* Correction Barre de progression pour TV - FORCÉE SANS FOCUS */
-        .prog-bg { position: absolute; bottom: 25px; left: 0; width: 100%; height: 4px; background: rgba(255,255,255,0.2); border-radius: 0 0 4px 4px; overflow: hidden; pointer-events: none !important; }
+        /* CORRECTION BARRE PROGRESSION - RENDUE INVISIBLE POUR LE CURSEUR */
+        .prog-bg { 
+            position: absolute; bottom: 25px; left: 0; width: 100%; height: 4px; 
+            background: rgba(255,255,255,0.2); border-radius: 0 0 4px 4px; 
+            overflow: hidden; pointer-events: none !important; z-index: 1; 
+        }
         .prog-fill { height: 100%; background: var(--accent); transition: width 0.3s; }
 
         #series-overlay { position: fixed; inset: 0; background: var(--bg); z-index: 3000; display: none; overflow-y: auto; padding: 80px 5% 40px; }
@@ -253,7 +264,7 @@
             <p id="details-desc" class="synopsis"></p>
             
             <div class="section-label">Bande-annonce</div>
-            <div id="details-trailer-box"></div>
+            <div id="details-trailer-box" style="aspect-ratio: 16/9; width:100%; max-width:800px; background:#000;"></div>
 
             <div class="section-label">Casting principal</div>
             <div id="details-meta-cast" class="cast-row"></div>
@@ -319,20 +330,12 @@
         const snapshot = await get(ref(db, 'users_data/' + user.uid + '/expire'));
         const expireValue = snapshot.val();
         if (!expireValue) return false;
-        
         const now = new Date();
-        const y = now.getFullYear();
-        const m = String(now.getMonth() + 1).padStart(2, '0');
-        const d = String(now.getDate()).padStart(2, '0');
-        const todayStr = `${y}-${m}-${d}`;
-        
+        const todayStr = now.toISOString().split('T')[0];
         if (todayStr >= expireValue) {
             alert("Accès expiré le " + expireValue);
             await signOut(auth);
-            const mail = localStorage.getItem('sfpp_last_email');
             localStorage.clear();
-            localStorage.setItem('sfpp_last_email', mail);
-            localStorage.setItem('sfpp_device_id', deviceId);
             location.reload();
             return true;
         }
@@ -343,8 +346,7 @@
         onValue(ref(db, 'sessions/' + uid), (snapshot) => {
             const session = snapshot.val();
             if (session && session.deviceId !== deviceId) {
-                alert("⚠️ Ce compte est utilisé sur un autre appareil.");
-                localStorage.removeItem('sfpp_profile'); 
+                alert("⚠️ Ce compte est utilisé ailleurs.");
                 signOut(auth).then(() => location.reload());
             }
         });
@@ -359,7 +361,7 @@
             if (!exp) { 
                 set(ref(db, 'sessions/' + u.user.uid), { deviceId: deviceId, lastLogin: Date.now() }); 
             }
-        }).catch(() => alert("Identifiants incorrects."));
+        }).catch(() => alert("Erreur de connexion."));
     };
 
     onAuthStateChanged(auth, async (user) => {
@@ -369,20 +371,6 @@
             document.getElementById('login-screen').style.display = 'none';
             loadPlaylist();
             initProfiles();
-            
-            const snap = await get(ref(db, 'users_data/' + user.uid + '/expire'));
-            const expireValue = snap.val();
-            if(expireValue) {
-                const today = new Date();
-                const expireDate = new Date(expireValue);
-                const diffDays = Math.ceil((expireDate - today) / (1000 * 60 * 60 * 24));
-                const banner = document.getElementById('expiration-banner');
-                if(diffDays > 0 && diffDays <= 5) {
-                    banner.style.display = 'block';
-                    banner.innerHTML = `⚠️ Fin d'accès dans ${diffDays} jour(s).`;
-                } else banner.style.display = 'none';
-            }
-            
             const saved = localStorage.getItem('sfpp_profile');
             if(saved) selectProfile(saved, localStorage.getItem('sfpp_profile_icon'));
             else document.getElementById('profile-screen').style.display = 'flex';
@@ -397,74 +385,23 @@
         localStorage.setItem('sfpp_profile_icon', icon);
         document.getElementById('profile-screen').style.display = 'none';
         document.getElementById('current-user-name').innerText = name;
-        const user = auth.currentUser;
-        if(user) {
-            const snap = await get(ref(db, 'users_data/' + user.uid + '/expire'));
-            document.getElementById('header-logo').innerHTML = `SFPP | ${icon} <span style="font-size:10px; color:#666;">(${snap.val()})</span>`;
-        }
         render();
-        pushInitialState();
+        if (window.history.state?.overlay !== 'home') window.history.pushState({ overlay: 'home' }, "");
     };
 
-    window.logout = function() { 
-        const mail = localStorage.getItem('sfpp_last_email');
-        signOut(auth).then(() => { 
-            localStorage.clear(); 
-            localStorage.setItem('sfpp_last_email', mail);
-            localStorage.setItem('sfpp_device_id', deviceId);
-            location.reload(); 
-        }); 
-    };
-
-    function pushInitialState() {
-        if (window.history.state?.overlay !== 'home') {
-            window.history.pushState({ overlay: 'home' }, "");
-        }
-    }
+    window.logout = function() { signOut(auth).then(() => { localStorage.clear(); location.reload(); }); };
 </script>
 
 <script>
-// --- SÉCURITÉ ROBUSTE AJOUTÉE ---
-document.onkeydown = function(e) {
-    if (e.keyCode == 123 || (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74)) || (e.ctrlKey && e.keyCode == 85)) {
-        return false;
-    }
-};
-setInterval(function() { (function() { debugger; }).call(); }, 5000);
-
 let player, playlistData = [], currentProfile = null, isEditMode = false, currentView = 'all', currentPlayingTitle = "", exitConfirmed = false;
 
 window.addEventListener('popstate', function (event) {
     const detailsOverlay = document.getElementById('details-overlay');
     const seriesOverlay = document.getElementById('series-overlay');
     const playerSection = document.getElementById('player-section');
-
-    if (detailsOverlay.style.display === 'flex') {
-        detailsOverlay.style.display = 'none';
-        document.getElementById('details-trailer-box').innerHTML = "";
-        return;
-    }
-    if (seriesOverlay.style.display === 'block') {
-        seriesOverlay.style.display = 'none';
-        return;
-    }
-    if (playerSection.style.display === 'block') {
-        saveP(); 
-        player.pause(); 
-        player.src("");
-        playerSection.style.display = 'none';
-        render();
-        return;
-    }
-
-    if (!exitConfirmed) {
-        history.pushState({ overlay: 'home' }, "");
-        const quitter = confirm("Souhaitez-vous vraiment quitter l'application ?");
-        if (quitter) {
-            exitConfirmed = true;
-            history.back();
-        }
-    }
+    if (detailsOverlay.style.display === 'flex') { detailsOverlay.style.display = 'none'; return; }
+    if (seriesOverlay.style.display === 'block') { seriesOverlay.style.display = 'none'; return; }
+    if (playerSection.style.display === 'block') { saveP(); player.pause(); player.src(""); playerSection.style.display = 'none'; render(); return; }
 });
 
 async function loadPlaylist() { try { const response = await fetch('films.json?v=' + Date.now()); playlistData = await response.json(); render(); } catch (e) {} }
@@ -472,53 +409,29 @@ async function loadPlaylist() { try { const response = await fetch('films.json?v
 function openDetails(idx) {
     history.pushState({ overlay: 'details' }, "");
     const m = playlistData[idx];
-    
     document.getElementById('details-header-bg').style.backgroundImage = `url('${m.img}')`;
     document.getElementById('details-title').innerText = m.t;
     document.getElementById('details-desc').innerText = m.desc || "Aucun résumé disponible.";
     document.getElementById('details-meta-year').innerText = m.year || "2024";
     document.getElementById('details-meta-cat').innerText = m.cat;
 
-    const note = m.note || 5; 
-    let stars = "";
-    for (let i = 0; i < 5; i++) { stars += (i < note) ? "★" : "☆"; }
-    document.getElementById('details-stars-display').innerText = stars;
-
-    let castHtml = "";
-    if (m.actors_pics && m.actors_pics.length > 0) {
-        castHtml = m.actors_pics.map(a => `
-                <div class="actor-item">
-                    <img src="${a.img}" onerror="this.src='https://via.placeholder.com/80x80?text=?'">
-                    <div class="actor-name">${a.name}</div>
-                </div>
-            `).join('');
-    }
-    document.getElementById('details-meta-cast').innerHTML = castHtml;
-
-    // Bande-annonce avec tabindex forcé
     document.getElementById('details-trailer-box').innerHTML = m.trailer ? 
         `<iframe id="yt-player" tabindex="0" width="100%" height="100%" src="https://www.youtube.com/embed/${m.trailer}?rel=0" frameborder="0" allowfullscreen></iframe>` : "";
     
     const playBtn = document.getElementById('details-play-btn');
-    const favBtn = document.getElementById('details-fav-btn');
-
     playBtn.onclick = () => { playMovie(idx); };
-    favBtn.onclick = () => { toggleFav(m.t); };
-    
+    document.getElementById('details-fav-btn').onclick = () => { toggleFav(m.t); };
     updateFavBtnUI(m.t);
 
     document.getElementById('details-overlay').style.display = 'flex';
     document.getElementById('details-overlay').scrollTop = 0;
-
-    // Force le focus sur lancer le film
-    setTimeout(() => { playBtn.focus(); }, 100);
+    setTimeout(() => { playBtn.focus(); }, 200);
 }
 
 function toggleFav(title) {
     let key = 'sfpp_fav_' + currentProfile;
     let favs = JSON.parse(localStorage.getItem(key) || "[]");
-    if(favs.includes(title)) favs = favs.filter(t => t !== title);
-    else favs.push(title);
+    if(favs.includes(title)) favs = favs.filter(t => t !== title); else favs.push(title);
     localStorage.setItem(key, JSON.stringify(favs));
     updateFavBtnUI(title);
     render(document.getElementById('searchBar').value);
@@ -527,15 +440,10 @@ function toggleFav(title) {
 function updateFavBtnUI(title) {
     let favs = JSON.parse(localStorage.getItem('sfpp_fav_' + currentProfile) || "[]");
     const btn = document.getElementById('details-fav-btn');
-    if(favs.includes(title)) btn.innerText = "❤️ Dans Ma Liste";
-    else btn.innerText = "+ Ma Liste";
+    btn.innerText = favs.includes(title) ? "❤️ Dans Ma Liste" : "+ Ma Liste";
 }
 
-function closeDetails() {
-    if (document.getElementById('details-overlay').style.display === 'flex') {
-        history.back();
-    }
-}
+function closeDetails() { history.back(); }
 
 function initProfiles() {
     let profiles = JSON.parse(localStorage.getItem('sfpp_profiles_data')) || [
@@ -544,30 +452,18 @@ function initProfiles() {
         { id: 3, name: "Profil 3", icon: "🟧", color: "#e67e22" },
         { id: 4, name: "Profil 4", icon: "🟪", color: "#9b59b6" }
     ];
-    const list = document.getElementById('profile-list');
-    list.innerHTML = profiles.map(p => `
+    document.getElementById('profile-list').innerHTML = profiles.map(p => `
         <div class="profile-item" onclick="handleProfileClick(${p.id}, '${p.name}', '${p.icon}')" tabindex="0">
             <div class="profile-avatar" style="background:${p.color}">${p.icon}</div>
-            <div class="edit-icon">✏️</div>
             <div class="profile-name">${p.name}</div>
         </div>`).join('');
 }
 
-function handleProfileClick(id, name, icon) {
-    if(isEditMode) {
-        let n = prompt("Nouveau nom :", name);
-        if(n) {
-            let saved = JSON.parse(localStorage.getItem('sfpp_profiles_data') || "[]");
-            const idx = saved.findIndex(p => p.id === id);
-            if(idx !== -1) { saved[idx].name = n; localStorage.setItem('sfpp_profiles_data', JSON.stringify(saved)); initProfiles(); }
-        }
-    } else selectProfile(name, icon);
-}
+function handleProfileClick(id, name, icon) { selectProfile(name, icon); }
 
 function saveP() {
     if(!currentPlayingTitle || !currentProfile) return;
-    const cur = player.currentTime();
-    const dur = player.duration();
+    const cur = player.currentTime(), dur = player.duration();
     if(dur > 0) {
         let prog = JSON.parse(localStorage.getItem('sfpp_p_'+currentProfile) || "{}");
         prog[currentPlayingTitle] = { t: cur, p: (cur/dur)*100 };
@@ -575,7 +471,7 @@ function saveP() {
     }
 }
 
-function scrollSide(btn, amt) { const car = btn.parentElement.querySelector('.carousel'); car.scrollBy({ left: amt, behavior: 'smooth' }); }
+function scrollSide(btn, amt) { btn.parentElement.querySelector('.carousel').scrollBy({ left: amt, behavior: 'smooth' }); }
 
 function render(search = "") {
     const cont = document.getElementById('categories-container');
@@ -602,230 +498,76 @@ function render(search = "") {
                     histCont.innerHTML += `<div class="card" onclick="openDetails(${playlistData.indexOf(m)})" tabindex="0"><img src="${m.img}">${pct}<div class="card-name">${m.t}</div></div>`;
                 }
             });
-        } else histSec.style.display = "none";
-    } else histSec.style.display = "none";
+        }
+    }
 
     const cats = [...new Set(data.map(m => m.cat))];
-    let addedSeries = [];
-
     cats.forEach(c => {
         const filtered = data.filter(m => m.cat === c && m.t.toLowerCase().includes(s));
         if (filtered.length === 0) return;
-        let html = `<div class="category-title">${c}</div><div class="category-row"><div class="nav-arrow arrow-left" onclick="scrollSide(this, -400)">‹</div><div class="carousel">`;
+        let html = `<div class="category-title">${c}</div><div class="category-row"><div class="carousel">`;
         filtered.forEach(m => {
-            const isS = /S\d{2}E\d{2}/i.test(m.t);
-            const heart = favs.includes(m.t) ? `<div style="position:absolute; top:5px; right:5px; z-index:5;">❤️</div>` : "";
             const pct = (prog[m.t] && prog[m.t].p > 1) ? `<div class="prog-bg"><div class="prog-fill" style="width:${prog[m.t].p}%"></div></div>` : "";
-            if(isS) {
-                const sName = m.t.split(' - ')[0];
-                if(!addedSeries.includes(sName)) {
-                    addedSeries.push(sName);
-                    html += `<div class="card" onclick="openSeries('${sName}')" tabindex="0"><img src="${m.img}">${heart}<div class="card-name">${sName}</div></div>`;
-                }
-            } else {
-                html += `<div class="card" onclick="openDetails(${playlistData.indexOf(m)})" tabindex="0"><img src="${m.img}">${heart}${pct}<div class="card-name">${m.t}</div></div>`;
-            }
+            html += `<div class="card" onclick="openDetails(${playlistData.indexOf(m)})" tabindex="0"><img src="${m.img}">${pct}<div class="card-name">${m.t}</div></div>`;
         });
-        html += `</div><div class="nav-arrow arrow-right" onclick="scrollSide(this, 400)">›</div></div>`;
+        html += `</div></div>`;
         cont.innerHTML += html;
     });
-}
-
-function openSeries(name) {
-    history.pushState({ overlay: 'series' }, "");
-    const overlay = document.getElementById('series-overlay');
-    const content = document.getElementById('series-detail-content');
-    const eps = playlistData.filter(m => m.t.startsWith(name));
-    overlay.style.display = 'block';
-    let html = `<div class="overlay-header"><img src="${eps[0].img}" class="overlay-img"><div><h2>${name}</h2></div></div>`;
-    const seasons = {};
-    const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
-    eps.forEach(ep => {
-        const sMatch = ep.t.match(/S(\d{2})/);
-        const sNum = sMatch ? sMatch[1] : "01";
-        if(!seasons[sNum]) seasons[sNum] = [];
-        seasons[sNum].push(ep);
-    });
-    Object.keys(seasons).sort().forEach(s => {
-        html += `<div class="season-title">SAISON ${s}</div>`;
-        seasons[s].forEach(ep => {
-            const epName = ep.t.split(' - ')[1] || ep.t;
-            const pct = (prog[ep.t] && prog[ep.t].p > 1) ? `<div style="height:3px; background:#444; width:100px; margin-top:5px;"><div style="height:100%; background:var(--accent); width:${prog[ep.t].p}%"></div></div>` : "";
-            html += `<div class="episode-item" onclick="openDetails(${playlistData.indexOf(ep)});" tabindex="0">
-                        <div style="flex:1"><b>${epName}</b>${pct}</div>
-                        <div style="color:var(--accent)">DÉTAILS</div>
-                     </div>`;
-        });
-    });
-    content.innerHTML = html;
 }
 
 function playMovie(idx) {
     history.replaceState({ overlay: 'player' }, "");
     const m = playlistData[idx];
     currentPlayingTitle = m.t;
-    document.getElementById('next-episode-btn').style.display = 'none';
-    
-    if(currentProfile) {
-        let key = 'sfpp_hist_' + currentProfile;
-        let hist = JSON.parse(localStorage.getItem(key) || "[]").filter(t => t !== m.t);
-        hist.push(m.t); if(hist.length > 15) hist.shift();
-        localStorage.setItem(key, JSON.stringify(hist));
-    }
-    
-    document.getElementById('details-overlay').style.display = 'none';
-    document.getElementById('details-trailer-box').innerHTML = "";
-    document.getElementById('series-overlay').style.display = 'none';
-    
     const pSection = document.getElementById('player-section');
     pSection.style.display = 'block';
-    document.getElementById('player-blur-bg').style.backgroundImage = `url('${m.img}')`;
-    
-    player.poster(m.img); 
-    
-    let decodedUrl = "";
-    try {
-        decodedUrl = atob(m.url);
-    } catch(e) {
-        decodedUrl = m.url;
-    }
-
-    if (decodedUrl.includes('.m3u8')) {
-        if (Hls.isSupported()) {
-            const hls = new Hls();
-            hls.loadSource(decodedUrl);
-            hls.attachMedia(document.querySelector('#main-video_html5_api'));
-            hls.on(Hls.Events.MANIFEST_PARSED, function() { player.play(); });
-        } else if (document.querySelector('#main-video_html5_api').canPlayType('application/vnd.apple.mpegurl')) {
-            player.src({ src: decodedUrl, type: 'application/x-mpegURL' });
-            player.play();
-        }
-    } else {
-        player.src({ src: decodedUrl, type: 'video/mp4' });
-        const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
-        if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
-        player.play();
-    }
+    player.src({ src: atob(m.url), type: 'video/mp4' });
+    const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
+    if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
+    player.play();
 }
 
-function playNextEpisode() {
-    const parts = currentPlayingTitle.match(/(.*[SE])(\d+)(.*)/i);
-    if (!parts) return;
-    const nextTitleSearch = (parts[1] + (parseInt(parts[2]) + 1).toString().padStart(2, '0')).toUpperCase();
-    const nextIdx = playlistData.findIndex(m => m.t.toUpperCase().includes(nextTitleSearch));
-    if (nextIdx !== -1) playMovie(nextIdx);
-}
-
-function closeP() { if (document.getElementById('player-section').style.display === 'block') history.back(); }
-function closeSeries() { if (document.getElementById('series-overlay').style.display === 'block') history.back(); }
-function changeView(v) { currentView = v; document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active')); document.getElementById('btn-'+v).classList.add('active'); render(); }
+function closeP() { history.back(); }
+function changeView(v) { currentView = v; render(); }
 function filter() { render(document.getElementById('searchBar').value); }
-function toggleEditMode() { isEditMode = !isEditMode; document.getElementById('profile-screen').classList.toggle('is-editing'); }
-function switchProfile() { localStorage.removeItem('sfpp_profile'); location.reload(); }
-function requestAccess() { window.location.href = "mailto:sfpp.ott@gmail.com"; }
-
 function openSearch() { document.getElementById('search-overlay').style.display = 'flex'; document.getElementById('searchBar').focus(); }
-function closeSearch() { document.getElementById('search-overlay').style.display = 'none'; document.getElementById('searchBar').value = ''; filter(); }
+function closeSearch() { document.getElementById('search-overlay').style.display = 'none'; filter(); }
 
-// --- NAVIGATION TV AMÉLIORÉE POUR FIRE STICK ---
+// --- NAVIGATION TV ---
 document.addEventListener('keydown', function(e) {
-    const focusableElements = 'button, [tabindex="0"], input, iframe';
-    const elements = Array.from(document.querySelectorAll(focusableElements)).filter(el => {
-        return el.offsetParent !== null && !el.closest('.vjs-control-bar');
-    });
-    
-    let currentIndex = elements.indexOf(document.activeElement);
+    const elements = Array.from(document.querySelectorAll('button, [tabindex="0"], input, iframe')).filter(el => el.offsetParent !== null);
+    let idx = elements.indexOf(document.activeElement);
 
     if (document.getElementById('player-section').style.display === 'block') {
         if (e.key === 'ArrowRight') player.currentTime(player.currentTime() + 10);
         if (e.key === 'ArrowLeft') player.currentTime(player.currentTime() - 10);
-        if (e.key === 'Enter') { if (player.paused()) player.play(); else player.pause(); }
-        if (e.key === 'Backspace' || e.key === 'Escape') closeP();
-        return;
-    }
-
-    if (currentIndex === -1 && elements.length > 0) {
-        elements[0].focus();
+        if (e.key === 'Backspace') closeP();
         return;
     }
 
     if (['ArrowRight', 'ArrowLeft', 'ArrowUp', 'ArrowDown'].includes(e.key)) {
-        let nextIndex = currentIndex;
-        
-        // Logique spécifique pour la page de détails (Descente vers YouTube)
-        if (document.getElementById('details-overlay').style.display === 'flex') {
-             const active = document.activeElement;
-             if (active.id === 'details-fav-btn' && e.key === 'ArrowDown') {
-                 const yt = document.getElementById('yt-player');
-                 if(yt) { yt.focus(); yt.scrollIntoView({ behavior: 'smooth', block: 'center' }); e.preventDefault(); return; }
-             }
-        }
-
-        if (e.key === 'ArrowRight') nextIndex = Math.min(currentIndex + 1, elements.length - 1);
-        else if (e.key === 'ArrowLeft') nextIndex = Math.max(currentIndex - 1, 0);
+        let next = idx;
+        if (e.key === 'ArrowRight') next = Math.min(idx + 1, elements.length - 1);
+        else if (e.key === 'ArrowLeft') next = Math.max(idx - 1, 0);
         else if (e.key === 'ArrowDown') {
-            const curRect = elements[currentIndex].getBoundingClientRect();
-            let bestMatch = -1; let minDist = Infinity;
-            for(let i = currentIndex + 1; i < elements.length; i++) {
-                const rect = elements[i].getBoundingClientRect();
-                if (rect.top >= curRect.bottom - 5) {
-                    const dist = Math.abs(rect.left - curRect.left);
-                    if (dist < minDist) { minDist = dist; bestMatch = i; }
-                }
+            const cur = elements[idx].getBoundingClientRect();
+            for(let i = idx + 1; i < elements.length; i++) {
+                if (elements[i].getBoundingClientRect().top > cur.bottom - 5) { next = i; break; }
             }
-            if (bestMatch !== -1) nextIndex = bestMatch;
         }
         else if (e.key === 'ArrowUp') {
-            const curRect = elements[currentIndex].getBoundingClientRect();
-            let bestMatch = -1; let minDist = Infinity;
-            for(let i = currentIndex - 1; i >= 0; i--) {
-                const rect = elements[i].getBoundingClientRect();
-                if (rect.bottom <= curRect.top + 5) {
-                    const dist = Math.abs(rect.left - curRect.left);
-                    if (dist < minDist) { minDist = dist; bestMatch = i; }
-                }
+            const cur = elements[idx].getBoundingClientRect();
+            for(let i = idx - 1; i >= 0; i--) {
+                if (elements[i].getBoundingClientRect().bottom < cur.top + 5) { next = i; break; }
             }
-            if (bestMatch !== -1) nextIndex = bestMatch;
         }
-
-        if (elements[nextIndex]) {
-            elements[nextIndex].focus();
-            elements[nextIndex].scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });
-            e.preventDefault();
-        }
+        if (elements[next]) { elements[next].focus(); elements[next].scrollIntoView({ behavior: 'smooth', block: 'center' }); e.preventDefault(); }
     }
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-    player = videojs('main-video', { 
-        controls: true, fluid: false,
-        techOrder: ['chromecast', 'html5'], plugins: { chromecast: { addButtonToControlBar: true } }
-    });
-    player.on('timeupdate', function() {
-        const dur = player.duration(), cur = player.currentTime();
-        if (/S\d{2}E\d{2}/i.test(currentPlayingTitle) && dur > 0 && (dur - cur) < 80) {
-            if (player.isFullscreen()) player.exitFullscreen();
-            document.getElementById('next-episode-btn').style.display = 'block';
-        } else document.getElementById('next-episode-btn').style.display = 'none';
-        if(Math.floor(cur) % 10 === 0) saveP();
-    });
-    const Button = videojs.getComponent('Button');
-    class Back extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-replay-10'; } handleClick() { player.currentTime(player.currentTime()-10); } }
-    class Forward extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-forward-10'; } handleClick() { player.currentTime(player.currentTime()+10); } }
-    videojs.registerComponent('Back', Back); videojs.registerComponent('Forward', Forward);
-    player.ready(() => { 
-        player.getChild('controlBar').addChild('Back', {}, 1); 
-        player.getChild('controlBar').addChild('Forward', {}, 2); 
-    });
+    player = videojs('main-video', { controls: true, fluid: false });
 });
-
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js')
-            .then(reg => console.log('SW enregistré !'))
-            .catch(err => console.log('Erreur SW:', err));
-    });
-}
 </script>
 </body>
 </html>
