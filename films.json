@@ -151,11 +151,13 @@
   },
   {
     "t": "Hurlevent (2026)",
+    "year": "2026",
+    "note": 3,
     "img": "https://image.tmdb.org/t/p/w220_and_h330_face/yEa8UQA71rjKhCq04mATDNOIT2B.jpg",
     "cat": "ROMANCE",
-    "desc": "Adaptation moderne de la passion de Heathcliff.",
-    "actors_pics": [{"name": "Margot Robbie", "img": "https://image.tmdb.org/t/p/w185/6oYf2R70fP2O49jBvF6I2v2vXk3.jpg"}],
-    "trailer": "h74AXn4ZfS4",
+    "desc": "Sur les landes balayées par le vent du Yorkshire, la passion dévorante entre Catherine Earnshaw et Heathcliff se transforme en une obsession destructrice, bouleversant leurs vies et celles de leur entourage.",
+    "actors_pics": [{"name": "Margot Robbie", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/8LqG2N6j98lFGMpuYsRUAhOunSd.jpg"}, {"name": "Jacob Elordi", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/qZNRPWCP2c5d0YaYLTzHXU9Rdoe.jpg"}, {"name": "Hong Chau", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/yGEw6uiSUBo838HkiCARs4BR40y.jpg"}, {"name": "Alison Oliver", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/4hP6aIZHsUxfcPC76JPBLssqNuZ.jpg"}],
+    "trailer": "mJza3D3YMlw",
     "url": "aHR0cHM6Ly9hcmNoaXZlLm9yZy9kb3dubG9hZC8xMjgyNzAxLzEyODI3MDEuaWEubXA0"
   },
   {
