@@ -23,11 +23,12 @@
         body { background: var(--bg); color: white; font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; padding-bottom: 50px; -webkit-user-select: none; user-select: none; }
         
         [tabindex="0"]:focus {
-            outline: 3px solid white !important;
+            outline: 4px solid white !important;
             outline-offset: 2px;
-            transform: scale(1.05);
+            transform: scale(1.1);
             background: rgba(255,255,255,0.1);
             z-index: 100;
+            transition: transform 0.2s;
         }
 
         #login-screen { position: fixed; inset: 0; background: #000; z-index: 9999; display: flex; align-items: center; justify-content: center; }
@@ -167,7 +168,7 @@
         .category-row { position: relative; width: 100%; margin-bottom: 20px; }
         .category-title { font-size: 18px; font-weight: bold; margin: 20px 4% 10px; color: #fff; text-transform: uppercase; }
         
-        .carousel { display: flex; overflow-x: auto; gap: 12px; padding: 0 4% 10px; scrollbar-width: none; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; }
+        .carousel { display: flex; overflow-x: auto; gap: 12px; padding: 20px 4%; scrollbar-width: none; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; }
         
         .nav-arrow { position: absolute; top: 0; bottom: 30px; width: 50px; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; z-index: 10; cursor: pointer; color: white; font-size: 30px; opacity: 0; transition: opacity 0.3s; }
         .category-row:hover .nav-arrow { opacity: 1; }
@@ -477,14 +478,12 @@ function openDetails(idx) {
     document.getElementById('details-meta-year').innerText = m.year || "2024";
     document.getElementById('details-meta-cat').innerText = m.cat;
 
-    // --- SYSTÈME D'ÉTOILES ---
     const note = m.note || 5; 
     let stars = "";
     for (let i = 0; i < 5; i++) {
         stars += (i < note) ? "★" : "☆";
     }
     document.getElementById('details-stars-display').innerText = stars;
-    // ------------------------
 
     let castHtml = "";
     if (m.actors_pics && m.actors_pics.length > 0) {
@@ -687,7 +686,6 @@ function playMovie(idx) {
         decodedUrl = m.url;
     }
 
-    // --- LOGIQUE DE LECTURE ADAPTÉE (MP4 ou M3U8) ---
     if (decodedUrl.includes('.m3u8')) {
         if (Hls.isSupported()) {
             const hls = new Hls();
@@ -724,6 +722,57 @@ function requestAccess() { window.location.href = "mailto:sfpp.ott@gmail.com"; }
 
 function openSearch() { document.getElementById('search-overlay').style.display = 'flex'; document.getElementById('searchBar').focus(); }
 function closeSearch() { document.getElementById('search-overlay').style.display = 'none'; document.getElementById('searchBar').value = ''; filter(); }
+
+// --- SCRIPT DE NAVIGATION TV (FLÈCHES) ---
+document.addEventListener('keydown', function(e) {
+    const focusableElements = 'button, [tabindex="0"], input';
+    const elements = Array.from(document.querySelectorAll(focusableElements)).filter(el => el.offsetParent !== null);
+    let currentIndex = elements.indexOf(document.activeElement);
+
+    if (document.getElementById('player-section').style.display === 'block') {
+        if (e.key === 'ArrowRight') player.currentTime(player.currentTime() + 10);
+        if (e.key === 'ArrowLeft') player.currentTime(player.currentTime() - 10);
+        if (e.key === 'Enter' || e.key === ' ') { if (player.paused()) player.play(); else player.pause(); }
+        if (e.key === 'Backspace' || e.key === 'Escape') closeP();
+        return;
+    }
+
+    if (currentIndex === -1 && elements.length > 0) {
+        elements[0].focus();
+        return;
+    }
+
+    const currentRect = document.activeElement.getBoundingClientRect();
+    let nextElement = null;
+    let minDistance = Infinity;
+
+    function getDistance(rect1, rect2, direction) {
+        const center1 = { x: rect1.left + rect1.width / 2, y: rect1.top + rect1.height / 2 };
+        const center2 = { x: rect2.left + rect2.width / 2, y: rect2.top + rect2.height / 2 };
+        
+        if (direction === 'Right' && rect2.left < rect1.right) return Infinity;
+        if (direction === 'Left' && rect2.right > rect1.left) return Infinity;
+        if (direction === 'Down' && rect2.top < rect1.bottom) return Infinity;
+        if (direction === 'Up' && rect2.bottom > rect1.top) return Infinity;
+
+        return Math.sqrt(Math.pow(center1.x - center2.x, 2) + Math.pow(center1.y - center2.y, 2));
+    }
+
+    if (['ArrowRight', 'ArrowLeft', 'ArrowUp', 'ArrowDown'].includes(e.key)) {
+        const direction = e.key.replace('Arrow', '');
+        elements.forEach(el => {
+            if (el === document.activeElement) return;
+            const d = getDistance(currentRect, el.getBoundingClientRect(), direction);
+            if (d < minDistance) { minDistance = d; nextElement = el; }
+        });
+
+        if (nextElement) {
+            nextElement.focus();
+            nextElement.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });
+            e.preventDefault();
+        }
+    }
+});
 
 document.addEventListener('DOMContentLoaded', () => {
     player = videojs('main-video', { 
