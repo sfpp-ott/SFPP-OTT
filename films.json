@@ -162,9 +162,13 @@
   },
   {
     "t": "Toaster (2026)",
+    "year": "2026",
+    "note": 3,
     "img": "https://image.tmdb.org/t/p/w220_and_h330_face/cbYyWHc1dL1bfwEJbaMYDYKgWG2.jpg",
-    "cat": "COMÉDIE",
-    "desc": "Récupérer un cadeau de mariage devient une odyssée.",
+    "cat": "ROMANCE",
+    "desc": "Un homme radin tente de récupérer le grille-pain qu'il a offert à un couple qui a annulé son mariage… et se retrouve malencontreusement mêlé à un meurtre.",
+    "actors_pics": [{"name": "Rajkummar Rao", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/ttBY7Y8x4NCpXfGS9Tc1NN8ISos.jpg"}, {"name": "Sanya Malhotra", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/sQ0VIqGLecfpwYayO05Z7NC32yN.jpg"}, {"name": "Archana Puran Singh", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/uc6QJNnT8q0wNnZOZi0QW2hE1wq.jpg"}, {"name": "Upendra Limaye", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/vFELR5TiBfc6LkLvI5kC5lpEnHv.jpg"}],
+    "trailer": "h1Q_Oykycns",
     "url": "aHR0cHM6Ly9pYTYwMDgwNC51cy5hcmNoaXZlLm9yZy8xOS9pdGVtcy8xMjg1NTg1LzEyODU1ODUuaWEubXA0"
   },
   {
