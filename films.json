@@ -1,10 +1,10 @@
 [ 
   {
-   "t": "Canal+ (Direct)",
+   "t": "Tf1 (Direct)",
    "img": "Lien_vers_logo_tf1.jpg",
    "cat": "TV EN DIRECT",
-   "desc": "Regardez Canal+ en direct.",
-   "url": "https://proxy-video.sv-sunev55.workers.dev"
+   "desc": "Regardez Tf1 en direct.",
+   "url": "https://tvastuces.com:443/live/46952B8A7AF9F4739F61FBD8FCEDE553/1.m3u8"
   },
   {
     "t": "L’Âme Idéale (2025)",
