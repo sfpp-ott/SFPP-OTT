@@ -105,11 +105,15 @@
     "trailer": "nq7gvzQR3I4",
     "url": "aHR0cHM6Ly9hcmNoaXZlLm9yZy9kb3dubG9hZC8xMjM1Mzc1LzEyMzUzNzUuaWEubXA0"
   },
-  {
+  {      
     "t": "Yoh! Bestie (2026)",
+    "year": "2026",
+    "note": 2,
     "img": "https://image.tmdb.org/t/p/w220_and_h330_face/9wBzRaeWfELNOPmcvOVTmB3kDEl.jpg",
     "cat": "LES DERNIÈRES SORTIES",
-    "desc": "Jalousie et amitié mise à rude épreuve.",
+    "desc": "Thando n'a jamais de chance en amour, mais lorsque son meilleur ami revient de voyage accompagné de sa fiancée, elle est contrainte de faire face à un nouveau sentiment : la jalousie.",
+    "actors_pics": [{"name": "Katlego Lebogang", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/cJicdJkF1FSS29iGjSsDdUmy00j.jpg"}, {"name": "Didie Makobane", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/dVSmEg1VD5TPt82zkglgdz7Azh3.jpg"}, {"name": "Fikile Mthwalo", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/4kSpy9jfl5ATFIfEAtohdW56cB2.jpg"}, {"name": "Siya Sepotekele", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/1BvFMYhNXsDLMny3ikMLy0rJIvg.jpg"}],
+    "trailer": "hW56J07y5mg",
     "url": "aHR0cHM6Ly9hcmNoaXZlLm9yZy9kb3dubG9hZC8xMjcxMDE5LzEyNzEwMTkuaWEubXA0"
   },
   {
