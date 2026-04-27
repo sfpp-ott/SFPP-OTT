@@ -468,7 +468,6 @@ window.addEventListener('popstate', function (event) {
 async function loadPlaylist() { try { const response = await fetch('films.json?v=' + Date.now()); playlistData = await response.json(); render(); } catch (e) {} }
 
 function openDetails(idx) {
-    // Si on vient de l'overlay série, on ne fait pas un nouveau pushState pour éviter les boucles infinies de retour arrière
     if (window.history.state?.overlay !== 'details') {
         history.pushState({ overlay: 'details' }, "");
     }
@@ -648,10 +647,10 @@ function openSeries(name) {
         seasons[s].forEach(ep => {
             const epName = ep.t.split(' - ')[1] || ep.t;
             const pct = (prog[ep.t] && prog[ep.t].p > 1) ? `<div style="height:3px; background:#444; width:100px; margin-top:5px;"><div style="height:100%; background:var(--accent); width:${prog[ep.t].p}%"></div></div>` : "";
-            // CORRECTION ICI : openDetails(idx) au lieu de playMovie(idx)
-            html += `<div class="episode-item" onclick="openDetails(${playlistData.indexOf(ep)});" tabindex="0">
+            // LECTURE DIRECTE POUR LES SÉRIES COMME DEMANDÉ
+            html += `<div class="episode-item" onclick="playMovie(${playlistData.indexOf(ep)});" tabindex="0">
                         <div style="flex:1"><b>${epName}</b>${pct}</div>
-                        <div style="color:var(--accent)">DÉTAILS</div>
+                        <div style="color:var(--accent)">LECTURE ▶</div>
                      </div>`;
         });
     });
@@ -659,7 +658,6 @@ function openSeries(name) {
 }
 
 function playMovie(idx) {
-    // Si on lance depuis l'overlay Détails, on remplace l'état pour que le bouton retour ferme le player correctement
     history.replaceState({ overlay: 'player' }, "");
     const m = playlistData[idx];
     currentPlayingTitle = m.t;
