@@ -119,25 +119,26 @@
             overflow: hidden; background: #000;
         }
 
-        /* Ajustement mode paysage / TV */
+        /* Optimisation pour le mode Horizontal / TV */
         @media (orientation: landscape) or (min-width: 1024px) {
-            .details-hero { height: 40vh; }
-            .details-info { margin-top: -120px !important; }
-            .details-info .synopsis { max-width: 65%; }
+            .details-hero { height: 45vh; }
+            .details-info { margin-top: -140px !important; }
+            .details-info h2 { font-size: 42px; }
+            .details-info .synopsis { max-width: 70%; font-size: 16px; }
             .trailer-box { max-width: 600px; }
         }
 
         #details-header-bg {
             position: absolute; inset: 0;
             background-size: cover; 
-            background-position: center 20%; 
+            background-position: center 15%; 
             animation: subtleZoom 10s infinite alternate ease-in-out;
             z-index: 1;
         }
 
         .details-hero::after { 
             content: ''; position: absolute; inset: 0; 
-            background: linear-gradient(to top, var(--bg) 10%, transparent 90%); 
+            background: linear-gradient(to top, var(--bg) 15%, transparent 95%); 
             z-index: 2;
         }
 
@@ -147,11 +148,18 @@
         .details-info .synopsis { color: #ddd; line-height: 1.6; font-size: 15px; max-width: 850px; margin-bottom: 25px; }
         
         .details-actions { display: flex; gap: 15px; margin-bottom: 30px; }
+        
         .btn-play-main { 
             background: white; color: black; border: none; padding: 15px 35px; 
             border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 16px; 
             display: flex; align-items: center; gap: 10px;
         }
+        /* Correction lisibilité focus bouton principal */
+        .btn-play-main:focus {
+            background: white !important;
+            color: black !important;
+        }
+
         .btn-fav-details {
             background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.3); padding: 15px 25px; 
             border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 16px;
