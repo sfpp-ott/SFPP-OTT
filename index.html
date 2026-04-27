@@ -87,7 +87,6 @@
         .video-js { z-index: 1 !important; width: 100% !important; height: 100% !important; }
         .video-js video { object-fit: contain !important; }
 
-        /* MODIFICATION ICI : On réactive les contrôles pour le tactile tout en laissant la télécommande agir */
         #player-section .vjs-progress-control, 
         #player-section .vjs-volume-panel,
         #player-section .vjs-control-bar button { 
@@ -576,6 +575,7 @@ function saveP() {
 
 function scrollSide(btn, amt) { const car = btn.parentElement.querySelector('.carousel'); car.scrollBy({ left: amt, behavior: 'smooth' }); }
 
+// --- MODIFICATION ICI : AJOUT DE LA CATÉGORIE "TOUT" ---
 function render(search = "") {
     const cont = document.getElementById('categories-container');
     const histSec = document.getElementById('history-sec');
@@ -590,6 +590,7 @@ function render(search = "") {
     else if(currentView === 'series') data = playlistData.filter(m => m.cat === "SÉRIES");
     else if(currentView === 'fav') data = playlistData.filter(m => favs.includes(m.t));
 
+    // Affichage Historique
     if(currentProfile && s === "" && currentView === 'all') {
         let history = JSON.parse(localStorage.getItem('sfpp_hist_' + currentProfile) || "[]");
         if(history.length > 0) {
@@ -604,6 +605,34 @@ function render(search = "") {
         } else histSec.style.display = "none";
     } else histSec.style.display = "none";
 
+    // --- BLOC NOUVEAU : LA LIGNE "TOUT" (Affiche les 50 derniers ajouts par exemple) ---
+    if (s === "" && data.length > 0) {
+        let allHtml = `<div class="category-title">À NE PAS MANQUER</div><div class="category-row"><div class="nav-arrow arrow-left" onclick="scrollSide(this, -400)">‹</div><div class="carousel">`;
+        
+        // On prend les derniers de la liste (souvent les plus récents)
+        const recentData = data.slice(-50).reverse(); 
+        let addedInAll = [];
+
+        recentData.forEach(m => {
+            const isS = /S\d{2}E\d{2}/i.test(m.t);
+            const heart = favs.includes(m.t) ? `<div style="position:absolute; top:5px; right:5px; z-index:5;">❤️</div>` : "";
+            const pct = (prog[m.t] && prog[m.t].p > 1) ? `<div class="prog-bg"><div class="prog-fill" style="width:${prog[m.t].p}%"></div></div>` : "";
+            
+            if(isS) {
+                const sName = m.t.split(' - ')[0];
+                if(!addedInAll.includes(sName)) {
+                    addedInAll.push(sName);
+                    allHtml += `<div class="card" onclick="openSeries('${sName}')" tabindex="0"><img src="${m.img}">${heart}<div class="card-name">${sName}</div></div>`;
+                }
+            } else {
+                allHtml += `<div class="card" onclick="openDetails(${playlistData.indexOf(m)})" tabindex="0"><img src="${m.img}">${heart}${pct}<div class="card-name">${m.t}</div></div>`;
+            }
+        });
+        allHtml += `</div><div class="nav-arrow arrow-right" onclick="scrollSide(this, 400)">›</div></div>`;
+        cont.innerHTML += allHtml;
+    }
+
+    // Affichage par Catégories classiques
     const cats = [...new Set(data.map(m => m.cat))];
     let addedSeries = [];
 
@@ -680,7 +709,6 @@ function playMovie(idx) {
     pSection.style.display = 'block';
     document.getElementById('player-blur-bg').style.backgroundImage = `url('${m.img}')`;
     
-    // --- STABILISATION RENFORCÉE ---
     player.pause();
     player.src(""); 
     player.load();  
@@ -741,7 +769,6 @@ document.addEventListener('DOMContentLoaded', () => {
         techOrder: ['chromecast', 'html5'], plugins: { chromecast: { addButtonToControlBar: true } }
     });
 
-    // MODIFICATION ICI : On force l'activation de l'interface au toucher pour les téléphones
     player.on('touchstart', function() {
         if (player.userActive()) {
             player.userActive(true);
