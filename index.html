@@ -102,6 +102,7 @@
 
         #expiration-banner { display: none; background: #ffcc00; color: #000; text-align: center; padding: 10px; font-size: 13px; font-weight: bold; position: relative; z-index: 1500; }
         
+        /* --- MISE À JOUR DE L'OVERLAY ADAPTATIF --- */
         #details-overlay {
             position: fixed; inset: 0; background: var(--bg);
             z-index: 3500; display: none; flex-direction: column; overflow-y: auto;
@@ -110,25 +111,33 @@
         
         @keyframes subtleZoom {
             0% { transform: scale(1); }
-            100% { transform: scale(1.4); }
+            100% { transform: scale(1.1); }
         }
 
         .details-hero { 
-            position: relative; width: 100%; height: 55vh; 
+            position: relative; width: 100%; height: 50vh; 
             overflow: hidden; background: #000;
+        }
+
+        /* Ajustement mode paysage / TV */
+        @media (orientation: landscape) or (min-width: 1024px) {
+            .details-hero { height: 40vh; }
+            .details-info { margin-top: -120px !important; }
+            .details-info .synopsis { max-width: 65%; }
+            .trailer-box { max-width: 600px; }
         }
 
         #details-header-bg {
             position: absolute; inset: 0;
             background-size: cover; 
-            background-position: center top; 
+            background-position: center 20%; 
             animation: subtleZoom 10s infinite alternate ease-in-out;
             z-index: 1;
         }
 
         .details-hero::after { 
             content: ''; position: absolute; inset: 0; 
-            background: linear-gradient(to top, var(--bg) 10%, transparent 70%); 
+            background: linear-gradient(to top, var(--bg) 10%, transparent 90%); 
             z-index: 2;
         }
 
@@ -191,7 +200,6 @@
         @media (max-width: 768px) {
             .card { flex: 0 0 130px; width: 130px; }
             .card img { width: 130px !important; height: 195px !important; }
-            .details-hero { height: 45vh; }
         }
     </style>
 </head>
