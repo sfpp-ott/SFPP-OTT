@@ -551,7 +551,7 @@ function initProfiles() {
     ];
     const list = document.getElementById('profile-list');
     list.innerHTML = profiles.map(p => `
-        <div class="profile-item" onclick="handleProfileClick(${p.id}, '${p.name}', '${p.icon}')" tabindex="0">
+        <div class="profile-item" onclick="handleProfileClick(${p.id}, '${p.name}', '${p.icon}')" onkeydown="if(event.key==='Enter')handleProfileClick(${p.id}, '${p.name}', '${p.icon}')" tabindex="0">
             <div class="profile-avatar" style="background:${p.color}">${p.icon}</div>
             <div class="edit-icon">✏️</div>
             <div class="profile-name">${p.name}</div>
@@ -607,8 +607,9 @@ function render(search = "") {
             history.slice().reverse().forEach(title => {
                 const m = playlistData.find(item => item.t === title);
                 if(m) {
+                    const idx = playlistData.indexOf(m);
                     const pct = (prog[m.t] && prog[m.t].p > 1) ? `<div class="prog-bg"><div class="prog-fill" style="width:${prog[m.t].p}%"></div></div>` : "";
-                    histCont.innerHTML += `<div class="card" onclick="openDetails(${playlistData.indexOf(m)})" tabindex="0"><img src="${m.img}">${pct}<div class="card-name">${m.t}</div></div>`;
+                    histCont.innerHTML += `<div class="card" onclick="openDetails(${idx})" onkeydown="if(event.key==='Enter')openDetails(${idx})" tabindex="0"><img src="${m.img}">${pct}<div class="card-name">${m.t}</div></div>`;
                 }
             });
         } else histSec.style.display = "none";
@@ -620,6 +621,7 @@ function render(search = "") {
         const recentData = data.slice().reverse().slice(0, 50); 
         let addedInAll = [];
         recentData.forEach(m => {
+            const idx = playlistData.indexOf(m);
             const isS = /S\d{2}E\d{2}/i.test(m.t);
             const heart = favs.includes(m.t) ? `<div style="position:absolute; top:5px; right:5px; z-index:5;">❤️</div>` : "";
             const pct = (prog[m.t] && prog[m.t].p > 1) ? `<div class="prog-bg"><div class="prog-fill" style="width:${prog[m.t].p}%"></div></div>` : "";
@@ -627,10 +629,10 @@ function render(search = "") {
                 const sName = m.t.split(' - ')[0];
                 if(!addedInAll.includes(sName)) {
                     addedInAll.push(sName);
-                    allHtml += `<div class="card" onclick="openSeries('${sName}')" tabindex="0"><img src="${m.img}">${heart}<div class="card-name">${sName}</div></div>`;
+                    allHtml += `<div class="card" onclick="openSeries('${sName}')" onkeydown="if(event.key==='Enter')openSeries('${sName}')" tabindex="0"><img src="${m.img}">${heart}<div class="card-name">${sName}</div></div>`;
                 }
             } else {
-                allHtml += `<div class="card" onclick="openDetails(${playlistData.indexOf(m)})" tabindex="0"><img src="${m.img}">${heart}${pct}<div class="card-name">${m.t}</div></div>`;
+                allHtml += `<div class="card" onclick="openDetails(${idx})" onkeydown="if(event.key==='Enter')openDetails(${idx})" tabindex="0"><img src="${m.img}">${heart}${pct}<div class="card-name">${m.t}</div></div>`;
             }
         });
         allHtml += `</div><div class="nav-arrow arrow-right" onclick="scrollSide(this, 400)">›</div></div>`;
@@ -639,14 +641,13 @@ function render(search = "") {
 
     // Catégories
     const cats = [...new Set(data.map(m => m.cat))];
-    let globalAddedSeries = [];
-
     cats.forEach(c => {
         const filtered = data.filter(m => m.cat === c && m.t.toLowerCase().includes(s));
         if (filtered.length === 0) return;
         let html = `<div class="category-title">${c}</div><div class="category-row"><div class="nav-arrow arrow-left" onclick="scrollSide(this, -400)">‹</div><div class="carousel">`;
         let catAddedSeries = [];
         filtered.forEach(m => {
+            const idx = playlistData.indexOf(m);
             const isS = /S\d{2}E\d{2}/i.test(m.t);
             const heart = favs.includes(m.t) ? `<div style="position:absolute; top:5px; right:5px; z-index:5;">❤️</div>` : "";
             const pct = (prog[m.t] && prog[m.t].p > 1) ? `<div class="prog-bg"><div class="prog-fill" style="width:${prog[m.t].p}%"></div></div>` : "";
@@ -654,10 +655,10 @@ function render(search = "") {
                 const sName = m.t.split(' - ')[0];
                 if(!catAddedSeries.includes(sName)) {
                     catAddedSeries.push(sName);
-                    html += `<div class="card" onclick="openSeries('${sName}')" tabindex="0"><img src="${m.img}">${heart}<div class="card-name">${sName}</div></div>`;
+                    html += `<div class="card" onclick="openSeries('${sName}')" onkeydown="if(event.key==='Enter')openSeries('${sName}')" tabindex="0"><img src="${m.img}">${heart}<div class="card-name">${sName}</div></div>`;
                 }
             } else {
-                html += `<div class="card" onclick="openDetails(${playlistData.indexOf(m)})" tabindex="0"><img src="${m.img}">${heart}${pct}<div class="card-name">${m.t}</div></div>`;
+                html += `<div class="card" onclick="openDetails(${idx})" onkeydown="if(event.key==='Enter')openDetails(${idx})" tabindex="0"><img src="${m.img}">${heart}${pct}<div class="card-name">${m.t}</div></div>`;
             }
         });
         html += `</div><div class="nav-arrow arrow-right" onclick="scrollSide(this, 400)">›</div></div>`;
@@ -683,9 +684,10 @@ function openSeries(name) {
     Object.keys(seasons).sort().forEach(s => {
         html += `<div class="season-title">SAISON ${s}</div>`;
         seasons[s].forEach(ep => {
+            const idx = playlistData.indexOf(ep);
             const epName = ep.t.split(' - ')[1] || ep.t;
             const pct = (prog[ep.t] && prog[ep.t].p > 1) ? `<div style="height:3px; background:#444; width:100px; margin-top:5px;"><div style="height:100%; background:var(--accent); width:${prog[ep.t].p}%"></div></div>` : "";
-            html += `<div class="episode-item" onclick="openDetails(${playlistData.indexOf(ep)});" tabindex="0">
+            html += `<div class="episode-item" onclick="openDetails(${idx});" onkeydown="if(event.key==='Enter')openDetails(${idx})" tabindex="0">
                         <div style="flex:1"><b>${epName}</b>${pct}</div>
                         <div style="color:var(--accent)">DÉTAILS</div>
                      </div>`;
