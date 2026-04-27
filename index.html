@@ -371,7 +371,7 @@
             if (await verifyExpiration(user)) return;
             window.startSessionSync(user.uid);
             document.getElementById('login-screen').style.display = 'none';
-            loadPlaylist();
+            await loadPlaylist();
             initProfiles();
             
             const snap = await get(ref(db, 'users_data/' + user.uid + '/expire'));
@@ -470,7 +470,14 @@ window.addEventListener('popstate', function (event) {
     }
 });
 
-async function loadPlaylist() { try { const response = await fetch('films.json?v=' + Date.now()); playlistData = await response.json(); render(); } catch (e) {} }
+async function loadPlaylist() { 
+    try { 
+        const response = await fetch('films.json?v=' + Date.now()); 
+        playlistData = await response.json(); 
+    } catch (e) {
+        console.error("Erreur chargement playlist", e);
+    } 
+}
 
 function openDetails(idx) {
     history.pushState({ overlay: 'details' }, "");
@@ -575,22 +582,24 @@ function saveP() {
 
 function scrollSide(btn, amt) { const car = btn.parentElement.querySelector('.carousel'); car.scrollBy({ left: amt, behavior: 'smooth' }); }
 
-// --- MODIFICATION ICI : AJOUT DE LA CATÉGORIE "TOUT" ---
 function render(search = "") {
+    if (!playlistData || playlistData.length === 0) return;
+    
     const cont = document.getElementById('categories-container');
     const histSec = document.getElementById('history-sec');
     const histCont = document.getElementById('history-container');
     cont.innerHTML = ""; histCont.innerHTML = "";
+    
     const s = search.toLowerCase();
     const favs = JSON.parse(localStorage.getItem('sfpp_fav_' + currentProfile) || "[]");
     const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
     
-    let data = playlistData;
+    let data = [...playlistData];
     if(currentView === 'movies') data = playlistData.filter(m => m.cat !== "SÉRIES");
     else if(currentView === 'series') data = playlistData.filter(m => m.cat === "SÉRIES");
     else if(currentView === 'fav') data = playlistData.filter(m => favs.includes(m.t));
 
-    // Affichage Historique
+    // Historique
     if(currentProfile && s === "" && currentView === 'all') {
         let history = JSON.parse(localStorage.getItem('sfpp_hist_' + currentProfile) || "[]");
         if(history.length > 0) {
@@ -605,19 +614,15 @@ function render(search = "") {
         } else histSec.style.display = "none";
     } else histSec.style.display = "none";
 
-    // --- BLOC NOUVEAU : LA LIGNE "TOUT" (Affiche les 50 derniers ajouts par exemple) ---
-    if (s === "" && data.length > 0) {
+    // À NE PAS MANQUER (Tout)
+    if (s === "" && currentView === 'all') {
         let allHtml = `<div class="category-title">À NE PAS MANQUER</div><div class="category-row"><div class="nav-arrow arrow-left" onclick="scrollSide(this, -400)">‹</div><div class="carousel">`;
-        
-        // On prend les derniers de la liste (souvent les plus récents)
-        const recentData = data.slice(-50).reverse(); 
+        const recentData = data.slice().reverse().slice(0, 50); 
         let addedInAll = [];
-
         recentData.forEach(m => {
             const isS = /S\d{2}E\d{2}/i.test(m.t);
             const heart = favs.includes(m.t) ? `<div style="position:absolute; top:5px; right:5px; z-index:5;">❤️</div>` : "";
             const pct = (prog[m.t] && prog[m.t].p > 1) ? `<div class="prog-bg"><div class="prog-fill" style="width:${prog[m.t].p}%"></div></div>` : "";
-            
             if(isS) {
                 const sName = m.t.split(' - ')[0];
                 if(!addedInAll.includes(sName)) {
@@ -632,22 +637,23 @@ function render(search = "") {
         cont.innerHTML += allHtml;
     }
 
-    // Affichage par Catégories classiques
+    // Catégories
     const cats = [...new Set(data.map(m => m.cat))];
-    let addedSeries = [];
+    let globalAddedSeries = [];
 
     cats.forEach(c => {
         const filtered = data.filter(m => m.cat === c && m.t.toLowerCase().includes(s));
         if (filtered.length === 0) return;
         let html = `<div class="category-title">${c}</div><div class="category-row"><div class="nav-arrow arrow-left" onclick="scrollSide(this, -400)">‹</div><div class="carousel">`;
+        let catAddedSeries = [];
         filtered.forEach(m => {
             const isS = /S\d{2}E\d{2}/i.test(m.t);
             const heart = favs.includes(m.t) ? `<div style="position:absolute; top:5px; right:5px; z-index:5;">❤️</div>` : "";
             const pct = (prog[m.t] && prog[m.t].p > 1) ? `<div class="prog-bg"><div class="prog-fill" style="width:${prog[m.t].p}%"></div></div>` : "";
             if(isS) {
                 const sName = m.t.split(' - ')[0];
-                if(!addedSeries.includes(sName)) {
-                    addedSeries.push(sName);
+                if(!catAddedSeries.includes(sName)) {
+                    catAddedSeries.push(sName);
                     html += `<div class="card" onclick="openSeries('${sName}')" tabindex="0"><img src="${m.img}">${heart}<div class="card-name">${sName}</div></div>`;
                 }
             } else {
