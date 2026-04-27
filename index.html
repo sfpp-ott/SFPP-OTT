@@ -601,7 +601,6 @@ function render(search = "") {
         } else histSec.style.display = "none";
     } else histSec.style.display = "none";
 
-    // --- AJOUT DE LA CATÉGORIE TOUS LES FILMS (UNIQUEMENT DANS LA VUE ACCUEIL OU FILMS) ---
     if (s === "" && (currentView === 'all' || currentView === 'movies')) {
         const allMovies = playlistData.filter(m => m.cat !== "SÉRIES");
         if (allMovies.length > 0) {
@@ -662,7 +661,6 @@ function openSeries(name) {
         seasons[s].forEach(ep => {
             const epName = ep.t.split(' - ')[1] || ep.t;
             const pct = (prog[ep.t] && prog[ep.t].p > 1) ? `<div style="height:3px; background:#444; width:100px; margin-top:5px;"><div style="height:100%; background:var(--accent); width:${prog[ep.t].p}%"></div></div>` : "";
-            // LECTURE DIRECTE POUR LES SÉRIES COMME DEMANDÉ
             html += `<div class="episode-item" onclick="playMovie(${playlistData.indexOf(ep)});" tabindex="0">
                         <div style="flex:1"><b>${epName}</b>${pct}</div>
                         <div style="color:var(--accent)">LECTURE ▶</div>
@@ -700,10 +698,30 @@ function playMovie(idx) {
 
     if (decodedUrl.includes('.m3u8')) {
         if (Hls.isSupported()) {
-            const hls = new Hls();
+            // --- OPTIMISATION FLUIDITÉ TV & DIRECT ---
+            const hlsConfig = {
+                maxBufferLength: 30, // 30 sec de tampon au lieu de 10
+                maxMaxBufferLength: 60,
+                enableWorker: true,
+                startLevel: -1,
+                liveSyncDurationCount: 3, // Synchronisation live optimisée
+                backBufferLength: 15
+            };
+            const hls = new Hls(hlsConfig);
             hls.loadSource(decodedUrl);
             hls.attachMedia(document.querySelector('#main-video_html5_api'));
             hls.on(Hls.Events.MANIFEST_PARSED, function() { player.play(); });
+            
+            // Reconnexion automatique si erreur réseau
+            hls.on(Hls.Events.ERROR, function (event, data) {
+                if (data.fatal) {
+                    switch (data.type) {
+                        case Hls.ErrorTypes.NETWORK_ERROR: hls.startLoad(); break;
+                        case Hls.ErrorTypes.MEDIA_ERROR: hls.recoverMediaError(); break;
+                        default: hls.destroy(); break;
+                    }
+                }
+            });
         } else if (document.querySelector('#main-video_html5_api').canPlayType('application/vnd.apple.mpegurl')) {
             player.src({ src: decodedUrl, type: 'application/x-mpegURL' });
             player.play();
