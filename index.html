@@ -87,10 +87,9 @@
         .video-js { z-index: 1 !important; width: 100% !important; height: 100% !important; }
         .video-js video { object-fit: contain !important; }
 
+        /* MODIFICATION ICI : On réactive les contrôles pour le tactile tout en laissant la télécommande agir */
         #player-section .vjs-progress-control, 
-        #player-section .vjs-volume-panel { 
-            pointer-events: none !important; 
-        }
+        #player-section .vjs-volume-panel,
         #player-section .vjs-control-bar button { 
             pointer-events: auto !important; 
         }
@@ -683,8 +682,8 @@ function playMovie(idx) {
     
     // --- STABILISATION RENFORCÉE ---
     player.pause();
-    player.src(""); // Vider l'ancienne URL
-    player.load();  // Forcer le nettoyage
+    player.src(""); 
+    player.load();  
     
     player.poster(m.img); 
     
@@ -695,7 +694,6 @@ function playMovie(idx) {
         decodedUrl = m.url; 
     }
 
-    // On attend 250ms pour être certain que le navigateur a fini de traiter le Base64 et le nettoyage
     setTimeout(() => {
         if (decodedUrl.includes('.m3u8')) {
             if (Hls.isSupported()) {
@@ -742,6 +740,14 @@ document.addEventListener('DOMContentLoaded', () => {
         controls: true, fluid: false,
         techOrder: ['chromecast', 'html5'], plugins: { chromecast: { addButtonToControlBar: true } }
     });
+
+    // MODIFICATION ICI : On force l'activation de l'interface au toucher pour les téléphones
+    player.on('touchstart', function() {
+        if (player.userActive()) {
+            player.userActive(true);
+        }
+    });
+
     player.on('timeupdate', function() {
         const dur = player.duration(), cur = player.currentTime();
         if (/S\d{2}E\d{2}/i.test(currentPlayingTitle) && dur > 0 && (dur - cur) < 80) {
