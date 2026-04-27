@@ -594,8 +594,10 @@ function render(search = "") {
             history.slice().reverse().forEach(title => {
                 const m = playlistData.find(item => item.t === title);
                 if(m) {
+                    const isTV = m.cat.toUpperCase().includes("DIRECT") || m.cat.toUpperCase().includes("TV");
                     const pct = (prog[m.t] && prog[m.t].p > 1) ? `<div class="prog-bg"><div class="prog-fill" style="width:${prog[m.t].p}%"></div></div>` : "";
-                    histCont.innerHTML += `<div class="card" onclick="openDetails(${playlistData.indexOf(m)})" tabindex="0"><img src="${m.img}">${pct}<div class="card-name">${m.t}</div></div>`;
+                    const clickAction = isTV ? `playMovie(${playlistData.indexOf(m)})` : `openDetails(${playlistData.indexOf(m)})`;
+                    histCont.innerHTML += `<div class="card" onclick="${clickAction}" tabindex="0"><img src="${m.img}">${pct}<div class="card-name">${m.t}</div></div>`;
                 }
             });
         } else histSec.style.display = "none";
@@ -621,6 +623,9 @@ function render(search = "") {
     cats.forEach(c => {
         const filtered = data.filter(m => m.cat === c && m.t.toLowerCase().includes(s));
         if (filtered.length === 0) return;
+        
+        const isTVCat = c.toUpperCase().includes("DIRECT") || c.toUpperCase().includes("TV");
+        
         let html = `<div class="category-title">${c}</div><div class="category-row"><div class="nav-arrow arrow-left" onclick="scrollSide(this, -400)">‹</div><div class="carousel">`;
         filtered.forEach(m => {
             const isS = /S\d{2}E\d{2}/i.test(m.t);
@@ -633,7 +638,8 @@ function render(search = "") {
                     html += `<div class="card" onclick="openSeries('${sName}')" tabindex="0"><img src="${m.img}">${heart}<div class="card-name">${sName}</div></div>`;
                 }
             } else {
-                html += `<div class="card" onclick="openDetails(${playlistData.indexOf(m)})" tabindex="0"><img src="${m.img}">${heart}${pct}<div class="card-name">${m.t}</div></div>`;
+                const clickAction = isTVCat ? `playMovie(${playlistData.indexOf(m)})` : `openDetails(${playlistData.indexOf(m)})`;
+                html += `<div class="card" onclick="${clickAction}" tabindex="0"><img src="${m.img}">${heart}${pct}<div class="card-name">${m.t}</div></div>`;
             }
         });
         html += `</div><div class="nav-arrow arrow-right" onclick="scrollSide(this, 400)">›</div></div>`;
@@ -698,13 +704,12 @@ function playMovie(idx) {
 
     if (decodedUrl.includes('.m3u8')) {
         if (Hls.isSupported()) {
-            // --- OPTIMISATION FLUIDITÉ TV & DIRECT ---
             const hlsConfig = {
-                maxBufferLength: 30, // 30 sec de tampon au lieu de 10
+                maxBufferLength: 30,
                 maxMaxBufferLength: 60,
                 enableWorker: true,
                 startLevel: -1,
-                liveSyncDurationCount: 3, // Synchronisation live optimisée
+                liveSyncDurationCount: 3,
                 backBufferLength: 15
             };
             const hls = new Hls(hlsConfig);
@@ -712,7 +717,6 @@ function playMovie(idx) {
             hls.attachMedia(document.querySelector('#main-video_html5_api'));
             hls.on(Hls.Events.MANIFEST_PARSED, function() { player.play(); });
             
-            // Reconnexion automatique si erreur réseau
             hls.on(Hls.Events.ERROR, function (event, data) {
                 if (data.fatal) {
                     switch (data.type) {
