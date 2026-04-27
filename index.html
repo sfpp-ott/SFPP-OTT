@@ -87,12 +87,10 @@
         .video-js { z-index: 1 !important; width: 100% !important; height: 100% !important; }
         .video-js video { object-fit: contain !important; }
 
-        /* --- CORRECTION ICI : BLOCAGE UNIQUEMENT DANS LE LECTEUR --- */
         #player-section .vjs-progress-control, 
         #player-section .vjs-volume-panel { 
             pointer-events: none !important; 
         }
-        /* On s'assure que les boutons Play/Pause restent cliquables */
         #player-section .vjs-control-bar button { 
             pointer-events: auto !important; 
         }
@@ -188,7 +186,6 @@
         .card img { width: 150px !important; height: 225px !important; object-fit: cover !important; border-radius: 4px; background: #222; display: block; }
         .card-name { margin-top: 6px; font-size: 12px; text-align: center; color: #bbb; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; width: 100%; }
 
-        /* --- BARRE DE PROGRESSION SUR L'ACCUEIL : NE PAS BLOQUER LES CLICS --- */
         .prog-bg { position: absolute; bottom: 25px; left: 0; width: 100%; height: 4px; background: rgba(255,255,255,0.2); border-radius: 0 0 4px 4px; overflow: hidden; pointer-events: none; }
         .prog-fill { height: 100%; background: var(--accent); transition: width 0.3s; }
 
@@ -684,34 +681,41 @@ function playMovie(idx) {
     pSection.style.display = 'block';
     document.getElementById('player-blur-bg').style.backgroundImage = `url('${m.img}')`;
     
-    // --- STABILISATION LANCEUR ---
+    // --- STABILISATION RENFORCÉE ---
     player.pause();
-    player.src(""); 
-    player.load();
+    player.src(""); // Vider l'ancienne URL
+    player.load();  // Forcer le nettoyage
     
     player.poster(m.img); 
     
     let decodedUrl = "";
-    try { decodedUrl = atob(m.url); } catch(e) { decodedUrl = m.url; }
+    try { 
+        decodedUrl = atob(m.url); 
+    } catch(e) { 
+        decodedUrl = m.url; 
+    }
 
+    // On attend 250ms pour être certain que le navigateur a fini de traiter le Base64 et le nettoyage
     setTimeout(() => {
         if (decodedUrl.includes('.m3u8')) {
             if (Hls.isSupported()) {
                 const hls = new Hls();
                 hls.loadSource(decodedUrl);
                 hls.attachMedia(document.querySelector('#main-video_html5_api'));
-                hls.on(Hls.Events.MANIFEST_PARSED, function() { player.play(); });
-            } else if (document.querySelector('#main-video_html5_api').canPlayType('application/vnd.apple.mpegurl')) {
+                hls.on(Hls.Events.MANIFEST_PARSED, function() { 
+                    player.play().catch(e => { console.log("Re-clic nécessaire ?"); }); 
+                });
+            } else {
                 player.src({ src: decodedUrl, type: 'application/x-mpegURL' });
-                player.play();
+                player.play().catch(e => {});
             }
         } else {
             player.src({ src: decodedUrl, type: 'video/mp4' });
             const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
             if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
-            player.play();
+            player.play().catch(e => {});
         }
-    }, 100);
+    }, 250);
 }
 
 function playNextEpisode() {
