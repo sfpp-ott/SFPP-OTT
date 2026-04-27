@@ -684,27 +684,34 @@ function playMovie(idx) {
     pSection.style.display = 'block';
     document.getElementById('player-blur-bg').style.backgroundImage = `url('${m.img}')`;
     
+    // --- STABILISATION LANCEUR ---
+    player.pause();
+    player.src(""); 
+    player.load();
+    
     player.poster(m.img); 
     
     let decodedUrl = "";
     try { decodedUrl = atob(m.url); } catch(e) { decodedUrl = m.url; }
 
-    if (decodedUrl.includes('.m3u8')) {
-        if (Hls.isSupported()) {
-            const hls = new Hls();
-            hls.loadSource(decodedUrl);
-            hls.attachMedia(document.querySelector('#main-video_html5_api'));
-            hls.on(Hls.Events.MANIFEST_PARSED, function() { player.play(); });
-        } else if (document.querySelector('#main-video_html5_api').canPlayType('application/vnd.apple.mpegurl')) {
-            player.src({ src: decodedUrl, type: 'application/x-mpegURL' });
+    setTimeout(() => {
+        if (decodedUrl.includes('.m3u8')) {
+            if (Hls.isSupported()) {
+                const hls = new Hls();
+                hls.loadSource(decodedUrl);
+                hls.attachMedia(document.querySelector('#main-video_html5_api'));
+                hls.on(Hls.Events.MANIFEST_PARSED, function() { player.play(); });
+            } else if (document.querySelector('#main-video_html5_api').canPlayType('application/vnd.apple.mpegurl')) {
+                player.src({ src: decodedUrl, type: 'application/x-mpegURL' });
+                player.play();
+            }
+        } else {
+            player.src({ src: decodedUrl, type: 'video/mp4' });
+            const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
+            if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
             player.play();
         }
-    } else {
-        player.src({ src: decodedUrl, type: 'video/mp4' });
-        const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
-        if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
-        player.play();
-    }
+    }, 100);
 }
 
 function playNextEpisode() {
