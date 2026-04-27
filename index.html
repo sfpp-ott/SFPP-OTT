@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -86,12 +87,6 @@
         
         .video-js { z-index: 1 !important; width: 100% !important; height: 100% !important; }
         .video-js video { object-fit: contain !important; }
-
-        #player-section .vjs-progress-control, 
-        #player-section .vjs-volume-panel,
-        #player-section .vjs-control-bar button { 
-            pointer-events: auto !important; 
-        }
 
         #next-episode-btn {
             position: absolute; bottom: 85px; right: 25px; z-index: 99999 !important;
@@ -184,7 +179,7 @@
         .card img { width: 150px !important; height: 225px !important; object-fit: cover !important; border-radius: 4px; background: #222; display: block; }
         .card-name { margin-top: 6px; font-size: 12px; text-align: center; color: #bbb; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; width: 100%; }
 
-        .prog-bg { position: absolute; bottom: 25px; left: 0; width: 100%; height: 4px; background: rgba(255,255,255,0.2); border-radius: 0 0 4px 4px; overflow: hidden; pointer-events: none; }
+        .prog-bg { position: absolute; bottom: 25px; left: 0; width: 100%; height: 4px; background: rgba(255,255,255,0.2); border-radius: 0 0 4px 4px; overflow: hidden; }
         .prog-fill { height: 100%; background: var(--accent); transition: width 0.3s; }
 
         #series-overlay { position: fixed; inset: 0; background: var(--bg); z-index: 3000; display: none; overflow-y: auto; padding: 80px 5% 40px; }
@@ -371,7 +366,7 @@
             if (await verifyExpiration(user)) return;
             window.startSessionSync(user.uid);
             document.getElementById('login-screen').style.display = 'none';
-            await loadPlaylist();
+            loadPlaylist();
             initProfiles();
             
             const snap = await get(ref(db, 'users_data/' + user.uid + '/expire'));
@@ -428,6 +423,7 @@
 </script>
 
 <script>
+// --- SÉCURITÉ ROBUSTE AJOUTÉE ---
 document.onkeydown = function(e) {
     if (e.keyCode == 123 || (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74)) || (e.ctrlKey && e.keyCode == 85)) {
         return false;
@@ -470,14 +466,7 @@ window.addEventListener('popstate', function (event) {
     }
 });
 
-async function loadPlaylist() { 
-    try { 
-        const response = await fetch('films.json?v=' + Date.now()); 
-        playlistData = await response.json(); 
-    } catch (e) {
-        console.error("Erreur chargement playlist", e);
-    } 
-}
+async function loadPlaylist() { try { const response = await fetch('films.json?v=' + Date.now()); playlistData = await response.json(); render(); } catch (e) {} }
 
 function openDetails(idx) {
     history.pushState({ overlay: 'details' }, "");
@@ -489,10 +478,14 @@ function openDetails(idx) {
     document.getElementById('details-meta-year').innerText = m.year || "2024";
     document.getElementById('details-meta-cat').innerText = m.cat;
 
+    // --- SYSTÈME D'ÉTOILES ---
     const note = m.note || 5; 
     let stars = "";
-    for (let i = 0; i < 5; i++) { stars += (i < note) ? "★" : "☆"; }
+    for (let i = 0; i < 5; i++) {
+        stars += (i < note) ? "★" : "☆";
+    }
     document.getElementById('details-stars-display').innerText = stars;
+    // ------------------------
 
     let castHtml = "";
     if (m.actors_pics && m.actors_pics.length > 0) {
@@ -551,7 +544,7 @@ function initProfiles() {
     ];
     const list = document.getElementById('profile-list');
     list.innerHTML = profiles.map(p => `
-        <div class="profile-item" onclick="handleProfileClick(${p.id}, '${p.name}', '${p.icon}')" onkeydown="if(event.key==='Enter')handleProfileClick(${p.id}, '${p.name}', '${p.icon}')" tabindex="0">
+        <div class="profile-item" onclick="handleProfileClick(${p.id}, '${p.name}', '${p.icon}')" tabindex="0">
             <div class="profile-avatar" style="background:${p.color}">${p.icon}</div>
             <div class="edit-icon">✏️</div>
             <div class="profile-name">${p.name}</div>
@@ -583,23 +576,19 @@ function saveP() {
 function scrollSide(btn, amt) { const car = btn.parentElement.querySelector('.carousel'); car.scrollBy({ left: amt, behavior: 'smooth' }); }
 
 function render(search = "") {
-    if (!playlistData || playlistData.length === 0) return;
-    
     const cont = document.getElementById('categories-container');
     const histSec = document.getElementById('history-sec');
     const histCont = document.getElementById('history-container');
     cont.innerHTML = ""; histCont.innerHTML = "";
-    
     const s = search.toLowerCase();
     const favs = JSON.parse(localStorage.getItem('sfpp_fav_' + currentProfile) || "[]");
     const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
     
-    let data = [...playlistData];
+    let data = playlistData;
     if(currentView === 'movies') data = playlistData.filter(m => m.cat !== "SÉRIES");
     else if(currentView === 'series') data = playlistData.filter(m => m.cat === "SÉRIES");
     else if(currentView === 'fav') data = playlistData.filter(m => favs.includes(m.t));
 
-    // Historique
     if(currentProfile && s === "" && currentView === 'all') {
         let history = JSON.parse(localStorage.getItem('sfpp_hist_' + currentProfile) || "[]");
         if(history.length > 0) {
@@ -607,58 +596,32 @@ function render(search = "") {
             history.slice().reverse().forEach(title => {
                 const m = playlistData.find(item => item.t === title);
                 if(m) {
-                    const idx = playlistData.indexOf(m);
                     const pct = (prog[m.t] && prog[m.t].p > 1) ? `<div class="prog-bg"><div class="prog-fill" style="width:${prog[m.t].p}%"></div></div>` : "";
-                    histCont.innerHTML += `<div class="card" onclick="openDetails(${idx})" onkeydown="if(event.key==='Enter')openDetails(${idx})" tabindex="0"><img src="${m.img}">${pct}<div class="card-name">${m.t}</div></div>`;
+                    histCont.innerHTML += `<div class="card" onclick="openDetails(${playlistData.indexOf(m)})" tabindex="0"><img src="${m.img}">${pct}<div class="card-name">${m.t}</div></div>`;
                 }
             });
         } else histSec.style.display = "none";
     } else histSec.style.display = "none";
 
-    // À NE PAS MANQUER (Tout)
-    if (s === "" && currentView === 'all') {
-        let allHtml = `<div class="category-title">À NE PAS MANQUER</div><div class="category-row"><div class="nav-arrow arrow-left" onclick="scrollSide(this, -400)">‹</div><div class="carousel">`;
-        const recentData = data.slice().reverse().slice(0, 50); 
-        let addedInAll = [];
-        recentData.forEach(m => {
-            const idx = playlistData.indexOf(m);
-            const isS = /S\d{2}E\d{2}/i.test(m.t);
-            const heart = favs.includes(m.t) ? `<div style="position:absolute; top:5px; right:5px; z-index:5;">❤️</div>` : "";
-            const pct = (prog[m.t] && prog[m.t].p > 1) ? `<div class="prog-bg"><div class="prog-fill" style="width:${prog[m.t].p}%"></div></div>` : "";
-            if(isS) {
-                const sName = m.t.split(' - ')[0];
-                if(!addedInAll.includes(sName)) {
-                    addedInAll.push(sName);
-                    allHtml += `<div class="card" onclick="openSeries('${sName}')" onkeydown="if(event.key==='Enter')openSeries('${sName}')" tabindex="0"><img src="${m.img}">${heart}<div class="card-name">${sName}</div></div>`;
-                }
-            } else {
-                allHtml += `<div class="card" onclick="openDetails(${idx})" onkeydown="if(event.key==='Enter')openDetails(${idx})" tabindex="0"><img src="${m.img}">${heart}${pct}<div class="card-name">${m.t}</div></div>`;
-            }
-        });
-        allHtml += `</div><div class="nav-arrow arrow-right" onclick="scrollSide(this, 400)">›</div></div>`;
-        cont.innerHTML += allHtml;
-    }
-
-    // Catégories
     const cats = [...new Set(data.map(m => m.cat))];
+    let addedSeries = [];
+
     cats.forEach(c => {
         const filtered = data.filter(m => m.cat === c && m.t.toLowerCase().includes(s));
         if (filtered.length === 0) return;
         let html = `<div class="category-title">${c}</div><div class="category-row"><div class="nav-arrow arrow-left" onclick="scrollSide(this, -400)">‹</div><div class="carousel">`;
-        let catAddedSeries = [];
         filtered.forEach(m => {
-            const idx = playlistData.indexOf(m);
             const isS = /S\d{2}E\d{2}/i.test(m.t);
             const heart = favs.includes(m.t) ? `<div style="position:absolute; top:5px; right:5px; z-index:5;">❤️</div>` : "";
             const pct = (prog[m.t] && prog[m.t].p > 1) ? `<div class="prog-bg"><div class="prog-fill" style="width:${prog[m.t].p}%"></div></div>` : "";
             if(isS) {
                 const sName = m.t.split(' - ')[0];
-                if(!catAddedSeries.includes(sName)) {
-                    catAddedSeries.push(sName);
-                    html += `<div class="card" onclick="openSeries('${sName}')" onkeydown="if(event.key==='Enter')openSeries('${sName}')" tabindex="0"><img src="${m.img}">${heart}<div class="card-name">${sName}</div></div>`;
+                if(!addedSeries.includes(sName)) {
+                    addedSeries.push(sName);
+                    html += `<div class="card" onclick="openSeries('${sName}')" tabindex="0"><img src="${m.img}">${heart}<div class="card-name">${sName}</div></div>`;
                 }
             } else {
-                html += `<div class="card" onclick="openDetails(${idx})" onkeydown="if(event.key==='Enter')openDetails(${idx})" tabindex="0"><img src="${m.img}">${heart}${pct}<div class="card-name">${m.t}</div></div>`;
+                html += `<div class="card" onclick="openDetails(${playlistData.indexOf(m)})" tabindex="0"><img src="${m.img}">${heart}${pct}<div class="card-name">${m.t}</div></div>`;
             }
         });
         html += `</div><div class="nav-arrow arrow-right" onclick="scrollSide(this, 400)">›</div></div>`;
@@ -684,10 +647,9 @@ function openSeries(name) {
     Object.keys(seasons).sort().forEach(s => {
         html += `<div class="season-title">SAISON ${s}</div>`;
         seasons[s].forEach(ep => {
-            const idx = playlistData.indexOf(ep);
             const epName = ep.t.split(' - ')[1] || ep.t;
             const pct = (prog[ep.t] && prog[ep.t].p > 1) ? `<div style="height:3px; background:#444; width:100px; margin-top:5px;"><div style="height:100%; background:var(--accent); width:${prog[ep.t].p}%"></div></div>` : "";
-            html += `<div class="episode-item" onclick="openDetails(${idx});" onkeydown="if(event.key==='Enter')openDetails(${idx})" tabindex="0">
+            html += `<div class="episode-item" onclick="openDetails(${playlistData.indexOf(ep)});" tabindex="0">
                         <div style="flex:1"><b>${epName}</b>${pct}</div>
                         <div style="color:var(--accent)">DÉTAILS</div>
                      </div>`;
@@ -717,39 +679,32 @@ function playMovie(idx) {
     pSection.style.display = 'block';
     document.getElementById('player-blur-bg').style.backgroundImage = `url('${m.img}')`;
     
-    player.pause();
-    player.src(""); 
-    player.load();  
-    
     player.poster(m.img); 
     
     let decodedUrl = "";
-    try { 
-        decodedUrl = atob(m.url); 
-    } catch(e) { 
-        decodedUrl = m.url; 
+    try {
+        decodedUrl = atob(m.url);
+    } catch(e) {
+        decodedUrl = m.url;
     }
 
-    setTimeout(() => {
-        if (decodedUrl.includes('.m3u8')) {
-            if (Hls.isSupported()) {
-                const hls = new Hls();
-                hls.loadSource(decodedUrl);
-                hls.attachMedia(document.querySelector('#main-video_html5_api'));
-                hls.on(Hls.Events.MANIFEST_PARSED, function() { 
-                    player.play().catch(e => { console.log("Re-clic nécessaire ?"); }); 
-                });
-            } else {
-                player.src({ src: decodedUrl, type: 'application/x-mpegURL' });
-                player.play().catch(e => {});
-            }
-        } else {
-            player.src({ src: decodedUrl, type: 'video/mp4' });
-            const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
-            if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
-            player.play().catch(e => {});
+    // --- LOGIQUE DE LECTURE ADAPTÉE (MP4 ou M3U8) ---
+    if (decodedUrl.includes('.m3u8')) {
+        if (Hls.isSupported()) {
+            const hls = new Hls();
+            hls.loadSource(decodedUrl);
+            hls.attachMedia(document.querySelector('#main-video_html5_api'));
+            hls.on(Hls.Events.MANIFEST_PARSED, function() { player.play(); });
+        } else if (document.querySelector('#main-video_html5_api').canPlayType('application/vnd.apple.mpegurl')) {
+            player.src({ src: decodedUrl, type: 'application/x-mpegURL' });
+            player.play();
         }
-    }, 250);
+    } else {
+        player.src({ src: decodedUrl, type: 'video/mp4' });
+        const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
+        if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
+        player.play();
+    }
 }
 
 function playNextEpisode() {
@@ -776,13 +731,6 @@ document.addEventListener('DOMContentLoaded', () => {
         controls: true, fluid: false,
         techOrder: ['chromecast', 'html5'], plugins: { chromecast: { addButtonToControlBar: true } }
     });
-
-    player.on('touchstart', function() {
-        if (player.userActive()) {
-            player.userActive(true);
-        }
-    });
-
     player.on('timeupdate', function() {
         const dur = player.duration(), cur = player.currentTime();
         if (/S\d{2}E\d{2}/i.test(currentPlayingTitle) && dur > 0 && (dur - cur) < 80) {
@@ -800,6 +748,14 @@ document.addEventListener('DOMContentLoaded', () => {
         player.getChild('controlBar').addChild('Forward', {}, 2); 
     });
 });
+
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js')
+            .then(reg => console.log('SW enregistré !'))
+            .catch(err => console.log('Erreur SW:', err));
+    });
+}
 </script>
 </body>
 </html>
