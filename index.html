@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -7,7 +6,7 @@
     <title>SFPP ELITE - MA LISTE COMPLÈTE</title>
     
     <link rel="manifest" href="manifest.json">
-<link rel="apple-touch-icon" href="icon-512.png">
+    <link rel="apple-touch-icon" href="icon-512.png">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="SFPP ELITE">
@@ -252,7 +251,7 @@
             <p id="details-desc" class="synopsis"></p>
             
             <div class="section-label">Bande-annonce</div>
-            <div id="details-trailer-box"></div>
+            <div id="details-trailer-box" class="trailer-box"></div>
 
             <div class="section-label">Casting principal</div>
             <div id="details-meta-cast" class="cast-row"></div>
@@ -469,7 +468,11 @@ window.addEventListener('popstate', function (event) {
 async function loadPlaylist() { try { const response = await fetch('films.json?v=' + Date.now()); playlistData = await response.json(); render(); } catch (e) {} }
 
 function openDetails(idx) {
-    history.pushState({ overlay: 'details' }, "");
+    // Si on vient de l'overlay série, on ne fait pas un nouveau pushState pour éviter les boucles infinies de retour arrière
+    if (window.history.state?.overlay !== 'details') {
+        history.pushState({ overlay: 'details' }, "");
+    }
+    
     const m = playlistData[idx];
     
     document.getElementById('details-header-bg').style.backgroundImage = `url('${m.img}')`;
@@ -478,14 +481,10 @@ function openDetails(idx) {
     document.getElementById('details-meta-year').innerText = m.year || "2024";
     document.getElementById('details-meta-cat').innerText = m.cat;
 
-    // --- SYSTÈME D'ÉTOILES ---
     const note = m.note || 5; 
     let stars = "";
-    for (let i = 0; i < 5; i++) {
-        stars += (i < note) ? "★" : "☆";
-    }
+    for (let i = 0; i < 5; i++) { stars += (i < note) ? "★" : "☆"; }
     document.getElementById('details-stars-display').innerText = stars;
-    // ------------------------
 
     let castHtml = "";
     if (m.actors_pics && m.actors_pics.length > 0) {
@@ -649,6 +648,7 @@ function openSeries(name) {
         seasons[s].forEach(ep => {
             const epName = ep.t.split(' - ')[1] || ep.t;
             const pct = (prog[ep.t] && prog[ep.t].p > 1) ? `<div style="height:3px; background:#444; width:100px; margin-top:5px;"><div style="height:100%; background:var(--accent); width:${prog[ep.t].p}%"></div></div>` : "";
+            // CORRECTION ICI : openDetails(idx) au lieu de playMovie(idx)
             html += `<div class="episode-item" onclick="openDetails(${playlistData.indexOf(ep)});" tabindex="0">
                         <div style="flex:1"><b>${epName}</b>${pct}</div>
                         <div style="color:var(--accent)">DÉTAILS</div>
@@ -659,6 +659,7 @@ function openSeries(name) {
 }
 
 function playMovie(idx) {
+    // Si on lance depuis l'overlay Détails, on remplace l'état pour que le bouton retour ferme le player correctement
     history.replaceState({ overlay: 'player' }, "");
     const m = playlistData[idx];
     currentPlayingTitle = m.t;
@@ -682,13 +683,8 @@ function playMovie(idx) {
     player.poster(m.img); 
     
     let decodedUrl = "";
-    try {
-        decodedUrl = atob(m.url);
-    } catch(e) {
-        decodedUrl = m.url;
-    }
+    try { decodedUrl = atob(m.url); } catch(e) { decodedUrl = m.url; }
 
-    // --- LOGIQUE DE LECTURE ADAPTÉE (MP4 ou M3U8) ---
     if (decodedUrl.includes('.m3u8')) {
         if (Hls.isSupported()) {
             const hls = new Hls();
