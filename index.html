@@ -601,6 +601,21 @@ function render(search = "") {
         } else histSec.style.display = "none";
     } else histSec.style.display = "none";
 
+    // --- AJOUT DE LA CATÉGORIE TOUS LES FILMS (UNIQUEMENT DANS LA VUE ACCUEIL OU FILMS) ---
+    if (s === "" && (currentView === 'all' || currentView === 'movies')) {
+        const allMovies = playlistData.filter(m => m.cat !== "SÉRIES");
+        if (allMovies.length > 0) {
+            let html = `<div class="category-title">TOUS LES FILMS</div><div class="category-row"><div class="nav-arrow arrow-left" onclick="scrollSide(this, -400)">‹</div><div class="carousel">`;
+            allMovies.forEach(m => {
+                const heart = favs.includes(m.t) ? `<div style="position:absolute; top:5px; right:5px; z-index:5;">❤️</div>` : "";
+                const pct = (prog[m.t] && prog[m.t].p > 1) ? `<div class="prog-bg"><div class="prog-fill" style="width:${prog[m.t].p}%"></div></div>` : "";
+                html += `<div class="card" onclick="openDetails(${playlistData.indexOf(m)})" tabindex="0"><img src="${m.img}">${heart}${pct}<div class="card-name">${m.t}</div></div>`;
+            });
+            html += `</div><div class="nav-arrow arrow-right" onclick="scrollSide(this, 400)">›</div></div>`;
+            cont.innerHTML += html;
+        }
+    }
+
     const cats = [...new Set(data.map(m => m.cat))];
     let addedSeries = [];
 
