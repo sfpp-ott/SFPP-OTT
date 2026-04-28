@@ -183,12 +183,14 @@
     "url": "aHR0cHM6Ly9hcmNoaXZlLm9yZy9kb3dubG9hZC8xMjgyOTIxXzIwMjYwNC8xMjgyOTIxLmlhLm1wNA=="
   },
   {
-    "t": "LE COMPTE DE MONTE-CRISTO",
+    "t": "Le Comte de Monte-Cristo (2024)",
+    "year": "2024",
+    "note": 4,
     "img": "https://image.tmdb.org/t/p/w220_and_h330_face/g7kiprYdXxaYCZABWQwTWAgRYjl.jpg",
     "cat": "AVENTURE",
-    "desc": "Dantès revient pour se venger de ceux qui l'ont trahi.",
-    "actors_pics": [{"name": "Pierre Niney", "img": "https://image.tmdb.org/t/p/w185/6v54Xp1E6kL4E3C1wHq7uD6vS.jpg"}],
-    "trailer": "73_V_5KjX9o",
+    "desc": "Victime d’un complot, le jeune Edmond Dantès est arrêté le jour de son mariage pour un crime qu’il n’a pas commis. Après quatorze ans de détention au château d’If, il parvient à s’évader. Devenu immensément riche, il revient sous l’identité du comte de Monte-Cristo pour se venger des trois hommes qui l’ont trahi.",
+    "actors_pics": [{"name": "Pierre Niney", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/ahICOyV41nhJ2q9LaVaHOridn2m.jpg"}, {"name": "Bastien Bouillon", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/8ksm25v40MS2p2y0EyyNrxdt7it.jpg"}, {"name": "Anaïs Demoustier", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/kObYOu3UYkNcQGg1gnl4xitwhNc.jpg"}, {"name": "Laurent Lafitte", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/9mTtfK5F9WMoYqvUvqlugnsX6SS.jpg"}],
+    "trailer": "u0YnbsyvGS0",
     "url": "aHR0cHM6Ly9zdHJlYW0wMi1tcDR3Lmh1bGtjcnVzaC5vcmcvdmlkZW9zLzBhYTgxODQ3NzFmYjAwMTllYWJhN2U5ZDA4ZWJhNjdiMmUxOWQzNTg4MjA2N2Q3YjFlMjBiZGFmOTkwMGQyNjAubXA0"
   },
   {
