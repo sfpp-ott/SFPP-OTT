@@ -757,7 +757,26 @@ document.addEventListener('DOMContentLoaded', () => {
         techOrder: ['chromecast', 'html5'], plugins: { chromecast: { addButtonToControlBar: true } }
     });
 
-    // --- FONCTION DOUBLE-CLIC PLEIN ÉCRAN ---
+    // --- SYSTÈME DE DOUBLE-TAP / CLIC ---
+    let lastTap = 0;
+    const videoContainer = document.getElementById('video-container');
+
+    // Gestion pour Mobile (Tactile)
+    videoContainer.addEventListener('touchend', function(e) {
+        const now = new Date().getTime();
+        const timesince = now - lastTap;
+        if ((timesince < 350) && (timesince > 0)) {
+            if (player.isFullscreen()) {
+                player.exitFullscreen();
+            } else {
+                player.requestFullscreen();
+            }
+            e.preventDefault();
+        }
+        lastTap = now;
+    });
+
+    // Gestion pour PC (Souris)
     player.on('dblclick', function() {
         if (player.isFullscreen()) {
             player.exitFullscreen();
