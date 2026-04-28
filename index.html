@@ -284,7 +284,7 @@
     <button class="btn-close-player" onclick="closeP()">✕</button>
     <div class="video-container" id="video-container">
         <div id="player-blur-bg" class="vjs-blur-bg"></div>
-        <video id="main-video" class="video-js vjs-theme-fantasy vjs-big-play-centered" controls preload="auto" controlsList="nodownload" oncontextmenu="return false;"></video>
+        <video id="main-video" class="video-js vjs-theme-fantasy vjs-big-play-centered" controls preload="metadata" controlsList="nodownload" oncontextmenu="return false;"></video>
         <button id="next-episode-btn" onclick="playNextEpisode()" tabindex="0">ÉPISODE SUIVANT ⏭️</button>
     </div>
 </section>
@@ -725,6 +725,13 @@ function playMovie(idx) {
                 maxMaxBufferLength: 60,
                 enableWorker: true,
                 startLevel: -1,
+                // --- OPTIMISATION ARCHIVE.ORG ---
+                manifestLoadingTimeOut: 20000, 
+                manifestLoadingMaxRetry: 10,
+                manifestLoadingRetryDelay: 1000,
+                levelLoadingTimeOut: 20000,
+                fragLoadingTimeOut: 20000,
+                // --------------------------------
                 liveSyncDurationCount: 3,
                 backBufferLength: 15
             };
@@ -778,6 +785,21 @@ document.addEventListener('DOMContentLoaded', () => {
         controls: true, fluid: false,
         techOrder: ['chromecast', 'html5'], plugins: { chromecast: { addButtonToControlBar: true } }
     });
+
+    // --- AUTO-RETRY EN CAS D'ERREUR RÉSEAU ---
+    player.on('error', function() {
+        const error = player.error();
+        if (error && error.code === 4) { // Erreur de téléchargement réseau
+            const currentSrc = player.src();
+            const currentTime = player.currentTime();
+            console.log("Tentative de reconnexion au serveur...");
+            player.src(currentSrc);
+            player.load();
+            player.play();
+            if(currentTime > 0) player.currentTime(currentTime);
+        }
+    });
+
     player.on('timeupdate', function() {
         const dur = player.duration(), cur = player.currentTime();
         if (/S\d{2}E\d{2}/i.test(currentPlayingTitle) && dur > 0 && (dur - cur) < 80) {
