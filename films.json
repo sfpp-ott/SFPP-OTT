@@ -194,11 +194,14 @@
     "url": "aHR0cHM6Ly9zdHJlYW0wMi1tcDR3Lmh1bGtjcnVzaC5vcmcvdmlkZW9zLzBhYTgxODQ3NzFmYjAwMTllYWJhN2U5ZDA4ZWJhNjdiMmUxOWQzNTg4MjA2N2Q3YjFlMjBiZGFmOTkwMGQyNjAubXA0"
   },
   {
-    "t": "The Revenant",
+    "t": "The Revenant (2015)",
+    "year": "2015",
+    "note": 4,
     "img": "https://image.tmdb.org/t/p/original/AsDto68FNWNXD15Ov0yMXASJiSB.jpg",
-    "cat": "DRAME",
-    "desc": "Survie et vengeance dans une nature sauvage.",
-    "actors_pics": [{"name": "L. DiCaprio", "img": "https://image.tmdb.org/t/p/w185/6v54Xp1E6kL4E3C1wHq7uD6vS.jpg"}],
+    "cat": "WESTERN",
+    "desc": "Dans une Amérique profondément sauvage, le trappeur Hugh Glass est sévèrement blessé et laissé pour mort par un traître de son équipe, John Fitzgerald. Avec sa seule volonté pour unique arme, Glass doit affronter un environnement hostile, un hiver brutal et des tribus guerrières, dans une inexorable lutte pour sa survie, portée par un intense désir de vengeance.",
+    "actors_pics": [{"name": "Leonardo DiCaprio", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/wo2hJpn04vbtmh0B9utCFdsQhxM.jpg"}, {"name": "Tom Hardy", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/d81K0RH8UX7tZj49tZaQhZ9ewH.jpg"}, {"name": "Domhnall Gleeson", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/a63BgOBKzJ9XPaLFyu7u5Ge3REG.jpg"}, {"name": "Will Poulter", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/9blYMaj79VGC6BHTLmJp3V5S8r3.jpg"}],
+    "trailer": "S2MKo4pOphM",
     "url": "aHR0cHM6Ly9zdHJlYW0wMi1tcDR3Lmh1bGtjcnVzaC5vcmcvdmlkZW9zLzcwNmE3NWQ3MWVmYzYwZGU4YWJhM2ZkZWQ4ZjA5YmVkMmY4NDU4ZWEyOTQ0M2ZmMGNjMGNjYThkNmRlNDdjNzUubXA0"
   },
   {
