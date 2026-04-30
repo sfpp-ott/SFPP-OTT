@@ -684,6 +684,10 @@ function playMovie(idx) {
     const m = playlistData[idx];
     currentPlayingTitle = m.t;
     document.getElementById('next-episode-btn').style.display = 'none';
+
+    // CONFIGURATION PROXY VERCEL
+    const proxyUrl = "https://iptv-restream-gciu.vercel.app/proxy?url=";
+
     if(currentProfile) {
         let key = 'sfpp_hist_' + currentProfile;
         let hist = JSON.parse(localStorage.getItem(key) || "[]").filter(t => t !== m.t);
@@ -701,6 +705,9 @@ function playMovie(idx) {
     let decodedUrl = "";
     try { decodedUrl = atob(m.url); } catch(e) { decodedUrl = m.url; }
 
+    // AJOUT DU PROXY AU LIEN FINAL
+    const finalUrl = proxyUrl + encodeURIComponent(decodedUrl);
+
     if (decodedUrl.includes('.m3u8')) {
         if (Hls.isSupported()) {
             const hlsConfig = {
@@ -709,7 +716,7 @@ function playMovie(idx) {
                 levelLoadingTimeOut: 20000, fragLoadingTimeOut: 20000, liveSyncDurationCount: 3, backBufferLength: 15
             };
             const hls = new Hls(hlsConfig);
-            hls.loadSource(decodedUrl);
+            hls.loadSource(finalUrl); // Utilisation du lien proxifié
             hls.attachMedia(document.querySelector('#main-video_html5_api'));
             hls.on(Hls.Events.MANIFEST_PARSED, function() { player.play(); });
             hls.on(Hls.Events.ERROR, function (event, data) {
@@ -722,11 +729,11 @@ function playMovie(idx) {
                 }
             });
         } else if (document.querySelector('#main-video_html5_api').canPlayType('application/vnd.apple.mpegurl')) {
-            player.src({ src: decodedUrl, type: 'application/x-mpegURL' });
+            player.src({ src: finalUrl, type: 'application/x-mpegURL' });
             player.play();
         }
     } else {
-        player.src({ src: decodedUrl, type: 'video/mp4' });
+        player.src({ src: finalUrl, type: 'video/mp4' });
         const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
         if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
         player.play();
