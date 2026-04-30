@@ -685,30 +685,41 @@ function playMovie(idx) {
     currentPlayingTitle = m.t;
     document.getElementById('next-episode-btn').style.display = 'none';
 
-    // CONFIGURATION PROXY VERCEL
-    const proxyUrl = "https://iptv-restream-gciu.vercel.app/proxy?url=";
-
+    // AJOUT DU PROXY
+    const proxyBase = "https://iptv-restream-gciu.vercel.app/proxy?url=";
+    
     if(currentProfile) {
         let key = 'sfpp_hist_' + currentProfile;
         let hist = JSON.parse(localStorage.getItem(key) || "[]").filter(t => t !== m.t);
         hist.push(m.t); if(hist.length > 15) hist.shift();
         localStorage.setItem(key, JSON.stringify(hist));
     }
+    
     document.getElementById('details-overlay').style.display = 'none';
     document.getElementById('details-trailer-box').innerHTML = "";
     document.getElementById('series-overlay').style.display = 'none';
+    
     const pSection = document.getElementById('player-section');
     pSection.style.display = 'block';
     document.getElementById('player-blur-bg').style.backgroundImage = `url('${m.img}')`;
     player.poster(m.img); 
     
     let decodedUrl = "";
-    try { decodedUrl = atob(m.url); } catch(e) { decodedUrl = m.url; }
+    // Test si l'URL est en Base64 ou claire
+    try { 
+        if (m.url.startsWith('http')) {
+            decodedUrl = m.url;
+        } else {
+            decodedUrl = atob(m.url); 
+        }
+    } catch(e) { 
+        decodedUrl = m.url; 
+    }
 
-    // AJOUT DU PROXY AU LIEN FINAL
-    const finalUrl = proxyUrl + encodeURIComponent(decodedUrl);
+    // On encode l'URL cible pour passer proprement dans le proxy
+    const finalUrl = proxyBase + encodeURIComponent(decodedUrl);
 
-    if (decodedUrl.includes('.m3u8')) {
+    if (decodedUrl.toLowerCase().includes('.m3u8')) {
         if (Hls.isSupported()) {
             const hlsConfig = {
                 maxBufferLength: 30, maxMaxBufferLength: 60, enableWorker: true, startLevel: -1,
@@ -716,7 +727,7 @@ function playMovie(idx) {
                 levelLoadingTimeOut: 20000, fragLoadingTimeOut: 20000, liveSyncDurationCount: 3, backBufferLength: 15
             };
             const hls = new Hls(hlsConfig);
-            hls.loadSource(finalUrl); // Utilisation du lien proxifié
+            hls.loadSource(finalUrl);
             hls.attachMedia(document.querySelector('#main-video_html5_api'));
             hls.on(Hls.Events.MANIFEST_PARSED, function() { player.play(); });
             hls.on(Hls.Events.ERROR, function (event, data) {
