@@ -17,6 +17,7 @@
     <link href="https://unpkg.com/@silvermine/videojs-chromecast@1.5.0/dist/silvermine-videojs-chromecast.css" rel="stylesheet">
 
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/clappr@latest/dist/clappr.min.js"></script>
 
     <style>
         :root { --accent: #e50914; --gold: #ffcc00; --bg: #050505; }
@@ -85,7 +86,8 @@
         }
         
         .video-js { z-index: 1 !important; width: 100% !important; height: 100% !important; }
-        .video-js video { object-fit: contain !important; }
+        /* Style pour forcer Clappr à prendre toute la place */
+        #clappr-container { position: absolute; inset: 0; z-index: 10; display: none; background: #000; }
 
         #next-episode-btn {
             position: absolute; bottom: 85px; right: 25px; z-index: 99999 !important;
@@ -281,7 +283,8 @@
     <button class="btn-close-player" onclick="closeP()">✕</button>
     <div class="video-container" id="video-container">
         <div id="player-blur-bg" class="vjs-blur-bg"></div>
-        <video id="main-video" class="video-js vjs-theme-fantasy vjs-big-play-centered" controls preload="metadata" controlsList="nodownload" oncontextmenu="return false;"></video>
+        <video id="main-video" class="video-js vjs-theme-fantasy vjs-big-play-centered" controls preload="metadata"></video>
+        <div id="clappr-container"></div>
         <button id="next-episode-btn" onclick="playNextEpisode()" tabindex="0">ÉPISODE SUIVANT ⏭️</button>
     </div>
 </section>
@@ -440,9 +443,8 @@ document.onkeydown = function(e) {
         return false;
     }
 };
-setInterval(function() { (function() { debugger; }).call(); }, 5000);
 
-let player, playlistData = [], currentProfile = null, isEditMode = false, currentView = 'all', currentPlayingTitle = "", exitConfirmed = false;
+let player, playlistData = [], currentProfile = null, isEditMode = false, currentView = 'all', currentPlayingTitle = "", exitConfirmed = false, clapprPlayer = null;
 
 window.addEventListener('popstate', function (event) {
     const detailsOverlay = document.getElementById('details-overlay');
@@ -460,6 +462,7 @@ window.addEventListener('popstate', function (event) {
     }
     if (playerSection.style.display === 'block') {
         saveP(); 
+        if(clapprPlayer) { clapprPlayer.destroy(); clapprPlayer = null; }
         player.pause(); 
         player.src("");
         playerSection.style.display = 'none';
@@ -568,8 +571,8 @@ function handleProfileClick(id, name, icon) {
 
 function saveP() {
     if(!currentPlayingTitle || !currentProfile) return;
-    const cur = player.currentTime();
-    const dur = player.duration();
+    const cur = (clapprPlayer) ? clapprPlayer.getCurrentTime() : player.currentTime();
+    const dur = (clapprPlayer) ? clapprPlayer.getDuration() : player.duration();
     if(dur > 0) {
         let prog = JSON.parse(localStorage.getItem('sfpp_p_'+currentProfile) || "{}");
         prog[currentPlayingTitle] = { t: cur, p: (cur/dur)*100 };
@@ -608,20 +611,6 @@ function render(search = "") {
             });
         } else histSec.style.display = "none";
     } else histSec.style.display = "none";
-
-    if (s === "" && (currentView === 'all' || currentView === 'movies')) {
-        const allMovies = playlistData.filter(m => m.cat !== "SÉRIES");
-        if (allMovies.length > 0) {
-            let html = `<div class="category-title">TOUS LES FILMS</div><div class="category-row"><div class="nav-arrow arrow-left" onclick="scrollSide(this, -400)">‹</div><div class="carousel">`;
-            allMovies.forEach(m => {
-                const heart = favs.includes(m.t) ? `<div style="position:absolute; top:5px; right:5px; z-index:5;">❤️</div>` : "";
-                const pct = (prog[m.t] && prog[m.t].p > 1) ? `<div class="prog-bg"><div class="prog-fill" style="width:${prog[m.t].p}%"></div></div>` : "";
-                html += `<div class="card" onclick="openDetails(${playlistData.indexOf(m)})" tabindex="0"><img src="${m.img}">${heart}${pct}<div class="card-name">${m.t}</div></div>`;
-            });
-            html += `</div><div class="nav-arrow arrow-right" onclick="scrollSide(this, 400)">›</div></div>`;
-            cont.innerHTML += html;
-        }
-    }
 
     const cats = [...new Set(data.map(m => m.cat))];
     let addedSeries = [];
@@ -679,58 +668,44 @@ function openSeries(name) {
     content.innerHTML = html;
 }
 
+// --- MODIFICATION CRITIQUE ICI : PLAYMOVIE AVEC CLAPPR ---
 function playMovie(idx) {
     history.replaceState({ overlay: 'player' }, "");
     const m = playlistData[idx];
     currentPlayingTitle = m.t;
     document.getElementById('next-episode-btn').style.display = 'none';
+    
     if(currentProfile) {
         let key = 'sfpp_hist_' + currentProfile;
         let hist = JSON.parse(localStorage.getItem(key) || "[]").filter(t => t !== m.t);
         hist.push(m.t); if(hist.length > 15) hist.shift();
         localStorage.setItem(key, JSON.stringify(hist));
     }
+    
     document.getElementById('details-overlay').style.display = 'none';
     document.getElementById('details-trailer-box').innerHTML = "";
     document.getElementById('series-overlay').style.display = 'none';
-    const pSection = document.getElementById('player-section');
-    pSection.style.display = 'block';
+    document.getElementById('player-section').style.display = 'block';
     document.getElementById('player-blur-bg').style.backgroundImage = `url('${m.img}')`;
-    player.poster(m.img); 
     
     let decodedUrl = "";
     try { decodedUrl = atob(m.url); } catch(e) { decodedUrl = m.url; }
 
-    if (decodedUrl.includes('.m3u8')) {
-        if (Hls.isSupported()) {
-            const hlsConfig = {
-                maxBufferLength: 30, maxMaxBufferLength: 60, enableWorker: true, startLevel: -1,
-                manifestLoadingTimeOut: 20000, manifestLoadingMaxRetry: 10, manifestLoadingRetryDelay: 1000,
-                levelLoadingTimeOut: 20000, fragLoadingTimeOut: 20000, liveSyncDurationCount: 3, backBufferLength: 15
-            };
-            const hls = new Hls(hlsConfig);
-            hls.loadSource(decodedUrl);
-            hls.attachMedia(document.querySelector('#main-video_html5_api'));
-            hls.on(Hls.Events.MANIFEST_PARSED, function() { player.play(); });
-            hls.on(Hls.Events.ERROR, function (event, data) {
-                if (data.fatal) {
-                    switch (data.type) {
-                        case Hls.ErrorTypes.NETWORK_ERROR: hls.startLoad(); break;
-                        case Hls.ErrorTypes.MEDIA_ERROR: hls.recoverMediaError(); break;
-                        default: hls.destroy(); break;
-                    }
-                }
-            });
-        } else if (document.querySelector('#main-video_html5_api').canPlayType('application/vnd.apple.mpegurl')) {
-            player.src({ src: decodedUrl, type: 'application/x-mpegURL' });
-            player.play();
-        }
-    } else {
-        player.src({ src: decodedUrl, type: 'video/mp4' });
-        const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
-        if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
-        player.play();
-    }
+    // On utilise Clappr pour contourner les problèmes de VideoJS avec l'IPTV
+    document.getElementById('clappr-container').style.display = 'block';
+    
+    if(clapprPlayer) clapprPlayer.destroy();
+    
+    clapprPlayer = new Clappr.Player({
+        source: decodedUrl,
+        parentId: "#clappr-container",
+        autoPlay: true,
+        width: '100%',
+        height: '100%',
+        poster: m.img,
+        hlsjsConfig: { enableWorker: true, startLevel: -1 },
+        mediacontrol: { seekbar: "#e50914", buttons: "#ffffff" }
+    });
 }
 
 function playNextEpisode() {
@@ -752,76 +727,8 @@ function openSearch() { document.getElementById('search-overlay').style.display 
 function closeSearch() { document.getElementById('search-overlay').style.display = 'none'; document.getElementById('searchBar').value = ''; filter(); }
 
 document.addEventListener('DOMContentLoaded', () => {
-    player = videojs('main-video', { 
-        controls: true, fluid: false,
-        techOrder: ['chromecast', 'html5'], plugins: { chromecast: { addButtonToControlBar: true } }
-    });
-
-    // --- SYSTÈME DE DOUBLE-TAP / CLIC ---
-    let lastTap = 0;
-    const videoContainer = document.getElementById('video-container');
-
-    // Gestion pour Mobile (Tactile)
-    videoContainer.addEventListener('touchend', function(e) {
-        const now = new Date().getTime();
-        const timesince = now - lastTap;
-        if ((timesince < 350) && (timesince > 0)) {
-            if (player.isFullscreen()) {
-                player.exitFullscreen();
-            } else {
-                player.requestFullscreen();
-            }
-            e.preventDefault();
-        }
-        lastTap = now;
-    });
-
-    // Gestion pour PC (Souris)
-    player.on('dblclick', function() {
-        if (player.isFullscreen()) {
-            player.exitFullscreen();
-        } else {
-            player.requestFullscreen();
-        }
-    });
-
-    // --- AUTO-RETRY EN CAS D'ERREUR RÉSEAU ---
-    player.on('error', function() {
-        const error = player.error();
-        if (error && error.code === 4) {
-            const currentSrc = player.src();
-            const currentTime = player.currentTime();
-            player.src(currentSrc);
-            player.load();
-            player.play();
-            if(currentTime > 0) player.currentTime(currentTime);
-        }
-    });
-
-    player.on('timeupdate', function() {
-        const dur = player.duration(), cur = player.currentTime();
-        if (/S\d{2}E\d{2}/i.test(currentPlayingTitle) && dur > 0 && (dur - cur) < 80) {
-            if (player.isFullscreen()) player.exitFullscreen();
-            document.getElementById('next-episode-btn').style.display = 'block';
-        } else document.getElementById('next-episode-btn').style.display = 'none';
-        if(Math.floor(cur) % 10 === 0) saveP();
-    });
-    
-    const Button = videojs.getComponent('Button');
-    class Back extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-replay-10'; } handleClick() { player.currentTime(player.currentTime()-10); } }
-    class Forward extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-forward-10'; } handleClick() { player.currentTime(player.currentTime()+10); } }
-    videojs.registerComponent('Back', Back); videojs.registerComponent('Forward', Forward);
-    player.ready(() => { 
-        player.getChild('controlBar').addChild('Back', {}, 1); 
-        player.getChild('controlBar').addChild('Forward', {}, 2); 
-    });
+    player = videojs('main-video', { controls: true });
 });
-
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js').catch(err => console.log('Erreur SW:', err));
-    });
-}
 </script>
 </body>
 </html>
