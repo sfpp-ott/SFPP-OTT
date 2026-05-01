@@ -180,6 +180,17 @@
     "url": "aHR0cHM6Ly9hcmNoaXZlLm9yZy9kb3dubG9hZC8xMjcxMDE5LzEyNzEwMTkuaWEubXA0"
   },
   {
+    "t": "Coka Chicas (2025)",
+    "year": "2025",
+    "note": 3,
+    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/fL5TReWJO7dHR3BdJxJ9g93mLLC.jpg",
+    "cat": "THRILLER",
+    "desc": "Sarah, Jessica et Chanel, trois amies inséparables issues de la banlieue parisienne, sont venues faire les mules dans une île des Caraïbes pour ramener de la drogue en France et enfin ouvrir leur business de bar à ongles. Mais le voyage est bouleversé lorsque, après s'être fait arrêtée à l'aéroport, Jessica disparaît totalement des radars.",
+    "actors_pics": [{"name": "Zoé Marchal", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/cAc417DqXCnygDvGTKE3K1Wb3hn.jpg"}, {"name": "Fadily Camara", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/thLH316iBF0M07isAzmwUv4HfsT.jpg"}, {"name": "Eva Huault", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/4Ovo0oNkV6KLphyhgT30tY6UH0.jpg"}, {"name": "Vincent Regan", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/7VHu79GciN5QlQTmWdBS86eE2mu.jpg"}],
+    "trailer": "rVQ6Dz2O3H0",
+    "url": "https://stream01-hls.hulkcrush.org/vod/5ffc4ab721634238b1b45280717069d9da3d02dd58f14fafec9f223eff9dbe69/master.m3u8"
+  },
+  {
     "t": "Cléo de 5 à 7 (1962)",
     "year": "1962",
     "note": 4,
