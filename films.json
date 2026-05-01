@@ -180,6 +180,17 @@
     "url": "aHR0cHM6Ly9hcmNoaXZlLm9yZy9kb3dubG9hZC8xMjcxMDE5LzEyNzEwMTkuaWEubXA0"
   },
   {
+    "t": "Best of the best 4 : Le feu aux poudres (1998)",
+    "year": "2098",
+    "note": 2,
+    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/kA2gKZqzVyC1zN2Xs8j7nlr8LAK.jpg",
+    "cat": "ACTION",
+    "desc": "Longtemps après la Guerre Froide, les tensions restent vives entre les Etats-Unis et la Russie. Des trafiquants russes projettent en effet de subtiliser un puissant logiciel aux américains... Malheureusement pour eux, leur plan tourne court lorsqu'ils découvrent que c'est Tommy Lee qui est en charge de protéger le programme. Cet expert en arts martiaux ne compte pas se laisser faire !",
+    "actors_pics": [{"name": "Ernie Hudson", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/kgAdQA2ItCDVvKXufeDHc6Omiso.jpg"}, {"name": "Phillip Rhee", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/8DPwKPYUWqpHO2BBbYR3D9HlC1j.jpg"}, {"name": "Tobin Bell", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/y5rppj4alNn2dYXR94DGp08baAx.jpg"}, {"name": "Thure Riefenstein", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/riggCAkCjg8t6KGWoGJe5NxEwYz.jpg"}],
+    "trailer": "Kx4aYK3w-8Q",
+    "url": "https://stream01-hls.hulkcrush.org/vod/6d7319cabc1bd82dfc1fbb93c1391b9fd3ea9a481486976cf64c91c701b6bffe/master.m3u8"
+  },
+  {
     "t": "Best of the Best 3: No Turning Back (1995)",
     "year": "2095",
     "note": 2,
