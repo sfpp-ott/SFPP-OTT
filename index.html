@@ -457,7 +457,6 @@ let player, playlistData = [], currentProfile = null, isEditMode = false, curren
 let epgData = {}; 
 let hls; 
 
-// MODIFICATION ICI : AJOUT DU LIEN EPG TELERAMA
 async function fetchEPG() {
     try {
         const response = await fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent('https://iptv-org.github.io/epg/guides/fr/telerama.fr.json'));
@@ -670,17 +669,17 @@ function render(search = "") {
             
             let epgHtml = "";
             if (isTVCat) {
-                const channelKey = m.t.toUpperCase().replace(" HD", "").trim();
+                const channelKey = m.t.toUpperCase().trim();
                 const programs = epgData[channelKey] || [];
                 const currentProg = programs.find(p => {
                     const start = new Date(p.start);
-                    const end = new Date(p.stop);
-                    return now >= start && now <= end;
+                    const stop = new Date(p.stop);
+                    return now >= start && now <= stop;
                 });
                 
                 if (currentProg) {
                     const startTime = new Date(currentProg.start).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-                    epgHtml = `<div class="epg-info">${currentProg.title}</div><span class="epg-time">Depuis ${startTime}</span>`;
+                    epgHtml = `<div class="epg-info" style="color:#ffcc00">${currentProg.title}</div><span class="epg-time">Jusqu'à ${new Date(currentProg.stop).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</span>`;
                 } else {
                     epgHtml = `<div class="epg-info">Direct TV</div>`;
                 }
@@ -767,8 +766,15 @@ function playMovie(idx) {
     if (decodedUrl.includes('.m3u8')) {
         if (Hls.isSupported()) {
             hls = new Hls({
-                maxBufferLength: 30, enableWorker: true, lowLatencyMode: true,
-                manifestLoadingTimeOut: 20000, fragLoadingTimeOut: 20000
+                maxBufferLength: 60, 
+                maxMaxBufferLength: 120,
+                enableWorker: true, 
+                lowLatencyMode: false,
+                manifestLoadingMaxRetry: 10,
+                levelLoadingMaxRetry: 10,
+                fragLoadingMaxRetry: 10,
+                manifestLoadingTimeOut: 20000, 
+                fragLoadingTimeOut: 20000
             });
             hls.loadSource(decodedUrl);
             hls.attachMedia(document.querySelector('#main-video_html5_api'));
@@ -778,7 +784,7 @@ function playMovie(idx) {
                     switch (data.type) {
                         case Hls.ErrorTypes.NETWORK_ERROR: hls.startLoad(); break;
                         case Hls.ErrorTypes.MEDIA_ERROR: hls.recoverMediaError(); break;
-                        default: hls.destroy(); break;
+                        default: playMovie(idx); break;
                     }
                 }
             });
