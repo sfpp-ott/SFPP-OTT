@@ -482,6 +482,17 @@
     "url": "aHR0cHM6Ly9zdHJlYW0wMi1tcDR3Lmh1bGtjcnVzaC5vcmcvdmlkZW9zLzRlZTVlMDMxZjZkOWUwNTA0NDRkZDI0ZGM4ODdmYTZkZTNlMzliNjBiYmI0NzdmZGVhZGQzZDk2NzAyNTFkYzIubXA0"
   },
   {
+    "t": "Blade Runner (1982)",
+    "year": "1982",
+    "note": 4,
+    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/zHKWxyG4j404HVeSYHNH4niUpkW.jpg",
+    "cat": "SCIENCE-FICTION",
+    "desc": "2019, Los Angeles. La Terre est surpeuplée et l’humanité est partie coloniser l’espace. Les nouveaux colons sont assistés de Replicants, androïdes que rien ne peut distinguer de l'être humain. Conçus comme de nouveaux esclaves, certains parmi les plus évolués s’affranchissent de leurs chaînes et s’enfuient. Rick Deckard, un ancien Blade Runner, catégorie spéciale de policiers chargés de "retirer" ces replicants, accepte une nouvelle mission consistant à retrouver quatre de ces individus qui viennent de regagner la Terre après avoir volé une navette spatiale.",
+    "actors_pics": [{"name": "Harrison Ford", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/pjBMJVPpcZK23Vt1nzr1zEBTWrP.jpg"}, {"name": "Rutger Hauer", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/xyag0LbjocTwx2Ht7B3RofvCNMT.jpg"}, {"name": "Sean Young", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/yfJADYt6xYPpg1g7Z7TTW0bcL2s.jpg"}, {"name": "Edward James Olmos", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/mXnilUrQBIMLHSQkPjQk99mX70x.jpg"}],
+    "trailer": "eogpIG53Cis",
+    "url": "https://stream01-hls.hulkcrush.org/vod/2e832ef7ab371a77441f8a1f2ffbc97ab591008da5d27b68809b7981c1af5e7f/master.m3u8"
+  },
+  {
     "t": "STRANGER THINGS - S01E01",
     "img": "https://image.tmdb.org/t/p/w220_and_h330_face/4Y5ZXYnWBIV8Vpe8hcA0LH6hC80.jpg",
     "cat": "SÉRIES",
