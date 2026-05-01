@@ -180,6 +180,17 @@
     "url": "aHR0cHM6Ly9hcmNoaXZlLm9yZy9kb3dubG9hZC8xMjcxMDE5LzEyNzEwMTkuaWEubXA0"
   },
   {
+    "t": "Atoman (2025)",
+    "year": "2025",
+    "note": 1,
+    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/z2jq9twpkiaQnbaOYHrAQFZTdux.jpg",
+    "cat": "AVENTURE",
+    "desc": "Quand Hakim, un hacker de renommée internationale, échappe miraculeusement à une mort brutale, il se retrouve confronté à son destin. En lui s’est réveillé un pouvoir sans limite dont dépend désormais la survie de l’humanité.",
+    "actors_pics": [{"name": "Youssef Akdim", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/nR0R9f3LfcO2CJp1gU2B6jWuaYt.jpg"}, {"name": "Samy Naceri", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/yT3QZbpp6Pd6xJ2FzxESQ7sDudm.jpg"}, {"name": "Sarah Perles", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/bOu6fO72ztIkb1loPX46A3Z1Ooq.jpg"}, {"name": "Fatima Herandi Raouya", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/loPS803u2MDubbvk29xD5WumNFd.jpg"}],
+    "trailer": "jfnAKI8zNbo",
+    "url": "https://stream01-hls.hulkcrush.org/vod/cb96035e8c5edfe31f63b5c58575df98ab3f15bc49d7eccd09ff7ba18ddf45af/master.m3u8"
+  },
+  {
     "t": "Anges & Cie (2025)",
     "year": "2025",
     "note": 3,
