@@ -180,6 +180,17 @@
     "url": "aHR0cHM6Ly9hcmNoaXZlLm9yZy9kb3dubG9hZC8xMjcxMDE5LzEyNzEwMTkuaWEubXA0"
   },
   {
+    "t": "Collatéral (2004)",
+    "year": "2004",
+    "note": 4,
+    "img": "https://media.themoviedb.org/t/p/w220_and_h330_face/x6OIJWkwe6Kj4pQXTkhhBb7gluA.jpg",
+    "cat": "DRAME",
+    "desc": "Max, chauffeur de taxi, prend en charge un homme, apparemment businessman, qui lui offre 600 dollars pour le conduire. Mais la promesse d'argent facile tourne au cauchemar lorsque Max réalise que son client est un assassin.",
+    "actors_pics": [{"name": "Tom Cruise", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/maf8PhSvDCdEwjEMbYfGpojR5RP.jpg"}, {"name": "Jamie Foxx", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/25zzvFA6yx2Q9BYnugsbd4JWDfu.jpg"}, {"name": "Jada Pinkett Smith", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/3RyvVVSlgRbZANDFkYiAsRMaHW.jpg"}, {"name": "Mark Ruffalo", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/5GilHMOt5PAQh6rlUKZzGmaKEI7.jpg"}],
+    "trailer": "-JDf2zIFgO8",
+    "url": "https://stream01-hls.hulkcrush.org/vod/7ac56668bae534fabcf361ef0ec8334923cc9b967cc1f337d6515390ebc1082b/master.m3u8"
+  },
+  {
     "t": "Coka Chicas (2025)",
     "year": "2025",
     "note": 3,
