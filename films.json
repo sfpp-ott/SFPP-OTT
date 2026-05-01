@@ -180,6 +180,17 @@
     "url": "aHR0cHM6Ly9hcmNoaXZlLm9yZy9kb3dubG9hZC8xMjcxMDE5LzEyNzEwMTkuaWEubXA0"
   },
   {
+    "t": "Boyz n the Hood : La loi de la rue (1991)",
+    "year": "1991",
+    "note": 4,
+    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/pPhJFt6fqaJjHwnk43oPSFFpyum.jpg",
+    "cat": "DRAME",
+    "desc": "Le passage de l'adolescence a l'age d'homme pour trois heros de la rue d'une banlieue de Los Angeles. Premier film de John Singleton fortement inspire de sa propre experience.",
+    "actors_pics": [{"name": "Cuba Gooding Jr.", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/2JguzbpOXoTGzSmLbWFlulKyyAe.jpg"}, {"name": "Laurence Fishburne", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/2GbXERENPpl5MmlqOLlPVaVtifD.jpg"}, {"name": "Ice Cube", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/9EghwabQ1wIQT4oN69qtPlzqGn4.jpg"}, {"name": "Morris Chestnut", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/lbWJ1mIgAamsREnbKLoj1GdH0sr.jpg"}],
+    "trailer": "ZI-qlj-4cpk",
+    "url": "https://stream01-hls.hulkcrush.org/vod/48ff30ecaa566178f835b86f55fa93735483882677826be9e74739dcb6e8295f/master.m3u8"
+  },
+  {
     "t": "Best of the best 4 : Le feu aux poudres (1998)",
     "year": "2098",
     "note": 2,
