@@ -180,6 +180,17 @@
     "url": "aHR0cHM6Ly9hcmNoaXZlLm9yZy9kb3dubG9hZC8xMjcxMDE5LzEyNzEwMTkuaWEubXA0"
   },
   {
+    "t": "Ali Baba et les 40 voleurs (2007)",
+    "year": "2007",
+    "note": 3,
+    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/wkPk6IsaZTGyoJ3aCViLX8Qj7P5.jpg",
+    "cat": "COMÉDIE",
+    "desc": "Ali Baba et les Quarante Voleurs est un téléfilm français en deux parties réalisé par Pierre Aknine et diffusé en 2007. Il s'agit d'une adaptation du conte du même nom issu des Mille et Une Nuits.",
+    "actors_pics": [{"name": "Gérard Jugnot", "img": "https://upload.wikimedia.org/wikipedia/commons/c/c5/Paris_-_Salon_du_livre_de_Paris_2017_-_G%C3%A9rard_Jugnot_-_003.jpg"}, {"name": "Leïla Bekhti", "img": "https://upload.wikimedia.org/wikipedia/commons/b/bd/Le%C3%AFla_Bekhti_Cannes_2018.jpg"}, {"name": "Saïda Jawad", "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Photo_Sa%C3%AFda.tif/lossless-page1-500px-Photo_Sa%C3%AFda.tif.png"}, {"name": "Michèle Bernier", "img": "https://upload.wikimedia.org/wikipedia/commons/a/a2/Mich%C3%A8le_Bernier_Cannes.jpg"}],
+    "trailer": "Y5NOrIrddB4",
+    "url": "https://stream01-hls.hulkcrush.org/vod/041eb41e11b28e7fd20df184c8b7db084bb63f6314af9f3a0f76f3ccb5d8c7d2/master.m3u8"
+  },
+  {
     "t": "A Line of Fire (2025)",
     "year": "2025",
     "note": 2,
