@@ -490,6 +490,7 @@ window.addEventListener('popstate', function (event) {
     }
     if (playerSection.style.display === 'block') {
         saveP(); 
+        if(hls) { hls.destroy(); hls = null; }
         player.pause(); 
         player.src("");
         playerSection.style.display = 'none';
@@ -747,9 +748,7 @@ function playMovie(idx) {
     document.getElementById('next-episode-btn').style.display = 'none';
 
     // Correction : Détruire proprement le flux HLS précédent avant d'en lancer un nouveau
-    if (hls) {
-        hls.destroy();
-    }
+    if (hls) { hls.destroy(); hls = null; }
     player.pause();
     player.src("");
     player.load();
@@ -769,16 +768,14 @@ function playMovie(idx) {
     player.poster(m.img); 
     
     let decodedUrl = "";
-    try { decodedUrl = atob(m.url); } catch(e) { decodedUrl = m.url; }
+    try { decodedUrl = window.atob(m.url); } catch(e) { decodedUrl = m.url; }
 
     if (decodedUrl.includes('.m3u8')) {
         if (Hls.isSupported()) {
-            const hlsConfig = {
-                maxBufferLength: 30, maxMaxBufferLength: 60, enableWorker: true, startLevel: -1,
-                manifestLoadingTimeOut: 20000, manifestLoadingMaxRetry: 10, manifestLoadingRetryDelay: 1000,
-                levelLoadingTimeOut: 20000, fragLoadingTimeOut: 20000, liveSyncDurationCount: 3, backBufferLength: 15
-            };
-            hls = new Hls(hlsConfig);
+            hls = new Hls({
+                maxBufferLength: 30, enableWorker: true, lowLatencyMode: true,
+                manifestLoadingTimeOut: 20000, fragLoadingTimeOut: 20000
+            });
             hls.loadSource(decodedUrl);
             hls.attachMedia(document.querySelector('#main-video_html5_api'));
             hls.on(Hls.Events.MANIFEST_PARSED, function() { player.play(); });
@@ -791,7 +788,7 @@ function playMovie(idx) {
                     }
                 }
             });
-        } else if (document.querySelector('#main-video_html5_api').canPlayType('application/vnd.apple.mpegurl')) {
+        } else {
             player.src({ src: decodedUrl, type: 'application/x-mpegURL' });
             player.play();
         }
@@ -855,19 +852,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // --- AUTO-RETRY EN CAS D'ERREUR RÉSEAU ---
-    player.on('error', function() {
-        const error = player.error();
-        if (error && error.code === 4) {
-            const currentSrc = player.src();
-            const currentTime = player.currentTime();
-            player.src(currentSrc);
-            player.load();
-            player.play();
-            if(currentTime > 0) player.currentTime(currentTime);
-        }
-    });
-
     player.on('timeupdate', function() {
         const dur = player.duration(), cur = player.currentTime();
         if (/S\d{2}E\d{2}/i.test(currentPlayingTitle) && dur > 0 && (dur - cur) < 80) {
@@ -895,4 +879,3 @@ if ('serviceWorker' in navigator) {
 </script>
 </body>
 </html>
-
