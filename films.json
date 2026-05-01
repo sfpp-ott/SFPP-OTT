@@ -205,11 +205,15 @@
     "url": "aHR0cHM6Ly9zdHJlYW0wMi1tcDR3Lmh1bGtjcnVzaC5vcmcvdmlkZW9zLzcwNmE3NWQ3MWVmYzYwZGU4YWJhM2ZkZWQ4ZjA5YmVkMmY4NDU4ZWEyOTQ0M2ZmMGNjMGNjYThkNmRlNDdjNzUubXA0"
   },
   {
-    "t": "#Pire Soirée",
-    "img": "https://image.tmdb.org/t/p/w1280/6nRd8EVM2QGDkkv97a4HZCqjsVR.jpg",
-    "cat": "COMÉDIE",
-    "desc": "Enterrement de vie de jeune fille déjanté.",
-    "url": "aHR0cHM6Ly9zdHJlYW0wMS1obHMuaHVsa2NydXNoLm9yZy92b2QvZjA3ZTY2MzRjMTM1OWU2YTVlODA5ZWJhNDZlMjgzZGM4MmUxNzk2NGRlMzkxNTAyMmNmMjc0NWI3NjAwMjIyMC9tYXN0ZXIubTN1OA=="
+    "t": "# Pire Soirée (2017)",
+    "year": "2017",
+    "note": 2,
+    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/6nRd8EVM2QGDkkv97a4HZCqjsVR.jpg",
+    "cat": "DRAME",
+    "desc": "Cinq amies qui se sont connues à l’université se retrouvent dix ans après pour un week-end entre célibataires à Miami. Une seule règle : tout est permis. Mais avec ce qui arrive à un strip-teaser à cause d’elles, la petite fête va partir en vrille… Que faire face à la gravité de la situation ? Comment s’en sortir ? D’idées stupides en solutions loufoques, c’est l’escalade dans le délire. Au final, si elles s’en sortent, les cinq filles seront plus proches que jamais…",
+    "actors_pics": [{"name": "Scarlett Johansson", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/6bBCPmc55gzP7TR9Th4WbykrYd0.jpg"}, {"name": "Jillian Bell", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/v3oJlWGjdV3aHNXtGjWea3X1Tov.jpg"}, {"name": "Zoë Kravitz", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/hJKmhbuzDjmfw2nPBDWGbLagj16.jpg"}, {"name": "Ilana Glazer", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/etW0YsMvj67bSRuJCsevpAOLsWf.jpg"}],
+    "trailer": "CcHjuT5qdRc",
+    "url": "aHR0cHM6Ly9zdHJlYW0wMi1tcDR3Lmh1bGtjcnVzaC5vcmcvdmlkZW9zLzBhYTgxODQ3NzFmYjAwMTllYWJhN2U5ZDA4ZWJhNjdiMmUxOWQzNTg4MjA2N2Q3YjFlMjBiZGFmOTkwMGQyNjAubXA0"
   },
   {
     "t": "(500)jours ensemble",
