@@ -180,6 +180,17 @@
     "url": "aHR0cHM6Ly9hcmNoaXZlLm9yZy9kb3dubG9hZC8xMjcxMDE5LzEyNzEwMTkuaWEubXA0"
   },
   {
+    "t": "Breaking the Waves (1996)",
+    "year": "1996",
+    "note": 4,
+    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/xWN0uwOJV11Hh5q1IAQmP8WK8cO.jpg",
+    "cat": "DRAME",
+    "desc": "Au début des années soixante-dix sur la côte nord-ouest de l’Écosse, la communauté d'une petite ville célèbre à contrecœur le mariage de Bess, jeune fille naïve et pieuse, et de Jan, homme d'âge mûr qui travaille sur une plate-forme pétrolière. Leur bonheur va être brisé par un accident qui va paralyser Jan.",
+    "actors_pics": [{"name": "Emily Watson", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/bd0qiJXHoLNpkCqABsh67AKRtjC.jpg"}, {"name": "Stellan Skarsgård", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/mW7xmtGV4y79kQGn0zkKVGDMAmw.jpg"}, {"name": "Katrin Cartlidge", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/cAG4WHKsLV2g08hnuZncy94HGOK.jpg"}, {"name": "Jean-Marc Barr", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/65aLM2ZvBjJu2JWGSrTGHqXyc8w.jpg"}],
+    "trailer": "Ws2eCDlVr6s",
+    "url": "https://stream01-hls.hulkcrush.org/vod/286e84030a5ff12211084af957f02a371b9a5adec051e01297d3f76cc7e5af8a/master.m3u8"
+  },
+  {
     "t": "Boyz n the Hood : La loi de la rue (1991)",
     "year": "1991",
     "note": 4,
