@@ -456,6 +456,7 @@ setInterval(function() { (function() { debugger; }).call(); }, 5000);
 
 let player, playlistData = [], currentProfile = null, isEditMode = false, currentView = 'all', currentPlayingTitle = "", exitConfirmed = false;
 let epgData = {}; // Stockage des programmes réels
+let hls; // Correction : Ajout de la variable globale pour hls.js
 
 // Fonction pour récupérer l'EPG réel via Proxy CORS
 async function fetchEPG() {
@@ -744,6 +745,15 @@ function playMovie(idx) {
     const m = playlistData[idx];
     currentPlayingTitle = m.t;
     document.getElementById('next-episode-btn').style.display = 'none';
+
+    // Correction : Détruire proprement le flux HLS précédent avant d'en lancer un nouveau
+    if (hls) {
+        hls.destroy();
+    }
+    player.pause();
+    player.src("");
+    player.load();
+
     if(currentProfile) {
         let key = 'sfpp_hist_' + currentProfile;
         let hist = JSON.parse(localStorage.getItem(key) || "[]").filter(t => t !== m.t);
@@ -768,7 +778,7 @@ function playMovie(idx) {
                 manifestLoadingTimeOut: 20000, manifestLoadingMaxRetry: 10, manifestLoadingRetryDelay: 1000,
                 levelLoadingTimeOut: 20000, fragLoadingTimeOut: 20000, liveSyncDurationCount: 3, backBufferLength: 15
             };
-            const hls = new Hls(hlsConfig);
+            hls = new Hls(hlsConfig);
             hls.loadSource(decodedUrl);
             hls.attachMedia(document.querySelector('#main-video_html5_api'));
             hls.on(Hls.Events.MANIFEST_PARSED, function() { player.play(); });
@@ -885,3 +895,4 @@ if ('serviceWorker' in navigator) {
 </script>
 </body>
 </html>
+
