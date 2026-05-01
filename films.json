@@ -34,6 +34,13 @@
    "desc": "Regardez Ciné Émotion en direct.",
    "url": "https://tvastuces.com:443/live/46952B8A7AF9F4739F61FBD8FCEDE553/23.m3u8"
   },
+    {
+   "t": "Ciné Festival (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/3/30/Cin%C3%A9%2BFestival2024.svg",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez Ciné Festival en direct.",
+   "url": "https://tvastuces.com:443/live/46952B8A7AF9F4739F61FBD8FCEDE553/24.m3u8"
+  },
   {
    "t": "Canal+ Kids (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/3/34/Canal%2B_Kids_Logo_%282021%29.png",
