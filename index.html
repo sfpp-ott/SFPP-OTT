@@ -190,6 +190,11 @@
 
         .card { flex: 0 0 150px; width: 150px; cursor: pointer; position: relative; display: flex; flex-direction: column; }
         .card img { width: 150px !important; height: 225px !important; object-fit: cover !important; border-radius: 4px; background: #222; display: block; }
+        
+        /* Format horizontal pour chaînes TV */
+        .card.landscape { flex: 0 0 180px; width: 180px; }
+        .card.landscape img { width: 180px !important; height: 110px !important; object-fit: contain !important; background: #111; border: 1px solid #333; }
+
         .card-name { margin-top: 6px; font-size: 12px; text-align: center; color: #bbb; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; width: 100%; }
 
         .prog-bg { position: absolute; bottom: 25px; left: 0; width: 100%; height: 4px; background: rgba(255,255,255,0.2); border-radius: 0 0 4px 4px; overflow: hidden; }
@@ -205,6 +210,8 @@
         @media (max-width: 768px) {
             .card { flex: 0 0 130px; width: 130px; }
             .card img { width: 130px !important; height: 195px !important; }
+            .card.landscape { flex: 0 0 140px; width: 140px; }
+            .card.landscape img { width: 140px !important; height: 85px !important; }
         }
     </style>
 </head>
@@ -601,16 +608,17 @@ function render(search = "") {
                 const m = playlistData.find(item => item.t === title);
                 if(m) {
                     const isTV = m.cat.toUpperCase().includes("DIRECT") || m.cat.toUpperCase().includes("TV");
+                    const landscapeClass = isTV ? "landscape" : "";
                     const pct = (prog[m.t] && prog[m.t].p > 1) ? `<div class="prog-bg"><div class="prog-fill" style="width:${prog[m.t].p}%"></div></div>` : "";
                     const clickAction = isTV ? `playMovie(${playlistData.indexOf(m)})` : `openDetails(${playlistData.indexOf(m)})`;
-                    histCont.innerHTML += `<div class="card" onclick="${clickAction}" tabindex="0"><img src="${m.img}">${pct}<div class="card-name">${m.t}</div></div>`;
+                    histCont.innerHTML += `<div class="card ${landscapeClass}" onclick="${clickAction}" tabindex="0"><img src="${m.img}">${pct}<div class="card-name">${m.t}</div></div>`;
                 }
             });
         } else histSec.style.display = "none";
     } else histSec.style.display = "none";
 
     if (s === "" && (currentView === 'all' || currentView === 'movies')) {
-        const allMovies = playlistData.filter(m => m.cat !== "SÉRIES");
+        const allMovies = playlistData.filter(m => m.cat !== "SÉRIES" && !m.cat.toUpperCase().includes("DIRECT") && !m.cat.toUpperCase().includes("TV"));
         if (allMovies.length > 0) {
             let html = `<div class="category-title">TOUS LES FILMS</div><div class="category-row"><div class="nav-arrow arrow-left" onclick="scrollSide(this, -400)">‹</div><div class="carousel">`;
             allMovies.forEach(m => {
@@ -629,6 +637,8 @@ function render(search = "") {
         const filtered = data.filter(m => m.cat === c && m.t.toLowerCase().includes(s));
         if (filtered.length === 0) return;
         const isTVCat = c.toUpperCase().includes("DIRECT") || c.toUpperCase().includes("TV");
+        const landscapeClass = isTVCat ? "landscape" : "";
+        
         let html = `<div class="category-title">${c}</div><div class="category-row"><div class="nav-arrow arrow-left" onclick="scrollSide(this, -400)">‹</div><div class="carousel">`;
         filtered.forEach(m => {
             const isS = /S\d{2}E\d{2}/i.test(m.t);
@@ -642,7 +652,7 @@ function render(search = "") {
                 }
             } else {
                 const clickAction = isTVCat ? `playMovie(${playlistData.indexOf(m)})` : `openDetails(${playlistData.indexOf(m)})`;
-                html += `<div class="card" onclick="${clickAction}" tabindex="0"><img src="${m.img}">${heart}${pct}<div class="card-name">${m.t}</div></div>`;
+                html += `<div class="card ${landscapeClass}" onclick="${clickAction}" tabindex="0"><img src="${m.img}">${heart}${pct}<div class="card-name">${m.t}</div></div>`;
             }
         });
         html += `</div><div class="nav-arrow arrow-right" onclick="scrollSide(this, 400)">›</div></div>`;
