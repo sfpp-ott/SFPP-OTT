@@ -41,6 +41,13 @@
    "desc": "Regardez Canal+ Sport en direct.",
    "url": "https://tvastuces.com:443/live/46952B8A7AF9F4739F61FBD8FCEDE553/21.m3u8"
   },
+    {
+   "t": "Canal+ Foot (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/2/2c/C%2B_Sport_%282023%29.png",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez Canal+ Foot en direct.",
+   "url": "https://tvastuces.com:443/live/46952B8A7AF9F4739F61FBD8FCEDE553/22.m3u8"
+  },
   {
     "t": "L’Âme Idéale (2025)",
     "year": "2025",
