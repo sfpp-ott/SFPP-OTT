@@ -191,7 +191,6 @@
         .card { flex: 0 0 150px; width: 150px; cursor: pointer; position: relative; display: flex; flex-direction: column; }
         .card img { width: 150px !important; height: 225px !important; object-fit: cover !important; border-radius: 4px; background: #222; display: block; }
         
-        /* Format horizontal pour chaînes TV */
         .card.landscape { flex: 0 0 180px; width: 180px; }
         .card.landscape img { width: 180px !important; height: 110px !important; object-fit: contain !important; background: #111; border: 1px solid #333; }
 
@@ -389,7 +388,7 @@
             if (await verifyExpiration(user)) return;
             window.startSessionSync(user.uid);
             document.getElementById('login-screen').style.display = 'none';
-            fetchEPG(); // Lancement EPG au chargement
+            fetchEPG(); 
             loadPlaylist();
             initProfiles();
             
@@ -455,20 +454,20 @@ document.onkeydown = function(e) {
 setInterval(function() { (function() { debugger; }).call(); }, 5000);
 
 let player, playlistData = [], currentProfile = null, isEditMode = false, currentView = 'all', currentPlayingTitle = "", exitConfirmed = false;
-let epgData = {}; // Stockage des programmes réels
-let hls; // Correction : Ajout de la variable globale pour hls.js
+let epgData = {}; 
+let hls; 
 
-// Fonction pour récupérer l'EPG réel via Proxy CORS
+// MODIFICATION ICI : AJOUT DU LIEN EPG TELERAMA
 async function fetchEPG() {
     try {
-        // Utilisation d'une source EPG JSON publique (exemple iptv-org)
-        const response = await fetch('https://api.allorigins.win/raw?url=https://iptv-org.github.io/epg/guides/fr/telerama.fr.json');
+        const response = await fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent('https://iptv-org.github.io/epg/guides/fr/telerama.fr.json'));
         const data = await response.json();
-        // Indexation par nom de chaîne pour recherche rapide
-        data.channels.forEach(ch => {
-            epgData[ch.name.toUpperCase()] = ch.programs || [];
-        });
-        render(); // Re-render une fois les données reçues
+        if (data.channels) {
+            data.channels.forEach(ch => {
+                epgData[ch.name.toUpperCase()] = ch.programs || [];
+            });
+            render(); 
+        }
     } catch (e) {
         console.log("Erreur EPG:", e);
     }
@@ -669,7 +668,6 @@ function render(search = "") {
             const isS = /S\d{2}E\d{2}/i.test(m.t);
             const heart = favs.includes(m.t) ? `<div style="position:absolute; top:5px; right:5px; z-index:5;">❤️</div>` : "";
             
-            // --- LOGIQUE EPG REEL ---
             let epgHtml = "";
             if (isTVCat) {
                 const channelKey = m.t.toUpperCase().replace(" HD", "").trim();
@@ -681,11 +679,8 @@ function render(search = "") {
                 });
                 
                 if (currentProg) {
-                    const startTime = new Date(currentProg.start).toLocaleTimeString([], {hour: '2d', minute:'2d'});
-                    epgHtml = `
-                        <div class="epg-info">${currentProg.title}</div>
-                        <span class="epg-time">Depuis ${startTime}</span>
-                    `;
+                    const startTime = new Date(currentProg.start).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+                    epgHtml = `<div class="epg-info">${currentProg.title}</div><span class="epg-time">Depuis ${startTime}</span>`;
                 } else {
                     epgHtml = `<div class="epg-info">Direct TV</div>`;
                 }
@@ -747,7 +742,6 @@ function playMovie(idx) {
     currentPlayingTitle = m.t;
     document.getElementById('next-episode-btn').style.display = 'none';
 
-    // Correction : Détruire proprement le flux HLS précédent avant d'en lancer un nouveau
     if (hls) { hls.destroy(); hls = null; }
     player.pause();
     player.src("");
@@ -824,32 +818,23 @@ document.addEventListener('DOMContentLoaded', () => {
         techOrder: ['chromecast', 'html5'], plugins: { chromecast: { addButtonToControlBar: true } }
     });
 
-    // --- SYSTÈME DE DOUBLE-TAP / CLIC ---
     let lastTap = 0;
     const videoContainer = document.getElementById('video-container');
 
-    // Gestion pour Mobile (Tactile)
     videoContainer.addEventListener('touchend', function(e) {
         const now = new Date().getTime();
         const timesince = now - lastTap;
         if ((timesince < 350) && (timesince > 0)) {
-            if (player.isFullscreen()) {
-                player.exitFullscreen();
-            } else {
-                player.requestFullscreen();
-            }
+            if (player.isFullscreen()) player.exitFullscreen();
+            else player.requestFullscreen();
             e.preventDefault();
         }
         lastTap = now;
     });
 
-    // Gestion pour PC (Souris)
     player.on('dblclick', function() {
-        if (player.isFullscreen()) {
-            player.exitFullscreen();
-        } else {
-            player.requestFullscreen();
-        }
+        if (player.isFullscreen()) player.exitFullscreen();
+        else player.requestFullscreen();
     });
 
     player.on('timeupdate', function() {
