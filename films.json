@@ -180,6 +180,17 @@
     "url": "aHR0cHM6Ly9hcmNoaXZlLm9yZy9kb3dubG9hZC8xMjcxMDE5LzEyNzEwMTkuaWEubXA0"
   },
   {
+    "t": "Conan le barbare (1982)",
+    "year": "1982",
+    "note": 3,
+    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/qwnXGJCAMYrJ4KZo5d5zgCeMEjc.jpg",
+    "cat": "AVENTURE",
+    "desc": "Encore enfant, Conan assiste impuissant au massacre de ses parents par le cruel Thulsa Doom, et est réduit en esclavage. Enchaîné à la roue de douleur, il y acquiert une musculature peu commune qui lui permet, adulte, de gagner sa liberté comme lutteur. Désireux d’assouvir sa soif de vengeance, il part accompagné de deux voleurs, Subotai et Valeria, à la recherche de Thulsa Doom…",
+    "actors_pics": [{"name": "Arnold Schwarzenegger", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/2marNcjIfCUE5Z2HyrcEiJHPbsA.jpg"}, {"name": "James Earl Jones", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/oqMPIsXrl9SZkRfIKN08eFROmH6.jpg"}, {"name": "Max von Sydow", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/u16BsGyT6v9yuO7wWAF62NayDth.jpg"}, {"name": "Sandahl Bergman", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/brMLA2WKHDMPwjyYHdRNgEtVwat.jpg"}],
+    "trailer": "lsKZjItSprw",
+    "url": "https://stream01-hls.hulkcrush.org/vod/663247e5b61579f3b9b65f3d4ec637c16f201fd67779ebc823a25043b6f1a8f0/master.m3u8"
+  },
+  {
     "t": "Collatéral (2004)",
     "year": "2004",
     "note": 4,
