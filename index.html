@@ -200,10 +200,9 @@
         .prog-bg { position: absolute; bottom: 25px; left: 0; width: 100%; height: 4px; background: rgba(255,255,255,0.2); border-radius: 0 0 4px 4px; overflow: hidden; }
         .prog-fill { height: 100%; background: var(--accent); transition: width 0.3s; }
 
-        /* NOUVEAUX STYLES EPG */
-        .epg-info { font-size: 10px; color: #888; margin-top: 2px; text-align: center; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; width: 100%; }
-        .epg-bar { width: 40%; height: 2px; background: #333; margin: 3px auto; position: relative; }
-        .epg-progress { height: 100%; background: var(--accent); width: 65%; }
+        /* --- STYLES EPG REELS --- */
+        .epg-info { font-size: 10px; color: #e50914; margin-top: 4px; text-align: center; font-weight: bold; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; width: 100%; }
+        .epg-time { font-size: 9px; color: #777; text-align: center; display: block; }
 
         #series-overlay { position: fixed; inset: 0; background: var(--bg); z-index: 3000; display: none; overflow-y: auto; padding: 80px 5% 40px; }
         .overlay-header { display: flex; gap: 20px; margin-bottom: 30px; align-items: center; }
@@ -390,6 +389,7 @@
             if (await verifyExpiration(user)) return;
             window.startSessionSync(user.uid);
             document.getElementById('login-screen').style.display = 'none';
+            fetchEPG(); // Lancement EPG au chargement
             loadPlaylist();
             initProfiles();
             
@@ -455,6 +455,23 @@ document.onkeydown = function(e) {
 setInterval(function() { (function() { debugger; }).call(); }, 5000);
 
 let player, playlistData = [], currentProfile = null, isEditMode = false, currentView = 'all', currentPlayingTitle = "", exitConfirmed = false;
+let epgData = {}; // Stockage des programmes réels
+
+// Fonction pour récupérer l'EPG réel via Proxy CORS
+async function fetchEPG() {
+    try {
+        // Utilisation d'une source EPG JSON publique (exemple iptv-org)
+        const response = await fetch('https://api.allorigins.win/raw?url=https://iptv-org.github.io/epg/guides/fr/telerama.fr.json');
+        const data = await response.json();
+        // Indexation par nom de chaîne pour recherche rapide
+        data.channels.forEach(ch => {
+            epgData[ch.name.toUpperCase()] = ch.programs || [];
+        });
+        render(); // Re-render une fois les données reçues
+    } catch (e) {
+        console.log("Erreur EPG:", e);
+    }
+}
 
 window.addEventListener('popstate', function (event) {
     const detailsOverlay = document.getElementById('details-overlay');
@@ -599,6 +616,7 @@ function render(search = "") {
     const s = search.toLowerCase();
     const favs = JSON.parse(localStorage.getItem('sfpp_fav_' + currentProfile) || "[]");
     const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
+    const now = new Date();
     
     let data = playlistData;
     if(currentView === 'movies') data = playlistData.filter(m => m.cat !== "SÉRIES");
@@ -649,13 +667,26 @@ function render(search = "") {
             const isS = /S\d{2}E\d{2}/i.test(m.t);
             const heart = favs.includes(m.t) ? `<div style="position:absolute; top:5px; right:5px; z-index:5;">❤️</div>` : "";
             
-            // Logique EPG Simulé pour les chaînes TV
+            // --- LOGIQUE EPG REEL ---
             let epgHtml = "";
             if (isTVCat) {
-                epgHtml = `
-                    <div class="epg-bar"><div class="epg-progress"></div></div>
-                    <div class="epg-info">Direct : Programme en cours...</div>
-                `;
+                const channelKey = m.t.toUpperCase().replace(" HD", "").trim();
+                const programs = epgData[channelKey] || [];
+                const currentProg = programs.find(p => {
+                    const start = new Date(p.start);
+                    const end = new Date(p.stop);
+                    return now >= start && now <= end;
+                });
+                
+                if (currentProg) {
+                    const startTime = new Date(currentProg.start).toLocaleTimeString([], {hour: '2d', minute:'2d'});
+                    epgHtml = `
+                        <div class="epg-info">${currentProg.title}</div>
+                        <span class="epg-time">Depuis ${startTime}</span>
+                    `;
+                } else {
+                    epgHtml = `<div class="epg-info">Direct TV</div>`;
+                }
             }
 
             if(isS) {
@@ -671,7 +702,7 @@ function render(search = "") {
                             <img src="${m.img}">${heart}${pct}
                             <div class="card-name">${m.t}</div>
                             ${epgHtml}
-                         </div>`;
+                        </div>`;
             }
         });
         html += `</div><div class="nav-arrow arrow-right" onclick="scrollSide(this, 400)">›</div></div>`;
