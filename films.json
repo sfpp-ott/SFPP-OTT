@@ -217,9 +217,13 @@
   },
   {
     "t": "(500)jours ensemble",
+    "year": "2009",
+    "note": 4,
     "img": "https://image.tmdb.org/t/p/w220_and_h330_face/Au6ac2MEQuka3DtJMVxeyUaDNsh.jpg",
     "cat": "COMÉDIE",
-    "desc": "L'anatomie d'une relation amoureuse non conventionnelle.",
+    "desc": "Tom croit encore en un amour qui transfigure, un amour à la destinée cosmique, un coup de foudre unique. Ce qui n'est pas du tout le cas de Summer. Cela n'empêche pourtant pas Tom de partir à sa conquête, armé de toute sa force et de tout son courage, tel un Don Quichotte des temps modernes. Le récit couvre tout le spectre de la relation amoureuse, du premier coup de cœur aux premiers rendez-vous, du sexe à la séparation, à la récrimination et à la rédemption, et décrit toutes les raisons qui nous poussent à nous battre aussi ardemment pour arriver à trouver un sens à l'amour.",
+    "actors_pics": [{"name": "Joseph Gordon-Levitt", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/z2FA8js799xqtfiFjBTicFYdfk.jpg"}, {"name": "Zooey Deschanel", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/oNnMSaLlPyieTc01ObJZb7ezgGq.jpg"}, {"name": "Geoffrey Arend", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/bpqF3V5lK5GxuIU4VuTaVaztIvw.jpg"}, {"name": "Chloë Grace Moretz", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/yq4rYmaTRC5degaOYmJQFpaiho1.jpg"}],
+    "trailer": "DLbCGDcPr5Q",
     "url": "aHR0cHM6Ly9zdHJlYW0wMi1tcDR3Lmh1bGtjcnVzaC5vcmcvdmlkZW9zL2VjMzE2YjkyN2E0NGY3M2U3MzVkYWY1NjFiZDFmZDVjMTQyMThjZWM5NzMwMzM0OWZmNWVmMmIxYzQ3YzhiZDkubXA0"
   },
   {
