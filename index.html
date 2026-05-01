@@ -200,6 +200,11 @@
         .prog-bg { position: absolute; bottom: 25px; left: 0; width: 100%; height: 4px; background: rgba(255,255,255,0.2); border-radius: 0 0 4px 4px; overflow: hidden; }
         .prog-fill { height: 100%; background: var(--accent); transition: width 0.3s; }
 
+        /* NOUVEAUX STYLES EPG */
+        .epg-info { font-size: 10px; color: #888; margin-top: 2px; text-align: center; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; width: 100%; }
+        .epg-bar { width: 40%; height: 2px; background: #333; margin: 3px auto; position: relative; }
+        .epg-progress { height: 100%; background: var(--accent); width: 65%; }
+
         #series-overlay { position: fixed; inset: 0; background: var(--bg); z-index: 3000; display: none; overflow-y: auto; padding: 80px 5% 40px; }
         .overlay-header { display: flex; gap: 20px; margin-bottom: 30px; align-items: center; }
         .overlay-img { width: 120px; border-radius: 8px; border: 1px solid #333; }
@@ -643,7 +648,16 @@ function render(search = "") {
         filtered.forEach(m => {
             const isS = /S\d{2}E\d{2}/i.test(m.t);
             const heart = favs.includes(m.t) ? `<div style="position:absolute; top:5px; right:5px; z-index:5;">❤️</div>` : "";
-            const pct = (prog[m.t] && prog[m.t].p > 1) ? `<div class="prog-bg"><div class="prog-fill" style="width:${prog[m.t].p}%"></div></div>` : "";
+            
+            // Logique EPG Simulé pour les chaînes TV
+            let epgHtml = "";
+            if (isTVCat) {
+                epgHtml = `
+                    <div class="epg-bar"><div class="epg-progress"></div></div>
+                    <div class="epg-info">Direct : Programme en cours...</div>
+                `;
+            }
+
             if(isS) {
                 const sName = m.t.split(' - ')[0];
                 if(!addedSeries.includes(sName)) {
@@ -652,7 +666,12 @@ function render(search = "") {
                 }
             } else {
                 const clickAction = isTVCat ? `playMovie(${playlistData.indexOf(m)})` : `openDetails(${playlistData.indexOf(m)})`;
-                html += `<div class="card ${landscapeClass}" onclick="${clickAction}" tabindex="0"><img src="${m.img}">${heart}${pct}<div class="card-name">${m.t}</div></div>`;
+                const pct = (prog[m.t] && prog[m.t].p > 1 && !isTVCat) ? `<div class="prog-bg"><div class="prog-fill" style="width:${prog[m.t].p}%"></div></div>` : "";
+                html += `<div class="card ${landscapeClass}" onclick="${clickAction}" tabindex="0">
+                            <img src="${m.img}">${heart}${pct}
+                            <div class="card-name">${m.t}</div>
+                            ${epgHtml}
+                         </div>`;
             }
         });
         html += `</div><div class="nav-arrow arrow-right" onclick="scrollSide(this, 400)">›</div></div>`;
