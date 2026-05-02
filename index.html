@@ -506,7 +506,42 @@ window.addEventListener('popstate', function (event) {
     }
 });
 
-async function loadPlaylist() { try { const response = await fetch('films.json?v=' + Date.now()); playlistData = await response.json(); render(); } catch (e) {} }
+async function loadPlaylist() { 
+    try { 
+        const response = await fetch('films.json?v=' + Date.now()); 
+        playlistData = await response.json(); 
+        
+        const apiKey = "ec1c8fecd38d1cc5a27f15766f0848d5";
+        const promises = playlistData.map(async (m) => {
+            if (m.id_tmdb && (!m.img || !m.desc)) {
+                try {
+                    const res = await fetch(`https://api.themoviedb.org/3/movie/${m.id_tmdb}?api_key=${apiKey}&language=fr-FR&append_to_response=videos,credits`);
+                    const data = await res.json();
+                    
+                    m.img = m.img || `https://image.tmdb.org/t/p/w500${data.poster_path}`;
+                    m.desc = m.desc || data.overview;
+                    m.year = m.year || (data.release_date ? data.release_date.split('-')[0] : "2025");
+                    m.note = m.note || Math.round(data.vote_average / 2);
+
+                    if (!m.trailer && data.videos && data.videos.results.length > 0) {
+                        const trailer = data.videos.results.find(v => v.type === "Trailer" && v.site === "YouTube");
+                        if (trailer) m.trailer = trailer.key;
+                    }
+
+                    if (!m.actors_pics && data.credits && data.credits.cast) {
+                        m.actors_pics = data.credits.cast.slice(0, 5).map(a => ({
+                            name: a.name,
+                            img: `https://image.tmdb.org/t/p/w185${a.profile_path}`
+                        }));
+                    }
+                } catch (e) { console.log("Erreur TMDB ID: " + m.id_tmdb); }
+            }
+        });
+
+        await Promise.all(promises);
+        render(); 
+    } catch (e) {} 
+}
 
 function openDetails(idx) {
     if (window.history.state?.overlay !== 'details') {
