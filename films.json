@@ -180,6 +180,17 @@
     "url": "aHR0cHM6Ly9hcmNoaXZlLm9yZy9kb3dubG9hZC8xMjcxMDE5LzEyNzEwMTkuaWEubXA0"
   },
   {
+    "t": "Différente (2025)",
+    "year": "2025",
+    "note": 4,
+    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/2uhAFBTnDmqiAtJOlFU53PoonYV.jpg",
+    "cat": "COMÉDIE",
+    "desc": "Katia, brillante documentaliste de 35 ans, fait preuve de singularité dans sa manière de vivre ses relations, toutes plus ou moins chaotiques. Sa participation à un nouveau reportage l’amène à mettre enfin un mot sur sa différence. Révélation qui va chambouler une vie déjà bien compliquée.",
+    "actors_pics": [{"name": "Jehnny Beth", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/lMSMHufDKEtTsKYuxDKcMZDtDb7.jpg"}, {"name": "Thibaut Évrard", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/imffvqFEZ3WmDd0bRuyeCXz3ILh.jpg"}, {"name": "Mireille Perrier", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/hgOD97FhLyqNzw5fDq1Rpg3qcuE.jpg"}, {"name": "Emmanuelle Schaaff", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/tYhKPE3wkbVQLzRIEUY82b9jjcx.jpg"}],
+    "trailer": "lT_vgobhA-E",
+    "url": "https://stream01-hls.hulkcrush.org/vod/fd36efa5e79d5e4562c0d66a7bbc72076cfed66033c18ee1417124e7b81276ab/master.m3u8"
+  },
+  {
     "t": "Desert Dawn (2025)",
     "year": "2025",
     "note": 4,
