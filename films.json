@@ -178,8 +178,8 @@
     "actors_pics": [{"name": "Katlego Lebogang", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/cJicdJkF1FSS29iGjSsDdUmy00j.jpg"}, {"name": "Didie Makobane", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/dVSmEg1VD5TPt82zkglgdz7Azh3.jpg"}, {"name": "Fikile Mthwalo", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/4kSpy9jfl5ATFIfEAtohdW56cB2.jpg"}, {"name": "Siya Sepotekele", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/1BvFMYhNXsDLMny3ikMLy0rJIvg.jpg"}],
     "trailer": "hW56J07y5mg",
     "url": "aHR0cHM6Ly9hcmNoaXZlLm9yZy9kb3dubG9hZC8xMjcxMDE5LzEyNzEwMTkuaWEubXA0"
-  },
-  ​{
+  },​
+  {
     "t": "Nobody 2 (2025)",
     "year": "2025",
     "note": 4,
@@ -189,7 +189,7 @@
     "actors_pics": [{"name": "Bob Odenkirk", "img": "https://image.tmdb.org/t/p/w300_and_h450_bestv2/rF0K77crvMvC3d9asTSZp891nfD.jpg"}, {"name": "Connie Nielsen", "img": "https://image.tmdb.org/t/p/w300_and_h450_bestv2/lvS67Y7XBDN89fR88Z8X8jAIn98.jpg"}, {"name": "Sharon Stone", "img": "https://image.tmdb.org/t/p/w300_and_h450_bestv2/u764ZonL9X868K4V3p4X2N9C9XU.jpg"}, {"name": "Christopher Lloyd", "img": "https://image.tmdb.org/t/p/w300_and_h450_bestv2/nxv7YmEnALV9iUrYVk9me87cyH.jpg"}],
     "trailer": "p5TJISGVwNI",
     "url": "https://stream01-hls.hulkcrush.org/vod/nobody2-2025-vostfr/master.m3u8"
-  {,
+  },
   {
     "t": "McWalter (2025)",
     "year": "2025",
