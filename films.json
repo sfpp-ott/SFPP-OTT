@@ -179,6 +179,17 @@
     "trailer": "hW56J07y5mg",
     "url": "aHR0cHM6Ly9hcmNoaXZlLm9yZy9kb3dubG9hZC8xMjcxMDE5LzEyNzEwMTkuaWEubXA0"
   },
+  ​{
+    "t": "Nobody 2 (2025)",
+    "year": "2025",
+    "note": 4,
+    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/39wmv0vG9996mC9vUnv97O099S2.jpg",
+    "cat": "ACTION",
+    "desc": "Hutch Mansell, l'ancien assassin d'élite qui tentait de mener une vie tranquille, voit son passé le rattraper une nouvelle fois. Confronté à une menace dirigée par la redoutable Lendina, il doit replonger dans la violence pour protéger sa famille et régler ses comptes une bonne fois pour toutes.",
+    "actors_pics": [{"name": "Bob Odenkirk", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/6fCHpX7G9p8mZllvBv2p2SnotyW.jpg"}, {"name": "Connie Nielsen", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/lvS67Y7XBDN89fR88Z8X8jAIn98.jpg"}, {"name": "Sharon Stone", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/6fCHpX7G9p8mZllvBv2p2SnotyW.jpg"}, {"name": "Christopher Lloyd", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/nxv7YmEnALV9iUrYVk9me87cyH.jpg"}],
+    "trailer": "p5TJISGVwNI",
+    "url": "https://stream01-hls.hulkcrush.org/vod/nobody2-2025-vostfr/master.m3u8"
+  },
   {
     "t": "McWalter (2025)",
     "year": "2025",
