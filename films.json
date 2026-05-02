@@ -180,6 +180,17 @@
     "url": "aHR0cHM6Ly9hcmNoaXZlLm9yZy9kb3dubG9hZC8xMjcxMDE5LzEyNzEwMTkuaWEubXA0"
   },
   {
+    "t": "McWalter (2025)",
+    "year": "2025",
+    "note": 3,
+    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/93XDwOGPFh4HJEMmOSSrWL29tOM.jpg",
+    "cat": "ACTION",
+    "desc": "McWalter, légendaire agent d’élite américain est accusé à tort d’une série d’attentats aux quatre coins du globe. Bien décidé à laver son honneur, il prend la fuite dans le but de résoudre l’énigme, déjouer un complot mondial et sauver la planète…",
+    "actors_pics": [{"name": "Yvick Letexier", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/2mTvSkBjg8ilrOUFUGwVZm1oyBB.jpg"}, {"name": "Géraldine Nakache", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/mlJZWY6ZuCNklAeubVsv4ejJtNR.jpg"}, {"name": "William Lebghil", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/ogz8SaBwqiVuY87EC7pdvHGH4fO.jpg"}, {"name": "Vincent Dedienne", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/j6tser7BHGoi6cP7bQAXQlCGbMO.jpg"}],
+    "trailer": "V70KiRo2XVY",
+    "url": "https://stream01-hls.hulkcrush.org/vod/ce9e14e1e56407d28c2f6835cd7ee90670994a90931b908238a42a5b21043414/master.m3u8"
+  },
+  {
     "t": "La Femme de ménage (2025)",
     "year": "2025",
     "note": 3,
