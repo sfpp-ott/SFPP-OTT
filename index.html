@@ -166,8 +166,10 @@
         .trailer-box { width: 100%; max-width: 800px; aspect-ratio: 16/9; background: #000; border-radius: 8px; margin-bottom: 25px; overflow: hidden; border: 1px solid #333; }
         
         .cast-row { display: flex; gap: 15px; overflow-x: auto; padding-bottom: 15px; scrollbar-width: none; }
-        .actor-item { flex: 0 0 90px; text-align: center; }
-        .actor-item img { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 2px solid #333; }
+        .actor-item { flex: 0 0 90px; text-align: center; cursor: pointer; transition: transform 0.2s; }
+        .actor-item:active { transform: scale(0.9); }
+        .actor-item img { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 2px solid #333; transition: border-color 0.3s; }
+        .actor-item:hover img { border-color: var(--accent); }
         .actor-name { font-size: 11px; color: #aaa; margin-top: 8px; }
 
         .btn-close-details { 
@@ -250,7 +252,7 @@
         <button class="btn-logout" onclick="switchProfile()" tabindex="0">PROFILS</button>
     </div>
     <div id="search-overlay">
-        <input type="text" id="searchBar" onkeyup="filter()" placeholder="Rechercher..." tabindex="0">
+        <input type="text" id="searchBar" onkeyup="filter()" placeholder="Film, année ou acteur..." tabindex="0">
         <button class="btn-icon" onclick="closeSearch()" style="margin-left:10px" tabindex="0">✕</button>
     </div>
 </header>
@@ -276,7 +278,7 @@
             <div class="section-label">Bande-annonce</div>
             <div id="details-trailer-box" class="trailer-box"></div>
 
-            <div class="section-label">Casting principal</div>
+            <div class="section-label">Casting principal (Cliquez pour filtrer)</div>
             <div id="details-meta-cast" class="cast-row"></div>
         </div>
     </div>
@@ -524,7 +526,6 @@ async function loadPlaylist() {
                     m.note = m.note || Math.round(data.vote_average / 2);
 
                     if (!m.trailer && data.videos && data.videos.results.length > 0) {
-                        // On cherche d'abord en français, sinon on prend n'importe quelle bande-annonce YouTube
                         let video = data.videos.results.find(v => v.type === "Trailer" && v.site === "YouTube");
                         if (!video) video = data.videos.results.find(v => v.type === "Teaser" && v.site === "YouTube");
                         if (!video) video = data.videos.results.find(v => v.site === "YouTube");
@@ -532,7 +533,6 @@ async function loadPlaylist() {
                     }
 
                     if (!m.actors_pics && data.credits && data.credits.cast) {
-                        // Limite augmentée à 10 acteurs
                         m.actors_pics = data.credits.cast.slice(0, 10).map(a => ({
                             name: a.name,
                             img: `https://image.tmdb.org/t/p/w185${a.profile_path}`
@@ -566,7 +566,7 @@ function openDetails(idx) {
     let castHtml = "";
     if (m.actors_pics && m.actors_pics.length > 0) {
         castHtml = m.actors_pics.map(a => `
-                <div class="actor-item">
+                <div class="actor-item" onclick="searchByActor('${a.name}')" title="Voir les films avec ${a.name}">
                     <img src="${a.img}" onerror="this.src='https://via.placeholder.com/80x80?text=?'">
                     <div class="actor-name">${a.name}</div>
                 </div>
@@ -587,6 +587,15 @@ function openDetails(idx) {
     document.getElementById('details-overlay').style.display = 'flex';
     playBtn.focus();
 }
+
+// --- NOUVELLE FONCTION : Recherche par acteur ---
+window.searchByActor = function(actorName) {
+    closeDetails(); 
+    openSearch(); 
+    const searchBar = document.getElementById('searchBar');
+    searchBar.value = actorName;
+    filter(); 
+};
 
 function toggleFav(title) {
     let key = 'sfpp_fav_' + currentProfile;
@@ -696,8 +705,15 @@ function render(search = "") {
     const cats = [...new Set(data.map(m => m.cat))];
     let addedSeries = [];
     cats.forEach(c => {
-        // MODIFICATION : Recherche combinée Titre + Année
-        const filtered = data.filter(m => m.cat === c && (m.t.toLowerCase().includes(s) || (m.year && m.year.toString().includes(s))));
+        // MODIFICATION : Recherche étendue Titre + Année + Acteurs
+        const filtered = data.filter(m => {
+            const matchCat = (m.cat === c);
+            const matchTitle = m.t.toLowerCase().includes(s);
+            const matchYear = (m.year && m.year.toString().includes(s));
+            const matchActor = (m.actors_pics && m.actors_pics.some(a => a.name.toLowerCase().includes(s)));
+            
+            return matchCat && (matchTitle || matchYear || matchActor);
+        });
         
         if (filtered.length === 0) return;
         const isTVCat = c.toUpperCase().includes("DIRECT") || c.toUpperCase().includes("TV");
