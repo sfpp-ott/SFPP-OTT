@@ -532,6 +532,7 @@ async function loadPlaylist() {
                     }
 
                     if (!m.actors_pics && data.credits && data.credits.cast) {
+                        // Limite augmentée à 10 acteurs
                         m.actors_pics = data.credits.cast.slice(0, 10).map(a => ({
                             name: a.name,
                             img: `https://image.tmdb.org/t/p/w185${a.profile_path}`
@@ -695,7 +696,9 @@ function render(search = "") {
     const cats = [...new Set(data.map(m => m.cat))];
     let addedSeries = [];
     cats.forEach(c => {
-        const filtered = data.filter(m => m.cat === c && m.t.toLowerCase().includes(s));
+        // MODIFICATION : Recherche combinée Titre + Année
+        const filtered = data.filter(m => m.cat === c && (m.t.toLowerCase().includes(s) || (m.year && m.year.toString().includes(s))));
+        
         if (filtered.length === 0) return;
         const isTVCat = c.toUpperCase().includes("DIRECT") || c.toUpperCase().includes("TV");
         const landscapeClass = isTVCat ? "landscape" : "";
