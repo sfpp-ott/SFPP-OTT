@@ -524,8 +524,11 @@ async function loadPlaylist() {
                     m.note = m.note || Math.round(data.vote_average / 2);
 
                     if (!m.trailer && data.videos && data.videos.results.length > 0) {
-                        const trailer = data.videos.results.find(v => v.type === "Trailer" && v.site === "YouTube");
-                        if (trailer) m.trailer = trailer.key;
+                        // On cherche d'abord en français, sinon on prend n'importe quelle bande-annonce YouTube
+                        let video = data.videos.results.find(v => v.type === "Trailer" && v.site === "YouTube");
+                        if (!video) video = data.videos.results.find(v => v.type === "Teaser" && v.site === "YouTube");
+                        if (!video) video = data.videos.results.find(v => v.site === "YouTube");
+                        if (video) m.trailer = video.key;
                     }
 
                     if (!m.actors_pics && data.credits && data.credits.cast) {
