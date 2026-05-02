@@ -1,703 +1,373 @@
-[ 
+[
   {
-   "t": "Tf1 (Direct)",
-   "img": "https://stock.wikimini.org/w/images/3/36/Logo_TF1_2013.png",
-   "cat": "TV EN DIRECT",
-   "desc": "Regardez Tf1 en direct.",
-   "url": "https://tvastuces.com:443/live/46952B8A7AF9F4739F61FBD8FCEDE553/1.m3u8"
+    "t": "Tf1 (Direct)",
+    "img": "https://stock.wikimini.org/w/images/3/36/Logo_TF1_2013.png",
+    "cat": "TV EN DIRECT",
+    "desc": "Regardez Tf1 en direct.",
+    "url": "https://tvastuces.com:443/live/46952B8A7AF9F4739F61FBD8FCEDE553/1.m3u8"
   },
   {
-   "t": "Canal+ (Direct)",
-   "img": "https://upload.wikimedia.org/wikipedia/fr/b/b7/Canal%2B2025.png",
-   "cat": "TV EN DIRECT",
-   "desc": "Regardez Canal+ en direct.",
-   "url": "https://tvastuces.com:443/live/46952B8A7AF9F4739F61FBD8FCEDE553/16.m3u8"
+    "t": "Canal+ (Direct)",
+    "img": "https://upload.wikimedia.org/wikipedia/fr/b/b7/Canal%2B2025.png",
+    "cat": "TV EN DIRECT",
+    "desc": "Regardez Canal+ en direct.",
+    "url": "https://tvastuces.com:443/live/46952B8A7AF9F4739F61FBD8FCEDE553/16.m3u8"
   },
   {
-   "t": "6ter (Direct)",
-   "img": "https://upload.wikimedia.org/wikipedia/commons/0/07/6ter.png",
-   "cat": "TV EN DIRECT",
-   "desc": "Regardez 6ter en direct.",
-   "url": "https://tvastuces.com:443/live/46952B8A7AF9F4739F61FBD8FCEDE553/13.m3u8"
+    "t": "6ter (Direct)",
+    "img": "https://upload.wikimedia.org/wikipedia/commons/0/07/6ter.png",
+    "cat": "TV EN DIRECT",
+    "desc": "Regardez 6ter en direct.",
+    "url": "https://tvastuces.com:443/live/46952B8A7AF9F4739F61FBD8FCEDE553/13.m3u8"
   },
   {
-   "t": "Canal+ Cinéma (Direct)",
-   "img": "https://www.premiere.fr/sites/default/files/styles/scale_crop_1280x720/public/2018-04/Mikrocine-Canal-Cinema-fete-la-200eme-le-17-avril.jpg",
-   "cat": "TV EN DIRECT",
-   "desc": "Regardez Canal+ Cinéma en direct.",
-   "url": "https://tvastuces.com:443/live/46952B8A7AF9F4739F61FBD8FCEDE553/17.m3u8"
+    "t": "Canal+ Cinéma (Direct)",
+    "img": "https://www.premiere.fr/sites/default/files/styles/scale_crop_1280x720/public/2018-04/Mikrocine-Canal-Cinema-fete-la-200eme-le-17-avril.jpg",
+    "cat": "TV EN DIRECT",
+    "desc": "Regardez Canal+ Cinéma en direct.",
+    "url": "https://tvastuces.com:443/live/46952B8A7AF9F4739F61FBD8FCEDE553/17.m3u8"
   },
   {
-   "t": "Ciné Frisson (Direct)",
-   "img": "https://upload.wikimedia.org/wikipedia/commons/c/ce/Logo_Cin%C3%A9%2B_Frisson_2011.svg",
-   "cat": "TV EN DIRECT",
-   "desc": "Regardez Ciné Frisson en direct.",
-   "url": "https://tvastuces.com:443/live/46952B8A7AF9F4739F61FBD8FCEDE553/25.m3u8"
+    "t": "Ciné Frisson (Direct)",
+    "img": "https://upload.wikimedia.org/wikipedia/commons/c/ce/Logo_Cin%C3%A9%2B_Frisson_2011.svg",
+    "cat": "TV EN DIRECT",
+    "desc": "Regardez Ciné Frisson en direct.",
+    "url": "https://tvastuces.com:443/live/46952B8A7AF9F4739F61FBD8FCEDE553/25.m3u8"
   },
   {
-   "t": "Ciné Émotion (Direct)",
-   "img": "https://www.monpetitforfait.com/comparateur-box-internet/wp-content/uploads/2020/05/regarder-cine-plus-emotion.png",
-   "cat": "TV EN DIRECT",
-   "desc": "Regardez Ciné Émotion en direct.",
-   "url": "https://tvastuces.com:443/live/46952B8A7AF9F4739F61FBD8FCEDE553/23.m3u8"
-  },
-  {
-   "t": "Ciné Famiz (Direct)",
-   "img": "https://upload.wikimedia.org/wikipedia/commons/a/a2/Logo_Cin%C3%A9%2B_Famiz_2011.svg",
-   "cat": "TV EN DIRECT",
-   "desc": "Regardez Ciné Famiz en direct.",
-   "url": "https://tvastuces.com:443/live/46952B8A7AF9F4739F61FBD8FCEDE553/26.m3u8"
-  },
-  {
-   "t": "Ciné Festival (Direct)",
-   "img": "https://upload.wikimedia.org/wikipedia/commons/3/30/Cin%C3%A9%2BFestival2024.svg",
-   "cat": "TV EN DIRECT",
-   "desc": "Regardez Ciné Festival en direct.",
-   "url": "https://tvastuces.com:443/live/46952B8A7AF9F4739F61FBD8FCEDE553/24.m3u8"
-  },
-  {
-   "t": "Ciné Classic (Direct)",
-   "img": "https://upload.wikimedia.org/wikipedia/commons/0/09/Logo_Cin%C3%A9%2B_Classic_2011.svg",
-   "cat": "TV EN DIRECT",
-   "desc": "Regardez Ciné Classic en direct.",
-   "url": "https://tvastuces.com:443/live/46952B8A7AF9F4739F61FBD8FCEDE553/27.m3u8"
-  },
-  {
-   "t": "Canal+ Kids (Direct)",
-   "img": "https://upload.wikimedia.org/wikipedia/commons/3/34/Canal%2B_Kids_Logo_%282021%29.png",
-   "cat": "TV EN DIRECT",
-   "desc": "Regardez Canal+ Kids en direct.",
-   "url": "https://tvastuces.com:443/live/46952B8A7AF9F4739F61FBD8FCEDE553/19.m3u8"
-  },
-  {
-   "t": "Canal+ Sport (Direct)",
-   "img": "https://upload.wikimedia.org/wikipedia/fr/2/2c/C%2B_Sport_%282023%29.png",
-   "cat": "TV EN DIRECT",
-   "desc": "Regardez Canal+ Sport en direct.",
-   "url": "https://tvastuces.com:443/live/46952B8A7AF9F4739F61FBD8FCEDE553/21.m3u8"
-  },
-  {
-   "t": "Canal+ Foot (Direct)",
-   "img": "https://upload.wikimedia.org/wikipedia/fr/3/3b/C%2B_Foot.png",
-   "cat": "TV EN DIRECT",
-   "desc": "Regardez Canal+ Foot en direct.",
-   "url": "https://tvastuces.com:443/live/46952B8A7AF9F4739F61FBD8FCEDE553/22.m3u8"
-  },
-  {
-   "t": "Ligue1+ 1 (Direct)",
-   "img": "https://www.lequipe.fr/_medias/img-photo-jpg/ligue-1-quelle-offre-d-abonnement-est-faite-pour-vous/1500000002258913/24:0,1176:768-828-552-75/dc2b0.jpg",
-   "cat": "TV EN DIRECT",
-   "desc": "Regardez Ligue1+ 1 en direct.",
-   "url": "https://tvastuces.com:443/live/46952B8A7AF9F4739F61FBD8FCEDE553/365.m3u8"
+    "t": "Nobody 2",
+    "id_tmdb": "1007734",
+    "cat": "ACTION",
+    "url": "aHR0cHM6Ly9zdHJlYW0wMi1tcDR3Lmh1bGtjcnVzaC5vcmcvdmlkZW9zLzRlZTVlMDMxZjZkOWUwNTA0NDRkZDI0ZGM4ODdmYTZkZTNlMzliNjBiYmI0NzdmZGVhZGQzZDk2NzAyNTFkYzIubXA0"
   },
   {
     "t": "L’Âme Idéale (2025)",
-    "year": "2025",
-    "note": 4,
-    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/ws9wCKrqMsS700OOScv8L52wJMa.jpg",
+    "id_tmdb": "1314642",
     "cat": "LES DERNIÈRES SORTIES",
-    "desc": "Elsa, médecin, cache au reste du monde qu’elle voit les morts et les aide à passer de l’autre côté. Convaincue que son don provoque le rejet, elle a renoncé aux histoires d'amour et s'est enfermée dans la solitude et le travail. Jusqu’au jour où elle fait la rencontre d’Oscar, un mort qui ne sait pas qu’il est mort...",
-    "actors_pics": [{"name": "M. Lépine-Blondeau", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/ci7DL2C39iZmb86tLVAzAkorozY.jpg"}, {"name": "Jonathan Cohen", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/T7ucGNWUDsRRXrjjVfY3uhPfMq.jpg"}, {"name": "Florence Janas", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/bVX3qULhckMh8myBMt7BwXjJY20.jpg"}, {"name": "Jean-Christophe Folly", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/75KkhPqt8cc9e4F7SutU2asisCw.jpg"}],
-    "trailer": "6XjuQt1eEcE",
     "url": "aHR0cHM6Ly9hcmNoaXZlLm9yZy9kb3dubG9hZC8xMjg2MjMwLzEyODYyMzAuaWEubXA0"
   },
   {
-    "t": "Dhurandhar : The Revenge (2026)",
-    "year": "2026",
-    "note": 4,
-    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/ov8vrRLZGoXHpYjSY9Vpv1tHJX7.jpg",
+    "t": "Dhurandhar : The Revenge",
+    "id_tmdb": "1332766",
     "cat": "LES DERNIÈRES SORTIES",
-    "desc": "Hamza Ali Mazari n’existe pas. Derrière ce nom se cache Jaskirat Singh Rangi, infiltré au cœur du monde criminel pakistanais. Sa cible : Majo, un fantôme insaisissable.",
-    "actors_pics": [{"name": "Ranveer Singh", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/sRiwLmhduFghJo8U2coUafnDD4C.jpg"}, {"name": "Arjun Rampal", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/1F81WNcVV5cW9O4D5Otk1Y2WHV9.jpg"}, {"name": "R. Madhavan", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/gaDrAdXxIrbBRCd9cX8YvJDEuLb.jpg"}, {"name": "Sanjay Dutt", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/oq4pnvWhl1HxKpp0KVlSfAr3Tiu.jpg"}],
-    "trailer": "0Cu228tX4wU",
     "url": "aHR0cHM6Ly9hcmNoaXZlLm9yZy9kb3dubG9hZC8xMjc1OTkwLzEyNzU5OTAuaWEubXA0"
   },
   {
-    "t": "Reminders of Him (2026)",
-    "year": "2026",
-    "note": 2,
-    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/od9yzZ6cc3ZGSvJI2mTxcsyI48M.jpg",
+    "t": "Reminders of Him",
+    "id_tmdb": "1351227",
     "cat": "LES DERNIÈRES SORTIES",
-    "desc": "Après une sortie parfaite avec son petit ami, Kenna commet une erreur irréparable qui la conduit en prison pour sept ans. Espérant reconstruire sa vie après sa libération, elle tente de retrouver sa fille, mais ses grands-parents, qui en ont la garde, refusent de la laisser la voir. Elle trouve bientôt une compassion inattendue auprès du propriétaire d'un bar local, et leur romance secrète donne à Kenna l'espoir d'une seconde chance.",
-    "actors_pics": [{"name": "Maika Monroe", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/x4yiKkMnCdf8g4eOrDoqla9FYEA.jpg"}, {"name": "Tyriq Withers", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/ilDZHfT8mlXWlvLCaWDhL0OlLSh.jpg"}, {"name": "Rudy Pankow", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/204FlvdJL9mLRkJP1tuJpg01Ml8.jpg"}, {"name": "Bradley Whitford", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/oeDv2qZWTxELLaNtOIoeG72leNY.jpg"}],
-    "trailer": "Wqi8t3A194o",
     "url": "aHR0cHM6Ly9hcmNoaXZlLm9yZy9kb3dubG9hZC8xMjg1MjgxLzEyODUyODEuaWEubXA0"
   },
   {
-    "t": "The Gates (2026)",
-    "year": "2026",
-    "note": 3,
-    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/8y5m72kzYROcI3Swq2B5uMhIxcW.jpg",
+    "t": "The Gates",
+    "id_tmdb": "1414447",
     "cat": "LES DERNIÈRES SORTIES",
-    "desc": "Le road trip de trois amis vire au cauchemar quand ils sont témoins d'un meurtre dans une résidence sécurisée. Coincés sur place et pourchassés par les habitants qui les accusent, leur amitié se brise à mesure qu'un patriarche charismatique mais inquiétant resserre l'étau.",
-    "trailer": "DxKbtzKO16A",
-    "actors_pics": [{"name": "Mason Gooding", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/bmlry1xqBzNgv8Chm783ss93Cvg.jpg"}, {"name": "Algee Smith", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/8lSjFECJflwHJJGt5e7CqyItXW2.jpg"}, {"name": "Keith Powers", "img": "https://media.themoviedb.org/t/p/w375_and_h375_face/bfoMj1r97HnPWRchVuyJlqko6aW.jpg"}, {"name": "James Van Der Beek", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/romoF6aNi4v9UcUqRSElfeDvBuJ.jpg"}],
     "url": "aHR0cHM6Ly9hcmNoaXZlLm9yZy9kb3dubG9hZC8xMjg1NjY4LzEyODU2NjguaWEubXA0"
   },
   {
-    "t": "Balls Up : Mettez le paquet ! (2026)",
-    "year": "2026",
-    "note": 2,
-    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/d0k1OH8vBxr9xYjUmHTrXbGo4IW.jpg",
+    "t": "Balls Up",
+    "id_tmdb": "1283623",
     "cat": "LES DERNIÈRES SORTIES",
-    "desc": "Dans cette comédie déjantée et exubérante, les cadres du marketing Brad (Mark Wahlberg) et Elijah (Paul Walter Hauser) présentent un préservatif intégral novateur comme sponsor de la Coupe du monde au Brésil. Après avoir arrosé leur succès et déclenché un scandale, ils doivent échapper aux fans déchaînés, criminels et fonctionnaires corrompus pour sauver leur carrière et rentrer chez eux en vie.",
-    "trailer": "HQa9PzFJlSE",
-    "actors_pics": [{"name": "Mark Wahlberg", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/1Oc3XSLyb8hxmjmlgFENu582Kqw.jpg"}, {"name": "Paul Walter Hauser", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/nmBdzJpfHMRHsT3VrjyXAxMFLZA.jpg"}, {"name": "Sacha Baron Cohen", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/irirhgOX0siCyqvMrt2hoJpXfOG.jpg"}, {"name": "Benjamin Bratt", "img": "https://media.themoviedb.org/t/p/w375_and_h375_face/hBenHPT4iJEG2kt5z2TOGnkRZwh.jpg"}],
     "url": "aHR0cHM6Ly9hcmNoaXZlLm9yZy9kb3dubG9hZC8xMjg1NzE0LzEyODU3MTQuaWEubXA0"
   },
   {
-    "t": "Qui brille au combat (2025)",
-    "year": "2025",
-    "note": 4,
-    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/kpUkx4nxuH9ssoTi4NLunlRcXgu.jpg",
+    "t": "Qui brille au combat",
+    "id_tmdb": "1295982",
     "cat": "LES DERNIÈRES SORTIES",
-    "desc": "Qui brille au combat est le sens étymologique du prénom Bertille, la plus jeune des deux sœurs de la famille Roussier, atteinte d’un handicap lourd au diagnostic incertain. La famille vit dans un équilibre fragile autour de cet enfant qui accapare les efforts et pensées de chacun, et qui pourrait perdre la vie à tout moment. Chacun se construit, vit comme il peut avec les exigences de ce rythme et les incertitudes qui l’accompagnent. Les parents, Madeleine et Gilles, la sœur aînée, Marion. Quel quotidien et quels avenirs pour une mère, un père, un couple, une adolescente que la responsabilité ​ de sa cadette a rendu trop vite adulte ? Lorsqu’un nouveau diagnostic est posé, les cartes sont rebattues et un nouvel horizon se dessine...",
-    "actors_pics": [{"name": "Mélanie Laurent", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/i99ogEo4gQyanCmHWYYoS6hsUqL.jpg"}, {"name": "Pierre-Yves Cardinal", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/6JOP7wsUGzsKjI6rcCkZmyS0D8q.jpg"}, {"name": "Sarah Pachoud", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/rJRNdhJoiRbtBiUVGFkFKFovfR9.jpg"}, {"name": "Angelina Woreth", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/fJEzFm1etiVWtBtzabbcijVJkVk.jpg"}],
-    "trailer": "FbdY7keYTf0",
     "url": "aHR0cHM6Ly9hcmNoaXZlLm9yZy9kb3dubG9hZC8xMjg1NzE2LzEyODU3MTYuaWEubXA0"
   },
   {
-    "t": "180 (2026)",
-    "year": "2026",
-    "note": 2,
-    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/aQm2NXs52FNasxHawM76ybyZkRB.jpg",
+    "t": "180",
+    "id_tmdb": "1342672",
     "cat": "LES DERNIÈRES SORTIES",
-    "desc": "Lorsqu'une altercation entre conducteurs laisse son fils entre la vie et la mort, un père sombre dans une spirale destructrice nourrie par le désespoir et la vengeance.",
-    "actors_pics": [{"name": "Prince Grootboom", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/q0mimF5YqWzROTbEc0y9WZPQeLT.jpg"}, {"name": "Noxolo Dlamini", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/65IrMfqkixKnIcrNvv2MUd650QK.jpg"}, {"name": "Danica De La Rey", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/fTtueFonjxAmx7GgegKpLcpnNTW.jpg"}, {"name": "Warren Masemola", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/xQykZ5j99uX6SJXKWLZfaoKiQV.jpg"}],
-    "trailer": "jHtGZS-TFOI",
     "url": "aHR0cHM6Ly9hcmNoaXZlLm9yZy9kb3dubG9hZC8xMjg1ODE0LzEyODU4MTQuaWEubXA0"
   },
   {
-    "t": "Roommates (2026)",
-    "year": "2026",
-    "note": 2,
-    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/eW1s6omXIfVkTlmKVe9y9Dwwt4u.jpg",
+    "t": "Roommates",
+    "id_tmdb": "1338271",
     "cat": "LES DERNIÈRES SORTIES",
-    "desc": "En première année de fac, la timide Devon propose à Celeste, une étudiante cool et sûre d'elle, d'être sa coloc... mais leur amitié naissante vire bientôt à la relation toxique.",
-    "actors_pics": [{"name": "Sadie Sandler", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/a5DWcAnDDf3aZTryiYpY1ehqDyW.jpg"}, {"name": "Chloe East", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/smyAAPBxNrpBFVQauAswQzPgBRu.jpg"}, {"name": "Billy Bryk", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/aMJx13CGtBxfAaHE8G2BqY15sou.jpg"}, {"name": "Sarah Sherman", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/sPLNz5GGee26tZDFv4eZeyVng6d.jpg"}],
-    "trailer": "aob-34vmXdo",
     "url": "aHR0cHM6Ly9hcmNoaXZlLm9yZy9kb3dubG9hZC8xMjg1ODE1LzEyODU4MTUuaWEubXA0"
   },
   {
-    "t": "Outbreak (2025)",
-    "year": "2025",
-    "note": 2,
-    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/zI3XabrSWjD9TanTHWqfzNL86qY.jpg",
+    "t": "Outbreak",
+    "id_tmdb": "1369527",
     "cat": "LES DERNIÈRES SORTIES",
-    "desc": "Un mari et sa femme, gardes forestiers dans un parc national, luttent pour faire face à la disparition leur fils adolescent tout en se confrontant face à un mystère local qui remet en question leur relation ainsi que leur emprise sur la réalité.",
-    "actors_pics": [{"name": "Billy Burke", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/AoyN5a1TNRa4OCeylcXusQM1bD4.jpg"}, {"name": "Alyshia Ochse", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/6gI5qlYJrWZkAqt167B5BNq9M6W.jpg"}, {"name": "Taylor Handley", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/4LHuGBcwUOL0iwjtBXNPQOsSfC9.jpg"}, {"name": "Raoul Max Trujillo", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/dIfHIt1pgnYW9oCksc0DdoY5Mt5.jpg"}],
-    "trailer": "nq7gvzQR3I4",
     "url": "aHR0cHM6Ly9hcmNoaXZlLm9yZy9kb3dubG9hZC8xMjM1Mzc1LzEyMzUzNzUuaWEubXA0"
   },
-  {      
-    "t": "Yoh! Bestie (2026)",
-    "year": "2026",
-    "note": 2,
-    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/9wBzRaeWfELNOPmcvOVTmB3kDEl.jpg",
+  {
+    "t": "Yoh! Bestie",
+    "id_tmdb": "1251343",
     "cat": "LES DERNIÈRES SORTIES",
-    "desc": "Thando n'a jamais de chance en amour, mais lorsque son meilleur ami revient de voyage accompagné de sa fiancée, elle est contrainte de faire face à un nouveau sentiment : la jalousie.",
-    "actors_pics": [{"name": "Katlego Lebogang", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/cJicdJkF1FSS29iGjSsDdUmy00j.jpg"}, {"name": "Didie Makobane", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/dVSmEg1VD5TPt82zkglgdz7Azh3.jpg"}, {"name": "Fikile Mthwalo", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/4kSpy9jfl5ATFIfEAtohdW56cB2.jpg"}, {"name": "Siya Sepotekele", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/1BvFMYhNXsDLMny3ikMLy0rJIvg.jpg"}],
-    "trailer": "hW56J07y5mg",
     "url": "aHR0cHM6Ly9hcmNoaXZlLm9yZy9kb3dubG9hZC8xMjcxMDE5LzEyNzEwMTkuaWEubXA0"
   },
   {
-    "t": "La Terre de Sarah (2025)",
-    "year": "2025",
-    "note": 3,
-    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/lXndZLBWcvAG2fzO6kK7a5GcmHF.jpg",
+    "t": "La Terre de Sarah",
+    "id_tmdb": "1258661",
     "cat": "DRAME",
-    "desc": "Au début du XXe siècle, une jeune Afro-Américaine est convaincue que sa terre renferme du pétrole et sa foi finit par payer. Alors que des spéculateurs sans scrupules tentent de l'évincer, elle doit s'allier à sa famille et à des foreurs indépendants pour protéger son héritage et garder le contrôle de son domaine.",
-    "actors_pics": [{"name": "Naya Desir-Johnson", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/7X1Q3RWt213kRRA0oPgEvrq8Zsj.jpg"}, {"name": "Sonequa Martin-Green", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/6Mu5XJCSHxEjMlkJDyi0w0VTlGg.jpg"}, {"name": "Zachary Levi", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/1W8L3kEMMPF9umT3ZGaNIiCYKfZ.jpg"}, {"name": "Garret Dillahunt", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/4L9bdqQIdfrtqR7JQdsIhlF3Fjk.jpg"}],
-    "trailer": "lcEOKJm_aLY",
     "url": "https://archive.org/download/1262240/1262240.ia.mp4"
   },
   {
-    "t": "McWalter (2025)",
-    "year": "2025",
-    "note": 3,
-    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/93XDwOGPFh4HJEMmOSSrWL29tOM.jpg",
+    "t": "McWalter",
+    "id_tmdb": "1314349",
     "cat": "ACTION",
-    "desc": "McWalter, légendaire agent d’élite américain est accusé à tort d’une série d’attentats aux quatre coins du globe. Bien décidé à laver son honneur, il prend la fuite dans le but de résoudre l’énigme, déjouer un complot mondial et sauver la planète…",
-    "actors_pics": [{"name": "Yvick Letexier", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/2mTvSkBjg8ilrOUFUGwVZm1oyBB.jpg"}, {"name": "Géraldine Nakache", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/mlJZWY6ZuCNklAeubVsv4ejJtNR.jpg"}, {"name": "William Lebghil", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/ogz8SaBwqiVuY87EC7pdvHGH4fO.jpg"}, {"name": "Vincent Dedienne", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/j6tser7BHGoi6cP7bQAXQlCGbMO.jpg"}],
-    "trailer": "V70KiRo2XVY",
     "url": "https://stream01-hls.hulkcrush.org/vod/ce9e14e1e56407d28c2f6835cd7ee90670994a90931b908238a42a5b21043414/master.m3u8"
   },
   {
-    "t": "La Femme de ménage (2025)",
-    "year": "2025",
-    "note": 3,
-    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/4vV8zlyGWjxiqCR4hCSZSqJESE8.jpg",
+    "t": "La Femme de ménage",
+    "id_tmdb": "1118116",
     "cat": "THRILLER",
-    "desc": "En quête d’un nouveau départ, Millie accepte un poste de femme de ménage à demeure chez Nina et Andrew Winchester, un couple aussi riche qu’énigmatique. Ce qui s’annonce comme l’emploi idéal se transforme rapidement en un jeu dangereux, mêlant séduction, secrets et manipulations. Derrière les portes closes du manoir Winchester se cache un monde de faux-semblants et de révélations inattendues... Un tourbillon de suspense et de scandales qui vous tiendra en haleine jusqu’à la dernière seconde.",
-    "actors_pics": [{"name": "Sydney Sweeney", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/lkEC9xM133h2f8wmp8CpyLr3JNq.jpg"}, {"name": "Amanda Seyfried", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/gtBUIpZ3dvLpOMIVORxE6sHSyZj.jpg"}, {"name": "Brandon Sklenar", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/juLH1EhkY1Xx9Zai2H4icvfn4pD.jpg"}, {"name": "Michele Morrone", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/cOWSjiG2CI2PiCx69bCJiQVHyrD.jpg"}],
-    "trailer": "H6-M7G3eFdk",
     "url": "https://stream01-hls.hulkcrush.org/vod/51422c93359c0ad66c0cb0acfe65c06afa94d025749268e2454bf10ed115e44b/master.m3u8"
   },
   {
-    "t": "Samir Nasri : Rebelle (2025)",
-    "year": "2025",
-    "note": 4,
-    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/cJK3ifLoaU51sAhYzkyzBKnqTTa.jpg",
-    "cat": "DOCUMENTAIRE",
-    "desc": "Ramasseur de balle au stade Vélodrome avant d'en devenir le Petit Prince sous le maillot de l'Olympique de Marseille, Samir Nasri était destiné à devenir l'une des stars les plus adulées du football français. Mais dans un monde où la norme est de rentrer dans le rang et de choisir ses mots, le surdoué aura fini par traîner une réputation d'effronté, voire d'incontrôlable.",
-    "actors_pics": [{"name": "Samir Nasri", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/7Tls9GlWO0rOOSDHWF0x9mZrDll.jpg"}, {"name": "Djibril Cissé", "img": "https://www.leparisien.fr/resizer/KAJxvJnjmoVWKUAYg1LUF-XD14g=/932x582/cloudfront-eu-central-1.images.arcpublishing.com/leparisien/GYSG7VEIX5BKDBK4HK2IDR53A4.jpg"}, {"name": "Medhi Benatia", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/grQNLKafZ9SObZUuKvOrcPo7QKv.jpg"}, {"name": "Arsène Wenger", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/ahrwgPVFGG7fLoAGOvT7g93bhWH.jpg"}],
-    "trailer": "h-VnIdmn8_A",
-    "url": "https://stream01-hls.hulkcrush.org/vod/099ccba62676bead50b8714dd0f836a44a4e72f73b7a332ed2dea928f609b275/master.m3u8"
-  },
-  {
-    "t": "Différente (2025)",
-    "year": "2025",
-    "note": 4,
-    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/2uhAFBTnDmqiAtJOlFU53PoonYV.jpg",
+    "t": "Différente",
+    "id_tmdb": "1282255",
     "cat": "COMÉDIE",
-    "desc": "Katia, brillante documentaliste de 35 ans, fait preuve de singularité dans sa manière de vivre ses relations, toutes plus ou moins chaotiques. Sa participation à un nouveau reportage l’amène à mettre enfin un mot sur sa différence. Révélation qui va chambouler une vie déjà bien compliquée.",
-    "actors_pics": [{"name": "Jehnny Beth", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/lMSMHufDKEtTsKYuxDKcMZDtDb7.jpg"}, {"name": "Thibaut Évrard", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/imffvqFEZ3WmDd0bRuyeCXz3ILh.jpg"}, {"name": "Mireille Perrier", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/hgOD97FhLyqNzw5fDq1Rpg3qcuE.jpg"}, {"name": "Emmanuelle Schaaff", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/tYhKPE3wkbVQLzRIEUY82b9jjcx.jpg"}],
-    "trailer": "lT_vgobhA-E",
     "url": "https://stream01-hls.hulkcrush.org/vod/fd36efa5e79d5e4562c0d66a7bbc72076cfed66033c18ee1417124e7b81276ab/master.m3u8"
   },
   {
-    "t": "Desert Dawn (2025)",
-    "year": "2025",
-    "note": 4,
-    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/6MpAklfzhbIqonqt54MyGciDTjS.jpg",
+    "t": "Desert Dawn",
+    "id_tmdb": "1214041",
     "cat": "ACTION",
-    "desc": "Un nouveau shérif d'une petite ville et son adjoint réticent découvrent les mensonges et la corruption d'hommes d'affaires véreux et du cartel alors qu'ils enquêtent sur le meurtre d'une femme.",
-    "actors_pics": [{"name": "Kellan Lutz", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/pLzdFABlU6oS2BvlHlAN990woY1.jpg"}, {"name": "Cam Gigandet", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/kdSVRqCR0p8KZTvVkRccBLoim7L.jpg"}, {"name": "Chad Michael Collins", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/9lcEpAYRBCylYIVMZYXHqfmRzfP.jpg"}, {"name": "Texas Battle", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/zPzagAtKxbHKrQLAQ69KSYLZxjA.jpg"}],
-    "trailer": "b4Yjkl4fa5A",
     "url": "https://stream01-hls.hulkcrush.org/vod/d4d38a66fdb07dca087ede2b084ab9d67188fae63acef484e118bd0366529617/master.m3u8"
   },
   {
-    "t": "Des jours meilleurs (2025)",
-    "year": "2025",
-    "note": 4,
-    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/o7ZlC9fLjIp3CMYYV6CpzTgtAW8.jpg",
+    "t": "Des jours meilleurs",
+    "id_tmdb": "1268307",
     "cat": "COMÉDIE",
-    "desc": "A la suite d’un accident de voiture, Suzanne perd la garde de ses trois enfants. Elle n’a plus le choix et doit se soigner dans un centre pour alcooliques. A peine arrivée, elle y rencontre Alice et Diane, deux femmes au caractère bien trempé… Denis, éducateur sportif, va tenter de les réunir autour du même objectif : participer au rallye des Dunes dans le désert marocain. Il devra s’armer de beaucoup de patience et de pédagogie pour préparer cette improbable équipage à atteindre son objectif.",
-    "actors_pics": [{"name": "Valérie Bonneton", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/tHGojn1vMzGriINazQhMBBcG9u9.jpg"}, {"name": "Michèle Laroque", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/v4BquPOwY3z9tD3g8QW3yX288ou.jpg"}, {"name": "Sabrina Ouazani", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/zlUmASMbAwU61NNti9TKnM08tDc.jpg"}, {"name": "Clovis Cornillac", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/8wokcSilL7u4V8aKcagI7elKsgn.jpg"}],
-    "trailer": "_o7Sjba9g7g",
     "url": "https://stream01-hls.hulkcrush.org/vod/476221972af1fedd1476c693433ed500acf8f26224fe27f2a17b152f8057e023/master.m3u8"
   },
   {
-    "t": "De mauvaise foi (2025)",
-    "year": "2025",
-    "note": 3,
-    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/lyCsaVPE9DpLB2g7xL91pRwfOm5.jpg",
+    "t": "De mauvaise foi",
+    "id_tmdb": "1306354",
     "cat": "COMÉDIE",
-    "desc": "Un notaire vieille France doit impérativement sauver son château délabré et empêcher le mariage de sa fille avec un golden boy prétentieux. La fortune promise par une comtesse mourante à un jeune artiste bohème, pourrait régler tous ses problèmes. À condition que le futur héritier devienne un bon catholique, et tombe amoureux de la jolie fiancée.",
-    "actors_pics": [{"name": "Pascal Demolon", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/kjZp8Fzmf7NngYxQb6GdKJZECSG.jpg"}, {"name": "Philippe Duquesne", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/xbfJaGOn5k5tAJY5jUFnXjpopPy.jpg"}, {"name": "Herrade Von Meier", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/xTXpZUZOGYbb0z4oPUAzdMh1Ns7.jpg"}, {"name": "Gabriella Wright", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/gRu9HvASbIceRNvQU43pvKyYc0l.jpg"}],
-    "trailer": "NZZTIszsCh4",
     "url": "https://stream01-hls.hulkcrush.org/vod/42ec7b04344d229cfe3fdb1bdbeede5a1cc2f78ff173750cae0139b36fbe34aa/master.m3u8"
   },
   {
-    "t": "Complètement footus (2025)",
-    "year": "2025",
-    "note": 2,
-    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/rrcfOtI8Fa6LHhtuiuGw5fBeY4H.jpg",
+    "t": "Complètement footus",
+    "id_tmdb": "1305419",
     "cat": "COMÉDIE",
-    "desc": "Lorsqu'un joueur de fantasy foot disparaît le jour de son mariage, sa bande d'amis hétéroclites reconstitue le puzzle des événements qui ont conduit à son EVG de folie.",
-    "actors_pics": [{"name": "Giacomo Ferrara", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/7D6RNr8EE7XJHVB3mGun3wfXqQe.jpg"}, {"name": "Silvia D'Amico", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/d8TmCRsLktYGNSTDSQoxMzAgjm9.jpg"}, {"name": "Enrico Borello", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/pDx74sWAv0EyreDC3iRIkrcAs79.jpg"}, {"name": "Francesco Russo", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/ak1V5yJPPXO2m7T0amBu1Epq83W.jpg"}],
-    "trailer": "USYUkD0XSRE",
     "url": "https://stream01-hls.hulkcrush.org/vod/cbe9e917af2763716e3d56f54d61aa1ab624e90b2e12886860acd319f112d08d/master.m3u8"
-  }, 
+  },
   {
-    "t": "Creep 2 (2017)",
-    "year": "2017",
-    "note": 3,
-    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/xJVwvbQUDzmYtVvmXDknRhsTTTu.jpg",
+    "t": "Creep 2",
+    "id_tmdb": "466311",
     "cat": "HORREUR",
-    "desc": "Une artiste trouve la personne idéale pour créer une œuvre sensationnelle, mais le sujet de ses rêves révèle vite son côté machiavélique.",
-    "actors_pics": [{"name": "Mark Duplass", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/lRDf99rAfcdqt8Cqk4LsIT7XSD2.jpg"}, {"name": "Desiree Akhavan", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/xus5HH2qSyrP5SNK6516LVajg6.jpg"}, {"name": "Karan Soni", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/t3eNrzRKy3wTVCUiEp002UXbjxX.jpg"}, {"name": "Caveh Zahedi", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/lT0XuaVmnAIx9JY30giirlKOTBn.jpg"}],
-    "trailer": "664-_kukWpg",
     "url": "https://stream01-hls.hulkcrush.org/vod/f44f6d27696bbd80a2d4463752911f5dd134bf160ae4662b0bf69e0c2f9eda67/master.m3u8"
   },
   {
-    "t": "Creep (2004)",
-    "year": "2004",
-    "note": 3,
-    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/nH91MgIIqQxkEC47RRegnw2vIwf.jpg",
+    "t": "Creep",
+    "id_tmdb": "10010",
     "cat": "HORREUR",
-    "desc": "Londres, par une froide et triste nuit d'hiver...A minuit, au sortir d'une soirée chic copieusement arrosée, Kate guette vainement un taxi avant de se résoudre à prendre le dernier métro. Sous l'effet de l'alcool, la jeune femme ne tarde pas à s'assoupir.A son réveil, la rame est déserte... Affolée, Kate se dirige vers la sortie, mais les grilles sont déjà fermées. Un train s'arrête alors, elle y monte, quelque peu inquiète d'en être la seule occupante.Au beau milieu du tunnel, le convoi s'arrête brutalement, toutes les lumières s'éteignent... Et le cauchemar commence...",
-    "actors_pics": [{"name": "Franka Potente", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/aU6f9UemZsTkqKEG4l77zf6masg.jpg"}, {"name": "Sean Harris", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/jouyaTu0UuZMNBrADRRkCQX1VX1.jpg"}, {"name": "Vas Blackwood", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/7xxlJe5O9SyPLH0tXIK7WLd2iB1.jpg"}, {"name": "Ken Campbell", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/vnDf7qSyuZ5EsVPKNNeocvnA0Qo.jpg"}],
-    "trailer": "12RXgWoNPXU",
     "url": "https://stream01-hls.hulkcrush.org/vod/99299750524a6ab1970449f773962877d58bfbf2803ae9a86bf08a2ddf7697de/master.m3u8"
   },
   {
-    "t": "Conan le barbare (1982)",
-    "year": "1982",
-    "note": 3,
-    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/qwnXGJCAMYrJ4KZo5d5zgCeMEjc.jpg",
+    "t": "Conan le barbare",
+    "id_tmdb": "9387",
     "cat": "AVENTURE",
-    "desc": "Encore enfant, Conan assiste impuissant au massacre de ses parents par le cruel Thulsa Doom, et est réduit en esclavage. Enchaîné à la roue de douleur, il y acquiert une musculature peu commune qui lui permet, adulte, de gagner sa liberté comme lutteur. Désireux d’assouvir sa soif de vengeance, il part accompagné de deux voleurs, Subotai et Valeria, à la recherche de Thulsa Doom…",
-    "actors_pics": [{"name": "Arnold Schwarzenegger", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/2marNcjIfCUE5Z2HyrcEiJHPbsA.jpg"}, {"name": "James Earl Jones", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/oqMPIsXrl9SZkRfIKN08eFROmH6.jpg"}, {"name": "Max von Sydow", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/u16BsGyT6v9yuO7wWAF62NayDth.jpg"}, {"name": "Sandahl Bergman", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/brMLA2WKHDMPwjyYHdRNgEtVwat.jpg"}],
-    "trailer": "lsKZjItSprw",
     "url": "https://stream01-hls.hulkcrush.org/vod/663247e5b61579f3b9b65f3d4ec637c16f201fd67779ebc823a25043b6f1a8f0/master.m3u8"
   },
   {
-    "t": "Collatéral (2004)",
-    "year": "2004",
-    "note": 4,
-    "img": "https://media.themoviedb.org/t/p/w220_and_h330_face/x6OIJWkwe6Kj4pQXTkhhBb7gluA.jpg",
+    "t": "Collatéral",
+    "id_tmdb": "1538",
     "cat": "DRAME",
-    "desc": "Max, chauffeur de taxi, prend en charge un homme, apparemment businessman, qui lui offre 600 dollars pour le conduire. Mais la promesse d'argent facile tourne au cauchemar lorsque Max réalise que son client est un assassin.",
-    "actors_pics": [{"name": "Tom Cruise", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/maf8PhSvDCdEwjEMbYfGpojR5RP.jpg"}, {"name": "Jamie Foxx", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/25zzvFA6yx2Q9BYnugsbd4JWDfu.jpg"}, {"name": "Jada Pinkett Smith", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/3RyvVVSlgRbZANDFkYiAsRMaHW.jpg"}, {"name": "Mark Ruffalo", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/5GilHMOt5PAQh6rlUKZzGmaKEI7.jpg"}],
-    "trailer": "-JDf2zIFgO8",
     "url": "https://stream01-hls.hulkcrush.org/vod/7ac56668bae534fabcf361ef0ec8334923cc9b967cc1f337d6515390ebc1082b/master.m3u8"
   },
   {
-    "t": "Coka Chicas (2025)",
-    "year": "2025",
-    "note": 3,
-    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/fL5TReWJO7dHR3BdJxJ9g93mLLC.jpg",
+    "t": "Coka Chicas",
+    "id_tmdb": "1314641",
     "cat": "THRILLER",
-    "desc": "Sarah, Jessica et Chanel, trois amies inséparables issues de la banlieue parisienne, sont venues faire les mules dans une île des Caraïbes pour ramener de la drogue en France et enfin ouvrir leur business de bar à ongles. Mais le voyage est bouleversé lorsque, après s'être fait arrêtée à l'aéroport, Jessica disparaît totalement des radars.",
-    "actors_pics": [{"name": "Zoé Marchal", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/cAc417DqXCnygDvGTKE3K1Wb3hn.jpg"}, {"name": "Fadily Camara", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/thLH316iBF0M07isAzmwUv4HfsT.jpg"}, {"name": "Eva Huault", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/4Ovo0oNkV6KLphyhgT30tY6UH0.jpg"}, {"name": "Vincent Regan", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/7VHu79GciN5QlQTmWdBS86eE2mu.jpg"}],
-    "trailer": "rVQ6Dz2O3H0",
     "url": "https://stream01-hls.hulkcrush.org/vod/5ffc4ab721634238b1b45280717069d9da3d02dd58f14fafec9f223eff9dbe69/master.m3u8"
   },
   {
-    "t": "Cléo de 5 à 7 (1962)",
-    "year": "1962",
-    "note": 4,
-    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/fwZuuo5MI9lncncLTbfIWoJ7l6Q.jpg",
+    "t": "Cléo de 5 à 7",
+    "id_tmdb": "499",
     "cat": "DRAME",
-    "desc": "Cléo, belle et chanteuse, attend les résultats d'une analyse médicale. De la superstition à la peur, de la rue de Rivoli au Café de Dôme, de la coquetterie à l'angoisse, de chez elle au Parc Montsouris, Cléo vit quatre-vingt-dix minutes particulières. Son amant, son musicien, une amie puis un soldat lui ouvrent les yeux sur le monde.",
-    "actors_pics": [{"name": "Corinne Marchand", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/8I4ZleBGGTCJ5DAWy8W9TRyfBaB.jpg"}, {"name": "Antoine Bourseiller", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/2USOaivk1WDnWgKSzidiqcAWocm.jpg"}, {"name": "Dominique Davray", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/gZksti7NQdHGKgxrIpE3G2EXB2l.jpg"}, {"name": "Dorothée Blanck", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/kCJmGWnplulFBEGXB5ZQvu8A1Q.jpg"}],
-    "trailer": "ifcyxdCuNM8",
     "url": "https://stream01-hls.hulkcrush.org/vod/9e599a37ea75940c202fe932dcc8e2bd0bfa79bbe92eabf24001ebe7095ba100/master.m3u8"
   },
   {
-    "t": "Breaking the Waves (1996)",
-    "year": "1996",
-    "note": 4,
-    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/xWN0uwOJV11Hh5q1IAQmP8WK8cO.jpg",
+    "t": "Breaking the Waves",
+    "id_tmdb": "139",
     "cat": "DRAME",
-    "desc": "Au début des années soixante-dix sur la côte nord-ouest de l’Écosse, la communauté d'une petite ville célèbre à contrecœur le mariage de Bess, jeune fille naïve et pieuse, et de Jan, homme d'âge mûr qui travaille sur une plate-forme pétrolière. Leur bonheur va être brisé par un accident qui va paralyser Jan.",
-    "actors_pics": [{"name": "Emily Watson", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/bd0qiJXHoLNpkCqABsh67AKRtjC.jpg"}, {"name": "Stellan Skarsgård", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/mW7xmtGV4y79kQGn0zkKVGDMAmw.jpg"}, {"name": "Katrin Cartlidge", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/cAG4WHKsLV2g08hnuZncy94HGOK.jpg"}, {"name": "Jean-Marc Barr", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/65aLM2ZvBjJu2JWGSrTGHqXyc8w.jpg"}],
-    "trailer": "Ws2eCDlVr6s",
     "url": "https://stream01-hls.hulkcrush.org/vod/286e84030a5ff12211084af957f02a371b9a5adec051e01297d3f76cc7e5af8a/master.m3u8"
   },
   {
-    "t": "Boyz n the Hood : La loi de la rue (1991)",
-    "year": "1991",
-    "note": 4,
-    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/pPhJFt6fqaJjHwnk43oPSFFpyum.jpg",
+    "t": "Boyz n the Hood",
+    "id_tmdb": "650",
     "cat": "DRAME",
-    "desc": "Le passage de l'adolescence a l'age d'homme pour trois heros de la rue d'une banlieue de Los Angeles. Premier film de John Singleton fortement inspire de sa propre experience.",
-    "actors_pics": [{"name": "Cuba Gooding Jr.", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/2JguzbpOXoTGzSmLbWFlulKyyAe.jpg"}, {"name": "Laurence Fishburne", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/2GbXERENPpl5MmlqOLlPVaVtifD.jpg"}, {"name": "Ice Cube", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/9EghwabQ1wIQT4oN69qtPlzqGn4.jpg"}, {"name": "Morris Chestnut", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/lbWJ1mIgAamsREnbKLoj1GdH0sr.jpg"}],
-    "trailer": "ZI-qlj-4cpk",
     "url": "https://stream01-hls.hulkcrush.org/vod/48ff30ecaa566178f835b86f55fa93735483882677826be9e74739dcb6e8295f/master.m3u8"
   },
   {
-    "t": "Best of the best 4 : Le feu aux poudres (1998)",
-    "year": "2098",
-    "note": 2,
-    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/kA2gKZqzVyC1zN2Xs8j7nlr8LAK.jpg",
+    "t": "Best of the best 4",
+    "id_tmdb": "25254",
     "cat": "ACTION",
-    "desc": "Longtemps après la Guerre Froide, les tensions restent vives entre les Etats-Unis et la Russie. Des trafiquants russes projettent en effet de subtiliser un puissant logiciel aux américains... Malheureusement pour eux, leur plan tourne court lorsqu'ils découvrent que c'est Tommy Lee qui est en charge de protéger le programme. Cet expert en arts martiaux ne compte pas se laisser faire !",
-    "actors_pics": [{"name": "Ernie Hudson", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/kgAdQA2ItCDVvKXufeDHc6Omiso.jpg"}, {"name": "Phillip Rhee", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/8DPwKPYUWqpHO2BBbYR3D9HlC1j.jpg"}, {"name": "Tobin Bell", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/y5rppj4alNn2dYXR94DGp08baAx.jpg"}, {"name": "Thure Riefenstein", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/riggCAkCjg8t6KGWoGJe5NxEwYz.jpg"}],
-    "trailer": "Kx4aYK3w-8Q",
     "url": "https://stream01-hls.hulkcrush.org/vod/6d7319cabc1bd82dfc1fbb93c1391b9fd3ea9a481486976cf64c91c701b6bffe/master.m3u8"
   },
   {
-    "t": "Best of the Best 3: No Turning Back (1995)",
-    "year": "2095",
-    "note": 2,
-    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/kUZ2Hbj2Gjpou5uQVzgqh2ELZiK.jpg",
+    "t": "Best of the Best 3",
+    "id_tmdb": "25139",
     "cat": "ACTION",
-    "desc": "Un expert en arts martiaux se porte au secours d'un enseignant qui lutte contre une organisation suprémaciste.",
-    "actors_pics": [{"name": "Christopher McDonald", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/gK1XhbfD9Xd8s3VXRPpgDCluyZp.jpg"}, {"name": "Phillip Rhee", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/8DPwKPYUWqpHO2BBbYR3D9HlC1j.jpg"}, {"name": "Gina Gershon", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/khuZCNBmgNJ5jC4ejCkcsc8k79p.jpg"}, {"name": "Mark Rolston", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/hcrNRIptYMRXgkJ9k76BlQu6DQp.jpg"}],
-    "trailer": "XCWOoDEV0Fo",
     "url": "https://stream01-hls.hulkcrush.org/vod/2cea5df926849f8db3f9f2b0eaf40748aef8d8aaee88663953d00315ad6650d1/master.m3u8"
   },
   {
-    "t": "Best of the best 2 : Le défi mortel (1993)",
-    "year": "2093",
-    "note": 3,
-    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/vCVKYnyZKmd2nSwfQhPHSeNbwFF.jpg",
+    "t": "Best of the best 2",
+    "id_tmdb": "25138",
     "cat": "ACTION",
-    "desc": "À Las Vegas, dans les entrailles d'une discothèque, une salle baptisée Coliseum abrite illégalement des combattants d'une rare violence. Véritable arène où tous les coups sont permis, elle accueille chaque soir des gladiateurs des temps modernes, qui se mesurent entre eux sous les yeux d'un public privilégié. Brakus, maître et propriétaire des lieux, est un lutteur massif et expérimenté, qui accepte de remettre sa couronne en jeu face aux plus redoutables. Mais sa hargne meurtrière et ses coups bas ont déjà fait de nombreuses victimes. Parmi elles, Travis Brickley, ancien membre de l'équipe nationale de karaté, que ses deux amis Tommy Lee et Alex Grady ont décidé de venger.",
-    "actors_pics": [{"name": "Eric Roberts", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/NiWg1TaUcal7xn1ZQeyA2dLd5F.jpg"}, {"name": "Phillip Rhee", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/8DPwKPYUWqpHO2BBbYR3D9HlC1j.jpg"}, {"name": "Chris Penn", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/rePKftsRntg7gO8vPzDDAOddXmC.jpg"}, {"name": "Edan Gross", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/tAnwu7HgNEyZNrfukuxH4U0vOdc.jpg"}],
-    "trailer": "4eC0SCOG8iE",
     "url": "https://stream01-hls.hulkcrush.org/vod/65b26d016bd1b08529653602e942a8bbee96762dd6a6378ced1d7a9829722d69/master.m3u8"
   },
   {
-    "t": "Best of the Best (1989)",
-    "year": "2089",
-    "note": 3,
-    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/jB1I9LihBFKzJlRhpOPzbEXdgKc.jpg",
+    "t": "Best of the Best",
+    "id_tmdb": "13697",
     "cat": "ACTION",
-    "desc": "Pour affronter l'équipe Coréenne en compétition officielle de Taekwondo, cinq champions de Karaté americains sont sélectionnés pour suivre un entrainement intensif. Tous ont leurs soucis personnels, et avant d'affronter la cruauté des Coréens, ils auront à supporter la rigueur de l'entraineur Frank Couzo...",
-    "actors_pics": [{"name": "Eric Roberts", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/NiWg1TaUcal7xn1ZQeyA2dLd5F.jpg"}, {"name": "Phillip Rhee", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/8DPwKPYUWqpHO2BBbYR3D9HlC1j.jpg"}, {"name": "James Earl Jones", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/oqMPIsXrl9SZkRfIKN08eFROmH6.jpg"}, {"name": "Sally Kirkland", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/bAjUA08z6k8FZ3bu5QWcMWWVdMQ.jpg"}],
-    "trailer": "E05rRSuurhQ",
     "url": "https://stream01-hls.hulkcrush.org/vod/1f1a2e5a4f1c739b0c4b2b4f93fc2a88cb888767ffc5ef6d49285339d7d6b3d2/master.m3u8"
   },
   {
-    "t": "Atoman (2025)",
-    "year": "2025",
-    "note": 1,
-    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/z2jq9twpkiaQnbaOYHrAQFZTdux.jpg",
+    "t": "Atoman",
+    "id_tmdb": "810143",
     "cat": "AVENTURE",
-    "desc": "Quand Hakim, un hacker de renommée internationale, échappe miraculeusement à une mort brutale, il se retrouve confronté à son destin. En lui s’est réveillé un pouvoir sans limite dont dépend désormais la survie de l’humanité.",
-    "actors_pics": [{"name": "Youssef Akdim", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/nR0R9f3LfcO2CJp1gU2B6jWuaYt.jpg"}, {"name": "Samy Naceri", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/yT3QZbpp6Pd6xJ2FzxESQ7sDudm.jpg"}, {"name": "Sarah Perles", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/bOu6fO72ztIkb1loPX46A3Z1Ooq.jpg"}, {"name": "Fatima Herandi Raouya", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/loPS803u2MDubbvk29xD5WumNFd.jpg"}],
-    "trailer": "jfnAKI8zNbo",
     "url": "https://stream01-hls.hulkcrush.org/vod/cb96035e8c5edfe31f63b5c58575df98ab3f15bc49d7eccd09ff7ba18ddf45af/master.m3u8"
   },
   {
-    "t": "Anges & Cie (2025)",
-    "year": "2025",
-    "note": 3,
-    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/d3AO6twCId5iYwaU4FM4cSpZaVp.jpg",
+    "t": "Anges & Cie",
+    "id_tmdb": "1342671",
     "cat": "COMÉDIE",
-    "desc": "Nous ne pouvons pas les voir. Ils sont toujours à nos côtés sans que nous le sachions. Ce sont nos protecteurs et nos guides... Bienvenue dans le monde des anges gardiens ! Paul et Léa n’auraient jamais dû se rencontrer. Mais depuis, ils sont irrésistiblement attirés l’un par l’autre. Raphaëlle et Gabriel, deux anges que tout oppose, sont obligés de faire équipe pour tout remettre en ordre et empêcher ces deux humains de tomber amoureux. Si les anges échouent, Raphaëlle l’ambitieuse pourra dire adieu à sa promotion d’Archange. Quant à Gabriel le fumiste, il sera déchu et devra passer l’éternité sur Terre. L’enfer…",
-    "actors_pics": [{"name": "Élodie Fontan", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/1uFWqxdrKxBa0utLqf55aq8ASzP.jpg"}, {"name": "Romain Lancry", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/6R0FtemGt29oxQuZzCTrsSvGc6f.jpg"}, {"name": "Julien Pestel", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/kVXB4pPd9SzrI7HZTLgsJdmUKOQ.jpg"}, {"name": "Shirine Boutella", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/4qBT877sIjMLycDBmahEpL1nwEk.jpg"}],
-    "trailer": "WiiypN-p6eA",
     "url": "https://stream01-hls.hulkcrush.org/vod/4fe40da76424e8b6ceb3b32fd076d7f495efc4b50f4d9580f49a9bacd4e987b6/master.m3u8"
   },
   {
-    "t": "Ali Baba et les 40 voleurs (2007)",
-    "year": "2007",
-    "note": 3,
-    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/wkPk6IsaZTGyoJ3aCViLX8Qj7P5.jpg",
+    "t": "Ali Baba et les 40 voleurs",
+    "id_tmdb": "54823",
     "cat": "COMÉDIE",
-    "desc": "Ali Baba et les Quarante Voleurs est un téléfilm français en deux parties réalisé par Pierre Aknine et diffusé en 2007. Il s'agit d'une adaptation du conte du même nom issu des Mille et Une Nuits.",
-    "actors_pics": [{"name": "Gérard Jugnot", "img": "https://upload.wikimedia.org/wikipedia/commons/c/c5/Paris_-_Salon_du_livre_de_Paris_2017_-_G%C3%A9rard_Jugnot_-_003.jpg"}, {"name": "Leïla Bekhti", "img": "https://upload.wikimedia.org/wikipedia/commons/b/bd/Le%C3%AFla_Bekhti_Cannes_2018.jpg"}, {"name": "Saïda Jawad", "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Photo_Sa%C3%AFda.tif/lossless-page1-500px-Photo_Sa%C3%AFda.tif.png"}, {"name": "Michèle Bernier", "img": "https://upload.wikimedia.org/wikipedia/commons/a/a2/Mich%C3%A8le_Bernier_Cannes.jpg"}],
-    "trailer": "Y5NOrIrddB4",
     "url": "https://stream01-hls.hulkcrush.org/vod/041eb41e11b28e7fd20df184c8b7db084bb63f6314af9f3a0f76f3ccb5d8c7d2/master.m3u8"
   },
   {
-    "t": "A Line of Fire (2025)",
-    "year": "2025",
-    "note": 2,
-    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/6I5sZz7CMskXyaNK4mcdf25HRyq.jpg",
+    "t": "A Line of Fire",
+    "id_tmdb": "1214040",
     "cat": "ACTION",
-    "desc": "Jack Conry alias « Cash » est un ancien agent du FBI chevronné. Après le décès de sa femme, il a laissé son ancienne vie derrière lui. Mais lorsque la nièce de son ancien partenaire n'a d'autre choix que de faire appel à lui, il reprend immédiatement du service. Danger, corruption, sombres intrigues… le monde a changé. Contrairement à l'efficacité redoutable de ses méthodes !",
-    "actors_pics": [{"name": "David A.R. White", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/q5YGId1d2PlHMZPOCjrZGKs9VNG.jpg"}, {"name": "Cuba Gooding Jr.", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/2JguzbpOXoTGzSmLbWFlulKyyAe.jpg"}, {"name": "Katrina Bowden", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/ykdL2JKteaBexfDiS9jp9Msyori.jpg"}, {"name": "Jason Patric", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/iv21ZjE90f9QNiNONKF9Lp6ZD68.jpg"}],
-    "trailer": "JNBabDdXSAA",
     "url": "https://stream01-hls.hulkcrush.org/vod/05cf059ef4df4691f30b9ea08d08bb1282d2f414e4d1608ecea006f8f039c925/master.m3u8"
   },
   {
-    "t": "Together (2025)",
-    "year": "2025",
-    "note": 3,
-    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/5xJ0fOQOzJKzWsVL1R88maJpMqN.jpg",
+    "t": "Together",
+    "id_tmdb": "1198642",
     "cat": "HORREUR",
-    "desc": "Établis depuis peu à la campagne, Tim et Millie font une première randonnée dans la forêt voisine. Le temps virant à l'orage, le musicien glisse dans une crevasse, en entraînant sa petite amie institutrice avec lui. Préférant attendre la fin de l'averse avant de remonter à la surface, le couple passe la nuit dans cette caverne où ils épanchent leur soif à même une source. Mais les jours suivants, Tim, puis Millie, sont l'objet de mutations physiques aussi terrifiantes qu'inexplicables, qui mettent à l'épreuve leur relation déjà chancelante.",
-    "actors_pics": [{"name": "Dave Franco", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/d0I1BgNBAVvLJEDSfmyNVjYWPZE.jpg"}, {"name": "Alison Brie", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/uu16GiwYblS6IJV3o4qFSLWKXOC.jpg"}, {"name": "Damon Herriman", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/hzh9i0BlAEQDAhJxEgkEcBxMlJv.jpg"}, {"name": "Mia Morrissey", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/wAHQYFi1FvvucXacTvbWeaNVqov.jpg"}],
-    "trailer": "4jyQ_fXkiYc",
     "url": "https://stream01-hls.hulkcrush.org/vod/2cd525ea58d1d4203d74bd2b9ea60d9f761221286112c3fa10c2260f13962843/master.m3u8"
   },
   {
-    "t": "Y a-t-il un flic pour sauver le monde ? (2025)",
-    "year": "2025",
-    "note": 3,
-    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/dIOzuzx0CLYpNLx1Yf44cykyYX5.jpg",
+    "t": "Y a-t-il un flic pour sauver le monde ?",
+    "id_tmdb": "1282701",
     "cat": "COMÉDIE",
-    "desc": "Frank Drebin est le fils du légendaire inspecteur gaffeur du même nom. Son enquête sur un accident d’auto mortel l’amène à rencontrer la séduisante Beth Davenport, sœur de l’infortunée victime. Leur investigation les conduit à Richard Cane, le richissime et génial inventeur d’une automobile électrique révolutionnaire. Au fil de son enquête, Frank découvre que Cane fomente un sombre complot : utiliser une fréquence sonore inaudible pour renvoyer l'humanité à l'état sauvage.",
-    "actors_pics": [{"name": "Liam Neeson", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/g0iIEyt9ILiKTG0g8K69US5VtLy.jpg"}, {"name": "Pamela Anderson", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/uqZP8OUpPOoRG9kFp38OJSh8TiT.jpg"}, {"name": "Paul Walter Hauser", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/nmBdzJpfHMRHsT3VrjyXAxMFLZA.jpg"}, {"name": "Danny Huston", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/mNz9t7MNANopavbLgcsZMMQBJ0u.jpg"}],
-    "trailer": "KutZZylm0O8",
     "url": "https://stream01-hls.hulkcrush.org/vod/002ded645010ae64e8023d8557501a7330319d9dd9884df7f3ee0d9160572c69/master.m3u8"
   },
   {
-    "t": "Évanouis (2025)",
-    "year": "2025",
-    "note": 3,
-    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/3eRJV97oZDY6LORwPNdWlfdPLnd.jpg",
+    "t": "Évanouis",
+    "id_tmdb": "1314640",
     "cat": "HORREUR",
-    "desc": "En plein cœur de la nuit, les 17 enfants d'une classe de l'école primaire de Maybrook aux États-Unis se réveillent à une heure précise et s'enfuient de leurs foyers. Mus par une force inébranlable, ils sont partis à la course et personne ne sait où ils s'en sont allés. Tous ont disparu, sauf un. Alex est le seul élève restant. Paniqués et inquiets, les parents soupçonnent l'enseignante Justine Gandy d'avoir manigancé quelque chose.",
-    "actors_pics": [{"name": "Julia Garner", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/ud1RXbvW70J89iqeic7no8olxvb.jpg"}, {"name": "Josh Brolin", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/sX2etBbIkxRaCsATyw5ZpOVMPTD.jpg"}, {"name": "Alden Ehrenreich", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/2Ed8m1GmrElvtIQwX2K1CaAW7t5.jpg"}, {"name": "Austin Abrams", "img": "https://media.themoviedb.org/t/p/w375_and_h375_face/gG4KsGZDw3tO2R66cn9VdOo8uSu.jpg"}],
-    "trailer": "EekFYCmo0eU",
     "url": "https://stream01-hls.hulkcrush.org/vod/16221d9bb8d3a8dfdc63bf897eaac51e2618ccc65fb75770601e457c1f44f08e/master.m3u8"
   },
   {
-    "t": "Yoroï (2025)",
-    "year": "2025",
-    "note": 3,
-    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/39DriTpvzihb8OYuL039IGPWNZ7.jpg",
+    "t": "Yoroï",
+    "id_tmdb": "1303867",
     "cat": "AVENTURE",
-    "desc": "Après une dernière tournée éprouvante, Aurélien décide de s'installer au Japon avec sa femme Nanako, enceinte de leur premier enfant. Alors que le jeune couple emménage dans une maison traditionnelle dans la campagne japonaise, Aurélien découvre dans un puits une armure ancestrale qui va réveiller d'étranges créatures, les Yokaïs.",
-    "actors_pics": [{"name": "Orelsan", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/kEaWkRAdgTDm59bLs4nAfajIHSV.jpg"}, {"name": "Clara Choï", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/xoYLNUN6PbCSe2hLPAm5xtd6ubU.jpg"}, {"name": "Kazuya Tanabe", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/HaSwo4Yp8x1VtYU54UoeDvUfG4.jpg"}, {"name": "Skread", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/4fPKtesETD0NOMasPJGJkv1EnDB.jpg"}],
-    "trailer": "DSjh-MrQrA8",
     "url": "aHR0cHM6Ly9hcmNoaXZlLm9yZy9kb3dubG9hZC8xMjc1ODU2LzEyNzU4NTYuaWEubXA0"
   },
   {
-    "t": "Cash Out 2 (2025)",
-    "year": "2025",
-    "note": 2,
-    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/vD3Cqh5kXjPVNYK6cZjw54E4LO7.jpg",
+    "t": "Cash Out 2",
+    "id_tmdb": "1239870",
     "cat": "ACTION",
-    "desc": "Après leur dernier braquage, Mason Goddard et son équipe ont tiré un trait sur le crime et savourent une vie tranquille. Mais lorsque Amelia, la compagne du voleur, est enlevée par les hommes de Salazar, un criminel redouté, Mason et ses experts sont forcés d'organiser le braquage du casino Scarlet Pearl...",
-    "actors_pics": [{"name": "John Travolta", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/ap8eEYfBKTLixmVVpRlq4NslDD5.jpg"}, {"name": "Gina Gershon", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/khuZCNBmgNJ5jC4ejCkcsc8k79p.jpg"}, {"name": "Lukas Haas", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/6LNGu3o2aBiYNTDkbXMDIGyQtBh.jpg"}, {"name": "Quavo", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/xnNpJvPluhit6LFxLEFlbZwHtoJ.jpg"}],
-    "trailer": "oxCps14N4JI",
     "url": "aHR0cHM6Ly9hcmNoaXZlLm9yZy9kb3dubG9hZC8xMjM5ODcwLzEyMzk4NzAuaWEubXA0"
   },
   {
-    "t": "Les Justiciers de l'Ombre (2025)",
-    "year": "2025",
-    "note": 3,
-    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/z716KiQ1HAgyPq0CcS3bVhVNGob.jpg",
-    "cat": "THRILLER",
-    "desc": "À l'aube de la guerre froide, Frank and Tommy, deux marshals américains, poursuivent Benjamin Bonney, un meurtrier recherché, dans les déserts du Nevada.",
-    "actors_pics": [{"name": "Jacob Keohane", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/vrkfGjx0Pk8nx0GwLeCgS8hYoSP.jpg"}, {"name": "Jackson Rathbone", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/bTf1lKi9JpIryUgd2L5PWZaF8kZ.jpg"}, {"name": "Dermot Mulroney", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/zemTC606JcuMgIGbJMYAocrS5Gm.jpg"}, {"name": "Harvey Keitel", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/7P30hza1neYWW3r7rSQOC736K2Z.jpg"}],
-    "trailer": "",
-    "url": "aHR0cHM6Ly9hcmNoaXZlLm9yZy9kb3dubG9hZC8xMjQ0MTAzLzEyNDQxMDMuaWEubXA0"
-  },
-  {
-    "t": "Hurlevent (2026)",
-    "year": "2026",
-    "note": 3,
-    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/yEa8UQA71rjKhCq04mATDNOIT2B.jpg",
+    "t": "Hurlevent",
+    "id_tmdb": "1282700",
     "cat": "ROMANCE",
-    "desc": "Sur les landes balayées par le vent du Yorkshire, la passion dévorante entre Catherine Earnshaw et Heathcliff se transforme en une obsession destructrice, bouleversant leurs vies et celles de leur entourage.",
-    "actors_pics": [{"name": "Margot Robbie", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/8LqG2N6j98lFGMpuYsRUAhOunSd.jpg"}, {"name": "Jacob Elordi", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/qZNRPWCP2c5d0YaYLTzHXU9Rdoe.jpg"}, {"name": "Hong Chau", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/yGEw6uiSUBo838HkiCARs4BR40y.jpg"}, {"name": "Alison Oliver", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/4hP6aIZHsUxfcPC76JPBLssqNuZ.jpg"}],
-    "trailer": "mJza3D3YMlw",
     "url": "aHR0cHM6Ly9hcmNoaXZlLm9yZy9kb3dubG9hZC8xMjgyNzAxLzEyODI3MDEuaWEubXA0"
   },
   {
-    "t": "Toaster (2026)",
-    "year": "2026",
-    "note": 3,
-    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/cbYyWHc1dL1bfwEJbaMYDYKgWG2.jpg",
+    "t": "Toaster",
+    "id_tmdb": "1285585",
     "cat": "COMÉDIE",
-    "desc": "Un homme radin tente de récupérer le grille-pain qu'il a offert à un couple qui a annulé son mariage… et se retrouve malencontreusement mêlé à un meurtre.",
-    "actors_pics": [{"name": "Rajkummar Rao", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/ttBY7Y8x4NCpXfGS9Tc1NN8ISos.jpg"}, {"name": "Sanya Malhotra", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/sQ0VIqGLecfpwYayO05Z7NC32yN.jpg"}, {"name": "Archana Puran Singh", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/uc6QJNnT8q0wNnZOZi0QW2hE1wq.jpg"}, {"name": "Upendra Limaye", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/vFELR5TiBfc6LkLvI5kC5lpEnHv.jpg"}],
-    "trailer": "h1Q_Oykycns",
     "url": "aHR0cHM6Ly9pYTYwMDgwNC51cy5hcmNoaXZlLm9yZy8xOS9pdGVtcy8xMjg1NTg1LzEyODU1ODUuaWEubXA0"
   },
   {
-    "t": "Scream 7 (2026)",
-    "year": "2026",
-    "note": 3,
-    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/j6Y7vqULt8tRlXVFXHK5aj3nCo4.jpg",
+    "t": "Scream 7",
+    "id_tmdb": "1162444",
     "cat": "HORREUR",
-    "desc": "Lorsqu’un nouveau Ghostface surgit dans la paisible ville où Sidney Prescott a reconstruit sa vie, ses pires cauchemars refont surface. Alors que sa fille devient la prochaine cible, Sidney n’a d’autre choix que de reprendre le combat. Déterminée à protéger les siens, elle doit alors affronter les démons de son passé pour tenter de mettre fin une bonne fois pour toutes au bain de sang.",
-    "actors_pics": [{"name": "Neve Campbell", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/zQzNg6Kiufj2VCltprI6jilNtl3.jpg"}, {"name": "Courteney Cox", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/cSOORhCRPJiwKghozXVXrOBi3Tp.jpg"}, {"name": "Isabel May", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/RJ4djIbfvUHXCCgniiAi0ebhED.jpg"}, {"name": "Jasmin Savoy Brown", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/yWaCA2iKmVps20SFxwiB1DvbN6j.jpg"}],
-    "trailer": "Lvp_6uzL9q8",
     "url": "aHR0cHM6Ly9hcmNoaXZlLm9yZy9kb3dubG9hZC8xMjgyOTIxXzIwMjYwNC8xMjgyOTIxLmlhLm1wNA=="
   },
   {
-    "t": "Le Comte de Monte-Cristo (2024)",
-    "year": "2024",
-    "note": 4,
-    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/g7kiprYdXxaYCZABWQwTWAgRYjl.jpg",
+    "t": "Le Comte de Monte-Cristo",
+    "id_tmdb": "1041634",
     "cat": "AVENTURE",
-    "desc": "Victime d’un complot, le jeune Edmond Dantès est arrêté le jour de son mariage pour un crime qu’il n’a pas commis. Après quatorze ans de détention au château d’If, il parvient à s’évader. Devenu immensément riche, il revient sous l’identité du comte de Monte-Cristo pour se venger des trois hommes qui l’ont trahi.",
-    "actors_pics": [{"name": "Pierre Niney", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/ahICOyV41nhJ2q9LaVaHOridn2m.jpg"}, {"name": "Bastien Bouillon", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/8ksm25v40MS2p2y0EyyNrxdt7it.jpg"}, {"name": "Anaïs Demoustier", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/kObYOu3UYkNcQGg1gnl4xitwhNc.jpg"}, {"name": "Laurent Lafitte", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/9mTtfK5F9WMoYqvUvqlugnsX6SS.jpg"}],
-    "trailer": "u0YnbsyvGS0",
     "url": "aHR0cHM6Ly9zdHJlYW0wMi1tcDR3Lmh1bGtjcnVzaC5vcmcvdmlkZW9zLzBhYTgxODQ3NzFmYjAwMTllYWJhN2U5ZDA4ZWJhNjdiMmUxOWQzNTg4MjA2N2Q3YjFlMjBiZGFmOTkwMGQyNjAubXA0"
   },
   {
-    "t": "The Revenant (2015)",
-    "year": "2015",
-    "note": 4,
-    "img": "https://image.tmdb.org/t/p/original/AsDto68FNWNXD15Ov0yMXASJiSB.jpg",
+    "t": "The Revenant",
+    "id_tmdb": "281957",
     "cat": "WESTERN",
-    "desc": "Dans une Amérique profondément sauvage, le trappeur Hugh Glass est sévèrement blessé et laissé pour mort par un traître de son équipe, John Fitzgerald. Avec sa seule volonté pour unique arme, Glass doit affronter un environnement hostile, un hiver brutal et des tribus guerrières, dans une inexorable lutte pour sa survie, portée par un intense désir de vengeance.",
-    "actors_pics": [{"name": "Leonardo DiCaprio", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/wo2hJpn04vbtmh0B9utCFdsQhxM.jpg"}, {"name": "Tom Hardy", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/d81K0RH8UX7tZj49tZaQhZ9ewH.jpg"}, {"name": "Domhnall Gleeson", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/a63BgOBKzJ9XPaLFyu7u5Ge3REG.jpg"}, {"name": "Will Poulter", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/9blYMaj79VGC6BHTLmJp3V5S8r3.jpg"}],
-    "trailer": "S2MKo4pOphM",
     "url": "aHR0cHM6Ly9zdHJlYW0wMi1tcDR3Lmh1bGtjcnVzaC5vcmcvdmlkZW9zLzcwNmE3NWQ3MWVmYzYwZGU4YWJhM2ZkZWQ4ZjA5YmVkMmY4NDU4ZWEyOTQ0M2ZmMGNjMGNjYThkNmRlNDdjNzUubXA0"
   },
   {
-    "t": "# Pire Soirée (2017)",
-    "year": "2017",
-    "note": 2,
-    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/6nRd8EVM2QGDkkv97a4HZCqjsVR.jpg",
+    "t": "# Pire Soirée",
+    "id_tmdb": "399170",
     "cat": "DRAME",
-    "desc": "Cinq amies qui se sont connues à l’université se retrouvent dix ans après pour un week-end entre célibataires à Miami. Une seule règle : tout est permis. Mais avec ce qui arrive à un strip-teaser à cause d’elles, la petite fête va partir en vrille… Que faire face à la gravité de la situation ? Comment s’en sortir ? D’idées stupides en solutions loufoques, c’est l’escalade dans le délire. Au final, si elles s’en sortent, les cinq filles seront plus proches que jamais…",
-    "actors_pics": [{"name": "Scarlett Johansson", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/6bBCPmc55gzP7TR9Th4WbykrYd0.jpg"}, {"name": "Jillian Bell", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/v3oJlWGjdV3aHNXtGjWea3X1Tov.jpg"}, {"name": "Zoë Kravitz", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/hJKmhbuzDjmfw2nPBDWGbLagj16.jpg"}, {"name": "Ilana Glazer", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/etW0YsMvj67bSRuJCsevpAOLsWf.jpg"}],
-    "trailer": "CcHjuT5qdRc",
     "url": "https://stream01-hls.hulkcrush.org/vod/f07e6634c1359e6a5e809eba46e283dc82e17964de3915022cf2745b76002220/master.m3u8"
   },
   {
-    "t": "(500)jours ensemble",
-    "year": "2009",
-    "note": 4,
-    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/Au6ac2MEQuka3DtJMVxeyUaDNsh.jpg",
+    "t": "(500) jours ensemble",
+    "id_tmdb": "19913",
     "cat": "COMÉDIE",
-    "desc": "Tom croit encore en un amour qui transfigure, un amour à la destinée cosmique, un coup de foudre unique. Ce qui n'est pas du tout le cas de Summer. Cela n'empêche pourtant pas Tom de partir à sa conquête, armé de toute sa force et de tout son courage, tel un Don Quichotte des temps modernes. Le récit couvre tout le spectre de la relation amoureuse, du premier coup de cœur aux premiers rendez-vous, du sexe à la séparation, à la récrimination et à la rédemption, et décrit toutes les raisons qui nous poussent à nous battre aussi ardemment pour arriver à trouver un sens à l'amour.",
-    "actors_pics": [{"name": "Joseph Gordon-Levitt", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/z2FA8js799xqtfiFjBTicFYdfk.jpg"}, {"name": "Zooey Deschanel", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/oNnMSaLlPyieTc01ObJZb7ezgGq.jpg"}, {"name": "Geoffrey Arend", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/bpqF3V5lK5GxuIU4VuTaVaztIvw.jpg"}, {"name": "Chloë Grace Moretz", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/yq4rYmaTRC5degaOYmJQFpaiho1.jpg"}],
-    "trailer": "DLbCGDcPr5Q",
     "url": "aHR0cHM6Ly9zdHJlYW0wMi1tcDR3Lmh1bGtjcnVzaC5vcmcvdmlkZW9zL2VjMzE2YjkyN2E0NGY3M2U3MzVkYWY1NjFiZDFmZDVjMTQyMThjZWM5NzMwMzM0OWZmNWVmMmIxYzQ3YzhiZDkubXA0"
   },
   {
     "t": "007 Spectre",
-    "img": "https://image.tmdb.org/t/p/w1280/AwCpcShhgRqoVPWhOzs4JiI4dlK.jpg",
+    "id_tmdb": "206647",
     "cat": "ACTION",
-    "desc": "Bond face au Spectre de son passé.",
     "url": "aHR0cHM6Ly9zdHJlYW0wMi1tcDR3Lmh1bGtjcnVzaC5vcmcvdmlkZW9zLzgwZTA2MjUyNTE0YmZhY2IyYTNkNDhlOTY1ZGUzN2Q2MTJhOTYzMmE4YTM5MWQxOWMxMzBiM2YxYzI5MjM0ZTgubXA0"
   },
   {
     "t": "10 bonnes raisons de te larguer",
-    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/2Ys0Wb2ZzgaqpyJ5zh10rWoA50t.jpg",
+    "id_tmdb": "4951",
     "cat": "COMÉDIE",
-    "desc": "Romance lycéenne culte avec Heath Ledger.",
     "url": "aHR0cHM6Ly9zdHJlYW0wMS1obHMuaHVsa2NydXNoLm9yZy92b2QvOGUyMGVkZjI2MGY3YjhlY2RiNDQyYjk2NTBiMjQ5ZGE2ZGFlMzExOWZkYjNiZTI4YzIwM2NkZGE3NGYzYjFhNC9tYXN0ZXIubTN1OA=="
   },
   {
     "t": "10 jours encore sans maman",
-    "img": "https://image.tmdb.org/t/p/w1280/lh6FDEXheft7W6AjJnSpLncstye.jpg",
+    "id_tmdb": "1032739",
     "cat": "COMÉDIE",
-    "desc": "Vacances à la neige mouvementées pour Antoine.",
     "url": "aHR0cHM6Ly9zdHJlYW0wMi1tcDR3Lmh1bGtjcnVzaC5vcmcvdmlkZW9zLzcxYzlhaTIzYmJkNDY1OTU2NTZmYmUwZjYwYjMxMWEzZjQ5OTkxN2FhM2FjMTg4NzA0MmE2M2ZiY2I3OTRiNTAubXA0"
   },
   {
     "t": "10 jours sans maman",
-    "img": "https://image.tmdb.org/t/p/w1280/xEbSztKAAwIljX8A537HeZDKXUS.jpg",
+    "id_tmdb": "616714",
     "cat": "COMÉDIE",
-    "desc": "La réalité brutale du quotidien de parent au foyer.",
     "url": "aHR0cHM6Ly9zdHJlYW0wMi1tcDR3Lmh1bGtjcnVzaC5vcmcvdmlkZW9zL2JlMGRhOGYxMWYwM2JlNDU2Y2YyNjBhZDIxODIyYzhjYjQzZWJjMDAxMzExMzNhZmZjMzgwMTA4ODA2NTZiMTIubXA0"
   },
   {
-    "t": "100% bio",
-    "img": "https://image.tmdb.org/t/p/w1280/eHnFRyZm8u9hby2wOxYPtyMcZTm.jpg",
-    "cat": "COMÉDIE",
-    "desc": "Confrontation entre tradition bouchère et véganisme.",
-    "url": "aHR0cHM6Ly9zdHJlYW0wMi1tcDR3Lmh1bGtjcnVzaC5vcmcvdmlkZW9zLzg4YjIzOGE3NDg1MmFjNzg1MDQ3MGQxMTM3OWQwYzIxNmQzN2FkNWNlNGEzYjNlNDZjMjE1MjFhNjNiMTVlMjEubXA0"
-  },
-  {
     "t": "1001 pattes",
-    "img": "https://image.tmdb.org/t/p/w1280/wtGgCxW4TylnDAXtIf3yuXixipC.jpg",
+    "id_tmdb": "9492",
     "cat": "ANIMATION",
-    "desc": "Tilt cherche des guerriers pour libérer sa colonie.",
     "url": "aHR0cHM6Ly9zdHJlYW0wMi1tcDR3Lmh1bGtjcnVzaC5vcmcvdmlkZW9zLzNhMDFkMzVkMjI0YjY4YWMwZGMyMzg0NGRjMTYyMzBlNmVhNWU0NDcwYjUzMDE4NDI0MDJkZDQzMjhkZWFjNDYubXA0"
   },
   {
     "t": "12 Rounds",
-    "img": "https://image.tmdb.org/t/p/w1280/soOzhbIggxpBvxcFTJy5hvRJs37.jpg",
+    "id_tmdb": "16422",
     "cat": "ACTION",
-    "desc": "Course contre la montre à travers la ville.",
     "url": "aHR0cHM6Ly9zdHJlYW0wMi1tcDR3Lmh1bGtjcnVzaC5vcmcvdmlkZW9zL2MzYjVmZjMwMmYwMmkyNDQ0MmY2YjA3ZjU0OWMyZmIyZjc1NTA0ODI4ZTI4YWExNzgyZWIyYjAyMWRlMTdiMmIubXA0"
   },
   {
-    "t": "120 Battements par minute",
-    "img": "https://image.tmdb.org/t/p/w1280/7mdxe4MfqBdKGeKZAZYELJmCKVT.jpg",
-    "cat": "DRAME",
-    "desc": "Lutte acharnée contre l'indifférence face au sida.",
-    "url": "aHR0cHM6Ly9zdHJlYW0wMS1obHMuaHVsa2NydXNoLm9yZy92b2QvY2ZjYmE0MTk4MzQ3MjdlOWE4OGM4MzExZWRlMmNjMGU3ZTM1YzNmYmUyYzA3MDlmMGYyNmFhMzhhMThhYzA0ZC9tYXN0ZXIubTN1OA=="
-  },
-  {
     "t": "127 heures",
-    "img": "https://image.tmdb.org/t/p/w1280/95t9onaQh0nUudfWOGvyJgZSka0.jpg",
+    "id_tmdb": "44115",
     "cat": "DRAME",
-    "desc": "Seul face à la mort dans un canyon isolé.",
     "url": "aHR0cHM6Ly9zdHJlYW0wMi1tcDR3Lmh1bGtjcnVzaC5vcmcvdmlkZW9zLzYzOTlkZGE4Nzk1OGQ3MTk4MjAyOGVlNjc4OTM3M2I4Y2IxY2ExM2E0NTQ0M2Q0M2E0NzQzN2JmZjJiMmVjNWYubXA0"
   },
   {
     "t": "Avatar: La Voie de l'eau",
-    "img": "https://media.themoviedb.org/t/p/w220_and_h330_face/7TOaaKbSYfilIpZsRCS1AyFCxaJ.jpg",
+    "id_tmdb": "76600",
     "cat": "SCIENCE-FICTION",
-    "desc": "Jake Sully protège sa famille sur les récifs de Pandora.",
-    "trailer": "d9MyW72ELq0",
     "url": "aHR0cHM6Ly9zdHJlYW0wMi1tcDR3Lmh1bGtjcnVzaC5vcmcvdmlkZW9zLzRlZTVlMDMxZjZkOWUwNTA0NDRkZDI0ZGM4ODdmYTZkZTNlMzliNjBiYmI0NzdmZGVhZGQzZDk2NzAyNTFkYzIubXA0"
   },
   {
-    "t": "Blade Runner (1982)",
-    "year": "1982",
-    "note": 4,
-    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/zHKWxyG4j404HVeSYHNH4niUpkW.jpg",
+    "t": "Blade Runner",
+    "id_tmdb": "78",
     "cat": "SCIENCE-FICTION",
-    "desc": "2019, Los Angeles. La Terre est surpeuplée et l’humanité est partie coloniser l’espace. Les nouveaux colons sont assistés de Replicants, androïdes que rien ne peut distinguer de l'être humain. Conçus comme de nouveaux esclaves, certains parmi les plus évolués s’affranchissent de leurs chaînes et s’enfuient. Rick Deckard, un ancien Blade Runner, catégorie spéciale de policiers chargés de retirer ces replicants, accepte une nouvelle mission consistant à retrouver quatre de ces individus qui viennent de regagner la Terre après avoir volé une navette spatiale.",
-    "actors_pics": [{"name": "Harrison Ford", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/pjBMJVPpcZK23Vt1nzr1zEBTWrP.jpg"}, {"name": "Rutger Hauer", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/xyag0LbjocTwx2Ht7B3RofvCNMT.jpg"}, {"name": "Sean Young", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/yfJADYt6xYPpg1g7Z7TTW0bcL2s.jpg"}, {"name": "Edward James Olmos", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/mXnilUrQBIMLHSQkPjQk99mX70x.jpg"}],
-    "trailer": "eogpIG53Cis",
     "url": "https://stream01-hls.hulkcrush.org/vod/2e832ef7ab371a77441f8a1f2ffbc97ab591008da5d27b68809b7981c1af5e7f/master.m3u8"
   },
   {
@@ -708,95 +378,15 @@
     "url": "aHR0cHM6Ly9pYTgwMDEwNi51cy5hcmNoaXZlLm9yZy81L2l0ZW1zLzkxNzVfMjAyNjA0MTUvOTE3NS5pYS5tcDQ="
   },
   {
-    "t": "STRANGER THINGS - S01E02",
-    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/4Y5ZXYnWBIV8Vpe8hcA0LH6hC80.jpg",
-    "cat": "SÉRIES",
-    "desc": "S01E02 - Eleven se cache chez Mike.",
-    "url": "aHR0cHM6Ly9pYTgwMDUwNC51cy5hcmNoaXZlLm9yZy8yMi9pdGVtcy8xMjgyOTIxLzEyODI5MjEuaWEubXA0"
-  },
-  {
-    "t": "STRANGER THINGS - S02E01",
-    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/4Y5ZXYnWBIV8Vpe8hcA0LH6hC80.jpg",
-    "cat": "SÉRIES",
-    "desc": "S02E01 - L'ombre revient sur Hawkins.",
-    "url": "aHR0cHM6Ly9pYTgwMDUwNC51cy5hcmNoaXZlLm9yZy8yMi9pdGVtcy8xMjgyOTIxLzEyODI5MjEuaWEubXA0"
-  },
-  {
-    "t": "12 Rounds 2",
-    "img": "https://image.tmdb.org/t/p/w1280/btThjvVC4lOqE95F9iVK118kpj2.jpg",
-    "cat": "ACTION",
-    "desc": "Nouveau défi mortel en 12 étapes.",
-    "url": "aHR0cHM6Ly9zdHJlYW0wMi1tcDR3Lmh1bGtjcnVzaC5vcmcvdmlkZW9zL2NjMjU3ZTg4MzI0MDVkYTdkODVmMTVhMTIxN2RkZDA3MTM4YTA5MDMyMWZmNjg4MTYzMzMxNDE3MmVmZjVhYjkubXA0"
-  },
-  {
-    "t": "12 Rounds 3",
-    "img": "https://image.tmdb.org/t/p/w1280/5y1RxRq7G3ocBeI3hA0eR6AvltH.jpg",
-    "cat": "ACTION",
-    "desc": "Lockdown : un flic piégé doit se battre seul.",
-    "url": "aHR0cHM6Ly9zdHJlYW0wMi1tcDR3Lmh1bGtjcnVzaC5vcmcvdmlkZW9zLzAxMjEyY2M1ZjRmM2M0ZDYzYmQxNDQ4YTljZTZmYjM2NTFjZjI4NWU3YTg3ZmY3N2NjYTEwMjcxOGU5ZjVhMDEubXA0"
-  },
-  {
-    "t": "13 Hours",
-    "img": "https://image.tmdb.org/t/p/w1280/xkLbQP3NEWzfmnef1TIlp71lMKU.jpg",
-    "cat": "ACTION",
-    "desc": "Siège héroïque à Benghazi.",
-    "url": "aHR0cHM6Ly9zdHJlYW0wMi1tcDR3Lmh1bGtjcnVzaC5vcmcvdmlkZW9zLzRlNDI5MTNmMzg1ZGFlODRjODhmOTA3Y2UyOWRlODEzYWViYTc0OTIyZDlmZDI5OWNkMTNlMTY5MjMwNGUwYTIubXA0"
-  },
-  {
-    "t": "13 Minutes",
-    "img": "https://image.tmdb.org/t/p/w1280/47RDMc8FeN1GxGMEmsVCCjXqzdE.jpg",
-    "cat": "ACTION",
-    "desc": "Course contre la montre face à une tornade monstre.",
-    "url": "aHR0cHM6Ly9zdHJlYW0wMi1tcDR3Lmh1bGtjcnVzaC5vcmcvdmlkZW9zLzllMDQzNmQxZTM4MTMwMzkxY2Q3MjliYjZkYzEyYTk5OWI2ODFhNjMxNzgwMzFmZTRhNWQwYzQ5OTExMWJlY2QubXA0"
-  },
-  {
-    "t": "13 fantômes",
-    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/lgPFz6Cr39kp3JtXCnGqJi72Zis.jpg",
-    "cat": "HORREUR",
-    "desc": "Une maison mécanique qui emprisonne l'horreur.",
-    "url": "aHR0cHM6Ly9zdHJlYW0wMi1tcDR3Lmh1bGtjcnVzaC5vcmcvdmlkZW9zL2EyYjI5ZDZjODcwYmI1MjI4NzI5MjQzYmRlYTc4MzdjZTI0YzJlNmYxYzRlOTI0YzNkOTdhYzY1MzU3ZDliMi5tcDQ="
-  },
-  {
-    "t": "14 Jours pour aller mieux",
-    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/pgGsB4S5T0ERx9ct6OgPIIqKdLP.jpg",
-    "cat": "COMÉDIE",
-    "desc": "Quand la méditation devient un enfer drôle.",
-    "url": "aHR0cHM6Ly9zdHJlYW0wMi1tcDR3Lmh1bGtjcnVzaC5vcmcvdmlkZW9zLzkyM2IzNmVmOTk0MzVhMzBlZDY1YTUxN2IxOTRhODBhNGY3MS5tcDQ="
-  },
-  {
-    "t": "14 x 8000",
-    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/iJ4kJGqcmHYvvotC7OUlUfs7Abj.jpg",
-    "cat": "DOCUMENTAIRE",
-    "desc": "L'exploit surhumain de Nimsdai Purja.",
-    "url": "aHR0cHM6Ly9zdHJlYW0wMi1tcDR3Lmh1bGtjcnVzaC5vcmcvdmlkZW9zLzNhYzM5OTdjMmJkZjEyNGE3Zjg2NGFjMzRlMWYwZDBhMDBmOTQzMTdiYTI4ZGI2ZDMyNjg1ZGY2NzJkMDgyMmYubXA0"
-  },
-  {
-    "t": "17 ans encore",
-    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/gSLMT1Nio75oxpxeU7fbBGg6a7f.jpg",
-    "cat": "COMÉDIE",
-    "desc": "Une chance de refaire sa vie à 17 ans.",
-    "url": "aHR0cHM6Ly9zdHJlYW0wMi1tcDR3Lmh1bGtjcnVzaC5vcmcvdmlkZW9zLzEzYmJkNzQ1OTk1YzMxMTNmNjUyZjk5YzI3MDFjOTJkYzVkYjY5ZjlmZjU2ZjQ4ZmU3MzIyZmE4N2Q4NzBkOTMubXA0"
-  },
-  {
-    "t": "2 Fast 2 Furious",
-    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/riIa9UIxyhhOBIXI8vhpWmcesGB.jpg",
-    "cat": "ACTION",
-    "desc": "Adrénaline et courses-poursuites à Miami.",
-    "url": "aHR0cHM6Ly9zdHJlYW0wMi1tcDR3Lmh1bGtjcnVzaC5vcmcvdmlkZW9zL2NjMjU3ZTg4MzI0MDVkYTdkODVmMTVhMTIxN2RkZDA3MTM4YTA5MDMyMWZmNjg4MTYzMzMxNDE3MmVmZjVhYjkubXA0"
-  },
-  {
-    "t": "Avatar: De feu et de cendres",
-    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/kG3N8oQ10qiw2MsnSHFGJpQNyEy.jpg",
-    "cat": "SCIENCE-FICTION",
-    "desc": "Le Peuple des Cendres change la donne sur Pandora.",
-    "trailer": "dQw4w9WgXcQ",
-    "url": "https://archive.org/download/1282725/1282725.ia.mp4"
-  },
-  {
-    "t": "Louise",
-    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/62GcSVw9fE8paRDTCHDycZvQ26p.jpg",
+    "t": "Fanny et Alexandre",
+    "id_tmdb": "5991",
     "cat": "DRAME",
-    "desc": "Voyage intérieur d'une femme courageuse.",
-    "url": "aHR0cHM6Ly9pYTYwMTYwOC51cy5hcmNoaXZlLm9yZy8zMy9pdGVtcy8xMjg0OTM3XzIwMjYwNC8xMjg0OTM3Lm1wNA=="
+    "url": "aHR0cHM6Ly9hcmNoaXZlLm9yZy9kb3dubG9hZC8xMjc1OTkwLzEyNzU5OTAuaWEubXA0"
+  },
+  {
+    "t": "Grotesque",
+    "id_tmdb": "21345",
+    "cat": "HORREUR",
+    "url": "aHR0cHM6Ly9hcmNoaXZlLm9yZy9kb3dubG9hZC8xMjg1NjY4LzEyODU2NjguaWEubXA0"
   }
 ]
