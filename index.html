@@ -532,7 +532,7 @@ async function loadPlaylist() {
                     }
 
                     if (!m.actors_pics && data.credits && data.credits.cast) {
-                        m.actors_pics = data.credits.cast.slice(0, 5).map(a => ({
+                        m.actors_pics = data.credits.cast.slice(0, 10).map(a => ({
                             name: a.name,
                             img: `https://image.tmdb.org/t/p/w185${a.profile_path}`
                         }));
