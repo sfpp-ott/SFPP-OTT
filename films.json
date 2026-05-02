@@ -180,6 +180,17 @@
     "url": "aHR0cHM6Ly9hcmNoaXZlLm9yZy9kb3dubG9hZC8xMjcxMDE5LzEyNzEwMTkuaWEubXA0"
   },
   {
+    "t": "Des jours meilleurs (2025)",
+    "year": "2025",
+    "note": 4,
+    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/lyCsaVPE9DpLB2g7xL91pRwfOm5.jpg",
+    "cat": "COMÉDIE",
+    "desc": "A la suite d’un accident de voiture, Suzanne perd la garde de ses trois enfants. Elle n’a plus le choix et doit se soigner dans un centre pour alcooliques. A peine arrivée, elle y rencontre Alice et Diane, deux femmes au caractère bien trempé… Denis, éducateur sportif, va tenter de les réunir autour du même objectif : participer au rallye des Dunes dans le désert marocain. Il devra s’armer de beaucoup de patience et de pédagogie pour préparer cette improbable équipage à atteindre son objectif.",
+    "actors_pics": [{"name": "Valérie Bonneton", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/tHGojn1vMzGriINazQhMBBcG9u9.jpg"}, {"name": "Michèle Laroque", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/v4BquPOwY3z9tD3g8QW3yX288ou.jpg"}, {"name": "Sabrina Ouazani", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/zlUmASMbAwU61NNti9TKnM08tDc.jpg"}, {"name": "Clovis Cornillac", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/8wokcSilL7u4V8aKcagI7elKsgn.jpg"}],
+    "trailer": "_o7Sjba9g7g",
+    "url": "https://stream01-hls.hulkcrush.org/vod/476221972af1fedd1476c693433ed500acf8f26224fe27f2a17b152f8057e023/master.m3u8"
+  },
+  {
     "t": "De mauvaise foi (2025)",
     "year": "2025",
     "note": 3,
