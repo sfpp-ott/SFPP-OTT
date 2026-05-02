@@ -180,6 +180,17 @@
     "url": "aHR0cHM6Ly9hcmNoaXZlLm9yZy9kb3dubG9hZC8xMjcxMDE5LzEyNzEwMTkuaWEubXA0"
   },
   {
+    "t": "Desert Dawn (2025)",
+    "year": "2025",
+    "note": 4,
+    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/6MpAklfzhbIqonqt54MyGciDTjS.jpg",
+    "cat": "ACTION",
+    "desc": "Un nouveau shérif d'une petite ville et son adjoint réticent découvrent les mensonges et la corruption d'hommes d'affaires véreux et du cartel alors qu'ils enquêtent sur le meurtre d'une femme.",
+    "actors_pics": [{"name": "Kellan Lutz", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/pLzdFABlU6oS2BvlHlAN990woY1.jpg"}, {"name": "Cam Gigandet", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/kdSVRqCR0p8KZTvVkRccBLoim7L.jpg"}, {"name": "Chad Michael Collins", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/9lcEpAYRBCylYIVMZYXHqfmRzfP.jpg"}, {"name": "Texas Battle", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/zPzagAtKxbHKrQLAQ69KSYLZxjA.jpg"}],
+    "trailer": "b4Yjkl4fa5A",
+    "url": "https://stream01-hls.hulkcrush.org/vod/d4d38a66fdb07dca087ede2b084ab9d67188fae63acef484e118bd0366529617/master.m3u8"
+  },
+  {
     "t": "Des jours meilleurs (2025)",
     "year": "2025",
     "note": 4,
