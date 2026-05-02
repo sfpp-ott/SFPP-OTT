@@ -180,6 +180,17 @@
     "url": "aHR0cHM6Ly9hcmNoaXZlLm9yZy9kb3dubG9hZC8xMjcxMDE5LzEyNzEwMTkuaWEubXA0"
   },
   {
+    "t": "Complètement footus (2025)",
+    "year": "2025",
+    "note": 2,
+    "img": "https://image.tmdb.org/t/p/w220_and_h330_face/rrcfOtI8Fa6LHhtuiuGw5fBeY4H.jpg",
+    "cat": "COMÉDIE",
+    "desc": "Lorsqu'un joueur de fantasy foot disparaît le jour de son mariage, sa bande d'amis hétéroclites reconstitue le puzzle des événements qui ont conduit à son EVG de folie.",
+    "actors_pics": [{"name": "Giacomo Ferrara", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/7D6RNr8EE7XJHVB3mGun3wfXqQe.jpg"}, {"name": "Silvia D'Amico", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/d8TmCRsLktYGNSTDSQoxMzAgjm9.jpg"}, {"name": "Enrico Borello", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/pDx74sWAv0EyreDC3iRIkrcAs79.jpg"}, {"name": "Francesco Russo", "img": "https://image.tmdb.org/t/p/w375_and_h375_face/ak1V5yJPPXO2m7T0amBu1Epq83W.jpg"}],
+    "trailer": "USYUkD0XSRE",
+    "url": "https://stream01-hls.hulkcrush.org/vod/cbe9e917af2763716e3d56f54d61aa1ab624e90b2e12886860acd319f112d08d/master.m3u8"
+  }, 
+  {
     "t": "Creep 2 (2017)",
     "year": "2017",
     "note": 3,
