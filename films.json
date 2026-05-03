@@ -62,6 +62,13 @@
     "cat": "LES DERNIÈRES SORTIES",
     "url": "https://archive.org/download/1271019/1271019.ia.mp4"
   },
+  
+  {
+    "t": "Fanon",
+    "id_tmdb": "1000432",
+    "cat": "DRAME",
+    "url": "https://stream01-hls.hulkcrush.org/vod/47bc1965861b7a33bff7d9bbb04d3ed1b70677719921a7e5627d892718ed2aa8/master.m3u8"
+  },
   {
     "t": "Fanny et Alexandre",
     "id_tmdb": "33153",
