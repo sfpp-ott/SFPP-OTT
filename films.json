@@ -362,5 +362,59 @@
     "id_tmdb": "351901",
     "cat": "ACTION",
     "url": "https://stream01-hls.hulkcrush.org/vod/7ac56668bae534fabcf361ef0ec8334923cc9b967cc1f337d6515390ebc1082b/master.m3u8"
+  },
+  {
+    "t": "13 Hours",
+    "id_tmdb": "300671",
+    "cat": "ACTION",
+    "url": "https://stream01-hls.hulkcrush.org/vod/ce9e14e1e56407d28c2f6835cd7ee90670994a90931b908238a42a5b21043414/master.m3u8"
+  },
+  {
+    "t": "13 Minutes",
+    "id_tmdb": "787723",
+    "cat": "ACTION",
+    "url": "https://stream01-hls.hulkcrush.org/vod/51422c93359c0ad66c0cb0acfe65c06afa94d025749268e2454bf10ed115e44b/master.m3u8"
+  },
+  {
+    "t": "13 fantômes",
+    "id_tmdb": "9378",
+    "cat": "HORREUR",
+    "url": "https://stream01-hls.hulkcrush.org/vod/fd36efa5e79d5e4562c0d66a7bbc72076cfed66033c18ee1417124e7b81276ab/master.m3u8"
+  },
+  {
+    "t": "14 Jours pour aller mieux",
+    "id_tmdb": "1118841",
+    "cat": "COMÉDIE",
+    "url": "https://stream01-hls.hulkcrush.org/vod/d4d38a66fdb07dca087ede2b084ab9d67188fae63acef484e118bd0366529617/master.m3u8"
+  },
+  {
+    "t": "14 x 8000",
+    "id_tmdb": "890825",
+    "cat": "DOCUMENTAIRE",
+    "url": "https://stream01-hls.hulkcrush.org/vod/476221972af1fedd1476c693433ed500acf8f26224fe27f2a17b152f8057e023/master.m3u8"
+  },
+  {
+    "t": "17 ans encore",
+    "id_tmdb": "16996",
+    "cat": "COMÉDIE",
+    "url": "https://stream01-hls.hulkcrush.org/vod/42ec7b04344d229cfe3fdb1bdbeede5a1cc2f78ff173750cae0139b36fbe34aa/master.m3u8"
+  },
+  {
+    "t": "2 Fast 2 Furious",
+    "id_tmdb": "584",
+    "cat": "ACTION",
+    "url": "https://stream01-hls.hulkcrush.org/vod/cbe9e917af2763716e3d56f54d61aa1ab624e90b2e12886860acd319f112d08d/master.m3u8"
+  },
+  {
+    "t": "Avatar: De feu et de cendres",
+    "id_tmdb": "83533",
+    "cat": "AVENTURE",
+    "url": "aHR0cHM6Ly9hcmNoaXZlLm9yZy9kb3dubG9hZC84MzUzMy84MzUzMy5pYS5tcDQ="
+  },
+  {
+    "t": "Louise",
+    "id_tmdb": "1197125",
+    "cat": "DRAME",
+    "url": "https://stream01-hls.hulkcrush.org/vod/f44f6d27696bbd80a2d4463752911f5dd134bf160ae4662b0bf69e0c2f9eda67/master.m3u8"
   }
 ]
