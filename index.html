@@ -280,6 +280,9 @@
 
             <div class="section-label">Casting principal (Cliquez pour filtrer)</div>
             <div id="details-meta-cast" class="cast-row"></div>
+
+            <div class="section-label">Parce que vous avez regardé ceci...</div>
+            <div id="details-suggestions" class="cast-row"></div>
         </div>
     </div>
 </div>
@@ -527,7 +530,6 @@ async function loadPlaylist() {
                     m.year = m.year || (data.release_date ? data.release_date.split('-')[0] : "2025");
                     m.note = m.note || Math.round(data.vote_average / 2);
 
-                    // Automatisation des genres en texte
                     if (data.genres && data.genres.length > 0) {
                         m.cat = data.genres.map(g => g.name.toUpperCase()).join(', ');
                     }
@@ -592,6 +594,21 @@ function openDetails(idx) {
     const favBtn = document.getElementById('details-fav-btn');
     favBtn.onclick = () => { toggleFav(m.t); };
     updateFavBtnUI(m.t);
+
+    // --- LOGIQUE SUGGESTIONS RÉTABLIE ---
+    const primaryCat = m.cat.split(',')[0].trim();
+    const suggs = playlistData
+        .filter(item => item.cat.includes(primaryCat) && item.t !== m.t)
+        .sort(() => 0.5 - Math.random())
+        .slice(0, 6);
+    
+    let suggHtml = suggs.map(s => `
+        <div class="actor-item" onclick="openDetails(${playlistData.indexOf(s)})" style="flex:0 0 120px">
+            <img src="${s.img}" style="border-radius:4px; height:160px; width:110px; object-fit:cover;">
+            <div class="actor-name">${s.t}</div>
+        </div>
+    `).join('');
+    document.getElementById('details-suggestions').innerHTML = suggHtml;
 
     document.getElementById('details-overlay').style.display = 'flex';
     playBtn.focus();
@@ -721,7 +738,6 @@ function render(search = "") {
     });
 
     allGenres.sort().forEach(c => {
-        // Un film correspond si sa catégorie contient le genre 'c' OU si la recherche match titre/année/acteur
         const filtered = data.filter(m => {
             const matchGenre = m.cat.toUpperCase().includes(c);
             const matchSearch = (s === "") || m.t.toLowerCase().includes(s) || 
