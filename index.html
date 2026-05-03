@@ -595,10 +595,10 @@ function openDetails(idx) {
     favBtn.onclick = () => { toggleFav(m.t); };
     updateFavBtnUI(m.t);
 
-    // LOGIQUE SUGGESTIONS
-    const primaryCat = m.cat.split(',')[0].trim();
+    // --- LOGIQUE SUGGESTIONS RÉTABLIE ---
+    const primaryCat = m.cat ? m.cat.split(',')[0].trim() : "ACTION";
     const suggs = playlistData
-        .filter(item => item.cat.includes(primaryCat) && item.t !== m.t)
+        .filter(item => item.cat && item.cat.includes(primaryCat) && item.t !== m.t)
         .sort(() => 0.5 - Math.random())
         .slice(0, 6);
     
@@ -693,8 +693,8 @@ function render(search = "") {
     const now = new Date();
     
     let data = playlistData;
-    if(currentView === 'movies') data = playlistData.filter(m => m.cat !== "SÉRIES");
-    else if(currentView === 'series') data = playlistData.filter(m => m.cat === "SÉRIES");
+    if(currentView === 'movies') data = playlistData.filter(m => m.cat && !m.cat.includes("SÉRIES"));
+    else if(currentView === 'series') data = playlistData.filter(m => m.cat && m.cat.includes("SÉRIES"));
     else if(currentView === 'fav') data = playlistData.filter(m => favs.includes(m.t));
 
     // Historique
@@ -705,7 +705,7 @@ function render(search = "") {
             history.slice().reverse().forEach(title => {
                 const m = playlistData.find(item => item.t === title);
                 if(m) {
-                    const isTV = m.cat.toUpperCase().includes("DIRECT") || m.cat.toUpperCase().includes("TV");
+                    const isTV = m.cat && (m.cat.toUpperCase().includes("DIRECT") || m.cat.toUpperCase().includes("TV"));
                     const landscapeClass = isTV ? "landscape" : "";
                     const pct = (prog[m.t] && prog[m.t].p > 1) ? `<div class="prog-bg"><div class="prog-fill" style="width:${prog[m.t].p}%"></div></div>` : "";
                     const clickAction = isTV ? `playMovie(${playlistData.indexOf(m)})` : `openDetails(${playlistData.indexOf(m)})`;
@@ -717,7 +717,7 @@ function render(search = "") {
 
     // Tous les films
     if (s === "" && (currentView === 'all' || currentView === 'movies')) {
-        const allMovies = playlistData.filter(m => m.cat !== "SÉRIES" && !m.cat.toUpperCase().includes("DIRECT") && !m.cat.toUpperCase().includes("TV"));
+        const allMovies = playlistData.filter(m => m.cat && !m.cat.includes("SÉRIES") && !m.cat.toUpperCase().includes("DIRECT") && !m.cat.toUpperCase().includes("TV"));
         if (allMovies.length > 0) {
             let html = `<div class="category-title">TOUS LES FILMS</div><div class="category-row"><div class="nav-arrow arrow-left" onclick="scrollSide(this, -400)">‹</div><div class="carousel">`;
             allMovies.forEach(m => {
@@ -733,13 +733,15 @@ function render(search = "") {
     // EXTRACTION GENRES
     const allGenres = [];
     data.forEach(m => {
-        const genres = m.cat.split(',').map(g => g.trim().toUpperCase());
-        genres.forEach(g => { if(!allGenres.includes(g)) allGenres.push(g); });
+        if(m.cat) {
+            const genres = m.cat.split(',').map(g => g.trim().toUpperCase());
+            genres.forEach(g => { if(!allGenres.includes(g)) allGenres.push(g); });
+        }
     });
 
     allGenres.sort().forEach(c => {
         const filtered = data.filter(m => {
-            const matchGenre = m.cat.toUpperCase().includes(c);
+            const matchGenre = m.cat && m.cat.toUpperCase().includes(c);
             const matchSearch = (s === "") || m.t.toLowerCase().includes(s) || 
                                 (m.year && m.year.toString().includes(s)) ||
                                 (m.actors_pics && m.actors_pics.some(a => a.name.toLowerCase().includes(s)));
@@ -839,11 +841,10 @@ function playMovie(idx) {
 
     const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
 
-    // TYPE DE SOURCE POUR CHROMECAST
-    let sourceType = 'video/mp4';
-    if (decodedUrl.includes('.m3u8')) sourceType = 'application/x-mpegURL';
+    // TYPE SOURCE POUR CHROMECAST
+    let type = decodedUrl.includes('.m3u8') ? 'application/x-mpegURL' : 'video/mp4';
 
-    if (sourceType === 'application/x-mpegURL') {
+    if (type === 'application/x-mpegURL') {
         if (Hls.isSupported()) {
             hls = new Hls();
             hls.loadSource(decodedUrl);
@@ -854,18 +855,18 @@ function playMovie(idx) {
             });
             hls.on(Hls.Events.LEVEL_LOADED, function() { player.on('timeupdate', saveP); });
         } else {
-            player.src({ src: decodedUrl, type: sourceType });
+            player.src({ src: decodedUrl, type: type });
             if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
             player.play();
         }
     } else {
-        player.src({ src: decodedUrl, type: sourceType });
+        player.src({ src: decodedUrl, type: type });
         if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
         player.play();
     }
     
-    // FORCER LA SOURCE POUR LE PLUGIN CHROMECAST
-    player.src({ src: decodedUrl, type: sourceType });
+    // Forcer le rechargement Chromecast
+    player.src({ src: decodedUrl, type: type });
 }
 
 function playNextEpisode() {
@@ -887,7 +888,7 @@ function openSearch() { document.getElementById('search-overlay').style.display 
 function closeSearch() { document.getElementById('search-overlay').style.display = 'none'; document.getElementById('searchBar').value = ''; filter(); }
 
 document.addEventListener('DOMContentLoaded', () => {
-    // INITIALISATION LECTEUR
+    // INITIALISATION LECTEUR AVEC PLUGIN CHROMECAST
     player = videojs('main-video', { 
         controls: true, fluid: false,
         techOrder: ['chromecast', 'html5'], 
@@ -928,6 +929,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (/S\d{2}E\d{2}/i.test(currentPlayingTitle) && dur > 0 && (dur - cur) < 80) {
             document.getElementById('next-episode-btn').style.display = 'block';
         } else document.getElementById('next-episode-btn').style.display = 'none';
+        
         if(Math.floor(cur) % 5 === 0) saveP();
     });
 });
