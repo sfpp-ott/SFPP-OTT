@@ -62,7 +62,12 @@
     "cat": "LES DERNIÈRES SORTIES",
     "url": "https://archive.org/download/1271019/1271019.ia.mp4"
   },
-  
+  {
+    "t": "Grotesque",
+    "id_tmdb": "27297",
+    "cat": "HORREUR",
+    "url": "https://stream01-hls.hulkcrush.org/vod/e58f47abbed5005ffe220bc9afa35a041b8746534f5c92a786632e05e65eca5c/master.m3u8"
+  },
   {
     "t": "Fanon",
     "id_tmdb": "1000432",
