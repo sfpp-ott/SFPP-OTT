@@ -280,6 +280,9 @@
 
             <div class="section-label">Casting principal (Cliquez pour filtrer)</div>
             <div id="details-meta-cast" class="cast-row"></div>
+
+            <div class="section-label">Parce que vous avez regardé ceci...</div>
+            <div id="details-suggestions" class="cast-row"></div>
         </div>
     </div>
 </div>
@@ -588,6 +591,20 @@ function openDetails(idx) {
     favBtn.onclick = () => { toggleFav(m.t); };
     updateFavBtnUI(m.t);
 
+    // --- LOGIQUE SUGGESTIONS ---
+    const suggs = playlistData
+        .filter(item => item.cat === m.cat && item.t !== m.t)
+        .sort(() => 0.5 - Math.random())
+        .slice(0, 6);
+    
+    let suggHtml = suggs.map(s => `
+        <div class="actor-item" onclick="openDetails(${playlistData.indexOf(s)})" style="flex:0 0 120px">
+            <img src="${s.img}" style="border-radius:4px; height:160px; width:110px; object-fit:cover;">
+            <div class="actor-name">${s.t}</div>
+        </div>
+    `).join('');
+    document.getElementById('details-suggestions').innerHTML = suggHtml;
+
     document.getElementById('details-overlay').style.display = 'flex';
     playBtn.focus();
 }
@@ -651,7 +668,6 @@ function saveP() {
     const cur = player.currentTime();
     const dur = player.duration();
     
-    // On s'assure que le temps et la durée sont valides avant de sauvegarder
     if(dur > 0 && cur > 0) {
         let prog = JSON.parse(localStorage.getItem('sfpp_p_'+currentProfile) || "{}");
         prog[currentPlayingTitle] = { t: cur, p: (cur/dur)*100 };
@@ -838,7 +854,6 @@ function playMovie(idx) {
                 }
                 player.play(); 
             });
-            // Synchronisation de la sauvegarde pour HLS
             hls.on(Hls.Events.LEVEL_LOADED, function() {
                  player.on('timeupdate', saveP);
             });
@@ -913,7 +928,6 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('next-episode-btn').style.display = 'block';
         } else document.getElementById('next-episode-btn').style.display = 'none';
         
-        // On sauvegarde plus souvent (toutes les 5s) et on s'assure que c'est enregistré
         if(Math.floor(cur) % 5 === 0) saveP();
     });
 });
