@@ -280,9 +280,6 @@
 
             <div class="section-label">Casting principal (Cliquez pour filtrer)</div>
             <div id="details-meta-cast" class="cast-row"></div>
-
-            <div class="section-label">Parce que vous avez regardé ceci...</div>
-            <div id="details-suggestions" class="cast-row"></div>
         </div>
     </div>
 </div>
@@ -524,16 +521,16 @@ async function loadPlaylist() {
                     const res = await fetch(url);
                     const data = await res.json();
                     
-                    // Automatisation des catégories (Action, Thriller, etc.)
-                    if (data.genres && data.genres.length > 0) {
-                        m.cat = data.genres.map(g => g.name.toUpperCase()).join(', ');
-                    }
-
                     m.img = m.img || `https://image.tmdb.org/t/p/w500${data.poster_path}`;
                     m.bg = m.bg || `https://image.tmdb.org/t/p/original${data.backdrop_path}`;
                     m.desc = m.desc || data.overview;
                     m.year = m.year || (data.release_date ? data.release_date.split('-')[0] : "2025");
                     m.note = m.note || Math.round(data.vote_average / 2);
+
+                    // Automatisation des genres en texte
+                    if (data.genres && data.genres.length > 0) {
+                        m.cat = data.genres.map(g => g.name.toUpperCase()).join(', ');
+                    }
 
                     if (!m.trailer && data.videos && data.videos.results.length > 0) {
                         const video = data.videos.results.find(v => 
@@ -595,21 +592,6 @@ function openDetails(idx) {
     const favBtn = document.getElementById('details-fav-btn');
     favBtn.onclick = () => { toggleFav(m.t); };
     updateFavBtnUI(m.t);
-
-    // LOGIQUE SUGGESTIONS (Films de la même catégorie)
-    const currentGenre = m.cat.split(',')[0].trim(); // On prend le premier genre principal
-    const suggs = playlistData
-        .filter(item => item.cat.includes(currentGenre) && item.t !== m.t)
-        .sort(() => 0.5 - Math.random())
-        .slice(0, 6);
-    
-    let suggHtml = suggs.map(s => `
-        <div class="actor-item" onclick="openDetails(${playlistData.indexOf(s)})" style="flex:0 0 120px">
-            <img src="${s.img}" style="border-radius:4px; height:160px; width:110px; object-fit:cover;">
-            <div class="actor-name">${s.t}</div>
-        </div>
-    `).join('');
-    document.getElementById('details-suggestions').innerHTML = suggHtml;
 
     document.getElementById('details-overlay').style.display = 'flex';
     playBtn.focus();
@@ -698,6 +680,7 @@ function render(search = "") {
     else if(currentView === 'series') data = playlistData.filter(m => m.cat === "SÉRIES");
     else if(currentView === 'fav') data = playlistData.filter(m => favs.includes(m.t));
 
+    // Historique
     if(currentProfile && s === "" && currentView === 'all') {
         let history = JSON.parse(localStorage.getItem('sfpp_hist_' + currentProfile) || "[]");
         if(history.length > 0) {
@@ -715,6 +698,7 @@ function render(search = "") {
         } else histSec.style.display = "none";
     } else histSec.style.display = "none";
 
+    // Tous les films (Accueil/Films)
     if (s === "" && (currentView === 'all' || currentView === 'movies')) {
         const allMovies = playlistData.filter(m => m.cat !== "SÉRIES" && !m.cat.toUpperCase().includes("DIRECT") && !m.cat.toUpperCase().includes("TV"));
         if (allMovies.length > 0) {
@@ -729,48 +713,39 @@ function render(search = "") {
         }
     }
 
-    const cats = [...new Set(data.map(m => m.cat))];
-    let addedSeries = [];
-    cats.forEach(c => {
+    // EXTRACTION ET ÉCLATEMENT DES GENRES
+    const allGenres = [];
+    data.forEach(m => {
+        const genres = m.cat.split(',').map(g => g.trim().toUpperCase());
+        genres.forEach(g => { if(!allGenres.includes(g)) allGenres.push(g); });
+    });
+
+    allGenres.sort().forEach(c => {
+        // Un film correspond si sa catégorie contient le genre 'c' OU si la recherche match titre/année/acteur
         const filtered = data.filter(m => {
-            const matchCat = (m.cat === c);
-            const matchTitle = m.t.toLowerCase().includes(s);
-            const matchYear = (m.year && m.year.toString().includes(s));
-            const matchActor = (m.actors_pics && m.actors_pics.some(a => a.name.toLowerCase().includes(s)));
+            const matchGenre = m.cat.toUpperCase().includes(c);
+            const matchSearch = (s === "") || m.t.toLowerCase().includes(s) || 
+                                (m.year && m.year.toString().includes(s)) ||
+                                (m.actors_pics && m.actors_pics.some(a => a.name.toLowerCase().includes(s)));
             
-            return matchCat && (matchTitle || matchYear || matchActor);
+            return matchGenre && matchSearch;
         });
-        
+
         if (filtered.length === 0) return;
-        const isTVCat = c.toUpperCase().includes("DIRECT") || c.toUpperCase().includes("TV");
+        const isTVCat = c.includes("DIRECT") || c.includes("TV");
         const landscapeClass = isTVCat ? "landscape" : "";
         
         let html = `<div class="category-title">${c}</div><div class="category-row"><div class="nav-arrow arrow-left" onclick="scrollSide(this, -400)">‹</div><div class="carousel">`;
+        let addedSeriesRow = [];
+
         filtered.forEach(m => {
             const isS = /S\d{2}E\d{2}/i.test(m.t);
             const heart = favs.includes(m.t) ? `<div style="position:absolute; top:5px; right:5px; z-index:5;">❤️</div>` : "";
             
-            let epgHtml = "";
-            if (isTVCat) {
-                const channelKey = m.t.toUpperCase().trim();
-                const programs = epgData[channelKey] || [];
-                const currentProg = programs.find(p => {
-                    const start = new Date(p.start);
-                    const stop = new Date(p.stop);
-                    return now >= start && now <= stop;
-                });
-                
-                if (currentProg) {
-                    epgHtml = `<div class="epg-info" style="color:#ffcc00">${currentProg.title}</div><span class="epg-time">Jusqu'à ${new Date(currentProg.stop).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</span>`;
-                } else {
-                    epgHtml = `<div class="epg-info">Direct TV</div>`;
-                }
-            }
-
             if(isS) {
                 const sName = m.t.split(' - ')[0];
-                if(!addedSeries.includes(sName)) {
-                    addedSeries.push(sName);
+                if(!addedSeriesRow.includes(sName)) {
+                    addedSeriesRow.push(sName);
                     html += `<div class="card" onclick="openSeries('${sName}')" tabindex="0"><img src="${m.img}">${heart}<div class="card-name">${sName}</div></div>`;
                 }
             } else {
@@ -779,7 +754,6 @@ function render(search = "") {
                 html += `<div class="card ${landscapeClass}" onclick="${clickAction}" tabindex="0">
                             <img src="${m.img}">${heart}${pct}
                             <div class="card-name">${m.t}</div>
-                            ${epgHtml}
                         </div>`;
             }
         });
