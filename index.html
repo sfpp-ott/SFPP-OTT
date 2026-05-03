@@ -515,32 +515,31 @@ async function loadPlaylist() {
         
         const apiKey = "ec1c8fecd38d1cc5a27f15766f0848d5";
         const promises = playlistData.map(async (m) => {
-            if (m.id_tmdb && (!m.img || !m.desc)) {
+            if (m.id_tmdb && (!m.img || !m.desc || !m.trailer)) {
                 try {
-                    // 1. REQUÊTE FR (Texte et Casting)
-                    const resFr = await fetch(`https://api.themoviedb.org/3/movie/${m.id_tmdb}?api_key=${apiKey}&language=fr-FR&append_to_response=credits`);
-                    const dataFr = await resFr.json();
+                    // SOLUTION ULTIME : Requête unique avec repli vidéo multi-langues
+                    const url = `https://api.themoviedb.org/3/movie/${m.id_tmdb}?api_key=${apiKey}&language=fr-FR&append_to_response=videos,credits&include_video_language=en,fr,null`;
+                    const res = await fetch(url);
+                    const data = await res.json();
                     
-                    // 2. REQUÊTE VIDÉO SANS FILTRE (Bande-annonce automatique)
-                    const resVid = await fetch(`https://api.themoviedb.org/3/movie/${m.id_tmdb}/videos?api_key=${apiKey}`);
-                    const dataVid = await resVid.json();
-                    
-                    m.img = m.img || `https://image.tmdb.org/t/p/w500${dataFr.poster_path}`;
-                    m.bg = `https://image.tmdb.org/t/p/original${dataFr.backdrop_path}`;
-                    m.desc = m.desc || dataFr.overview;
-                    m.year = m.year || (dataFr.release_date ? dataFr.release_date.split('-')[0] : "2025");
-                    m.note = m.note || Math.round(dataFr.vote_average / 2);
+                    m.img = m.img || `https://image.tmdb.org/t/p/w500${data.poster_path}`;
+                    m.bg = m.bg || `https://image.tmdb.org/t/p/original${data.backdrop_path}`;
+                    m.desc = m.desc || data.overview;
+                    m.year = m.year || (data.release_date ? data.release_date.split('-')[0] : "2025");
+                    m.note = m.note || Math.round(data.vote_average / 2);
 
-                    // Automatisation des vidéos (Trailer ou Teaser)
-                    if (!m.trailer && dataVid.results && dataVid.results.length > 0) {
-                        let video = dataVid.results.find(v => v.type === "Trailer" && v.site === "YouTube");
-                        if (!video) video = dataVid.results.find(v => v.type === "Teaser" && v.site === "YouTube");
-                        if (!video) video = dataVid.results.find(v => v.site === "YouTube");
+                    // Automatisation des vidéos avec repli automatique
+                    if (!m.trailer && data.videos && data.videos.results.length > 0) {
+                        const video = data.videos.results.find(v => 
+                            (v.type === "Trailer" || v.type === "Teaser") && v.site === "YouTube"
+                        ) || data.videos.results[0];
+                        
                         if (video) m.trailer = video.key;
                     }
 
-                    if (!m.actors_pics && dataFr.credits && dataFr.credits.cast) {
-                        m.actors_pics = dataFr.credits.cast.slice(0, 10).map(a => ({
+                    if (!m.actors_pics && data.credits && data.credits.cast) {
+                        // Limite fixée à 10 acteurs
+                        m.actors_pics = data.credits.cast.slice(0, 10).map(a => ({
                             name: a.name,
                             img: `https://image.tmdb.org/t/p/w185${a.profile_path}`
                         }));
@@ -717,6 +716,7 @@ function render(search = "") {
             const matchTitle = m.t.toLowerCase().includes(s);
             const matchYear = (m.year && m.year.toString().includes(s));
             const matchActor = (m.actors_pics && m.actors_pics.some(a => a.name.toLowerCase().includes(s)));
+            
             return matchCat && (matchTitle || matchYear || matchActor);
         });
         
@@ -738,6 +738,7 @@ function render(search = "") {
                     const stop = new Date(p.stop);
                     return now >= start && now <= stop;
                 });
+                
                 if (currentProg) {
                     epgHtml = `<div class="epg-info" style="color:#ffcc00">${currentProg.title}</div><span class="epg-time">Jusqu'à ${new Date(currentProg.stop).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</span>`;
                 } else {
@@ -754,7 +755,11 @@ function render(search = "") {
             } else {
                 const clickAction = isTVCat ? `playMovie(${playlistData.indexOf(m)})` : `openDetails(${playlistData.indexOf(m)})`;
                 const pct = (prog[m.t] && prog[m.t].p > 1 && !isTVCat) ? `<div class="prog-bg"><div class="prog-fill" style="width:${prog[m.t].p}%"></div></div>` : "";
-                html += `<div class="card ${landscapeClass}" onclick="${clickAction}" tabindex="0"><img src="${m.img}">${heart}${pct}<div class="card-name">${m.t}</div>${epgHtml}</div>`;
+                html += `<div class="card ${landscapeClass}" onclick="${clickAction}" tabindex="0">
+                            <img src="${m.img}">${heart}${pct}
+                            <div class="card-name">${m.t}</div>
+                            ${epgHtml}
+                        </div>`;
             }
         });
         html += `</div><div class="nav-arrow arrow-right" onclick="scrollSide(this, 400)">›</div></div>`;
@@ -782,7 +787,10 @@ function openSeries(name) {
         seasons[s].forEach(ep => {
             const epName = ep.t.split(' - ')[1] || ep.t;
             const pct = (prog[ep.t] && prog[ep.t].p > 1) ? `<div style="height:3px; background:#444; width:100px; margin-top:5px;"><div style="height:100%; background:var(--accent); width:${prog[ep.t].p}%"></div></div>` : "";
-            html += `<div class="episode-item" onclick="playMovie(${playlistData.indexOf(ep)});" tabindex="0"><div style="flex:1"><b>${epName}</b>${pct}</div><div style="color:var(--accent)">LECTURE ▶</div></div>`;
+            html += `<div class="episode-item" onclick="playMovie(${playlistData.indexOf(ep)});" tabindex="0">
+                        <div style="flex:1"><b>${epName}</b>${pct}</div>
+                        <div style="color:var(--accent)">LECTURE ▶</div>
+                     </div>`;
         });
     });
     content.innerHTML = html;
@@ -793,8 +801,12 @@ function playMovie(idx) {
     const m = playlistData[idx];
     currentPlayingTitle = m.t;
     document.getElementById('next-episode-btn').style.display = 'none';
+
     if (hls) { hls.destroy(); hls = null; }
-    player.pause(); player.src(""); player.load();
+    player.pause();
+    player.src("");
+    player.load();
+
     if(currentProfile) {
         let key = 'sfpp_hist_' + currentProfile;
         let hist = JSON.parse(localStorage.getItem(key) || "[]").filter(t => t !== m.t);
@@ -806,17 +818,24 @@ function playMovie(idx) {
     document.getElementById('series-overlay').style.display = 'none';
     const pSection = document.getElementById('player-section');
     pSection.style.display = 'block';
+    
     const backdrop = m.bg || m.img;
     document.getElementById('player-blur-bg').style.backgroundImage = `url('${backdrop}')`;
     player.poster(backdrop); 
+    
     let decodedUrl = "";
     try { decodedUrl = window.atob(m.url); } catch(e) { decodedUrl = m.url; }
+
     if (decodedUrl.includes('.m3u8')) {
         if (Hls.isSupported()) {
-            hls = new Hls(); hls.loadSource(decodedUrl);
+            hls = new Hls();
+            hls.loadSource(decodedUrl);
             hls.attachMedia(document.querySelector('#main-video_html5_api'));
             hls.on(Hls.Events.MANIFEST_PARSED, function() { player.play(); });
-        } else { player.src({ src: decodedUrl, type: 'application/x-mpegURL' }); player.play(); }
+        } else {
+            player.src({ src: decodedUrl, type: 'application/x-mpegURL' });
+            player.play();
+        }
     } else {
         player.src({ src: decodedUrl, type: 'video/mp4' });
         const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
@@ -840,7 +859,7 @@ function filter() { render(document.getElementById('searchBar').value); }
 function toggleEditMode() { isEditMode = !isEditMode; document.getElementById('profile-screen').classList.toggle('is-editing'); }
 function switchProfile() { localStorage.removeItem('sfpp_profile'); location.reload(); }
 function requestAccess() { window.location.href = "mailto:sfpp.ott@gmail.com"; }
-function openSearch() { document.getElementById('searchBar').focus(); document.getElementById('search-overlay').style.display = 'flex'; }
+function openSearch() { document.getElementById('search-overlay').style.display = 'flex'; document.getElementById('searchBar').focus(); }
 function closeSearch() { document.getElementById('search-overlay').style.display = 'none'; document.getElementById('searchBar').value = ''; filter(); }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -848,6 +867,7 @@ document.addEventListener('DOMContentLoaded', () => {
         controls: true, fluid: false,
         techOrder: ['chromecast', 'html5'], plugins: { chromecast: { addButtonToControlBar: true } }
     });
+
     player.on('timeupdate', function() {
         const dur = player.duration(), cur = player.currentTime();
         if (/S\d{2}E\d{2}/i.test(currentPlayingTitle) && dur > 0 && (dur - cur) < 80) {
