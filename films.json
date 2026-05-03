@@ -302,5 +302,65 @@
     "id_tmdb": "4951",
     "cat": "COMÉDIE",
     "url": "https://stream01-hls.hulkcrush.org/vod/51422c93359c0ad66c0cb0acfe65c06afa94d025749268e2454bf10ed115e44b/master.m3u8"
+  },
+  {
+    "t": "10 jours sans maman",
+    "id_tmdb": "605735",
+    "cat": "COMÉDIE",
+    "url": "https://stream01-hls.hulkcrush.org/vod/ce9e14e1e56407d28c2f6835cd7ee90670994a90931b908238a42a5b21043414/master.m3u8"
+  },
+  {
+    "t": "100% bio",
+    "id_tmdb": "718529",
+    "cat": "COMÉDIE",
+    "url": "https://stream01-hls.hulkcrush.org/vod/51422c93359c0ad66c0cb0acfe65c06afa94d025749268e2454bf10ed115e44b/master.m3u8"
+  },
+  {
+    "t": "1001 pattes",
+    "id_tmdb": "9487",
+    "cat": "ANIMATION",
+    "url": "https://stream01-hls.hulkcrush.org/vod/fd36efa5e79d5e4562c0d66a7bbc72076cfed66033c18ee1417124e7b81276ab/master.m3u8"
+  },
+  {
+    "t": "12 Rounds",
+    "id_tmdb": "17134",
+    "cat": "ACTION",
+    "url": "https://stream01-hls.hulkcrush.org/vod/d4d38a66fdb07dca087ede2b084ab9d67188fae63acef484e118bd0366529617/master.m3u8"
+  },
+  {
+    "t": "120 Battements par minute",
+    "id_tmdb": "451945",
+    "cat": "DRAME",
+    "url": "https://stream01-hls.hulkcrush.org/vod/476221972af1fedd1476c693433ed500acf8f26224fe27f2a17b152f8057e023/master.m3u8"
+  },
+  {
+    "t": "127 heures",
+    "id_tmdb": "44115",
+    "cat": "AVENTURE",
+    "url": "https://stream01-hls.hulkcrush.org/vod/42ec7b04344d229cfe3fdb1bdbeede5a1cc2f78ff173750cae0139b36fbe34aa/master.m3u8"
+  },
+  {
+    "t": "Avatar: La Voie de l'eau",
+    "id_tmdb": "76600",
+    "cat": "ACTION",
+    "url": "https://stream01-hls.hulkcrush.org/vod/cbe9e917af2763716e3d56f54d61aa1ab624e90b2e12886860acd319f112d08d/master.m3u8"
+  },
+  {
+    "t": "Blade Runner",
+    "id_tmdb": "78",
+    "cat": "S-FICTION",
+    "url": "https://stream01-hls.hulkcrush.org/vod/f44f6d27696bbd80a2d4463752911f5dd134bf160ae4662b0bf69e0c2f9eda67/master.m3u8"
+  },
+  {
+    "t": "12 Rounds 2",
+    "id_tmdb": "195269",
+    "cat": "ACTION",
+    "url": "https://stream01-hls.hulkcrush.org/vod/663247e5b61579f3b9b65f3d4ec637c16f201fd67779ebc823a25043b6f1a8f0/master.m3u8"
+  },
+  {
+    "t": "12 Rounds 3",
+    "id_tmdb": "351901",
+    "cat": "ACTION",
+    "url": "https://stream01-hls.hulkcrush.org/vod/7ac56668bae534fabcf361ef0ec8334923cc9b967cc1f337d6515390ebc1082b/master.m3u8"
   }
 ]
