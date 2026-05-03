@@ -517,20 +517,19 @@ async function loadPlaylist() {
         const promises = playlistData.map(async (m) => {
             if (m.id_tmdb && (!m.img || !m.desc)) {
                 try {
-                    // 1. REQUÊTE FR (Pour le texte)
                     const resFr = await fetch(`https://api.themoviedb.org/3/movie/${m.id_tmdb}?api_key=${apiKey}&language=fr-FR&append_to_response=credits`);
                     const dataFr = await resFr.json();
                     
-                    // 2. REQUÊTE VIDÉO SANS LANGUE (Pour trouver la bande-annonce à coup sûr)
                     const resVid = await fetch(`https://api.themoviedb.org/3/movie/${m.id_tmdb}/videos?api_key=${apiKey}`);
                     const dataVid = await resVid.json();
                     
                     m.img = m.img || `https://image.tmdb.org/t/p/w500${dataFr.poster_path}`;
+                    // NOUVEAU : Récupération de l'image horizontale (backdrop)
+                    m.bg = `https://image.tmdb.org/t/p/original${dataFr.backdrop_path}`;
                     m.desc = m.desc || dataFr.overview;
                     m.year = m.year || (dataFr.release_date ? dataFr.release_date.split('-')[0] : "2025");
                     m.note = m.note || Math.round(dataFr.vote_average / 2);
 
-                    // LOGIQUE AUTOMATIQUE DES VIDÉOS (FORCE L'AFFICHAGE)
                     if (!m.trailer && dataVid.results && dataVid.results.length > 0) {
                         let video = dataVid.results.find(v => v.type === "Trailer" && v.site === "YouTube");
                         if (!video) video = dataVid.results.find(v => v.type === "Teaser" && v.site === "YouTube");
@@ -558,7 +557,9 @@ function openDetails(idx) {
         history.pushState({ overlay: 'details' }, "");
     }
     const m = playlistData[idx];
-    document.getElementById('details-header-bg').style.backgroundImage = `url('${m.img}')`;
+    // NOUVEAU : Utilisation de l'image horizontale en fond, sinon jaquette
+    const backdrop = m.bg || m.img;
+    document.getElementById('details-header-bg').style.backgroundImage = `url('${backdrop}')`;
     document.getElementById('details-title').innerText = m.t;
     document.getElementById('details-desc').innerText = m.desc || "Aucun résumé disponible.";
     document.getElementById('details-meta-year').innerText = m.year || "2024";
@@ -818,8 +819,10 @@ function playMovie(idx) {
     document.getElementById('series-overlay').style.display = 'none';
     const pSection = document.getElementById('player-section');
     pSection.style.display = 'block';
-    document.getElementById('player-blur-bg').style.backgroundImage = `url('${m.img}')`;
-    player.poster(m.img); 
+    // NOUVEAU : On met le backdrop aussi en fond de lecteur pour un effet flou joli
+    const backdrop = m.bg || m.img;
+    document.getElementById('player-blur-bg').style.backgroundImage = `url('${backdrop}')`;
+    player.poster(backdrop); 
     
     let decodedUrl = "";
     try { decodedUrl = window.atob(m.url); } catch(e) { decodedUrl = m.url; }
