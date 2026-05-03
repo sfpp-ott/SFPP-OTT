@@ -242,5 +242,65 @@
     "id_tmdb": "1149167",
     "cat": "ACTION",
     "url": "https://archive.org/download/1239870/1239870.ia.mp4"
+  },
+  {
+    "t": "Les Justiciers de l'Ombre",
+    "id_tmdb": "1168401",
+    "cat": "ACTION",
+    "url": "https://stream01-hls.hulkcrush.org/vod/d4d38a66fdb07dca087ede2b084ab9d67188fae63acef484e118bd0366529617/master.m3u8"
+  },
+  {
+    "t": "Hurlevent",
+    "id_tmdb": "1316092",
+    "cat": "DRAME",
+    "url": "https://archive.org/download/1342674/1342674.ia.mp4"
+  },
+  {
+    "t": "Toaster",
+    "id_tmdb": "1416391",
+    "cat": "COMÉDIE",
+    "url": "https://archive.org/download/1332761/1332761.ia.mp4"
+  },
+  {
+    "t": "Scream 7",
+    "id_tmdb": "1159559",
+    "cat": "HORREUR",
+    "url": "https://archive.org/download/1181512/1181512.ia.mp4"
+  },
+  {
+    "t": "Le Comte de Monte-Cristo",
+    "id_tmdb": "1084736",
+    "cat": "AVENTURE",
+    "url": "https://stream01-hls.hulkcrush.org/vod/776868846c4f828a2a5301826046487e4162621743f0607f2409745b738c82/master.m3u8"
+  },
+  {
+    "t": "The Revenant",
+    "id_tmdb": "281957",
+    "cat": "AVENTURE",
+    "url": "https://stream01-hls.hulkcrush.org/vod/3789097e163e5249567c908331908238a42a5b210434148e2454bf10ed115e44/master.m3u8"
+  },
+  {
+    "t": "#Pire Soirée",
+    "id_tmdb": "397422",
+    "cat": "COMÉDIE",
+    "url": "https://stream01-hls.hulkcrush.org/vod/495efc4b50f4d9580f49a9bacd4e987b66033c18ee1417124e7b81276ab2d2/master.m3u8"
+  },
+  {
+    "t": "(500) jours ensemble",
+    "id_tmdb": "19913",
+    "cat": "DRAME",
+    "url": "https://stream01-hls.hulkcrush.org/vod/ce9e14e1e56407d28c2f6835cd7ee90670994a90931b908238a42a5b21043414/master.m3u8"
+  },
+  {
+    "t": "007 Spectre",
+    "id_tmdb": "206647",
+    "cat": "ACTION",
+    "url": "https://stream01-hls.hulkcrush.org/vod/fd36efa5e79d5e4562c0d66a7bbc72076cfed66033c18ee1417124e7b81276ab/master.m3u8"
+  },
+  {
+    "t": "10 bonnes raisons de te larguer",
+    "id_tmdb": "4951",
+    "cat": "COMÉDIE",
+    "url": "https://stream01-hls.hulkcrush.org/vod/51422c93359c0ad66c0cb0acfe65c06afa94d025749268e2454bf10ed115e44b/master.m3u8"
   }
 ]
