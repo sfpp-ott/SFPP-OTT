@@ -823,19 +823,24 @@ function playMovie(idx) {
     let decodedUrl = "";
     try { decodedUrl = window.atob(m.url); } catch(e) { decodedUrl = m.url; }
 
+    const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
+
     if (decodedUrl.includes('.m3u8')) {
         if (Hls.isSupported()) {
             hls = new Hls();
             hls.loadSource(decodedUrl);
             hls.attachMedia(document.querySelector('#main-video_html5_api'));
-            hls.on(Hls.Events.MANIFEST_PARSED, function() { player.play(); });
+            hls.on(Hls.Events.MANIFEST_PARSED, function() { 
+                if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
+                player.play(); 
+            });
         } else {
             player.src({ src: decodedUrl, type: 'application/x-mpegURL' });
+            if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
             player.play();
         }
     } else {
         player.src({ src: decodedUrl, type: 'video/mp4' });
-        const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
         if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
         player.play();
     }
@@ -901,7 +906,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (/S\d{2}E\d{2}/i.test(currentPlayingTitle) && dur > 0 && (dur - cur) < 80) {
             document.getElementById('next-episode-btn').style.display = 'block';
         } else document.getElementById('next-episode-btn').style.display = 'none';
-        if(Math.floor(cur) % 10 === 0) saveP();
+        
+        // On sauvegarde plus souvent (toutes les 5s) et on s'assure que c'est enregistré
+        if(Math.floor(cur) % 5 === 0) saveP();
     });
 });
 
