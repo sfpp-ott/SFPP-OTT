@@ -595,6 +595,7 @@ function openDetails(idx) {
     favBtn.onclick = () => { toggleFav(m.t); };
     updateFavBtnUI(m.t);
 
+    // LOGIQUE SUGGESTIONS
     const primaryCat = m.cat.split(',')[0].trim();
     const suggs = playlistData
         .filter(item => item.cat.includes(primaryCat) && item.t !== m.t)
@@ -696,6 +697,7 @@ function render(search = "") {
     else if(currentView === 'series') data = playlistData.filter(m => m.cat === "SÉRIES");
     else if(currentView === 'fav') data = playlistData.filter(m => favs.includes(m.t));
 
+    // Historique
     if(currentProfile && s === "" && currentView === 'all') {
         let history = JSON.parse(localStorage.getItem('sfpp_hist_' + currentProfile) || "[]");
         if(history.length > 0) {
@@ -713,6 +715,7 @@ function render(search = "") {
         } else histSec.style.display = "none";
     } else histSec.style.display = "none";
 
+    // Tous les films
     if (s === "" && (currentView === 'all' || currentView === 'movies')) {
         const allMovies = playlistData.filter(m => m.cat !== "SÉRIES" && !m.cat.toUpperCase().includes("DIRECT") && !m.cat.toUpperCase().includes("TV"));
         if (allMovies.length > 0) {
@@ -727,6 +730,7 @@ function render(search = "") {
         }
     }
 
+    // EXTRACTION GENRES
     const allGenres = [];
     data.forEach(m => {
         const genres = m.cat.split(',').map(g => g.trim().toUpperCase());
@@ -835,8 +839,11 @@ function playMovie(idx) {
 
     const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
 
-    // --- CORRECTION CHROMECAST ---
-    if (decodedUrl.includes('.m3u8')) {
+    // TYPE DE SOURCE POUR CHROMECAST
+    let sourceType = 'video/mp4';
+    if (decodedUrl.includes('.m3u8')) sourceType = 'application/x-mpegURL';
+
+    if (sourceType === 'application/x-mpegURL') {
         if (Hls.isSupported()) {
             hls = new Hls();
             hls.loadSource(decodedUrl);
@@ -847,15 +854,18 @@ function playMovie(idx) {
             });
             hls.on(Hls.Events.LEVEL_LOADED, function() { player.on('timeupdate', saveP); });
         } else {
-            player.src({ src: decodedUrl, type: 'application/x-mpegURL' });
+            player.src({ src: decodedUrl, type: sourceType });
             if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
             player.play();
         }
     } else {
-        player.src({ src: decodedUrl, type: 'video/mp4' });
+        player.src({ src: decodedUrl, type: sourceType });
         if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
         player.play();
     }
+    
+    // FORCER LA SOURCE POUR LE PLUGIN CHROMECAST
+    player.src({ src: decodedUrl, type: sourceType });
 }
 
 function playNextEpisode() {
@@ -877,15 +887,16 @@ function openSearch() { document.getElementById('search-overlay').style.display 
 function closeSearch() { document.getElementById('search-overlay').style.display = 'none'; document.getElementById('searchBar').value = ''; filter(); }
 
 document.addEventListener('DOMContentLoaded', () => {
-    // --- INITIALISATION LECTEUR AVEC CHROMECAST ---
+    // INITIALISATION LECTEUR
     player = videojs('main-video', { 
         controls: true, fluid: false,
         techOrder: ['chromecast', 'html5'], 
-        plugins: { chromecast: { addButtonToControlBar: true } }
+        plugins: { chromecast: { addButtonToControlBar: true, addDisplayOnControlBar: true } }
     });
 
     let lastTap = 0;
     const videoContainer = document.getElementById('video-container');
+
     videoContainer.addEventListener('touchend', function(e) {
         const now = new Date().getTime();
         const timesince = now - lastTap;
@@ -906,6 +917,7 @@ document.addEventListener('DOMContentLoaded', () => {
     class Back extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-replay-10'; } handleClick() { player.currentTime(player.currentTime()-10); } }
     class Forward extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-forward-10'; } handleClick() { player.currentTime(player.currentTime()+10); } }
     videojs.registerComponent('Back', Back); videojs.registerComponent('Forward', Forward);
+    
     player.ready(() => { 
         player.getChild('controlBar').addChild('Back', {}, 1); 
         player.getChild('controlBar').addChild('Forward', {}, 2); 
