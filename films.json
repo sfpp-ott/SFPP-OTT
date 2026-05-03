@@ -63,6 +63,42 @@
     "url": "https://archive.org/download/1271019/1271019.ia.mp4"
   },
   {
+    "t": "Highest 2 Lowest",
+    "id_tmdb": "1242434",
+    "cat": "THRILLER",
+    "url": "https://stream01-hls.hulkcrush.org/vod/d0fad58b043be4ff0059649651b535f33ec14b8db8ed7eba655c9d32651e79d5/master.m3u8"
+  },
+  {
+    "t": "Compartiment N°6",
+    "id_tmdb": "588182",
+    "cat": "DRAME",
+    "url": "https://stream01-hls.hulkcrush.org/vod/9d45c1df2cfb8e8c24f1ccdfbdad1b82f8590e2f22d73b4200f23d57b1c77a4a/master.m3u8"
+  },
+  {
+    "t": "Ice Road : La Vengeance",
+    "id_tmdb": "1119878",
+    "cat": "ACTION",
+    "url": "https://stream01-hls.hulkcrush.org/vod/763e7ab6af64f7106d224fb1cae560e4a8bd47289797921b3028c246e73594ab/master.m3u8"
+  },
+  {
+    "t": "Juste la fin du monde",
+    "id_tmdb": "338189",
+    "cat": "DRAME",
+    "url": "https://stream01-hls.hulkcrush.org/vod/c3a00b403cbd045475698376c01c85fb607aee67f7fd76c817659e9aaf6f6047/master.m3u8"
+  },
+  {
+    "t": "L'Amant De Lady Chatterley",
+    "id_tmdb": "814338",
+    "cat": "ROMANCE",
+    "url": "https://stream01-hls.hulkcrush.org/vod/f3cb74bf3ba2d06e3e6a33a846946f09ce164a5bcf25919b3461ea93940bb662/master.m3u8"
+  },
+  {
+    "t": "L’Effet Papillon 3",
+    "id_tmdb": "16258",
+    "cat": "THRILLER",
+    "url": "https://stream01-hls.hulkcrush.org/vod/fe639302ecc4c7abb4e499d4aee3d02bfececef53dfdb9420aee1c2fd1057de6/master.m3u8"
+  },
+  {
     "t": "Hell House LLC",
     "id_tmdb": "359246",
     "cat": "HORREUR",
