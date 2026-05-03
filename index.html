@@ -715,7 +715,7 @@ function render(search = "") {
         } else histSec.style.display = "none";
     } else histSec.style.display = "none";
 
-    // Tous les films
+    // Tous les films (Accueil/Films)
     if (s === "" && (currentView === 'all' || currentView === 'movies')) {
         const allMovies = playlistData.filter(m => m.cat && !m.cat.includes("SÉRIES") && !m.cat.toUpperCase().includes("DIRECT") && !m.cat.toUpperCase().includes("TV"));
         if (allMovies.length > 0) {
@@ -730,7 +730,7 @@ function render(search = "") {
         }
     }
 
-    // EXTRACTION GENRES
+    // EXTRACTION ET ÉCLATEMENT DES GENRES
     const allGenres = [];
     data.forEach(m => {
         if(m.cat) {
@@ -888,13 +888,14 @@ function openSearch() { document.getElementById('search-overlay').style.display 
 function closeSearch() { document.getElementById('search-overlay').style.display = 'none'; document.getElementById('searchBar').value = ''; filter(); }
 
 document.addEventListener('DOMContentLoaded', () => {
-    // INITIALISATION LECTEUR AVEC PLUGIN CHROMECAST
+    // --- INITIALISATION DU LECTEUR AVEC PLUGIN CHROMECAST ---
     player = videojs('main-video', { 
         controls: true, fluid: false,
         techOrder: ['chromecast', 'html5'], 
         plugins: { chromecast: { addButtonToControlBar: true, addDisplayOnControlBar: true } }
     });
 
+    // --- RÉTABLISSEMENT DU DOUBLE-CLIC ---
     let lastTap = 0;
     const videoContainer = document.getElementById('video-container');
 
