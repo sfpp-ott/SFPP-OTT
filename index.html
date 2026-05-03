@@ -650,7 +650,9 @@ function saveP() {
     if(!currentPlayingTitle || !currentProfile) return;
     const cur = player.currentTime();
     const dur = player.duration();
-    if(dur > 0) {
+    
+    // On s'assure que le temps et la durée sont valides avant de sauvegarder
+    if(dur > 0 && cur > 0) {
         let prog = JSON.parse(localStorage.getItem('sfpp_p_'+currentProfile) || "{}");
         prog[currentPlayingTitle] = { t: cur, p: (cur/dur)*100 };
         localStorage.setItem('sfpp_p_'+currentProfile, JSON.stringify(prog));
@@ -831,8 +833,14 @@ function playMovie(idx) {
             hls.loadSource(decodedUrl);
             hls.attachMedia(document.querySelector('#main-video_html5_api'));
             hls.on(Hls.Events.MANIFEST_PARSED, function() { 
-                if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
+                if(prog[m.t] && prog[m.t].t > 10) {
+                    player.currentTime(prog[m.t].t);
+                }
                 player.play(); 
+            });
+            // Synchronisation de la sauvegarde pour HLS
+            hls.on(Hls.Events.LEVEL_LOADED, function() {
+                 player.on('timeupdate', saveP);
             });
         } else {
             player.src({ src: decodedUrl, type: 'application/x-mpegURL' });
@@ -870,7 +878,6 @@ document.addEventListener('DOMContentLoaded', () => {
         techOrder: ['chromecast', 'html5'], plugins: { chromecast: { addButtonToControlBar: true } }
     });
 
-    // --- RÉTABLISSEMENT DU DOUBLE-CLIC ---
     let lastTap = 0;
     const videoContainer = document.getElementById('video-container');
 
@@ -890,7 +897,6 @@ document.addEventListener('DOMContentLoaded', () => {
         else player.requestFullscreen();
     });
 
-    // --- RÉTABLISSEMENT DES BOUTONS -10s / +10s ---
     const Button = videojs.getComponent('Button');
     class Back extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-replay-10'; } handleClick() { player.currentTime(player.currentTime()-10); } }
     class Forward extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-forward-10'; } handleClick() { player.currentTime(player.currentTime()+10); } }
