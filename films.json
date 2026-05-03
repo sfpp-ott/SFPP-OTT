@@ -61,5 +61,65 @@
     "id_tmdb": "1618945",
     "cat": "LES DERNIÈRES SORTIES",
     "url": "https://archive.org/download/1271019/1271019.ia.mp4"
+  },
+  {
+    "t": "La Terre de Sarah",
+    "id_tmdb": "1258661",
+    "cat": "DRAME",
+    "url": "aHR0cHM6Ly9hcmNoaXZlLm9yZy9kb3dubG9hZC8xMjYyMjQwLzEyNjIyNDAuaWEubXA0"
+  },
+  {
+    "t": "McWalter",
+    "id_tmdb": "1314349",
+    "cat": "ACTION",
+    "url": "https://stream01-hls.hulkcrush.org/vod/ce9e14e1e56407d28c2f6835cd7ee90670994a90931b908238a42a5b21043414/master.m3u8"
+  },
+  {
+    "t": "La Femme de ménage",
+    "id_tmdb": "1118116",
+    "cat": "THRILLER",
+    "url": "https://stream01-hls.hulkcrush.org/vod/51422c93359c0ad66c0cb0acfe65c06afa94d025749268e2454bf10ed115e44b/master.m3u8"
+  },
+  {
+    "t": "Samir Nasri : Rebelle",
+    "id_tmdb": "1342673",
+    "cat": "DOCUMENTAIRE",
+    "url": "aHR0cHM6Ly9hcmNoaXZlLm9yZy9kb3dubG9hZC8xMzQyNjczLzEzNDI2NzMuaWEubXA0"
+  },
+  {
+    "t": "Différente",
+    "id_tmdb": "1282255",
+    "cat": "COMÉDIE",
+    "url": "https://stream01-hls.hulkcrush.org/vod/fd36efa5e79d5e4562c0d66a7bbc72076cfed66033c18ee1417124e7b81276ab/master.m3u8"
+  },
+  {
+    "t": "Desert Dawn",
+    "id_tmdb": "1214041",
+    "cat": "ACTION",
+    "url": "https://stream01-hls.hulkcrush.org/vod/d4d38a66fdb07dca087ede2b084ab9d67188fae63acef484e118bd0366529617/master.m3u8"
+  },
+  {
+    "t": "Des jours meilleurs",
+    "id_tmdb": "1268307",
+    "cat": "COMÉDIE",
+    "url": "https://stream01-hls.hulkcrush.org/vod/476221972af1fedd1476c693433ed500acf8f26224fe27f2a17b152f8057e023/master.m3u8"
+  },
+  {
+    "t": "De mauvaise foi",
+    "id_tmdb": "1306354",
+    "cat": "COMÉDIE",
+    "url": "https://stream01-hls.hulkcrush.org/vod/42ec7b04344d229cfe3fdb1bdbeede5a1cc2f78ff173750cae0139b36fbe34aa/master.m3u8"
+  },
+  {
+    "t": "Complètement footus",
+    "id_tmdb": "1305419",
+    "cat": "COMÉDIE",
+    "url": "https://stream01-hls.hulkcrush.org/vod/cbe9e917af2763716e3d56f54d61aa1ab624e90b2e12886860acd319f112d08d/master.m3u8"
+  },
+  {
+    "t": "Creep 2",
+    "id_tmdb": "466311",
+    "cat": "HORREUR",
+    "url": "https://stream01-hls.hulkcrush.org/vod/f44f6d27696bbd80a2d4463752911f5dd134bf160ae4662b0bf69e0c2f9eda67/master.m3u8"
   }
 ]
