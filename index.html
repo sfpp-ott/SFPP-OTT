@@ -517,7 +517,6 @@ async function loadPlaylist() {
         const promises = playlistData.map(async (m) => {
             if (m.id_tmdb && (!m.img || !m.desc || !m.trailer)) {
                 try {
-                    // SOLUTION ULTIME : Requête unique avec repli vidéo multi-langues
                     const url = `https://api.themoviedb.org/3/movie/${m.id_tmdb}?api_key=${apiKey}&language=fr-FR&append_to_response=videos,credits&include_video_language=en,fr,null`;
                     const res = await fetch(url);
                     const data = await res.json();
@@ -528,7 +527,6 @@ async function loadPlaylist() {
                     m.year = m.year || (data.release_date ? data.release_date.split('-')[0] : "2025");
                     m.note = m.note || Math.round(data.vote_average / 2);
 
-                    // Automatisation des vidéos avec repli automatique
                     if (!m.trailer && data.videos && data.videos.results.length > 0) {
                         const video = data.videos.results.find(v => 
                             (v.type === "Trailer" || v.type === "Teaser") && v.site === "YouTube"
@@ -538,7 +536,6 @@ async function loadPlaylist() {
                     }
 
                     if (!m.actors_pics && data.credits && data.credits.cast) {
-                        // Limite fixée à 10 acteurs
                         m.actors_pics = data.credits.cast.slice(0, 10).map(a => ({
                             name: a.name,
                             img: `https://image.tmdb.org/t/p/w185${a.profile_path}`
@@ -866,6 +863,37 @@ document.addEventListener('DOMContentLoaded', () => {
     player = videojs('main-video', { 
         controls: true, fluid: false,
         techOrder: ['chromecast', 'html5'], plugins: { chromecast: { addButtonToControlBar: true } }
+    });
+
+    // --- RÉTABLISSEMENT DU DOUBLE-CLIC ---
+    let lastTap = 0;
+    const videoContainer = document.getElementById('video-container');
+
+    videoContainer.addEventListener('touchend', function(e) {
+        const now = new Date().getTime();
+        const timesince = now - lastTap;
+        if ((timesince < 350) && (timesince > 0)) {
+            if (player.isFullscreen()) player.exitFullscreen();
+            else player.requestFullscreen();
+            e.preventDefault();
+        }
+        lastTap = now;
+    });
+
+    player.on('dblclick', function() {
+        if (player.isFullscreen()) player.exitFullscreen();
+        else player.requestFullscreen();
+    });
+
+    // --- RÉTABLISSEMENT DES BOUTONS -10s / +10s ---
+    const Button = videojs.getComponent('Button');
+    class Back extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-replay-10'; } handleClick() { player.currentTime(player.currentTime()-10); } }
+    class Forward extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-forward-10'; } handleClick() { player.currentTime(player.currentTime()+10); } }
+    videojs.registerComponent('Back', Back); videojs.registerComponent('Forward', Forward);
+    
+    player.ready(() => { 
+        player.getChild('controlBar').addChild('Back', {}, 1); 
+        player.getChild('controlBar').addChild('Forward', {}, 2); 
     });
 
     player.on('timeupdate', function() {
