@@ -121,5 +121,65 @@
     "id_tmdb": "396493",
     "cat": "HORREUR",
     "url": "https://stream01-hls.hulkcrush.org/vod/f44f6d27696bbd80a2d4463752911f5dd134bf160ae4662b0bf69e0c2f9eda67/master.m3u8"
+  },
+  {
+    "t": "Creep",
+    "id_tmdb": "8555",
+    "cat": "HORREUR",
+    "url": "https://stream01-hls.hulkcrush.org/vod/99299750524a6ab1970449f773962877d58bfbf2803ae9a86bf08a2ddf7697de/master.m3u8"
+  },
+  {
+    "t": "Conan le barbare",
+    "id_tmdb": "9387",
+    "cat": "AVENTURE",
+    "url": "https://stream01-hls.hulkcrush.org/vod/663247e5b61579f3b9b65f3d4ec637c16f201fd67779ebc823a25043b6f1a8f0/master.m3u8"
+  },
+  {
+    "t": "Collatéral",
+    "id_tmdb": "1538",
+    "cat": "DRAME",
+    "url": "https://stream01-hls.hulkcrush.org/vod/7ac56668bae534fabcf361ef0ec8334923cc9b967cc1f337d6515390ebc1082b/master.m3u8"
+  },
+  {
+    "t": "Coka Chicas",
+    "id_tmdb": "1442655",
+    "cat": "THRILLER",
+    "url": "https://stream01-hls.hulkcrush.org/vod/5ffc4ab721634238b1b45280717069d9da3d02dd58f14fafec9f223eff9dbe69/master.m3u8"
+  },
+  {
+    "t": "Cléo de 5 à 7",
+    "id_tmdb": "499",
+    "cat": "DRAME",
+    "url": "https://stream01-hls.hulkcrush.org/vod/9e599a37ea75940c202fe932dcc8e2bd0bfa79bbe92eabf24001ebe7095ba100/master.m3u8"
+  },
+  {
+    "t": "Breaking the Waves",
+    "id_tmdb": "145",
+    "cat": "DRAME",
+    "url": "https://stream01-hls.hulkcrush.org/vod/286e84030a5ff12211084af957f02a371b9a5adec051e01297d3f76cc7e5af8a/master.m3u8"
+  },
+  {
+    "t": "Boyz n the Hood",
+    "id_tmdb": "650",
+    "cat": "DRAME",
+    "url": "https://stream01-hls.hulkcrush.org/vod/48ff30ecaa566178f835b86f55fa93735483882677826be9e74739dcb6e8295f/master.m3u8"
+  },
+  {
+    "t": "Best of the best 4",
+    "id_tmdb": "36567",
+    "cat": "ACTION",
+    "url": "https://stream01-hls.hulkcrush.org/vod/6d7319cabc1bd82dfc1fbb93c1391b9fd3ea9a481486976cf64c91c701b6bffe/master.m3u8"
+  },
+  {
+    "t": "Best of the Best 3",
+    "id_tmdb": "36555",
+    "cat": "ACTION",
+    "url": "https://stream01-hls.hulkcrush.org/vod/2cea5df926849f8db3f9f2b0eaf40748aef8d8aaee88663953d00315ad6650d1/master.m3u8"
+  },
+  {
+    "t": "Best of the best 2",
+    "id_tmdb": "32049",
+    "cat": "ACTION",
+    "url": "https://stream01-hls.hulkcrush.org/vod/65b26d016bd1b08529653602e942a8bbee96762dd6a6378ced1d7a9829722d69/master.m3u8"
   }
 ]
