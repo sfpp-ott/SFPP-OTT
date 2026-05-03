@@ -884,11 +884,14 @@ function openSearch() { document.getElementById('search-overlay').style.display 
 function closeSearch() { document.getElementById('search-overlay').style.display = 'none'; document.getElementById('searchBar').value = ''; filter(); }
 
 document.addEventListener('DOMContentLoaded', () => {
+    // --- INITIALISATION DU LECTEUR AVEC CHROMECAST ACTIVÉ ---
     player = videojs('main-video', { 
         controls: true, fluid: false,
-        techOrder: ['chromecast', 'html5'], plugins: { chromecast: { addButtonToControlBar: true } }
+        techOrder: ['chromecast', 'html5'], 
+        plugins: { chromecast: { addButtonToControlBar: true } }
     });
 
+    // --- RÉTABLISSEMENT DU DOUBLE-CLIC ---
     let lastTap = 0;
     const videoContainer = document.getElementById('video-container');
 
@@ -908,6 +911,7 @@ document.addEventListener('DOMContentLoaded', () => {
         else player.requestFullscreen();
     });
 
+    // --- RÉTABLISSEMENT DES BOUTONS -10s / +10s ---
     const Button = videojs.getComponent('Button');
     class Back extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-replay-10'; } handleClick() { player.currentTime(player.currentTime()-10); } }
     class Forward extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-forward-10'; } handleClick() { player.currentTime(player.currentTime()+10); } }
