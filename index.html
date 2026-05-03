@@ -517,23 +517,29 @@ async function loadPlaylist() {
         const promises = playlistData.map(async (m) => {
             if (m.id_tmdb && (!m.img || !m.desc)) {
                 try {
-                    const res = await fetch(`https://api.themoviedb.org/3/movie/${m.id_tmdb}?api_key=${apiKey}&language=fr-FR&append_to_response=videos,credits`);
-                    const data = await res.json();
+                    // 1. REQUÊTE FR (Pour le texte)
+                    const resFr = await fetch(`https://api.themoviedb.org/3/movie/${m.id_tmdb}?api_key=${apiKey}&language=fr-FR&append_to_response=credits`);
+                    const dataFr = await resFr.json();
                     
-                    m.img = m.img || `https://image.tmdb.org/t/p/w500${data.poster_path}`;
-                    m.desc = m.desc || data.overview;
-                    m.year = m.year || (data.release_date ? data.release_date.split('-')[0] : "2025");
-                    m.note = m.note || Math.round(data.vote_average / 2);
+                    // 2. REQUÊTE VIDÉO SANS LANGUE (Pour trouver la bande-annonce à coup sûr)
+                    const resVid = await fetch(`https://api.themoviedb.org/3/movie/${m.id_tmdb}/videos?api_key=${apiKey}`);
+                    const dataVid = await resVid.json();
+                    
+                    m.img = m.img || `https://image.tmdb.org/t/p/w500${dataFr.poster_path}`;
+                    m.desc = m.desc || dataFr.overview;
+                    m.year = m.year || (dataFr.release_date ? dataFr.release_date.split('-')[0] : "2025");
+                    m.note = m.note || Math.round(dataFr.vote_average / 2);
 
-                    if (!m.trailer && data.videos && data.videos.results.length > 0) {
-                        let video = data.videos.results.find(v => v.type === "Trailer" && v.site === "YouTube");
-                        if (!video) video = data.videos.results.find(v => v.type === "Teaser" && v.site === "YouTube");
-                        if (!video) video = data.videos.results.find(v => v.site === "YouTube");
+                    // LOGIQUE AUTOMATIQUE DES VIDÉOS (FORCE L'AFFICHAGE)
+                    if (!m.trailer && dataVid.results && dataVid.results.length > 0) {
+                        let video = dataVid.results.find(v => v.type === "Trailer" && v.site === "YouTube");
+                        if (!video) video = dataVid.results.find(v => v.type === "Teaser" && v.site === "YouTube");
+                        if (!video) video = dataVid.results.find(v => v.site === "YouTube");
                         if (video) m.trailer = video.key;
                     }
 
-                    if (!m.actors_pics && data.credits && data.credits.cast) {
-                        m.actors_pics = data.credits.cast.slice(0, 10).map(a => ({
+                    if (!m.actors_pics && dataFr.credits && dataFr.credits.cast) {
+                        m.actors_pics = dataFr.credits.cast.slice(0, 10).map(a => ({
                             name: a.name,
                             img: `https://image.tmdb.org/t/p/w185${a.profile_path}`
                         }));
@@ -588,7 +594,6 @@ function openDetails(idx) {
     playBtn.focus();
 }
 
-// --- NOUVELLE FONCTION : Recherche par acteur ---
 window.searchByActor = function(actorName) {
     closeDetails(); 
     openSearch(); 
@@ -705,7 +710,6 @@ function render(search = "") {
     const cats = [...new Set(data.map(m => m.cat))];
     let addedSeries = [];
     cats.forEach(c => {
-        // MODIFICATION : Recherche étendue Titre + Année + Acteurs
         const filtered = data.filter(m => {
             const matchCat = (m.cat === c);
             const matchTitle = m.t.toLowerCase().includes(s);
@@ -872,7 +876,7 @@ function filter() { render(document.getElementById('searchBar').value); }
 function toggleEditMode() { isEditMode = !isEditMode; document.getElementById('profile-screen').classList.toggle('is-editing'); }
 function switchProfile() { localStorage.removeItem('sfpp_profile'); location.reload(); }
 function requestAccess() { window.location.href = "mailto:sfpp.ott@gmail.com"; }
-function openSearch() { document.getElementById('search-overlay').style.display = 'flex'; document.getElementById('searchBar').focus(); }
+function openSearch() { document.getElementById('searchBar').focus(); document.getElementById('search-overlay').style.display = 'flex'; }
 function closeSearch() { document.getElementById('search-overlay').style.display = 'none'; document.getElementById('searchBar').value = ''; filter(); }
 
 document.addEventListener('DOMContentLoaded', () => {
