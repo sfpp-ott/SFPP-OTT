@@ -182,5 +182,65 @@
     "id_tmdb": "32049",
     "cat": "ACTION",
     "url": "https://stream01-hls.hulkcrush.org/vod/65b26d016bd1b08529653602e942a8bbee96762dd6a6378ced1d7a9829722d69/master.m3u8"
+  },
+  {
+    "t": "Best of the Best",
+    "id_tmdb": "238751",
+    "cat": "ACTION",
+    "url": "https://stream01-hls.hulkcrush.org/vod/1f1a2e5a4f1c739b0c4b2b4f93fc2a88cb888767ffc5ef6d49285339d7d6b3d2/master.m3u8"
+  },
+  {
+    "t": "Atoman",
+    "id_tmdb": "869048",
+    "cat": "AVENTURE",
+    "url": "https://stream01-hls.hulkcrush.org/vod/cb96035e8c5edfe31f63b5c58575df98ab3f15bc49d7eccd09ff7ba18ddf45af/master.m3u8"
+  },
+  {
+    "t": "Anges & Cie",
+    "id_tmdb": "1261616",
+    "cat": "COMÉDIE",
+    "url": "https://stream01-hls.hulkcrush.org/vod/4fe40da76424e8b6ceb3b32fd076d7f495efc4b50f4d9580f49a9bacd4e987b6/master.m3u8"
+  },
+  {
+    "t": "Ali Baba et les 40 voleurs",
+    "id_tmdb": "193261",
+    "cat": "COMÉDIE",
+    "url": "https://stream01-hls.hulkcrush.org/vod/041eb41e11b28e7fd20df184c8b7db084bb63f6314af9f3a0f76f3ccb5d8c7d2/master.m3u8"
+  },
+  {
+    "t": "A Line of Fire",
+    "id_tmdb": "1367575",
+    "cat": "ACTION",
+    "url": "https://stream01-hls.hulkcrush.org/vod/05cf059ef4df4691f30b9ea08d08bb1282d2f414e4d1608ecea006f8f039c925/master.m3u8"
+  },
+  {
+    "t": "Together",
+    "id_tmdb": "1242011",
+    "cat": "HORREUR",
+    "url": "https://stream01-hls.hulkcrush.org/vod/2cd525ea58d1d4203d74bd2b9ea60d9f761221286112c3fa10c2260f13962843/master.m3u8"
+  },
+  {
+    "t": "Y a-t-il un flic pour sauver le monde ?",
+    "id_tmdb": "1035259",
+    "cat": "COMÉDIE",
+    "url": "https://stream01-hls.hulkcrush.org/vod/002ded645010ae64e8023d8557501a7330319d9dd9884df7f3ee0d9160572c69/master.m3u8"
+  },
+  {
+    "t": "Évanouis",
+    "id_tmdb": "1078605",
+    "cat": "HORREUR",
+    "url": "https://stream01-hls.hulkcrush.org/vod/16221d9bb8d3a8dfdc63bf897eaac51e2618ccc65fb75770601e457c1f44f08e/master.m3u8"
+  },
+  {
+    "t": "Yoroï",
+    "id_tmdb": "1358491",
+    "cat": "AVENTURE",
+    "url": "https://archive.org/download/1275856/1275856.ia.mp4"
+  },
+  {
+    "t": "Cash Out 2",
+    "id_tmdb": "1149167",
+    "cat": "ACTION",
+    "url": "https://archive.org/download/1239870/1239870.ia.mp4"
   }
 ]
