@@ -524,6 +524,11 @@ async function loadPlaylist() {
                     const res = await fetch(url);
                     const data = await res.json();
                     
+                    // Automatisation des catégories (Action, Thriller, etc.)
+                    if (data.genres && data.genres.length > 0) {
+                        m.cat = data.genres.map(g => g.name.toUpperCase()).join(', ');
+                    }
+
                     m.img = m.img || `https://image.tmdb.org/t/p/w500${data.poster_path}`;
                     m.bg = m.bg || `https://image.tmdb.org/t/p/original${data.backdrop_path}`;
                     m.desc = m.desc || data.overview;
@@ -591,9 +596,10 @@ function openDetails(idx) {
     favBtn.onclick = () => { toggleFav(m.t); };
     updateFavBtnUI(m.t);
 
-    // --- LOGIQUE SUGGESTIONS ---
+    // LOGIQUE SUGGESTIONS (Films de la même catégorie)
+    const currentGenre = m.cat.split(',')[0].trim(); // On prend le premier genre principal
     const suggs = playlistData
-        .filter(item => item.cat === m.cat && item.t !== m.t)
+        .filter(item => item.cat.includes(currentGenre) && item.t !== m.t)
         .sort(() => 0.5 - Math.random())
         .slice(0, 6);
     
