@@ -63,6 +63,12 @@
     "url": "https://archive.org/download/1271019/1271019.ia.mp4"
   },
   {
+    "t": "Hell House LLC",
+    "id_tmdb": "359246",
+    "cat": "HORREUR",
+    "url": "https://stream01-hls.hulkcrush.org/vod/a941570c122c9b7696994344f4779ff3d0a34c995dbdcb099d9d349c2298d25c/master.m3u8"
+  },
+  {
     "t": "Grotesque",
     "id_tmdb": "27297",
     "cat": "HORREUR",
