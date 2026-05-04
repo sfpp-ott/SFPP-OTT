@@ -1,5 +1,41 @@
 [
   {
+    "t": "Paris Perdu",
+    "id_tmdb": "1321439",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/4019c8ef45548e4b44e5101f8787686bcc6aa2111fa53311aa2a85470c5c9268/master.m3u8"
+  },
+  {
+    "t": "Jugement à Nuremberg",
+    "id_tmdb": "821",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/e8f06149a58aeb1881ff44a5d3f1fc0db7a796c17bbf29de274bdfd1caa7ab43/master.m3u8"
+  },
+  {
+    "t": "Les Pépites",
+    "id_tmdb": "408550",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/8ba235528a54e08b5cfd991955a2cd5a12a2716ea07583b6e2337abc3188a388/master.m3u8"
+  },
+  {
+    "t": "Vampire Hunter D Bloodlust",
+    "id_tmdb": "15999",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/138a72a817ea154c22031d1b4fb6e70aadab6c853325370b03155c103a7d3698/master.m3u8"
+  },
+  {
+    "t": "L’Effacement",
+    "id_tmdb": "1002005",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/0b961b31e375160a9cb06ae1e4997f7c94df6125616d9e62c3e393ea4d336514/master.m3u8"
+  },
+  {
+    "t": "Inséparables",
+    "id_tmdb": "589984",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/577543a3c8a81f7057d0aaefc7a3d759a4bb461854a1a1c0890f2d6aa2a56007/master.m3u8"
+  },
+  {
     "t": "Les Incorruptibles",
     "id_tmdb": "117",
     "cat": "",
