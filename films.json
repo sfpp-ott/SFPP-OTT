@@ -1,5 +1,41 @@
 [
   {
+    "t": "La Réparation",
+    "id_tmdb": "1235294",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/a8edf60eb2ee577bfb1053615a13667dde60ee4adfd06bac0137fdd93b695522/master.m3u8"
+  },
+  {
+    "t": "Les Indomptés",
+    "id_tmdb": "1092506",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/e9a26f6535a1c806524aa96ddf62238d8cdbf95351419bde27183cf78d0bb635/master.m3u8"
+  },
+  {
+    "t": "Les Musiciens",
+    "id_tmdb": "1266805",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/910987932f6167e08a0c24908462090fe94794df2d0e904d262a8e764db83b6b/master.m3u8"
+  },
+  {
+    "t": "Morgan Killer Doll",
+    "id_tmdb": "1493425",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/9c860448678ec2167b8fb5bdd39ca468a02802b56d34a1ed3959ce206018cdeb/master.m3u8"
+  },
+  {
+    "t": "Popeye the Slayer Man",
+    "id_tmdb": "1388366",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/dd008c17668787cb4d7250af9a8a37287e203f76df24118a76b000776c223079/master.m3u8"
+  },
+  {
+    "t": "Riff Raff",
+    "id_tmdb": "1127767",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/0e999d2f29f8d3b42f622ec87d17937d7923ad950d0a131ed809a9bb7885ca1d/master.m3u8"
+  },
+  {
     "t": "La Bataille de Solférino",
     "id_tmdb": "195173",
     "cat": "COMÉDIE",
