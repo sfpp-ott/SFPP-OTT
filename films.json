@@ -1,5 +1,41 @@
 [
   {
+    "t": "Le Vieux Fusil",
+    "id_tmdb": "3480",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/637abaa823aa44e76135c5099245cbb9a5b2530f829ea18a91997f3c4cdd7d43/master.m3u8"
+  },
+  {
+    "t": "Les Chèvres du Pentagone",
+    "id_tmdb": "10313",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/83b6baa892aa21150561f9025d806c17e2d9983d5760fcc15e648330d0dd7bd6/master.m3u8"
+  },
+  {
+    "t": "Jurassic Reborn",
+    "id_tmdb": "1477953",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/b55ed555395c37abaeeb9d01597d224b929108c27d2023f40c14f5fbbbde9ace/master.m3u8"
+  },
+  {
+    "t": "Lads",
+    "id_tmdb": "1126699",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/b2d598f3e067293725b032f976e888cb957df35722ad7fa2627d11cc2f090b11/master.m3u8"
+  },
+  {
+    "t": "Les Diables",
+    "id_tmdb": "31767",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/7a365c5e0716cea42b69c0e05113e034d13db8440a4cd94cec11dbc8fa1ae785/master.m3u8"
+  },
+  {
+    "t": "Les Graines du figuier sauvage",
+    "id_tmdb": "1278263",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/c1901fa1a1445d72e0cbf50252f1838c439899d23718b0f566d3d2514400e330/master.m3u8"
+  },
+  {
     "t": "Souviens-toi… l’été dernier",
     "id_tmdb": "1083433",
     "cat": "",
