@@ -163,7 +163,7 @@
         }
 
         .btn-report-hs {
-            background: #222; color: #bbb; border: 1px solid #444; padding: 15px 20px;
+            background: #222; color: #ccc; border: 1px solid #444; padding: 15px 20px;
             border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 14px;
         }
 
@@ -271,7 +271,7 @@
             <h2 id="details-title">Titre du film</h2>
             <div class="meta">
                 <span id="details-meta-year">2024</span>
-                <span id="details-meta-num" style="color:#bbb; font-size:11px; font-weight:bold; display:none; background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 4px;"></span>
+                <span id="details-meta-num" style="color:#ccc; font-size:11px; font-weight:bold; display:none; background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 4px;"></span>
                 <span id="details-meta-cat">Film</span>
                 <span id="details-stars-display" style="color:var(--gold)"></span> </div>
             <div class="details-actions">
@@ -449,15 +449,18 @@
         }); 
     };
 
-    window.reportFilm = (title, lineInfo) => {
-        const reportRef = ref(db, 'signalements');
-        const newReportRef = push(reportRef);
-        set(newReportRef, {
-            film: title,
-            num: lineInfo || "Inconnu",
-            date: new Date().toLocaleString(),
-            signaleur: localStorage.getItem('sfpp_profile') || "Anonyme"
-        }).then(() => alert("⚠️ Film signalé ! Merci.")).catch(() => alert("Erreur d'envoi."));
+    // NOUVELLE FONCTION SIGNALER
+    window.sendReport = (title, line) => {
+        if(confirm(`Voulez-vous vraiment signaler "${title}" comme hors service ?`)) {
+            const reportRef = ref(db, 'signalements');
+            const newReport = push(reportRef);
+            set(newReport, {
+                film: title,
+                ligne: line || "Inconnue",
+                date: new Date().toLocaleString(),
+                user: localStorage.getItem('sfpp_profile') || "Anonyme"
+            }).then(() => alert("Signalement envoyé. Merci !")).catch(() => alert("Erreur d'envoi."));
+        }
     };
 
     function pushInitialState() {
@@ -586,10 +589,13 @@ function openDetails(idx) {
     document.getElementById('details-meta-year').innerText = m.year || "2024";
     document.getElementById('details-meta-cat').innerText = m.cat;
 
+    // GESTION NUMÉRO DE LIGNE ET SIGNALEMENT
     const lineInfo = m.num ? m.num : (m.original_index * 7) + 2;
     const numTag = document.getElementById('details-meta-num');
     numTag.innerText = `[L${lineInfo}]`;
     numTag.style.display = isAdminMode ? "inline" : "none";
+
+    document.getElementById('details-report-btn').onclick = () => window.sendReport(m.t, lineInfo);
 
     const note = m.note || 5; 
     let stars = "";
@@ -612,8 +618,6 @@ function openDetails(idx) {
     
     document.getElementById('details-play-btn').onclick = () => { playMovie(idx); };
     document.getElementById('details-fav-btn').onclick = () => { toggleFav(m.t); };
-    document.getElementById('details-report-btn').onclick = () => window.reportFilm(m.t, lineInfo);
-    
     updateFavBtnUI(m.t);
 
     const primaryCat = m.cat ? m.cat.split(',')[0].trim() : "ACTION";
@@ -713,12 +717,14 @@ function render(search = "") {
 
     const favs = JSON.parse(localStorage.getItem('sfpp_fav_' + currentProfile) || "[]");
     const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
+    const now = new Date();
     
     let data = playlistData;
     if(currentView === 'movies') data = playlistData.filter(m => m.cat && !m.cat.includes("SÉRIES"));
     else if(currentView === 'series') data = playlistData.filter(m => m.cat && m.cat.includes("SÉRIES"));
     else if(currentView === 'fav') data = playlistData.filter(m => favs.includes(m.t));
 
+    // Historique
     if(currentProfile && s === "" && currentView === 'all') {
         let history = JSON.parse(localStorage.getItem('sfpp_hist_' + currentProfile) || "[]");
         if(history.length > 0) {
@@ -736,20 +742,22 @@ function render(search = "") {
         } else histSec.style.display = "none";
     } else histSec.style.display = "none";
 
+    // Tous les films
     if (s === "" && (currentView === 'all' || currentView === 'movies')) {
         const allMovies = playlistData.filter(m => m.cat && !m.cat.includes("SÉRIES") && !m.cat.toUpperCase().includes("DIRECT") && !m.cat.toUpperCase().includes("TV"));
         if (allMovies.length > 0) {
-            let html = `<div class="category-title">TOUS LES FILMS</div><div class="category-row"><div class="carousel">`;
+            let html = `<div class="category-title">TOUS LES FILMS</div><div class="category-row"><div class="nav-arrow arrow-left" onclick="scrollSide(this, -400)">‹</div><div class="carousel">`;
             allMovies.forEach(m => {
                 const heart = favs.includes(m.t) ? `<div style="position:absolute; top:5px; right:5px; z-index:5;">❤️</div>` : "";
                 const pct = (prog[m.t] && prog[m.t].p > 1) ? `<div class="prog-bg"><div class="prog-fill" style="width:${prog[m.t].p}%"></div></div>` : "";
                 html += `<div class="card" onclick="openDetails(${playlistData.indexOf(m)})" tabindex="0"><img src="${m.img}">${heart}${pct}<div class="card-name">${m.t}</div></div>`;
             });
-            html += `</div></div>`;
+            html += `</div><div class="nav-arrow arrow-right" onclick="scrollSide(this, 400)">›</div></div>`;
             cont.innerHTML += html;
         }
     }
 
+    // EXTRACTION ET ÉCLATEMENT DES GENRES
     const allGenres = [];
     data.forEach(m => {
         if(m.cat) {
@@ -761,7 +769,10 @@ function render(search = "") {
     allGenres.sort().forEach(c => {
         const filtered = data.filter(m => {
             const matchGenre = m.cat && m.cat.toUpperCase().includes(c);
-            const matchSearch = (s === "") || m.t.toLowerCase().includes(s);
+            const matchSearch = (s === "") || m.t.toLowerCase().includes(s) || 
+                                (m.year && m.year.toString().includes(s)) ||
+                                (m.actors_pics && m.actors_pics.some(a => a.name.toLowerCase().includes(s)));
+            
             return matchGenre && matchSearch;
         });
 
@@ -769,13 +780,29 @@ function render(search = "") {
         const isTVCat = c.includes("DIRECT") || c.includes("TV");
         const landscapeClass = isTVCat ? "landscape" : "";
         
-        let html = `<div class="category-title">${c}</div><div class="category-row"><div class="carousel">`;
+        let html = `<div class="category-title">${c}</div><div class="category-row"><div class="nav-arrow arrow-left" onclick="scrollSide(this, -400)">‹</div><div class="carousel">`;
+        let addedSeriesRow = [];
+
         filtered.forEach(m => {
+            const isS = /S\d{2}E\d{2}/i.test(m.t);
             const heart = favs.includes(m.t) ? `<div style="position:absolute; top:5px; right:5px; z-index:5;">❤️</div>` : "";
-            const clickAction = isTVCat ? `playMovie(${playlistData.indexOf(m)})` : `openDetails(${playlistData.indexOf(m)})`;
-            html += `<div class="card ${landscapeClass}" onclick="${clickAction}" tabindex="0"><img src="${m.img}">${heart}<div class="card-name">${m.t}</div></div>`;
+            
+            if(isS) {
+                const sName = m.t.split(' - ')[0];
+                if(!addedSeriesRow.includes(sName)) {
+                    addedSeriesRow.push(sName);
+                    html += `<div class="card" onclick="openSeries('${sName}')" tabindex="0"><img src="${m.img}">${heart}<div class="card-name">${sName}</div></div>`;
+                }
+            } else {
+                const clickAction = isTVCat ? `playMovie(${playlistData.indexOf(m)})` : `openDetails(${playlistData.indexOf(m)})`;
+                const pct = (prog[m.t] && prog[m.t].p > 1 && !isTVCat) ? `<div class="prog-bg"><div class="prog-fill" style="width:${prog[m.t].p}%"></div></div>` : "";
+                html += `<div class="card ${landscapeClass}" onclick="${clickAction}" tabindex="0">
+                            <img src="${m.img}">${heart}${pct}
+                            <div class="card-name">${m.t}</div>
+                        </div>`;
+            }
         });
-        html += `</div></div>`;
+        html += `</div><div class="nav-arrow arrow-right" onclick="scrollSide(this, 400)">›</div></div>`;
         cont.innerHTML += html;
     });
 }
