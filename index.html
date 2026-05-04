@@ -167,7 +167,6 @@
         
         .cast-row { display: flex; gap: 15px; overflow-x: auto; padding-bottom: 15px; scrollbar-width: none; }
         .actor-item { flex: 0 0 90px; text-align: center; cursor: pointer; transition: transform 0.2s; }
-        .actor-item:active { transform: scale(0.9); }
         .actor-item img { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 2px solid #333; transition: border-color 0.3s; }
         .actor-item:hover img { border-color: var(--accent); }
         .actor-name { font-size: 11px; color: #aaa; margin-top: 8px; }
@@ -267,7 +266,7 @@
             <h2 id="details-title">Titre du film</h2>
             <div class="meta">
                 <span id="details-meta-year">2024</span>
-                <span id="details-meta-num" style="color:#111; font-size:9px; margin-left:10px; display:none;"></span>
+                <span id="details-meta-num" style="color:#ccc; font-size:11px; font-weight:bold; display:none;"></span>
                 <span id="details-meta-cat">Film</span>
                 <span id="details-stars-display" style="color:var(--gold)"></span> </div>
             <div class="details-actions">
@@ -570,7 +569,7 @@ function openDetails(idx) {
     document.getElementById('details-meta-year').innerText = m.year || "2024";
     document.getElementById('details-meta-cat').innerText = m.cat;
     
-    // Numéro de ligne secret
+    // Numéro de ligne secret (Visibilité Admin)
     const numTag = document.getElementById('details-meta-num');
     numTag.innerText = m.num ? `[ID:${m.num}]` : `[L${(m.original_index * 7) + 2}]`;
     numTag.style.display = isAdminMode ? "inline" : "none";
@@ -601,10 +600,9 @@ function openDetails(idx) {
     favBtn.onclick = () => { toggleFav(m.t); };
     updateFavBtnUI(m.t);
 
-    // SUGGESTIONS
-    const firstCat = m.cat ? m.cat.split(',')[0].trim() : "ACTION";
+    const primaryCat = m.cat ? m.cat.split(',')[0].trim() : "ACTION";
     const suggs = playlistData
-        .filter(item => item.cat && item.cat.includes(firstCat) && item.t !== m.t)
+        .filter(item => item.cat && item.cat.includes(primaryCat) && item.t !== m.t)
         .sort(() => 0.5 - Math.random())
         .slice(0, 6);
     
@@ -695,13 +693,8 @@ function render(search = "") {
     cont.innerHTML = ""; histCont.innerHTML = "";
     const s = search.toLowerCase();
 
-    // Secret Admin Mode
-    if(s === "admin") { 
-        isAdminMode = true; 
-        document.getElementById('searchBar').value = ""; 
-        alert("Mode maintenance activé : les numéros de ligne sont visibles.");
-        return render(""); 
-    }
+    // Activation secrète du mode Admin
+    if(s === "admin") { isAdminMode = true; document.getElementById('searchBar').value = ""; alert("Mode maintenance activé : les numéros de ligne sont visibles."); return render(""); }
 
     const favs = JSON.parse(localStorage.getItem('sfpp_fav_' + currentProfile) || "[]");
     const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
@@ -712,7 +705,6 @@ function render(search = "") {
     else if(currentView === 'series') data = playlistData.filter(m => m.cat && m.cat.includes("SÉRIES"));
     else if(currentView === 'fav') data = playlistData.filter(m => favs.includes(m.t));
 
-    // Historique
     if(currentProfile && s === "" && currentView === 'all') {
         let history = JSON.parse(localStorage.getItem('sfpp_hist_' + currentProfile) || "[]");
         if(history.length > 0) {
@@ -730,7 +722,6 @@ function render(search = "") {
         } else histSec.style.display = "none";
     } else histSec.style.display = "none";
 
-    // Tous les films
     if (s === "" && (currentView === 'all' || currentView === 'movies')) {
         const allMovies = playlistData.filter(m => m.cat && !m.cat.includes("SÉRIES") && !m.cat.toUpperCase().includes("DIRECT") && !m.cat.toUpperCase().includes("TV"));
         if (allMovies.length > 0) {
@@ -745,7 +736,6 @@ function render(search = "") {
         }
     }
 
-    // EXTRACTION ET ÉCLATEMENT DES GENRES
     const allGenres = [];
     data.forEach(m => {
         if(m.cat) {
@@ -856,7 +846,6 @@ function playMovie(idx) {
 
     const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
 
-    // TYPE SOURCE POUR CHROMECAST
     let type = decodedUrl.includes('.m3u8') ? 'application/x-mpegURL' : 'video/mp4';
 
     if (type === 'application/x-mpegURL') {
