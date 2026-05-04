@@ -163,7 +163,7 @@
         }
 
         .btn-report-hs {
-            background: #222; color: #ccc; border: 1px solid #444; padding: 15px 20px;
+            background: #222; color: #bbb; border: 1px solid #444; padding: 15px 20px;
             border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 14px;
         }
 
@@ -256,7 +256,7 @@
         <button class="btn-logout" onclick="switchProfile()" tabindex="0">PROFILS</button>
     </div>
     <div id="search-overlay">
-        <input type="text" id="searchBar" onkeyup="filter()" placeholder="admin ou recherche..." tabindex="0">
+        <input type="text" id="searchBar" onkeyup="filter()" placeholder="Rechercher..." tabindex="0">
         <button class="btn-icon" onclick="closeSearch()" style="margin-left:10px" tabindex="0">✕</button>
     </div>
 </header>
@@ -271,7 +271,7 @@
             <h2 id="details-title">Titre du film</h2>
             <div class="meta">
                 <span id="details-meta-year">2024</span>
-                <span id="details-meta-num" style="color:#ccc; font-size:11px; font-weight:bold; display:none; background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 4px;"></span>
+                <span id="details-meta-num" style="color:#bbb; font-size:11px; font-weight:bold; display:none; background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 4px;"></span>
                 <span id="details-meta-cat">Film</span>
                 <span id="details-stars-display" style="color:var(--gold)"></span> </div>
             <div class="details-actions">
@@ -322,6 +322,7 @@
 
 <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
 <script src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1"></script>
+<script src="https://unpkg.com/@silvermine/videojs-chromecast@1.5.0/dist/silvermine-videojs-chromecast.css"></script>
 <script src="https://unpkg.com/@silvermine/videojs-chromecast@1.5.0/dist/silvermine-videojs-chromecast.min.js"></script>
 
 <script type="module">
@@ -449,17 +450,17 @@
         }); 
     };
 
-    // NOUVELLE FONCTION SIGNALER
-    window.sendReport = (title, line) => {
-        if(confirm(`Voulez-vous vraiment signaler "${title}" comme hors service ?`)) {
+    // FONCTION SIGNALER FIREBASE (SÉCURISÉE)
+    window.reportFilm = (title, lineInfo) => {
+        if(confirm(`Voulez-vous vraiment signaler "${title}" comme HS ?`)) {
             const reportRef = ref(db, 'signalements');
-            const newReport = push(reportRef);
-            set(newReport, {
+            const newReportRef = push(reportRef);
+            set(newReportRef, {
                 film: title,
-                ligne: line || "Inconnue",
+                num: lineInfo || "Inconnu",
                 date: new Date().toLocaleString(),
-                user: localStorage.getItem('sfpp_profile') || "Anonyme"
-            }).then(() => alert("Signalement envoyé. Merci !")).catch(() => alert("Erreur d'envoi."));
+                signaleur: localStorage.getItem('sfpp_profile') || "Anonyme"
+            }).then(() => alert("⚠️ Signalement reçu. Merci.")).catch(() => alert("Erreur d'envoi."));
         }
     };
 
@@ -588,14 +589,14 @@ function openDetails(idx) {
     document.getElementById('details-desc').innerText = m.desc || "Aucun résumé disponible.";
     document.getElementById('details-meta-year').innerText = m.year || "2024";
     document.getElementById('details-meta-cat').innerText = m.cat;
-
-    // GESTION NUMÉRO DE LIGNE ET SIGNALEMENT
+    
+    // NUMERO DE LIGNE ET SIGNALEMENT
     const lineInfo = m.num ? m.num : (m.original_index * 7) + 2;
     const numTag = document.getElementById('details-meta-num');
     numTag.innerText = `[L${lineInfo}]`;
     numTag.style.display = isAdminMode ? "inline" : "none";
 
-    document.getElementById('details-report-btn').onclick = () => window.sendReport(m.t, lineInfo);
+    document.getElementById('details-report-btn').onclick = () => window.reportFilm(m.t, lineInfo);
 
     const note = m.note || 5; 
     let stars = "";
@@ -616,8 +617,11 @@ function openDetails(idx) {
     document.getElementById('details-trailer-box').innerHTML = m.trailer ? 
         `<iframe width="100%" height="100%" src="https://www.youtube.com/embed/${m.trailer}?rel=0" frameborder="0" allowfullscreen></iframe>` : "";
     
-    document.getElementById('details-play-btn').onclick = () => { playMovie(idx); };
-    document.getElementById('details-fav-btn').onclick = () => { toggleFav(m.t); };
+    const playBtn = document.getElementById('details-play-btn');
+    playBtn.onclick = () => { playMovie(idx); };
+    
+    const favBtn = document.getElementById('details-fav-btn');
+    favBtn.onclick = () => { toggleFav(m.t); };
     updateFavBtnUI(m.t);
 
     const primaryCat = m.cat ? m.cat.split(',')[0].trim() : "ACTION";
@@ -635,7 +639,7 @@ function openDetails(idx) {
     document.getElementById('details-suggestions').innerHTML = suggHtml;
 
     document.getElementById('details-overlay').style.display = 'flex';
-    document.getElementById('details-play-btn').focus();
+    playBtn.focus();
 }
 
 window.searchByActor = function(actorName) {
@@ -713,6 +717,7 @@ function render(search = "") {
     cont.innerHTML = ""; histCont.innerHTML = "";
     const s = search.toLowerCase();
 
+    // Mode admin secret
     if(s === "admin") { isAdminMode = true; document.getElementById('searchBar').value = ""; alert("Mode maintenance activé."); return render(""); }
 
     const favs = JSON.parse(localStorage.getItem('sfpp_fav_' + currentProfile) || "[]");
@@ -746,33 +751,24 @@ function render(search = "") {
     if (s === "" && (currentView === 'all' || currentView === 'movies')) {
         const allMovies = playlistData.filter(m => m.cat && !m.cat.includes("SÉRIES") && !m.cat.toUpperCase().includes("DIRECT") && !m.cat.toUpperCase().includes("TV"));
         if (allMovies.length > 0) {
-            let html = `<div class="category-title">TOUS LES FILMS</div><div class="category-row"><div class="nav-arrow arrow-left" onclick="scrollSide(this, -400)">‹</div><div class="carousel">`;
+            let html = `<div class="category-title">TOUS LES FILMS</div><div class="category-row"><div class="carousel">`;
             allMovies.forEach(m => {
                 const heart = favs.includes(m.t) ? `<div style="position:absolute; top:5px; right:5px; z-index:5;">❤️</div>` : "";
                 const pct = (prog[m.t] && prog[m.t].p > 1) ? `<div class="prog-bg"><div class="prog-fill" style="width:${prog[m.t].p}%"></div></div>` : "";
                 html += `<div class="card" onclick="openDetails(${playlistData.indexOf(m)})" tabindex="0"><img src="${m.img}">${heart}${pct}<div class="card-name">${m.t}</div></div>`;
             });
-            html += `</div><div class="nav-arrow arrow-right" onclick="scrollSide(this, 400)">›</div></div>`;
+            html += `</div></div>`;
             cont.innerHTML += html;
         }
     }
 
-    // EXTRACTION ET ÉCLATEMENT DES GENRES
     const allGenres = [];
-    data.forEach(m => {
-        if(m.cat) {
-            const genres = m.cat.split(',').map(g => g.trim().toUpperCase());
-            genres.forEach(g => { if(!allGenres.includes(g)) allGenres.push(g); });
-        }
-    });
+    data.forEach(m => { if(m.cat) m.cat.split(',').map(g => g.trim().toUpperCase()).forEach(g => { if(!allGenres.includes(g)) allGenres.push(g); }); });
 
     allGenres.sort().forEach(c => {
         const filtered = data.filter(m => {
             const matchGenre = m.cat && m.cat.toUpperCase().includes(c);
-            const matchSearch = (s === "") || m.t.toLowerCase().includes(s) || 
-                                (m.year && m.year.toString().includes(s)) ||
-                                (m.actors_pics && m.actors_pics.some(a => a.name.toLowerCase().includes(s)));
-            
+            const matchSearch = (s === "") || m.t.toLowerCase().includes(s);
             return matchGenre && matchSearch;
         });
 
@@ -780,29 +776,13 @@ function render(search = "") {
         const isTVCat = c.includes("DIRECT") || c.includes("TV");
         const landscapeClass = isTVCat ? "landscape" : "";
         
-        let html = `<div class="category-title">${c}</div><div class="category-row"><div class="nav-arrow arrow-left" onclick="scrollSide(this, -400)">‹</div><div class="carousel">`;
-        let addedSeriesRow = [];
-
+        let html = `<div class="category-title">${c}</div><div class="category-row"><div class="carousel">`;
         filtered.forEach(m => {
-            const isS = /S\d{2}E\d{2}/i.test(m.t);
             const heart = favs.includes(m.t) ? `<div style="position:absolute; top:5px; right:5px; z-index:5;">❤️</div>` : "";
-            
-            if(isS) {
-                const sName = m.t.split(' - ')[0];
-                if(!addedSeriesRow.includes(sName)) {
-                    addedSeriesRow.push(sName);
-                    html += `<div class="card" onclick="openSeries('${sName}')" tabindex="0"><img src="${m.img}">${heart}<div class="card-name">${sName}</div></div>`;
-                }
-            } else {
-                const clickAction = isTVCat ? `playMovie(${playlistData.indexOf(m)})` : `openDetails(${playlistData.indexOf(m)})`;
-                const pct = (prog[m.t] && prog[m.t].p > 1 && !isTVCat) ? `<div class="prog-bg"><div class="prog-fill" style="width:${prog[m.t].p}%"></div></div>` : "";
-                html += `<div class="card ${landscapeClass}" onclick="${clickAction}" tabindex="0">
-                            <img src="${m.img}">${heart}${pct}
-                            <div class="card-name">${m.t}</div>
-                        </div>`;
-            }
+            const clickAction = isTVCat ? `playMovie(${playlistData.indexOf(m)})` : `openDetails(${playlistData.indexOf(m)})`;
+            html += `<div class="card ${landscapeClass}" onclick="${clickAction}" tabindex="0"><img src="${m.img}">${heart}<div class="card-name">${m.t}</div></div>`;
         });
-        html += `</div><div class="nav-arrow arrow-right" onclick="scrollSide(this, 400)">›</div></div>`;
+        html += `</div></div>`;
         cont.innerHTML += html;
     });
 }
