@@ -1,5 +1,41 @@
 [
   {
+    "t": "La Bataille de Solférino",
+    "id_tmdb": "195173",
+    "cat": "COMÉDIE",
+    "url": "https://stream01-hls.hulkcrush.org/vod/c57c63ba2f8d7b67d137565bf9cf1764d9b9d5993738fd2a97056c834b184000/master.m3u8
+  },
+  {
+    "t": "L’Incroyable Voyage",
+    "id_tmdb": "6878",
+    "cat": "AVENTURE",
+    "url": "https://stream01-hls.hulkcrush.org/vod/f5eaea8e93f2f68016de0c7b68d4b188d87ea013155bba8f40380bf830b2f847/master.m3u8"
+  },
+  {
+    "t": "L’Incroyable Voyage II : À San Francisco",
+    "id_tmdb": "25059",
+    "cat": "AVENTURE",
+    "url": "https://stream01-hls.hulkcrush.org/vod/30da8e43feb2585b63ce1098c5b082c1c4f638c47d9727047f45dadc6bce95aa/master.m3u8"
+  },
+  {
+    "t": "Boléro",
+    "id_tmdb": "1004348",
+    "cat": "DRAME",
+    "url": "https://stream01-hls.hulkcrush.org/vod/4dad1184466a05a5cfafa442d027fb50c3901fa9709ed30a72165b15f8506161/master.m3u8"
+  },
+  {
+    "t": "Gummo",
+    "id_tmdb": "18415",
+    "cat": "DRAME",
+    "url": "https://stream01-hls.hulkcrush.org/vod/b3910b907353f6526d5543e5a325bae147971b4e717ca8fce60e6914ae7a1857/master.m3u8"
+  },
+  {
+    "t": "La Pie Voleuse",
+    "id_tmdb": "1175267",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/b675de7f31419b256647930736b1290602012b56cc59b3254753cb74e58aeb2e/master.m3u8"
+  },
+  {
     "t": "Fackham Hall",
     "id_tmdb": "1175174",
     "cat": "COMÉDIE",
