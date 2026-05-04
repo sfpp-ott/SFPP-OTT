@@ -267,6 +267,7 @@
             <h2 id="details-title">Titre du film</h2>
             <div class="meta">
                 <span id="details-meta-year">2024</span>
+                <span id="details-meta-line" style="color:#333; font-size:10px; display:none;"></span>
                 <span id="details-meta-cat">Film</span>
                 <span id="details-stars-display" style="color:var(--gold)"></span> </div>
             <div class="details-actions">
@@ -459,6 +460,7 @@ document.onkeydown = function(e) {
 setInterval(function() { (function() { debugger; }).call(); }, 5000);
 
 let player, playlistData = [], currentProfile = null, isEditMode = false, currentView = 'all', currentPlayingTitle = "", exitConfirmed = false;
+let isAdminMode = false;
 let epgData = {}; 
 let hls; 
 
@@ -517,7 +519,8 @@ async function loadPlaylist() {
         playlistData = await response.json(); 
         
         const apiKey = "ec1c8fecd38d1cc5a27f15766f0848d5";
-        const promises = playlistData.map(async (m) => {
+        const promises = playlistData.map(async (m, index) => {
+            m.original_index = index; // Sauvegarde l'index de ligne (0 = ligne 2 du json approx)
             if (m.id_tmdb && (!m.img || !m.desc || !m.trailer)) {
                 try {
                     const url = `https://api.themoviedb.org/3/movie/${m.id_tmdb}?api_key=${apiKey}&language=fr-FR&append_to_response=videos,credits&include_video_language=en,fr,null`;
@@ -568,6 +571,11 @@ function openDetails(idx) {
     document.getElementById('details-desc').innerText = m.desc || "Aucun résumé disponible.";
     document.getElementById('details-meta-year').innerText = m.year || "2024";
     document.getElementById('details-meta-cat').innerText = m.cat;
+    
+    // Numéro de ligne secret
+    const lineSpan = document.getElementById('details-meta-line');
+    lineSpan.innerText = `[L${m.original_index + 2}]`;
+    lineSpan.style.display = isAdminMode ? "inline" : "none";
 
     const note = m.note || 5; 
     let stars = "";
@@ -595,7 +603,6 @@ function openDetails(idx) {
     favBtn.onclick = () => { toggleFav(m.t); };
     updateFavBtnUI(m.t);
 
-    // --- LOGIQUE SUGGESTIONS RÉTABLIE ---
     const primaryCat = m.cat ? m.cat.split(',')[0].trim() : "ACTION";
     const suggs = playlistData
         .filter(item => item.cat && item.cat.includes(primaryCat) && item.t !== m.t)
@@ -688,6 +695,10 @@ function render(search = "") {
     const histCont = document.getElementById('history-container');
     cont.innerHTML = ""; histCont.innerHTML = "";
     const s = search.toLowerCase();
+    
+    // Mode admin secret
+    if(s === "admin") { isAdminMode = true; document.getElementById('searchBar').value = ""; return render(""); }
+
     const favs = JSON.parse(localStorage.getItem('sfpp_fav_' + currentProfile) || "[]");
     const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
     const now = new Date();
@@ -715,7 +726,7 @@ function render(search = "") {
         } else histSec.style.display = "none";
     } else histSec.style.display = "none";
 
-    // Tous les films (Accueil/Films)
+    // Tous les films
     if (s === "" && (currentView === 'all' || currentView === 'movies')) {
         const allMovies = playlistData.filter(m => m.cat && !m.cat.includes("SÉRIES") && !m.cat.toUpperCase().includes("DIRECT") && !m.cat.toUpperCase().includes("TV"));
         if (allMovies.length > 0) {
