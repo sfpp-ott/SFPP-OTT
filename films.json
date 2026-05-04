@@ -1,5 +1,41 @@
 [
   {
+    "t": "Les Incorruptibles",
+    "id_tmdb": "117",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/6eb2d716676d868e93af3aefecc50068351fa52e426c0579086f2e064c89d631/master.m3u8"
+  },
+  {
+    "t": "Les Règles de l’Art",
+    "id_tmdb": "1208695",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/67db908cbcc44bf1b9a5006302541f17e61dafab7d379bb006cd54d70ba4ee39/master.m3u8"
+  },
+  {
+    "t": "Les Valseuses",
+    "id_tmdb": "4031",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/c836e7f6c9b2272c13498932475d32082c8f677fc70b0b5691660f5b4edbe1ac/master.m3u8"
+  },
+  {
+    "t": "Loulou",
+    "id_tmdb": "39415",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/149d742cbcdf8c250a3c97e6fac5ede8599444373398d96a31bea962ca1cd968/master.m3u8"
+  },
+  {
+    "t": "Man on the Moon",
+    "id_tmdb": "1850",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/48cbfd471d72489663ee1d7e983429ea66f7bf6b67c0635c117d66c4a6649871/master.m3u8"
+  },
+  {
+    "t": "May",
+    "id_tmdb": "10894",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/7dd64f33890a7aec9fba8a61b33fee9f185702c141b81f179c0fbc0564c898e3/master.m3u8"
+  },
+  {
     "t": "Le Vieux Fusil",
     "id_tmdb": "3480",
     "cat": "",
