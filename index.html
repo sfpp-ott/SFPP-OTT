@@ -517,7 +517,8 @@ async function loadPlaylist() {
         playlistData = await response.json(); 
         
         const apiKey = "ec1c8fecd38d1cc5a27f15766f0848d5";
-        const promises = playlistData.map(async (m) => {
+        const promises = playlistData.map(async (m, index) => {
+            m.original_index = index; 
             if (m.id_tmdb && (!m.img || !m.desc || !m.trailer)) {
                 try {
                     const url = `https://api.themoviedb.org/3/movie/${m.id_tmdb}?api_key=${apiKey}&language=fr-FR&append_to_response=videos,credits&include_video_language=en,fr,null`;
@@ -569,9 +570,9 @@ function openDetails(idx) {
     document.getElementById('details-meta-year').innerText = m.year || "2024";
     document.getElementById('details-meta-cat').innerText = m.cat;
     
-    // Numéro de ligne personnalisé (Invisible par défaut)
+    // Numéro de ligne secret
     const numTag = document.getElementById('details-meta-num');
-    numTag.innerText = m.num ? `[ID:${m.num}]` : "";
+    numTag.innerText = m.num ? `[ID:${m.num}]` : `[L${(m.original_index * 7) + 2}]`;
     numTag.style.display = isAdminMode ? "inline" : "none";
 
     const note = m.note || 5; 
@@ -600,7 +601,7 @@ function openDetails(idx) {
     favBtn.onclick = () => { toggleFav(m.t); };
     updateFavBtnUI(m.t);
 
-    // LOGIQUE SUGGESTIONS
+    // SUGGESTIONS
     const firstCat = m.cat ? m.cat.split(',')[0].trim() : "ACTION";
     const suggs = playlistData
         .filter(item => item.cat && item.cat.includes(firstCat) && item.t !== m.t)
@@ -694,8 +695,13 @@ function render(search = "") {
     cont.innerHTML = ""; histCont.innerHTML = "";
     const s = search.toLowerCase();
 
-    // Mode admin secret
-    if(s === "admin") { isAdminMode = true; document.getElementById('searchBar').value = ""; alert("Mode maintenance activé."); return render(""); }
+    // Secret Admin Mode
+    if(s === "admin") { 
+        isAdminMode = true; 
+        document.getElementById('searchBar').value = ""; 
+        alert("Mode maintenance activé : les numéros de ligne sont visibles.");
+        return render(""); 
+    }
 
     const favs = JSON.parse(localStorage.getItem('sfpp_fav_' + currentProfile) || "[]");
     const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
@@ -874,7 +880,6 @@ function playMovie(idx) {
         player.play();
     }
     
-    // Forcer le rechargement Chromecast
     player.src({ src: decodedUrl, type: type });
 }
 
@@ -897,14 +902,12 @@ function openSearch() { document.getElementById('search-overlay').style.display 
 function closeSearch() { document.getElementById('search-overlay').style.display = 'none'; document.getElementById('searchBar').value = ''; filter(); }
 
 document.addEventListener('DOMContentLoaded', () => {
-    // --- INITIALISATION DU LECTEUR AVEC PLUGIN CHROMECAST ---
     player = videojs('main-video', { 
         controls: true, fluid: false,
         techOrder: ['chromecast', 'html5'], 
         plugins: { chromecast: { addButtonToControlBar: true, addDisplayOnControlBar: true } }
     });
 
-    // --- RÉTABLISSEMENT DU DOUBLE-CLIC ---
     let lastTap = 0;
     const videoContainer = document.getElementById('video-container');
 
