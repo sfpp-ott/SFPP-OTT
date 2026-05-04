@@ -1,5 +1,41 @@
 [
   {
+    "t": "Souviens-toi… l’été dernier",
+    "id_tmdb": "1083433",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/6385e896fedd8259f1bb32ab07b73077d4f4a38a57b58e92b01140c23e9db760/master.m3u8"
+  },
+  {
+    "t": "Taxi Téhéran",
+    "id_tmdb": "320006",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/cc21e63e855d27a1f8e49160382608ab1050bdcbbe35dc4ee8b0866cba6e07da/master.m3u8"
+  },
+  {
+    "t": "Le Domaine",
+    "id_tmdb": "1191045",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/614eab584da32576c33447bb81d1a759e744e0c38645b117beae7397549c2892/master.m3u8"
+  },
+  {
+    "t": "Le Murder Club du jeudi",
+    "id_tmdb": "744653",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/6e78769a2fd04360d5a78bd5fafe69431b9b9583afa65e12738bf1d9d2cbd0aa/master.m3u8"
+  },
+  {
+    "t": "Le Méli-mêlo des sentiments",
+    "id_tmdb": "1355666",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/adaf41cfbb3e3bc317eb7bf067a6cd58cd212ad373da0e65b8c71531b07ab9b1/master.m3u8"
+  },
+  {
+    "t": "Le Rendez-Vous de l’été",
+    "id_tmdb": "1294706",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/ebbea403151aeac0f0e487d6b62f30407b19099df2475df8c3c03e25bc3d9894/master.m3u8"
+  },
+  {
     "t": "La Réparation",
     "id_tmdb": "1235294",
     "cat": "",
