@@ -449,7 +449,7 @@
         }); 
     };
 
-    // FONCTION SIGNALER FIREBASE (CONFIRMATION AJOUTÉE)
+    // FONCTION SIGNALER (SÉCURISÉE)
     window.reportFilm = (title, lineInfo) => {
         if(confirm(`Voulez-vous vraiment signaler "${title}" comme HS ?`)) {
             const reportRef = ref(db, 'signalements');
@@ -737,7 +737,7 @@ function render(search = "") {
                     const landscapeClass = isTV ? "landscape" : "";
                     const pct = (prog[m.t] && prog[m.t].p > 1) ? `<div class="prog-bg"><div class="prog-fill" style="width:${prog[m.t].p}%"></div></div>` : "";
                     const clickAction = isTV ? `playMovie(${playlistData.indexOf(m)})` : `openDetails(${playlistData.indexOf(m)})`;
-                    histCont.innerHTML += `<div class="card ${landscapeClass}" onclick="${clickAction}" tabindex="0"><img src="${m.img}">${pct}<div class="card-name">${m.t}</div></div>`;
+                    histCont.innerHTML += `<div class="card ${landscapeClass}" onclick="${clickAction}" tabindex="0"><img src="${m.img}" loading="lazy">${pct}<div class="card-name">${m.t}</div></div>`;
                 }
             });
         } else histSec.style.display = "none";
@@ -751,7 +751,7 @@ function render(search = "") {
             allMovies.forEach(m => {
                 const heart = favs.includes(m.t) ? `<div style="position:absolute; top:5px; right:5px; z-index:5;">❤️</div>` : "";
                 const pct = (prog[m.t] && prog[m.t].p > 1) ? `<div class="prog-bg"><div class="prog-fill" style="width:${prog[m.t].p}%"></div></div>` : "";
-                html += `<div class="card" onclick="openDetails(${playlistData.indexOf(m)})" tabindex="0"><img src="${m.img}">${heart}${pct}<div class="card-name">${m.t}</div></div>`;
+                html += `<div class="card" onclick="openDetails(${playlistData.indexOf(m)})" tabindex="0"><img src="${m.img}" loading="lazy">${heart}${pct}<div class="card-name">${m.t}</div></div>`;
             });
             html += `</div><div class="nav-arrow arrow-right" onclick="scrollSide(this, 400)">›</div></div>`;
             cont.innerHTML += html;
@@ -792,13 +792,13 @@ function render(search = "") {
                 const sName = m.t.split(' - ')[0];
                 if(!addedSeriesRow.includes(sName)) {
                     addedSeriesRow.push(sName);
-                    html += `<div class="card" onclick="openSeries('${sName}')" tabindex="0"><img src="${m.img}">${heart}<div class="card-name">${sName}</div></div>`;
+                    html += `<div class="card" onclick="openSeries('${sName}')" tabindex="0"><img src="${m.img}" loading="lazy">${heart}<div class="card-name">${sName}</div></div>`;
                 }
             } else {
                 const clickAction = isTVCat ? `playMovie(${playlistData.indexOf(m)})` : `openDetails(${playlistData.indexOf(m)})`;
                 const pct = (prog[m.t] && prog[m.t].p > 1 && !isTVCat) ? `<div class="prog-bg"><div class="prog-fill" style="width:${prog[m.t].p}%"></div></div>` : "";
                 html += `<div class="card ${landscapeClass}" onclick="${clickAction}" tabindex="0">
-                            <img src="${m.img}">${heart}${pct}
+                            <img src="${m.img}" loading="lazy">${heart}${pct}
                             <div class="card-name">${m.t}</div>
                         </div>`;
             }
