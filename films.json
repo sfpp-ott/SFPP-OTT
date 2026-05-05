@@ -1,5 +1,47 @@
 [
   {
+    "num": "136",
+    "t": "L’Éventreur de New York",
+    "id_tmdb": "30874",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/f5569b7aa11d5643ff79ab2d7b9696ccf463495996940446a860892245604327/master.m3u8"
+  },
+  {
+    "num": "135",
+    "t": "Legend",
+    "id_tmdb": "11976",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/206549de2f7888b0fc40e79746f59be053c18c44206e517e656b90bf9ae8d630/master.m3u8"
+  },
+  {
+    "num": "134",
+    "t": "Americana",
+    "id_tmdb": "934456",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/0aa8d803bc38f821bb01c2af4aceb42ad4210af891644fbb6f1f7dd28d77dca0/master.m3u8"
+  },
+  {
+    "num": "133",
+    "t": "Excalibur",
+    "id_tmdb": "11527",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/b5f1b8c9b039a2e653443f2a6b19a559f7d8037ed59c93c0133c39163a753616/master.m3u8"
+  },
+  {
+    "num": "132",
+    "t": "Kalidor la légende du talisman",
+    "id_tmdb": "9626",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/5212974ddfa6c376f625f9c0c85d1f1d092a47cf3b2a7facda0c5bb36cd5a27b/master.m3u8"
+  },
+  {
+    "num": "131",
+    "t": "La Couleur de l’argent",
+    "id_tmdb": "11873",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/af03632da2cbc6bfd5114735678fb19ebaea749cd45d8f79efa9829b24752b6f/master.m3u8"
+  },
+  {
     "num": "130",
     "t": "Subservience",
     "id_tmdb": "1064028",
