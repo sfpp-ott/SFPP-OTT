@@ -1,5 +1,47 @@
 [
   {
+    "num": "148",
+    "t": "Mektoub My Love : Canto Uno",
+    "id_tmdb": "337676",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/3ca540f158c67748b02c287bba66d51b18d1a25165113321421410662cded9ec/master.m3u8"
+  },
+  {
+    "num": "147",
+    "t": "A Cure for Life",
+    "id_tmdb": "340837",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/d269001415d8e5299c50afbc7d0205e574ae8f56df199861bbed29416defa049/master.m3u8"
+  },
+  {
+    "num": "146",
+    "t": "Les 4 Fantastiques : Premiers pas",
+    "id_tmdb": "617126",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/bda0d42f71361b6b595dc2038405e0269cef70e25f20724b7eabf34d67e3bec8/master.m3u8"
+  },
+  {
+    "num": "145",
+    "t": "Delivery Run",
+    "id_tmdb": "1336189",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/029dcbc0351266b316ad263d2b8ab6f4d00744068bfe27b7983bdf0c637b1cf2/master.m3u8"
+  },
+  {
+    "num": "144",
+    "t": "JFK",
+    "id_tmdb": "820",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/ab9b40d075836054c29c4054aa77f2f46602ac54dfed08615a84f54f695189f5/master.m3u8"
+  },
+  {
+    "num": "143",
+    "t": "L’Amour c’est surcoté",
+    "id_tmdb": "1071064",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/dc94862b44901a88b33af19678e98ad2203134db3d2fbd8f89ff6086972b3ea8/master.m3u8"
+  },
+  {
     "num": "142",
     "t": "La Horde Sauvage",
     "id_tmdb": "576",
