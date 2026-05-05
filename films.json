@@ -1,5 +1,47 @@
 [
   {
+    "num": "142",
+    "t": "La Horde Sauvage",
+    "id_tmdb": "576",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/38a58ea561aeec1e3793575ad9cc6e197422bca53fb74588f5c0c51254c7bd48/master.m3u8"
+  },
+  {
+    "num": "141",
+    "t": "La Nuit Américaine",
+    "id_tmdb": "1675",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/832ed97886bd78f9a5cf09e91b9e095196bf59d2a639f5ac7f6e128e6e9c52a4/master.m3u8"
+  },
+  {
+    "num": "140",
+    "t": "La Venue de l’avenir",
+    "id_tmdb": "1235304",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/f8dffd516638459f1ff97383c8609d9643d68290288ebbafeaebf7523270ba68/master.m3u8"
+  },
+  {
+    "num": "139",
+    "t": "Laurence Anyways",
+    "id_tmdb": "110160",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/bebfe12def565757bfefbc48ce8ae5b3ba34aef0dc55528346baf6e4a945291f/master.m3u8"
+  },
+  {
+    "num": "138",
+    "t": "Les Choses de la vie",
+    "id_tmdb": "3423",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/9c3b192c5596be6424be0cb0b9338c9695c53c4bca8c534143b5b9d2548cfcf1/master.m3u8"
+  },
+  {
+    "num": "137",
+    "t": "Marquis",
+    "id_tmdb": "36068",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/8a8d25ce55ef3fd58b348b236d0ce3da1d5fa742247805d3d8e6e5644e3942c4/master.m3u8"
+  },
+  {
     "num": "136",
     "t": "L’Éventreur de New York",
     "id_tmdb": "30874",
