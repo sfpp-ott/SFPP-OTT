@@ -1,5 +1,47 @@
 [
   {
+    "num": "194",
+    "t": "Henry: Portrait of a Serial Killer",
+    "id_tmdb": "10692",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/16076f804f6794343cc248665aa7f57981b31e2f68ca29bdf583d99724fd03b0/master.m3u8"
+  },
+  {
+    "num": "193",
+    "t": "La Reine des damnés",
+    "id_tmdb": "11979",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/7c8804d6c7c7fba233ad146366f5257d3314451ba45ef3081bbe422f4495a72a/master.m3u8"
+  },
+  {
+    "num": "192",
+    "t": "Mantis",
+    "id_tmdb": "1267319",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/431f93526efef955c085665218b79046cb53fcdd81ff0a41d2fb2a9e68e0ef36/master.m3u8"
+  },
+  {
+    "num": "191",
+    "t": "Ruth & Boaz",
+    "id_tmdb": "1371189",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/1f06fd88eafe1efd4231b7ae83f51151459d05545b415eb51b5ff5b9c493468a/master.m3u8"
+  },
+  {
+    "num": "190",
+    "t": "Zombie",
+    "id_tmdb": "923",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/aa15c31d2b90686855acca7e288053aa988fc8a1581c0905369168d4ef59e599/master.m3u8"
+  },
+  {
+    "num": "189",
+    "t": "Hot Milk",
+    "id_tmdb": "933490",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/0944316afbf1bad4fb3cc9d878cbbf8cf9477f03e3b3de34f2471c3e292d179f/master.m3u8"
+  },
+  {
     "num": "188",
     "t": "Salò ou les 120 Journées de Sodome",
     "id_tmdb": "5336",
