@@ -449,17 +449,17 @@
         }); 
     };
 
-    // SIGNALEMENT FIREBASE (SÉCURISÉ)
-    window.reportHS = (title, line) => {
-        if(confirm(`Voulez-vous vraiment signaler "${title}" comme hors service ?`)) {
+    // FONCTION SIGNALER (SÉCURISÉE)
+    window.reportFilm = (title, lineInfo) => {
+        if(confirm(`Voulez-vous vraiment signaler "${title}" comme HS ?`)) {
             const reportRef = ref(db, 'signalements');
-            const newReport = push(reportRef);
-            set(newReport, {
+            const newReportRef = push(reportRef);
+            set(newReportRef, {
                 film: title,
-                position: line || "Inconnue",
+                num: lineInfo || "Inconnu",
                 date: new Date().toLocaleString(),
                 signaleur: localStorage.getItem('sfpp_profile') || "Anonyme"
-            }).then(() => alert("⚠️ Signalement envoyé. Merci !")).catch(() => alert("Erreur d'envoi."));
+            }).then(() => alert("⚠️ Film signalé ! Merci.")).catch(() => alert("Erreur d'envoi."));
         }
     };
 
@@ -530,35 +530,49 @@ window.addEventListener('popstate', function (event) {
     }
 });
 
-// CHARGEMENT STABLE (UNE REQUÊTE APRÈS L'AUTRE)
 async function loadPlaylist() { 
     try { 
         const response = await fetch('films.json?v=' + Date.now()); 
         playlistData = await response.json(); 
-        const apiKey = "ec1c8fecd38d1cc5a27f15766f0848d5";
         
-        for (let i = 0; i < playlistData.length; i++) {
-            const m = playlistData[i];
-            m.original_index = i;
+        const apiKey = "ec1c8fecd38d1cc5a27f15766f0848d5";
+        const promises = playlistData.map(async (m, index) => {
+            m.original_index = index;
             if (m.id_tmdb && (!m.img || !m.desc || !m.trailer)) {
                 try {
-                    const url = `https://api.themoviedb.org/3/movie/${m.id_tmdb}?api_key=${apiKey}&language=fr-FR&append_to_response=videos,credits`;
+                    const url = `https://api.themoviedb.org/3/movie/${m.id_tmdb}?api_key=${apiKey}&language=fr-FR&append_to_response=videos,credits&include_video_language=en,fr,null`;
                     const res = await fetch(url);
                     const data = await res.json();
-                    if(data.id) {
-                        m.img = m.img || `https://image.tmdb.org/t/p/w500${data.poster_path}`;
-                        m.bg = m.bg || `https://image.tmdb.org/t/p/original${data.backdrop_path}`;
-                        m.desc = m.desc || data.overview;
-                        m.year = m.year || (data.release_date ? data.release_date.split('-')[0] : "2025");
-                        m.note = m.note || Math.round(data.vote_average / 2);
-                        if (data.genres) m.cat = data.genres.map(g => g.name.toUpperCase()).join(', ');
-                        if (data.videos?.results.length > 0) m.trailer = data.videos.results.find(v => v.type === "Trailer" || v.type === "Teaser")?.key;
-                        if (data.credits?.cast) m.actors_pics = data.credits.cast.slice(0, 10).map(a => ({ name: a.name, img: `https://image.tmdb.org/t/p/w185${a.profile_path}` }));
+                    
+                    m.img = m.img || `https://image.tmdb.org/t/p/w500${data.poster_path}`;
+                    m.bg = m.bg || `https://image.tmdb.org/t/p/original${data.backdrop_path}`;
+                    m.desc = m.desc || data.overview;
+                    m.year = m.year || (data.release_date ? data.release_date.split('-')[0] : "2025");
+                    m.note = m.note || Math.round(data.vote_average / 2);
+
+                    if (data.genres && data.genres.length > 0) {
+                        m.cat = data.genres.map(g => g.name.toUpperCase()).join(', ');
                     }
-                } catch (e) {}
+
+                    if (!m.trailer && data.videos && data.videos.results.length > 0) {
+                        const video = data.videos.results.find(v => 
+                            (v.type === "Trailer" || v.type === "Teaser") && v.site === "YouTube"
+                        ) || data.videos.results[0];
+                        
+                        if (video) m.trailer = video.key;
+                    }
+
+                    if (!m.actors_pics && data.credits && data.credits.cast) {
+                        m.actors_pics = data.credits.cast.slice(0, 10).map(a => ({
+                            name: a.name,
+                            img: `https://image.tmdb.org/t/p/w185${a.profile_path}`
+                        }));
+                    }
+                } catch (e) { console.log("Erreur TMDB ID: " + m.id_tmdb); }
             }
-            if(i % 50 === 0) await new Promise(r => setTimeout(r, 10));
-        }
+        });
+
+        await Promise.all(promises);
         render(); 
     } catch (e) {} 
 }
@@ -575,13 +589,11 @@ function openDetails(idx) {
     document.getElementById('details-meta-year').innerText = m.year || "2024";
     document.getElementById('details-meta-cat').innerText = m.cat;
     
-    // GESTION ADMIN (NUMÉRO DE LIGNE)
+    // NUMÉRO DE LIGNE (ADMIN)
     const lineInfo = m.num ? m.num : (m.original_index * 7) + 2;
     const numTag = document.getElementById('details-meta-num');
     numTag.innerText = `[L${lineInfo}]`;
     numTag.style.display = isAdminMode ? "inline" : "none";
-
-    document.getElementById('details-report-btn').onclick = () => window.reportHS(m.t, lineInfo);
 
     const note = m.note || 5; 
     let stars = "";
@@ -602,11 +614,10 @@ function openDetails(idx) {
     document.getElementById('details-trailer-box').innerHTML = m.trailer ? 
         `<iframe width="100%" height="100%" src="https://www.youtube.com/embed/${m.trailer}?rel=0" frameborder="0" allowfullscreen></iframe>` : "";
     
-    const playBtn = document.getElementById('details-play-btn');
-    playBtn.onclick = () => { playMovie(idx); };
+    document.getElementById('details-play-btn').onclick = () => { playMovie(idx); };
+    document.getElementById('details-fav-btn').onclick = () => { toggleFav(m.t); };
+    document.getElementById('details-report-btn').onclick = () => window.reportFilm(m.t, lineInfo);
     
-    const favBtn = document.getElementById('details-fav-btn');
-    favBtn.onclick = () => { toggleFav(m.t); };
     updateFavBtnUI(m.t);
 
     const primaryCat = m.cat ? m.cat.split(',')[0].trim() : "ACTION";
@@ -617,7 +628,7 @@ function openDetails(idx) {
     
     let suggHtml = suggs.map(s => `
         <div class="actor-item" onclick="openDetails(${playlistData.indexOf(s)})" style="flex:0 0 120px">
-            <img src="${s.img}" style="border-radius:4px; height:160px; width:110px; object-fit:cover;" loading="lazy">
+            <img src="${s.img}" style="border-radius:4px; height:160px; width:110px; object-fit:cover;">
             <div class="actor-name">${s.t}</div>
         </div>
     `).join('');
@@ -747,13 +758,22 @@ function render(search = "") {
         }
     }
 
+    // EXTRACTION ET ÉCLATEMENT DES GENRES
     const allGenres = [];
-    data.forEach(m => { if(m.cat) m.cat.split(',').map(g => g.trim().toUpperCase()).forEach(g => { if(!allGenres.includes(g)) allGenres.push(g); }); });
+    data.forEach(m => {
+        if(m.cat) {
+            const genres = m.cat.split(',').map(g => g.trim().toUpperCase());
+            genres.forEach(g => { if(!allGenres.includes(g)) allGenres.push(g); });
+        }
+    });
 
     allGenres.sort().forEach(c => {
         const filtered = data.filter(m => {
             const matchGenre = m.cat && m.cat.toUpperCase().includes(c);
-            const matchSearch = (s === "") || m.t.toLowerCase().includes(s);
+            const matchSearch = (s === "") || m.t.toLowerCase().includes(s) || 
+                                (m.year && m.year.toString().includes(s)) ||
+                                (m.actors_pics && m.actors_pics.some(a => a.name.toLowerCase().includes(s)));
+            
             return matchGenre && matchSearch;
         });
 
@@ -762,10 +782,26 @@ function render(search = "") {
         const landscapeClass = isTVCat ? "landscape" : "";
         
         let html = `<div class="category-title">${c}</div><div class="category-row"><div class="nav-arrow arrow-left" onclick="scrollSide(this, -400)">‹</div><div class="carousel">`;
+        let addedSeriesRow = [];
+
         filtered.forEach(m => {
+            const isS = /S\d{2}E\d{2}/i.test(m.t);
             const heart = favs.includes(m.t) ? `<div style="position:absolute; top:5px; right:5px; z-index:5;">❤️</div>` : "";
-            const clickAction = isTVCat ? `playMovie(${playlistData.indexOf(m)})` : `openDetails(${playlistData.indexOf(m)})`;
-            html += `<div class="card ${landscapeClass}" onclick="${clickAction}" tabindex="0"><img src="${m.img}" loading="lazy">${heart}<div class="card-name">${m.t}</div></div>`;
+            
+            if(isS) {
+                const sName = m.t.split(' - ')[0];
+                if(!addedSeriesRow.includes(sName)) {
+                    addedSeriesRow.push(sName);
+                    html += `<div class="card" onclick="openSeries('${sName}')" tabindex="0"><img src="${m.img}" loading="lazy">${heart}<div class="card-name">${sName}</div></div>`;
+                }
+            } else {
+                const clickAction = isTVCat ? `playMovie(${playlistData.indexOf(m)})` : `openDetails(${playlistData.indexOf(m)})`;
+                const pct = (prog[m.t] && prog[m.t].p > 1 && !isTVCat) ? `<div class="prog-bg"><div class="prog-fill" style="width:${prog[m.t].p}%"></div></div>` : "";
+                html += `<div class="card ${landscapeClass}" onclick="${clickAction}" tabindex="0">
+                            <img src="${m.img}" loading="lazy">${heart}${pct}
+                            <div class="card-name">${m.t}</div>
+                        </div>`;
+            }
         });
         html += `</div><div class="nav-arrow arrow-right" onclick="scrollSide(this, 400)">›</div></div>`;
         cont.innerHTML += html;
