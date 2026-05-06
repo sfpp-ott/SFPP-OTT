@@ -1,5 +1,47 @@
 [
   {
+    "num": "182",
+    "t": "Les Chiens",
+    "id_tmdb": "70867",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/eeaa9e3bafbe30d7e686456c5c908582e969cbb731a97dbfe7b4150e182e1d50/master.m3u8"
+  },
+  {
+    "num": "181",
+    "t": "Schizophrenia",
+    "id_tmdb": "18912",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/b95fadd31e0c82647733f7a57170d77ee9408b071799702f0ba616ca212d2a29/master.m3u8"
+  },
+  {
+    "num": "180",
+    "t": "Walkyrie",
+    "id_tmdb": "2253",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/ea65dfa3241dbcfd35eec26e213874be469b1aa6503e39f6c65c9b91b589e08f/master.m3u8"
+  },
+  {
+    "num": "179",
+    "t": "Zombillénium",
+    "id_tmdb": "454549",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/86a8c41f9b0286eb0de168f5a04d0b2cf3cbabb30fa359be0ea0ff5358d79640/master.m3u8"
+  },
+  {
+    "num": "178",
+    "t": "La Classe américaine",
+    "id_tmdb": "16130",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/7374f6d7e8cb3edc1a5fcb2e9b3496059941dc1757417893cfea9d80bbb43599/master.m3u8"
+  },
+  {
+    "num": "177",
+    "t": "Meet the Feebles",
+    "id_tmdb": "8216",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/a8740310dcc533199dea5033564ad9354b649ba84eb8ce0c61cf6a5746429952/master.m3u8"
+  },
+  {
     "num": "176",
     "t": "Réveil dans la terreur",
     "id_tmdb": "26405",
