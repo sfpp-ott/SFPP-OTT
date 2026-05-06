@@ -1,5 +1,47 @@
 [
   {
+    "num": "188",
+    "t": "Salò ou les 120 Journées de Sodome",
+    "id_tmdb": "5336",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/0b89d3a170a5d1ba19c7dde1ba46fe16d473c3ca016e5bd82b9ae076fcb95a12/master.m3u8"
+  },
+  {
+    "num": "187",
+    "t": "Nocturnal Animals",
+    "id_tmdb": "340666",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/376d76e872676cc25801cd9aff9d9ba9033adec87c3bc0d958b88c32820abc41/master.m3u8"
+  },
+  {
+    "num": "186",
+    "t": "The Autopsy of Jane Doe",
+    "id_tmdb": "397243",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/563db4394f017b52b52c7cb97f8a41f36d9ced7b2277686d9d885df878962dc7/master.m3u8"
+  },
+  {
+    "num": "185",
+    "t": "On s’attache",
+    "id_tmdb": "1339658",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/8d34df0f75662a480b00511db937c9d151f5413baab39906b3ae59a59cd25f2a/master.m3u8"
+  },
+  {
+    "num": "184",
+    "t": "All Of You",
+    "id_tmdb": "1319965",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/6983e864dcf3c5b1954c6323dae3cb4867fdb1af5f9d865df30f92376ed1a7c0/master.m3u8"
+  },
+  {
+    "num": "183",
+    "t": "French Lover",
+    "id_tmdb": "1289888",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/52270aa3b2e4751518535e07680c796899e72b8fd50aedd31fb5da2f89641ba4/master.m3u8"
+  },
+  {
     "num": "182",
     "t": "Les Chiens",
     "id_tmdb": "70867",
