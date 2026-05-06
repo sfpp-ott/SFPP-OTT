@@ -1,5 +1,47 @@
 [
   {
+    "num": "176",
+    "t": "Réveil dans la terreur",
+    "id_tmdb": "26405",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/00507b9df3793b40a1419bf6417fcd178ebdae20671ae766c1391d24bfdece51/master.m3u8"
+  },
+  {
+    "num": "175",
+    "t": "L'Ultime Round",
+    "id_tmdb": "1215898",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/938b485a2a5e32c47cb03284a91303b75e5598e4b0ce4ccbe9bf5293b816f3e0/master.m3u8"
+  },
+  {
+    "num": "174",
+    "t": "Dead Zone",
+    "id_tmdb": "11336",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/932685c783e50f57436582409b7029d7e1962357bfd517886bfcb96fbc8d79ba/master.m3u8"
+  },
+  {
+    "num": "173",
+    "t": "Docteur Dolittle 2",
+    "id_tmdb": "10808",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/39bafeab1e7da00c7dbf4ecb9c3f6d4c2bbd61ef9d37bfc03ad6a87905831199/master.m3u8"
+  },
+  {
+    "num": "172",
+    "t": "L’Échelle de Jacob",
+    "id_tmdb": "2291",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/7142d7b0ad7ed1a091caa2ce93a05ecddc289f2d85ff81e954352e5d80fa4525/master.m3u8"
+  },
+  {
+    "num": "171",
+    "t": "La Maison aux fenêtres qui rient",
+    "id_tmdb": "57447",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/0ec091d5196dacc9756fc5b0ef3f52fb8c3b9bff30f3af33700f428bd6707346/master.m3u8"
+  },
+  {
     "num": "170",
     "t": "Libre échange",
     "id_tmdb": "1337562",
