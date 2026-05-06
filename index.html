@@ -152,7 +152,10 @@
             border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 16px; 
             display: flex; align-items: center; gap: 10px;
         }
-        .btn-play-main:focus { background: white !important; color: black !important; }
+        .btn-play-main:focus {
+            background: white !important;
+            color: black !important;
+        }
 
         .btn-fav-details {
             background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.3); padding: 15px 25px; 
@@ -274,7 +277,7 @@
             <div class="details-actions">
                 <button id="details-play-btn" class="btn-play-main" tabindex="0">▶ Lancer le film</button>
                 <button id="details-fav-btn" class="btn-fav-details" tabindex="0">+ Ma Liste</button>
-                <button id="details-report-btn" class="btn-report-hs" tabindex="0">⚠️ Signaler HS</button>
+                <button id="details-report-btn" class="btn-report-hs" tabindex="0">⚠️ Signaler</button>
             </div>
             <p id="details-desc" class="synopsis"></p>
             
@@ -446,17 +449,17 @@
         }); 
     };
 
-    // SIGNALEMENT FIREBASE (SÉCURISÉ)
-    window.sendHSReport = (title, lineInfo) => {
+    // SIGNALEMENT FIREBASE AVEC SÉCURITÉ
+    window.reportFilm = (title, lineInfo) => {
         if(confirm(`Voulez-vous vraiment signaler "${title}" comme HS ?`)) {
             const reportRef = ref(db, 'signalements');
-            const newReport = push(reportRef);
-            set(newReport, {
+            const newReportRef = push(reportRef);
+            set(newReportRef, {
                 film: title,
-                ligne: lineInfo || "Inconnue",
+                num: lineInfo || "Inconnu",
                 date: new Date().toLocaleString(),
-                user: localStorage.getItem('sfpp_profile') || "Anonyme"
-            }).then(() => alert("⚠️ Signalement envoyé. Merci !")).catch(() => alert("Erreur d'envoi."));
+                signaleur: localStorage.getItem('sfpp_profile') || "Anonyme"
+            }).then(() => alert("⚠️ Film signalé ! Merci.")).catch(() => alert("Erreur d'envoi."));
         }
     };
 
@@ -527,14 +530,13 @@ window.addEventListener('popstate', function (event) {
     }
 });
 
-// CHARGEMENT STABLE POUR ÉVITER LES FILMS MANQUANTS
+// CHARGEMENT STABLE (UNE REQUÊTE APRÈS L'AUTRE)
 async function loadPlaylist() { 
     try { 
         const response = await fetch('films.json?v=' + Date.now()); 
         playlistData = await response.json(); 
         const apiKey = "ec1c8fecd38d1cc5a27f15766f0848d5";
         
-        // Charger les films un par un pour ne rien oublier
         for (let i = 0; i < playlistData.length; i++) {
             const m = playlistData[i];
             m.original_index = i;
@@ -555,7 +557,7 @@ async function loadPlaylist() {
                     }
                 } catch (e) {}
             }
-            if(i % 50 === 0) await new Promise(r => setTimeout(r, 10)); // Pause pour stabilité
+            if(i % 50 === 0) await new Promise(r => setTimeout(r, 10));
         }
         render(); 
     } catch (e) {} 
@@ -572,14 +574,14 @@ function openDetails(idx) {
     document.getElementById('details-desc').innerText = m.desc || "Aucun résumé disponible.";
     document.getElementById('details-meta-year').innerText = m.year || "2024";
     document.getElementById('details-meta-cat').innerText = m.cat;
-    
-    // GESTION ADMIN (LIGNE) ET SIGNALEMENT
+
+    // GESTION ADMIN ET SIGNALEMENT
     const lineInfo = m.num ? m.num : (m.original_index * 7) + 2;
     const numTag = document.getElementById('details-meta-num');
     numTag.innerText = `[L${lineInfo}]`;
     numTag.style.display = isAdminMode ? "inline" : "none";
 
-    document.getElementById('details-report-btn').onclick = () => window.sendHSReport(m.t, lineInfo);
+    document.getElementById('details-report-btn').onclick = () => window.reportFilm(m.t, lineInfo);
 
     const note = m.note || 5; 
     let stars = "";
@@ -600,8 +602,11 @@ function openDetails(idx) {
     document.getElementById('details-trailer-box').innerHTML = m.trailer ? 
         `<iframe width="100%" height="100%" src="https://www.youtube.com/embed/${m.trailer}?rel=0" frameborder="0" allowfullscreen></iframe>` : "";
     
-    document.getElementById('details-play-btn').onclick = () => { playMovie(idx); };
-    document.getElementById('details-fav-btn').onclick = () => { toggleFav(m.t); };
+    const playBtn = document.getElementById('details-play-btn');
+    playBtn.onclick = () => { playMovie(idx); };
+    
+    const favBtn = document.getElementById('details-fav-btn');
+    favBtn.onclick = () => { toggleFav(m.t); };
     updateFavBtnUI(m.t);
 
     const primaryCat = m.cat ? m.cat.split(',')[0].trim() : "ACTION";
@@ -619,7 +624,7 @@ function openDetails(idx) {
     document.getElementById('details-suggestions').innerHTML = suggHtml;
 
     document.getElementById('details-overlay').style.display = 'flex';
-    document.getElementById('details-play-btn').focus();
+    playBtn.focus();
 }
 
 window.searchByActor = function(actorName) {
@@ -652,9 +657,7 @@ function closeDetails() { if (document.getElementById('details-overlay').style.d
 function initProfiles() {
     let profiles = JSON.parse(localStorage.getItem('sfpp_profiles_data')) || [
         { id: 1, name: "Profil 1", icon: "🟦", color: "#1e90ff" },
-        { id: 2, name: "Profil 2", icon: "🟩", color: "#2ecc71" },
-        { id: 3, name: "Profil 3", icon: "🟧", color: "#e67e22" },
-        { id: 4, name: "Profil 4", icon: "🟪", color: "#9b59b6" }
+        { id: 2, name: "Profil 2", icon: "🟩", color: "#2ecc71" }
     ];
     const list = document.getElementById('profile-list');
     list.innerHTML = profiles.map(p => `
@@ -697,8 +700,7 @@ function render(search = "") {
     cont.innerHTML = ""; histCont.innerHTML = "";
     const s = search.toLowerCase();
 
-    // Secret Admin Mode
-    if(s === "admin") { isAdminMode = true; document.getElementById('searchBar').value = ""; alert("Maintenance activée."); return render(""); }
+    if(s === "admin") { isAdminMode = true; document.getElementById('searchBar').value = ""; alert("Mode maintenance activé."); return render(""); }
 
     const favs = JSON.parse(localStorage.getItem('sfpp_fav_' + currentProfile) || "[]");
     const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
@@ -743,12 +745,7 @@ function render(search = "") {
     }
 
     const allGenres = [];
-    data.forEach(m => {
-        if(m.cat) {
-            const genres = m.cat.split(',').map(g => g.trim().toUpperCase());
-            genres.forEach(g => { if(!allGenres.includes(g)) allGenres.push(g); });
-        }
-    });
+    data.forEach(m => { if(m.cat) m.cat.split(',').map(g => g.trim().toUpperCase()).forEach(g => { if(!allGenres.includes(g)) allGenres.push(g); }); });
 
     allGenres.sort().forEach(c => {
         const filtered = data.filter(m => {
