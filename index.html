@@ -449,17 +449,17 @@
         }); 
     };
 
-    // SIGNALEMENT FIREBASE AVEC SÉCURITÉ
-    window.reportFilm = (title, lineInfo) => {
-        if(confirm(`Voulez-vous vraiment signaler "${title}" comme HS ?`)) {
+    // SIGNALEMENT FIREBASE (SÉCURISÉ)
+    window.reportHS = (title, line) => {
+        if(confirm(`Voulez-vous vraiment signaler "${title}" comme hors service ?`)) {
             const reportRef = ref(db, 'signalements');
-            const newReportRef = push(reportRef);
-            set(newReportRef, {
+            const newReport = push(reportRef);
+            set(newReport, {
                 film: title,
-                num: lineInfo || "Inconnu",
+                position: line || "Inconnue",
                 date: new Date().toLocaleString(),
                 signaleur: localStorage.getItem('sfpp_profile') || "Anonyme"
-            }).then(() => alert("⚠️ Film signalé ! Merci.")).catch(() => alert("Erreur d'envoi."));
+            }).then(() => alert("⚠️ Signalement envoyé. Merci !")).catch(() => alert("Erreur d'envoi."));
         }
     };
 
@@ -540,7 +540,7 @@ async function loadPlaylist() {
         for (let i = 0; i < playlistData.length; i++) {
             const m = playlistData[i];
             m.original_index = i;
-            if (m.id_tmdb && (!m.img || !m.desc)) {
+            if (m.id_tmdb && (!m.img || !m.desc || !m.trailer)) {
                 try {
                     const url = `https://api.themoviedb.org/3/movie/${m.id_tmdb}?api_key=${apiKey}&language=fr-FR&append_to_response=videos,credits`;
                     const res = await fetch(url);
@@ -552,7 +552,7 @@ async function loadPlaylist() {
                         m.year = m.year || (data.release_date ? data.release_date.split('-')[0] : "2025");
                         m.note = m.note || Math.round(data.vote_average / 2);
                         if (data.genres) m.cat = data.genres.map(g => g.name.toUpperCase()).join(', ');
-                        if (data.videos?.results.length > 0) m.trailer = data.videos.results.find(v => v.type === "Trailer")?.key;
+                        if (data.videos?.results.length > 0) m.trailer = data.videos.results.find(v => v.type === "Trailer" || v.type === "Teaser")?.key;
                         if (data.credits?.cast) m.actors_pics = data.credits.cast.slice(0, 10).map(a => ({ name: a.name, img: `https://image.tmdb.org/t/p/w185${a.profile_path}` }));
                     }
                 } catch (e) {}
@@ -574,14 +574,14 @@ function openDetails(idx) {
     document.getElementById('details-desc').innerText = m.desc || "Aucun résumé disponible.";
     document.getElementById('details-meta-year').innerText = m.year || "2024";
     document.getElementById('details-meta-cat').innerText = m.cat;
-
-    // GESTION ADMIN ET SIGNALEMENT
+    
+    // GESTION ADMIN (NUMÉRO DE LIGNE)
     const lineInfo = m.num ? m.num : (m.original_index * 7) + 2;
     const numTag = document.getElementById('details-meta-num');
     numTag.innerText = `[L${lineInfo}]`;
     numTag.style.display = isAdminMode ? "inline" : "none";
 
-    document.getElementById('details-report-btn').onclick = () => window.reportFilm(m.t, lineInfo);
+    document.getElementById('details-report-btn').onclick = () => window.reportHS(m.t, lineInfo);
 
     const note = m.note || 5; 
     let stars = "";
@@ -624,7 +624,7 @@ function openDetails(idx) {
     document.getElementById('details-suggestions').innerHTML = suggHtml;
 
     document.getElementById('details-overlay').style.display = 'flex';
-    playBtn.focus();
+    document.getElementById('details-play-btn').focus();
 }
 
 window.searchByActor = function(actorName) {
@@ -657,7 +657,9 @@ function closeDetails() { if (document.getElementById('details-overlay').style.d
 function initProfiles() {
     let profiles = JSON.parse(localStorage.getItem('sfpp_profiles_data')) || [
         { id: 1, name: "Profil 1", icon: "🟦", color: "#1e90ff" },
-        { id: 2, name: "Profil 2", icon: "🟩", color: "#2ecc71" }
+        { id: 2, name: "Profil 2", icon: "🟩", color: "#2ecc71" },
+        { id: 3, name: "Profil 3", icon: "🟧", color: "#e67e22" },
+        { id: 4, name: "Profil 4", icon: "🟪", color: "#9b59b6" }
     ];
     const list = document.getElementById('profile-list');
     list.innerHTML = profiles.map(p => `
@@ -700,6 +702,7 @@ function render(search = "") {
     cont.innerHTML = ""; histCont.innerHTML = "";
     const s = search.toLowerCase();
 
+    // Mode admin secret
     if(s === "admin") { isAdminMode = true; document.getElementById('searchBar').value = ""; alert("Mode maintenance activé."); return render(""); }
 
     const favs = JSON.parse(localStorage.getItem('sfpp_fav_' + currentProfile) || "[]");
