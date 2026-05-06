@@ -142,7 +142,7 @@
 
         .details-info { padding: 0 5% 40px; margin-top: -80px; position: relative; z-index: 5; }
         .details-info h2 { font-size: 32px; font-weight: bold; margin-bottom: 10px; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
-        .details-info .meta { color: #888; font-size: 14px; margin-bottom: 15px; display: flex; gap: 15px; align-items: center; }
+        .details-info .meta { color: #888; font-size: 14px; margin-bottom: 15px; display: flex; gap: 15px; }
         .details-info .synopsis { color: #ddd; line-height: 1.6; font-size: 15px; max-width: 850px; margin-bottom: 25px; }
         
         .details-actions { display: flex; gap: 10px; margin-bottom: 30px; flex-wrap: wrap; }
@@ -256,7 +256,7 @@
         <button class="btn-logout" onclick="switchProfile()" tabindex="0">PROFILS</button>
     </div>
     <div id="search-overlay">
-        <input type="text" id="searchBar" onkeyup="filter()" placeholder="Rechercher..." tabindex="0">
+        <input type="text" id="searchBar" onkeyup="filter()" placeholder="Film, année ou acteur..." tabindex="0">
         <button class="btn-icon" onclick="closeSearch()" style="margin-left:10px" tabindex="0">✕</button>
     </div>
 </header>
@@ -449,7 +449,6 @@
         }); 
     };
 
-    // LOGIQUE SIGNALEMENT HS AVEC CONFIRMATION
     window.reportFilm = (title, lineInfo) => {
         if(confirm(`Voulez-vous vraiment signaler "${title}" comme hors service ?`)) {
             const reportRef = ref(db, 'signalements');
@@ -530,7 +529,6 @@ window.addEventListener('popstate', function (event) {
     }
 });
 
-// CHARGEMENT STABLE POUR ÉVITER LES OUBLIS
 async function loadPlaylist() { 
     try { 
         const response = await fetch('films.json?v=' + Date.now()); 
@@ -575,7 +573,6 @@ function openDetails(idx) {
     document.getElementById('details-meta-year').innerText = m.year || "2024";
     document.getElementById('details-meta-cat').innerText = m.cat;
     
-    // GESTION ADMIN (LIGNE) ET SIGNALEMENT
     const lineInfo = m.num ? m.num : (m.original_index * 7) + 2;
     const numTag = document.getElementById('details-meta-num');
     numTag.innerText = `[L${lineInfo}]`;
@@ -624,7 +621,7 @@ function openDetails(idx) {
     document.getElementById('details-suggestions').innerHTML = suggHtml;
 
     document.getElementById('details-overlay').style.display = 'flex';
-    document.getElementById('details-play-btn').focus();
+    playBtn.focus();
 }
 
 window.searchByActor = function(actorName) {
@@ -702,7 +699,6 @@ function render(search = "") {
     cont.innerHTML = ""; histCont.innerHTML = "";
     const s = search.toLowerCase();
 
-    // Mode admin secret
     if(s === "admin") { isAdminMode = true; document.getElementById('searchBar').value = ""; alert("Mode maintenance activé."); return render(""); }
 
     const favs = JSON.parse(localStorage.getItem('sfpp_fav_' + currentProfile) || "[]");
@@ -714,7 +710,6 @@ function render(search = "") {
     else if(currentView === 'series') data = playlistData.filter(m => m.cat && m.cat.includes("SÉRIES"));
     else if(currentView === 'fav') data = playlistData.filter(m => favs.includes(m.t));
 
-    // Historique
     if(currentProfile && s === "" && currentView === 'all') {
         let history = JSON.parse(localStorage.getItem('sfpp_hist_' + currentProfile) || "[]");
         if(history.length > 0) {
@@ -732,7 +727,6 @@ function render(search = "") {
         } else histSec.style.display = "none";
     } else histSec.style.display = "none";
 
-    // Tous les films
     if (s === "" && (currentView === 'all' || currentView === 'movies')) {
         const allMovies = playlistData.filter(m => m.cat && !m.cat.includes("SÉRIES") && !m.cat.toUpperCase().includes("DIRECT"));
         if (allMovies.length > 0) {
@@ -753,11 +747,14 @@ function render(search = "") {
     allGenres.sort().forEach(c => {
         const filtered = data.filter(m => m.cat && m.cat.toUpperCase().includes(c) && m.t.toLowerCase().includes(s));
         if (filtered.length === 0) return;
+        const isTVCat = c.includes("DIRECT") || c.includes("TV");
+        const landscapeClass = isTVCat ? "landscape" : "";
+        
         let html = `<div class="category-title">${c}</div><div class="category-row"><div class="nav-arrow arrow-left" onclick="scrollSide(this, -400)">‹</div><div class="carousel">`;
         filtered.forEach(m => {
             const heart = favs.includes(m.t) ? `<div style="position:absolute; top:5px; right:5px; z-index:5;">❤️</div>` : "";
-            const clickAction = `openDetails(${playlistData.indexOf(m)})`;
-            html += `<div class="card" onclick="${clickAction}" tabindex="0"><img src="${m.img}" loading="lazy">${heart}<div class="card-name">${m.t}</div></div>`;
+            const clickAction = isTVCat ? `playMovie(${playlistData.indexOf(m)})` : `openDetails(${playlistData.indexOf(m)})`;
+            html += `<div class="card ${landscapeClass}" onclick="${clickAction}" tabindex="0"><img src="${m.img}" loading="lazy">${heart}<div class="card-name">${m.t}</div></div>`;
         });
         html += `</div><div class="nav-arrow arrow-right" onclick="scrollSide(this, 400)">›</div></div>`;
         cont.innerHTML += html;
@@ -795,22 +792,68 @@ function openSeries(name) {
 
 function playMovie(idx) {
     history.replaceState({ overlay: 'player' }, "");
-    const m = playlistData[idx]; currentPlayingTitle = m.t;
+    const m = playlistData[idx];
+    currentPlayingTitle = m.t;
+    document.getElementById('next-episode-btn').style.display = 'none';
+
     if (hls) { hls.destroy(); hls = null; }
-    player.pause(); player.src("");
+    player.pause();
+    player.src("");
+    player.load();
+
+    if(currentProfile) {
+        let key = 'sfpp_hist_' + currentProfile;
+        let hist = JSON.parse(localStorage.getItem(key) || "[]").filter(t => t !== m.t);
+        hist.push(m.t); if(hist.length > 15) hist.shift();
+        localStorage.setItem(key, JSON.stringify(hist));
+    }
     document.getElementById('details-overlay').style.display = 'none';
-    document.getElementById('player-section').style.display = 'block';
-    document.getElementById('player-blur-bg').style.backgroundImage = `url('${m.bg || m.img}')`;
+    document.getElementById('details-trailer-box').innerHTML = "";
+    document.getElementById('series-overlay').style.display = 'none';
+    const pSection = document.getElementById('player-section');
+    pSection.style.display = 'block';
+    
+    const backdrop = m.bg || m.img;
+    document.getElementById('player-blur-bg').style.backgroundImage = `url('${backdrop}')`;
+    player.poster(backdrop); 
+    
+    let decodedUrl = "";
+    try { decodedUrl = window.atob(m.url); } catch(e) { decodedUrl = m.url; }
 
-    let url = m.url; try { url = window.atob(m.url); } catch(e) {}
-    let type = url.includes('.m3u8') ? 'application/x-mpegURL' : 'video/mp4';
+    const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
 
-    player.src({ src: url, type: type });
-    if (type === 'application/x-mpegURL' && Hls.isSupported()) {
-        hls = new Hls(); hls.loadSource(url);
-        hls.attachMedia(document.querySelector('#main-video_html5_api'));
-        hls.on(Hls.Events.MANIFEST_PARSED, () => player.play());
-    } else { player.play(); }
+    let type = decodedUrl.includes('.m3u8') ? 'application/x-mpegURL' : 'video/mp4';
+
+    if (type === 'application/x-mpegURL') {
+        if (Hls.isSupported()) {
+            hls = new Hls();
+            hls.loadSource(decodedUrl);
+            hls.attachMedia(document.querySelector('#main-video_html5_api'));
+            hls.on(Hls.Events.MANIFEST_PARSED, function() { 
+                if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
+                player.play(); 
+            });
+            hls.on(Hls.Events.LEVEL_LOADED, function() { player.on('timeupdate', saveP); });
+        } else {
+            player.src({ src: decodedUrl, type: type });
+            if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
+            player.play();
+        }
+    } else {
+        player.src({ src: decodedUrl, type: type });
+        if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
+        player.play();
+    }
+    
+    player.src({ src: decodedUrl, type: type });
+}
+
+function playNextEpisode() {
+    const parts = currentPlayingTitle.match(/(.*[SE])(\d+)(.*)/i);
+    if (!parts) return;
+    const nextTitleSearch = (parts[1] + (parseInt(parts[2]) + 1).toString().padStart(2, '0')).toUpperCase();
+    const nextIdx = playlistData.findIndex(m => m.t.toUpperCase().includes(nextTitleSearch));
+    if (nextIdx !== -1) playMovie(nextIdx);
 }
 
 function closeP() { if (document.getElementById('player-section').style.display === 'block') history.back(); }
@@ -824,14 +867,56 @@ function openSearch() { document.getElementById('search-overlay').style.display 
 function closeSearch() { document.getElementById('search-overlay').style.display = 'none'; document.getElementById('searchBar').value = ''; filter(); }
 
 document.addEventListener('DOMContentLoaded', () => {
-    player = videojs('main-video', { controls: true, fluid: false, techOrder: ['chromecast', 'html5'], plugins: { chromecast: { addButtonToControlBar: true, addDisplayOnControlBar: true } } });
-    const videoContainer = document.getElementById('video-container');
-    videoContainer.addEventListener('touchend', function(e) {
-        const now = new Date().getTime(); if ((now - this.lastTap < 350) && (now - this.lastTap > 0)) { if (player.isFullscreen()) player.exitFullscreen(); else player.requestFullscreen(); e.preventDefault(); }
-        this.lastTap = now;
+    player = videojs('main-video', { 
+        controls: true, fluid: false,
+        techOrder: ['chromecast', 'html5'], 
+        plugins: { chromecast: { addButtonToControlBar: true, addDisplayOnControlBar: true } }
     });
-    player.on('timeupdate', () => { if(Math.floor(player.currentTime()) % 10 === 0) saveP(); });
+
+    let lastTap = 0;
+    const videoContainer = document.getElementById('video-container');
+
+    videoContainer.addEventListener('touchend', function(e) {
+        const now = new Date().getTime();
+        const timesince = now - lastTap;
+        if ((timesince < 350) && (timesince > 0)) {
+            if (player.isFullscreen()) player.exitFullscreen();
+            else player.requestFullscreen();
+            e.preventDefault();
+        }
+        lastTap = now;
+    });
+
+    player.on('dblclick', function() {
+        if (player.isFullscreen()) player.exitFullscreen();
+        else player.requestFullscreen();
+    });
+
+    const Button = videojs.getComponent('Button');
+    class Back extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-replay-10'; } handleClick() { player.currentTime(player.currentTime()-10); } }
+    class Forward extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-forward-10'; } handleClick() { player.currentTime(player.currentTime()+10); } }
+    videojs.registerComponent('Back', Back); videojs.registerComponent('Forward', Forward);
+    
+    player.ready(() => { 
+        player.getChild('controlBar').addChild('Back', {}, 1); 
+        player.getChild('controlBar').addChild('Forward', {}, 2); 
+    });
+
+    player.on('timeupdate', function() {
+        const dur = player.duration(), cur = player.currentTime();
+        if (/S\d{2}E\d{2}/i.test(currentPlayingTitle) && dur > 0 && (dur - cur) < 80) {
+            document.getElementById('next-episode-btn').style.display = 'block';
+        } else document.getElementById('next-episode-btn').style.display = 'none';
+        
+        if(Math.floor(cur) % 5 === 0) saveP();
+    });
 });
+
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js').catch(err => console.log('Erreur SW:', err));
+    });
+}
 </script>
 </body>
 </html>
