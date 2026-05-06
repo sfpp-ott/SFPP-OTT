@@ -1,5 +1,47 @@
 [
   {
+    "num": "160",
+    "t": "Mahler",
+    "id_tmdb": "84922",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/f04d973bc1a2c251ccf739ae020372a78e4f3be5f8af0431df2b3c8f8c01dd51/master.m3u8"
+  },
+  {
+    "num": "159",
+    "t": "Peut-être pour la vie",
+    "id_tmdb": "1509871",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/bce97ca3623bd436efb2a790a6acec3ddd84c65a305f4cd45fdd1e3d34c55699/master.m3u8"
+  },
+  {
+    "num": "158",
+    "t": "Riders of Justice",
+    "id_tmdb": "663870",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/507b16e03457c90eb50e774ca8543ea74babf75c82cfcadc444742a18c5be45d/master.m3u8"
+  },
+  {
+    "num": "157",
+    "t": "Swipe",
+    "id_tmdb": "1265344",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/8de83a40f5ed2a3c9e98cea6834064dd8fd9460d603bc08ca1b42a86baf74286/master.m3u8"
+  },
+  {
+    "num": "156",
+    "t": "The Void",
+    "id_tmdb": "378018",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/2e450feb16496edaf5e14b81d481c7c946c88002ca7ef91f092c7279e0c36e48/master.m3u8"
+  },
+  {
+    "num": "155",
+    "t": "Trust",
+    "id_tmdb": "1244953",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/8bea6bd02ac610dcae6363600e858836d2fda2566b1765670b587da5f328b313/master.m3u8"
+  },
+  {
     "num": "154",
     "t": "L’Intermédiaire",
     "id_tmdb": "1088166",
