@@ -449,6 +449,7 @@
         }); 
     };
 
+    // SIGNALEMENT HS AVEC CONFIRMATION
     window.reportFilm = (title, lineInfo) => {
         if(confirm(`Voulez-vous vraiment signaler "${title}" comme hors service ?`)) {
             const reportRef = ref(db, 'signalements');
@@ -529,49 +530,35 @@ window.addEventListener('popstate', function (event) {
     }
 });
 
+// CHARGEMENT STABLE POUR EVITER LES OUBLIS
 async function loadPlaylist() { 
     try { 
         const response = await fetch('films.json?v=' + Date.now()); 
         playlistData = await response.json(); 
-        
         const apiKey = "ec1c8fecd38d1cc5a27f15766f0848d5";
-        const promises = playlistData.map(async (m, index) => {
-            m.original_index = index;
-            if (m.id_tmdb && (!m.img || !m.desc || !m.trailer)) {
+        
+        for (let i = 0; i < playlistData.length; i++) {
+            const m = playlistData[i];
+            m.original_index = i;
+            if (m.id_tmdb && (!m.img || !m.desc)) {
                 try {
-                    const url = `https://api.themoviedb.org/3/movie/${m.id_tmdb}?api_key=${apiKey}&language=fr-FR&append_to_response=videos,credits&include_video_language=en,fr,null`;
+                    const url = `https://api.themoviedb.org/3/movie/${m.id_tmdb}?api_key=${apiKey}&language=fr-FR&append_to_response=videos,credits`;
                     const res = await fetch(url);
                     const data = await res.json();
-                    
-                    m.img = m.img || `https://image.tmdb.org/t/p/w500${data.poster_path}`;
-                    m.bg = m.bg || `https://image.tmdb.org/t/p/original${data.backdrop_path}`;
-                    m.desc = m.desc || data.overview;
-                    m.year = m.year || (data.release_date ? data.release_date.split('-')[0] : "2025");
-                    m.note = m.note || Math.round(data.vote_average / 2);
-
-                    if (data.genres && data.genres.length > 0) {
-                        m.cat = data.genres.map(g => g.name.toUpperCase()).join(', ');
+                    if(data.id) {
+                        m.img = m.img || `https://image.tmdb.org/t/p/w500${data.poster_path}`;
+                        m.bg = m.bg || `https://image.tmdb.org/t/p/original${data.backdrop_path}`;
+                        m.desc = m.desc || data.overview;
+                        m.year = m.year || (data.release_date ? data.release_date.split('-')[0] : "2025");
+                        m.note = m.note || Math.round(data.vote_average / 2);
+                        if (data.genres) m.cat = data.genres.map(g => g.name.toUpperCase()).join(', ');
+                        if (data.videos?.results.length > 0) m.trailer = data.videos.results.find(v => (v.type === "Trailer" || v.type === "Teaser"))?.key;
+                        if (data.credits?.cast) m.actors_pics = data.credits.cast.slice(0, 10).map(a => ({ name: a.name, img: `https://image.tmdb.org/t/p/w185${a.profile_path}` }));
                     }
-
-                    if (!m.trailer && data.videos && data.videos.results.length > 0) {
-                        const video = data.videos.results.find(v => 
-                            (v.type === "Trailer" || v.type === "Teaser") && v.site === "YouTube"
-                        ) || data.videos.results[0];
-                        
-                        if (video) m.trailer = video.key;
-                    }
-
-                    if (!m.actors_pics && data.credits && data.credits.cast) {
-                        m.actors_pics = data.credits.cast.slice(0, 10).map(a => ({
-                            name: a.name,
-                            img: `https://image.tmdb.org/t/p/w185${a.profile_path}`
-                        }));
-                    }
-                } catch (e) { console.log("Erreur TMDB ID: " + m.id_tmdb); }
+                } catch (e) {}
             }
-        });
-
-        await Promise.all(promises);
+            if(i % 50 === 0) await new Promise(r => setTimeout(r, 10));
+        }
         render(); 
     } catch (e) {} 
 }
@@ -586,12 +573,14 @@ function openDetails(idx) {
     document.getElementById('details-title').innerText = m.t;
     document.getElementById('details-desc').innerText = m.desc || "Aucun résumé disponible.";
     document.getElementById('details-meta-year').innerText = m.year || "2024";
-    document.getElementById('details-meta-cat').innerText = m.cat;
-
+    
+    // GESTION LIGNE ADMIN ET SIGNALEMENT HS
     const lineInfo = m.num ? m.num : (m.original_index * 7) + 2;
     const numTag = document.getElementById('details-meta-num');
     numTag.innerText = `[L${lineInfo}]`;
     numTag.style.display = isAdminMode ? "inline" : "none";
+
+    document.getElementById('details-report-btn').onclick = () => window.reportFilm(m.t, lineInfo);
 
     const note = m.note || 5; 
     let stars = "";
@@ -602,7 +591,7 @@ function openDetails(idx) {
     if (m.actors_pics && m.actors_pics.length > 0) {
         castHtml = m.actors_pics.map(a => `
                 <div class="actor-item" onclick="searchByActor('${a.name}')" title="Voir les films avec ${a.name}">
-                    <img src="${a.img}" onerror="this.src='https://via.placeholder.com/80x80?text=?'">
+                    <img src="${a.img}" onerror="this.src='https://via.placeholder.com/80x80?text=?'" loading="lazy">
                     <div class="actor-name">${a.name}</div>
                 </div>
             `).join('');
@@ -612,10 +601,11 @@ function openDetails(idx) {
     document.getElementById('details-trailer-box').innerHTML = m.trailer ? 
         `<iframe width="100%" height="100%" src="https://www.youtube.com/embed/${m.trailer}?rel=0" frameborder="0" allowfullscreen></iframe>` : "";
     
-    document.getElementById('details-play-btn').onclick = () => { playMovie(idx); };
-    document.getElementById('details-fav-btn').onclick = () => { toggleFav(m.t); };
-    document.getElementById('details-report-btn').onclick = () => window.reportFilm(m.t, lineInfo);
+    const playBtn = document.getElementById('details-play-btn');
+    playBtn.onclick = () => { playMovie(idx); };
     
+    const favBtn = document.getElementById('details-fav-btn');
+    favBtn.onclick = () => { toggleFav(m.t); };
     updateFavBtnUI(m.t);
 
     const primaryCat = m.cat ? m.cat.split(',')[0].trim() : "ACTION";
@@ -633,9 +623,10 @@ function openDetails(idx) {
     document.getElementById('details-suggestions').innerHTML = suggHtml;
 
     document.getElementById('details-overlay').style.display = 'flex';
-    document.getElementById('details-play-btn').focus();
+    playBtn.focus();
 }
 
+// FONCTION RECHERCHE PAR ACTEUR REINSTAUREE
 window.searchByActor = function(actorName) {
     closeDetails(); 
     openSearch(); 
@@ -715,12 +706,14 @@ function render(search = "") {
 
     const favs = JSON.parse(localStorage.getItem('sfpp_fav_' + currentProfile) || "[]");
     const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
+    const now = new Date();
     
     let data = playlistData;
     if(currentView === 'movies') data = playlistData.filter(m => m.cat && !m.cat.includes("SÉRIES"));
     else if(currentView === 'series') data = playlistData.filter(m => m.cat && m.cat.includes("SÉRIES"));
     else if(currentView === 'fav') data = playlistData.filter(m => favs.includes(m.t));
 
+    // Historique
     if(currentProfile && s === "" && currentView === 'all') {
         let history = JSON.parse(localStorage.getItem('sfpp_hist_' + currentProfile) || "[]");
         if(history.length > 0) {
@@ -729,17 +722,17 @@ function render(search = "") {
                 const m = playlistData.find(item => item.t === title);
                 if(m) {
                     const isTV = m.cat && (m.cat.toUpperCase().includes("DIRECT") || m.cat.toUpperCase().includes("TV"));
-                    const landscapeClass = isTV ? "landscape" : "";
                     const pct = (prog[m.t] && prog[m.t].p > 1) ? `<div class="prog-bg"><div class="prog-fill" style="width:${prog[m.t].p}%"></div></div>` : "";
                     const clickAction = isTV ? `playMovie(${playlistData.indexOf(m)})` : `openDetails(${playlistData.indexOf(m)})`;
-                    histCont.innerHTML += `<div class="card ${landscapeClass}" onclick="${clickAction}" tabindex="0"><img src="${m.img}" loading="lazy">${pct}<div class="card-name">${m.t}</div></div>`;
+                    histCont.innerHTML += `<div class="card ${isTV ? "landscape" : ""}" onclick="${clickAction}" tabindex="0"><img src="${m.img}" loading="lazy">${pct}<div class="card-name">${m.t}</div></div>`;
                 }
             });
         } else histSec.style.display = "none";
     } else histSec.style.display = "none";
 
+    // Tous les films
     if (s === "" && (currentView === 'all' || currentView === 'movies')) {
-        const allMovies = playlistData.filter(m => m.cat && !m.cat.includes("SÉRIES") && !m.cat.toUpperCase().includes("DIRECT") && !m.cat.toUpperCase().includes("TV"));
+        const allMovies = playlistData.filter(m => m.cat && !m.cat.includes("SÉRIES") && !m.cat.toUpperCase().includes("DIRECT"));
         if (allMovies.length > 0) {
             let html = `<div class="category-title">TOUS LES FILMS</div><div class="category-row"><div class="nav-arrow arrow-left" onclick="scrollSide(this, -400)">‹</div><div class="carousel">`;
             allMovies.forEach(m => {
@@ -753,29 +746,17 @@ function render(search = "") {
     }
 
     const allGenres = [];
-    data.forEach(m => {
-        if(m.cat) {
-            const genres = m.cat.split(',').map(g => g.trim().toUpperCase());
-            genres.forEach(g => { if(!allGenres.includes(g)) allGenres.push(g); });
-        }
-    });
+    data.forEach(m => { if(m.cat) m.cat.split(',').map(g => g.trim().toUpperCase()).forEach(g => { if(!allUniqueCats.includes(g)) allGenres.push(g); }); });
 
     allGenres.sort().forEach(c => {
-        const filtered = data.filter(m => {
-            const matchGenre = m.cat && m.cat.toUpperCase().includes(c);
-            const matchSearch = (s === "") || m.t.toLowerCase().includes(s);
-            return matchGenre && matchSearch;
-        });
-
+        const filtered = data.filter(m => m.cat && m.cat.toUpperCase().includes(c) && m.t.toLowerCase().includes(s));
         if (filtered.length === 0) return;
-        const isTVCat = c.includes("DIRECT") || c.includes("TV");
-        const landscapeClass = isTVCat ? "landscape" : "";
-        
+        const isTV = c.includes("DIRECT") || c.includes("TV");
         let html = `<div class="category-title">${c}</div><div class="category-row"><div class="nav-arrow arrow-left" onclick="scrollSide(this, -400)">‹</div><div class="carousel">`;
         filtered.forEach(m => {
             const heart = favs.includes(m.t) ? `<div style="position:absolute; top:5px; right:5px; z-index:5;">❤️</div>` : "";
-            const clickAction = isTVCat ? `playMovie(${playlistData.indexOf(m)})` : `openDetails(${playlistData.indexOf(m)})`;
-            html += `<div class="card ${landscapeClass}" onclick="${clickAction}" tabindex="0"><img src="${m.img}" loading="lazy">${heart}<div class="card-name">${m.t}</div></div>`;
+            const clickAction = isTV ? `playMovie(${playlistData.indexOf(m)})` : `openDetails(${playlistData.indexOf(m)})`;
+            html += `<div class="card ${isTV ? "landscape" : ""}" onclick="${clickAction}" tabindex="0"><img src="${m.img}" loading="lazy">${heart}<div class="card-name">${m.t}</div></div>`;
         });
         html += `</div><div class="nav-arrow arrow-right" onclick="scrollSide(this, 400)">›</div></div>`;
         cont.innerHTML += html;
@@ -801,7 +782,7 @@ function openSeries(name) {
         html += `<div class="season-title">SAISON ${s}</div>`;
         seasons[s].forEach(ep => {
             const epName = ep.t.split(' - ')[1] || ep.t;
-            const pct = (prog[ep.t] && prog[ep.t].p > 1) ? `<div style="height:3px; background:#444; width:100px; margin-top:5px;"><div style="height:100%; background:var(--accent); width:${prog[ep.t].p}%"></div></div>` : "";
+            const pct = (prog[ep.t] && ep.t].p > 1) ? `<div style="height:3px; background:#444; width:100px; margin-top:5px;"><div style="height:100%; background:var(--accent); width:${prog[ep.t].p}%"></div></div>` : "";
             html += `<div class="episode-item" onclick="playMovie(${playlistData.indexOf(ep)});" tabindex="0">
                         <div style="flex:1"><b>${epName}</b>${pct}</div>
                         <div style="color:var(--accent)">LECTURE ▶</div>
@@ -865,8 +846,6 @@ function playMovie(idx) {
         if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
         player.play();
     }
-    
-    player.src({ src: decodedUrl, type: type });
 }
 
 function playNextEpisode() {
@@ -893,6 +872,12 @@ document.addEventListener('DOMContentLoaded', () => {
         techOrder: ['chromecast', 'html5'], 
         plugins: { chromecast: { addButtonToControlBar: true, addDisplayOnControlBar: true } }
     });
+    
+    const Button = videojs.getComponent('Button');
+    class Back extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-replay-10'; } handleClick() { player.currentTime(player.currentTime()-10); } }
+    class Forward extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-forward-10'; } handleClick() { player.currentTime(player.currentTime()+10); } }
+    videojs.registerComponent('Back', Back); videojs.registerComponent('Forward', Forward);
+    player.ready(() => { player.getChild('controlBar').addChild('Back', {}, 1); player.getChild('controlBar').addChild('Forward', {}, 2); });
 
     let lastTap = 0;
     const videoContainer = document.getElementById('video-container');
@@ -911,16 +896,6 @@ document.addEventListener('DOMContentLoaded', () => {
     player.on('dblclick', function() {
         if (player.isFullscreen()) player.exitFullscreen();
         else player.requestFullscreen();
-    });
-
-    const Button = videojs.getComponent('Button');
-    class Back extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-replay-10'; } handleClick() { player.currentTime(player.currentTime()-10); } }
-    class Forward extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-forward-10'; } handleClick() { player.currentTime(player.currentTime()+10); } }
-    videojs.registerComponent('Back', Back); videojs.registerComponent('Forward', Forward);
-    
-    player.ready(() => { 
-        player.getChild('controlBar').addChild('Back', {}, 1); 
-        player.getChild('controlBar').addChild('Forward', {}, 2); 
     });
 
     player.on('timeupdate', function() {
