@@ -142,7 +142,7 @@
 
         .details-info { padding: 0 5% 40px; margin-top: -80px; position: relative; z-index: 5; }
         .details-info h2 { font-size: 32px; font-weight: bold; margin-bottom: 10px; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
-        .details-info .meta { color: #888; font-size: 14px; margin-bottom: 15px; display: flex; gap: 15px; }
+        .details-info .meta { color: #888; font-size: 14px; margin-bottom: 15px; display: flex; gap: 15px; align-items: center; }
         .details-info .synopsis { color: #ddd; line-height: 1.6; font-size: 15px; max-width: 850px; margin-bottom: 25px; }
         
         .details-actions { display: flex; gap: 10px; margin-bottom: 30px; flex-wrap: wrap; }
@@ -449,7 +449,7 @@
         }); 
     };
 
-    // AJOUT DE LA CONFIRMATION AVANT SIGNALEMENT
+    // SIGNALEMENT FIREBASE (AVEC CONFIRMATION)
     window.reportFilm = (title, lineInfo) => {
         if(confirm(`Voulez-vous vraiment signaler "${title}" comme hors service ?`)) {
             const reportRef = ref(db, 'signalements');
@@ -530,49 +530,35 @@ window.addEventListener('popstate', function (event) {
     }
 });
 
+// CHARGEMENT STABLE POUR EVITER LES OUBLIS
 async function loadPlaylist() { 
     try { 
         const response = await fetch('films.json?v=' + Date.now()); 
         playlistData = await response.json(); 
-        
         const apiKey = "ec1c8fecd38d1cc5a27f15766f0848d5";
-        const promises = playlistData.map(async (m, index) => {
-            m.original_index = index;
-            if (m.id_tmdb && (!m.img || !m.desc || !m.trailer)) {
+        
+        for (let i = 0; i < playlistData.length; i++) {
+            const m = playlistData[i];
+            m.original_index = i;
+            if (m.id_tmdb && (!m.img || !m.desc)) {
                 try {
-                    const url = `https://api.themoviedb.org/3/movie/${m.id_tmdb}?api_key=${apiKey}&language=fr-FR&append_to_response=videos,credits&include_video_language=en,fr,null`;
+                    const url = `https://api.themoviedb.org/3/movie/${m.id_tmdb}?api_key=${apiKey}&language=fr-FR&append_to_response=videos,credits`;
                     const res = await fetch(url);
                     const data = await res.json();
-                    
-                    m.img = m.img || `https://image.tmdb.org/t/p/w500${data.poster_path}`;
-                    m.bg = m.bg || `https://image.tmdb.org/t/p/original${data.backdrop_path}`;
-                    m.desc = m.desc || data.overview;
-                    m.year = m.year || (data.release_date ? data.release_date.split('-')[0] : "2025");
-                    m.note = m.note || Math.round(data.vote_average / 2);
-
-                    if (data.genres && data.genres.length > 0) {
-                        m.cat = data.genres.map(g => g.name.toUpperCase()).join(', ');
+                    if(data.id) {
+                        m.img = m.img || `https://image.tmdb.org/t/p/w500${data.poster_path}`;
+                        m.bg = m.bg || `https://image.tmdb.org/t/p/original${data.backdrop_path}`;
+                        m.desc = m.desc || data.overview;
+                        m.year = m.year || (data.release_date ? data.release_date.split('-')[0] : "2025");
+                        m.note = m.note || Math.round(data.vote_average / 2);
+                        if (data.genres) m.cat = data.genres.map(g => g.name.toUpperCase()).join(', ');
+                        if (data.videos?.results.length > 0) m.trailer = data.videos.results.find(v => (v.type === "Trailer" || v.type === "Teaser"))?.key;
+                        if (data.credits?.cast) m.actors_pics = data.credits.cast.slice(0, 10).map(a => ({ name: a.name, img: `https://image.tmdb.org/t/p/w185${a.profile_path}` }));
                     }
-
-                    if (!m.trailer && data.videos && data.videos.results.length > 0) {
-                        const video = data.videos.results.find(v => 
-                            (v.type === "Trailer" || v.type === "Teaser") && v.site === "YouTube"
-                        ) || data.videos.results[0];
-                        
-                        if (video) m.trailer = video.key;
-                    }
-
-                    if (!m.actors_pics && data.credits && data.credits.cast) {
-                        m.actors_pics = data.credits.cast.slice(0, 10).map(a => ({
-                            name: a.name,
-                            img: `https://image.tmdb.org/t/p/w185${a.profile_path}`
-                        }));
-                    }
-                } catch (e) { console.log("Erreur TMDB ID: " + m.id_tmdb); }
+                } catch (e) {}
             }
-        });
-
-        await Promise.all(promises);
+            if(i % 50 === 0) await new Promise(r => setTimeout(r, 10));
+        }
         render(); 
     } catch (e) {} 
 }
@@ -587,12 +573,15 @@ function openDetails(idx) {
     document.getElementById('details-title').innerText = m.t;
     document.getElementById('details-desc').innerText = m.desc || "Aucun résumé disponible.";
     document.getElementById('details-meta-year').innerText = m.year || "2024";
-    document.getElementById('details-meta-cat').innerText = m.cat;
-
+    document.getElementById('details-meta-cat').innerText = m.cat || "";
+    
+    // GESTION LIGNE ADMIN ET BOUTON SIGNALER
     const lineInfo = m.num ? m.num : (m.original_index * 7) + 2;
     const numTag = document.getElementById('details-meta-num');
     numTag.innerText = `[L${lineInfo}]`;
     numTag.style.display = isAdminMode ? "inline" : "none";
+
+    document.getElementById('details-report-btn').onclick = () => window.reportFilm(m.t, lineInfo);
 
     const note = m.note || 5; 
     let stars = "";
@@ -603,7 +592,7 @@ function openDetails(idx) {
     if (m.actors_pics && m.actors_pics.length > 0) {
         castHtml = m.actors_pics.map(a => `
                 <div class="actor-item" onclick="searchByActor('${a.name}')" title="Voir les films avec ${a.name}">
-                    <img src="${a.img}" onerror="this.src='https://via.placeholder.com/80x80?text=?'">
+                    <img src="${a.img}" onerror="this.src='https://via.placeholder.com/80x80?text=?'" loading="lazy">
                     <div class="actor-name">${a.name}</div>
                 </div>
             `).join('');
@@ -615,8 +604,6 @@ function openDetails(idx) {
     
     document.getElementById('details-play-btn').onclick = () => { playMovie(idx); };
     document.getElementById('details-fav-btn').onclick = () => { toggleFav(m.t); };
-    document.getElementById('details-report-btn').onclick = () => window.reportFilm(m.t, lineInfo);
-    
     updateFavBtnUI(m.t);
 
     const primaryCat = m.cat ? m.cat.split(',')[0].trim() : "ACTION";
@@ -637,13 +624,9 @@ function openDetails(idx) {
     document.getElementById('details-play-btn').focus();
 }
 
-// FONCTION RECHERCHE ACTEUR RESTAURÉE
+// RECHERCHE PAR ACTEUR
 window.searchByActor = function(actorName) {
-    closeDetails(); 
-    openSearch(); 
-    const searchBar = document.getElementById('searchBar');
-    searchBar.value = actorName;
-    filter(); 
+    closeDetails(); openSearch(); document.getElementById('searchBar').value = actorName; filter(); 
 };
 
 function toggleFav(title) {
@@ -754,7 +737,7 @@ function render(search = "") {
     }
 
     const allGenres = [];
-    data.forEach(m => { if(m.cat) m.cat.split(',').map(g => g.trim().toUpperCase()).forEach(g => { if(!allUniqueCats.includes(g)) allGenres.push(g); }); });
+    data.forEach(m => { if(m.cat) m.cat.split(',').map(g => g.trim().toUpperCase()).forEach(g => { if(!allGenres.includes(g)) allGenres.push(g); }); });
 
     allGenres.sort().forEach(c => {
         const filtered = data.filter(m => m.cat && m.cat.toUpperCase().includes(c) && m.t.toLowerCase().includes(s));
@@ -880,16 +863,12 @@ document.addEventListener('DOMContentLoaded', () => {
         techOrder: ['chromecast', 'html5'], 
         plugins: { chromecast: { addButtonToControlBar: true, addDisplayOnControlBar: true } }
     });
-
+    
     const Button = videojs.getComponent('Button');
     class Back extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-replay-10'; } handleClick() { player.currentTime(player.currentTime()-10); } }
     class Forward extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-forward-10'; } handleClick() { player.currentTime(player.currentTime()+10); } }
     videojs.registerComponent('Back', Back); videojs.registerComponent('Forward', Forward);
-    
-    player.ready(() => { 
-        player.getChild('controlBar').addChild('Back', {}, 1); 
-        player.getChild('controlBar').addChild('Forward', {}, 2); 
-    });
+    player.ready(() => { player.getChild('controlBar').addChild('Back', {}, 1); player.getChild('controlBar').addChild('Forward', {}, 2); });
 
     let lastTap = 0;
     const videoContainer = document.getElementById('video-container');
