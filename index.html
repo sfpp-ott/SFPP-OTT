@@ -343,79 +343,11 @@
     let deviceId = localStorage.getItem('sfpp_device_id') || Math.random().toString(36).substring(7);
     localStorage.setItem('sfpp_device_id', deviceId);
 
-    const savedEmail = localStorage.getItem('sfpp_last_email');
-    if(savedEmail) document.getElementById('user').value = savedEmail;
-
-    async function verifyExpiration(user) {
-        if (!user) return false;
-        const snapshot = await get(ref(db, 'users_data/' + user.uid + '/expire'));
-        const expireValue = snapshot.val();
-        if (!expireValue) return false;
-        
-        const now = new Date();
-        const y = now.getFullYear();
-        const m = String(now.getMonth() + 1).padStart(2, '0');
-        const d = String(now.getDate()).padStart(2, '0');
-        const todayStr = `${y}-${m}-${d}`;
-        
-        if (todayStr >= expireValue) {
-            alert("Accès expiré le " + expireValue);
-            await signOut(auth);
-            const mail = localStorage.getItem('sfpp_last_email');
-            localStorage.clear();
-            localStorage.setItem('sfpp_last_email', mail);
-            localStorage.setItem('sfpp_device_id', deviceId);
-            location.reload();
-            return true;
-        }
-        return false;
-    }
-
-    window.startSessionSync = function(uid) {
-        onValue(ref(db, 'sessions/' + uid), (snapshot) => {
-            const session = snapshot.val();
-            if (session && session.deviceId !== deviceId) {
-                alert("⚠️ Ce compte est utilisé sur un autre appareil.");
-                localStorage.removeItem('sfpp_profile'); 
-                signOut(auth).then(() => location.reload());
-            }
-        });
-    };
-
-    window.checkLogin = function() {
-        const email = document.getElementById('user').value.trim();
-        const pass = document.getElementById('pass').value;
-        signInWithEmailAndPassword(auth, email, pass).then(async (u) => {
-            localStorage.setItem('sfpp_last_email', email);
-            const exp = await verifyExpiration(u.user);
-            if (!exp) { 
-                set(ref(db, 'sessions/' + u.user.uid), { deviceId: deviceId, lastLogin: Date.now() }); 
-            }
-        }).catch(() => alert("Identifiants incorrects."));
-    };
-
     onAuthStateChanged(auth, async (user) => {
         if (user) {
-            if (await verifyExpiration(user)) return;
-            window.startSessionSync(user.uid);
             document.getElementById('login-screen').style.display = 'none';
-            fetchEPG(); 
             loadPlaylist();
             initProfiles();
-            
-            const snap = await get(ref(db, 'users_data/' + user.uid + '/expire'));
-            const expireValue = snap.val();
-            if(expireValue) {
-                const today = new Date();
-                const expireDate = new Date(expireValue);
-                const diffDays = Math.ceil((expireDate - today) / (1000 * 60 * 60 * 24));
-                const banner = document.getElementById('expiration-banner');
-                if(diffDays > 0 && diffDays <= 5) {
-                    banner.style.display = 'block';
-                    banner.innerHTML = `⚠️ Fin d'accès dans ${diffDays} jour(s).`;
-                } else banner.style.display = 'none';
-            }
-            
             const saved = localStorage.getItem('sfpp_profile');
             if(saved) selectProfile(saved, localStorage.getItem('sfpp_profile_icon'));
             else document.getElementById('profile-screen').style.display = 'flex';
@@ -424,37 +356,18 @@
         }
     });
 
-    window.selectProfile = async function(name, icon) {
-        currentProfile = name;
-        localStorage.setItem('sfpp_profile', name);
-        localStorage.setItem('sfpp_profile_icon', icon);
-        document.getElementById('profile-screen').style.display = 'none';
-        document.getElementById('current-user-name').innerText = name;
-        const user = auth.currentUser;
-        if(user) {
-            const snap = await get(ref(db, 'users_data/' + user.uid + '/expire'));
-            document.getElementById('header-logo').innerHTML = `SFPP | ${icon} <span style="font-size:10px; color:#666;">(${snap.val()})</span>`;
-        }
-        render();
-        pushInitialState();
+    window.checkLogin = function() {
+        const email = document.getElementById('user').value.trim();
+        const pass = document.getElementById('pass').value;
+        signInWithEmailAndPassword(auth, email, pass).catch(() => alert("Identifiants incorrects."));
     };
 
-    window.logout = function() { 
-        const mail = localStorage.getItem('sfpp_last_email');
-        signOut(auth).then(() => { 
-            localStorage.clear(); 
-            localStorage.setItem('sfpp_last_email', mail);
-            localStorage.setItem('sfpp_device_id', deviceId);
-            location.reload(); 
-        }); 
-    };
-
-    // SIGNALEMENT FIREBASE (CONFIRMATION AJOUTÉE)
+    // FONCTION SIGNALER FIREBASE (AVEC CONFIRMATION)
     window.reportFilm = (title, lineInfo) => {
         if(confirm(`Voulez-vous vraiment signaler "${title}" comme hors service ?`)) {
             const reportRef = ref(db, 'signalements');
-            const newReportRef = push(reportRef);
-            set(newReportRef, {
+            const newReport = push(reportRef);
+            set(newReport, {
                 film: title,
                 num: lineInfo || "Inconnu",
                 date: new Date().toLocaleString(),
@@ -462,12 +375,6 @@
             }).then(() => alert("⚠️ Film signalé ! Merci.")).catch(() => alert("Erreur d'envoi."));
         }
     };
-
-    function pushInitialState() {
-        if (window.history.state?.overlay !== 'home') {
-            window.history.pushState({ overlay: 'home' }, "");
-        }
-    }
 </script>
 
 <script>
@@ -481,56 +388,7 @@ setInterval(function() { (function() { debugger; }).call(); }, 5000);
 let player, playlistData = [], currentProfile = null, isEditMode = false, currentView = 'all', currentPlayingTitle = "", exitConfirmed = false;
 let isAdminMode = false, epgData = {}, hls; 
 
-async function fetchEPG() {
-    try {
-        const response = await fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent('https://iptv-org.github.io/epg/guides/fr/telerama.fr.json'));
-        const data = await response.json();
-        if (data.channels) {
-            data.channels.forEach(ch => {
-                epgData[ch.name.toUpperCase()] = ch.programs || [];
-            });
-            render(); 
-        }
-    } catch (e) {
-        console.log("Erreur EPG:", e);
-    }
-}
-
-window.addEventListener('popstate', function (event) {
-    const detailsOverlay = document.getElementById('details-overlay');
-    const seriesOverlay = document.getElementById('series-overlay');
-    const playerSection = document.getElementById('player-section');
-
-    if (detailsOverlay.style.display === 'flex') {
-        detailsOverlay.style.display = 'none';
-        document.getElementById('details-trailer-box').innerHTML = "";
-        return;
-    }
-    if (seriesOverlay.style.display === 'block') {
-        seriesOverlay.style.display = 'none';
-        return;
-    }
-    if (playerSection.style.display === 'block') {
-        saveP(); 
-        if(hls) { hls.destroy(); hls = null; }
-        player.pause(); 
-        player.src("");
-        playerSection.style.display = 'none';
-        render();
-        return;
-    }
-
-    if (!exitConfirmed) {
-        history.pushState({ overlay: 'home' }, "");
-        const quitter = confirm("Souhaitez-vous vraiment quitter l'application ?");
-        if (quitter) {
-            exitConfirmed = true;
-            history.back();
-        }
-    }
-});
-
-// CHARGEMENT OPTIMISE POUR EVITER LES FILMS MANQUANTS
+// CHARGEMENT STABLE (CORRECTION FILMS MANQUANTS)
 async function loadPlaylist() { 
     try { 
         const response = await fetch('films.json?v=' + Date.now()); 
@@ -552,7 +410,7 @@ async function loadPlaylist() {
                         m.year = m.year || (data.release_date ? data.release_date.split('-')[0] : "2025");
                         m.note = m.note || Math.round(data.vote_average / 2);
                         if (data.genres) m.cat = data.genres.map(g => g.name.toUpperCase()).join(', ');
-                        if (data.videos?.results.length > 0) m.trailer = data.videos.results.find(v => v.type === "Trailer")?.key;
+                        if (data.videos?.results.length > 0) m.trailer = data.videos.results.find(v => v.type === "Trailer" || v.type === "Teaser")?.key;
                         if (data.credits?.cast) m.actors_pics = data.credits.cast.slice(0, 10).map(a => ({ name: a.name, img: `https://image.tmdb.org/t/p/w185${a.profile_path}` }));
                     }
                 } catch (e) {}
@@ -574,8 +432,8 @@ function openDetails(idx) {
     document.getElementById('details-desc').innerText = m.desc || "Aucun résumé disponible.";
     document.getElementById('details-meta-year').innerText = m.year || "2024";
     document.getElementById('details-meta-cat').innerText = m.cat;
-
-    // GESTION LIGNE ADMIN ET SIGNALEMENT
+    
+    // GESTION ADMIN (LIGNE) ET SIGNALEMENT
     const lineInfo = m.num ? m.num : (m.original_index * 7) + 2;
     const numTag = document.getElementById('details-meta-num');
     numTag.innerText = `[L${lineInfo}]`;
@@ -602,8 +460,11 @@ function openDetails(idx) {
     document.getElementById('details-trailer-box').innerHTML = m.trailer ? 
         `<iframe width="100%" height="100%" src="https://www.youtube.com/embed/${m.trailer}?rel=0" frameborder="0" allowfullscreen></iframe>` : "";
     
-    document.getElementById('details-play-btn').onclick = () => { playMovie(idx); };
-    document.getElementById('details-fav-btn').onclick = () => { toggleFav(m.t); };
+    const playBtn = document.getElementById('details-play-btn');
+    playBtn.onclick = () => { playMovie(idx); };
+    
+    const favBtn = document.getElementById('details-fav-btn');
+    favBtn.onclick = () => { toggleFav(m.t); };
     updateFavBtnUI(m.t);
 
     const primaryCat = m.cat ? m.cat.split(',')[0].trim() : "ACTION";
@@ -700,6 +561,7 @@ function render(search = "") {
     cont.innerHTML = ""; histCont.innerHTML = "";
     const s = search.toLowerCase();
 
+    // Mode admin secret
     if(s === "admin") { isAdminMode = true; document.getElementById('searchBar').value = ""; alert("Mode maintenance activé."); return render(""); }
 
     const favs = JSON.parse(localStorage.getItem('sfpp_fav_' + currentProfile) || "[]");
@@ -762,99 +624,24 @@ function render(search = "") {
     });
 }
 
-function openSeries(name) {
-    history.pushState({ overlay: 'series' }, "");
-    const overlay = document.getElementById('series-overlay');
-    const content = document.getElementById('series-detail-content');
-    const eps = playlistData.filter(m => m.t.startsWith(name));
-    overlay.style.display = 'block';
-    let html = `<div class="overlay-header"><img src="${eps[0].img}" class="overlay-img"><div><h2>${name}</h2></div></div>`;
-    const seasons = {};
-    const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
-    eps.forEach(ep => {
-        const sMatch = ep.t.match(/S(\d{2})/);
-        const sNum = sMatch ? sMatch[1] : "01";
-        if(!seasons[sNum]) seasons[sNum] = [];
-        seasons[sNum].push(ep);
-    });
-    Object.keys(seasons).sort().forEach(s => {
-        html += `<div class="season-title">SAISON ${s}</div>`;
-        seasons[s].forEach(ep => {
-            const epName = ep.t.split(' - ')[1] || ep.t;
-            const pct = (prog[ep.t] && prog[ep.t].p > 1) ? `<div style="height:3px; background:#444; width:100px; margin-top:5px;"><div style="height:100%; background:var(--accent); width:${prog[ep.t].p}%"></div></div>` : "";
-            html += `<div class="episode-item" onclick="playMovie(${playlistData.indexOf(ep)});" tabindex="0">
-                        <div style="flex:1"><b>${epName}</b>${pct}</div>
-                        <div style="color:var(--accent)">LECTURE ▶</div>
-                     </div>`;
-        });
-    });
-    content.innerHTML = html;
-}
-
 function playMovie(idx) {
     history.replaceState({ overlay: 'player' }, "");
-    const m = playlistData[idx];
-    currentPlayingTitle = m.t;
-    document.getElementById('next-episode-btn').style.display = 'none';
-
+    const m = playlistData[idx]; currentPlayingTitle = m.t;
     if (hls) { hls.destroy(); hls = null; }
-    player.pause();
-    player.src("");
-    player.load();
-
-    if(currentProfile) {
-        let key = 'sfpp_hist_' + currentProfile;
-        let hist = JSON.parse(localStorage.getItem(key) || "[]").filter(t => t !== m.t);
-        hist.push(m.t); if(hist.length > 15) hist.shift();
-        localStorage.setItem(key, JSON.stringify(hist));
-    }
+    player.pause(); player.src("");
     document.getElementById('details-overlay').style.display = 'none';
-    document.getElementById('details-trailer-box').innerHTML = "";
-    document.getElementById('series-overlay').style.display = 'none';
-    const pSection = document.getElementById('player-section');
-    pSection.style.display = 'block';
-    
-    const backdrop = m.bg || m.img;
-    document.getElementById('player-blur-bg').style.backgroundImage = `url('${backdrop}')`;
-    player.poster(backdrop); 
-    
-    let decodedUrl = "";
-    try { decodedUrl = window.atob(m.url); } catch(e) { decodedUrl = m.url; }
+    document.getElementById('player-section').style.display = 'block';
+    document.getElementById('player-blur-bg').style.backgroundImage = `url('${m.bg || m.img}')`;
 
-    const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
+    let url = m.url; try { url = window.atob(m.url); } catch(e) {}
+    let type = url.includes('.m3u8') ? 'application/x-mpegURL' : 'video/mp4';
 
-    let type = decodedUrl.includes('.m3u8') ? 'application/x-mpegURL' : 'video/mp4';
-
-    if (type === 'application/x-mpegURL') {
-        if (Hls.isSupported()) {
-            hls = new Hls();
-            hls.loadSource(decodedUrl);
-            hls.attachMedia(document.querySelector('#main-video_html5_api'));
-            hls.on(Hls.Events.MANIFEST_PARSED, function() { 
-                if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
-                player.play(); 
-            });
-            hls.on(Hls.Events.LEVEL_LOADED, function() { player.on('timeupdate', saveP); });
-        } else {
-            player.src({ src: decodedUrl, type: type });
-            if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
-            player.play();
-        }
-    } else {
-        player.src({ src: decodedUrl, type: type });
-        if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
-        player.play();
-    }
-    
-    player.src({ src: decodedUrl, type: type });
-}
-
-function playNextEpisode() {
-    const parts = currentPlayingTitle.match(/(.*[SE])(\d+)(.*)/i);
-    if (!parts) return;
-    const nextTitleSearch = (parts[1] + (parseInt(parts[2]) + 1).toString().padStart(2, '0')).toUpperCase();
-    const nextIdx = playlistData.findIndex(m => m.t.toUpperCase().includes(nextTitleSearch));
-    if (nextIdx !== -1) playMovie(nextIdx);
+    player.src({ src: url, type: type });
+    if (type === 'application/x-mpegURL' && Hls.isSupported()) {
+        hls = new Hls(); hls.loadSource(url);
+        hls.attachMedia(document.querySelector('#main-video_html5_api'));
+        hls.on(Hls.Events.MANIFEST_PARSED, () => player.play());
+    } else { player.play(); }
 }
 
 function closeP() { if (document.getElementById('player-section').style.display === 'block') history.back(); }
@@ -863,9 +650,7 @@ function changeView(v) { currentView = v; document.querySelectorAll('.nav-btn').
 function filter() { render(document.getElementById('searchBar').value); }
 function toggleEditMode() { isEditMode = !isEditMode; document.getElementById('profile-screen').classList.toggle('is-editing'); }
 function switchProfile() { localStorage.removeItem('sfpp_profile'); location.reload(); }
-function requestAccess() { window.location.href = "mailto:sfpp.ott@gmail.com"; }
-function openSearch() { document.getElementById('search-overlay').style.display = 'flex'; document.getElementById('searchBar').focus(); }
-function closeSearch() { document.getElementById('search-overlay').style.display = 'none'; document.getElementById('searchBar').value = ''; filter(); }
+function selectProfile(name, icon) { currentProfile = name; localStorage.setItem('sfpp_profile', name); document.getElementById('profile-screen').style.display = 'none'; render(); }
 
 document.addEventListener('DOMContentLoaded', () => {
     player = videojs('main-video', { 
@@ -874,43 +659,18 @@ document.addEventListener('DOMContentLoaded', () => {
         plugins: { chromecast: { addButtonToControlBar: true, addDisplayOnControlBar: true } }
     });
 
-    let lastTap = 0;
     const videoContainer = document.getElementById('video-container');
-
     videoContainer.addEventListener('touchend', function(e) {
         const now = new Date().getTime();
-        const timesince = now - lastTap;
-        if ((timesince < 350) && (timesince > 0)) {
+        if ((now - this.lastTap < 350) && (now - this.lastTap > 0)) {
             if (player.isFullscreen()) player.exitFullscreen();
             else player.requestFullscreen();
             e.preventDefault();
         }
-        lastTap = now;
+        this.lastTap = now;
     });
 
-    player.on('dblclick', function() {
-        if (player.isFullscreen()) player.exitFullscreen();
-        else player.requestFullscreen();
-    });
-
-    const Button = videojs.getComponent('Button');
-    class Back extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-replay-10'; } handleClick() { player.currentTime(player.currentTime()-10); } }
-    class Forward extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-forward-10'; } handleClick() { player.currentTime(player.currentTime()+10); } }
-    videojs.registerComponent('Back', Back); videojs.registerComponent('Forward', Forward);
-    
-    player.ready(() => { 
-        player.getChild('controlBar').addChild('Back', {}, 1); 
-        player.getChild('controlBar').addChild('Forward', {}, 2); 
-    });
-
-    player.on('timeupdate', function() {
-        const dur = player.duration(), cur = player.currentTime();
-        if (/S\d{2}E\d{2}/i.test(currentPlayingTitle) && dur > 0 && (dur - cur) < 80) {
-            document.getElementById('next-episode-btn').style.display = 'block';
-        } else document.getElementById('next-episode-btn').style.display = 'none';
-        
-        if(Math.floor(cur) % 10 === 0) saveP();
-    });
+    player.on('timeupdate', function() { if(Math.floor(player.currentTime()) % 10 === 0) saveP(); });
 });
 
 if ('serviceWorker' in navigator) {
