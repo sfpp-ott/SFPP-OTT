@@ -1,5 +1,47 @@
 [
   {
+    "num": "248",
+    "t": "Pierrot le Fou",
+    "id_tmdb": "2786",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/aa07b98d7da29d9f9564ba69e3edbaa934c9ce2b216481b10857b4bfd8eec85b/master.m3u8"
+  },
+  {
+    "num": "247",
+    "t": "Qui a peur de Virginia Woolf ?",
+    "id_tmdb": "396",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/c3ad39bd626206af0f0ecd01719bd691a1e5b776d0e0e6cd4fe216ed525e677a/master.m3u8"
+  },
+  {
+    "num": "246",
+    "t": "Rashōmon",
+    "id_tmdb": "548",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/867c7abccf8627d939f5d9b8c75ac87e0f933c15b9f1ff6ebf53b3d2bc3350b2/master.m3u8"
+  },
+  {
+    "num": "245",
+    "t": "Roma",
+    "id_tmdb": "426426",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/bd969584a67535b82f6409449cd2a53360b73b3fc71515b001d61bfd825feac5/master.m3u8"
+  },
+  {
+    "num": "244",
+    "t": "Manchester by the Sea",
+    "id_tmdb": "334541",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/b2a55bca8345ddb608f8363cbd837821db08c9410c4fbdaa65d6c470c82249ef/master.m3u8"
+  },
+  {
+    "num": "243",
+    "t": "Mulholland Drive",
+    "id_tmdb": "1018",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/88adb92e5b91847a75e5c2b8eec90f0a858432c28d78bf7a621c7ad1f663bbba/master.m3u8"
+  },
+  {
     "num": "242",
     "t": "Les Demoiselles de Rochefort",
     "id_tmdb": "2433",
