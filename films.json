@@ -1,5 +1,47 @@
 [
   {
+    "num": "254",
+    "t": "The Look of Silence",
+    "id_tmdb": "267480",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/09348095551346d9979427da79f4abd8b7aa9d85ba7b3dfc974a57df5e293990/master.m3u8"
+  },
+  {
+    "num": "253",
+    "t": "The Lovers",
+    "id_tmdb": "70916",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/81eeade55b0943ad4a8cb6737efa674e736e58bc04de42a03b97b3221303f3c7/master.m3u8"
+  },
+  {
+    "num": "252",
+    "t": "Le Nouveau Monde",
+    "id_tmdb": "11400",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/4057001cd7945485ece5aff4d47f70a952b1304991976f8cf7c33b5495e49dbf/master.m3u8"
+  },
+  {
+    "num": "251",
+    "t": "L’Aéronaute",
+    "id_tmdb": "1100800",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/2958cd552ed6bb651539fb283a4c1603b427ed4bbd0ffcc4b6d2a0f3566836a7/master.m3u8"
+  },
+  {
+    "num": "250",
+    "t": "Play Dirty",
+    "id_tmdb": "941109",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/85259220cced65d2774321f0dfa242fbb908237fa8d987832d42b1c0f7993b96/master.m3u8"
+  },
+  {
+    "num": "249",
+    "t": "Shook",
+    "id_tmdb": "1189588",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/141d5479a4abe6174c1dec9adc5ba0840d8229260a0a998d928af5cca150ed3e/master.m3u8"
+  },
+  {
     "num": "248",
     "t": "Pierrot le Fou",
     "id_tmdb": "2786",
