@@ -1,5 +1,47 @@
 [
   {
+    "num": "242",
+    "t": "Les Demoiselles de Rochefort",
+    "id_tmdb": "2433",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/0938c2f13426ab7c93cfab8fa37136b1caf16c6f95e9108d0cc9ce079c0e7d65/master.m3u8"
+  },
+  {
+    "num": "241",
+    "t": "Les Hommes préfèrent les blondes",
+    "id_tmdb": "759",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/4ade58c8cfc1b90bff90e8f2f6f12ed9e70825d3d10bb2a5ad296912a56ea80a/master.m3u8"
+  },
+  {
+    "num": "240",
+    "t": "Le Voleur de bicyclette",
+    "id_tmdb": "5156",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/38a8b847841917bc997572398dd86ffbabfc12766f684f36276b0464caf90467/master.m3u8"
+  },
+  {
+    "num": "239",
+    "t": "Chinatown",
+    "id_tmdb": "829",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/66e7ba75c0130f54f94bf1d7fc884f5b15819396cc2d96fda45db94fd31a77be/master.m3u8"
+  },
+  {
+    "num": "238",
+    "t": "Les Nuits de Cabiria",
+    "id_tmdb": "19426",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/ebf6733c036b6a0db43879de23b0673e29368118ce627d583c8aa48cbee6d4ce/master.m3u8"
+  },
+  {
+    "num": "237",
+    "t": "Persona",
+    "id_tmdb": "797",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/5943955ca0713553e3a248210a96cf9c51c2698fbc9c6b75c04f09096173b2d9/master.m3u8"
+  },
+  {
     "num": "236",
     "t": "Le Samouraï",
     "id_tmdb": "5511",
