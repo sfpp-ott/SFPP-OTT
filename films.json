@@ -1,5 +1,47 @@
 [
   {
+    "num": "278",
+    "t": "La Vie des Autres",
+    "id_tmdb": "582",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/5f06224c95f401e0b6e904d2db7dd91888f2e24186ccafd440dbc43f4c50c13d/master.m3u8"
+  },
+  {
+    "num": "277",
+    "t": "Lawrence d’Arabie",
+    "id_tmdb": "947",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/2919c8c6cc20734e71eefb92730f1e1716f67c349eecff074b82c82b42d744c8/master.m3u8"
+  },
+  {
+    "num": "276",
+    "t": "Le Diable, tout le temps",
+    "id_tmdb": "499932",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/74723e2f86d8bf4186ff8a97bc44d224c172792932baa6f6ea9276dfcb62c46c/master.m3u8"
+  },
+  {
+    "num": "275",
+    "t": "Le Voyage de Fanny",
+    "id_tmdb": "384581",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/ca4a2e413d453ec88b686515fee3d4419fc777a91ef7f55bf590d690294d9864/master.m3u8"
+  },
+  {
+    "num": "274",
+    "t": "Magic Kid",
+    "id_tmdb": "215405",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/05cd49abfa50cdc77d55cc811ae4d35670e3f2d1a7dec5b93c51c78a92e6abef/master.m3u8"
+  },
+  {
+    "num": "273",
+    "t": "Les Mutants de l’espace",
+    "id_tmdb": "30863",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/7c60218c85f1e85ec77d20bf636f366077cd7024b8fac27f94b498b0e464d6f0/master.m3u8"
+  },
+  {
     "num": "272",
     "t": "31",
     "id_tmdb": "284564",
