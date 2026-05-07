@@ -1,5 +1,47 @@
 [
   {
+    "num": "260"
+    "t": "Le Répondeur",
+    "id_tmdb": "1158616",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/29f03641ed9e2c620bce8ad687ed8d398270fffb02a9b34c7c366e6a6fb0b809/master.m3u8"
+  },
+  {
+    "num": "259"
+    "t": "Moso",
+    "id_tmdb": "1301511",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/265feaba7e18ea3b661d659c52a943c7f1d9f2113b583dcd2c62997fa1f2f2b3/master.m3u8"
+  },
+  {
+    "num": "258"
+    "t": "Spermageddon",
+    "id_tmdb": "1064307",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/262cab37e36a237c720718b278714e0c498814bb1a480e5b9a8ebd2fc5dbe4de/master.m3u8"
+  },
+  {
+    "num": "257"
+    "t": "Steve",
+    "id_tmdb": "1242404",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/a89301554cf25ff0de9cdc1750d8f5d115793c9f28f30e3918fc7cb33fdc6c54/master.m3u8"
+  },
+  {
+    "num": "256"
+    "t": "The Home",
+    "id_tmdb": "926606",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/65d899d9cfbd084e1c2f28f2853113c2beefce744a582880788ccfa50922ea5a/master.m3u8"
+  },
+  {
+    "num": "255"
+    "t": "The Lost Bus : Au cœur des flammes",
+    "id_tmdb": "1236470",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/7d92585af44c026ef23fdebb824a611e59f67289d2e9efd27c547f1ad89221a6/master.m3u8"
+  },
+  {
     "num": "254",
     "t": "The Look of Silence",
     "id_tmdb": "267480",
