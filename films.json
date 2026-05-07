@@ -1,5 +1,47 @@
 [
   {
+    "num": "272",
+    "t": "31",
+    "id_tmdb": "284564",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/56f9b21cae2a2cd6e5255e84c04a8130151a7c5c5c7bc175fe800eba5b3f3f38/master.m3u8"
+  },
+  {
+    "num": "271",
+    "t": "Aguirre, la colère de Dieu",
+    "id_tmdb": "2000",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/48c4ef7f6de8a801b490477a2c41927605bffc112c9bb4ded4513e4833d8abac/master.m3u8"
+  },
+  {
+    "num": "270",
+    "t": "Bloody Bird",
+    "id_tmdb": "20465",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/06eb61f0e6322a60267805716fce060c66cba84a2637e93b064dc6a2bb2173a9/master.m3u8"
+  },
+  {
+    "num": "269",
+    "t": "Confidential Assignment",
+    "id_tmdb": "434119",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/50a41c1176f9ce8336e41181a1d8c1dc1a9330b4276c469b551ee7ea068b9509/master.m3u8"
+  },
+  {
+    "num": "268",
+    "t": "Goodnight Mommy",
+    "id_tmdb": "284303",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/95b37b442cc598b458d9453d373dd56421998326b5aa5903ac429c84509fdbfe/master.m3u8"
+  },
+  {
+    "num": "267",
+    "t": "La Cité disparue",
+    "id_tmdb": "25848",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/8e76845c9a7ac4b1655a70698933cc277d9a574529531ae1137602968be73de2/master.m3u8"
+  },
+  {
     "num": "266",
     "t": "Tootsie",
     "id_tmdb": "9576",
