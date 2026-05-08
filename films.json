@@ -1,5 +1,47 @@
 [
   {
+    "num": "296",
+    "t": "G.O.A.T.",
+    "id_tmdb": "986097",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/3afd728c3b24ba249fc2e10d0c33406d71605460bb84af8dacbb6557897604d9/master.m3u8"
+  },
+  {
+    "num": "295",
+    "t": "Un poisson nommé Wanda",
+    "id_tmdb": "623",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/de515811652929230ba71db5124471da1856122923d7d6623db9c2a75e8a7ff2/master.m3u8"
+  },
+  {
+    "num": "294",
+    "t": "Atrocious",
+    "id_tmdb": "71622",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/c9f4a20f29d5557df3d4a1d57fd1634a3caf025bfea63af39710a9ea5863d9a3/master.m3u8"
+  },
+  {
+    "num": "293",
+    "t": "A la recherche de l'homme parfait",
+    "id_tmdb": "1257",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/a69becd980e45c53c08ca2e10bd9e88f28712306aee8ca06b7423533e354712c/master.m3u8"
+  },
+  {
+    "num": "292",
+    "t": "Cold Prey",
+    "id_tmdb": "21786",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/b7824557e8b5a99a7d20953b2971d272e6b1ef6b38087139c2c92668c723680c/master.m3u8"
+  },
+  {
+    "num": "291",
+    "t": "Contact",
+    "id_tmdb": "686",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/dea75bd63ffa0c7eff8f82aff09aefec71c937cd6fdca836d0c0deccda26cc6e/master.m3u8"
+  },
+  {
     "num": "290",
     "t": "Série Noire",
     "id_tmdb": "64349",
