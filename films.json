@@ -1,5 +1,47 @@
 [
   {
+    "num": "290",
+    "t": "Série Noire",
+    "id_tmdb": "64349",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/0ad25c7962aa3bca450262ebd92f24f6e43e8d4f19dfc7c6e470176fca4a1cf9/master.m3u8"
+  },
+  {
+    "num": "289",
+    "t": "The Game",
+    "id_tmdb": "2649",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/17c6452990d4449d606bab58584e0d9026eb2348fbeefcb9d6efc0b8afd48291/master.m3u8"
+  },
+  {
+    "num": "288",
+    "t": "Trick ’r Treat",
+    "id_tmdb": "23202",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/80c0c3baac4c7429e32420c3d1cc2962f92fd48fa5f488a470c1a086e1655bca/master.m3u8"
+  },
+  {
+    "num": "287",
+    "t": "Conjuring : L’Heure du Jugement",
+    "id_tmdb": "1038392",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/b56103cfab77f58709fb937b4736bf09e9a90d1187d60f56462b00409e708072/master.m3u8"
+  },
+  {
+    "num": "286",
+    "t": "Un Élève Doué",
+    "id_tmdb": "9445",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/8d6b6d98f60e1ef2af4f44f5e37e52ceb9b0b38930f17bdbc9df365452827b2d/master.m3u8"
+  },
+  {
+    "num": "285",
+    "t": "Freaky Friday 2 : Encore dans la peau de ma mère",
+    "id_tmdb": "1125257",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/72b048227b871f458c58631aea02932daf1d0f9c148aef08957406d226023cbf/master.m3u8"
+  },
+  {
     "num": "284",
     "t": "Les Nouveaux Héros",
     "id_tmdb": "177572",
