@@ -1,5 +1,47 @@
 [
   {
+    "num": "344",
+    "t": "The House of the Devil",
+    "id_tmdb": "25983",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/dc535a5ecad5d241f03e06ade76c1f26ed28107ffa78148f038bb4be24114903/master.m3u8"
+  },
+  {
+    "num": "343",
+    "t": "Puppy Love",
+    "id_tmdb": "1143319",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/2f938229fec10fac72941a5b2b25d898d17b71f581c5873928add0b113f72fe2/master.m3u8"
+  },
+  {
+    "num": "342",
+    "t": "The Bay",
+    "id_tmdb": "123105",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/bd5946002d013a112e09b3a36f25f4af151e4e06bddf1f3790e0cb4fb52c3e4e/master.m3u8"
+  },
+  {
+    "num": "341",
+    "t": "The Devils Rejects",
+    "id_tmdb": "1696",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/5cb30d27704a89a86e4b41f0b56d757f8523d84bb2e67bb7fdd2de75607ca2d8/master.m3u8"
+  },
+  {
+    "num": "340",
+    "t": "The Exorcism of Emily Rose",
+    "id_tmdb": "8643",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/8e5c4bcd1afeb1694b76672c84e15be25a3ca0f79bccc542cad0c7846142d310/master.m3u8"
+  },
+  {
+    "num": "339",
+    "t": "Mind Game",
+    "id_tmdb": "21712",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/78530c66797dc6d514f9cbbb3ae4005708543bcf327b2ed8a9acc3c2121b5074/master.m3u8"
+  },
+  {
     "num": "338",
     "t": "Splinter",
     "id_tmdb": "13220",
