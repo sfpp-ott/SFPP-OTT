@@ -1,5 +1,47 @@
 [
   {
+    "num": "350",
+    "t": "Terreur À l’Opéra",
+    "id_tmdb": "20115",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/5633756ae41d2144a3f0dd24a751cf411c0c6c0b2dc3e278a669764c01c8a256/master.m3u8"
+  },
+  {
+    "num": "349",
+    "t": "The Vanishing of Sidney Hall",
+    "id_tmdb": "353066",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/c1c8c9a9f3f0309eb40699ee803d3ed8b255c42a2682d12bd0f37bbaa329c828/master.m3u8"
+  },
+  {
+    "num": "348",
+    "t": "Avventura",
+    "id_tmdb": "576762",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/85dafb523f58987dc4369f81399ea558319db544754e141e3009870a19b1a602/master.m3u8"
+  },
+  {
+    "num": "347",
+    "t": "V/H/S/99",
+    "id_tmdb": "1005776",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/d3ac61adf79c43702cba1c3910d82d1f101d624ce369046281b52196a3a8edf2/master.m3u8"
+  },
+  {
+    "num": "346",
+    "t": "V/H/S/85",
+    "id_tmdb": "1032948",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/b6460326ff9cd23d821c2be5873c272e7d6e2502c3e6240ade6565ee9eb31e17/master.m3u8"
+  },
+  {
+    "num": "345",
+    "t": "V/H/S/Beyond",
+    "id_tmdb": "1190868",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/eb13eb5ec6cd82a807c87c6f971c7f0d5a006145c701ce2e5a33fea4aae28562/master.m3u8"
+  },
+  {
     "num": "344",
     "t": "The House of the Devil",
     "id_tmdb": "25983",
