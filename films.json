@@ -1,5 +1,47 @@
 [
   {
+    "num": "302",
+    "t": "L'Échine du diable",
+    "id_tmdb": "1433",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/522e426da902e8903f5fd45da5b43c8bed8b087c6de5d75a7c13d4eefc730b04/master.m3u8"
+  },
+  {
+    "num": "301",
+    "t": "Funny Games U.S.",
+    "id_tmdb": "8461",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/83474df134ea8d91a5820facf18f8f4104178f8732734df6d4b9c4bc15170ffa/master.m3u8"
+  },
+  {
+    "num": "300",
+    "t": "Killer Joe",
+    "id_tmdb": "73567",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/bf9db609613719afee6bf4f71c2525d92297a944c0dc2c197e35bcc1a8f9f0b3/master.m3u8"
+  },
+  {
+    "num": "299",
+    "t": "L’Armée des ombres",
+    "id_tmdb": "15383",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/640449658897c346c5f7d0a1cf49b08435f64a690243e55dcadd8d6063be6c2b/master.m3u8"
+  },
+  {
+    "num": "298",
+    "t": "The Relic",
+    "id_tmdb": "11015",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/564bd3666d2bfb4c9229293e9fea3265b3d72173d5010340608ac27ad373e5df/master.m3u8"
+  },
+  {
+    "num": "297",
+    "t": "Motel",
+    "id_tmdb": "10294",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/6e77c7b4a810587b59023de5adf8ab50c5b95656d0b006f757986975eb1e3797/master.m3u8"
+  },
+  {
     "num": "296",
     "t": "G.O.A.T.",
     "id_tmdb": "986097",
