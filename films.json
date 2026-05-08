@@ -1,5 +1,47 @@
 [
   {
+    "num": "356",
+    "t": "Vacances forcées",
+    "id_tmdb": "1284505",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/636aa1f8a737d295c2db50e26b13528c2d49af299787ba364aea672c083ffaf7/master.m3u8"
+  },
+  {
+    "num": "355",
+    "t": "V/H/S/2",
+    "id_tmdb": "159117",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/38275bae37ca45cb525bdf341039e548ebc48dc4fa6ba911d8ab4e6f916c4d13/master.m3u8"
+  },
+  {
+    "num": "354",
+    "t": "V/H/S",
+    "id_tmdb": "84348",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/38275bae37ca45cb525bdf341039e548ebc48dc4fa6ba911d8ab4e6f916c4d13/master.m3u8"
+  },
+  {
+    "num": "353",
+    "t": "Vicious",
+    "id_tmdb": "1251717",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/13044c355e018de8fb4341156b69f73dc1a083d0354a135fa02a7d7663e186d4/master.m3u8"
+  },
+  {
+    "num": "352",
+    "t": "Videodrome",
+    "id_tmdb": "837",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/e698533e30f136b158c92c37f6dcf5e06a9e3e9536f1e7e8010c9234f6dcbb72/master.m3u8"
+  },
+  {
+    "num": "351",
+    "t": "Terreur sur la ligne",
+    "id_tmdb": "45964",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/bfc4d8891b7a8fe57ace891b27ac8316b098d7c3ad57d8a11ffa1f3386ba9a62/master.m3u8"
+  },
+  {
     "num": "350",
     "t": "Terreur À l’Opéra",
     "id_tmdb": "20115",
