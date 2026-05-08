@@ -1,5 +1,47 @@
 [
   {
+    "num": "326",
+    "t": "Maintenance Required",
+    "id_tmdb": "1352755",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/904bcb4142476653572c1d906a540455019041adaf68f5bd5c45be3c959534ce/master.m3u8"
+  },
+  {
+    "num": "325",
+    "t": "Monster Summer",
+    "id_tmdb": "928480",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/7630b514d8612b84fb35fea4aed7625a25d505e82a47ecc7a1915210e0a5191f/master.m3u8"
+  },
+  {
+    "num": "324",
+    "t": "Caramelo",
+    "id_tmdb": "1277988",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/cd5d58870260e8bbbcd3d20030144f36e247b559ec8a4dc1f4a655639ed9dc68/master.m3u8"
+  },
+  {
+    "num": "323",
+    "t": "Les Valeurs de la Famille Addams",
+    "id_tmdb": "2758",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/6ca9b7cc8f420b4e508dedcf160bbaddb9debac00bc12154a609c0c1e95f5b36/master.m3u8"
+  },
+  {
+    "num": "322",
+    "t": "Perfect Blue",
+    "id_tmdb": "10494",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/420b19186057e8a58e5d7e5b234e40d4f43e09be6f15acb43b210b8a77d9bba5/master.m3u8"
+  },
+  {
+    "num": "321",
+    "t": "Personne n’est parfait !",
+    "id_tmdb": "38967",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/c39aabc637097da79577989ffa99cd77e117d19233ff0f2feb1b7c9c7fe01556/master.m3u8"
+  },
+  {
     "num": "320",
     "t": "Pontypool",
     "id_tmdb": "23963",
