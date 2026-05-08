@@ -1,5 +1,47 @@
 [
   {
+    "num": "362",
+    "t": "Wolf Creek",
+    "id_tmdb": "9885",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/dd625ddaecf94d37614a12f057c45b25def05f52dc657a62bbc1ce581ed57a8e/master.m3u8"
+  },
+  {
+    "num": "361",
+    "t": "Akira",
+    "id_tmdb": "149",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/994a1b1f66c9dd6ae69c16937ec9930308a7df166b6ce624944fb1901440aae1/master.m3u8"
+  },
+  {
+    "num": "360",
+    "t": "Alien Invasion : Rise of the Phoenix",
+    "id_tmdb": "1482036",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/d57b9a5e87fe8dbd40e7c716af8e4ecafdcd660ab6011de7c4a46d848d2e6558/master.m3u8"
+  },
+  {
+    "num": "359",
+    "t": "All About Lily Chou-Chou",
+    "id_tmdb": "16664",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/82ca1e5d72490f5c9f46b04a89b41975e055ba672bc815923b7a765b81d33009/master.m3u8"
+  },
+  {
+    "num": "358",
+    "t": "Berberian Sound Studio",
+    "id_tmdb": "116811",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/85ee72eaa034a648faad68879704e8ff4734c7b439ec995272c6b1adc6e47f70/master.m3u8"
+  },
+  {
+    "num": "357",
+    "t": "Lake Bodom",
+    "id_tmdb": "369202",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/668fc87aa34900062856a3d45a4cd0152b56a497da67ff191a82d0fca5f19d45/master.m3u8"
+  },
+  {
     "num": "356",
     "t": "Vacances forcées",
     "id_tmdb": "1284505",
