@@ -1,5 +1,47 @@
 [
   {
+    "num": "332",
+    "t": "Propre",
+    "id_tmdb": "1484640",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/9cd5326a267fb94a8507974a6c7b74c043ca88c4d203eee0a820c3b4cb3db995/master.m3u8"
+  },
+  {
+    "num": "331",
+    "t": "Relic",
+    "id_tmdb": "539181",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/d62989d12212926a36a6629826a6165a56e4f4493fa78ab58638c7b918885259/master.m3u8"
+  },
+  {
+    "num": "330",
+    "t": "Rosemary’s Baby",
+    "id_tmdb": "805",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/dd8eb31b8637eae660cac1aec48108cba924f4aeb51c31f7c7ad43d8ce39e97e/master.m3u8"
+  },
+  {
+    "num": "329",
+    "t": "Saint Ange",
+    "id_tmdb": "21198",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/22e6ed3e9b0dd99b4dbf75db9ca452728a87f1acd7fbbb92d19a6d75add989ae/master.m3u8"
+  },
+  {
+    "num": "328",
+    "t": "Savage Hunt",
+    "id_tmdb": "1376237",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/f618a73e264eadbf81a3446bb37bde0868af2656637d292a08d2dfb5042396ec/master.m3u8"
+  },
+  {
+    "num": "327",
+    "t": "Society",
+    "id_tmdb": "22244",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/417ce901edd6d983e5d855cb41f2cbb5d28b23d31f09b18b4f1285d94639a588/master.m3u8"
+  },
+  {
     "num": "326",
     "t": "Maintenance Required",
     "id_tmdb": "1352755",
