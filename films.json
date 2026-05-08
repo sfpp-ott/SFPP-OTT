@@ -1,5 +1,47 @@
 [
   {
+    "num": "320",
+    "t": "Pontypool",
+    "id_tmdb": "23963",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/19f42cb7493b4932cac9c4535e53ae44508d63d278e1bf4399da9e899617a2df/master.m3u8"
+  },
+  {
+    "num": "319",
+    "t": "La Famille Addams",
+    "id_tmdb": "2907",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/4599176cf5d48989047028a097834a4e1d8e7230b60439c8be784d14ba8bf4e4/master.m3u8"
+  },
+  {
+    "num": "318",
+    "t": "Indomptables",
+    "id_tmdb": "1461911",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/b3831939484573ff1bc4b3f46458facca6171cc62e259a0bbc21da48eba9c8b5/master.m3u8"
+  },
+  {
+    "num": "317",
+    "t": "La Folie des hauteurs",
+    "id_tmdb": "658751",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/05a5827b948a4ee3da364af37cddb3b35fc27045d227e8d3597f579a597cde62/master.m3u8"
+  },
+  {
+    "num": "316",
+    "t": "Le Prince des ténèbres",
+    "id_tmdb": "8852",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/f864cbdd3f6012f57a403542a1cb023f57fefbff1a8d123c3a25633c4238029a/master.m3u8"
+  },
+  {
+    "num": "315",
+    "t": "Levels",
+    "id_tmdb": "791042",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/27eeff12e6fe793e0d928a804d4535b0cfef3bf96858a301e61aae881c435c5b/master.m3u8"
+  },
+  {
     "num": "314",
     "t": "Docteur Dolittle 3",
     "id_tmdb": "18843",
