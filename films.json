@@ -1,5 +1,47 @@
 [
   {
+    "num": "338",
+    "t": "Splinter",
+    "id_tmdb": "13220",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/01af7093baf482c9a72e45e8cfff97c24e967cae753f044d9d10040e3682b46f/master.m3u8"
+  },
+  {
+    "num": "337",
+    "t": "Audition",
+    "id_tmdb": "11075",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/42e91226f2cca1737f8f4f2a880ef2b25ee2b1bd95969c0f12b0ebc5c6401bed/master.m3u8"
+  },
+  {
+    "num": "336",
+    "t": "Delivery Man",
+    "id_tmdb": "146239",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/80dc0f7828bdf2cb40bf2efe607579d367ec70096fc98388036ab92c13569248/master.m3u8"
+  },
+  {
+    "num": "335",
+    "t": "Frances Ha",
+    "id_tmdb": "121986",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/319454199f3267c2889090aed139fb749971deff8850a71c2ff6b1aaad74ce6e/master.m3u8"
+  },
+  {
+    "num": "334",
+    "t": "Hocus Pocus",
+    "id_tmdb": "10439",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/d048de1bc5880f8b435a0b91ff7c5a071b0ff0e334abe407e06eddc7cd6edd05/master.m3u8"
+  },
+  {
+    "num": "333",
+    "t": "La Maison des 1000 Morts",
+    "id_tmdb": "2662",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/231814d1ba4e4eb0ec50eab9efc3310f3189f17ea846680cba938738b555539c/master.m3u8"
+  },
+  {
     "num": "332",
     "t": "Propre",
     "id_tmdb": "1484640",
