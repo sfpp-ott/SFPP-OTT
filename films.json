@@ -1,5 +1,47 @@
 [
   {
+    "num": "308",
+    "t": "Bug",
+    "id_tmdb": "12526",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/709b1b49877edf2d4ca45728ac012014f7be89d76941ccd1d11b38fd4a666509/master.m3u8"
+  },
+  {
+    "num": "307",
+    "t": "Cabin Fever 2 : Spring Fever",
+    "id_tmdb": "28739",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/8f671904ef22cb1d8bde41e7855de335bc37802d540ab531fa249ad12cab17f5/master.m3u8"
+  },
+  {
+    "num": "306",
+    "t": "Dog Soldiers",
+    "id_tmdb": "11880",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/ef00ffbbdcbc5af29fe34f66d7b184b7c6a6a087d1cbf4f5f38b1315eafa279f/master.m3u8"
+  },
+  {
+    "num": "305",
+    "t": "A Big Bold Beautiful Journey",
+    "id_tmdb": "1241921",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/dde1b635e82e06aacc147c5eaab448ee139ecfee2e8de871c8db16b3ba1c89ea/master.m3u8"
+  },
+  {
+    "num": "304",
+    "t": "The Ugly Stepsister",
+    "id_tmdb": "1284120",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/4265a09426db4ce10bbad78d05b3a5bb83408aa8d9944d38e4713815bc527504/master.m3u8"
+  },
+  {
+    "num": "303",
+    "t": "Chosen Family",
+    "id_tmdb": "834966",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/3ca12cfa1d953ca7e075718c60df753d699d54de9b6dcc7caa58b4b2608c4fb0/master.m3u8"
+  },
+  {
     "num": "302",
     "t": "L'Échine du diable",
     "id_tmdb": "1433",
