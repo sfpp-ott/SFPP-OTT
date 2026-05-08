@@ -1,5 +1,47 @@
 [
   {
+    "num": "368",
+    "t": "Braindead",
+    "id_tmdb": "763",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/c84df78d9bd1cf66e53d122c030d87c9b41bc845ae24b57b9e9f8cee2d3b45dd/master.m3u8"
+  },
+  {
+    "num": "367",
+    "t": "Camp 731",
+    "id_tmdb": "25998",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/6a1090da3810cbecd16c854615e7eee23b224c9ef33e6f593275d9298deccc44/master.m3u8"
+  },
+  {
+    "num": "366",
+    "t": "Compliance",
+    "id_tmdb": "84188",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/cd9037c6d453adb6ce7d04f7ea566f1ae2e6d2aedf1bd032203417a1d1e35cd1/master.m3u8"
+  },
+  {
+    "num": "365",
+    "t": "Retribution",
+    "id_tmdb": "762430",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/87f7f53bc5dd4f8a9ce3393028a54ae0e35533dfc949e2f00eecc5547686df42/master.m3u8"
+  },
+  {
+    "num": "364",
+    "t": "Dolores Claiborne",
+    "id_tmdb": "11929",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/269a8afec22d48f6a0d589f234c0cd2b027c5cb4dfd38f02cb2875da34e53ac3/master.m3u8"
+  },
+  {
+    "num": "363",
+    "t": "Dragonball Evolution",
+    "id_tmdb": "14164",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/050f8a87c05d2b06ffb0c55df9824d986c6bcf656d7a8b0d8cfa01d1c2101450/master.m3u8"
+  },
+  {
     "num": "362",
     "t": "Wolf Creek",
     "id_tmdb": "9885",
