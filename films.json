@@ -1,5 +1,47 @@
 [
   {
+    "num": "314",
+    "t": "Docteur Dolittle 3",
+    "id_tmdb": "18843",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/d5643769b673c3d42e8af4332b79ed59a8cd86e7833dc040b8e42a5d0a29dea8/master.m3u8"
+  },
+  {
+    "num": "313",
+    "t": "Dumb Money",
+    "id_tmdb": "792293",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/c6b3ee4ef4968890e41283509c86b499d9b3b6d2271fcc32437ef84a6a62e7c2/master.m3u8"
+  },
+  {
+    "num": "312",
+    "t": "En Première Ligne",
+    "id_tmdb": "1356670",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/b8b2e4a4df4e716cba761df6251675db531a9594c00822f0064573c2be27dbdb/master.m3u8"
+  },
+  {
+    "num": "311",
+    "t": "Gabby et la Maison Magique",
+    "id_tmdb": "1280282",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/b6992a656cb07a2c093f2c089bf329f3be69422628a459075c874ee6c5579860/master.m3u8"
+  },
+  {
+    "num": "310",
+    "t": "Gatsby le Magnifique",
+    "id_tmdb": "11034",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/a5e731f81c02e7c8b1028d7bd6b97f3018069b8d408dd2b79ad4b39baa3501e5/master.m3u8"
+  },
+  {
+    "num": "309",
+    "t": "Guillaume Tell",
+    "id_tmdb": "1195631",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/3ca12cfa1d953ca7e075718c60df753d699d54de9b6dcc7caa58b4b2608c4fb0/master.m3u8"
+  },
+  {
     "num": "308",
     "t": "Bug",
     "id_tmdb": "12526",
