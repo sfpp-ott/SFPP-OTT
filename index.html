@@ -30,6 +30,7 @@
             z-index: 100;
         }
 
+        /* --- STYLE DU LOADER PROFESSIONNEL --- */
         #loader-screen {
             position: fixed; inset: 0; background: #000;
             display: none; flex-direction: column; align-items: center; justify-content: center;
@@ -102,7 +103,7 @@
         .video-js { z-index: 1 !important; width: 100% !important; height: 100% !important; }
         .video-js video { object-fit: contain !important; }
 
-        /* STYLE DES MENUS AUDIO/SOUS-TITRES (Casque photo 24694.jpg) */
+        /* --- STYLE DES MENUS AUDIO/SUBS (Comme Photo 24694.jpg) --- */
         .vjs-menu-button-popup .vjs-menu { left: -5em; width: 15em; }
         .vjs-menu-item { text-transform: uppercase; font-size: 1.1em !important; padding: 12px 0 !important; }
         .vjs-audio-button, .vjs-subs-caps-button { display: block !important; }
@@ -865,7 +866,7 @@ function openSeries(name) {
     content.innerHTML = html;
 }
 
-// --- REPRISE EXACTE DE TA FONCTION playMovie (ANCIEN CODE) ---
+// --- REPRISE EXACTE DE LA FONCTION playMovie DE TON ANCIEN CODE ---
 function playMovie(idx) {
     history.replaceState({ overlay: 'player' }, "");
     const m = playlistData[idx];
@@ -979,12 +980,14 @@ function openSearch() { document.getElementById('search-overlay').style.display 
 function closeSearch() { document.getElementById('search-overlay').style.display = 'none'; document.getElementById('searchBar').value = ''; filter(); }
 
 document.addEventListener('DOMContentLoaded', () => {
-    // --- REPRISE EXACTE DE L'INITIALISATION (ANCIEN CODE) ---
+    // --- REPRISE EXACTE DE L'INITIALISATION DE TON ANCIEN CODE ---
     player = videojs('main-video', { 
-        controls: true, fluid: false,
+        controls: true, 
+        fluid: false,
         controlBar: {
             subsCapsButton: true,
-            audioTrackButton: true
+            audioTrackButton: true,
+            qualitySelector: true
         },
         html5: {
             vhs: { overrideNative: true },
