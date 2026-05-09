@@ -1,5 +1,61 @@
 [
   {
+    "num": "396",
+    "t": "La Montagne Sacrée",
+    "id_tmdb": "8327",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/e9599bb99214373dd980b9f1692f0c625bd5b5083c31a1862e2e734baa76dd4f/master.m3u8"
+  },
+  {
+    "num": "395",
+    "t": "Les Deux Gredins",
+    "id_tmdb": "927254",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/8ea7bfa38813e3ffbd6143df535d3b435b61a7aac405a64ffae9d4a6bf0aa0fa/master.m3u8"
+  },
+  {
+    "num": "394",
+    "t": "Les Diaboliques",
+    "id_tmdb": "827",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/015649bd085eae88274f3652f0aa7c98568fa7b585d099e66ee0d395e3e04aa6/master.m3u8"
+  },
+  {
+    "num": "393",
+    "t": "Palm Springs",
+    "id_tmdb": "587792",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/ac29dbb1ae3a903fc0ecf165eff329c8a55467586700993fb488ca718474cd43/master.m3u8"
+  },
+  {
+    "num": "392",
+    "t": "Pyewacket",
+    "id_tmdb": "448194",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/546d917c05fd3b1106d29a7fc5afc742cbb325bfcbb2b3844d1ce44faa748b85/master.m3u8"
+  },
+  {
+    "num": "391",
+    "t": "Rain Man",
+    "id_tmdb": "380",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/b8e444773e3673e9609d6b144d738458aff1949d9cba62910230fcbbc0ac813f/master.m3u8"
+  },
+  {
+    "num": "390",
+    "t": "Saint Maud",
+    "id_tmdb": "575776",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/1ea88b79d3969e37cd0fba201a1baa83aa60ff17042f443fa8b3b96ccc954263/master.m3u8"
+  },
+  {
+    "num": "389",
+    "t": "Session 9",
+    "id_tmdb": "10972",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/abfab6c6cfce368f540d98c88884ba62803249aa73d80edf7e08b5d7ea438ccf/master.m3u8"
+  },
+  {
     "num": "388",
     "t": "Barbie : Agents Secrets",
     "id_tmdb": "377897",
