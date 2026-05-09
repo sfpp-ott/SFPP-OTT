@@ -30,21 +30,18 @@
             z-index: 100;
         }
 
-        /* --- STYLE DU LOADER PROFESSIONNEL --- */
+        /* STYLE DU LOADER (MASQUÉ PAR DÉFAUT) */
         #loader-screen {
             position: fixed; inset: 0; background: #000;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            z-index: 10000; transition: opacity 0.5s ease;
+            display: none; flex-direction: column; align-items: center; justify-content: center;
+            z-index: 10000;
         }
         .loader-dots { display: flex; gap: 8px; }
         .dot { width: 12px; height: 12px; background: var(--accent); border-radius: 50%; animation: bounce 1.4s infinite ease-in-out both; }
         .dot:nth-child(1) { animation-delay: -0.32s; }
         .dot:nth-child(2) { animation-delay: -0.16s; }
-        @keyframes bounce {
-            0%, 80%, 100% { transform: scale(0); }
-            40% { transform: scale(1.0); }
-        }
-        .loader-text { margin-top: 20px; font-size: 14px; letter-spacing: 2px; color: #555; text-transform: uppercase; font-weight: bold; }
+        @keyframes bounce { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1.0); } }
+        .loader-text { margin-top: 20px; font-size: 14px; letter-spacing: 2px; color: #fff; text-transform: uppercase; font-weight: bold; }
 
         #login-screen { position: fixed; inset: 0; background: #000; z-index: 9999; display: flex; align-items: center; justify-content: center; }
         .login-box { background: #111; padding: 30px; border-radius: 8px; width: 280px; text-align: center; border: 1px solid #333; position: relative; z-index: 10000; }
@@ -248,7 +245,7 @@
         <div class="dot"></div>
         <div class="dot"></div>
     </div>
-    <div class="loader-text">SFPP ELITE</div>
+    <div class="loader-text">Chargement en cours</div>
 </div>
 
 <div id="login-screen">
@@ -409,6 +406,9 @@
     };
 
     window.checkLogin = function() {
+        // ACTIVER LE CHARGEMENT DÈS LE CLIC SUR CONNEXION
+        document.getElementById('loader-screen').style.display = 'flex';
+        
         const email = document.getElementById('user').value.trim();
         const pass = document.getElementById('pass').value;
         signInWithEmailAndPassword(auth, email, pass).then(async (u) => {
@@ -417,7 +417,10 @@
             if (!exp) { 
                 set(ref(db, 'sessions/' + u.user.uid), { deviceId: deviceId, lastLogin: Date.now() }); 
             }
-        }).catch(() => alert("Identifiants incorrects."));
+        }).catch(() => {
+            document.getElementById('loader-screen').style.display = 'none';
+            alert("Identifiants incorrects.");
+        });
     };
 
     onAuthStateChanged(auth, async (user) => {
@@ -599,9 +602,10 @@ async function loadPlaylist() {
 
         await Promise.all(promises);
         render(); 
-        // --- CACHER LE CHARGEMENT UNE FOIS TOUT CHARGE ---
-        document.getElementById('loader-screen').style.opacity = '0';
-        setTimeout(() => document.getElementById('loader-screen').style.display = 'none', 500);
+        
+        // --- RETIRER LE CHARGEMENT UNE FOIS QUE TOUT EST PRÊT ---
+        document.getElementById('loader-screen').style.display = 'none';
+        
     } catch (e) {} 
 }
 
@@ -665,6 +669,7 @@ function openDetails(idx) {
     document.getElementById('details-play-btn').focus();
 }
 
+// FONCTION RECHERCHE PAR ACTEUR
 window.searchByActor = function(actorName) {
     closeDetails(); 
     openSearch(); 
@@ -744,14 +749,12 @@ function render(search = "") {
 
     const favs = JSON.parse(localStorage.getItem('sfpp_fav_' + currentProfile) || "[]");
     const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
-    const now = new Date();
     
     let data = playlistData;
     if(currentView === 'movies') data = playlistData.filter(m => m.cat && !m.cat.includes("SÉRIES"));
     else if(currentView === 'series') data = playlistData.filter(m => m.cat && m.cat.includes("SÉRIES"));
     else if(currentView === 'fav') data = playlistData.filter(m => favs.includes(m.t));
 
-    // Historique
     if(currentProfile && s === "" && currentView === 'all') {
         let history = JSON.parse(localStorage.getItem('sfpp_hist_' + currentProfile) || "[]");
         if(history.length > 0) {
@@ -769,7 +772,6 @@ function render(search = "") {
         } else histSec.style.display = "none";
     } else histSec.style.display = "none";
 
-    // Tous les films
     if (s === "" && (currentView === 'all' || currentView === 'movies')) {
         const allMovies = playlistData.filter(m => m.cat && !m.cat.includes("SÉRIES") && !m.cat.toUpperCase().includes("DIRECT") && !m.cat.toUpperCase().includes("TV"));
         if (allMovies.length > 0) {
@@ -785,12 +787,17 @@ function render(search = "") {
     }
 
     const allGenres = [];
-    data.forEach(m => { if(m.cat) m.cat.split(',').map(g => g.trim().toUpperCase()).forEach(g => { if(!allUniqueCats.includes(g)) allGenres.push(g); }); });
+    data.forEach(m => {
+        if(m.cat) {
+            const genres = m.cat.split(',').map(g => g.trim().toUpperCase());
+            genres.forEach(g => { if(!allUniqueCats.includes(g)) allGenres.push(g); });
+        }
+    });
 
     allGenres.sort().forEach(c => {
         const filtered = data.filter(m => {
             const matchGenre = m.cat && m.cat.toUpperCase().includes(c);
-            const matchSearch = (s === "") || m.t.toLowerCase().includes(s) || (m.year && m.year.toString().includes(s)) || (m.actors_pics && m.actors_pics.some(a => a.name.toLowerCase().includes(s)));
+            const matchSearch = (s === "") || m.t.toLowerCase().includes(s);
             return matchGenre && matchSearch;
         });
 
@@ -828,7 +835,7 @@ function openSeries(name) {
         html += `<div class="season-title">SAISON ${s}</div>`;
         seasons[s].forEach(ep => {
             const epName = ep.t.split(' - ')[1] || ep.t;
-            const pct = (prog[ep.t] && prog[ep.t].p > 1) ? `<div style="height:3px; background:#444; width:100px; margin-top:5px;"><div style="height:100%; background:var(--accent); width:${prog[ep.t].p}%"></div></div>` : "";
+            const pct = (prog[ep.t] && ep.t].p > 1) ? `<div style="height:3px; background:#444; width:100px; margin-top:5px;"><div style="height:100%; background:var(--accent); width:${prog[ep.t].p}%"></div></div>` : "";
             html += `<div class="episode-item" onclick="playMovie(${playlistData.indexOf(ep)});" tabindex="0">
                         <div style="flex:1"><b>${epName}</b>${pct}</div>
                         <div style="color:var(--accent)">LECTURE ▶</div>
@@ -892,8 +899,6 @@ function playMovie(idx) {
         if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
         player.play();
     }
-    
-    player.src({ src: decodedUrl, type: type });
 }
 
 function playNextEpisode() {
@@ -921,6 +926,16 @@ document.addEventListener('DOMContentLoaded', () => {
         plugins: { chromecast: { addButtonToControlBar: true, addDisplayOnControlBar: true } }
     });
 
+    const Button = videojs.getComponent('Button');
+    class Back extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-replay-10'; } handleClick() { player.currentTime(player.currentTime()-10); } }
+    class Forward extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-forward-10'; } handleClick() { player.currentTime(player.currentTime()+10); } }
+    videojs.registerComponent('Back', Back); videojs.registerComponent('Forward', Forward);
+    
+    player.ready(() => { 
+        player.getChild('controlBar').addChild('Back', {}, 1); 
+        player.getChild('controlBar').addChild('Forward', {}, 2); 
+    });
+
     let lastTap = 0;
     const videoContainer = document.getElementById('video-container');
 
@@ -938,16 +953,6 @@ document.addEventListener('DOMContentLoaded', () => {
     player.on('dblclick', function() {
         if (player.isFullscreen()) player.exitFullscreen();
         else player.requestFullscreen();
-    });
-
-    const Button = videojs.getComponent('Button');
-    class Back extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-replay-10'; } handleClick() { player.currentTime(player.currentTime()-10); } }
-    class Forward extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-forward-10'; } handleClick() { player.currentTime(player.currentTime()+10); } }
-    videojs.registerComponent('Back', Back); videojs.registerComponent('Forward', Forward);
-    
-    player.ready(() => { 
-        player.getChild('controlBar').addChild('Back', {}, 1); 
-        player.getChild('controlBar').addChild('Forward', {}, 2); 
     });
 
     player.on('timeupdate', function() {
