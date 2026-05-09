@@ -103,7 +103,7 @@
         .video-js { z-index: 1 !important; width: 100% !important; height: 100% !important; }
         .video-js video { object-fit: contain !important; }
 
-        /* --- STYLE DES MENUS AUDIO/SUBS (Comme Photo 24694.jpg) --- */
+        /* STYLE DES MENUS AUDIO/SUBS (Photo 24694.jpg) */
         .vjs-menu-button-popup .vjs-menu { left: -5em; width: 15em; }
         .vjs-menu-item { text-transform: uppercase; font-size: 1.1em !important; padding: 12px 0 !important; }
         .vjs-audio-button, .vjs-subs-caps-button { display: block !important; }
@@ -866,7 +866,7 @@ function openSeries(name) {
     content.innerHTML = html;
 }
 
-// --- REPRISE EXACTE DE LA FONCTION playMovie DE TON ANCIEN CODE ---
+// --- REPRISE EXACTE DE LA FONCTION playMovie (ANCIEN CODE) ---
 function playMovie(idx) {
     history.replaceState({ overlay: 'player' }, "");
     const m = playlistData[idx];
@@ -908,6 +908,7 @@ function playMovie(idx) {
             hls.attachMedia(document.querySelector('#main-video_html5_api'));
             
             hls.on(Hls.Events.MANIFEST_PARSED, function() { 
+                /* --- LOGIQUE DE PONT AUDIO POUR LE CASQUE (ANCIEN CODE) --- */
                 const audioTracks = hls.audioTracks;
                 if (audioTracks && audioTracks.length > 1) {
                     player.audioTracks().dispose(); 
@@ -921,6 +922,7 @@ function playMovie(idx) {
                         }));
                     });
                 }
+                
                 if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
                 player.play(); 
             });
@@ -980,17 +982,17 @@ function openSearch() { document.getElementById('search-overlay').style.display 
 function closeSearch() { document.getElementById('search-overlay').style.display = 'none'; document.getElementById('searchBar').value = ''; filter(); }
 
 document.addEventListener('DOMContentLoaded', () => {
-    // --- REPRISE EXACTE DE L'INITIALISATION DE TON ANCIEN CODE ---
+    /* --- INITIALISATION REPRISE DE TON ANCIEN CODE FONCTIONNEL --- */
     player = videojs('main-video', { 
         controls: true, 
         fluid: false,
         controlBar: {
-            subsCapsButton: true,
+            subsCapsButton: true,  
             audioTrackButton: true,
-            qualitySelector: true
+            qualitySelector: true   
         },
         html5: {
-            vhs: { overrideNative: true },
+            vhs: { overrideNative: true }, 
             nativeAudioTracks: false,
             nativeVideoTracks: false,
             nativeTextTracks: false
