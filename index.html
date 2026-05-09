@@ -30,7 +30,6 @@
             z-index: 100;
         }
 
-        /* --- STYLE DU LOADER PROFESSIONNEL --- */
         #loader-screen {
             position: fixed; inset: 0; background: #000;
             display: none; flex-direction: column; align-items: center; justify-content: center;
@@ -902,7 +901,6 @@ function playMovie(idx) {
     try { decodedUrl = window.atob(m.url); } catch(e) { decodedUrl = m.url; }
 
     const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
-
     let type = decodedUrl.includes('.m3u8') ? 'application/x-mpegURL' : 'video/mp4';
 
     if (type === 'application/x-mpegURL') {
@@ -912,10 +910,10 @@ function playMovie(idx) {
             hls.attachMedia(document.querySelector('#main-video_html5_api'));
             
             hls.on(Hls.Events.MANIFEST_PARSED, function() { 
-                // --- LOGIQUE DE PONT AUDIO (DÉTECTION DES PISTES) ---
+                // --- CORRECTION : LOGIQUE DE PONT AUDIO ROBUSTE ---
                 const audioTracks = hls.audioTracks;
-                if (audioTracks && audioTracks.length > 1) {
-                    player.audioTracks().dispose(); // Réinitialise proprement
+                if (audioTracks && audioTracks.length > 0) {
+                    player.audioTracks().dispose(); // Nettoyage propre du menu VideoJS
                     audioTracks.forEach((track, id) => {
                         player.audioTracks().addTrack(new videojs.AudioTrack({
                             id: id.toString(),
@@ -931,12 +929,12 @@ function playMovie(idx) {
                 player.play(); 
             });
 
-            // Gère le changement depuis le bouton Casque VideoJS
+            // --- CORRECTION : ÉCOUTEUR DE CHANGEMENT DE LANGUE ---
             player.audioTracks().on('change', function() {
                 const tracks = player.audioTracks();
                 for (let j = 0; j < tracks.length; j++) {
                     if (tracks[j].enabled) {
-                        hls.audioTrack = j;
+                        hls.audioTrack = j; // Force hls.js à basculer la piste audio
                         break;
                     }
                 }
@@ -987,17 +985,17 @@ function openSearch() { document.getElementById('search-overlay').style.display 
 function closeSearch() { document.getElementById('search-overlay').style.display = 'none'; document.getElementById('searchBar').value = ''; filter(); }
 
 document.addEventListener('DOMContentLoaded', () => {
-    // --- MODIFICATION DE L'INITIALISATION (FORCER LES BOUTONS COMME PHOTO 24694.jpg) ---
+    // --- INITIALISATION (FORCE LES BOUTONS AUDIO COMME PHOTO 24694.jpg) ---
     player = videojs('main-video', { 
         controls: true, 
         fluid: false,
         controlBar: {
-            subsCapsButton: true,  // Icône Bulle
-            audioTrackButton: true, // Icône Casque
-            qualitySelector: true   // Icône Qualité
+            subsCapsButton: true,  
+            audioTrackButton: true,
+            qualitySelector: true   
         },
         html5: {
-            vhs: { overrideNative: true }, // Permet de mieux gérer les pistes sur Android/iOS
+            vhs: { overrideNative: true }, 
             nativeAudioTracks: false,
             nativeVideoTracks: false,
             nativeTextTracks: false
