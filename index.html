@@ -115,11 +115,6 @@
             width: 45px; height: 45px; border-radius: 50%; font-size: 20px; cursor: pointer;
         }
 
-        /* STYLE DES MENUS AUDIO/SOUS-TITRES (Casque photo 24694.jpg) */
-        .vjs-menu-button-popup .vjs-menu { left: -5em; width: 15em; }
-        .vjs-menu-item { text-transform: uppercase; font-size: 1.1em !important; padding: 12px 0 !important; }
-        .vjs-audio-button, .vjs-subs-caps-button { display: block !important; }
-
         #expiration-banner { display: none; background: #ffcc00; color: #000; text-align: center; padding: 10px; font-size: 13px; font-weight: bold; position: relative; z-index: 1500; }
         
         #details-overlay {
@@ -865,7 +860,6 @@ function openSeries(name) {
     content.innerHTML = html;
 }
 
-/* --- REPRISE DE LA LOGIQUE DE TON ANCIEN CODE FONCTIONNEL --- */
 function playMovie(idx) {
     history.replaceState({ overlay: 'player' }, "");
     const m = playlistData[idx];
@@ -877,7 +871,7 @@ function playMovie(idx) {
     player.src("");
     player.load();
 
-    /* NETTOYAGE DES PISTES (Comme dans l'ancien code) */
+    // NETTOYAGE DES PISTES (Comme dans l'ancien code)
     const oldTracks = player.remoteTextTracks();
     let i = oldTracks.length;
     while (i--) { player.removeRemoteTextTrack(oldTracks[i]); }
@@ -903,17 +897,19 @@ function playMovie(idx) {
 
     const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
 
-    if (decodedUrl.includes('.m3u8')) {
+    let type = decodedUrl.includes('.m3u8') ? 'application/x-mpegURL' : 'video/mp4';
+
+    if (type === 'application/x-mpegURL') {
         if (Hls.isSupported()) {
-            hls = new Hls({ enableSubtitleStartCheck: true });
+            hls = new Hls({ enableSubtitleStartCheck: true, enableWMF: true });
             hls.loadSource(decodedUrl);
             hls.attachMedia(document.querySelector('#main-video_html5_api'));
             
             hls.on(Hls.Events.MANIFEST_PARSED, function() { 
-                /* --- LOGIQUE DE PONT AUDIO POUR LE CASQUE (ANCIEN CODE) --- */
+                // --- LOGIQUE DE PONT AUDIO (DÉTECTION DES PISTES) ---
                 const audioTracks = hls.audioTracks;
-                if (audioTracks && audioTracks.length > 0) {
-                    player.audioTracks().dispose(); 
+                if (audioTracks && audioTracks.length > 1) {
+                    player.audioTracks().dispose(); // Réinitialise proprement
                     audioTracks.forEach((track, id) => {
                         player.audioTracks().addTrack(new videojs.AudioTrack({
                             id: id.toString(),
@@ -929,7 +925,7 @@ function playMovie(idx) {
                 player.play(); 
             });
 
-            /* Gère le changement depuis le bouton Casque VideoJS */
+            // Gère le changement depuis le bouton Casque VideoJS
             player.audioTracks().on('change', function() {
                 const tracks = player.audioTracks();
                 for (let j = 0; j < tracks.length; j++) {
@@ -942,12 +938,12 @@ function playMovie(idx) {
 
             hls.on(Hls.Events.LEVEL_LOADED, function() { player.on('timeupdate', saveP); });
         } else {
-            player.src({ src: decodedUrl, type: 'application/x-mpegURL' });
+            player.src({ src: decodedUrl, type: type });
             if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
             player.play();
         }
     } else {
-        player.src({ src: decodedUrl, type: 'video/mp4' });
+        player.src({ src: decodedUrl, type: type });
         if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
         player.play();
     }
@@ -985,17 +981,17 @@ function openSearch() { document.getElementById('search-overlay').style.display 
 function closeSearch() { document.getElementById('search-overlay').style.display = 'none'; document.getElementById('searchBar').value = ''; filter(); }
 
 document.addEventListener('DOMContentLoaded', () => {
-    /* --- INITIALISATION REPRISE DE TON CODE FONCTIONNEL --- */
+    // --- MODIFICATION DE L'INITIALISATION (FORCER LES BOUTONS COMME PHOTO 24694.jpg) ---
     player = videojs('main-video', { 
         controls: true, 
         fluid: false,
         controlBar: {
-            subsCapsButton: true,  
-            audioTrackButton: true,
-            qualitySelector: true   
+            subsCapsButton: true,  // Icône Bulle
+            audioTrackButton: true, // Icône Casque
+            qualitySelector: true   // Icône Qualité
         },
         html5: {
-            vhs: { overrideNative: true }, 
+            vhs: { overrideNative: true }, // Permet de mieux gérer les pistes sur Android/iOS
             nativeAudioTracks: false,
             nativeVideoTracks: false,
             nativeTextTracks: false
