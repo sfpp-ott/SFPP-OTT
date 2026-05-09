@@ -30,7 +30,7 @@
             z-index: 100;
         }
 
-        /* --- STYLE DU LOADER SFPP --- */
+        /* --- STYLE DU LOADER PROFESSIONNEL --- */
         #loader-screen {
             position: fixed; inset: 0; background: #000;
             display: none; flex-direction: column; align-items: center; justify-content: center;
@@ -719,6 +719,18 @@ function handleProfileClick(id, name, icon) {
                 saved[idx].name = n; 
                 localStorage.setItem('sfpp_profiles_data', JSON.stringify(saved)); 
                 initProfiles(); 
+            } else {
+                // Si la liste est vide ou corrompue, on l'initialise avec les valeurs par défaut
+                let defaultProfiles = [
+                    { id: 1, name: "Profil 1", icon: "🟦", color: "#1e90ff" },
+                    { id: 2, name: "Profil 2", icon: "🟩", color: "#2ecc71" },
+                    { id: 3, name: "Profil 3", icon: "🟧", color: "#e67e22" },
+                    { id: 4, name: "Profil 4", icon: "🟪", color: "#9b59b6" }
+                ];
+                const dIdx = defaultProfiles.findIndex(p => p.id === id);
+                defaultProfiles[dIdx].name = n;
+                localStorage.setItem('sfpp_profiles_data', JSON.stringify(defaultProfiles));
+                initProfiles();
             }
         }
     } else {
