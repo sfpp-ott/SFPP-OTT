@@ -30,6 +30,22 @@
             z-index: 100;
         }
 
+        /* --- STYLE DU LOADER PROFESSIONNEL --- */
+        #loader-screen {
+            position: fixed; inset: 0; background: #000;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            z-index: 10000; transition: opacity 0.5s ease;
+        }
+        .loader-dots { display: flex; gap: 8px; }
+        .dot { width: 12px; height: 12px; background: var(--accent); border-radius: 50%; animation: bounce 1.4s infinite ease-in-out both; }
+        .dot:nth-child(1) { animation-delay: -0.32s; }
+        .dot:nth-child(2) { animation-delay: -0.16s; }
+        @keyframes bounce {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1.0); }
+        }
+        .loader-text { margin-top: 20px; font-size: 14px; letter-spacing: 2px; color: #555; text-transform: uppercase; font-weight: bold; }
+
         #login-screen { position: fixed; inset: 0; background: #000; z-index: 9999; display: flex; align-items: center; justify-content: center; }
         .login-box { background: #111; padding: 30px; border-radius: 8px; width: 280px; text-align: center; border: 1px solid #333; position: relative; z-index: 10000; }
         .login-box input { width: 100%; padding: 12px; margin: 10px 0; background: #222; border: 1px solid #444; color: white; border-radius: 4px; box-sizing: border-box; font-size: 16px; }
@@ -225,6 +241,16 @@
     </style>
 </head>
 <body oncontextmenu="return false;"> 
+
+<div id="loader-screen">
+    <div class="loader-dots">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+    </div>
+    <div class="loader-text">SFPP ELITE</div>
+</div>
+
 <div id="login-screen">
     <form class="login-box" onsubmit="event.preventDefault(); checkLogin();">
         <div class="logo" style="margin-bottom:20px">SFPP ELITE</div>
@@ -573,6 +599,9 @@ async function loadPlaylist() {
 
         await Promise.all(promises);
         render(); 
+        // --- CACHER LE CHARGEMENT UNE FOIS TOUT CHARGE ---
+        document.getElementById('loader-screen').style.opacity = '0';
+        setTimeout(() => document.getElementById('loader-screen').style.display = 'none', 500);
     } catch (e) {} 
 }
 
@@ -636,7 +665,6 @@ function openDetails(idx) {
     document.getElementById('details-play-btn').focus();
 }
 
-// FONCTION RECHERCHE PAR ACTEUR AJOUTÉE ICI
 window.searchByActor = function(actorName) {
     closeDetails(); 
     openSearch(); 
@@ -723,6 +751,7 @@ function render(search = "") {
     else if(currentView === 'series') data = playlistData.filter(m => m.cat && m.cat.includes("SÉRIES"));
     else if(currentView === 'fav') data = playlistData.filter(m => favs.includes(m.t));
 
+    // Historique
     if(currentProfile && s === "" && currentView === 'all') {
         let history = JSON.parse(localStorage.getItem('sfpp_hist_' + currentProfile) || "[]");
         if(history.length > 0) {
@@ -740,6 +769,7 @@ function render(search = "") {
         } else histSec.style.display = "none";
     } else histSec.style.display = "none";
 
+    // Tous les films
     if (s === "" && (currentView === 'all' || currentView === 'movies')) {
         const allMovies = playlistData.filter(m => m.cat && !m.cat.includes("SÉRIES") && !m.cat.toUpperCase().includes("DIRECT") && !m.cat.toUpperCase().includes("TV"));
         if (allMovies.length > 0) {
@@ -755,20 +785,12 @@ function render(search = "") {
     }
 
     const allGenres = [];
-    data.forEach(m => {
-        if(m.cat) {
-            const genres = m.cat.split(',').map(g => g.trim().toUpperCase());
-            genres.forEach(g => { if(!allGenres.includes(g)) allGenres.push(g); });
-        }
-    });
+    data.forEach(m => { if(m.cat) m.cat.split(',').map(g => g.trim().toUpperCase()).forEach(g => { if(!allUniqueCats.includes(g)) allGenres.push(g); }); });
 
     allGenres.sort().forEach(c => {
         const filtered = data.filter(m => {
             const matchGenre = m.cat && m.cat.toUpperCase().includes(c);
-            const matchSearch = (s === "") || m.t.toLowerCase().includes(s) || 
-                                (m.year && m.year.toString().includes(s)) ||
-                                (m.actors_pics && m.actors_pics.some(a => a.name.toLowerCase().includes(s)));
-            
+            const matchSearch = (s === "") || m.t.toLowerCase().includes(s) || (m.year && m.year.toString().includes(s)) || (m.actors_pics && m.actors_pics.some(a => a.name.toLowerCase().includes(s)));
             return matchGenre && matchSearch;
         });
 
