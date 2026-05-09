@@ -198,6 +198,10 @@
             width: 40px; height: 40px; border-radius: 50%; cursor: pointer; z-index: 100; font-size: 20px;
         }
 
+        /* --- STYLE OPTIMISÉ POUR LES MENUS VIDEOJS --- */
+        .vjs-menu-button-popup .vjs-menu { left: -5em; width: 15em; }
+        .vjs-menu-item { text-transform: uppercase; font-size: 1.1em !important; padding: 10px 0 !important; }
+
         #main-content { padding-top: 80px; }
         
         .category-row { position: relative; width: 100%; margin-bottom: 20px; }
@@ -872,6 +876,11 @@ function playMovie(idx) {
     player.src("");
     player.load();
 
+    // Suppression des anciennes pistes de sous-titres s'il y en a
+    const oldTracks = player.remoteTextTracks();
+    let i = oldTracks.length;
+    while (i--) { player.removeRemoteTextTrack(oldTracks[i]); }
+
     if(currentProfile) {
         let key = 'sfpp_hist_' + currentProfile;
         let hist = JSON.parse(localStorage.getItem(key) || "[]").filter(t => t !== m.t);
@@ -897,7 +906,7 @@ function playMovie(idx) {
 
     if (type === 'application/x-mpegURL') {
         if (Hls.isSupported()) {
-            hls = new Hls();
+            hls = new Hls({ enableSubtitleStartCheck: true, enableWMF: true });
             hls.loadSource(decodedUrl);
             hls.attachMedia(document.querySelector('#main-video_html5_api'));
             hls.on(Hls.Events.MANIFEST_PARSED, function() { 
@@ -915,8 +924,6 @@ function playMovie(idx) {
         if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
         player.play();
     }
-    
-    player.src({ src: decodedUrl, type: type });
 }
 
 function playNextEpisode() {
@@ -952,7 +959,19 @@ function closeSearch() { document.getElementById('search-overlay').style.display
 
 document.addEventListener('DOMContentLoaded', () => {
     player = videojs('main-video', { 
-        controls: true, fluid: false,
+        controls: true, 
+        fluid: false,
+        controlBar: {
+            subsCapsButton: true,
+            audioTrackButton: true,
+            qualitySelector: true
+        },
+        html5: {
+            vhs: { overrideNative: true },
+            nativeAudioTracks: false,
+            nativeVideoTracks: false,
+            nativeTextTracks: false
+        },
         techOrder: ['chromecast', 'html5'], 
         plugins: { chromecast: { addButtonToControlBar: true, addDisplayOnControlBar: true } }
     });
@@ -1003,4 +1022,4 @@ if ('serviceWorker' in navigator) {
 }
 </script>
 </body>
-</html>
+</html>```
