@@ -30,18 +30,21 @@
             z-index: 100;
         }
 
-        /* STYLE DU LOADER (MASQUÉ PAR DÉFAUT) */
+        /* --- STYLE DU CHARGEMENT PRO --- */
         #loader-screen {
             position: fixed; inset: 0; background: #000;
             display: none; flex-direction: column; align-items: center; justify-content: center;
-            z-index: 10000;
+            z-index: 10001;
         }
-        .loader-dots { display: flex; gap: 8px; }
-        .dot { width: 12px; height: 12px; background: var(--accent); border-radius: 50%; animation: bounce 1.4s infinite ease-in-out both; }
+        .loader-dots { display: flex; gap: 10px; }
+        .dot { width: 15px; height: 15px; background: var(--accent); border-radius: 50%; animation: bounce 1.4s infinite ease-in-out both; }
         .dot:nth-child(1) { animation-delay: -0.32s; }
         .dot:nth-child(2) { animation-delay: -0.16s; }
-        @keyframes bounce { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1.0); } }
-        .loader-text { margin-top: 20px; font-size: 14px; letter-spacing: 2px; color: #fff; text-transform: uppercase; font-weight: bold; }
+        @keyframes bounce {
+            0%, 80%, 100% { transform: scale(0); opacity: 0.3; }
+            40% { transform: scale(1); opacity: 1; }
+        }
+        .loader-text { margin-top: 25px; font-size: 12px; letter-spacing: 3px; color: #fff; text-transform: uppercase; font-weight: 900; opacity: 0.8; }
 
         #login-screen { position: fixed; inset: 0; background: #000; z-index: 9999; display: flex; align-items: center; justify-content: center; }
         .login-box { background: #111; padding: 30px; border-radius: 8px; width: 280px; text-align: center; border: 1px solid #333; position: relative; z-index: 10000; }
@@ -155,7 +158,7 @@
 
         .details-info { padding: 0 5% 40px; margin-top: -80px; position: relative; z-index: 5; }
         .details-info h2 { font-size: 32px; font-weight: bold; margin-bottom: 10px; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
-        .details-info .meta { color: #888; font-size: 14px; margin-bottom: 15px; display: flex; gap: 15px; align-items: center; }
+        .details-info .meta { color: #888; font-size: 14px; margin-bottom: 15px; display: flex; gap: 15px; }
         .details-info .synopsis { color: #ddd; line-height: 1.6; font-size: 15px; max-width: 850px; margin-bottom: 25px; }
         
         .details-actions { display: flex; gap: 10px; margin-bottom: 30px; flex-wrap: wrap; }
@@ -245,7 +248,7 @@
         <div class="dot"></div>
         <div class="dot"></div>
     </div>
-    <div class="loader-text">Chargement en cours</div>
+    <div class="loader-text">SFPP ELITE</div>
 </div>
 
 <div id="login-screen">
@@ -406,9 +409,9 @@
     };
 
     window.checkLogin = function() {
-        // ACTIVER LE CHARGEMENT DÈS LE CLIC SUR CONNEXION
+        // --- AFFICHER LE CHARGEMENT PRO ---
         document.getElementById('loader-screen').style.display = 'flex';
-        
+
         const email = document.getElementById('user').value.trim();
         const pass = document.getElementById('pass').value;
         signInWithEmailAndPassword(auth, email, pass).then(async (u) => {
@@ -418,6 +421,7 @@
                 set(ref(db, 'sessions/' + u.user.uid), { deviceId: deviceId, lastLogin: Date.now() }); 
             }
         }).catch(() => {
+            // --- CACHER SI ERREUR ---
             document.getElementById('loader-screen').style.display = 'none';
             alert("Identifiants incorrects.");
         });
@@ -602,10 +606,10 @@ async function loadPlaylist() {
 
         await Promise.all(promises);
         render(); 
-        
-        // --- RETIRER LE CHARGEMENT UNE FOIS QUE TOUT EST PRÊT ---
+
+        // --- CACHER LE LOADER QUAND TOUT EST FINI ---
         document.getElementById('loader-screen').style.display = 'none';
-        
+
     } catch (e) {} 
 }
 
@@ -620,7 +624,8 @@ function openDetails(idx) {
     document.getElementById('details-desc').innerText = m.desc || "Aucun résumé disponible.";
     document.getElementById('details-meta-year').innerText = m.year || "2024";
     document.getElementById('details-meta-cat').innerText = m.cat;
-
+    
+    // NUMÉRO DE LIGNE (ADMIN)
     const lineInfo = m.num ? m.num : (m.original_index * 7) + 2;
     const numTag = document.getElementById('details-meta-num');
     numTag.innerText = `[L${lineInfo}]`;
@@ -669,7 +674,7 @@ function openDetails(idx) {
     document.getElementById('details-play-btn').focus();
 }
 
-// FONCTION RECHERCHE PAR ACTEUR
+// --- FONCTION RECHERCHE PAR ACTEUR RÉINSTAURÉE ---
 window.searchByActor = function(actorName) {
     closeDetails(); 
     openSearch(); 
@@ -745,16 +750,19 @@ function render(search = "") {
     cont.innerHTML = ""; histCont.innerHTML = "";
     const s = search.toLowerCase();
 
+    // Mode admin secret
     if(s === "admin") { isAdminMode = true; document.getElementById('searchBar').value = ""; alert("Mode maintenance activé."); return render(""); }
 
     const favs = JSON.parse(localStorage.getItem('sfpp_fav_' + currentProfile) || "[]");
     const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
+    const now = new Date();
     
     let data = playlistData;
     if(currentView === 'movies') data = playlistData.filter(m => m.cat && !m.cat.includes("SÉRIES"));
     else if(currentView === 'series') data = playlistData.filter(m => m.cat && m.cat.includes("SÉRIES"));
     else if(currentView === 'fav') data = playlistData.filter(m => favs.includes(m.t));
 
+    // Historique
     if(currentProfile && s === "" && currentView === 'all') {
         let history = JSON.parse(localStorage.getItem('sfpp_hist_' + currentProfile) || "[]");
         if(history.length > 0) {
@@ -772,6 +780,7 @@ function render(search = "") {
         } else histSec.style.display = "none";
     } else histSec.style.display = "none";
 
+    // Tous les films
     if (s === "" && (currentView === 'all' || currentView === 'movies')) {
         const allMovies = playlistData.filter(m => m.cat && !m.cat.includes("SÉRIES") && !m.cat.toUpperCase().includes("DIRECT") && !m.cat.toUpperCase().includes("TV"));
         if (allMovies.length > 0) {
@@ -786,18 +795,22 @@ function render(search = "") {
         }
     }
 
+    // EXTRACTION ET ÉCLATEMENT DES GENRES
     const allGenres = [];
     data.forEach(m => {
         if(m.cat) {
             const genres = m.cat.split(',').map(g => g.trim().toUpperCase());
-            genres.forEach(g => { if(!allUniqueCats.includes(g)) allGenres.push(g); });
+            genres.forEach(g => { if(!allGenres.includes(g)) allGenres.push(g); });
         }
     });
 
     allGenres.sort().forEach(c => {
         const filtered = data.filter(m => {
             const matchGenre = m.cat && m.cat.toUpperCase().includes(c);
-            const matchSearch = (s === "") || m.t.toLowerCase().includes(s);
+            const matchSearch = (s === "") || m.t.toLowerCase().includes(s) || 
+                                (m.year && m.year.toString().includes(s)) ||
+                                (m.actors_pics && m.actors_pics.some(a => a.name.toLowerCase().includes(s)));
+            
             return matchGenre && matchSearch;
         });
 
@@ -806,10 +819,26 @@ function render(search = "") {
         const landscapeClass = isTVCat ? "landscape" : "";
         
         let html = `<div class="category-title">${c}</div><div class="category-row"><div class="nav-arrow arrow-left" onclick="scrollSide(this, -400)">‹</div><div class="carousel">`;
+        let addedSeriesRow = [];
+
         filtered.forEach(m => {
+            const isS = /S\d{2}E\d{2}/i.test(m.t);
             const heart = favs.includes(m.t) ? `<div style="position:absolute; top:5px; right:5px; z-index:5;">❤️</div>` : "";
-            const clickAction = isTVCat ? `playMovie(${playlistData.indexOf(m)})` : `openDetails(${playlistData.indexOf(m)})`;
-            html += `<div class="card ${landscapeClass}" onclick="${clickAction}" tabindex="0"><img src="${m.img}" loading="lazy">${heart}<div class="card-name">${m.t}</div></div>`;
+            
+            if(isS) {
+                const sName = m.t.split(' - ')[0];
+                if(!addedSeriesRow.includes(sName)) {
+                    addedSeriesRow.push(sName);
+                    html += `<div class="card" onclick="openSeries('${sName}')" tabindex="0"><img src="${m.img}" loading="lazy">${heart}<div class="card-name">${sName}</div></div>`;
+                }
+            } else {
+                const clickAction = isTVCat ? `playMovie(${playlistData.indexOf(m)})` : `openDetails(${playlistData.indexOf(m)})`;
+                const pct = (prog[m.t] && prog[m.t].p > 1 && !isTVCat) ? `<div class="prog-bg"><div class="prog-fill" style="width:${prog[m.t].p}%"></div></div>` : "";
+                html += `<div class="card ${landscapeClass}" onclick="${clickAction}" tabindex="0">
+                            <img src="${m.img}" loading="lazy">${heart}${pct}
+                            <div class="card-name">${m.t}</div>
+                        </div>`;
+            }
         });
         html += `</div><div class="nav-arrow arrow-right" onclick="scrollSide(this, 400)">›</div></div>`;
         cont.innerHTML += html;
@@ -835,7 +864,7 @@ function openSeries(name) {
         html += `<div class="season-title">SAISON ${s}</div>`;
         seasons[s].forEach(ep => {
             const epName = ep.t.split(' - ')[1] || ep.t;
-            const pct = (prog[ep.t] && ep.t].p > 1) ? `<div style="height:3px; background:#444; width:100px; margin-top:5px;"><div style="height:100%; background:var(--accent); width:${prog[ep.t].p}%"></div></div>` : "";
+            const pct = (prog[ep.t] && prog[ep.t].p > 1) ? `<div style="height:3px; background:#444; width:100px; margin-top:5px;"><div style="height:100%; background:var(--accent); width:${prog[ep.t].p}%"></div></div>` : "";
             html += `<div class="episode-item" onclick="playMovie(${playlistData.indexOf(ep)});" tabindex="0">
                         <div style="flex:1"><b>${epName}</b>${pct}</div>
                         <div style="color:var(--accent)">LECTURE ▶</div>
@@ -899,6 +928,8 @@ function playMovie(idx) {
         if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
         player.play();
     }
+    
+    player.src({ src: decodedUrl, type: type });
 }
 
 function playNextEpisode() {
@@ -926,16 +957,6 @@ document.addEventListener('DOMContentLoaded', () => {
         plugins: { chromecast: { addButtonToControlBar: true, addDisplayOnControlBar: true } }
     });
 
-    const Button = videojs.getComponent('Button');
-    class Back extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-replay-10'; } handleClick() { player.currentTime(player.currentTime()-10); } }
-    class Forward extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-forward-10'; } handleClick() { player.currentTime(player.currentTime()+10); } }
-    videojs.registerComponent('Back', Back); videojs.registerComponent('Forward', Forward);
-    
-    player.ready(() => { 
-        player.getChild('controlBar').addChild('Back', {}, 1); 
-        player.getChild('controlBar').addChild('Forward', {}, 2); 
-    });
-
     let lastTap = 0;
     const videoContainer = document.getElementById('video-container');
 
@@ -953,6 +974,16 @@ document.addEventListener('DOMContentLoaded', () => {
     player.on('dblclick', function() {
         if (player.isFullscreen()) player.exitFullscreen();
         else player.requestFullscreen();
+    });
+
+    const Button = videojs.getComponent('Button');
+    class Back extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-replay-10'; } handleClick() { player.currentTime(player.currentTime()-10); } }
+    class Forward extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-forward-10'; } handleClick() { player.currentTime(player.currentTime()+10); } }
+    videojs.registerComponent('Back', Back); videojs.registerComponent('Forward', Forward);
+    
+    player.ready(() => { 
+        player.getChild('controlBar').addChild('Back', {}, 1); 
+        player.getChild('controlBar').addChild('Forward', {}, 2); 
     });
 
     player.on('timeupdate', function() {
