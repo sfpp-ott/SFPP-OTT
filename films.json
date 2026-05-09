@@ -1,5 +1,61 @@
 [
   {
+    "num": "436",
+    "t": "Ne Zha",
+    "id_tmdb": "615453",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/381ab75d286439d2497ed20434686f20149a5fb2da6cae36ab0b5fc1ec5bb061/master.m3u8"
+  },
+  {
+    "num": "435",
+    "t": "Open Range",
+    "id_tmdb": "2055",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/affba46a2c21a9d74f043e406ae25ff96ea6fe38b354ea66cdbe677769bd055a/master.m3u8"
+  },
+  {
+    "num": "434",
+    "t": "Other",
+    "id_tmdb": "1314452",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/2b95006be330678f876570758802f8c56be17738331e37ecf2f9f10f64a5c6d3/master.m3u8"
+  },
+  {
+    "num": "433",
+    "t": "À contre-sens 3",
+    "id_tmdb": "1156594",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/822376e712646df1d13e522d669f064be7ecd8c4c415a70dc96979a5b157559d/master.m3u8"
+  },
+  {
+    "num": "432",
+    "t": "Hocus Pocus 2",
+    "id_tmdb": "642885",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/d6737232d97e516778d8d345cc1fee3ab1c5d447c4eede8fa6a43476927f747f/master.m3u8"
+  },
+  {
+    "num": "431",
+    "t": "The Laundromat – L’Affaire des Panama Papers",
+    "id_tmdb": "517909",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/255cfae8496b3d2c8934bd9a216a4df1850cb3bfe9770d172eadf5eaf31ad0df/master.m3u8"
+  },
+  {
+    "num": "430",
+    "t": "The Furies",
+    "id_tmdb": "528091",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/dda4db76f67c368c9d3f71bd276eaa0ea7efa8d123ef3f7f3bf8beb103c2589d/master.m3u8"
+  },
+  {
+    "num": "429",
+    "t": "Phantom of the Paradise",
+    "id_tmdb": "27327",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/04aa8da3e6c0a1e5a5127ed5ebc2b505f2b583996d48591738e652bf92e1f52d/master.m3u8"
+  },
+  {
     "num": "428",
     "t": "We Are Still Here",
     "id_tmdb": "291272",
