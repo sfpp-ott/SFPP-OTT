@@ -1,5 +1,47 @@
 [
   {
+    "num": "374",
+    "t": "Earthquake Underground",
+    "id_tmdb": "1181704",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/74f2e9f7bb1e10bed8d0a7607ce9cfbe8c61d226b9b73a37c1fdd9d35b3a7f9c/master.m3u8"
+  },
+  {
+    "num": "373",
+    "t": "Extremely Wicked, Shockingly Evil and Vile",
+    "id_tmdb": "457799",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/3c7c267eb3b43b976ad5244de00868e2088d64c6e9268ce3b26859f9644c4915/master.m3u8"
+  },
+  {
+    "num": "372",
+    "t": "Frankenstein",
+    "id_tmdb": "3035",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/979662f87a165ff9d9a16a2a2d339362f4ecc7a340fe476f951fca272d41767f/master.m3u8"
+  },
+  {
+    "num": "371",
+    "t": "Gonjiam : Haunted Asylum",
+    "id_tmdb": "508642",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/aa5814caca70b25ef221588dcd513c7fd16ac895bb6f27ecf0c457ed81e73fa3/master.m3u8"
+  },
+  {
+    "num": "370",
+    "t": "Good News",
+    "id_tmdb": "1296404",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/a75900b493853a3c0e444f8b628078879808aea54290947afba45ceb004a2734/master.m3u8"
+  },
+  {
+    "num": "369",
+    "t": "Inferno",
+    "id_tmdb": "16395",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/84ceb8654964c8b3fdc2d8d3ad21563d011fe87cd99c8e23e6f6c8e32e154edf/master.m3u8"
+  },
+  {
     "num": "368",
     "t": "Braindead",
     "id_tmdb": "763",
