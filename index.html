@@ -876,11 +876,6 @@ function playMovie(idx) {
     player.src("");
     player.load();
 
-    // Suppression des anciennes pistes de sous-titres s'il y en a
-    const oldTracks = player.remoteTextTracks();
-    let i = oldTracks.length;
-    while (i--) { player.removeRemoteTextTrack(oldTracks[i]); }
-
     if(currentProfile) {
         let key = 'sfpp_hist_' + currentProfile;
         let hist = JSON.parse(localStorage.getItem(key) || "[]").filter(t => t !== m.t);
@@ -909,10 +904,37 @@ function playMovie(idx) {
             hls = new Hls({ enableSubtitleStartCheck: true, enableWMF: true });
             hls.loadSource(decodedUrl);
             hls.attachMedia(document.querySelector('#main-video_html5_api'));
+            
             hls.on(Hls.Events.MANIFEST_PARSED, function() { 
+                // --- PONT AUDIO ---
+                const audioTracks = hls.audioTracks;
+                if (audioTracks && audioTracks.length > 1) {
+                    player.audioTracks().dispose(); 
+                    audioTracks.forEach((track, id) => {
+                        player.audioTracks().addTrack(new videojs.AudioTrack({
+                            id: id.toString(),
+                            kind: 'main',
+                            label: track.name || track.lang,
+                            language: track.lang,
+                            enabled: id === hls.audioTrack
+                        }));
+                    });
+                }
+                
                 if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
                 player.play(); 
             });
+
+            player.audioTracks().on('change', function() {
+                const tracks = player.audioTracks();
+                for (let i = 0; i < tracks.length; i++) {
+                    if (tracks[i].enabled) {
+                        hls.audioTrack = i;
+                        break;
+                    }
+                }
+            });
+
             hls.on(Hls.Events.LEVEL_LOADED, function() { player.on('timeupdate', saveP); });
         } else {
             player.src({ src: decodedUrl, type: type });
@@ -959,8 +981,7 @@ function closeSearch() { document.getElementById('search-overlay').style.display
 
 document.addEventListener('DOMContentLoaded', () => {
     player = videojs('main-video', { 
-        controls: true, 
-        fluid: false,
+        controls: true, fluid: false,
         controlBar: {
             subsCapsButton: true,
             audioTrackButton: true,
