@@ -801,7 +801,7 @@ function render(search = "") {
     data.forEach(m => {
         if(m.cat) {
             const genres = m.cat.split(',').map(g => g.trim().toUpperCase());
-            genres.forEach(g => { if(!allGenres.includes(g)) allGenres.push(g); });
+            genres.forEach(g => { if(!allUniqueCats.includes(g)) allGenres.push(g); });
         }
     });
 
@@ -851,7 +851,7 @@ function openSeries(name) {
         html += `<div class="season-title">SAISON ${s}</div>`;
         seasons[s].forEach(ep => {
             const epName = ep.t.split(' - ')[1] || ep.t;
-            const pct = (prog[ep.t] && prog[ep.t].p > 1) ? `<div style="height:3px; background:#444; width:100px; margin-top:5px;"><div style="height:100%; background:var(--accent); width:${prog[ep.t].p}%"></div></div>` : "";
+            const pct = (prog[ep.t] && ep.t].p > 1) ? `<div style="height:3px; background:#444; width:100px; margin-top:5px;"><div style="height:100%; background:var(--accent); width:${prog[ep.t].p}%"></div></div>` : "";
             html += `<div class="episode-item" onclick="playMovie(${playlistData.indexOf(ep)});" tabindex="0">
                         <div style="flex:1"><b>${epName}</b>${pct}</div>
                         <div style="color:var(--accent)">LECTURE ▶</div>
@@ -863,68 +863,15 @@ function openSeries(name) {
 
 function playMovie(idx) {
     history.replaceState({ overlay: 'player' }, "");
-    const m = playlistData[idx];
-    currentPlayingTitle = m.t;
-    document.getElementById('next-episode-btn').style.display = 'none';
-
+    const m = playlistData[idx]; currentPlayingTitle = m.t;
     if (hls) { hls.destroy(); hls = null; }
-    player.pause();
-    player.src("");
-    player.load();
-
-    if(currentProfile) {
-        let key = 'sfpp_hist_' + currentProfile;
-        let hist = JSON.parse(localStorage.getItem(key) || "[]").filter(t => t !== m.t);
-        hist.push(m.t); if(hist.length > 15) hist.shift();
-        localStorage.setItem(key, JSON.stringify(hist));
-    }
+    player.pause(); player.src("");
     document.getElementById('details-overlay').style.display = 'none';
-    document.getElementById('details-trailer-box').innerHTML = "";
-    document.getElementById('series-overlay').style.display = 'none';
-    const pSection = document.getElementById('player-section');
-    pSection.style.display = 'block';
-    
-    const backdrop = m.bg || m.img;
-    document.getElementById('player-blur-bg').style.backgroundImage = `url('${backdrop}')`;
-    player.poster(backdrop); 
-    
-    let decodedUrl = "";
-    try { decodedUrl = window.atob(m.url); } catch(e) { decodedUrl = m.url; }
-
-    const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
-
-    let type = decodedUrl.includes('.m3u8') ? 'application/x-mpegURL' : 'video/mp4';
-
-    if (type === 'application/x-mpegURL') {
-        if (Hls.isSupported()) {
-            hls = new Hls();
-            hls.loadSource(decodedUrl);
-            hls.attachMedia(document.querySelector('#main-video_html5_api'));
-            hls.on(Hls.Events.MANIFEST_PARSED, function() { 
-                if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
-                player.play(); 
-            });
-            hls.on(Hls.Events.LEVEL_LOADED, function() { player.on('timeupdate', saveP); });
-        } else {
-            player.src({ src: decodedUrl, type: type });
-            if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
-            player.play();
-        }
-    } else {
-        player.src({ src: decodedUrl, type: type });
-        if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
-        player.play();
-    }
-    
-    player.src({ src: decodedUrl, type: type });
-}
-
-function playNextEpisode() {
-    const parts = currentPlayingTitle.match(/(.*[SE])(\d+)(.*)/i);
-    if (!parts) return;
-    const nextTitleSearch = (parts[1] + (parseInt(parts[2]) + 1).toString().padStart(2, '0')).toUpperCase();
-    const nextIdx = playlistData.findIndex(m => m.t.toUpperCase().includes(nextTitleSearch));
-    if (nextIdx !== -1) playMovie(nextIdx);
+    document.getElementById('player-section').style.display = 'block';
+    document.getElementById('player-blur-bg').style.backgroundImage = `url('${m.bg || m.img}')`;
+    let url = m.url; try { url = window.atob(m.url); } catch(e) {}
+    player.src({ src: url, type: url.includes('.m3u8') ? 'application/x-mpegURL' : 'video/mp4' });
+    player.play();
 }
 
 function closeP() { if (document.getElementById('player-section').style.display === 'block') history.back(); }
@@ -951,56 +898,13 @@ function openSearch() { document.getElementById('search-overlay').style.display 
 function closeSearch() { document.getElementById('search-overlay').style.display = 'none'; document.getElementById('searchBar').value = ''; filter(); }
 
 document.addEventListener('DOMContentLoaded', () => {
-    player = videojs('main-video', { 
-        controls: true, fluid: false,
-        techOrder: ['chromecast', 'html5'], 
-        plugins: { chromecast: { addButtonToControlBar: true, addDisplayOnControlBar: true } }
-    });
-
-    let lastTap = 0;
-    const videoContainer = document.getElementById('video-container');
-
-    videoContainer.addEventListener('touchend', function(e) {
-        const now = new Date().getTime();
-        const timesince = now - lastTap;
-        if ((timesince < 350) && (timesince > 0)) {
-            if (player.isFullscreen()) player.exitFullscreen();
-            else player.requestFullscreen();
-            e.preventDefault();
-        }
-        lastTap = now;
-    });
-
-    player.on('dblclick', function() {
-        if (player.isFullscreen()) player.exitFullscreen();
-        else player.requestFullscreen();
-    });
-
+    player = videojs('main-video', { controls: true, techOrder: ['chromecast', 'html5'], plugins: { chromecast: { addButtonToControlBar: true, addDisplayOnControlBar: true } } });
     const Button = videojs.getComponent('Button');
     class Back extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-replay-10'; } handleClick() { player.currentTime(player.currentTime()-10); } }
     class Forward extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-forward-10'; } handleClick() { player.currentTime(player.currentTime()+10); } }
     videojs.registerComponent('Back', Back); videojs.registerComponent('Forward', Forward);
-    
-    player.ready(() => { 
-        player.getChild('controlBar').addChild('Back', {}, 1); 
-        player.getChild('controlBar').addChild('Forward', {}, 2); 
-    });
-
-    player.on('timeupdate', function() {
-        const dur = player.duration(), cur = player.currentTime();
-        if (/S\d{2}E\d{2}/i.test(currentPlayingTitle) && dur > 0 && (dur - cur) < 80) {
-            document.getElementById('next-episode-btn').style.display = 'block';
-        } else document.getElementById('next-episode-btn').style.display = 'none';
-        
-        if(Math.floor(cur) % 5 === 0) saveP();
-    });
+    player.ready(() => { player.getChild('controlBar').addChild('Back', {}, 1); player.getChild('controlBar').addChild('Forward', {}, 2); });
 });
-
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js').catch(err => console.log('Erreur SW:', err));
-    });
-}
 </script>
 </body>
 </html>
