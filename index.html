@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -29,22 +30,6 @@
             background: rgba(255,255,255,0.1);
             z-index: 100;
         }
-
-        /* --- STYLE DU LOADER PROFESSIONNEL --- */
-        #loader-screen {
-            position: fixed; inset: 0; background: #000;
-            display: none; flex-direction: column; align-items: center; justify-content: center;
-            z-index: 10001;
-        }
-        .loader-dots { display: flex; gap: 10px; }
-        .dot { width: 15px; height: 15px; background: var(--accent); border-radius: 50%; animation: bounce 1.4s infinite ease-in-out both; }
-        .dot:nth-child(1) { animation-delay: -0.32s; }
-        .dot:nth-child(2) { animation-delay: -0.16s; }
-        @keyframes bounce {
-            0%, 80%, 100% { transform: scale(0); opacity: 0.3; }
-            40% { transform: scale(1.0); opacity: 1; }
-        }
-        .loader-text { margin-top: 25px; font-size: 12px; letter-spacing: 3px; color: #fff; text-transform: uppercase; font-weight: 900; opacity: 0.8; }
 
         #login-screen { position: fixed; inset: 0; background: #000; z-index: 9999; display: flex; align-items: center; justify-content: center; }
         .login-box { background: #111; padding: 30px; border-radius: 8px; width: 280px; text-align: center; border: 1px solid #333; position: relative; z-index: 10000; }
@@ -102,11 +87,6 @@
         
         .video-js { z-index: 1 !important; width: 100% !important; height: 100% !important; }
         .video-js video { object-fit: contain !important; }
-
-        /* STYLE DES MENUS AUDIO/SUBS (Photo 24694.jpg) */
-        .vjs-menu-button-popup .vjs-menu { left: -5em; width: 15em; }
-        .vjs-menu-item { text-transform: uppercase; font-size: 1.1em !important; padding: 12px 0 !important; }
-        .vjs-audio-button, .vjs-subs-caps-button { display: block !important; }
 
         #next-episode-btn {
             position: absolute; bottom: 85px; right: 25px; z-index: 99999 !important;
@@ -246,12 +226,6 @@
     </style>
 </head>
 <body oncontextmenu="return false;"> 
-
-<div id="loader-screen">
-    <div class="loader-dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
-    <div class="loader-text">SFPP ELITE</div>
-</div>
-
 <div id="login-screen">
     <form class="login-box" onsubmit="event.preventDefault(); checkLogin();">
         <div class="logo" style="margin-bottom:20px">SFPP ELITE</div>
@@ -410,7 +384,6 @@
     };
 
     window.checkLogin = function() {
-        document.getElementById('loader-screen').style.display = 'flex';
         const email = document.getElementById('user').value.trim();
         const pass = document.getElementById('pass').value;
         signInWithEmailAndPassword(auth, email, pass).then(async (u) => {
@@ -419,10 +392,7 @@
             if (!exp) { 
                 set(ref(db, 'sessions/' + u.user.uid), { deviceId: deviceId, lastLogin: Date.now() }); 
             }
-        }).catch(() => {
-            document.getElementById('loader-screen').style.display = 'none';
-            alert("Identifiants incorrects.");
-        });
+        }).catch(() => alert("Identifiants incorrects."));
     };
 
     onAuthStateChanged(auth, async (user) => {
@@ -449,17 +419,13 @@
             
             const saved = localStorage.getItem('sfpp_profile');
             if(saved) selectProfile(saved, localStorage.getItem('sfpp_profile_icon'));
-            else {
-                document.getElementById('loader-screen').style.display = 'none';
-                document.getElementById('profile-screen').style.display = 'flex';
-            }
+            else document.getElementById('profile-screen').style.display = 'flex';
         } else {
             document.getElementById('login-screen').style.display = 'flex';
         }
     });
 
     window.selectProfile = async function(name, icon) {
-        document.getElementById('loader-screen').style.display = 'flex';
         currentProfile = name;
         localStorage.setItem('sfpp_profile', name);
         localStorage.setItem('sfpp_profile_icon', icon);
@@ -622,8 +588,7 @@ function openDetails(idx) {
     document.getElementById('details-desc').innerText = m.desc || "Aucun résumé disponible.";
     document.getElementById('details-meta-year').innerText = m.year || "2024";
     document.getElementById('details-meta-cat').innerText = m.cat;
-    
-    // NUMÉRO DE LIGNE (ADMIN)
+
     const lineInfo = m.num ? m.num : (m.original_index * 7) + 2;
     const numTag = document.getElementById('details-meta-num');
     numTag.innerText = `[L${lineInfo}]`;
@@ -662,7 +627,7 @@ function openDetails(idx) {
     
     let suggHtml = suggs.map(s => `
         <div class="actor-item" onclick="openDetails(${playlistData.indexOf(s)})" style="flex:0 0 120px">
-            <img src="${s.img}" style="border-radius:4px; height:160px; width:110px; object-fit:cover;">
+            <img src="${s.img}" style="border-radius:4px; height:160px; width:110px; object-fit:cover;" loading="lazy">
             <div class="actor-name">${s.t}</div>
         </div>
     `).join('');
@@ -672,6 +637,7 @@ function openDetails(idx) {
     document.getElementById('details-play-btn').focus();
 }
 
+// FONCTION RECHERCHE PAR ACTEUR AJOUTÉE ICI
 window.searchByActor = function(actorName) {
     closeDetails(); 
     openSearch(); 
@@ -719,22 +685,11 @@ function handleProfileClick(id, name, icon) {
     if(isEditMode) {
         let n = prompt("Nouveau nom :", name);
         if(n) {
-            let saved = JSON.parse(localStorage.getItem('sfpp_profiles_data')) || [
-                { id: 1, name: "Profil 1", icon: "🟦", color: "#1e90ff" },
-                { id: 2, name: "Profil 2", icon: "🟩", color: "#2ecc71" },
-                { id: 3, name: "Profil 3", icon: "🟧", color: "#e67e22" },
-                { id: 4, name: "Profil 4", icon: "🟪", color: "#9b59b6" }
-            ];
+            let saved = JSON.parse(localStorage.getItem('sfpp_profiles_data') || "[]");
             const idx = saved.findIndex(p => p.id === id);
-            if(idx !== -1) { 
-                saved[idx].name = n; 
-                localStorage.setItem('sfpp_profiles_data', JSON.stringify(saved)); 
-                initProfiles(); 
-            }
+            if(idx !== -1) { saved[idx].name = n; localStorage.setItem('sfpp_profiles_data', JSON.stringify(saved)); initProfiles(); }
         }
-    } else {
-        selectProfile(name, icon);
-    }
+    } else selectProfile(name, icon);
 }
 
 function saveP() {
@@ -769,7 +724,6 @@ function render(search = "") {
     else if(currentView === 'series') data = playlistData.filter(m => m.cat && m.cat.includes("SÉRIES"));
     else if(currentView === 'fav') data = playlistData.filter(m => favs.includes(m.t));
 
-    // Historique
     if(currentProfile && s === "" && currentView === 'all') {
         let history = JSON.parse(localStorage.getItem('sfpp_hist_' + currentProfile) || "[]");
         if(history.length > 0) {
@@ -787,7 +741,6 @@ function render(search = "") {
         } else histSec.style.display = "none";
     } else histSec.style.display = "none";
 
-    // Tous les films
     if (s === "" && (currentView === 'all' || currentView === 'movies')) {
         const allMovies = playlistData.filter(m => m.cat && !m.cat.includes("SÉRIES") && !m.cat.toUpperCase().includes("DIRECT") && !m.cat.toUpperCase().includes("TV"));
         if (allMovies.length > 0) {
@@ -833,8 +786,6 @@ function render(search = "") {
         html += `</div><div class="nav-arrow arrow-right" onclick="scrollSide(this, 400)">›</div></div>`;
         cont.innerHTML += html;
     });
-
-    document.getElementById('loader-screen').style.display = 'none';
 }
 
 function openSeries(name) {
@@ -866,19 +817,16 @@ function openSeries(name) {
     content.innerHTML = html;
 }
 
-// --- REPRISE EXACTE DE LA FONCTION playMovie (ANCIEN CODE) ---
 function playMovie(idx) {
     history.replaceState({ overlay: 'player' }, "");
     const m = playlistData[idx];
     currentPlayingTitle = m.t;
+    document.getElementById('next-episode-btn').style.display = 'none';
+
     if (hls) { hls.destroy(); hls = null; }
     player.pause();
     player.src("");
     player.load();
-
-    const oldTracks = player.remoteTextTracks();
-    let i = oldTracks.length;
-    while (i--) { player.removeRemoteTextTrack(oldTracks[i]); }
 
     if(currentProfile) {
         let key = 'sfpp_hist_' + currentProfile;
@@ -901,53 +849,30 @@ function playMovie(idx) {
 
     const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
 
-    if (decodedUrl.includes('.m3u8')) {
+    let type = decodedUrl.includes('.m3u8') ? 'application/x-mpegURL' : 'video/mp4';
+
+    if (type === 'application/x-mpegURL') {
         if (Hls.isSupported()) {
-            hls = new Hls({ enableSubtitleStartCheck: true });
+            hls = new Hls();
             hls.loadSource(decodedUrl);
             hls.attachMedia(document.querySelector('#main-video_html5_api'));
-            
             hls.on(Hls.Events.MANIFEST_PARSED, function() { 
-                /* --- LOGIQUE DE PONT AUDIO POUR LE CASQUE (ANCIEN CODE) --- */
-                const audioTracks = hls.audioTracks;
-                if (audioTracks && audioTracks.length > 1) {
-                    player.audioTracks().dispose(); 
-                    audioTracks.forEach((track, id) => {
-                        player.audioTracks().addTrack(new videojs.AudioTrack({
-                            id: id.toString(),
-                            kind: 'main',
-                            label: track.name || track.lang,
-                            language: track.lang,
-                            enabled: id === hls.audioTrack
-                        }));
-                    });
-                }
-                
                 if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
                 player.play(); 
             });
-
-            player.audioTracks().on('change', function() {
-                const tracks = player.audioTracks();
-                for (let j = 0; j < tracks.length; j++) {
-                    if (tracks[j].enabled) {
-                        hls.audioTrack = j;
-                        break;
-                    }
-                }
-            });
-
             hls.on(Hls.Events.LEVEL_LOADED, function() { player.on('timeupdate', saveP); });
         } else {
-            player.src({ src: decodedUrl, type: 'application/x-mpegURL' });
+            player.src({ src: decodedUrl, type: type });
             if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
             player.play();
         }
     } else {
-        player.src({ src: decodedUrl, type: 'video/mp4' });
+        player.src({ src: decodedUrl, type: type });
         if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
         player.play();
     }
+    
+    player.src({ src: decodedUrl, type: type });
 }
 
 function playNextEpisode() {
@@ -960,43 +885,17 @@ function playNextEpisode() {
 
 function closeP() { if (document.getElementById('player-section').style.display === 'block') history.back(); }
 function closeSeries() { if (document.getElementById('series-overlay').style.display === 'block') history.back(); }
-
-function changeView(v) { 
-    document.getElementById('loader-screen').style.display = 'flex';
-    setTimeout(() => {
-        currentView = v; 
-        document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active')); 
-        document.getElementById('btn-'+v).classList.add('active'); 
-        render(); 
-    }, 50);
-}
-
+function changeView(v) { currentView = v; document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active')); document.getElementById('btn-'+v).classList.add('active'); render(); }
 function filter() { render(document.getElementById('searchBar').value); }
-function toggleEditMode() { 
-    isEditMode = !isEditMode; 
-    document.getElementById('profile-screen').classList.toggle('is-editing'); 
-}
+function toggleEditMode() { isEditMode = !isEditMode; document.getElementById('profile-screen').classList.toggle('is-editing'); }
 function switchProfile() { localStorage.removeItem('sfpp_profile'); location.reload(); }
 function requestAccess() { window.location.href = "mailto:sfpp.ott@gmail.com"; }
 function openSearch() { document.getElementById('search-overlay').style.display = 'flex'; document.getElementById('searchBar').focus(); }
 function closeSearch() { document.getElementById('search-overlay').style.display = 'none'; document.getElementById('searchBar').value = ''; filter(); }
 
 document.addEventListener('DOMContentLoaded', () => {
-    /* --- INITIALISATION REPRISE DE TON ANCIEN CODE FONCTIONNEL --- */
     player = videojs('main-video', { 
-        controls: true, 
-        fluid: false,
-        controlBar: {
-            subsCapsButton: true,  
-            audioTrackButton: true,
-            qualitySelector: true   
-        },
-        html5: {
-            vhs: { overrideNative: true }, 
-            nativeAudioTracks: false,
-            nativeVideoTracks: false,
-            nativeTextTracks: false
-        },
+        controls: true, fluid: false,
         techOrder: ['chromecast', 'html5'], 
         plugins: { chromecast: { addButtonToControlBar: true, addDisplayOnControlBar: true } }
     });
