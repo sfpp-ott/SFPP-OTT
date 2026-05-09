@@ -198,7 +198,10 @@
             width: 40px; height: 40px; border-radius: 50%; cursor: pointer; z-index: 100; font-size: 20px;
         }
 
-        /* --- STYLE OPTIMISÉ POUR LES MENUS VIDEOJS --- */
+        /* --- FORCE L'AFFICHAGE DES BOUTONS AUDIO ET SOUS-TITRES --- */
+        .vjs-audio-button, .vjs-subs-caps-button {
+            display: block !important;
+        }
         .vjs-menu-button-popup .vjs-menu { left: -5em; width: 15em; }
         .vjs-menu-item { text-transform: uppercase; font-size: 1.1em !important; padding: 10px 0 !important; }
 
@@ -876,6 +879,11 @@ function playMovie(idx) {
     player.src("");
     player.load();
 
+    // Suppression des anciennes pistes de sous-titres
+    const oldTracks = player.remoteTextTracks();
+    let i = oldTracks.length;
+    while (i--) { player.removeRemoteTextTrack(oldTracks[i]); }
+
     if(currentProfile) {
         let key = 'sfpp_hist_' + currentProfile;
         let hist = JSON.parse(localStorage.getItem(key) || "[]").filter(t => t !== m.t);
@@ -896,7 +904,6 @@ function playMovie(idx) {
     try { decodedUrl = window.atob(m.url); } catch(e) { decodedUrl = m.url; }
 
     const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
-
     let type = decodedUrl.includes('.m3u8') ? 'application/x-mpegURL' : 'video/mp4';
 
     if (type === 'application/x-mpegURL') {
@@ -906,15 +913,15 @@ function playMovie(idx) {
             hls.attachMedia(document.querySelector('#main-video_html5_api'));
             
             hls.on(Hls.Events.MANIFEST_PARSED, function() { 
-                // --- PONT AUDIO ---
+                // --- PONT AUDIO FORCE ---
                 const audioTracks = hls.audioTracks;
                 if (audioTracks && audioTracks.length > 1) {
-                    player.audioTracks().dispose(); 
+                    player.audioTracks().dispose();
                     audioTracks.forEach((track, id) => {
                         player.audioTracks().addTrack(new videojs.AudioTrack({
                             id: id.toString(),
                             kind: 'main',
-                            label: track.name || track.lang,
+                            label: track.name || track.lang || `Piste ${id + 1}`,
                             language: track.lang,
                             enabled: id === hls.audioTrack
                         }));
@@ -925,11 +932,12 @@ function playMovie(idx) {
                 player.play(); 
             });
 
+            // Gère le changement de langue depuis l'interface VideoJS vers hls.js
             player.audioTracks().on('change', function() {
                 const tracks = player.audioTracks();
-                for (let i = 0; i < tracks.length; i++) {
-                    if (tracks[i].enabled) {
-                        hls.audioTrack = i;
+                for (let j = 0; j < tracks.length; j++) {
+                    if (tracks[j].enabled) {
+                        hls.audioTrack = j;
                         break;
                     }
                 }
@@ -981,7 +989,8 @@ function closeSearch() { document.getElementById('search-overlay').style.display
 
 document.addEventListener('DOMContentLoaded', () => {
     player = videojs('main-video', { 
-        controls: true, fluid: false,
+        controls: true, 
+        fluid: false,
         controlBar: {
             subsCapsButton: true,
             audioTrackButton: true,
@@ -1043,4 +1052,4 @@ if ('serviceWorker' in navigator) {
 }
 </script>
 </body>
-</html>```
+</html>
