@@ -618,6 +618,7 @@ function openDetails(idx) {
     document.getElementById('details-meta-year').innerText = m.year || "2024";
     document.getElementById('details-meta-cat').innerText = m.cat;
     
+    // NUMÉRO DE LIGNE (ADMIN)
     const lineInfo = m.num ? m.num : (m.original_index * 7) + 2;
     const numTag = document.getElementById('details-meta-num');
     numTag.innerText = `[L${lineInfo}]`;
@@ -713,24 +714,17 @@ function handleProfileClick(id, name, icon) {
     if(isEditMode) {
         let n = prompt("Nouveau nom :", name);
         if(n) {
-            let saved = JSON.parse(localStorage.getItem('sfpp_profiles_data') || "[]");
+            let saved = JSON.parse(localStorage.getItem('sfpp_profiles_data')) || [
+                { id: 1, name: "Profil 1", icon: "🟦", color: "#1e90ff" },
+                { id: 2, name: "Profil 2", icon: "🟩", color: "#2ecc71" },
+                { id: 3, name: "Profil 3", icon: "🟧", color: "#e67e22" },
+                { id: 4, name: "Profil 4", icon: "🟪", color: "#9b59b6" }
+            ];
             const idx = saved.findIndex(p => p.id === id);
             if(idx !== -1) { 
                 saved[idx].name = n; 
                 localStorage.setItem('sfpp_profiles_data', JSON.stringify(saved)); 
                 initProfiles(); 
-            } else {
-                // Si la liste est vide ou corrompue, on l'initialise avec les valeurs par défaut
-                let defaultProfiles = [
-                    { id: 1, name: "Profil 1", icon: "🟦", color: "#1e90ff" },
-                    { id: 2, name: "Profil 2", icon: "🟩", color: "#2ecc71" },
-                    { id: 3, name: "Profil 3", icon: "🟧", color: "#e67e22" },
-                    { id: 4, name: "Profil 4", icon: "🟪", color: "#9b59b6" }
-                ];
-                const dIdx = defaultProfiles.findIndex(p => p.id === id);
-                defaultProfiles[dIdx].name = n;
-                localStorage.setItem('sfpp_profiles_data', JSON.stringify(defaultProfiles));
-                initProfiles();
             }
         }
     } else {
@@ -770,6 +764,7 @@ function render(search = "") {
     else if(currentView === 'series') data = playlistData.filter(m => m.cat && m.cat.includes("SÉRIES"));
     else if(currentView === 'fav') data = playlistData.filter(m => favs.includes(m.t));
 
+    // Historique
     if(currentProfile && s === "" && currentView === 'all') {
         let history = JSON.parse(localStorage.getItem('sfpp_hist_' + currentProfile) || "[]");
         if(history.length > 0) {
@@ -787,6 +782,7 @@ function render(search = "") {
         } else histSec.style.display = "none";
     } else histSec.style.display = "none";
 
+    // Tous les films
     if (s === "" && (currentView === 'all' || currentView === 'movies')) {
         const allMovies = playlistData.filter(m => m.cat && !m.cat.includes("SÉRIES") && !m.cat.toUpperCase().includes("DIRECT") && !m.cat.toUpperCase().includes("TV"));
         if (allMovies.length > 0) {
