@@ -1,5 +1,61 @@
 [
   {
+    "num": "444",
+    "t": "The Tunnel",
+    "id_tmdb": "606154",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/e3d004f198c95fbf2c8b8b31bd371c9a80d6751cb0d88bf8e1ff53659ebbb5b4/master.m3u8"
+  },
+  {
+    "num": "443",
+    "t": "30 Jours de Nuit",
+    "id_tmdb": "4513",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/1ae1429281df175072c7c417cb19d0c3210138221250e156eab0444418fd53e0/master.m3u8"
+  },
+  {
+    "num": "442",
+    "t": "A House of Dynamite",
+    "id_tmdb": "1290159",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/526ba75973ee10633fbf2bc5b3626b32a5db051b7c17cfe7a90a23e96c10c037/master.m3u8"
+  },
+  {
+    "num": "441",
+    "t": "Agents Un Peu Trop Secrets",
+    "id_tmdb": "1558893",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/4414e6b8761f38635ef3008aa900e17d950907c9269685df20603fd62d874284/master.m3u8"
+  },
+  {
+    "num": "440",
+    "t": "Bad Man",
+    "id_tmdb": "1267116",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/056dd68f10bbf12f93ba3b11a0c3f02e2587e843582ef739967872be2d0ab47a/master.m3u8"
+  },
+  {
+    "num": "439",
+    "t": "Chien de la Casse",
+    "id_tmdb": "957608",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/ca5f1dcc02b20df1f59631f58bf944704e8aa3f5877a5fe242284dcd9697264e/master.m3u8"
+  },
+  {
+    "num": "438",
+    "t": "Citizen Kane",
+    "id_tmdb": "15",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/2fb6993903c120c562c79f12c3e2a3d4b38b5e75842a87ef80cdf31d061ea13d/master.m3u8"
+  },
+  {
+    "num": "437",
+    "t": "Crimson Peak",
+    "id_tmdb": "201085",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/abb6d2e6d91dcc0a1896ab5ffea7e0421db73ee7eea8549054ca3715081116f0/master.m3u8"
+  },
+  {
     "num": "436",
     "t": "Ne Zha",
     "id_tmdb": "615453",
