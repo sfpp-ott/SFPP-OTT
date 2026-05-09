@@ -1,5 +1,47 @@
 [
   {
+    "num": "380",
+    "t": "Kill List",
+    "id_tmdb": "74725",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/5859db422b7f78ad0c67f492e11f105e62170149eb74a1523116c5b10182ed87/master.m3u8"
+  },
+  {
+    "num": "379",
+    "t": "L'Arnacoeur",
+    "id_tmdb": "41211",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/f88cf34945b3b5b2671c0c3e3840e5e553e8a2092ea68bbc618334afc4cc13a2/master.m3u8"
+  },
+  {
+    "num": "378",
+    "t": "L’Aventura",
+    "id_tmdb": "1317616",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/5d5150eeed5cf91f217df269b5294649a16f9ad39a5eebbe251feaa4266ea134/master.m3u8"
+  },
+  {
+    "num": "377",
+    "t": "L’Outsider",
+    "id_tmdb": "394161",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/dacf3bcbf602fa374ca89bf242b907a5a3b166269f6f777d53c5903c93b5364a/master.m3u8"
+  },
+  {
+    "num": "376",
+    "t": "L’Été Dernier",
+    "id_tmdb": "812037",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/9be6fc6d1c9294f9ae0303666ec3fa91ca6a7f85b3f7fe6373546bfaf5ce6eb4/master.m3u8"
+  },
+  {
+    "num": "375",
+    "t": "La Disparue de la Cabine 10",
+    "id_tmdb": "1290879",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/f33d2343a0a6c4e19447e8319617ea7db789e762c133039474a7880518012080/master.m3u8"
+  },
+  {
     "num": "374",
     "t": "Earthquake Underground",
     "id_tmdb": "1181704",
