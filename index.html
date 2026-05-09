@@ -30,7 +30,7 @@
             z-index: 100;
         }
 
-        /* STYLE DU CHARGEMENT SFPP */
+        /* --- STYLE DU CHARGEMENT PRO --- */
         #loader-screen {
             position: fixed; inset: 0; background: #000;
             display: none; flex-direction: column; align-items: center; justify-content: center;
@@ -405,7 +405,7 @@
     };
 
     window.checkLogin = function() {
-        // --- ACTIVATION DU LOADER AU CLIC ---
+        // --- ACTIVATION DU LOADER AU CLIC CONNEXION ---
         document.getElementById('loader-screen').style.display = 'flex';
         
         const email = document.getElementById('user').value.trim();
@@ -457,7 +457,7 @@
     });
 
     window.selectProfile = async function(name, icon) {
-        // --- ACTIVATION DU LOADER AU CHOIX DU PROFIL ---
+        // --- ACTIVATION DU LOADER AU CHOIX PROFIL ---
         document.getElementById('loader-screen').style.display = 'flex';
         currentProfile = name;
         localStorage.setItem('sfpp_profile', name);
@@ -622,6 +622,7 @@ function openDetails(idx) {
     document.getElementById('details-meta-year').innerText = m.year || "2024";
     document.getElementById('details-meta-cat').innerText = m.cat;
     
+    // NUMÉRO DE LIGNE (ADMIN)
     const lineInfo = m.num ? m.num : (m.original_index * 7) + 2;
     const numTag = document.getElementById('details-meta-num');
     numTag.innerText = `[L${lineInfo}]`;
@@ -670,7 +671,7 @@ function openDetails(idx) {
     document.getElementById('details-play-btn').focus();
 }
 
-// --- FONCTION RECHERCHE PAR ACTEUR RÉINSTAURÉE ---
+// FONCTION RECHERCHE PAR ACTEUR AJOUTÉE ICI
 window.searchByActor = function(actorName) {
     closeDetails(); 
     openSearch(); 
@@ -790,6 +791,7 @@ function render(search = "") {
         }
     }
 
+    // EXTRACTION ET ÉCLATEMENT DES GENRES
     const allGenres = [];
     data.forEach(m => {
         if(m.cat) {
@@ -838,7 +840,7 @@ function render(search = "") {
         cont.innerHTML += html;
     });
 
-    // --- CACHER LE LOADER QUAND LES FILMS SONT PRÊTS ---
+    // --- CACHER LE LOADER QUAND LES FILMS SONT AFFICHÉS ---
     document.getElementById('loader-screen').style.display = 'none';
 }
 
@@ -861,7 +863,7 @@ function openSeries(name) {
         html += `<div class="season-title">SAISON ${s}</div>`;
         seasons[s].forEach(ep => {
             const epName = ep.t.split(' - ')[1] || ep.t;
-            const pct = (prog[ep.t] && prog[ep.t].p > 1) ? `<div style="height:3px; background:#444; width:100px; margin-top:5px;"><div style="height:100%; background:var(--accent); width:${prog[ep.t].p}%"></div></div>` : "";
+            const pct = (prog[ep.t] && ep.t].p > 1) ? `<div style="height:3px; background:#444; width:100px; margin-top:5px;"><div style="height:100%; background:var(--accent); width:${prog[ep.t].p}%"></div></div>` : "";
             html += `<div class="episode-item" onclick="playMovie(${playlistData.indexOf(ep)});" tabindex="0">
                         <div style="flex:1"><b>${epName}</b>${pct}</div>
                         <div style="color:var(--accent)">LECTURE ▶</div>
@@ -941,7 +943,7 @@ function closeP() { if (document.getElementById('player-section').style.display 
 function closeSeries() { if (document.getElementById('series-overlay').style.display === 'block') history.back(); }
 
 function changeView(v) { 
-    // --- ACTIVER LE LOADER AVANT LE CHANGEMENT ---
+    // --- ACTIVER LE LOADER AVANT DE GÉNÉRER LA NOUVELLE PAGE ---
     document.getElementById('loader-screen').style.display = 'flex';
     setTimeout(() => {
         currentView = v; 
