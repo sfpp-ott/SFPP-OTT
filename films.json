@@ -1,5 +1,61 @@
 [
   {
+    "num": "404",
+    "t": "Shutter",
+    "id_tmdb": "17111",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/b12055a1077195d7e6fb66d60c097c97ecce7a50b2ad1ed17e5d320e97e3d7d0/master.m3u8"
+  },
+  {
+    "num": "403",
+    "t": "Sleepy Hollow : la légende du cavalier sans tête",
+    "id_tmdb": "2668",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/6dda28ab1e467ef2010506fcb86800b7d8197d88d2f9c92c43d48954f7068afa/master.m3u8"
+  },
+  {
+    "num": "402",
+    "t": "Sputnik – Espèce inconnue",
+    "id_tmdb": "594718",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/6740aa5badca2a9ed5a973e7e1d1da88a82f5dbcc0c60158f4e52abebc1dc226/master.m3u8"
+  },
+  {
+    "num": "401",
+    "t": "Pour elle",
+    "id_tmdb": "1280450",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/3b2b9192dba9fa917a1d7165cf4561556a7b486b41d3a8dd3fdb0a601127f810/master.m3u8"
+  },
+  {
+    "num": "400",
+    "t": "Street Trash",
+    "id_tmdb": "22172",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/126adbfb21a60ec956ceb36a96f599aeccb8968ac490c9f00c3caeb494db714c/master.m3u8"
+  },
+  {
+    "num": "399",
+    "t": "Sweethearts",
+    "id_tmdb": "999890",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/5a7268a8d9418f4985bd74da047b6392ded56899869b05f45e7f23c5d3978a3d/master.m3u8"
+  },
+  {
+    "num": "398",
+    "t": "Ted Bundy : American Boogeyman",
+    "id_tmdb": "835112",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/f0dd51bfb4fa68395f4757fcb147bbd057ac690d90f3f129dc19dabf2a3448d6/master.m3u8"
+  },
+  {
+    "num": "397",
+    "t": "L'Homme invisible",
+    "id_tmdb": "10787",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/75ac9142e596d8d8046b92d1259aa095d014f205105e6a6f0686d7290522c1b0/master.m3u8"
+  },
+  {
     "num": "396",
     "t": "La Montagne Sacrée",
     "id_tmdb": "8327",
