@@ -1,5 +1,61 @@
 [
   {
+    "num": "388",
+    "t": "Barbie : Agents Secrets",
+    "id_tmdb": "377897",
+    "cat": "",
+    "url": "https://archive.org/download/b-960526836/b-960526836.ia.mp4"
+  },
+  {
+    "num": "387",
+    "t": "Barbie et la magie des perles",
+    "id_tmdb": "255718",
+    "cat": "",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/79a25cc2e890949249171fa89b673e3721a13b4b91dfdc4c4f02d01a8bcbb10a.mp4"
+  },
+  {
+    "num": "386",
+    "t": "Barbie : Mariposa et le royaume des fées",
+    "id_tmdb": "196254",
+    "cat": "",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/28bcea6a22c7b55f849e0fbba760222cb953a2c23e39c4a65f72b514b420f578.mp4"
+  },
+  {
+    "num": "385",
+    "t": "Barbie et le secret des sirènes",
+    "id_tmdb": "34134",
+    "cat": "",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/02a1e2002c44206e7385154a0559b6fa8d45b3e211c2e74a838996793e3ee976.mp4"
+  },
+  {
+    "num": "384",
+    "t": "Barbie apprentie Princesse",
+    "id_tmdb": "73456",
+    "cat": "",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/83fd2dc1c755d9bf7f105571cd27ec0c06163964780d43b8f33037f13f89c6bb.mp4"
+  },
+  {
+    "num": "383",
+    "t": "Barbie dans Casse-noisette",
+    "id_tmdb": "15167",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/5fbfe0fef8aadcabbc93c9c378bca1c9c861a6aca6a3f82de0d3bf629c48bfd5/master.m3u8"
+  },
+  {
+    "num": "382",
+    "t": "Barbie dans cœur de princesse",
+    "id_tmdb": "15165",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/58da71be83458e48e5a8fe6793c5e5ac305e59e4a6db02facb123c1f05be3f93/master.m3u8"
+  },
+  {
+    "num": "381",
+    "t": "Barbie",
+    "id_tmdb": "346698",
+    "cat": "",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/d5de766aaed55de5c7137b2de4f92c07f38a0995b57a854a25a26efdb6580314.mp4"
+  },
+  {
     "num": "380",
     "t": "Kill List",
     "id_tmdb": "74725",
