@@ -30,7 +30,7 @@
             z-index: 100;
         }
 
-        /* --- STYLE DU CHARGEMENT PRO --- */
+        /* --- STYLE DU LOADER PROFESSIONNEL --- */
         #loader-screen {
             position: fixed; inset: 0; background: #000;
             display: none; flex-direction: column; align-items: center; justify-content: center;
@@ -405,9 +405,8 @@
     };
 
     window.checkLogin = function() {
-        // --- ACTIVATION DU LOADER AU CLIC CONNEXION ---
+        // --- CHARGEMENT ACTIVÉ AU CLIC ---
         document.getElementById('loader-screen').style.display = 'flex';
-        
         const email = document.getElementById('user').value.trim();
         const pass = document.getElementById('pass').value;
         signInWithEmailAndPassword(auth, email, pass).then(async (u) => {
@@ -417,7 +416,6 @@
                 set(ref(db, 'sessions/' + u.user.uid), { deviceId: deviceId, lastLogin: Date.now() }); 
             }
         }).catch(() => {
-            // --- CACHER SI ERREUR ---
             document.getElementById('loader-screen').style.display = 'none';
             alert("Identifiants incorrects.");
         });
@@ -457,7 +455,7 @@
     });
 
     window.selectProfile = async function(name, icon) {
-        // --- ACTIVATION DU LOADER AU CHOIX PROFIL ---
+        // --- CHARGEMENT ACTIVÉ AU CHOIX PROFIL ---
         document.getElementById('loader-screen').style.display = 'flex';
         currentProfile = name;
         localStorage.setItem('sfpp_profile', name);
@@ -671,7 +669,7 @@ function openDetails(idx) {
     document.getElementById('details-play-btn').focus();
 }
 
-// FONCTION RECHERCHE PAR ACTEUR AJOUTÉE ICI
+// --- FONCTION RECHERCHE PAR ACTEUR AJOUTÉE ---
 window.searchByActor = function(actorName) {
     closeDetails(); 
     openSearch(); 
@@ -791,12 +789,11 @@ function render(search = "") {
         }
     }
 
-    // EXTRACTION ET ÉCLATEMENT DES GENRES
     const allGenres = [];
     data.forEach(m => {
         if(m.cat) {
             const genres = m.cat.split(',').map(g => g.trim().toUpperCase());
-            genres.forEach(g => { if(!allUniqueCats.includes(g)) allGenres.push(g); });
+            genres.forEach(g => { if(!allGenres.includes(g)) allGenres.push(g); });
         }
     });
 
@@ -815,32 +812,16 @@ function render(search = "") {
         const landscapeClass = isTVCat ? "landscape" : "";
         
         let html = `<div class="category-title">${c}</div><div class="category-row"><div class="nav-arrow arrow-left" onclick="scrollSide(this, -400)">‹</div><div class="carousel">`;
-        let addedSeriesRow = [];
-
         filtered.forEach(m => {
-            const isS = /S\d{2}E\d{2}/i.test(m.t);
             const heart = favs.includes(m.t) ? `<div style="position:absolute; top:5px; right:5px; z-index:5;">❤️</div>` : "";
-            
-            if(isS) {
-                const sName = m.t.split(' - ')[0];
-                if(!addedSeriesRow.includes(sName)) {
-                    addedSeriesRow.push(sName);
-                    html += `<div class="card" onclick="openSeries('${sName}')" tabindex="0"><img src="${m.img}" loading="lazy">${heart}<div class="card-name">${sName}</div></div>`;
-                }
-            } else {
-                const clickAction = isTVCat ? `playMovie(${playlistData.indexOf(m)})` : `openDetails(${playlistData.indexOf(m)})`;
-                const pct = (prog[m.t] && prog[m.t].p > 1 && !isTVCat) ? `<div class="prog-bg"><div class="prog-fill" style="width:${prog[m.t].p}%"></div></div>` : "";
-                html += `<div class="card ${landscapeClass}" onclick="${clickAction}" tabindex="0">
-                            <img src="${m.img}" loading="lazy">${heart}${pct}
-                            <div class="card-name">${m.t}</div>
-                        </div>`;
-            }
+            const clickAction = isTVCat ? `playMovie(${playlistData.indexOf(m)})` : `openDetails(${playlistData.indexOf(m)})`;
+            html += `<div class="card ${landscapeClass}" onclick="${clickAction}" tabindex="0"><img src="${m.img}" loading="lazy">${heart}<div class="card-name">${m.t}</div></div>`;
         });
         html += `</div><div class="nav-arrow arrow-right" onclick="scrollSide(this, 400)">›</div></div>`;
         cont.innerHTML += html;
     });
 
-    // --- CACHER LE LOADER QUAND LES FILMS SONT AFFICHÉS ---
+    // --- FERMETURE DU CHARGEMENT ICI ---
     document.getElementById('loader-screen').style.display = 'none';
 }
 
@@ -863,7 +844,7 @@ function openSeries(name) {
         html += `<div class="season-title">SAISON ${s}</div>`;
         seasons[s].forEach(ep => {
             const epName = ep.t.split(' - ')[1] || ep.t;
-            const pct = (prog[ep.t] && ep.t].p > 1) ? `<div style="height:3px; background:#444; width:100px; margin-top:5px;"><div style="height:100%; background:var(--accent); width:${prog[ep.t].p}%"></div></div>` : "";
+            const pct = (prog[ep.t] && prog[ep.t].p > 1) ? `<div style="height:3px; background:#444; width:100px; margin-top:5px;"><div style="height:100%; background:var(--accent); width:${prog[ep.t].p}%"></div></div>` : "";
             html += `<div class="episode-item" onclick="playMovie(${playlistData.indexOf(ep)});" tabindex="0">
                         <div style="flex:1"><b>${epName}</b>${pct}</div>
                         <div style="color:var(--accent)">LECTURE ▶</div>
@@ -943,7 +924,7 @@ function closeP() { if (document.getElementById('player-section').style.display 
 function closeSeries() { if (document.getElementById('series-overlay').style.display === 'block') history.back(); }
 
 function changeView(v) { 
-    // --- ACTIVER LE LOADER AVANT DE GÉNÉRER LA NOUVELLE PAGE ---
+    // --- OUVERTURE DU CHARGEMENT ICI ---
     document.getElementById('loader-screen').style.display = 'flex';
     setTimeout(() => {
         currentView = v; 
@@ -1014,3 +995,4 @@ if ('serviceWorker' in navigator) {
 </script>
 </body>
 </html>
+
