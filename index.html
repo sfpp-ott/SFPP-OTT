@@ -30,7 +30,7 @@
             z-index: 100;
         }
 
-        /* --- STYLE DU LOADER PROFESSIONNEL --- */
+        /* --- STYLE DU LOADER SFPP --- */
         #loader-screen {
             position: fixed; inset: 0; background: #000;
             display: none; flex-direction: column; align-items: center; justify-content: center;
@@ -405,7 +405,6 @@
     };
 
     window.checkLogin = function() {
-        // --- CHARGEMENT ACTIVÉ AU CLIC ---
         document.getElementById('loader-screen').style.display = 'flex';
         const email = document.getElementById('user').value.trim();
         const pass = document.getElementById('pass').value;
@@ -455,7 +454,6 @@
     });
 
     window.selectProfile = async function(name, icon) {
-        // --- CHARGEMENT ACTIVÉ AU CHOIX PROFIL ---
         document.getElementById('loader-screen').style.display = 'flex';
         currentProfile = name;
         localStorage.setItem('sfpp_profile', name);
@@ -620,7 +618,6 @@ function openDetails(idx) {
     document.getElementById('details-meta-year').innerText = m.year || "2024";
     document.getElementById('details-meta-cat').innerText = m.cat;
     
-    // NUMÉRO DE LIGNE (ADMIN)
     const lineInfo = m.num ? m.num : (m.original_index * 7) + 2;
     const numTag = document.getElementById('details-meta-num');
     numTag.innerText = `[L${lineInfo}]`;
@@ -669,7 +666,6 @@ function openDetails(idx) {
     document.getElementById('details-play-btn').focus();
 }
 
-// --- FONCTION RECHERCHE PAR ACTEUR AJOUTÉE ---
 window.searchByActor = function(actorName) {
     closeDetails(); 
     openSearch(); 
@@ -719,9 +715,15 @@ function handleProfileClick(id, name, icon) {
         if(n) {
             let saved = JSON.parse(localStorage.getItem('sfpp_profiles_data') || "[]");
             const idx = saved.findIndex(p => p.id === id);
-            if(idx !== -1) { saved[idx].name = n; localStorage.setItem('sfpp_profiles_data', JSON.stringify(saved)); initProfiles(); }
+            if(idx !== -1) { 
+                saved[idx].name = n; 
+                localStorage.setItem('sfpp_profiles_data', JSON.stringify(saved)); 
+                initProfiles(); 
+            }
         }
-    } else selectProfile(name, icon);
+    } else {
+        selectProfile(name, icon);
+    }
 }
 
 function saveP() {
@@ -756,7 +758,6 @@ function render(search = "") {
     else if(currentView === 'series') data = playlistData.filter(m => m.cat && m.cat.includes("SÉRIES"));
     else if(currentView === 'fav') data = playlistData.filter(m => favs.includes(m.t));
 
-    // Historique
     if(currentProfile && s === "" && currentView === 'all') {
         let history = JSON.parse(localStorage.getItem('sfpp_hist_' + currentProfile) || "[]");
         if(history.length > 0) {
@@ -774,7 +775,6 @@ function render(search = "") {
         } else histSec.style.display = "none";
     } else histSec.style.display = "none";
 
-    // Tous les films
     if (s === "" && (currentView === 'all' || currentView === 'movies')) {
         const allMovies = playlistData.filter(m => m.cat && !m.cat.includes("SÉRIES") && !m.cat.toUpperCase().includes("DIRECT") && !m.cat.toUpperCase().includes("TV"));
         if (allMovies.length > 0) {
@@ -821,7 +821,6 @@ function render(search = "") {
         cont.innerHTML += html;
     });
 
-    // --- FERMETURE DU CHARGEMENT ICI ---
     document.getElementById('loader-screen').style.display = 'none';
 }
 
@@ -924,7 +923,6 @@ function closeP() { if (document.getElementById('player-section').style.display 
 function closeSeries() { if (document.getElementById('series-overlay').style.display === 'block') history.back(); }
 
 function changeView(v) { 
-    // --- OUVERTURE DU CHARGEMENT ICI ---
     document.getElementById('loader-screen').style.display = 'flex';
     setTimeout(() => {
         currentView = v; 
@@ -935,7 +933,10 @@ function changeView(v) {
 }
 
 function filter() { render(document.getElementById('searchBar').value); }
-function toggleEditMode() { isEditMode = !isEditMode; document.getElementById('profile-screen').classList.toggle('is-editing'); }
+function toggleEditMode() { 
+    isEditMode = !isEditMode; 
+    document.getElementById('profile-screen').classList.toggle('is-editing'); 
+}
 function switchProfile() { localStorage.removeItem('sfpp_profile'); location.reload(); }
 function requestAccess() { window.location.href = "mailto:sfpp.ott@gmail.com"; }
 function openSearch() { document.getElementById('search-overlay').style.display = 'flex'; document.getElementById('searchBar').focus(); }
@@ -995,4 +996,3 @@ if ('serviceWorker' in navigator) {
 </script>
 </body>
 </html>
-
