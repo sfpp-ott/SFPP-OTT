@@ -405,6 +405,7 @@
     };
 
     window.checkLogin = function() {
+        // --- CHARGEMENT ACTIVÉ AU CLIC ---
         document.getElementById('loader-screen').style.display = 'flex';
         const email = document.getElementById('user').value.trim();
         const pass = document.getElementById('pass').value;
@@ -415,6 +416,7 @@
                 set(ref(db, 'sessions/' + u.user.uid), { deviceId: deviceId, lastLogin: Date.now() }); 
             }
         }).catch(() => {
+            // --- CACHER SI ERREUR ---
             document.getElementById('loader-screen').style.display = 'none';
             alert("Identifiants incorrects.");
         });
@@ -454,6 +456,7 @@
     });
 
     window.selectProfile = async function(name, icon) {
+        // --- CHARGEMENT ACTIVÉ AU CHOIX PROFIL ---
         document.getElementById('loader-screen').style.display = 'flex';
         currentProfile = name;
         localStorage.setItem('sfpp_profile', name);
@@ -657,7 +660,7 @@ function openDetails(idx) {
     
     let suggHtml = suggs.map(s => `
         <div class="actor-item" onclick="openDetails(${playlistData.indexOf(s)})" style="flex:0 0 120px">
-            <img src="${s.img}" style="border-radius:4px; height:160px; width:110px; object-fit:cover;">
+            <img src="${s.img}" style="border-radius:4px; height:160px; width:110px; object-fit:cover;" loading="lazy">
             <div class="actor-name">${s.t}</div>
         </div>
     `).join('');
@@ -667,6 +670,7 @@ function openDetails(idx) {
     document.getElementById('details-play-btn').focus();
 }
 
+// --- FONCTION RECHERCHE PAR ACTEUR AJOUTÉE ---
 window.searchByActor = function(actorName) {
     closeDetails(); 
     openSearch(); 
@@ -714,6 +718,7 @@ function handleProfileClick(id, name, icon) {
     if(isEditMode) {
         let n = prompt("Nouveau nom :", name);
         if(n) {
+            // RÉCUPÉRER LA LISTE ACTUELLE
             let saved = JSON.parse(localStorage.getItem('sfpp_profiles_data')) || [
                 { id: 1, name: "Profil 1", icon: "🟦", color: "#1e90ff" },
                 { id: 2, name: "Profil 2", icon: "🟩", color: "#2ecc71" },
@@ -723,7 +728,9 @@ function handleProfileClick(id, name, icon) {
             const idx = saved.findIndex(p => p.id === id);
             if(idx !== -1) { 
                 saved[idx].name = n; 
+                // ENREGISTRER DANS LE TÉLÉPHONE
                 localStorage.setItem('sfpp_profiles_data', JSON.stringify(saved)); 
+                // RAFRAICHIR LES AVATARS
                 initProfiles(); 
             }
         }
@@ -829,6 +836,7 @@ function render(search = "") {
         cont.innerHTML += html;
     });
 
+    // --- FERMETURE DU CHARGEMENT ICI ---
     document.getElementById('loader-screen').style.display = 'none';
 }
 
@@ -864,6 +872,7 @@ function openSeries(name) {
 function playMovie(idx) {
     history.replaceState({ overlay: 'player' }, "");
     const m = playlistData[idx]; currentPlayingTitle = m.t;
+    // --- LECTURE ORIGINALE RÉINSTAURÉE ---
     if (hls) { hls.destroy(); hls = null; }
     player.pause(); player.src("");
     document.getElementById('details-overlay').style.display = 'none';
@@ -878,6 +887,7 @@ function closeP() { if (document.getElementById('player-section').style.display 
 function closeSeries() { if (document.getElementById('series-overlay').style.display === 'block') history.back(); }
 
 function changeView(v) { 
+    // --- OUVERTURE DU CHARGEMENT ICI ---
     document.getElementById('loader-screen').style.display = 'flex';
     setTimeout(() => {
         currentView = v; 
@@ -898,13 +908,37 @@ function openSearch() { document.getElementById('search-overlay').style.display 
 function closeSearch() { document.getElementById('search-overlay').style.display = 'none'; document.getElementById('searchBar').value = ''; filter(); }
 
 document.addEventListener('DOMContentLoaded', () => {
-    player = videojs('main-video', { controls: true, techOrder: ['chromecast', 'html5'], plugins: { chromecast: { addButtonToControlBar: true, addDisplayOnControlBar: true } } });
+    // --- LECTEUR ORIGINALE FANTASY / CHROMECAST ---
+    player = videojs('main-video', { 
+        controls: true, fluid: false,
+        techOrder: ['chromecast', 'html5'], 
+        plugins: { chromecast: { addButtonToControlBar: true, addDisplayOnControlBar: true } }
+    });
+
     const Button = videojs.getComponent('Button');
     class Back extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-replay-10'; } handleClick() { player.currentTime(player.currentTime()-10); } }
     class Forward extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-forward-10'; } handleClick() { player.currentTime(player.currentTime()+10); } }
     videojs.registerComponent('Back', Back); videojs.registerComponent('Forward', Forward);
-    player.ready(() => { player.getChild('controlBar').addChild('Back', {}, 1); player.getChild('controlBar').addChild('Forward', {}, 2); });
+    
+    player.ready(() => { 
+        player.getChild('controlBar').addChild('Back', {}, 1); 
+        player.getChild('controlBar').addChild('Forward', {}, 2); 
+    });
+
+    let lastTap = 0;
+    document.getElementById('video-container').addEventListener('touchend', function(e) {
+        const now = new Date().getTime(); if ((now - lastTap < 350) && (now - lastTap > 0)) { if (player.isFullscreen()) player.exitFullscreen(); else player.requestFullscreen(); e.preventDefault(); }
+        lastTap = now;
+    });
+
+    player.on('timeupdate', function() { if(Math.floor(player.currentTime()) % 5 === 0) saveP(); });
 });
+
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js').catch(err => console.log('Erreur SW:', err));
+    });
+}
 </script>
 </body>
 </html>
