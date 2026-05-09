@@ -1,5 +1,61 @@
 [
   {
+    "num": "412",
+    "t": "Le Judge",
+    "id_tmdb": "205587",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/43a207e424f3be6b3efedd0216d16bcef784ac2de4a2686e7a0da30ae9f5fb41/master.m3u8"
+  },
+  {
+    "num": "411",
+    "t": "The Ritual Killer",
+    "id_tmdb": "862552",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/c5cb4aebda5a71471aa01107f10a6c5a5cfd4b846bbed85f4f3bd2f4dc5ebab4/master.m3u8"
+  },
+  {
+    "num": "410",
+    "t": "Marche ou crève",
+    "id_tmdb": "604079",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/41b13e6a48521eaa4464cc4c35b97825817b57c3e1cb3524936f4deb990584a3/master.m3u8"
+  },
+  {
+    "num": "409",
+    "t": "Crash",
+    "id_tmdb": "884",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/885a5d24fc20541eb0b85b94661dd4fdae5a4cb580d7250590d948e2cd59007c/master.m3u8"
+  },
+  {
+    "num": "408",
+    "t": "Golden Glove",
+    "id_tmdb": "505706",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/c81274fe26b4f673b6e54fadd41904b610d375fbd515e6d5593e4f5a73d1290c/master.m3u8"
+  },
+  {
+    "num": "407",
+    "t": "Incendies",
+    "id_tmdb": "46738",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/0aaaf1ffa9e2f9a569163f02b7237f669cdb288dd91292942acc3e85d9f30f27/master.m3u8"
+  },
+  {
+    "num": "406",
+    "t": "Kubo et l’Armure Magique",
+    "id_tmdb": "313297",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/084f22cdfe33c514fb86c0b8d4a8e0aa8b35408009a72552acfd8d0c99a73a2b/master.m3u8"
+  },
+  {
+    "num": "405",
+    "t": "La Sorcellerie à travers les Âges",
+    "id_tmdb": "57283",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/abe0a1f37b7be59a988686b8b6e7c184a35fb8a6a4c44324be60b91d16df1a43/master.m3u8"
+  },
+  {
     "num": "404",
     "t": "Shutter",
     "id_tmdb": "17111",
