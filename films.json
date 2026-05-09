@@ -1,5 +1,61 @@
 [
   {
+    "num": "420",
+    "t": "LOL (Laughing Out Loud)",
+    "id_tmdb": "21861",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/9200ec6ce1aa90f2714be1b16e6c54f412c2a9766e26eeb2c53fcf734c0f1e22/master.m3u8"
+  },
+  {
+    "num": "419",
+    "t": "Limonov : The Ballad",
+    "id_tmdb": "495278",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/14650cac6252f5e021491a8d291d719fa1a04cdbf3a64e0baa92fac64aa942b1/master.m3u8"
+  },
+  {
+    "num": "418",
+    "t": "Lovely Molly",
+    "id_tmdb": "74505",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/7ddf0219eab386de2fe9f95e62ea88851d9817260277930008f5a93dafa52164/master.m3u8"
+  },
+  {
+    "num": "417",
+    "t": "The Eye",
+    "id_tmdb": "9030",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/722e6c248e1594bee6a94c76963099be6219b0a9fd0aecb2f9a7ae3483dbc2fe/master.m3u8"
+  },
+  {
+    "num": "416",
+    "t": "The Witch",
+    "id_tmdb": "310131",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/db307dac0eecbaa237a1c3865a4ddb99e313cef3802ab7d4ef11f3f1bbb1e05b/master.m3u8"
+  },
+  {
+    "num": "415",
+    "t": "Un Fantôme dans la Bataille",
+    "id_tmdb": "1275151",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/35d344b52faf2e917282e46b443abb280836210dfee46e85f8e9936ca2e896a7/master.m3u8"
+  },
+  {
+    "num": "414",
+    "t": "Une Femme Sans Filtre",
+    "id_tmdb": "1302318",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/88bba9bf62abe68e29543913858834250aae709c0750e907b2e944df9d55c29b/master.m3u8"
+  },
+  {
+    "num": "413",
+    "t": "WarGames",
+    "id_tmdb": "860",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/582e125b0cc1008a43efe91b9a2cb7e2ba238f41fa58a2e93881dbbc307c7790/master.m3u8"
+  },
+  {
     "num": "412",
     "t": "Le Judge",
     "id_tmdb": "205587",
