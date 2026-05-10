@@ -1,5 +1,61 @@
 [
   {
+    "num": "476",
+    "t": "Hedda",
+    "id_tmdb": "997113",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/b81abfdefc087a708673ee9594ef23251b671fcbc0bbd941a48d9ff0c8767593/master.m3u8"
+  },
+  {
+    "num": "475",
+    "t": "La Tournée",
+    "id_tmdb": "1271979",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/43877e81b725a294e865ba8a3481f64184d85a4529f741444c3c971eed7c42b7/master.m3u8"
+  },
+  {
+    "num": "474",
+    "t": "The Dark Side of the Heart",
+    "id_tmdb": "74938",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/f002748d286e7e97d0e8dda6aad2302324aacc864ef481403b5065917c858696/master.m3u8"
+  },
+  {
+    "num": "473",
+    "t": "Le Jour des Fous",
+    "id_tmdb": "27886",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/9301e5eb8706911842137700342c17eb7269c582074c0d108ad9e1d209d3f441/master.m3u8"
+  },
+  {
+    "num": "472",
+    "t": "Le Médaillon de Noël",
+    "id_tmdb": "310972",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/4c6591d0f9cba17439eef8b055aae985760d4924e0c6d48826255a27d9a40d75/master.m3u8"
+  },
+  {
+    "num": "471",
+    "t": "Les Révoltés de l’Île du Diable",
+    "id_tmdb": "73211",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/6deeab5b530d7e8e2873b7438ae0812e67c195bc6564d1db0e440ce2bc0a9a67/master.m3u8"
+  },
+  {
+    "num": "470",
+    "t": "Mickey, le Club des Méchants",
+    "id_tmdb": "22643",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/6c9d1802767d188cfd0108b0bbf5d51c1fda02a404b47e98b0ddee7158fddf5e/master.m3u8"
+  },
+  {
+    "num": "469",
+    "t": "Amer Béton",
+    "id_tmdb": "13754",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/e0d7c027f2b9f979874c703776bde2dd81f286160d73c8392a8a1d2c551d2934/master.m3u8"
+  },
+  {
     "num": "468",
     "t": "Etat de choc",
     "id_tmdb": "641790",
