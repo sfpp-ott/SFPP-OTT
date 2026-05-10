@@ -1,5 +1,61 @@
 [
   {
+    "num": "452",
+    "t": "Eden",
+    "id_tmdb": "1042834",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/b8dc559d477fc7ce385e452f521adf5bdd07bb37167cb18f13142a7df79b69b2/master.m3u8"
+  },
+  {
+    "num": "451",
+    "t": "L’Exorcisme Interdit",
+    "id_tmdb": "1224993",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/c8fccc8e2ba4a7471fc222c08c2e4efeb607ce598794a8db348e9cca6194379b/master.m3u8"
+  },
+  {
+    "num": "450",
+    "t": "Stretch",
+    "id_tmdb": "227300",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/81376326f377410742306cb8520877df86ccf58756758984a3c2efc6f6b8aa18/master.m3u8"
+  },
+  {
+    "num": "449",
+    "t": "Terre de Sang",
+    "id_tmdb": "1305273",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/2cf630afdf970648d93406e0c5b0774946c564054dfae64bb6db43e5d4284139/master.m3u8"
+  },
+  {
+    "num": "448",
+    "t": "The Elixir",
+    "id_tmdb": "1306525",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/d2f0a0a03e8c6ac6fcb719dcc0785b1d0d49678f3d41a6ba7cfdad306796b933/master.m3u8"
+  },
+  {
+    "num": "447",
+    "t": "L’Homme qui voulait vivre sa vie",
+    "id_tmdb": "51071",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/5208ae63de80a6b9bf0df935fd03bc056a42a937ed520d68f6b14ac75c1943ee/master.m3u8"
+  },
+  {
+    "num": "446",
+    "t": "La Princesse et le Rossignol",
+    "id_tmdb": "1386481",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/bd58444d03e70e8936c39685e744a3e5306eab5fd8e66d94fcb48e383b6c30e7/master.m3u8"
+  },
+  {
+    "num": "445",
+    "t": "Las Vegas Parano",
+    "id_tmdb": "1878",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/690bca8fa1c1bb7fb3d7d84b975437b76d25d8ef070880e846ededd2c7c3209e/master.m3u8"
+  },
+  {
     "num": "444",
     "t": "The Tunnel",
     "id_tmdb": "606154",
