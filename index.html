@@ -22,13 +22,7 @@
         :root { --accent: #e50914; --gold: #ffcc00; --bg: #050505; }
         body { background: var(--bg); color: white; font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; padding-bottom: 50px; -webkit-user-select: none; user-select: none; }
         
-        [tabindex="0"]:focus {
-            outline: 3px solid white !important;
-            outline-offset: 2px;
-            transform: scale(1.05);
-            background: rgba(255,255,255,0.1);
-            z-index: 100;
-        }
+        [tabindex="0"]:focus { outline: 3px solid white !important; outline-offset: 2px; transform: scale(1.05); background: rgba(255,255,255,0.1); z-index: 100; }
 
         #login-screen { position: fixed; inset: 0; background: #000; z-index: 9999; display: flex; align-items: center; justify-content: center; }
         .login-box { background: #111; padding: 30px; border-radius: 8px; width: 280px; text-align: center; border: 1px solid #333; position: relative; z-index: 10000; }
@@ -41,237 +35,76 @@
         .profile-item { text-align: center; cursor: pointer; transition: transform 0.2s; position: relative; border-radius: 8px; }
         .profile-avatar { width: 100px; height: 100px; background: #333; border-radius: 4px; margin: 0 auto 10px; display: flex; align-items: center; justify-content: center; font-size: 40px; border: 3px solid transparent; }
         .profile-name { font-size: 14px; color: #888; }
-        
         .edit-icon { position: absolute; top: 35px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.7); border-radius: 50%; padding: 5px; display: none; font-size: 20px; }
         .is-editing .edit-icon { display: block; }
         .btn-manage { margin-top: 40px; background: none; border: 1px solid #444; color: #888; padding: 10px 20px; cursor: pointer; font-size: 14px; letter-spacing: 1px; }
 
-        header { 
-            position: fixed; top: 0; width: 100%; height: 60px; 
-            background: rgba(0,0,0,0.95); display: flex; align-items: center; 
-            padding: 0 15px; z-index: 2000; border-bottom: 1px solid #222; 
-            justify-content: space-between; box-sizing: border-box; gap: 10px;
-        }
+        header { position: fixed; top: 0; width: 100%; height: 60px; background: rgba(0,0,0,0.95); display: flex; align-items: center; padding: 0 15px; z-index: 2000; border-bottom: 1px solid #222; justify-content: space-between; box-sizing: border-box; gap: 10px; }
         .logo { color: var(--accent); font-weight: 900; font-size: 18px; flex-shrink: 0; }
-        
-        .nav-links { 
-            display: flex; gap: 15px; flex: 1; overflow-x: auto; 
-            white-space: nowrap; align-items: center; scrollbar-width: none;
-            -webkit-overflow-scrolling: touch; justify-content: flex-start;
-        }
+        .nav-links { display: flex; gap: 15px; flex: 1; overflow-x: auto; white-space: nowrap; align-items: center; scrollbar-width: none; -webkit-overflow-scrolling: touch; justify-content: flex-start; }
         .nav-links::-webkit-scrollbar { display: none; }
-        
         .nav-btn { background: none; border: none; color: #bbb; cursor: pointer; font-size: 13px; font-weight: 500; padding: 10px 5px; transition: color 0.3s; flex-shrink: 0; border-radius: 4px; }
         .nav-btn.active { color: white; font-weight: bold; border-bottom: 2px solid var(--accent); }
 
-        #search-overlay {
-            position: absolute; top: 0; left: 0; width: 100%; height: 60px;
-            background: #000; display: none; align-items: center; padding: 0 15px;
-            box-sizing: border-box; z-index: 2001;
-        }
+        #search-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 60px; background: #000; display: none; align-items: center; padding: 0 15px; box-sizing: border-box; z-index: 2001; }
         #searchBar { flex: 1; background: #222; border: 1px solid #444; color: white; padding: 8px 15px; border-radius: 20px; outline: none; font-size: 14px; }
-        
         .header-actions { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
         .btn-icon { background: none; border: none; color: white; font-size: 18px; cursor: pointer; }
         .btn-logout { background: #333; color: white; border: 1px solid #444; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-size: 10px; flex-shrink: 0; }
 
-        #player-section { display: none; position: fixed; inset: 0; background: #000; z-index: 4500; overflow: hidden; }
-        .video-container { position: relative; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: #000; }
-        
-        .vjs-blur-bg {
-            position: absolute; inset: 0; z-index: 0;
-            background-size: cover; background-position: center;
-            filter: blur(40px) brightness(0.3); transform: scale(1.1); 
-        }
-        
-        .video-js { z-index: 1 !important; width: 100% !important; height: 100% !important; }
-        .video-js video { object-fit: contain !important; }
-
-        #next-episode-btn {
-            position: absolute; bottom: 85px; right: 25px; z-index: 99999 !important;
-            background: #e50914; color: white; border: 2px solid #fff; padding: 15px 25px;
-            border-radius: 8px; font-weight: bold; font-size: 15px; display: none; cursor: pointer;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.9); animation: fadeIn 0.5s;
-        }
-
-        .btn-close-player {
-            position: absolute; top: 20px; left: 20px; z-index: 5000;
-            background: rgba(0,0,0,0.5); border: none; color: white;
-            width: 45px; height: 45px; border-radius: 50%; font-size: 20px; cursor: pointer;
-        }
-
-        #expiration-banner { display: none; background: #ffcc00; color: #000; text-align: center; padding: 10px; font-size: 13px; font-weight: bold; position: relative; z-index: 1500; }
-        
-        #details-overlay {
-            position: fixed; inset: 0; background: var(--bg);
-            z-index: 3500; display: none; flex-direction: column; overflow-y: auto;
-        }
-        .details-content { position: relative; width: 100%; display: block; animation: fadeIn 0.3s; }
-        
-        @keyframes subtleZoom {
-            0% { transform: scale(1); }
-            100% { transform: scale(1.1); }
-        }
-
-        .details-hero { 
-            position: relative; width: 100%; height: 50vh; 
-            overflow: hidden; background: #000;
-        }
-
-        @media (orientation: landscape) or (min-width: 1024px) {
-            .details-hero { height: 45vh; }
-            .details-info { margin-top: -140px !important; }
-            .details-info h2 { font-size: 42px; }
-            .details-info .synopsis { max-width: 70%; font-size: 16px; }
-            .trailer-box { max-width: 600px; }
-        }
-
-        #details-header-bg {
-            position: absolute; inset: 0;
-            background-size: cover; 
-            background-position: center 15%; 
-            animation: subtleZoom 10s infinite alternate ease-in-out;
-            z-index: 1;
-        }
-
-        .details-hero::after { 
-            content: ''; position: absolute; inset: 0; 
-            background: linear-gradient(to top, var(--bg) 15%, transparent 95%); 
-            z-index: 2;
-        }
-
-        .details-info { padding: 0 5% 40px; margin-top: -80px; position: relative; z-index: 5; }
-        .details-info h2 { font-size: 32px; font-weight: bold; margin-bottom: 10px; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
-        .details-info .meta { color: #888; font-size: 14px; margin-bottom: 15px; display: flex; gap: 15px; align-items: center; }
-        .details-info .synopsis { color: #ddd; line-height: 1.6; font-size: 15px; max-width: 850px; margin-bottom: 25px; }
-        
-        .details-actions { display: flex; gap: 10px; margin-bottom: 30px; flex-wrap: wrap; }
-        
-        .btn-play-main { 
-            background: white; color: black; border: none; padding: 15px 35px; 
-            border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 16px; 
-            display: flex; align-items: center; gap: 10px;
-        }
-        .btn-play-main:focus {
-            background: white !important;
-            color: black !important;
-        }
-
-        .btn-fav-details {
-            background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.3); padding: 15px 25px; 
-            border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 16px;
-        }
-
-        .btn-report-hs {
-            background: #222; color: #bbb; border: 1px solid #444; padding: 15px 20px;
-            border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 14px;
-        }
-
-        .section-label { font-weight: bold; color: white; margin: 30px 0 15px; font-size: 18px; border-left: 4px solid var(--accent); padding-left: 10px; }
-        .trailer-box { width: 100%; max-width: 800px; aspect-ratio: 16/9; background: #000; border-radius: 8px; margin-bottom: 25px; overflow: hidden; border: 1px solid #333; }
-        
-        .cast-row { display: flex; gap: 15px; overflow-x: auto; padding-bottom: 15px; scrollbar-width: none; }
-        .actor-item { flex: 0 0 90px; text-align: center; cursor: pointer; transition: transform 0.2s; }
-        .actor-item img { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 2px solid #333; transition: border-color 0.3s; }
-        .actor-item:hover img { border-color: var(--accent); }
-        .actor-name { font-size: 11px; color: #aaa; margin-top: 8px; }
-
-        .btn-close-details { 
-            position: absolute; top: 20px; right: 20px; 
-            background: rgba(0,0,0,0.5); border: none; color: white; 
-            width: 40px; height: 40px; border-radius: 50%; cursor: pointer; z-index: 100; font-size: 20px;
-        }
-
+        /* --- STYLES CARTES & JACQUETTES --- */
         #main-content { padding-top: 80px; }
-        
         .category-row { position: relative; width: 100%; margin-bottom: 20px; }
         .category-title { font-size: 18px; font-weight: bold; margin: 20px 4% 10px; color: #fff; text-transform: uppercase; }
-        
         .carousel { display: flex; overflow-x: auto; gap: 12px; padding: 0 4% 10px; scrollbar-width: none; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; }
         
-        .nav-arrow { position: absolute; top: 0; bottom: 30px; width: 50px; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; z-index: 10; cursor: pointer; color: white; font-size: 30px; opacity: 0; transition: opacity 0.3s; }
-        .category-row:hover .nav-arrow { opacity: 1; }
-        .arrow-left { left: 0; }
-        .arrow-right { right: 0; }
-
         .card { flex: 0 0 150px; width: 150px; cursor: pointer; position: relative; display: flex; flex-direction: column; }
-        .card img { width: 150px !important; height: 225px !important; object-fit: cover !important; border-radius: 4px; background: #222; display: block; }
-        
+        .card img { width: 150px !important; height: 225px !important; object-fit: cover !important; border-radius: 8px; background: #222; display: block; }
         .card.landscape { flex: 0 0 180px; width: 180px; }
         .card.landscape img { width: 180px !important; height: 110px !important; object-fit: contain !important; background: #111; border: 1px solid #333; }
+        .card-name { margin-top: 8px; font-size: 12px; text-align: center; color: #bbb; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; width: 100%; }
 
-        .card-name { margin-top: 6px; font-size: 12px; text-align: center; color: #bbb; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; width: 100%; }
-
-        .prog-bg { position: absolute; bottom: 25px; left: 0; width: 100%; height: 4px; background: rgba(255,255,255,0.2); border-radius: 0 0 4px 4px; overflow: hidden; }
-        .prog-fill { height: 100%; background: var(--accent); transition: width 0.3s; }
-
-        /* --- STYLES FAV HEART ON CARD --- */
-        .btn-fav-card {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            z-index: 10;
-            background: rgba(0,0,0,0.5);
-            border: 1px solid rgba(255,255,255,0.2);
-            border-radius: 50%;
-            width: 32px;
-            height: 32px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-size: 16px;
-            transition: transform 0.2s, background 0.2s;
-            backdrop-filter: blur(5px);
-        }
-        .btn-fav-card:active { transform: scale(0.9); }
+        /* --- ÉTOILES ET COEUR SUR JACQUETTE --- */
+        .btn-fav-card { position: absolute; top: 10px; right: 10px; z-index: 10; background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.2); border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; font-size: 16px; backdrop-filter: blur(5px); transition: transform 0.2s; }
         .btn-fav-card.is-fav { color: #e50914; background: rgba(0,0,0,0.7); }
-        .btn-fav-card:not(.is-fav) { color: white; }
+        .card-rating { position: absolute; bottom: 30px; left: 8px; z-index: 10; background: rgba(0,0,0,0.6); padding: 2px 6px; border-radius: 4px; font-size: 9px; color: var(--gold); font-weight: bold; pointer-events: none; }
+        .card.landscape .card-rating { bottom: 30px; }
 
-        /* --- STYLES RATING ON CARD --- */
-        .card-rating {
-            position: absolute;
-            bottom: 35px;
-            left: 8px;
-            z-index: 10;
-            background: rgba(0,0,0,0.6);
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-size: 10px;
-            color: var(--gold);
-            font-weight: bold;
-            backdrop-filter: blur(4px);
-            pointer-events: none;
-        }
-
+        /* --- PLAYER & DETAILS --- */
+        #player-section { display: none; position: fixed; inset: 0; background: #000; z-index: 4500; overflow: hidden; }
+        .video-container { position: relative; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+        .vjs-blur-bg { position: absolute; inset: 0; z-index: 0; background-size: cover; background-position: center; filter: blur(40px) brightness(0.3); transform: scale(1.1); }
+        .video-js { z-index: 1 !important; width: 100% !important; height: 100% !important; }
+        #details-overlay { position: fixed; inset: 0; background: var(--bg); z-index: 3500; display: none; flex-direction: column; overflow-y: auto; }
+        .details-content { position: relative; width: 100%; animation: fadeIn 0.3s; }
+        .details-hero { position: relative; width: 100%; height: 50vh; overflow: hidden; background: #000; }
+        #details-header-bg { position: absolute; inset: 0; background-size: cover; background-position: center 15%; z-index: 1; }
+        .details-info { padding: 0 5% 40px; margin-top: -80px; position: relative; z-index: 5; }
+        .details-actions { display: flex; gap: 10px; margin-bottom: 30px; flex-wrap: wrap; }
+        .btn-play-main { background: white; color: black; border: none; padding: 15px 35px; border-radius: 4px; font-weight: bold; cursor: pointer; }
+        .btn-fav-details { background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.3); padding: 15px 25px; border-radius: 4px; }
+        .cast-row { display: flex; gap: 15px; overflow-x: auto; padding-bottom: 15px; scrollbar-width: none; }
+        .actor-item { flex: 0 0 90px; text-align: center; }
+        .actor-item img { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; }
         #series-overlay { position: fixed; inset: 0; background: var(--bg); z-index: 3000; display: none; overflow-y: auto; padding: 80px 5% 40px; }
-        .overlay-header { display: flex; gap: 20px; margin-bottom: 30px; align-items: center; }
-        .overlay-img { width: 120px; border-radius: 8px; border: 1px solid #333; }
-        .season-title { color: var(--accent); font-size: 18px; font-weight: bold; margin: 25px 0 10px; border-left: 3px solid var(--accent); padding-left: 10px; }
-        .episode-item { background: #111; padding: 15px; border-radius: 6px; margin-bottom: 8px; cursor: pointer; display: flex; align-items: center; gap: 15px; border: 1px solid #222; }
-        .btn-close { background: #333; color: #fff; border: none; padding: 10px 22px; border-radius: 4px; cursor: pointer; }
 
-        @media (max-width: 768px) {
-            .card { flex: 0 0 130px; width: 130px; }
-            .card img { width: 130px !important; height: 195px !important; }
-            .card.landscape { flex: 0 0 140px; width: 140px; }
-            .card.landscape img { width: 140px !important; height: 85px !important; }
-        }
+        @media (max-width: 768px) { .card { flex: 0 0 130px; width: 130px; } .card img { width: 130px !important; height: 195px !important; } }
     </style>
 </head>
-<body> 
+<body oncontextmenu="return false;"> 
+
 <div id="login-screen">
     <form class="login-box" onsubmit="event.preventDefault(); checkLogin();">
         <div class="logo" style="margin-bottom:20px">SFPP ELITE</div>
-        <input type="email" id="user" name="email" placeholder="E-mail" required>
-        <input type="password" id="pass" name="password" placeholder="Mot de passe" required>
+        <input type="email" id="user" placeholder="E-mail" required>
+        <input type="password" id="pass" placeholder="Mot de passe" required>
         <button type="submit">CONNEXION</button>
-        <button type="button" class="btn-request" onclick="requestAccess()">Nouveau ? Demander un accès</button>
+        <button type="button" class="btn-request" onclick="requestAccess()">Demander un accès</button>
     </form>
 </div>
 
 <div id="profile-screen">
-    <h1>Qui regarde ?</h1>
+    <h1 style="font-size: 32px;">Qui regarde ?</h1>
     <div class="profile-grid" id="profile-list"></div>
     <button class="btn-manage" id="manage-btn" onclick="toggleEditMode()">GÉRER LES PROFILS</button>
     <button onclick="logout()" style="margin-top: 20px; background:none; border:none; color:#444; cursor:pointer;">DÉCONNEXION</button>
@@ -291,28 +124,26 @@
     </div>
     <div id="search-overlay">
         <input type="text" id="searchBar" onkeyup="filter()" placeholder="Rechercher...">
-        <button class="btn-icon" onclick="closeSearch()" style="margin-left:10px">✕</button>
+        <button class="btn-icon" onclick="closeSearch()">✕</button>
     </div>
 </header>
 
 <div id="details-overlay">
     <div class="details-content">
-        <button class="btn-close-details" onclick="closeDetails()">✕</button>
+        <button class="btn-close-details" onclick="closeDetails()" style="position: absolute; top: 20px; right: 20px; background: rgba(0,0,0,0.5); border: none; color: white; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; z-index: 100; font-size: 20px;">✕</button>
         <div class="details-hero"><div id="details-header-bg"></div></div>
         <div class="details-info">
             <h2 id="details-title"></h2>
             <div class="meta">
-                <span id="details-meta-year"></span>
-                <span id="details-meta-cat"></span>
-                <span id="details-stars-display" style="color:var(--gold)"></span>
+                <span id="details-meta-year"></span> | <span id="details-meta-cat"></span> | <span id="details-stars-display" style="color:var(--gold)"></span>
             </div>
             <div class="details-actions">
                 <button id="details-play-btn" class="btn-play-main">▶ Lancer</button>
                 <button id="details-fav-btn" class="btn-fav-details">+ Ma Liste</button>
-                <button id="details-report-btn" class="btn-report-hs">⚠️ Signaler</button>
+                <button id="details-report-btn" style="background:#222; color:#bbb; border:1px solid #444; padding:15px 20px; border-radius:4px;">⚠️ Signaler</button>
             </div>
-            <p id="details-desc" class="synopsis"></p>
-            <div id="details-trailer-box" class="trailer-box"></div>
+            <p id="details-desc" class="synopsis" style="color:#ddd; line-height:1.6;"></p>
+            <div id="details-trailer-box" class="trailer-box" style="width:100%; aspect-ratio:16/9; margin-bottom:25px;"></div>
             <div id="details-meta-cast" class="cast-row"></div>
             <div id="details-suggestions" class="cast-row"></div>
         </div>
@@ -320,23 +151,23 @@
 </div>
 
 <div id="series-overlay">
-    <button class="btn-close" onclick="closeSeries()">← Retour</button>
+    <button class="btn-close" onclick="closeSeries()" style="background:#333; color:#fff; border:none; padding:10px 22px; border-radius:4px; margin-bottom:20px;">← Retour</button>
     <div id="series-detail-content"></div>
 </div>
 
 <section id="player-section">
-    <button class="btn-close-player" onclick="closeP()">✕</button>
+    <button class="btn-close-player" onclick="closeP()" style="position:absolute; top:20px; left:20px; z-index:5000; background:rgba(0,0,0,0.5); border:none; color:white; width:45px; height:45px; border-radius:50%; font-size:20px; cursor:pointer;">✕</button>
     <div class="video-container">
         <div id="player-blur-bg" class="vjs-blur-bg"></div>
         <video id="main-video" class="video-js vjs-theme-fantasy vjs-big-play-centered" controls preload="metadata"></video>
-        <button id="next-episode-btn" onclick="playNextEpisode()">ÉPISODE SUIVANT ⏭️</button>
+        <button id="next-episode-btn" onclick="playNextEpisode()" style="position:absolute; bottom:85px; right:25px; z-index:9999; background:#e50914; color:white; border:2px solid #fff; padding:15px 25px; border-radius:8px; display:none;">SUIVANT ⏭️</button>
     </div>
 </section>
 
 <div id="main-content">
-    <div id="expiration-banner"></div>
+    <div id="expiration-banner" style="display:none; background:#ffcc00; color:#000; text-align:center; padding:10px; font-weight:bold;"></div>
     <div id="history-sec" style="display:none">
-        <div class="category-title">Reprendre avec <span id="current-user-name"></span></div>
+        <div class="category-title">Reprendre</div>
         <div class="carousel" id="history-container"></div>
     </div>
     <div id="categories-container"></div>
@@ -362,7 +193,6 @@
     const db = getDatabase(app);
     const auth = getAuth(app);
 
-    // Fonctions Firebase gardées intactes
     window.checkLogin = function() {
         const email = document.getElementById('user').value.trim();
         const pass = document.getElementById('pass').value;
@@ -391,11 +221,11 @@
         render();
     };
 
-    window.logout = () => signOut(auth).then(() => location.reload());
+    window.logout = () => signOut(auth).then(() => { localStorage.clear(); location.reload(); });
 </script>
 
 <script>
-let player, playlistData = [], currentProfile = null, isEditMode = false, currentView = 'all', currentPlayingTitle = "";
+let player, playlistData = [], currentProfile = null, isEditMode = false, currentView = 'all', currentPlayingTitle = "", hls;
 
 async function loadPlaylist() { 
     try { 
@@ -403,39 +233,6 @@ async function loadPlaylist() {
         playlistData = await response.json(); 
         render(); 
     } catch (e) {} 
-}
-
-// CETTE FONCTION CORRIGE LE SCROLL
-function toggleFav(title) {
-    let key = 'sfpp_fav_' + currentProfile;
-    let favs = JSON.parse(localStorage.getItem(key) || "[]");
-    let isAdded = false;
-
-    if(favs.includes(title)) {
-        favs = favs.filter(t => t !== title);
-    } else {
-        favs.push(title);
-        isAdded = true;
-    }
-    localStorage.setItem(key, JSON.stringify(favs));
-
-    // Mise à jour visuelle SANS render() pour garder le scroll
-    const hearts = document.querySelectorAll(`[data-title="${title.replace(/'/g, "\\'")}"]`);
-    hearts.forEach(h => {
-        h.classList.toggle('is-fav', isAdded);
-        h.innerText = isAdded ? '❤️' : '♡';
-    });
-
-    updateFavBtnUI(title);
-    
-    // Si on est dans l'onglet favoris, on doit quand même rafraichir pour faire disparaître le film
-    if(currentView === 'fav') render();
-}
-
-function updateFavBtnUI(title) {
-    let favs = JSON.parse(localStorage.getItem('sfpp_fav_' + currentProfile) || "[]");
-    const btn = document.getElementById('details-fav-btn');
-    if(btn) btn.innerText = favs.includes(title) ? "❤️ Dans Ma Liste" : "+ Ma Liste";
 }
 
 function initProfiles() {
@@ -465,8 +262,40 @@ function handleProfileClick(id, name, icon) {
     } else selectProfile(name, icon);
 }
 
+// FONCTION FAVORIS SANS SAUT DE PAGE
+function toggleFav(title) {
+    let key = 'sfpp_fav_' + currentProfile;
+    let favs = JSON.parse(localStorage.getItem(key) || "[]");
+    let isAdded = false;
+
+    if(favs.includes(title)) {
+        favs = favs.filter(t => t !== title);
+    } else {
+        favs.push(title);
+        isAdded = true;
+    }
+    localStorage.setItem(key, JSON.stringify(favs));
+
+    // Mise à jour visuelle ciblée
+    const hearts = document.querySelectorAll(`[data-fav-title="${title.replace(/'/g, "\\'")}"]`);
+    hearts.forEach(h => {
+        h.classList.toggle('is-fav', isAdded);
+        h.innerText = isAdded ? '❤️' : '♡';
+    });
+
+    updateFavBtnUI(title);
+    if(currentView === 'fav') render(); 
+}
+
+function updateFavBtnUI(title) {
+    let favs = JSON.parse(localStorage.getItem('sfpp_fav_' + currentProfile) || "[]");
+    const btn = document.getElementById('details-fav-btn');
+    if(btn) btn.innerText = favs.includes(title) ? "❤️ Dans Ma Liste" : "+ Ma Liste";
+}
+
 function render(search = "") {
     const cont = document.getElementById('categories-container');
+    if(!cont) return;
     cont.innerHTML = "";
     const s = search.toLowerCase();
     const favs = JSON.parse(localStorage.getItem('sfpp_fav_' + currentProfile) || "[]");
@@ -483,15 +312,21 @@ function render(search = "") {
         const filtered = data.filter(m => m.cat && m.cat.toUpperCase().includes(c) && (s==="" || m.t.toLowerCase().includes(s)));
         if (filtered.length === 0) return;
         
+        const isTV = c.includes("DIRECT") || c.includes("TV");
+        const landscapeClass = isTV ? "landscape" : "";
+
         let html = `<div class="category-title">${c}</div><div class="carousel">`;
         filtered.forEach(m => {
             const isFav = favs.includes(m.t);
-            const stars = "★".repeat(m.note || 5) + "☆".repeat(5 - (m.note || 5));
+            const note = m.note || 5;
+            const stars = "★".repeat(note) + "☆".repeat(5 - note);
+            const safeTitle = m.t.replace(/'/g, "\\'");
+
             html += `
-                <div class="card">
-                    <div class="btn-fav-card ${isFav?'is-fav':''}" data-title="${m.t.replace(/'/g, "\\'")}" onclick="event.stopPropagation(); toggleFav('${m.t.replace(/'/g, "\\'")}');">${isFav?'❤️':'♡'}</div>
-                    <div class="card-rating">${stars}</div>
-                    <img src="${m.img}" onclick="openDetails(${playlistData.indexOf(m)})">
+                <div class="card ${landscapeClass}">
+                    <div class="btn-fav-card ${isFav?'is-fav':''}" data-fav-title="${safeTitle}" onclick="event.stopPropagation(); toggleFav('${safeTitle}');">${isFav?'❤️':'♡'}</div>
+                    ${!isTV ? `<div class="card-rating">${stars}</div>` : ''}
+                    <img src="${m.img}" onerror="this.src='https://via.placeholder.com/150x225?text=SFPP'" onclick="openDetails(${playlistData.indexOf(m)})">
                     <div class="card-name">${m.t}</div>
                 </div>`;
         });
@@ -502,10 +337,16 @@ function render(search = "") {
 function openDetails(idx) {
     const m = playlistData[idx];
     document.getElementById('details-title').innerText = m.t;
-    document.getElementById('details-desc').innerText = m.desc || "Pas de résumé.";
+    document.getElementById('details-desc').innerText = m.desc || "Aucun résumé.";
+    document.getElementById('details-meta-year').innerText = m.year || "2024";
+    document.getElementById('details-meta-cat').innerText = m.cat || "";
     document.getElementById('details-header-bg').style.backgroundImage = `url('${m.bg || m.img}')`;
     document.getElementById('details-overlay').style.display = 'flex';
     document.getElementById('details-play-btn').onclick = () => playMovie(idx);
+    document.getElementById('details-fav-btn').onclick = () => toggleFav(m.t);
+    
+    document.getElementById('details-trailer-box').innerHTML = m.trailer ? `<iframe width="100%" height="100%" src="https://www.youtube.com/embed/${m.trailer}" frameborder="0" allowfullscreen></iframe>` : "";
+    
     updateFavBtnUI(m.t);
 }
 
@@ -513,20 +354,32 @@ function playMovie(idx) {
     const m = playlistData[idx];
     currentPlayingTitle = m.t;
     document.getElementById('player-section').style.display = 'block';
-    player.src({ src: m.url.startsWith('http') ? m.url : atob(m.url), type: m.url.includes('m3u8') ? 'application/x-mpegURL' : 'video/mp4' });
+    
+    let decodedUrl = m.url;
+    try { if(!m.url.startsWith('http')) decodedUrl = atob(m.url); } catch(e) {}
+    
+    let type = decodedUrl.includes('m3u8') ? 'application/x-mpegURL' : 'video/mp4';
+
+    player.src({ src: decodedUrl, type: type });
     player.play();
 }
 
 function closeP() { player.pause(); document.getElementById('player-section').style.display = 'none'; }
-function closeDetails() { document.getElementById('details-overlay').style.display = 'none'; }
+function closeDetails() { document.getElementById('details-overlay').style.display = 'none'; document.getElementById('details-trailer-box').innerHTML = ""; }
+function closeSeries() { document.getElementById('series-overlay').style.display = 'none'; }
 function changeView(v) { currentView = v; document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active')); document.getElementById('btn-'+v).classList.add('active'); render(); }
+function filter() { render(document.getElementById('searchBar').value); }
 function toggleEditMode() { isEditMode = !isEditMode; document.getElementById('profile-screen').classList.toggle('is-editing'); }
 function switchProfile() { localStorage.removeItem('sfpp_profile'); location.reload(); }
-function openSearch() { document.getElementById('search-overlay').style.display = 'flex'; }
+function openSearch() { document.getElementById('search-overlay').style.display = 'flex'; document.getElementById('searchBar').focus(); }
 function closeSearch() { document.getElementById('search-overlay').style.display = 'none'; }
+function requestAccess() { window.location.href = "mailto:sfpp.ott@gmail.com"; }
 
 document.addEventListener('DOMContentLoaded', () => {
-    player = videojs('main-video');
+    player = videojs('main-video', {
+        controls: true,
+        plugins: { chromecast: { addButtonToControlBar: true } }
+    });
 });
 </script>
 </body>
