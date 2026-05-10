@@ -1,5 +1,61 @@
 [
   {
+    "num": "492",
+    "t": "There Will Be Blood",
+    "id_tmdb": "7345",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/592749a8f2e00e936be9aba94b40c5e27aebd2f4f5ca61fbae2d888af7b97b04/master.m3u8"
+  },
+  {
+    "num": "491",
+    "t": "Week-end de terreur",
+    "id_tmdb": "24913",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/a5402d7deb6c8f5ca42b93e1a63b3375bc551999925f778054c88351db2fc1bd/master.m3u8"
+  },
+  {
+    "num": "490",
+    "t": "Good Boy",
+    "id_tmdb": "1422096",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/f71068e03fe40c66493b28dc4d0fc34011e867486e688e5e586618cee59f9b75/master.m3u8"
+  },
+  {
+    "num": "489",
+    "t": "Parvana, une enfance en Afghanistan",
+    "id_tmdb": "435129",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/8fa42084ab4bc109e99998decd595aaccfb99a1899c2305b38f1ce9ef2c84a4d/master.m3u8"
+  },
+  {
+    "num": "488",
+    "t": "L’Accident de Piano",
+    "id_tmdb": "1313144",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/292c5865ef9d3ab1cd1e4009a6a27b698ba92229c008719cbb3368886eea2ad0/master.m3u8"
+  },
+  {
+    "num": "487",
+    "t": "Rapaces",
+    "id_tmdb": "1002158",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/6bf2cacabff57844b3cf1d2bcedf726bb040d2f656ce4b03a7fa6865c48acece/master.m3u8"
+  },
+  {
+    "num": "486",
+    "t": "The Rule of Jenny Pen",
+    "id_tmdb": "1212742",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/c6394278faa140fe10509770a652e4d9fafdf6689105ae22c05c9a116bcdbd16/master.m3u8"
+  },
+  {
+    "num": "485",
+    "t": "All The Devils Are Here",
+    "id_tmdb": "1530875",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/d31377da12de6a2f061e3670465480891b70c9024f486033deae8ea3e527e7d4/master.m3u8"
+  },
+  {
     "num": "484",
     "t": "Ballad of a Small Player",
     "id_tmdb": "1272166",
