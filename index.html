@@ -205,6 +205,29 @@
         .prog-bg { position: absolute; bottom: 25px; left: 0; width: 100%; height: 4px; background: rgba(255,255,255,0.2); border-radius: 0 0 4px 4px; overflow: hidden; }
         .prog-fill { height: 100%; background: var(--accent); transition: width 0.3s; }
 
+        /* --- STYLES FAV HEART ON CARD --- */
+        .btn-fav-card {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 10;
+            background: rgba(0,0,0,0.5);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 16px;
+            transition: transform 0.2s, background 0.2s;
+            backdrop-filter: blur(5px);
+        }
+        .btn-fav-card:active { transform: scale(0.9); }
+        .btn-fav-card.is-fav { color: #e50914; background: rgba(0,0,0,0.7); }
+        .btn-fav-card:not(.is-fav) { color: white; }
+
         /* --- STYLES EPG REELS --- */
         .epg-info { font-size: 10px; color: #e50914; margin-top: 4px; text-align: center; font-weight: bold; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; width: 100%; }
         .epg-time { font-size: 9px; color: #777; text-align: center; display: block; }
@@ -624,12 +647,21 @@ function openDetails(idx) {
         .sort(() => 0.5 - Math.random())
         .slice(0, 6);
     
-    let suggHtml = suggs.map(s => `
-        <div class="actor-item" onclick="openDetails(${playlistData.indexOf(s)})" style="flex:0 0 120px">
-            <img src="${s.img}" style="border-radius:4px; height:160px; width:110px; object-fit:cover;" loading="lazy">
-            <div class="actor-name">${s.t}</div>
+    let suggHtml = suggs.map(s => {
+        const s_favs = JSON.parse(localStorage.getItem('sfpp_fav_' + currentProfile) || "[]");
+        const is_s_fav = s_favs.includes(s.t);
+        const heartClass = is_s_fav ? 'is-fav' : '';
+        const heartIcon = is_s_fav ? '❤️' : '♡';
+        
+        return `
+        <div class="actor-item" style="flex:0 0 120px; position:relative;">
+            <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${s.t.replace(/'/g, "\\'")}');">${heartIcon}</div>
+            <div onclick="openDetails(${playlistData.indexOf(s)})">
+                <img src="${s.img}" style="border-radius:4px; height:160px; width:110px; object-fit:cover;" loading="lazy">
+                <div class="actor-name">${s.t}</div>
+            </div>
         </div>
-    `).join('');
+    `}).join('');
     document.getElementById('details-suggestions').innerHTML = suggHtml;
 
     document.getElementById('details-overlay').style.display = 'flex';
@@ -657,8 +689,10 @@ function toggleFav(title) {
 function updateFavBtnUI(title) {
     let favs = JSON.parse(localStorage.getItem('sfpp_fav_' + currentProfile) || "[]");
     const btn = document.getElementById('details-fav-btn');
-    if(favs.includes(title)) btn.innerText = "❤️ Dans Ma Liste";
-    else btn.innerText = "+ Ma Liste";
+    if(btn) {
+        if(favs.includes(title)) btn.innerText = "❤️ Dans Ma Liste";
+        else btn.innerText = "+ Ma Liste";
+    }
 }
 
 function closeDetails() { if (document.getElementById('details-overlay').style.display === 'flex') history.back(); }
@@ -742,7 +776,19 @@ function render(search = "") {
                     const landscapeClass = isTV ? "landscape" : "";
                     const pct = (prog[m.t] && prog[m.t].p > 1) ? `<div class="prog-bg"><div class="prog-fill" style="width:${prog[m.t].p}%"></div></div>` : "";
                     const clickAction = isTV ? `playMovie(${playlistData.indexOf(m)})` : `openDetails(${playlistData.indexOf(m)})`;
-                    histCont.innerHTML += `<div class="card ${landscapeClass}" onclick="${clickAction}" tabindex="0"><img src="${m.img}" loading="lazy">${pct}<div class="card-name">${m.t}</div></div>`;
+                    
+                    const is_fav = favs.includes(m.t);
+                    const heartClass = is_fav ? 'is-fav' : '';
+                    const heartIcon = is_fav ? '❤️' : '♡';
+
+                    histCont.innerHTML += `
+                        <div class="card ${landscapeClass}" tabindex="0">
+                            <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${m.t.replace(/'/g, "\\'")}');">${heartIcon}</div>
+                            <div onclick="${clickAction}">
+                                <img src="${m.img}" loading="lazy">${pct}
+                                <div class="card-name">${m.t}</div>
+                            </div>
+                        </div>`;
                 }
             });
         } else histSec.style.display = "none";
@@ -753,9 +799,19 @@ function render(search = "") {
         if (allMovies.length > 0) {
             let html = `<div class="category-title">TOUS LES FILMS</div><div class="category-row"><div class="nav-arrow arrow-left" onclick="scrollSide(this, -400)">‹</div><div class="carousel">`;
             allMovies.forEach(m => {
-                const heart = favs.includes(m.t) ? `<div style="position:absolute; top:5px; right:5px; z-index:5;">❤️</div>` : "";
+                const is_fav = favs.includes(m.t);
+                const heartClass = is_fav ? 'is-fav' : '';
+                const heartIcon = is_fav ? '❤️' : '♡';
                 const pct = (prog[m.t] && prog[m.t].p > 1) ? `<div class="prog-bg"><div class="prog-fill" style="width:${prog[m.t].p}%"></div></div>` : "";
-                html += `<div class="card" onclick="openDetails(${playlistData.indexOf(m)})" tabindex="0"><img src="${m.img}" loading="lazy">${heart}${pct}<div class="card-name">${m.t}</div></div>`;
+                
+                html += `
+                    <div class="card" tabindex="0">
+                        <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${m.t.replace(/'/g, "\\'")}');">${heartIcon}</div>
+                        <div onclick="openDetails(${playlistData.indexOf(m)})">
+                            <img src="${m.img}" loading="lazy">${pct}
+                            <div class="card-name">${m.t}</div>
+                        </div>
+                    </div>`;
             });
             html += `</div><div class="nav-arrow arrow-right" onclick="scrollSide(this, 400)">›</div></div>`;
             cont.innerHTML += html;
@@ -786,9 +842,19 @@ function render(search = "") {
         
         let html = `<div class="category-title">${c}</div><div class="category-row"><div class="nav-arrow arrow-left" onclick="scrollSide(this, -400)">‹</div><div class="carousel">`;
         filtered.forEach(m => {
-            const heart = favs.includes(m.t) ? `<div style="position:absolute; top:5px; right:5px; z-index:5;">❤️</div>` : "";
+            const is_fav = favs.includes(m.t);
+            const heartClass = is_fav ? 'is-fav' : '';
+            const heartIcon = is_fav ? '❤️' : '♡';
             const clickAction = isTVCat ? `playMovie(${playlistData.indexOf(m)})` : `openDetails(${playlistData.indexOf(m)})`;
-            html += `<div class="card ${landscapeClass}" onclick="${clickAction}" tabindex="0"><img src="${m.img}" loading="lazy">${heart}<div class="card-name">${m.t}</div></div>`;
+            
+            html += `
+                <div class="card ${landscapeClass}" tabindex="0">
+                    <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${m.t.replace(/'/g, "\\'")}');">${heartIcon}</div>
+                    <div onclick="${clickAction}">
+                        <img src="${m.img}" loading="lazy">
+                        <div class="card-name">${m.t}</div>
+                    </div>
+                </div>`;
         });
         html += `</div><div class="nav-arrow arrow-right" onclick="scrollSide(this, 400)">›</div></div>`;
         cont.innerHTML += html;
