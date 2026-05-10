@@ -554,7 +554,7 @@ window.addEventListener('popstate', function (event) {
         player.pause(); 
         player.src("");
         playerSection.style.display = 'none';
-        render(document.getElementById('searchBar').value, true); // Garder le scroll
+        render(document.getElementById('searchBar').value, true); 
         return;
     }
 
@@ -704,7 +704,7 @@ function toggleFav(title) {
     else favs.push(title);
     localStorage.setItem(key, JSON.stringify(favs));
     updateFavBtnUI(title);
-    render(document.getElementById('searchBar').value, true); // true = garde la position du scroll
+    render(document.getElementById('searchBar').value, true); 
 }
 
 function updateFavBtnUI(title) {
@@ -769,26 +769,29 @@ function saveP() {
 function scrollSide(btn, amt) { const car = btn.parentElement.querySelector('.carousel'); car.scrollBy({ left: amt, behavior: 'smooth' }); }
 
 function render(search = "", keepScroll = false) {
-    // Mémoriser le scroll avant reconstruction
-    const scrollPos = window.scrollY;
+    // 1. Mémoriser la position EXACTE du scroll AVANT toute modification
+    const scrollPos = window.pageYOffset || document.documentElement.scrollTop;
     
     const cont = document.getElementById('categories-container');
     const histSec = document.getElementById('history-sec');
     const histCont = document.getElementById('history-container');
-    cont.innerHTML = ""; histCont.innerHTML = "";
+    
+    // 2. On vide les conteneurs (C'est ce qui cause le saut en haut de page d'habitude)
+    cont.innerHTML = ""; 
+    histCont.innerHTML = "";
+    
     const s = search.toLowerCase();
-
     if(s === "admin") { isAdminMode = true; document.getElementById('searchBar').value = ""; alert("Mode maintenance activé."); return render(""); }
 
     const favs = JSON.parse(localStorage.getItem('sfpp_fav_' + currentProfile) || "[]");
     const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
-    const now = new Date();
     
     let data = playlistData;
     if(currentView === 'movies') data = playlistData.filter(m => m.cat && !m.cat.includes("SÉRIES"));
     else if(currentView === 'series') data = playlistData.filter(m => m.cat && m.cat.includes("SÉRIES"));
     else if(currentView === 'fav') data = playlistData.filter(m => favs.includes(m.t));
 
+    // --- REPRENDRE ---
     if(currentProfile && s === "" && currentView === 'all') {
         let history = JSON.parse(localStorage.getItem('sfpp_hist_' + currentProfile) || "[]");
         if(history.length > 0) {
@@ -800,11 +803,9 @@ function render(search = "", keepScroll = false) {
                     const landscapeClass = isTV ? "landscape" : "";
                     const pct = (prog[m.t] && prog[m.t].p > 1) ? `<div class="prog-bg"><div class="prog-fill" style="width:${prog[m.t].p}%"></div></div>` : "";
                     const clickAction = isTV ? `playMovie(${playlistData.indexOf(m)})` : `openDetails(${playlistData.indexOf(m)})`;
-                    
                     const is_fav = favs.includes(m.t);
                     const heartClass = is_fav ? 'is-fav' : '';
                     const heartIcon = is_fav ? '❤️' : '♡';
-
                     let m_stars = "";
                     const m_note = m.note || 5;
                     for (let i = 0; i < 5; i++) { m_stars += (i < m_note) ? "★" : "☆"; }
@@ -823,6 +824,7 @@ function render(search = "", keepScroll = false) {
         } else histSec.style.display = "none";
     } else histSec.style.display = "none";
 
+    // --- TOUS LES FILMS ---
     if (s === "" && (currentView === 'all' || currentView === 'movies')) {
         const allMovies = playlistData.filter(m => m.cat && !m.cat.includes("SÉRIES") && !m.cat.toUpperCase().includes("DIRECT") && !m.cat.toUpperCase().includes("TV"));
         if (allMovies.length > 0) {
@@ -832,11 +834,9 @@ function render(search = "", keepScroll = false) {
                 const heartClass = is_fav ? 'is-fav' : '';
                 const heartIcon = is_fav ? '❤️' : '♡';
                 const pct = (prog[m.t] && prog[m.t].p > 1) ? `<div class="prog-bg"><div class="prog-fill" style="width:${prog[m.t].p}%"></div></div>` : "";
-                
                 let m_stars = "";
                 const m_note = m.note || 5;
                 for (let i = 0; i < 5; i++) { m_stars += (i < m_note) ? "★" : "☆"; }
-
                 html += `
                     <div class="card" tabindex="0">
                         <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${m.t.replace(/'/g, "\\'")}');">${heartIcon}</div>
@@ -852,56 +852,46 @@ function render(search = "", keepScroll = false) {
         }
     }
 
+    // --- CATEGORIES ---
     const allGenres = [];
-    data.forEach(m => {
-        if(m.cat) {
-            const genres = m.cat.split(',').map(g => g.trim().toUpperCase());
-            genres.forEach(g => { if(!allGenres.includes(g)) allGenres.push(g); });
-        }
-    });
-
+    data.forEach(m => { if(m.cat) { const genres = m.cat.split(',').map(g => g.trim().toUpperCase()); genres.forEach(g => { if(!allGenres.includes(g)) allGenres.push(g); }); } });
     allGenres.sort().forEach(c => {
         const filtered = data.filter(m => {
             const matchGenre = m.cat && m.cat.toUpperCase().includes(c);
-            const matchSearch = (s === "") || m.t.toLowerCase().includes(s) || 
-                                (m.year && m.year.toString().includes(s)) ||
-                                (m.actors_pics && m.actors_pics.some(a => a.name.toLowerCase().includes(s)));
-            
+            const matchSearch = (s === "") || m.t.toLowerCase().includes(s) || (m.year && m.year.toString().includes(s)) || (m.actors_pics && m.actors_pics.some(a => a.name.toLowerCase().includes(s)));
             return matchGenre && matchSearch;
         });
-
         if (filtered.length === 0) return;
         const isTVCat = c.includes("DIRECT") || c.includes("TV");
         const landscapeClass = isTVCat ? "landscape" : "";
-        
         let html = `<div class="category-title">${c}</div><div class="category-row"><div class="nav-arrow arrow-left" onclick="scrollSide(this, -400)">‹</div><div class="carousel">`;
         filtered.forEach(m => {
             const is_fav = favs.includes(m.t);
             const heartClass = is_fav ? 'is-fav' : '';
             const heartIcon = is_fav ? '❤️' : '♡';
             const clickAction = isTVCat ? `playMovie(${playlistData.indexOf(m)})` : `openDetails(${playlistData.indexOf(m)})`;
-            
             let m_stars = "";
             const m_note = m.note || 5;
             for (let i = 0; i < 5; i++) { m_stars += (i < m_note) ? "★" : "☆"; }
-
             html += `
                 <div class="card ${landscapeClass}" tabindex="0">
                     <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${m.t.replace(/'/g, "\\'")}');">${heartIcon}</div>
                     ${!isTVCat ? `<div class="card-rating">${m_stars}</div>` : ''}
-                    <div onclick="${clickAction}">
-                        <img src="${m.img}" loading="lazy">
-                        <div class="card-name">${m.t}</div>
-                    </div>
+                    <div onclick="${clickAction}"><img src="${m.img}" loading="lazy"><div class="card-name">${m.t}</div></div>
                 </div>`;
         });
         html += `</div><div class="nav-arrow arrow-right" onclick="scrollSide(this, 400)">›</div></div>`;
         cont.innerHTML += html;
     });
 
-    // Restaurer instantanément la position du scroll
+    // 3. RESTAURATION DU SCROLL : On demande au navigateur de replacer le scroll 
+    // UNIQUEMENT après avoir fini de dessiner les jaquettes.
     if (keepScroll) {
-        window.scrollTo(0, scrollPos);
+        requestAnimationFrame(() => {
+            window.scrollTo(0, scrollPos);
+            // Par sécurité pour certains mobiles, on double avec un petit délai
+            setTimeout(() => window.scrollTo(0, scrollPos), 10);
+        });
     }
 }
 
@@ -939,12 +929,10 @@ function playMovie(idx) {
     const m = playlistData[idx];
     currentPlayingTitle = m.t;
     document.getElementById('next-episode-btn').style.display = 'none';
-
     if (hls) { hls.destroy(); hls = null; }
     player.pause();
     player.src("");
     player.load();
-
     if(currentProfile) {
         let key = 'sfpp_hist_' + currentProfile;
         let hist = JSON.parse(localStorage.getItem(key) || "[]").filter(t => t !== m.t);
@@ -956,18 +944,13 @@ function playMovie(idx) {
     document.getElementById('series-overlay').style.display = 'none';
     const pSection = document.getElementById('player-section');
     pSection.style.display = 'block';
-    
     const backdrop = m.bg || m.img;
     document.getElementById('player-blur-bg').style.backgroundImage = `url('${backdrop}')`;
     player.poster(backdrop); 
-    
     let decodedUrl = "";
     try { decodedUrl = window.atob(m.url); } catch(e) { decodedUrl = m.url; }
-
     const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
-
     let type = decodedUrl.includes('.m3u8') ? 'application/x-mpegURL' : 'video/mp4';
-
     if (type === 'application/x-mpegURL') {
         if (Hls.isSupported()) {
             hls = new Hls();
@@ -988,7 +971,6 @@ function playMovie(idx) {
         if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
         player.play();
     }
-    
     player.src({ src: decodedUrl, type: type });
 }
 
