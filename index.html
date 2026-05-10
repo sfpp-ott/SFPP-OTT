@@ -228,6 +228,22 @@
         .btn-fav-card.is-fav { color: #e50914; background: rgba(0,0,0,0.7); }
         .btn-fav-card:not(.is-fav) { color: white; }
 
+        /* --- STYLES RATING ON CARD --- */
+        .card-rating {
+            position: absolute;
+            bottom: 35px;
+            left: 8px;
+            z-index: 10;
+            background: rgba(0,0,0,0.6);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 10px;
+            color: var(--gold);
+            font-weight: bold;
+            backdrop-filter: blur(4px);
+            pointer-events: none;
+        }
+
         /* --- STYLES EPG REELS --- */
         .epg-info { font-size: 10px; color: #e50914; margin-top: 4px; text-align: center; font-weight: bold; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; width: 100%; }
         .epg-time { font-size: 9px; color: #777; text-align: center; display: block; }
@@ -653,9 +669,14 @@ function openDetails(idx) {
         const heartClass = is_s_fav ? 'is-fav' : '';
         const heartIcon = is_s_fav ? '❤️' : '♡';
         
+        let s_stars = "";
+        const s_note = s.note || 5;
+        for (let i = 0; i < 5; i++) { s_stars += (i < s_note) ? "★" : "☆"; }
+        
         return `
         <div class="actor-item" style="flex:0 0 120px; position:relative;">
             <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${s.t.replace(/'/g, "\\'")}');">${heartIcon}</div>
+            <div class="card-rating">${s_stars}</div>
             <div onclick="openDetails(${playlistData.indexOf(s)})">
                 <img src="${s.img}" style="border-radius:4px; height:160px; width:110px; object-fit:cover;" loading="lazy">
                 <div class="actor-name">${s.t}</div>
@@ -781,9 +802,14 @@ function render(search = "") {
                     const heartClass = is_fav ? 'is-fav' : '';
                     const heartIcon = is_fav ? '❤️' : '♡';
 
+                    let m_stars = "";
+                    const m_note = m.note || 5;
+                    for (let i = 0; i < 5; i++) { m_stars += (i < m_note) ? "★" : "☆"; }
+
                     histCont.innerHTML += `
                         <div class="card ${landscapeClass}" tabindex="0">
                             <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${m.t.replace(/'/g, "\\'")}');">${heartIcon}</div>
+                            ${!isTV ? `<div class="card-rating">${m_stars}</div>` : ''}
                             <div onclick="${clickAction}">
                                 <img src="${m.img}" loading="lazy">${pct}
                                 <div class="card-name">${m.t}</div>
@@ -804,9 +830,14 @@ function render(search = "") {
                 const heartIcon = is_fav ? '❤️' : '♡';
                 const pct = (prog[m.t] && prog[m.t].p > 1) ? `<div class="prog-bg"><div class="prog-fill" style="width:${prog[m.t].p}%"></div></div>` : "";
                 
+                let m_stars = "";
+                const m_note = m.note || 5;
+                for (let i = 0; i < 5; i++) { m_stars += (i < m_note) ? "★" : "☆"; }
+
                 html += `
                     <div class="card" tabindex="0">
                         <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${m.t.replace(/'/g, "\\'")}');">${heartIcon}</div>
+                        <div class="card-rating">${m_stars}</div>
                         <div onclick="openDetails(${playlistData.indexOf(m)})">
                             <img src="${m.img}" loading="lazy">${pct}
                             <div class="card-name">${m.t}</div>
@@ -847,9 +878,14 @@ function render(search = "") {
             const heartIcon = is_fav ? '❤️' : '♡';
             const clickAction = isTVCat ? `playMovie(${playlistData.indexOf(m)})` : `openDetails(${playlistData.indexOf(m)})`;
             
+            let m_stars = "";
+            const m_note = m.note || 5;
+            for (let i = 0; i < 5; i++) { m_stars += (i < m_note) ? "★" : "☆"; }
+
             html += `
                 <div class="card ${landscapeClass}" tabindex="0">
                     <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${m.t.replace(/'/g, "\\'")}');">${heartIcon}</div>
+                    ${!isTVCat ? `<div class="card-rating">${m_stars}</div>` : ''}
                     <div onclick="${clickAction}">
                         <img src="${m.img}" loading="lazy">
                         <div class="card-name">${m.t}</div>
