@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -637,7 +636,6 @@ function openDetails(idx) {
     document.getElementById('details-play-btn').focus();
 }
 
-// FONCTION RECHERCHE PAR ACTEUR AJOUTÉE ICI
 window.searchByActor = function(actorName) {
     closeDetails(); 
     openSearch(); 
@@ -666,30 +664,49 @@ function updateFavBtnUI(title) {
 function closeDetails() { if (document.getElementById('details-overlay').style.display === 'flex') history.back(); }
 
 function initProfiles() {
+    // Charge les profils personnalisés ou utilise les défauts
     let profiles = JSON.parse(localStorage.getItem('sfpp_profiles_data')) || [
         { id: 1, name: "Profil 1", icon: "🟦", color: "#1e90ff" },
         { id: 2, name: "Profil 2", icon: "🟩", color: "#2ecc71" },
         { id: 3, name: "Profil 3", icon: "🟧", color: "#e67e22" },
         { id: 4, name: "Profil 4", icon: "🟪", color: "#9b59b6" }
     ];
+    
     const list = document.getElementById('profile-list');
-    list.innerHTML = profiles.map(p => `
-        <div class="profile-item" onclick="handleProfileClick(${p.id}, '${p.name}', '${p.icon}')" tabindex="0">
+    list.innerHTML = profiles.map(p => {
+        // Protection contre les apostrophes dans le nom pour le onclick
+        const safeName = p.name.replace(/'/g, "\\'");
+        return `
+        <div class="profile-item" onclick="handleProfileClick(${p.id}, '${safeName}', '${p.icon}')" tabindex="0">
             <div class="profile-avatar" style="background:${p.color}">${p.icon}</div>
             <div class="edit-icon">✏️</div>
             <div class="profile-name">${p.name}</div>
-        </div>`).join('');
+        </div>`;
+    }).join('');
 }
 
 function handleProfileClick(id, name, icon) {
     if(isEditMode) {
-        let n = prompt("Nouveau nom :", name);
-        if(n) {
-            let saved = JSON.parse(localStorage.getItem('sfpp_profiles_data') || "[]");
-            const idx = saved.findIndex(p => p.id === id);
-            if(idx !== -1) { saved[idx].name = n; localStorage.setItem('sfpp_profiles_data', JSON.stringify(saved)); initProfiles(); }
+        let n = prompt("Nouveau nom pour ce profil :", name);
+        if(n && n.trim() !== "") {
+            // On récupère la liste complète actuelle pour ne pas perdre les autres noms
+            let profiles = JSON.parse(localStorage.getItem('sfpp_profiles_data')) || [
+                { id: 1, name: "Profil 1", icon: "🟦", color: "#1e90ff" },
+                { id: 2, name: "Profil 2", icon: "🟩", color: "#2ecc71" },
+                { id: 3, name: "Profil 3", icon: "🟧", color: "#e67e22" },
+                { id: 4, name: "Profil 4", icon: "🟪", color: "#9b59b6" }
+            ];
+            
+            const idx = profiles.findIndex(p => p.id === id);
+            if(idx !== -1) { 
+                profiles[idx].name = n; 
+                localStorage.setItem('sfpp_profiles_data', JSON.stringify(profiles)); 
+                initProfiles(); // Rafraîchit l'affichage immédiatement
+            }
         }
-    } else selectProfile(name, icon);
+    } else {
+        selectProfile(name, icon);
+    }
 }
 
 function saveP() {
@@ -871,8 +888,6 @@ function playMovie(idx) {
         if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
         player.play();
     }
-    
-    player.src({ src: decodedUrl, type: type });
 }
 
 function playNextEpisode() {
