@@ -1,5 +1,61 @@
 [
   {
+    "num": "484",
+    "t": "Ballad of a Small Player",
+    "id_tmdb": "1272166",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/bf03033662e57165f4e78ec6676f9b93622433fa0807bf3c782e17afe6a16413/master.m3u8"
+  },
+  {
+    "num": "483",
+    "t": "Brainscan",
+    "id_tmdb": "14237",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/1b85138defaa89ef8d3431dd038390c52ac4c8997a1065aec28501538e441059/master.m3u8"
+  },
+  {
+    "num": "482",
+    "t": "Coyotes",
+    "id_tmdb": "1386827",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/6d6ce89b3be5118cabe33fcbfaae93c1d22de3029224be510e909c0307b3b601/master.m3u8"
+  },
+  {
+    "num": "481",
+    "t": "Falcon Express",
+    "id_tmdb": "1107216",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/10674c0bfe1bde6d28494f821a68fed7b48f15ab46f48cfa091ebe0b452549a2/master.m3u8"
+  },
+  {
+    "num": "480",
+    "t": "Mes voisins les Yamada",
+    "id_tmdb": "16198",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/98da6f314f72b3e9c21c370fe724a11914d61f3853dcb5a035c38d4f80c6fb52/master.m3u8"
+  },
+  {
+    "num": "479",
+    "t": "Ça – Il est de retour",
+    "id_tmdb": "19614",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/3c867b7917a2b58d7d4601e1ed3974f4cf6a2e766642c8805fce1fc552d22cb7/master.m3u8"
+  },
+  {
+    "num": "478",
+    "t": "The Wicker Man",
+    "id_tmdb": "16307",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/0ec60024246b0a14d606fe4e68ac7024df201c3f62a517887b306e29e2ba4068/master.m3u8"
+  },
+  {
+    "num": "477",
+    "t": "The Slumber Party Massacre",
+    "id_tmdb": "27475",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/030a9a118771a8671aca2556ae616304a33c4f9ae5f8b014f4eb12747be68954/master.m3u8"
+  },
+  {
     "num": "476",
     "t": "Hedda",
     "id_tmdb": "997113",
