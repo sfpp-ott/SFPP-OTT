@@ -554,7 +554,7 @@ window.addEventListener('popstate', function (event) {
         player.pause(); 
         player.src("");
         playerSection.style.display = 'none';
-        render();
+        render(document.getElementById('searchBar').value, true); // Garder le scroll
         return;
     }
 
@@ -704,7 +704,7 @@ function toggleFav(title) {
     else favs.push(title);
     localStorage.setItem(key, JSON.stringify(favs));
     updateFavBtnUI(title);
-    render(document.getElementById('searchBar').value);
+    render(document.getElementById('searchBar').value, true); // true = garde la position du scroll
 }
 
 function updateFavBtnUI(title) {
@@ -768,7 +768,10 @@ function saveP() {
 
 function scrollSide(btn, amt) { const car = btn.parentElement.querySelector('.carousel'); car.scrollBy({ left: amt, behavior: 'smooth' }); }
 
-function render(search = "") {
+function render(search = "", keepScroll = false) {
+    // Mémoriser le scroll avant reconstruction
+    const scrollPos = window.scrollY;
+    
     const cont = document.getElementById('categories-container');
     const histSec = document.getElementById('history-sec');
     const histCont = document.getElementById('history-container');
@@ -895,6 +898,11 @@ function render(search = "") {
         html += `</div><div class="nav-arrow arrow-right" onclick="scrollSide(this, 400)">›</div></div>`;
         cont.innerHTML += html;
     });
+
+    // Restaurer instantanément la position du scroll
+    if (keepScroll) {
+        window.scrollTo(0, scrollPos);
+    }
 }
 
 function openSeries(name) {
