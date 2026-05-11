@@ -1,5 +1,61 @@
 [
   {
+    "num": "508",
+    "t": "Nuits de Terreur",
+    "id_tmdb": "10727",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/0797ffc14e25de40a543d3eda49a8f083779664e953cc4caf5b47abd060898d4/master.m3u8"
+  },
+  {
+    "num": "507",
+    "t": "Un éléphant ça trompe énormément",
+    "id_tmdb": "2459",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/7460a506826af06a7a9c1ddfddd4888aa6d7bac8c3e8c9be045b6c65475da13c/master.m3u8"
+  },
+  {
+    "num": "506",
+    "t": "Bambi – La Vengeance",
+    "id_tmdb": "1049942",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/3d23b92788ed47f9ec09fbe0baa632080aeddfa2da242a26ecb8911825e45c4e/master.m3u8"
+  },
+  {
+    "num": "505",
+    "t": "Black Phone 2",
+    "id_tmdb": "1197137",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/bf5d06a3eacb417ee7e676b45707587b1c6f50194163f235b4e44160e3a89d55/master.m3u8"
+  },
+  {
+    "num": "504",
+    "t": "Escape From The 21st Century",
+    "id_tmdb": "1242372-21",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/8316e1a42c3713b3babc5bed70a23c8f010eac969bc68d652186e3f11db1683d/master.m3u8"
+  },
+  {
+    "num": "503",
+    "t": "La Main du Saigneur",
+    "id_tmdb": "108878",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/d5427ce8743e710d26c4771e780997bb497d1a6ce40cc753184bb7b9e1a2623c/master.m3u8"
+  },
+  {
+    "num": "502",
+    "t": "Nous Irons Tous au Paradis",
+    "id_tmdb": "40585",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/851d6c13117e195cf3e8b642c1fb2dbe057ba82461ba1cbd60f040ab8d12e187/master.m3u8"
+  },
+  {
+    "num": "501",
+    "t": "Rosemary’s Killer",
+    "id_tmdb": "44247",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/246e2fc22c03b335a0c39d7d96e4a928650a41139455b73af3528946b990bbfa/master.m3u8"
+  },
+  {
     "num": "500",
     "t": "Les Rats : Une histoire The Witcher",
     "id_tmdb": "1571470",
