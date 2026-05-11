@@ -1,5 +1,61 @@
 [
   {
+    "num": "516",
+    "t": "Awake",
+    "id_tmdb": "13483",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/d78f6f7e75a49265ca233b1c97dc809c84512fb579a6f9b84b0c0cce528c821b/master.m3u8"
+  },
+  {
+    "num": "515",
+    "t": "The Smashing Machine",
+    "id_tmdb": "760329",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/16880ed1bb45c41d3de2c7b574709545e10507f07f9b5e8e22d14c044a9e57d9/master.m3u8"
+  },
+  {
+    "num": "514",
+    "t": "A Christmas Prince",
+    "id_tmdb": "483104",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/39d70da9931b21e4883c03acf3d4ee2f867adee43af85e128cce9fa89ddb2292/master.m3u8"
+  },
+  {
+    "num": "513",
+    "t": "A Christmas Prince : The Royal Wedding",
+    "id_tmdb": "525041",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/a0eef8b5840595cc3295938d94a344bb8e0289446543c311c3c2e4edfbfbc0fe/master.m3u8"
+  },
+  {
+    "num": "512",
+    "t": "Allô Maman, c’est Noël",
+    "id_tmdb": "11982",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/f26ffbe81af7f1dedf4c596800bdc63b58b12ee9126a8f95ebd6d3032f7793b9/master.m3u8"
+  },
+  {
+    "num": "511",
+    "t": "Holidate",
+    "id_tmdb": "615665",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/befb78e6e8ac3a700ff2e7b89bf344c2480ca2ab8ac9592f3cb4c16603b8208a/master.m3u8"
+  },
+  {
+    "num": "510",
+    "t": "L’Étrange Noël de Lauren",
+    "id_tmdb": "299584",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/81affbad2877900bf5ef0c1f9272844bf13fd126e7102ba91a8783f7c4755101/master.m3u8"
+  },
+  {
+    "num": "509",
+    "t": "The Night Before",
+    "id_tmdb": "296100",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/84478da55265dd6f59274d93e3de42a47343ec1be0910ec35ad6b5c5ab08da91/master.m3u8"
+  },
+  {
     "num": "508",
     "t": "Nuits de Terreur",
     "id_tmdb": "10727",
