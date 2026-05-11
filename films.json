@@ -1,5 +1,61 @@
 [
   {
+    "num": "532",
+    "t": "Le médaillon de noël",
+    "id_tmdb": "310972",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/644e9058a77d6a0b2abfbb0a7e81a1a0e7b9cca12045b67f428a97d21d65b6cd/master.m3u8"
+  },
+  {
+    "num": "531",
+    "t": "Un ticket pour deux",
+    "id_tmdb": "2609",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/b9697b04517cd77184a7959d17f1a31a0a02110b744d997243304dce50d0ca52/master.m3u8"
+  },
+  {
+    "num": "530",
+    "t": "Happy birthday, souhaitez ne jamais être invité",
+    "id_tmdb": "37936",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/7fc445a15e256762480b800e2f1ff404a2b90bf260b81caee34e05a2f6d9c2ae/master.m3u8"
+  },
+  {
+    "num": "529",
+    "t": "Le Joueur d'échecs",
+    "id_tmdb": "748787",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/fbfcfe6170dd9e83c5c4401aab2b11e8b2ecc2e94a682f03bbd47c4c5c8ec628/master.m3u8"
+  },
+  {
+    "num": "528",
+    "t": "Angry Rescue",
+    "id_tmdb": "1474779",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/f8789f0a866783391aea37c94c04807eca9e973510e92217d0ff5e69142f107a/master.m3u8"
+  },
+  {
+    "num": "527",
+    "t": "Frankenstein",
+    "id_tmdb": "1062722",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/eb2e8d7e0f59373e0be4abf7c7f3a35a09f7cbeab32340e759d206f94d4c0ff3/master.m3u8"
+  },
+  {
+    "num": "526",
+    "t": "Good Fortune",
+    "id_tmdb": "1114967",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/9fe1194d214c84bc6db27853efa77e7ea77012b87bf6ffc6bcdd65111bb414c1/master.m3u8"
+  },
+  {
+    "num": "525",
+    "t": "Borat",
+    "id_tmdb": "496",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/e42c18026a1f140b4345b80a7a2c31da9d024f593fd5a4fbc6d14a067759aac6/master.m3u8"
+  },
+  {
     "num": "524",
     "t": "Last Christmas",
     "id_tmdb": "549053",
