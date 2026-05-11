@@ -1,5 +1,61 @@
 [
   {
+    "num": "524",
+    "t": "Last Christmas",
+    "id_tmdb": "549053",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/75d54e08d771d4f7226af889b10a39af463c08cd984a353610d46d3b2bdda9a6/master.m3u8"
+  },
+  {
+    "num": "523",
+    "t": "Les Rebelles de la Forêt 2",
+    "id_tmdb": "549053",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/1727b0b248035be603c5a7a2dc14ef8a8527e22985087408aa40102eb59482f7/master.m3u8"
+  },
+  {
+    "num": "522",
+    "t": "Les Ripoux",
+    "id_tmdb": "10260",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/2230a4815c36e4c9d5a7fdd5300e72215c515790a3972bf8655b93e7764f23aa/master.m3u8"
+  },
+  {
+    "num": "521",
+    "t": "Marius et les Gardiens de la Cité Phocéenne",
+    "id_tmdb": "1284484",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/66db7c761684beefd9d83c93895a8ef8258934ac046a51f2016a3f70ac3ff619/master.m3u8"
+  },
+  {
+    "num": "520",
+    "t": "Joyeux Noël Madagascar",
+    "id_tmdb": "25472",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/175298c13e76487a0b770a0ddb9b8bc459afa47c0b0499abed7bd8513068ce92/master.m3u8"
+  },
+  {
+    "num": "519",
+    "t": "Noelle",
+    "id_tmdb": "454467",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/329b37d810600c18cec56b628f50788e1ae0fd3eddce0b7ad38738e7fa71854c/master.m3u8"
+  },
+  {
+    "num": "518",
+    "t": "Que souffle la romance",
+    "id_tmdb": "810873",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/050af1a6580d4b31a061340c8aaeb80fe89dc355952e41dce633aeab3740fc24/master.m3u8"
+  },
+  {
+    "num": "517",
+    "t": "Reflet dans un diamant mort",
+    "id_tmdb": "1013446",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/72b6e3045ae2d2af3f3ca543f483231be9b89108eab05483b65764886f751a02/master.m3u8"
+  },
+  {
     "num": "516",
     "t": "Awake",
     "id_tmdb": "13483",
