@@ -1,5 +1,61 @@
 [
   {
+    "num": "548",
+    "t": "RoboCop",
+    "id_tmdb": "5548",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/08daf713323972438c5470e2b714e06b2eeb15250412707ef86178d84a1fbc49/master.m3u8"
+  },
+  {
+    "num": "547",
+    "t": "Spinal Tap II - The End Continues",
+    "id_tmdb": "975225",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/ca1344626520236ae61d7c8dcc87bf638cd5d1c3a2dbc2afe86329b4f6c99e5a/master.m3u8"
+  },
+  {
+    "num": "546",
+    "t": "The Ballad of Wallis Island",
+    "id_tmdb": "1122099",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/dd855c6bd4cc9bcdaed3e1dcb72673c5bc7c32b53113f64be4fd3c1b12955ea3/master.m3u8"
+  },
+  {
+    "num": "545",
+    "t": "Zero Dark Thirty",
+    "id_tmdb": "97630",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/372f60cd7f5db13849f4914b14629073b56b1d43938494012b8b824012aa19e4/master.m3u8"
+  },
+  {
+    "num": "544",
+    "t": "À bout de souffle",
+    "id_tmdb": "269",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/d0663c151e2df4bdcd2992e4ea1d6dd6c839549036282a1a9665be799975e4f5/master.m3u8"
+  },
+  {
+    "num": "543",
+    "t": "30 jours de nuit 2 – Jours sombres",
+    "id_tmdb": "42941",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/f7518bb8b095d8e37d216189b7606eb7afa69739b605db8a86527e0ddfaaabc0/master.m3u8"
+  },
+  {
+    "num": "542",
+    "t": "38°5 quai des Orfèvres",
+    "id_tmdb": "958603",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/09606d21a6a03396b61774b3adb129150e23134121c86cc211b1c75cb554e887/master.m3u8"
+  },
+  {
+    "num": "541",
+    "t": "Elmer, le remue-méninges",
+    "id_tmdb": "27814",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/78c298fc9b0df3931db3b1a94862d3fd709a6c5dc92fbf9ebddbf675eb3bd25d/master.m3u8"
+  },
+  {
     "num": "540",
     "t": "Climax",
     "id_tmdb": "507076",
