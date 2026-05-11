@@ -1,5 +1,61 @@
 [
   {
+    "num": "540",
+    "t": "Climax",
+    "id_tmdb": "507076",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/a76549ae54e6de2718ecac4aeada20450d229022530d47760e6c33191ef3a36a/master.m3u8"
+  },
+  {
+    "num": "539",
+    "t": "Flubber",
+    "id_tmdb": "9574",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/0cb85753f3dc24c8c8949a84bde6e79d61bf5b4f159ddcdb48844601722b1f18/master.m3u8"
+  },
+  {
+    "num": "538",
+    "t": "Harakiri",
+    "id_tmdb": "14537",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/75129518c043c8ab27c51930dabc7ba6463d4baf71246bce1764e142e2ae6303/master.m3u8"
+  },
+  {
+    "num": "537",
+    "t": "Joy et moi de Tyler Perry",
+    "id_tmdb": "1252382",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/b975319f067970051d67f662ce6b290f3170742c3e82941a0c0c32f3f83cb790/master.m3u8"
+  },
+  {
+    "num": "536",
+    "t": "Jun, la voix du cœur",
+    "id_tmdb": "364111",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/50d1e7235eff2cfed2d954d61e8f9ecd224068b428ceb7d39afc61a38c39b1e2/master.m3u8"
+  },
+  {
+    "num": "535",
+    "t": "La Femme de mon pote",
+    "id_tmdb": "64504",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/9c692d76bf59c84746035c325ac3acd02348c9fc9b62c36543723c4edefed464/master.m3u8"
+  },
+  {
+    "num": "534",
+    "t": "La Ligne rouge",
+    "id_tmdb": "8741",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/8f3d7e39396d3d36473622ea3512b6af91de4f7cb13b5fe943431e9c00af621f/master.m3u8"
+  },
+  {
+    "num": "533",
+    "t": "Le Temps d'un week-end",
+    "id_tmdb": "9475",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/e9604fdef03424a744610f3d25610673e0da7a9d6500cb5262dd84cc14a63b63/master.m3u8"
+  },
+  {
     "num": "532",
     "t": "Le médaillon de noël",
     "id_tmdb": "310972",
