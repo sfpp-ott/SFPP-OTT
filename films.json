@@ -1,5 +1,75 @@
 [
   {
+    "num": "588",
+    "t": "Virgin Suicides",
+    "id_tmdb": "1443",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/8eadf662a143748b6a2178be7b13f1d04d97976e71655581d5536ca9ba976b85/master.m3u8"
+  },
+  {
+    "num": "587",
+    "t": "Le Retour de Frankenstein",
+    "id_tmdb": "3075",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/e299e77d274bce3fd42dba7008d9d6f07ed10df7bb0a117ae10c76a701ff8809/master.m3u8"
+  },
+  {
+    "num": "586",
+    "t": "Une bataille après l'autre",
+    "id_tmdb": "1054867",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/94695dc63fcd77f76f84991260605b2b607990a764eed3cd3dc32f7ed07be3eb/master.m3u8"
+  },
+  {
+    "num": "585",
+    "t": "Papamobile",
+    "id_tmdb": "1186640",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/b3a10674ac2d31f2a79574c986d20783c0043f3cdb906aa8964ba96b287e602d/master.m3u8"
+  },
+  {
+    "num": "584",
+    "t": "Une journée incontrôlable",
+    "id_tmdb": "1248226",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/1a37e0a4a14cada25d6aa9675542cc3d12a1dd24456ff843217fb50c639843ab/master.m3u8"
+  },
+  {
+    "num": "583",
+    "t": "Tron : Ares",
+    "id_tmdb": "533533",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/496b48cad73ed99d34efe72b4a20f60f389231c443ba6deec682f3e70503584c/master.m3u8"
+  },
+  {
+    "num": "582",
+    "t": "M. Peabody et Sherman : Les Voyages dans le Temps",
+    "id_tmdb": "82703",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/44f925ffdeef6f8ec8e887847a0b50a32cc01200acefbed2dfca166db9d3ced2/master.m3u8"
+  },
+  {
+    "num": "581",
+    "t": "5 centimètres par seconde",
+    "id_tmdb": "38142",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/d7bb8ccac2ddd36435795e927d6a559956dbe8d5c0a6d9aa2646480df080e979/master.m3u8"
+  },
+  {
+    "num": "580",
+    "t": "A Real Pain",
+    "id_tmdb": "1013850",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/8d0c175a5b4d334b5e46be8aea712e1585e60d0be1be7cdcd04c952809560c7f/master.m3u8"
+  },
+  {
+    "num": "579",
+    "t": "Apocalypse Now",
+    "id_tmdb": "28",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/5aa38e07aa8db256992b742365d6f32c638be3c17ce50756add99594bf40ed50/master.m3u8"
+  },
+  {
     "num": "578",
     "t": "Frankenstein créa la femme",
     "id_tmdb": "3104",
