@@ -1,5 +1,75 @@
 [
   {
+    "num": "568",
+    "t": "Night Screams",
+    "id_tmdb": "85156",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/344eeeca4f931253919071f9b60748c5c8a1839b39df57c1d64b15ea18d73316/master.m3u8"
+  },
+  {
+    "num": "567",
+    "t": "Pan",
+    "id_tmdb": "266647",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/7b348193c961679679de3b565a0c3e5efa1caddc67c1c5db20f0d027ab1419ac/master.m3u8"
+  },
+  {
+    "num": "566",
+    "t": "Paris, Texas",
+    "id_tmdb": "655",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/54ff7783046256a26a0378b329852384d59a31c93fa9f48b5bd84020329dd876/master.m3u8"
+  },
+  {
+    "num": "565",
+    "t": "Rue Cases-Nègres",
+    "id_tmdb": "42115",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/a212a99d6a7e15ff8b8e9ad721bc9614b1a8ce54f93dc2189320ccd2c6ef8d15/master.m3u8"
+  },
+  {
+    "num": "564",
+    "t": "The Big Lebowski",
+    "id_tmdb": "115",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/ee8147858e05ac33e32a0cc5dedd66058f4892d59442eeceaf67f06e889c8c83/master.m3u8"
+  },
+  {
+    "num": "563",
+    "t": "Désigné coupable",
+    "id_tmdb": "644583",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/46806c068bce4dd956f55b6d52997351819066144eb820ceb213ff229e127879/master.m3u8"
+  },
+  {
+    "num": "562",
+    "t": "Tron",
+    "id_tmdb": "97",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/41a41b1199c81741661bce5c78f4aaf8f9f3eca7c6f938ce5059371794fba937/master.m3u8"
+  },
+  {
+    "num": "561",
+    "t": "Dans l'ombre de Mary : La promesse de Walt Disney",
+    "id_tmdb": "140823",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/b01f43bd0c44403bf09d55f40aefcb05f3f3289fad7115f7737e9c68a8a623e8/master.m3u8"
+  },
+  {
+    "num": "560",
+    "t": "Black Christmas",
+    "id_tmdb": "16938",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/21c02c1b7efc2584707ff8734f7249786ed57f4e9bb63e82f61d14599838474f/master.m3u8"
+  },
+  {
+    "num": "559",
+    "t": "Daylight",
+    "id_tmdb": "11228",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/74e4e5e95ab3ac0bcd97c5219a5ac888696da8f0e7c58b1681917070c13f4d3b/master.m3u8"
+  },
+  {
     "num": "558",
     "t": "Brazil",
     "id_tmdb": "68",
