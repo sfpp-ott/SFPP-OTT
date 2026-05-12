@@ -1,5 +1,75 @@
 [
   {
+    "num": "558",
+    "t": "Brazil",
+    "id_tmdb": "68",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/25f829191a3c9a6c1398fa9b2d6f885ccefb09eb397dbd7e2dbdb2d50e4d7121/master.m3u8"
+  },
+  {
+    "num": "557",
+    "t": "Frankenstein s’est échappé",
+    "id_tmdb": "3079",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/7d40cdd8939bb8ce7dd4b42a91bc0f497a459bbf83f4c535b1cc6c1b26bffef3/master.m3u8"
+  },
+  {
+    "num": "556",
+    "t": "In the Mood for Love",
+    "id_tmdb": "843",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/f81ff8f9b1ba8d5059244a5f89a41488d7d3e1cf3c40f546426eea7e6d95bbb4/master.m3u8"
+  },
+  {
+    "num": "555",
+    "t": "Juliette des esprits",
+    "id_tmdb": "19120",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/490169e247f60bd252ca2dd4d17a11aa6d248dac6f5206aa5db1f5cfff94e928/master.m3u8"
+  },
+  {
+    "num": "554",
+    "t": "Le Chant de la Mer",
+    "id_tmdb": "110416",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/b97450a71faf6be3480fb78903b43e64808b07e4325b4c69851a2ae1bc54bfd8/master.m3u8"
+  },
+  {
+    "num": "553",
+    "t": "Les Traducteurs",
+    "id_tmdb": "477018",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/b3dcb3c3222371402911c757f98e99a2ee4ec963dd45a4025bc0c62b5acd22b5/master.m3u8"
+  },
+  {
+    "num": "552",
+    "t": "Logan Lucky",
+    "id_tmdb": "399170",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/afaf9dfbe82d7b3c91ad1c684e6515004abe147b40e8bac2059f0470703dc617/master.m3u8"
+  },
+  {
+    "num": "551",
+    "t": "Macadam Cowboy",
+    "id_tmdb": "3116",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/dd0eb0186b466c46aaaad1fd9217b1edff3619590effe5b700faaf95bdc11743/master.m3u8"
+  },
+  {
+    "num": "550",
+    "t": "MK Ultra",
+    "id_tmdb": "1018247",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/9460a7ac4fe1e0c86e68cabea9c5a85808a9c05c266674d6dbeaaf5437590203/master.m3u8"
+  },
+  {
+    "num": "549",
+    "t": "Mr Wolff",
+    "id_tmdb": "302946",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/58ccc048dabe0e119be084a028386bce7755ce4c6bcd4aca7c26bf14b83fe192/master.m3u8"
+  },
+  {
     "num": "548",
     "t": "RoboCop",
     "id_tmdb": "5548",
