@@ -1,5 +1,75 @@
 [
   {
+    "num": "578",
+    "t": "Frankenstein créa la femme",
+    "id_tmdb": "3104",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/cc26bb2202c2f4e89547275cbcb492d5ee282356a6abf2283b6d28d41e91fc29/master.m3u8"
+  },
+  {
+    "num": "577",
+    "t": "Impossible… pas français",
+    "id_tmdb": "173907",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/c5fd9bdb9ab3f03f2bab409ae0135027ca0fd7d5bbea12f638fb2f2f6eddebf5/master.m3u8"
+  },
+  {
+    "num": "576",
+    "t": "Le Patient Anglais",
+    "id_tmdb": "409",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/01cfa1e1b53d407504a896588a8677ad63aed7e063f6b95a10f68051f84809ac/master.m3u8"
+  },
+  {
+    "num": "575",
+    "t": "Le Message",
+    "id_tmdb": "26842",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/431c5619a6954d000c7ff02ae16966ba62db1265e968ffc8ba3ac77670a3253f/master.m3u8"
+  },
+  {
+    "num": "574",
+    "t": "Les Horreurs de Frankenstein",
+    "id_tmdb": "3145",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/ca8b28f2ccbcd19d30ae618490fac99df107d32b3b970b99663b90f4809551db/master.m3u8"
+  },
+  {
+    "num": "573",
+    "t": "Marriage Story",
+    "id_tmdb": "492188",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/e76b18279713e9c2ca5c5119d1b501bacae157c56ccf105040a589090534ffd4/master.m3u8"
+  },
+  {
+    "num": "572",
+    "t": "Mystic River",
+    "id_tmdb": "322",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/4c3ab96c7f8718494b4f0a38cca9d5d206339202045b0b9b094d5cbd26f65ded/master.m3u8"
+  },
+  {
+    "num": "571",
+    "t": "Orgueil et Préjugés",
+    "id_tmdb": "4348",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/dad1f011bc382202ef67cad0a9e541b25686c4527c52813ec667c7b62133cfcd/master.m3u8"
+  },
+  {
+    "num": "570",
+    "t": "Quai des Orfèvres",
+    "id_tmdb": "49842",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/77c33ab2a0d9963430ccf62204b56591d94ae8c6332d121e8cd2f5b634cdf354/master.m3u8"
+  },
+  {
+    "num": "569",
+    "t": "The Fabelmans",
+    "id_tmdb": "804095",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/74e4e5e95ab3ac0bcd97c5219a5ac888696da8f0e7c58b1681917070c13f4d3b/master.m3u8"
+  },
+  {
     "num": "568",
     "t": "Night Screams",
     "id_tmdb": "85156",
