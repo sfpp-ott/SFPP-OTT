@@ -1,5 +1,75 @@
 [
   {
+    "num": "598",
+    "t": "Belles à Mourir",
+    "id_tmdb": "10490",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/fcee97bb710e444d4f64aede123b6c55e179bc62f70a749c683caaba9c8a97d0/master.m3u8"
+  },
+  {
+    "num": "597",
+    "t": "Bone Collector",
+    "id_tmdb": "9481",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/9e8a8369079453eea16204ddaffecc496807a4e845562c69be6d5bc39ee43a82/master.m3u8"
+  },
+  {
+    "num": "596",
+    "t": "Freaks, la monstrueuse parade",
+    "id_tmdb": "136",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/3f7a35f52c8f6428cd76fa89d2d1ef621d244b1f82d68012e154ac7fb88c03ae/master.m3u8"
+  },
+  {
+    "num": "595",
+    "t": "Il était une fois dans l’Ouest",
+    "id_tmdb": "335",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/ecad3154ce14fd05380a671c193542a038559bb02ab28d97b57e2a4c6cf9698f/master.m3u8"
+  },
+  {
+    "num": "594",
+    "t": "Empire du soleil",
+    "id_tmdb": "10110",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/7afee18ffd03f56ae02ce7b9a0a7fdb28ee0004493587595d7f468ee59258aa2/master.m3u8"
+  },
+  {
+    "num": "593",
+    "t": "Larry Flynt",
+    "id_tmdb": "1630",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/ee48cc504205933a388ed9b81b551f3f7d1529eb0d31a38a5646abaa6ca5ad82/master.m3u8"
+  },
+  {
+    "num": "592",
+    "t": "Love and Monsters",
+    "id_tmdb": "590223",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/3ca66e7ccb162d26f2afc32286f8fba33419e11fdae7b901e8767f18730d7fe4/master.m3u8"
+  },
+  {
+    "num": "591",
+    "t": "Ma femme s'appelle reviens",
+    "id_tmdb": "77830",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/222f51b1c93086e521102e1ce5a15efd2dc1673025bd60426a3318ce84b659af/master.m3u8"
+  },
+  {
+    "num": "590",
+    "t": "Silence",
+    "id_tmdb": "68730",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/360fd4673563c58b12299130bfe0090ff865435ca28d80ecdbfd4e5b305f2470/master.m3u8"
+  },
+  {
+    "num": "589",
+    "t": "Thomas Crown",
+    "id_tmdb": "913",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/28d85afcc82cc978e5dba7d6f3971c2541e2ccc362a0485bab00847e09b455d8/master.m3u8"
+  },
+  {
     "num": "588",
     "t": "Virgin Suicides",
     "id_tmdb": "1443",
