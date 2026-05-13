@@ -523,12 +523,13 @@
 </script>
 
 <script>
-// --- FONCTION D'EXTRACTION FILEMOON ---
+// --- FONCTION D'EXTRACTION FILEMOON AVEC FALLBACK IFRAME ---
 async function getFileMoonLink(url) {
     document.getElementById('extractor-loader').style.display = 'flex';
     const proxy = "https://api.allorigins.win/raw?url=";
     try {
         const response = await fetch(proxy + encodeURIComponent(url));
+        if (!response.ok) throw new Error('Proxy unreachable');
         const html = await response.text();
         const packed = html.match(/eval\(function\(p,a,c,k,e,d\).+?\}\)\)/);
         if (packed) {
@@ -550,7 +551,7 @@ async function getFileMoonLink(url) {
     } finally {
         document.getElementById('extractor-loader').style.display = 'none';
     }
-    return url;
+    return null; // Extraction échouée
 }
 
 document.onkeydown = function(e) {
@@ -558,6 +559,7 @@ document.onkeydown = function(e) {
         return false;
     }
 };
+
 setInterval(function() { (function() { debugger; }).call(); }, 5000);
 
 let player, playlistData = [], currentProfile = null, isEditMode = false, currentView = 'all', currentPlayingTitle = "", exitConfirmed = false;
@@ -597,6 +599,11 @@ window.addEventListener('popstate', function (event) {
         if(hls) { hls.destroy(); hls = null; }
         player.pause(); 
         player.src("");
+        
+        // Supprime l'éventuelle iframe
+        const oldIframe = document.getElementById('iframe-backup');
+        if(oldIframe) oldIframe.remove();
+        
         playerSection.style.display = 'none';
         render();
         return;
@@ -622,7 +629,7 @@ async function loadPlaylist() {
             m.original_index = index;
             if (m.id_tmdb && (!m.img || !m.desc || !m.trailer)) {
                 try {
-                    const url = `https://api.themoviedb.org/3/movie/${m.id_tmdb}?api_key=${apiKey}&language=fr-FR&append_to_response=videos,credits&include_video_language=en,fr,null`;
+                    const url = `https://api.themoviedb.org/3/movie/${m.id_tmdb}?api_key=${apiKey}&language=fr-FR&append_to_response=videos,credits`;
                     const res = await fetch(url);
                     const data = await res.json();
                     
@@ -782,12 +789,7 @@ function handleProfileClick(id, name, icon) {
     if(isEditMode) {
         let n = prompt("Nouveau nom :", name);
         if(n && n.trim() !== "") {
-            let profiles = JSON.parse(localStorage.getItem('sfpp_profiles_data')) || [
-                { id: 1, name: "Profil 1", icon: "🟦", color: "#1e90ff" },
-                { id: 2, name: "Profil 2", icon: "🟩", color: "#2ecc71" },
-                { id: 3, name: "Profil 3", icon: "🟧", color: "#e67e22" },
-                { id: 4, name: "Profil 4", icon: "🟪", color: "#9b59b6" }
-            ];
+            let profiles = JSON.parse(localStorage.getItem('sfpp_profiles_data')) || [];
             const idx = profiles.findIndex(p => p.id === id);
             if(idx !== -1) { 
                 profiles[idx].name = n; 
@@ -970,25 +972,49 @@ function openSeries(name) {
     content.innerHTML = html;
 }
 
+// --- LOGIQUE DE LECTURE HYBRIDE ---
 async function playMovie(idx) {
     const m = playlistData[idx];
     currentPlayingTitle = m.t;
-    document.getElementById('next-episode-btn').style.display = 'none';
-
-    // --- LOGIQUE EXTRACTION FILEMOON ---
+    
     let url = "";
     try { url = window.atob(m.url); } catch(e) { url = m.url; }
 
-    if (url.includes("filemoon")) {
-        url = await getFileMoonLink(url);
-    }
-    // -----------------------------------
+    const pSection = document.getElementById('player-section');
+    const videoContainer = document.getElementById('video-container');
 
-    history.replaceState({ overlay: 'player' }, "");
+    // Nettoyage de l'ancienne session
+    const oldIframe = document.getElementById('iframe-backup');
+    if(oldIframe) oldIframe.remove();
     if (hls) { hls.destroy(); hls = null; }
     player.pause();
     player.src("");
-    player.load();
+
+    // 1. Si c'est un lien FileMoon, on tente l'extraction dynamique
+    if (url.includes("filemoon")) {
+        const cleanLink = await getFileMoonLink(url);
+        
+        if (cleanLink && (cleanLink.includes('.mp4') || cleanLink.includes('.m3u8'))) {
+            launchVideoJS(cleanLink, m);
+        } else {
+            // SI L'EXTRACTION ÉCHOUE : On lance l'Iframe (Plan B Indestructible)
+            launchIframe(url, m);
+        }
+    } else {
+        // Lien normal (direct ou autre)
+        launchVideoJS(url, m);
+    }
+}
+
+// Fonction pour lancer le lecteur Fantasy (Video.js)
+function launchVideoJS(url, m) {
+    history.replaceState({ overlay: 'player' }, "");
+    const pSection = document.getElementById('player-section');
+    const videoContainer = document.getElementById('video-container');
+    
+    pSection.style.display = 'block';
+    videoContainer.style.display = 'flex';
+    document.getElementById('next-episode-btn').style.display = 'none';
 
     if(currentProfile) {
         let key = 'sfpp_hist_' + currentProfile;
@@ -996,11 +1022,9 @@ async function playMovie(idx) {
         hist.push(m.t); if(hist.length > 15) hist.shift();
         localStorage.setItem(key, JSON.stringify(hist));
     }
+    
     document.getElementById('details-overlay').style.display = 'none';
-    document.getElementById('details-trailer-box').innerHTML = "";
     document.getElementById('series-overlay').style.display = 'none';
-    const pSection = document.getElementById('player-section');
-    pSection.style.display = 'block';
     
     const backdrop = m.bg || m.img;
     document.getElementById('player-blur-bg').style.backgroundImage = `url('${backdrop}')`;
@@ -1009,26 +1033,46 @@ async function playMovie(idx) {
     const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
     let type = url.includes('.m3u8') ? 'application/x-mpegURL' : 'video/mp4';
 
-    if (type === 'application/x-mpegURL') {
-        if (Hls.isSupported()) {
-            hls = new Hls();
-            hls.loadSource(url);
-            hls.attachMedia(document.querySelector('#main-video_html5_api'));
-            hls.on(Hls.Events.MANIFEST_PARSED, function() { 
-                if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
-                player.play(); 
-            });
-            hls.on(Hls.Events.LEVEL_LOADED, function() { player.on('timeupdate', saveP); });
-        } else {
-            player.src({ src: url, type: type });
+    if (type === 'application/x-mpegURL' && Hls.isSupported()) {
+        hls = new Hls();
+        hls.loadSource(url);
+        hls.attachMedia(document.querySelector('#main-video_html5_api'));
+        hls.on(Hls.Events.MANIFEST_PARSED, function() { 
             if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
-            player.play();
-        }
+            player.play(); 
+        });
+        hls.on(Hls.Events.LEVEL_LOADED, function() { player.on('timeupdate', saveP); });
     } else {
         player.src({ src: url, type: type });
         if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
         player.play();
     }
+}
+
+// Fonction pour lancer l'Iframe FileMoon (Plan B indestructible)
+function launchIframe(url, m) {
+    history.replaceState({ overlay: 'player' }, "");
+    const pSection = document.getElementById('player-section');
+    const videoContainer = document.getElementById('video-container');
+    
+    pSection.style.display = 'block';
+    videoContainer.style.display = 'none'; // Cache VideoJS
+
+    document.getElementById('details-overlay').style.display = 'none';
+    document.getElementById('series-overlay').style.display = 'none';
+
+    const iframe = document.createElement('iframe');
+    iframe.id = 'iframe-backup';
+    iframe.src = url;
+    iframe.style.position = 'absolute';
+    iframe.style.inset = '0';
+    iframe.style.width = '100%';
+    iframe.style.height = '100%';
+    iframe.style.border = 'none';
+    iframe.style.zIndex = '10';
+    iframe.allowFullscreen = true;
+    
+    pSection.appendChild(iframe);
 }
 
 function playNextEpisode() {
