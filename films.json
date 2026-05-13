@@ -1,5 +1,75 @@
 [
   {
+    "num": "608",
+    "t": "Alexandre",
+    "id_tmdb": "1966",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/da70f0bb7ec5092de7a04a67611963b0aaa5c81f128c5ae06dfd721a4370f4d2/master.m3u8"
+  },
+  {
+    "num": "607",
+    "t": "Au rythme de Vera",
+    "id_tmdb": "1171153",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/65f19a3c3e45c07d006df615d636d6586c0ac5c524ba673154c567719b8749dd/master.m3u8"
+  },
+  {
+    "num": "606",
+    "t": "Dracula, prince des ténèbres",
+    "id_tmdb": "17102",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/b888a7aa3e2824397a85cd23d533b46c6324601e8f2607606fa707843f2a2f82/master.m3u8"
+  },
+  {
+    "num": "605",
+    "t": "Dracula 73",
+    "id_tmdb": "33020",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/a6cb75c696dee2ef2349173a474d4debebf3e71e70db83d4e7116f95c1a1f25a/master.m3u8"
+  },
+  {
+    "num": "604",
+    "t": "Dracula et les femmes",
+    "id_tmdb": "29778",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/84e260d2eb929bf285162c8afc087e0d315edb81df7989256005327bf404e4e1/master.m3u8"
+  },
+  {
+    "num": "603",
+    "t": "Dracula vit toujours à Londres",
+    "id_tmdb": "35669",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/364d9db5067aad07de40b43387dca6b1acd17d9a18e8e4272fdbd970bf96a7a7/master.m3u8"
+  },
+  {
+    "num": "602",
+    "t": "Ferrari Tsamère Lecaplain : Le trio en direct au cinéma",
+    "id_tmdb": "1422481",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/51f2ccf8d12bdc0b897affc31bbb4ddd26bfd87e6c89d560a9189425254f2dcf/master.m3u8"
+  },
+  {
+    "num": "601",
+    "t": "Le Cauchemar de Dracula",
+    "id_tmdb": "11868",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/222f51b1c93086e521102e1ce5a15efd2dc1673025bd60426a3318ce84b659af/master.m3u8"
+  },
+  {
+    "num": "600",
+    "t": "Les Lumières de la ville",
+    "id_tmdb": "901",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/76ad3f3377e94127950878f4fa5cb1b0baafc89055efa0fc650fe77ac2137d80/master.m3u8"
+  },
+  {
+    "num": "599",
+    "t": "Les Cicatrices de Dracula",
+    "id_tmdb": "34479",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/7c24fd8480f32895d7f907a284a333ed4b4e38f1d1c80666a2307cbdae0f3b91/master.m3u8"
+  },
+  {
     "num": "598",
     "t": "Belles à Mourir",
     "id_tmdb": "10490",
