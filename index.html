@@ -255,6 +255,14 @@
         .episode-item { background: #111; padding: 15px; border-radius: 6px; margin-bottom: 8px; cursor: pointer; display: flex; align-items: center; gap: 15px; border: 1px solid #222; }
         .btn-close { background: #333; color: #fff; border: none; padding: 10px 22px; border-radius: 4px; cursor: pointer; }
 
+        /* LOADER EXTRACTION */
+        #extractor-loader {
+            position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 99999;
+            display: none; align-items: center; justify-content: center; flex-direction: column;
+        }
+        .spinner { width: 50px; height: 50px; border: 5px solid rgba(255,255,255,0.1); border-top: 5px solid var(--accent); border-radius: 50%; animation: spin 1s linear infinite; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
         @media (max-width: 768px) {
             .card { flex: 0 0 130px; width: 130px; }
             .card img { width: 130px !important; height: 195px !important; }
@@ -264,6 +272,12 @@
     </style>
 </head>
 <body oncontextmenu="return false;"> 
+
+<div id="extractor-loader">
+    <div class="spinner"></div>
+    <p style="margin-top:20px; font-weight:bold; color:white;">Chargement du flux propre...</p>
+</div>
+
 <div id="login-screen">
     <form class="login-box" onsubmit="event.preventDefault(); checkLogin();">
         <div class="logo" style="margin-bottom:20px">SFPP ELITE</div>
@@ -509,6 +523,36 @@
 </script>
 
 <script>
+// --- FONCTION D'EXTRACTION FILEMOON ---
+async function getFileMoonLink(url) {
+    document.getElementById('extractor-loader').style.display = 'flex';
+    const proxy = "https://api.allorigins.win/raw?url=";
+    try {
+        const response = await fetch(proxy + encodeURIComponent(url));
+        const html = await response.text();
+        const packed = html.match(/eval\(function\(p,a,c,k,e,d\).+?\}\)\)/);
+        if (packed) {
+            const unpacked = (function(packed) {
+                const args = packed.match(/\}\('(.*)',\s*(\d+),\s*(\d+),\s*'(.*)'\.split\('\|'\)/);
+                if (!args) return packed;
+                let [_, p, a, c, k] = args;
+                a = parseInt(a); c = parseInt(c); k = k.split('|');
+                let e = (c) => (c < a ? '' : e(parseInt(c / a))) + ((c = c % a) > 35 ? String.fromCharCode(c + 29) : c.toString(36));
+                while (c--) { if (k[c]) { let re = new RegExp('\\b' + e(c) + '\\b', 'g'); p = p.replace(re, k[c]); } }
+                return p;
+            })(packed[0]);
+            
+            const finalUrl = unpacked.match(/file:"(https:\/\/[\w\.\/\-\?\&\%=\d\_]+?(\.mp4|\.m3u8).*?)"/);
+            if (finalUrl) return finalUrl[1];
+        }
+    } catch (e) {
+        console.error("Erreur extraction FileMoon", e);
+    } finally {
+        document.getElementById('extractor-loader').style.display = 'none';
+    }
+    return url;
+}
+
 document.onkeydown = function(e) {
     if (e.keyCode == 123 || (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74)) || (e.ctrlKey && e.keyCode == 85)) {
         return false;
@@ -926,12 +970,21 @@ function openSeries(name) {
     content.innerHTML = html;
 }
 
-function playMovie(idx) {
-    history.replaceState({ overlay: 'player' }, "");
+async function playMovie(idx) {
     const m = playlistData[idx];
     currentPlayingTitle = m.t;
     document.getElementById('next-episode-btn').style.display = 'none';
 
+    // --- LOGIQUE EXTRACTION FILEMOON ---
+    let url = "";
+    try { url = window.atob(m.url); } catch(e) { url = m.url; }
+
+    if (url.includes("filemoon")) {
+        url = await getFileMoonLink(url);
+    }
+    // -----------------------------------
+
+    history.replaceState({ overlay: 'player' }, "");
     if (hls) { hls.destroy(); hls = null; }
     player.pause();
     player.src("");
@@ -953,17 +1006,13 @@ function playMovie(idx) {
     document.getElementById('player-blur-bg').style.backgroundImage = `url('${backdrop}')`;
     player.poster(backdrop); 
     
-    let decodedUrl = "";
-    try { decodedUrl = window.atob(m.url); } catch(e) { decodedUrl = m.url; }
-
     const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
-
-    let type = decodedUrl.includes('.m3u8') ? 'application/x-mpegURL' : 'video/mp4';
+    let type = url.includes('.m3u8') ? 'application/x-mpegURL' : 'video/mp4';
 
     if (type === 'application/x-mpegURL') {
         if (Hls.isSupported()) {
             hls = new Hls();
-            hls.loadSource(decodedUrl);
+            hls.loadSource(url);
             hls.attachMedia(document.querySelector('#main-video_html5_api'));
             hls.on(Hls.Events.MANIFEST_PARSED, function() { 
                 if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
@@ -971,17 +1020,15 @@ function playMovie(idx) {
             });
             hls.on(Hls.Events.LEVEL_LOADED, function() { player.on('timeupdate', saveP); });
         } else {
-            player.src({ src: decodedUrl, type: type });
+            player.src({ src: url, type: type });
             if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
             player.play();
         }
     } else {
-        player.src({ src: decodedUrl, type: type });
+        player.src({ src: url, type: type });
         if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
         player.play();
     }
-    
-    player.src({ src: decodedUrl, type: type });
 }
 
 function playNextEpisode() {
