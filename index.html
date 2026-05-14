@@ -255,6 +255,14 @@
         .episode-item { background: #111; padding: 15px; border-radius: 6px; margin-bottom: 8px; cursor: pointer; display: flex; align-items: center; gap: 15px; border: 1px solid #222; }
         .btn-close { background: #333; color: #fff; border: none; padding: 10px 22px; border-radius: 4px; cursor: pointer; }
 
+        /* --- STYLE LOADER EXTRACTION --- */
+        #extractor-loader { position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 99999; display: none; align-items: center; justify-content: center; flex-direction: column; }
+        .spinner { width: 50px; height: 50px; border: 5px solid rgba(255,255,255,0.1); border-top: 5px solid var(--accent); border-radius: 50%; animation: spin 1s linear infinite; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        /* --- STYLE IFRAME BACKUP --- */
+        #backup-iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; z-index: 10; display: none; }
+
         @media (max-width: 768px) {
             .card { flex: 0 0 130px; width: 130px; }
             .card img { width: 130px !important; height: 195px !important; }
@@ -263,7 +271,13 @@
         }
     </style>
 </head>
-<body oncontextmenu="return false;"> 
+<body oncontextmenu="return false;">
+
+<div id="extractor-loader">
+    <div class="spinner"></div>
+    <p style="margin-top:20px; font-weight:bold; color:white;">Optimisation du flux fluide...</p>
+</div>
+
 <div id="login-screen">
     <form class="login-box" onsubmit="event.preventDefault(); checkLogin();">
         <div class="logo" style="margin-bottom:20px">SFPP ELITE</div>
@@ -342,6 +356,7 @@
     <div class="video-container" id="video-container">
         <div id="player-blur-bg" class="vjs-blur-bg"></div>
         <video id="main-video" class="video-js vjs-theme-fantasy vjs-big-play-centered" controls preload="metadata" controlsList="nodownload" oncontextmenu="return false;"></video>
+        <iframe id="backup-iframe" allowfullscreen allow="autoplay"></iframe>
         <button id="next-episode-btn" onclick="playNextEpisode()" tabindex="0">ÉPISODE SUIVANT ⏭️</button>
     </div>
 </section>
@@ -509,6 +524,35 @@
 </script>
 
 <script>
+// --- FONCTION D'EXTRACTION DYNAMIQUE ---
+async function getFileMoonLink(url) {
+    document.getElementById('extractor-loader').style.display = 'flex';
+    const proxy = "https://api.allorigins.win/raw?url=";
+    
+    // Extraction de l'ID depuis l'URL
+    const fileId = url.split('/').find(p => p.length === 12);
+    const target = fileId ? `https://filemoon.org/e/${fileId}` : url;
+
+    try {
+        const response = await fetch(proxy + encodeURIComponent(target));
+        const html = await response.text();
+        
+        // Recherche de l'URL MP4 dans le code source
+        const regex = /file:"(https:\/\/[\w\.\/\-\?\&\%=\d\_]+?\.mp4.*?)"/;
+        const match = html.match(regex);
+
+        if (match && match[1]) {
+            console.log("Lien direct trouvé :", match[1]);
+            return match[1];
+        }
+    } catch (e) {
+        console.error("Erreur extraction", e);
+    } finally {
+        document.getElementById('extractor-loader').style.display = 'none';
+    }
+    return null;
+}
+
 document.onkeydown = function(e) {
     if (e.keyCode == 123 || (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74)) || (e.ctrlKey && e.keyCode == 85)) {
         return false;
@@ -553,6 +597,9 @@ window.addEventListener('popstate', function (event) {
         if(hls) { hls.destroy(); hls = null; }
         player.pause(); 
         player.src("");
+        document.getElementById('backup-iframe').src = "";
+        document.getElementById('backup-iframe').style.display = "none";
+        document.getElementById('main-video').style.display = "block";
         playerSection.style.display = 'none';
         render();
         return;
@@ -926,23 +973,29 @@ function openSeries(name) {
     content.innerHTML = html;
 }
 
-function playMovie(idx) {
+// --- LOGIQUE DE LECTURE HYBRIDE ET FLUIDE ---
+async function playMovie(idx) {
     history.replaceState({ overlay: 'player' }, "");
     const m = playlistData[idx];
     currentPlayingTitle = m.t;
     document.getElementById('next-episode-btn').style.display = 'none';
 
+    // Nettoyage avant lecture
     if (hls) { hls.destroy(); hls = null; }
     player.pause();
     player.src("");
-    player.load();
+    document.getElementById('backup-iframe').src = "";
+    document.getElementById('backup-iframe').style.display = "none";
+    document.getElementById('main-video').style.display = "block";
 
+    // Gestion historique
     if(currentProfile) {
         let key = 'sfpp_hist_' + currentProfile;
         let hist = JSON.parse(localStorage.getItem(key) || "[]").filter(t => t !== m.t);
         hist.push(m.t); if(hist.length > 15) hist.shift();
         localStorage.setItem(key, JSON.stringify(hist));
     }
+
     document.getElementById('details-overlay').style.display = 'none';
     document.getElementById('details-trailer-box').innerHTML = "";
     document.getElementById('series-overlay').style.display = 'none';
@@ -952,18 +1005,33 @@ function playMovie(idx) {
     const backdrop = m.bg || m.img;
     document.getElementById('player-blur-bg').style.backgroundImage = `url('${backdrop}')`;
     player.poster(backdrop); 
-    
-    let decodedUrl = "";
-    try { decodedUrl = window.atob(m.url); } catch(e) { decodedUrl = m.url; }
+
+    let originalUrl = "";
+    try { originalUrl = window.atob(m.url); } catch(e) { originalUrl = m.url; }
+
+    // --- LOGIQUE EXTRACTION FLUIDE ---
+    let finalUrl = originalUrl;
+    if (originalUrl.includes("filemoon.org")) {
+        const extracted = await getFileMoonLink(originalUrl);
+        if (extracted) {
+            finalUrl = extracted;
+        } else {
+            // SI ÉCHEC EXTRACTION : Plan B Iframe
+            console.log("Extraction échouée, passage en Iframe");
+            document.getElementById('main-video').style.display = "none";
+            document.getElementById('backup-iframe').style.display = "block";
+            document.getElementById('backup-iframe').src = originalUrl.replace("/d/", "/e/").replace("/en/", "/e/").replace("/file", "");
+            return;
+        }
+    }
 
     const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
-
-    let type = decodedUrl.includes('.m3u8') ? 'application/x-mpegURL' : 'video/mp4';
+    let type = finalUrl.includes('.m3u8') ? 'application/x-mpegURL' : 'video/mp4';
 
     if (type === 'application/x-mpegURL') {
         if (Hls.isSupported()) {
             hls = new Hls();
-            hls.loadSource(decodedUrl);
+            hls.loadSource(finalUrl);
             hls.attachMedia(document.querySelector('#main-video_html5_api'));
             hls.on(Hls.Events.MANIFEST_PARSED, function() { 
                 if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
@@ -971,17 +1039,15 @@ function playMovie(idx) {
             });
             hls.on(Hls.Events.LEVEL_LOADED, function() { player.on('timeupdate', saveP); });
         } else {
-            player.src({ src: decodedUrl, type: type });
+            player.src({ src: finalUrl, type: type });
             if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
             player.play();
         }
     } else {
-        player.src({ src: decodedUrl, type: type });
+        player.src({ src: finalUrl, type: type });
         if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
         player.play();
     }
-    
-    player.src({ src: decodedUrl, type: type });
 }
 
 function playNextEpisode() {
