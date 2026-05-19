@@ -1,10 +1,80 @@
 [
   {
-    "num": "929",
+    "num": "939",
     "t": "Barbie : Agents Secrets",
     "id_tmdb": "377897",
     "cat": "",
     "url": "https://filemoon.org/download/eyJpdiI6IkNIL3IzQ3dhWkRtQmxtTE54aFF1d2c9PSIsInZhbHVlIjoiWkc4bGlMUU9qSDM5Qng0NzRUVU03MCtiaDlIS285N3FQSVJZRGtQUFBBRT0iLCJtYWMiOiIxYjEwMWJjNGY3ZmM2ODcwYTg4NjczNjRlMmMzOTdlYzEwN2JkNWQ3ZjJlYTI1ODliYjQyMzBlNjU4MjBjZmUxIiwidGFnIjoiIn0=/B960526836.mp4"
+  },
+  {
+    "num": "938",
+    "t": "Leprechaun 2",
+    "id_tmdb": "18009",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/c765517746439d82d8ab2e24c6ea04e9b2356312bc386edc1d626d3b03a5c98c/master.m3u8"
+  },
+  {
+    "num": "937",
+    "t": "Leprechaun 3 : À Las Vegas",
+    "id_tmdb": "19286",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/d86a1bf62ab3fc3b50bf9b748a05b744ff4051b0b2dbd362a951262050f42e7a/master.m3u8"
+  },
+  {
+    "num": "936",
+    "t": "‎Freddy 5 : L'Enfant du cauchemar",
+    "id_tmdb": "10160",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/33ca534bf83c156cd816c42734abf62ae801873c8c50a6b05415e90829925500/master.m3u8"
+  },
+  {
+    "num": "935",
+    "t": "The Room",
+    "id_tmdb": "582913",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/c1e1976113df5e83acae6b45e90535c902c8461399cf15a2f58abfe5a14c646b/master.m3u8"
+  },
+  {
+    "num": "934",
+    "t": "Vampire… vous avez dit vampire ?",
+    "id_tmdb": "11797",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/36a9e6b0596dc2ac817a5debd2465affe15fa2c2d46ba7f4e82caa1abef3fe87/master.m3u8"
+  },
+  {
+    "num": "933",
+    "t": "Vampire… vous avez dit vampire ? II",
+    "id_tmdb": "18086",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/6a6975887524fe8705c4f72cac1f63dd05da1b1b6eb54405276d7a763d99ddbd/master.m3u8"
+  },
+  {
+    "num": "932",
+    "t": "Leprechaun 4 : Destination cosmos",
+    "id_tmdb": "19287",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/6dd10d2a717e9298239f7eec46e8fa91d62c37ff52db5121409a1d2ee34419af/master.m3u8"
+  },
+  {
+    "num": "931",
+    "t": "Leprechaun 5 - La malédiction",
+    "id_tmdb": "18011",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/6580676b8933e6f4fcbea8e232f5b531ff6d4a2d5b0be286d4c483a6b334567b/master.m3u8"
+  },
+  {
+    "num": "930",
+    "t": "Leprechaun Returns",
+    "id_tmdb": "518158",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/6c98914cd8cddfc9b0d081cb37e91a1362e0d10aa3ea0d52d57db6cea108ac44/master.m3u8"
+  },
+  {
+    "num": "929",
+    "t": "Mosquito Coast",
+    "id_tmdb": "11120",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/078e8765e0d7e0f9beee3fe5444c0c41d681ddb6f3e1eaaa629f2052cba2f5aa/master.m3u8"
   },
   {
     "num": "928",
