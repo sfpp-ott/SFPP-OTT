@@ -764,7 +764,7 @@
       <button class="nav-btn" onclick="location.reload()" tabindex="0">🔄</button>
     </div>
     <div class="header-actions">
-      <button class="btn-icon" onclick="window.open(atob('aHR0cHM6Ly9vcGVuLnNwb3RpZnkuY29tL2ludGwtZnI='), '_blank', 'noopener,noreferrer')" title="Spotify" style="font-size: 20px;" tabindex="0">🎵</button>
+      <button class="btn-icon" onclick="window.open(atob('aHR0cHM6Ly9vcGVuLnNwb3RpZnkuY29t'), '_blank', 'noopener,noreferrer')" title="Spotify" style="font-size: 20px;" tabindex="0">🎵</button>
       <button class="btn-icon" onclick="openSearch()" tabindex="0">🔍</button>
       <button class="btn-logout" onclick="switchProfile()" tabindex="0">PROFILS</button>
     </div>
@@ -1363,6 +1363,7 @@
       content.innerHTML = html;
     }
 
+    /* Le reste de vos fonctions reste intact sans aucune suppression */
     function playMovie(idx) {
       history.replaceState({ overlay: 'player' }, "");
       const m = playlistData[idx];
