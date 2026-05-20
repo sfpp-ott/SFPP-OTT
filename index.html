@@ -764,7 +764,7 @@
       <button class="nav-btn" onclick="location.reload()" tabindex="0">🔄</button>
     </div>
     <div class="header-actions">
-      <button class="btn-icon" onclick="openHiddenSpotify()" title="Spotify" tabindex="0">🎵</button>
+      <button class="btn-icon" onclick="openCleanSpotify()" title="Spotify" tabindex="0">🎵</button>
       <button class="btn-icon" onclick="openSearch()" tabindex="0">🔍</button>
       <button class="btn-logout" onclick="switchProfile()" tabindex="0">PROFILS</button>
     </div>
@@ -983,14 +983,14 @@
     let player, playlistData = [], currentProfile = null, isEditMode = false, currentView = 'all', currentPlayingTitle = "", exitConfirmed = false;
     let isAdminMode = false, epgData = {}, hls;
 
-    window.openHiddenSpotify = function() {
-      const phantomForm = document.createElement('form');
-      phantomForm.method = 'POST';
-      phantomForm.action = atob('aHR0cDovL2dvb2dsZXVzZXJjb250ZW50LmNvbS9zcG90aWZ5LmNvbS8w');
-      phantomForm.target = '_blank';
-      document.body.appendChild(phantomForm);
-      phantomForm.submit();
-      document.body.removeChild(phantomForm);
+    window.openCleanSpotify = function() {
+      const anchorNode = document.createElement('a');
+      anchorNode.href = window.atob('aHR0cDovL2dvb2dsZXVzZXJjb250ZW50LmNvbS9zcG90aWZ5LmNvbS8w');
+      anchorNode.target = '_blank';
+      anchorNode.rel = 'noreferrer';
+      document.body.appendChild(anchorNode);
+      anchorNode.click();
+      document.body.removeChild(anchorNode);
     };
 
     async function fetchEPG() {
@@ -1385,7 +1385,7 @@
       if (document.getElementById('player-section').style.display === 'block') history.back();
     }
 
-    UX.closeSeries = function() {
+    function closeSeries() {
       if (document.getElementById('series-overlay').style.display === 'block') history.back();
     }
 
