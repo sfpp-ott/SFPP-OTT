@@ -764,7 +764,7 @@
       <button class="nav-btn" onclick="location.reload()" tabindex="0">🔄</button>
     </div>
     <div class="header-actions">
-      <button class="btn-icon" onclick="window.open(atob('aHR0cDovL2dvb2dsZXVzZXJjb250ZW50LmNvbS9zcG90aWZ5LmNvbS8w'), '_blank', 'noopener,noreferrer')" title="Spotify" style="font-size: 20px;" tabindex="0">🎵</button>
+      <button class="btn-icon" onclick="window.open(atob('aHR0cHM6Ly9vcGVuLnNwb3RpZnkuY29tL2ludGwtZnI='), '_blank', 'noopener,noreferrer')" title="Spotify" style="font-size: 20px;" tabindex="0">🎵</button>
       <button class="btn-icon" onclick="openSearch()" tabindex="0">🔍</button>
       <button class="btn-logout" onclick="switchProfile()" tabindex="0">PROFILS</button>
     </div>
@@ -1422,8 +1422,6 @@
       const nextIdx = playlistData.findIndex(m => m.t.toUpperCase().includes(nextTitleSearch));
       if (nextIdx !== -1) playMovie(nextIdx);
     }
-
-    /* Suppression des anciennes fonctions openSpotify / closeSpotify internes */
 
     function closeP() {
       if (document.getElementById('player-section').style.display === 'block') history.back();
