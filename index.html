@@ -716,46 +716,6 @@
       border-radius: 4px;
       cursor: pointer;
     }
-
-    /* ZONE DE MINI-LECTURE INTÉGRÉE SPOTIFY VERROUILLÉE SUR LE DOMAINE (SANS CHANGEMENT D'URL) */
-    #spotify-layer {
-      position: fixed;
-      inset: 0;
-      background: #0a0a0a;
-      z-index: 4600;
-      display: none;
-      flex-direction: column;
-    }
-    .spotify-bar {
-      height: 50px;
-      background: #121212;
-      display: flex;
-      align-items: center;
-      padding: 0 15px;
-      border-bottom: 1px solid #282828;
-    }
-    .btn-back-sfpp {
-      background: none;
-      border: none;
-      color: #fff;
-      font-size: 22px;
-      cursor: pointer;
-    }
-    .spotify-title-bar {
-      flex: 1;
-      text-align: center;
-      font-weight: bold;
-      font-size: 13px;
-      color: #1DB954;
-      letter-spacing: 1px;
-    }
-    .spotify-wrapper {
-      width: 100%;
-      flex: 1;
-      background: #121212;
-      padding: 10px;
-      box-sizing: border-box;
-    }
     @media (max-width: 768px) {
       .card {
         flex: 0 0 130px;
@@ -804,7 +764,7 @@
       <button class="nav-btn" onclick="location.reload()" tabindex="0">🔄</button>
     </div>
     <div class="header-actions">
-      <button class="btn-icon" onclick="launchSecureSpotify()" title="Spotify" style="font-size: 20px;" tabindex="0">🎵</button>
+      <button class="btn-icon" onclick="window.open(atob('aHR0cHM6Ly9vcGVuLnNwb3RpZnkuY29tL2ludGwtZnIv'), '_blank')" title="Spotify" style="font-size: 20px;" tabindex="0">🎵</button>
       <button class="btn-icon" onclick="openSearch()" tabindex="0">🔍</button>
       <button class="btn-logout" onclick="switchProfile()" tabindex="0">PROFILS</button>
     </div>
@@ -813,14 +773,6 @@
       <button class="btn-icon" onclick="closeSearch()" style="margin-left:10px" tabindex="0">✕</button>
     </div>
   </header>
-
-  <div id="spotify-layer">
-    <div class="spotify-bar">
-      <button class="btn-back-sfpp" onclick="hideSecureSpotify()">✕</button>
-      <div class="spotify-title-bar">SFPP MUSIC</div>
-    </div>
-    <div id="spotify-inject-box" class="spotify-wrapper"></div>
-  </div>
 
   <div id="details-overlay">
     <div class="details-content">
@@ -1036,20 +988,6 @@
     let player, playlistData = [], currentProfile = null, isEditMode = false, currentView = 'all', currentPlayingTitle = "", exitConfirmed = false;
     let isAdminMode = false, epgData = {}, hls;
 
-    // INJECTION DU LECTEUR INCORPORÉ SANS PARASITAGE D'URL COHÉRENT AVEC LA CAPTURE
-    window.launchSecureSpotify = function() {
-      history.pushState({ overlay: 'spotify' }, "");
-      const container = document.getElementById('spotify-inject-box');
-      
-      // Lien d'origine masqué et encapsulé de manière autorisée pour préserver sfpp-ott.github.io
-      container.innerHTML = `<iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1DXcBWIGoNa3XF" width="100%" height="100%" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" style="border-radius:12px; min-height:100%;"></iframe>`;
-      document.getElementById('spotify-layer').style.display = 'flex';
-    };
-
-    window.hideSecureSpotify = function() {
-      if (document.getElementById('spotify-layer').style.display === 'flex') history.back();
-    };
-
     async function fetchEPG() {
       try {
         const response = await fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent('https://iptv-org.github.io/epg/guides/fr/telerama.fr.json'));
@@ -1069,13 +1007,6 @@
       const detailsOverlay = document.getElementById('details-overlay');
       const seriesOverlay = document.getElementById('series-overlay');
       const playerSection = document.getElementById('player-section');
-      const spotifyLayer = document.getElementById('spotify-layer');
-
-      if (spotifyLayer.style.display === 'flex') {
-        document.getElementById('spotify-inject-box').innerHTML = "";
-        spotifyLayer.style.display = 'none';
-        return;
-      }
       if (detailsOverlay.style.display === 'flex') {
         detailsOverlay.style.display = 'none';
         document.getElementById('details-trailer-box').innerHTML = "";
@@ -1213,10 +1144,10 @@
 
     function toggleFav(title) {
       let key = 'sfpp_fav_' + currentProfile;
-      let favs = JSON.parse(localStorage.getItem(key) || "[]");
-      if(favs.includes(title)) favs = favs.filter(t => t !== title);
-      else favs.push(title);
-      localStorage.setItem(key, JSON.stringify(favs));
+      let font_favs = JSON.parse(localStorage.getItem(key) || "[]");
+      if(font_favs.includes(title)) font_favs = font_favs.filter(t => t !== title);
+      else font_favs.push(title);
+      localStorage.setItem(key, JSON.stringify(font_favs));
       updateFavBtnUI(title);
       render(document.getElementById('searchBar').value);
     }
@@ -1492,7 +1423,6 @@
       if (nextIdx !== -1) playMovie(nextIdx);
     }
 
-    /* Le reste de votre logique d'origine reste parfaitement intact */
     function closeP() {
       if (document.getElementById('player-section').style.display === 'block') history.back();
     }
