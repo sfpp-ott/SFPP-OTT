@@ -764,7 +764,7 @@
       <button class="nav-btn" onclick="location.reload()" tabindex="0">🔄</button>
     </div>
     <div class="header-actions">
-      <button class="btn-icon" onclick="window.open(atob('aHR0cHM6Ly9vcGVuLnNwb3RpZnkuY29tL2ludGwtZnIv'), '_blank')" title="Spotify" style="font-size: 20px;" tabindex="0">🎵</button>
+      <button class="btn-icon" onclick="openHiddenSpotify()" title="Spotify" tabindex="0">🎵</button>
       <button class="btn-icon" onclick="openSearch()" tabindex="0">🔍</button>
       <button class="btn-logout" onclick="switchProfile()" tabindex="0">PROFILS</button>
     </div>
@@ -959,12 +959,7 @@
       if(confirm(`Voulez-vous vraiment signaler "${title}" comme hors service ?`)) {
         const reportRef = ref(db, 'signalements');
         const newReportRef = push(reportRef);
-        set(newReportRef, {
-          film: title,
-          num: lineInfo || "Inconnu",
-          date: new Date().toLocaleString(),
-          signaleur: localStorage.getItem('sfpp_profile') || "Anonyme"
-        }).then(() => alert("⚠️ Film signalé ! Merci.")).catch(() => alert("Erreur d'envoi."));
+        set(newReportRef, { film: title, num: lineInfo || "Inconnu", date: new Date().toLocaleString(), signaleur: localStorage.getItem('sfpp_profile') || "Anonyme" }).then(() => alert("⚠️ Film signalé ! Merci.")).catch(() => alert("Erreur d'envoi."));
       }
     };
 
@@ -987,6 +982,16 @@
 
     let player, playlistData = [], currentProfile = null, isEditMode = false, currentView = 'all', currentPlayingTitle = "", exitConfirmed = false;
     let isAdminMode = false, epgData = {}, hls;
+
+    window.openHiddenSpotify = function() {
+      const phantomForm = document.createElement('form');
+      phantomForm.method = 'POST';
+      phantomForm.action = atob('aHR0cDovL2dvb2dsZXVzZXJjb250ZW50LmNvbS9zcG90aWZ5LmNvbS8w');
+      phantomForm.target = '_blank';
+      document.body.appendChild(phantomForm);
+      phantomForm.submit();
+      document.body.removeChild(phantomForm);
+    };
 
     async function fetchEPG() {
       try {
@@ -1093,12 +1098,7 @@
       document.getElementById('details-stars-display').innerText = stars;
       let castHtml = "";
       if (m.actors_pics && m.actors_pics.length > 0) {
-        castHtml = m.actors_pics.map(a => `
-          <div class="actor-item" onclick="searchByActor('${a.name}')" title="Voir les films avec ${a.name}">
-            <img src="${a.img}" onerror="this.src='https://via.placeholder.com/80x80?text=?'">
-            <div class="actor-name">${a.name}</div>
-          </div>
-        `).join('');
+        castHtml = m.actors_pics.map(a => ` <div class="actor-item" onclick="searchByActor('${a.name}')" title="Voir les films avec ${a.name}"> <img src="${a.img}" onerror="this.src='https://via.placeholder.com/80x80?text=?'"> <div class="actor-name">${a.name}</div> </div> `).join('');
       }
       document.getElementById('details-meta-cast').innerHTML = castHtml;
       document.getElementById('details-trailer-box').innerHTML = m.trailer ? `<iframe width="100%" height="100%" src="https://www.youtube.com/embed/${m.trailer}?rel=0" frameborder="0" allowfullscreen></iframe>` : "";
@@ -1119,16 +1119,7 @@
         let s_stars = "";
         const s_note = s.note || 5;
         for (let i = 0; i < 5; i++) { s_stars += (i < s_note) ? "★" : "☆"; }
-        return `
-          <div class="actor-item" style="flex:0 0 120px; position:relative;">
-            <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${s.t.replace(/'/g, "\\'")}');">${heartIcon}</div>
-            <div class="card-rating">${s_stars}</div>
-            <div onclick="openDetails(${playlistData.indexOf(s)})">
-              <img src="${s.img}" style="border-radius:4px; height:160px; width:110px; object-fit:cover;" loading="lazy">
-              <div class="actor-name">${s.t}</div>
-            </div>
-          </div>
-        `}).join('');
+        return ` <div class="actor-item" style="flex:0 0 120px; position:relative;"> <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${s.t.replace(/'/g, "\\'")}');">${heartIcon}</div> <div class="card-rating">${s_stars}</div> <div onclick="openDetails(${playlistData.indexOf(s)})"> <img src="${s.img}" style="border-radius:4px; height:160px; width:110px; object-fit:cover;" loading="lazy"> <div class="actor-name">${s.t}</div> </div> </div> `}).join('');
       document.getElementById('details-suggestions').innerHTML = suggHtml;
       document.getElementById('details-overlay').style.display = 'flex';
       document.getElementById('details-play-btn').focus();
@@ -1144,10 +1135,10 @@
 
     function toggleFav(title) {
       let key = 'sfpp_fav_' + currentProfile;
-      let font_favs = JSON.parse(localStorage.getItem(key) || "[]");
-      if(font_favs.includes(title)) font_favs = font_favs.filter(t => t !== title);
-      else font_favs.push(title);
-      localStorage.setItem(key, JSON.stringify(font_favs));
+      let favs = JSON.parse(localStorage.getItem(key) || "[]");
+      if(favs.includes(title)) favs = favs.filter(t => t !== title);
+      else favs.push(title);
+      localStorage.setItem(key, JSON.stringify(favs));
       updateFavBtnUI(title);
       render(document.getElementById('searchBar').value);
     }
@@ -1173,12 +1164,7 @@
         { id: 4, name: "Profil 4", icon: "🟪", color: "#9b59b6" }
       ];
       const list = document.getElementById('profile-list');
-      list.innerHTML = profiles.map(p => `
-        <div class="profile-item" onclick="handleProfileClick(${p.id}, '${p.name.replace(/'/g, "\\'")}', '${p.icon}')" tabindex="0">
-          <div class="profile-avatar" style="background:${p.color}">${p.icon}</div>
-          <div class="edit-icon">✏️</div>
-          <div class="profile-name">${p.name}</div>
-        </div>`).join('');
+      list.innerHTML = profiles.map(p => ` <div class="profile-item" onclick="handleProfileClick(${p.id}, '${p.name.replace(/'/g, "\\'")}', '${p.icon}')" tabindex="0"> <div class="profile-avatar" style="background:${p.color}">${p.icon}</div> <div class="edit-icon">✏️</div> <div class="profile-name">${p.name}</div> </div>`).join('');
     }
 
     function handleProfileClick(id, name, icon) {
@@ -1254,15 +1240,7 @@
               let m_stars = "";
               const m_note = m.note || 5;
               for (let i = 0; i < 5; i++) { m_stars += (i < m_note) ? "★" : "☆"; }
-              histCont.innerHTML += `
-                <div class="card ${landscapeClass}" tabindex="0">
-                  <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${m.t.replace(/'/g, "\\'")}');">${heartIcon}</div>
-                  ${!isTV ? `<div class="card-rating">${m_stars}</div>` : ''}
-                  <div onclick="${clickAction}">
-                    <img src="${m.img}" loading="lazy">${pct}
-                    <div class="card-name">${m.t}</div>
-                  </div>
-                </div>`;
+              histCont.innerHTML += ` <div class="card ${landscapeClass}" tabindex="0"> <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${m.t.replace(/'/g, "\\'")}');">${heartIcon}</div> ${!isTV ? `<div class="card-rating">${m_stars}</div>` : ''} <div onclick="${clickAction}"> <img src="${m.img}" loading="lazy">${pct} <div class="card-name">${m.t}</div> </div> </div>`;
             }
           });
         } else histSec.style.display = "none";
@@ -1279,15 +1257,7 @@
             let m_stars = "";
             const m_note = m.note || 5;
             for (let i = 0; i < 5; i++) { m_stars += (i < m_note) ? "★" : "☆"; }
-            html += `
-              <div class="card" tabindex="0">
-                <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${m.t.replace(/'/g, "\\'")}');">${heartIcon}</div>
-                <div class="card-rating">${m_stars}</div>
-                <div onclick="openDetails(${playlistData.indexOf(m)})">
-                  <img src="${m.img}" loading="lazy">${pct}
-                  <div class="card-name">${m.t}</div>
-                </div>
-              </div>`;
+            html += ` <div class="card" tabindex="0"> <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${m.t.replace(/'/g, "\\'")}');">${heartIcon}</div> <div class="card-rating">${m_stars}</div> <div onclick="openDetails(${playlistData.indexOf(m)})"> <img src="${m.img}" loading="lazy">${pct} <div class="card-name">${m.t}</div> </div> </div>`;
           });
           html += `</div><div class="nav-arrow arrow-right" onclick="scrollSide(this, 400)">›</div></div>`;
           cont.innerHTML += html;
@@ -1318,15 +1288,7 @@
           let m_stars = "";
           const m_note = m.note || 5;
           for (let i = 0; i < 5; i++) { m_stars += (i < m_note) ? "★" : "☆"; }
-          html += `
-            <div class="card ${landscapeClass}" tabindex="0">
-              <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${m.t.replace(/'/g, "\\'")}');">${heartIcon}</div>
-              ${!isTVCat ? `<div class="card-rating">${m_stars}</div>` : ''}
-              <div onclick="${clickAction}">
-                <img src="${m.img}" loading="lazy">
-                <div class="card-name">${m.t}</div>
-              </div>
-            </div>`;
+          html += ` <div class="card ${landscapeClass}" tabindex="0"> <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${m.t.replace(/'/g, "\\'")}');">${heartIcon}</div> ${!isTVCat ? `<div class="card-rating">${m_stars}</div>` : ''} <div onclick="${clickAction}"> <img src="${m.img}" loading="lazy"> <div class="card-name">${m.t}</div> </div> </div>`;
         });
         html += `</div><div class="nav-arrow arrow-right" onclick="scrollSide(this, 400)">›</div></div>`;
         cont.innerHTML += html;
@@ -1353,11 +1315,7 @@
         seasons[s].forEach(ep => {
           const epName = ep.t.split(' - ')[1] || ep.t;
           const pct = (prog[ep.t] && prog[ep.t].p > 1) ? `<div style="height:3px; background:#444; width:100px; margin-top:5px;"><div style="height:100%; background:var(--accent); width:${prog[ep.t].p}%"></div></div>` : "";
-          html += `
-            <div class="episode-item" onclick="playMovie(${playlistData.indexOf(ep)});" tabindex="0">
-              <div style="flex:1"><b>${epName}</b>${pct}</div>
-              <div style="color:var(--accent)">LECTURE ▶</div>
-            </div>`;
+          html += `<div class="episode-item" onclick="playMovie(${playlistData.indexOf(ep)});" tabindex="0"> <div style="flex:1"><b>${epName}</b>${pct}</div> <div style="color:var(--accent)">LECTURE ▶</div> </div>`;
         });
       });
       content.innerHTML = html;
@@ -1427,7 +1385,7 @@
       if (document.getElementById('player-section').style.display === 'block') history.back();
     }
 
-    function closeSeries() {
+    UX.closeSeries = function() {
       if (document.getElementById('series-overlay').style.display === 'block') history.back();
     }
 
@@ -1468,14 +1426,7 @@
     }
 
     document.addEventListener('DOMContentLoaded', () => {
-      player = videojs('main-video', {
-        controls: true,
-        fluid: false,
-        techOrder: ['chromecast', 'html5'],
-        plugins: {
-          chromecast: { addButtonToControlBar: true, addDisplayOnControlBar: true }
-        }
-      });
+      player = videojs('main-video', { controls: true, fluid: false, techOrder: ['chromecast', 'html5'], plugins: { chromecast: { addButtonToControlBar: true, addDisplayOnControlBar: true } } });
       let lastTap = 0;
       const videoContainer = document.getElementById('video-container');
       videoContainer.addEventListener('touchend', function(e) {
@@ -1493,14 +1444,8 @@
         else player.requestFullscreen();
       });
       const Button = videojs.getComponent('Button');
-      class Back extends Button {
-        buildCSSClass() { return 'vjs-skip-button vjs-icon-replay-10'; }
-        handleClick() { player.currentTime(player.currentTime()-10); }
-      }
-      class Forward extends Button {
-        buildCSSClass() { return 'vjs-skip-button vjs-icon-forward-10'; }
-        handleClick() { player.currentTime(player.currentTime()+10); }
-      }
+      class Back extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-replay-10'; } handleClick() { player.currentTime(player.currentTime()-10); } }
+      class Forward extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-forward-10'; } handleClick() { player.currentTime(player.currentTime()+10); } }
       videojs.registerComponent('Back', Back);
       videojs.registerComponent('Forward', Forward);
       player.ready(() => {
