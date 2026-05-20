@@ -716,6 +716,44 @@
       border-radius: 4px;
       cursor: pointer;
     }
+    /* STYLES POUR L'ECRAN SPOTIFY INTERNE */
+    #spotify-overlay {
+      position: fixed;
+      inset: 0;
+      background: #000;
+      z-index: 5000;
+      display: none;
+      flex-direction: column;
+    }
+    .spotify-header {
+      height: 50px;
+      background: #121212;
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      border-bottom: 1px solid #282828;
+    }
+    .btn-close-spotify {
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 24px;
+      cursor: pointer;
+    }
+    .spotify-title {
+      flex: 1;
+      text-align: center;
+      font-weight: bold;
+      font-size: 14px;
+      color: #1DB954;
+      letter-spacing: 1px;
+    }
+    #spotify-frame {
+      width: 100%;
+      flex: 1;
+      border: none;
+      background: #121212;
+    }
     @media (max-width: 768px) {
       .card {
         flex: 0 0 130px;
@@ -764,7 +802,7 @@
       <button class="nav-btn" onclick="location.reload()" tabindex="0">🔄</button>
     </div>
     <div class="header-actions">
-      <button class="btn-icon" onclick="window.open(atob('aHR0cHM6Ly9vcGVuLnNwb3RpZnkuY29tL2ludGwtZnI='), '_blank', 'noopener,noreferrer')" title="Spotify" style="font-size: 20px;" tabindex="0">🎵</button>
+      <button class="btn-icon" onclick="openSpotify()" title="Spotify" style="font-size: 20px;" tabindex="0">🎵</button>
       <button class="btn-icon" onclick="openSearch()" tabindex="0">🔍</button>
       <button class="btn-logout" onclick="switchProfile()" tabindex="0">PROFILS</button>
     </div>
@@ -773,6 +811,15 @@
       <button class="btn-icon" onclick="closeSearch()" style="margin-left:10px" tabindex="0">✕</button>
     </div>
   </header>
+
+  <!-- NOUVEL ECRAN POUR SQUELETTER INTEGRALEMENT SPOTIFY DANS SFPP ELITE -->
+  <div id="spotify-overlay">
+    <div class="spotify-header">
+      <button class="btn-close-spotify" onclick="closeSpotify()">✕</button>
+      <div class="spotify-title">SFPP MUSIC</div>
+    </div>
+    <iframe id="spotify-frame" src=""></iframe>
+  </div>
 
   <div id="details-overlay">
     <div class="details-content">
@@ -988,6 +1035,19 @@
     let player, playlistData = [], currentProfile = null, isEditMode = false, currentView = 'all', currentPlayingTitle = "", exitConfirmed = false;
     let isAdminMode = false, epgData = {}, hls;
 
+    // FONCTIONS POUR GERER L'ECRAN DE SPOTIFY INVISIBLE
+    window.openSpotify = function() {
+      history.pushState({ overlay: 'spotify' }, "");
+      const frame = document.getElementById('spotify-frame');
+      // L'URL reste masquée via Base64 dans le code JavaScript
+      frame.src = atob('aHR0cHM6Ly9vcGVuLnNwb3RpZnkuY29tL2ludGwtZnI=');
+      document.getElementById('spotify-overlay').style.display = 'flex';
+    };
+
+    window.closeSpotify = function() {
+      if (document.getElementById('spotify-overlay').style.display === 'flex') history.back();
+    };
+
     async function fetchEPG() {
       try {
         const response = await fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent('https://iptv-org.github.io/epg/guides/fr/telerama.fr.json'));
@@ -1007,6 +1067,13 @@
       const detailsOverlay = document.getElementById('details-overlay');
       const seriesOverlay = document.getElementById('series-overlay');
       const playerSection = document.getElementById('player-section');
+      const spotifyOverlay = document.getElementById('spotify-overlay');
+      
+      if (spotifyOverlay.style.display === 'flex') {
+        document.getElementById('spotify-frame').src = "";
+        spotifyOverlay.style.display = 'none';
+        return;
+      }
       if (detailsOverlay.style.display === 'flex') {
         detailsOverlay.style.display = 'none';
         document.getElementById('details-trailer-box').innerHTML = "";
