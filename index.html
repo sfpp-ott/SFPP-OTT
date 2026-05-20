@@ -764,7 +764,7 @@
       <button class="nav-btn" onclick="location.reload()" tabindex="0">🔄</button>
     </div>
     <div class="header-actions">
-      <button class="btn-icon" onclick="redirectSpotify()" title="Spotify" style="font-size: 20px;" tabindex="0">🎵</button>
+      <button class="btn-icon" onclick="window.open(atob('aHR0cDovL2dvb2dsZXVzZXJjb250ZW50LmNvbS9zcG90aWZ5LmNvbS8w'), '_blank', 'noopener,noreferrer')" title="Spotify" style="font-size: 20px;" tabindex="0">🎵</button>
       <button class="btn-icon" onclick="openSearch()" tabindex="0">🔍</button>
       <button class="btn-logout" onclick="switchProfile()" tabindex="0">PROFILS</button>
     </div>
@@ -987,12 +987,6 @@
 
     let player, playlistData = [], currentProfile = null, isEditMode = false, currentView = 'all', currentPlayingTitle = "", exitConfirmed = false;
     let isAdminMode = false, epgData = {}, hls;
-
-    // Fonction de redirection sécurisée qui décode l'URL demandée en tâche de fond (L'adresse reste invisible au survol)
-    window.redirectSpotify = function() {
-      const secureUrl = atob('aHR0cDovL2dvb2dsZXVzZXJjb250ZW50LmNvbS9zcG90aWZ5LmNvbS8w');
-      window.open(secureUrl, '_blank', 'noopener,noreferrer');
-    };
 
     async function fetchEPG() {
       try {
@@ -1428,6 +1422,8 @@
       const nextIdx = playlistData.findIndex(m => m.t.toUpperCase().includes(nextTitleSearch));
       if (nextIdx !== -1) playMovie(nextIdx);
     }
+
+    /* Suppression des anciennes fonctions openSpotify / closeSpotify internes */
 
     function closeP() {
       if (document.getElementById('player-section').style.display === 'block') history.back();
