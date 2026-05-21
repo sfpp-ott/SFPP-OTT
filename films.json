@@ -1,10 +1,80 @@
 [
   {
-    "num": "1009",
+    "num": "1019",
     "t": "Barbie : Agents Secrets",
     "id_tmdb": "377897",
     "cat": "",
     "url": "https://filemoon.org/download/eyJpdiI6IkNIL3IzQ3dhWkRtQmxtTE54aFF1d2c9PSIsInZhbHVlIjoiWkc4bGlMUU9qSDM5Qng0NzRUVU03MCtiaDlIS285N3FQSVJZRGtQUFBBRT0iLCJtYWMiOiIxYjEwMWJjNGY3ZmM2ODcwYTg4NjczNjRlMmMzOTdlYzEwN2JkNWQ3ZjJlYTI1ODliYjQyMzBlNjU4MjBjZmUxIiwidGFnIjoiIn0=/B960526836.mp4"
+  },
+  {
+    "num": "1018",
+    "t": "Kouté vwa",
+    "id_tmdb": "1012618",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/d317666ecd453e143645d479e531fffa72dd782551b3324193333fe2d7f02673/master.m3u8"
+  },
+  {
+    "num": "1017",
+    "t": "L'Art du faux",
+    "id_tmdb": "1443762",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/3c1b987fce2f6442986fd0840f09f1c749c63a1307bf682f95a47fb4d8a1fb4f/master.m3u8"
+  },
+  {
+    "num": "1016",
+    "t": "‎L'Assassinat de Jesse James par le lâche Robert Ford",
+    "id_tmdb": "4512",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/a67f4fe6ea81062232a7d3d6433e2cd1b8a1c46b275f1166d66891b4fd92f236/master.m3u8"
+  },
+  {
+    "num": "1015",
+    "t": "L'homme qui a vu l'ours qui a vu l'homme",
+    "id_tmdb": "1312312",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/2689af36451f6c4eb4e68857e189d88e3b3b842acf01eafd650c9c428c474eb5/master.m3u8"
+  },
+  {
+    "num": "1014",
+    "t": "Menteuse",
+    "id_tmdb": "1280336",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/f438afd54e3103577e3160d4b25aaf57db9d05283d78e3d27bfcc1384ce423e8/master.m3u8"
+  },
+  {
+    "num": "1013",
+    "t": "Minuit à Paris",
+    "id_tmdb": "59436",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/95520d450764dcb581a56af1ccc026caebc158b4a2ed6d92e85f7a42aaec56fb/master.m3u8"
+  },
+  {
+    "num": "1012",
+    "t": "Mise à mort du cerf sacré",
+    "id_tmdb": "399057",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/285883432b53d9976d38c803bf934765729c8d8ac161a3d0e57f1f24665cbaf7/master.m3u8"
+  },
+  {
+    "num": "1011",
+    "t": "Nomadland",
+    "id_tmdb": "581734",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/5a91c5d9471d10ee25a3a61d57d810f2c27859fba49c70fa40a0606d91b081f4/master.m3u8"
+  },
+  {
+    "num": "1010",
+    "t": "Not Without Hope",
+    "id_tmdb": "339849",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/f41c43de2e21ce0df8bdb836270a8c9fe46129f4505199bfd8decdf519ad1799/master.m3u8"
+  },
+  {
+    "num": "1009",
+    "t": "Noël chez les Loud : Sage ou vilain",
+    "id_tmdb": "1478406",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/fea2e56415565d48c3c15ef0af81aaf4b44ecae4d29b347905b46b91f2ae587a/master.m3u8"
   },
   {
     "num": "1008",
