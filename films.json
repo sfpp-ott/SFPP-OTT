@@ -1,10 +1,79 @@
 [
   {
-    "num": "1039",
+    "num": "1049",
     "t": "Barbie : Agents Secrets",
     "id_tmdb": "377897",
     "cat": "",
     "url": "https://filemoon.org/download/eyJpdiI6IkNIL3IzQ3dhWkRtQmxtTE54aFF1d2c9PSIsInZhbHVlIjoiWkc4bGlMUU9qSDM5Qng0NzRUVU03MCtiaDlIS285N3FQSVJZRGtQUFBBRT0iLCJtYWMiOiIxYjEwMWJjNGY3ZmM2ODcwYTg4NjczNjRlMmMzOTdlYzEwN2JkNWQ3ZjJlYTI1ODliYjQyMzBlNjU4MjBjZmUxIiwidGFnIjoiIn0=/B960526836.mp4"
+  },
+  {
+    "num": "1048",
+    "t": "Joue-la comme Beckham",
+    "id_tmdb": "455",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/c455c1f4580fd16557eae4110bc89f650ee6319ed6e7c693dd75df57af19c0be/master.m3u8"
+  },
+  {
+    "num": "1047",
+    "t": "L'Au-delà",
+    "id_tmdb": "19204",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/f0a4f7151c091b8157010e199668a6e5e6ffb156fb1739d4b6ce5fbc5ff370f5/master.m3u8"
+  },
+  {"num": "1046",
+    "t": "‎Land of the Sons",
+    "id_tmdb": "660205",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/8d5ee08035b65e66f8ad69b8a696bd284236294c3ee02c23e84edc961f1560e8/master.m3u8"
+  },
+  {
+    "num": "1045",
+    "t": "Le Seigneur des anneaux : Les Deux Tours",
+    "id_tmdb": "121",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/e006f0fbf88e63877c318074c0dfb376a6dc6055c2e501281b4a66066d1c7626/master.m3u8"
+  },
+  {
+    "num": "1044",
+    "t": "Line of Fire",
+    "id_tmdb": "395991",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/13028021bc5310e040406faee66d5285e463c79467af0a02667e2d1b0a938765/master.m3u8"
+  },
+  {
+    "num": "1043",
+    "t": "Mary et Max",
+    "id_tmdb": "24238",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/e3bcd0dd1a4dc86348cb232fefd11648120458caa5f874b5af94b3078439861b/master.m3u8"
+  },
+  {
+    "num": "1042",
+    "t": "Soyez Sympas, Rembobinez",
+    "id_tmdb": "4953",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/0eb0a05499244e446e6df86221cf21f13c3812fa0f7b63fbea8d376b6577c70a/master.m3u8"
+  },
+  {
+    "num": "1041",
+    "t": "White Boy Rick",
+    "id_tmdb": "438808",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/85fa27412eb76dac574c3a0230fd45be166adcbd99217a071dadb1ff9bcaed83/master.m3u8"
+  },
+  {
+    "num": "1040",
+    "t": "Y tu mamá también",
+    "id_tmdb": "1391",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/2ae3e0ade7e6ff9b5ffd5eb847e96bdc720604f9306d310b1db7dcc7a152d902/master.m3u8"
+  },
+  {
+    "num": "1039",
+    "t": "2 ou 3 choses que je sais d'elle",
+    "id_tmdb": "8074",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/904b5c577f3c54b8ff7993c987c4960f2968963ce3264ceb859fd6dad86b2498/master.m3u8"
   },
   {
     "num": "1038",
