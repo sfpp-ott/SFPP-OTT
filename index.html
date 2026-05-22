@@ -671,6 +671,13 @@ window.enableGenreFocus = function(genreName) {
     render(document.getElementById('searchBar').value);
 };
 
+// Modifié pour remettre le focus à zéro lors d'un retour propre à la page d'accueil
+window.disableFocusMode = function() {
+    focusGenre = null;
+    document.getElementById('searchBar').value = '';
+    render();
+};
+
 function changePage(direction) {
     if (direction === 'next' && currentPage < totalPages) currentPage++;
     else if (direction === 'prev' && currentPage > 1) currentPage--;
@@ -831,7 +838,7 @@ function saveP() {
 
 function scrollSide(btn, amt) { const car = btn.parentElement.querySelector('.carousel'); car.scrollBy({ left: amt, behavior: 'smooth' }); }
 
-/* --- ENGINE RECONSTRUIT SANS DOUBLONS ET SANS BUGS DE RECHERCHE/PROFIL --- */
+/* --- RENDER SÉCURISÉ MULTI-GENRES SANS DOUBLONS NI LIGNE "SORTIES" --- */
 function render(search = "") {
     const cont = document.getElementById('categories-container');
     const histSec = document.getElementById('history-sec');
@@ -846,11 +853,10 @@ function render(search = "") {
     const favs = JSON.parse(localStorage.getItem('sfpp_fav_' + currentProfile) || "[]");
     const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
     
-    // Si une recherche est en cours, on bascule automatiquement sur la grille paginée globale
     let activeFocus = focusGenre;
     if (s !== "") { activeFocus = "Résultats de recherche"; }
 
-    // --- CASE 1 : RENDER DE FOCUS PAGINÉ (STYLE LUMEO GRID) ---
+    // --- LOGIQUE GRID EN MODE FOCUS (PAGINATION) ---
     if (activeFocus !== null) {
         histSec.style.display = "none";
         let filteredFocusData = playlistData;
@@ -875,7 +881,7 @@ function render(search = "") {
             let html = `
                 <div class="category-header-box">
                     <div class="category-title">${activeFocus} (${filteredFocusData.length} éléments - Page ${currentPage}/${totalPages})</div>
-                    <button class="btn-see-all" onclick="document.getElementById('searchBar').value=''; window.enableGenreFocus(null);">← Retour Accueil</button>
+                    <button class="btn-see-all" onclick="window.disableFocusMode();">← Retour Accueil</button>
                 </div>
                 <div class="category-row" style="padding: 0 4%; display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 15px;">`;
             
@@ -918,7 +924,7 @@ function render(search = "") {
         return;
     }
 
-    // --- CASE 2 : RENDER NORMAL DE L'ACCUEIL (CARROUSELS NETFLIX STYLE) ---
+    // --- LOGIQUE CARROUSELS ACCUEIL INTERFACE NORMAUX ---
     if(currentProfile && currentView === 'all') {
         let history = JSON.parse(localStorage.getItem('sfpp_hist_' + currentProfile) || "[]");
         if(history.length > 0) {
@@ -953,7 +959,7 @@ function render(search = "") {
         } else histSec.style.display = "none";
     } else histSec.style.display = "none";
 
-    // CARROUSEL MAJEUR : TOUS LES FILMS (ORDRE INTÉGRAL BRUT SANS FILTRAGE)
+    // CARROUSEL TOUS LES FILMS (ORDRE JSON INTÉGRAL SANS EXCLUSION NI PERTE)
     if (currentView === 'all' || currentView === 'movies') {
         const globalMovies = playlistData.filter(m => m.cat ? (!m.cat.toUpperCase().includes("SÉRIES") && !m.cat.toUpperCase().includes("DIRECT") && !m.cat.toUpperCase().includes("TV")) : true);
         if (globalMovies.length > 0) {
@@ -989,23 +995,33 @@ function render(search = "") {
         }
     }
 
-    let currentFilteredData = playlistData;
+    // Filtrage des données selon la vue (onglet) active
+    let baseData = playlistData;
     if(currentView === 'fav') {
-        currentFilteredData = playlistData.filter(m => favs.includes(m.t));
+        baseData = playlistData.filter(m => favs.includes(m.t));
     } else if (currentView === 'series') {
-        currentFilteredData = playlistData.filter(m => m.cat && m.cat.toUpperCase().includes("SÉRIES"));
+        baseData = playlistData.filter(m => m.cat && m.cat.toUpperCase().includes("SÉRIES"));
+    } else if (currentView === 'movies') {
+        baseData = playlistData.filter(m => m.cat ? (!m.cat.toUpperCase().includes("SÉRIES") && !m.cat.toUpperCase().includes("DIRECT") && !m.cat.toUpperCase().includes("TV")) : true);
     }
 
+    // Récupération de tous les genres disponibles sans distinction restrictive
     const allGenres = [];
-    currentFilteredData.forEach(m => {
+    baseData.forEach(m => {
         if(m.cat) {
             const genres = m.cat.split(',').map(g => g.trim().toUpperCase());
-            genres.forEach(g => { if(!allGenres.includes(g)) allGenres.push(g); });
+            genres.forEach(g => { 
+                // CORRECTION : Élimination stricte de la catégorie "SORTIES" ou vide
+                if(g !== "SORTIES" && g !== "" && !allGenres.includes(g)) {
+                    allGenres.push(g);
+                }
+            });
         }
     });
 
+    // Génération automatique des lignes de catégories de genres sans perte
     allGenres.sort().forEach(c => {
-        const filtered = currentFilteredData.filter(m => m.cat && m.cat.toUpperCase().includes(c));
+        const filtered = baseData.filter(m => m.cat && m.cat.toUpperCase().includes(c));
         if (filtered.length === 0) return;
         
         const isTVCat = c.includes("DIRECT") || c.includes("TV");
@@ -1157,7 +1173,7 @@ function toggleEditMode() { isEditMode = !isEditMode; document.getElementById('p
 function switchProfile() { localStorage.removeItem('sfpp_profile'); location.reload(); }
 function requestAccess() { window.location.href = "mailto:sfpp.ott@gmail.com"; }
 function openSearch() { document.getElementById('search-overlay').style.display = 'flex'; document.getElementById('searchBar').focus(); }
-function closeSearch() { document.getElementById('search-overlay').style.display = 'none'; document.getElementById('searchBar').value = ''; focusGenre = null; filter(); }
+function closeSearch() { window.disableFocusMode(); document.getElementById('search-overlay').style.display = 'none'; }
 
 document.addEventListener('DOMContentLoaded', () => {
     player = videojs('main-video', { 
