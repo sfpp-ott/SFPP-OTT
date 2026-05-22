@@ -195,7 +195,10 @@
         .arrow-right { right: 0; }
 
         .card { flex: 0 0 150px; width: 150px; cursor: pointer; position: relative; display: flex; flex-direction: column; }
-        .card img { width: 150px !important; height: 225px !important; object-fit: cover !important; border-radius: 4px; background: #222; display: block; }
+        
+        /* Modifié pour éviter l'affichage de l'icône cassée */
+        .card img { width: 150px !important; height: 225px !important; object-fit: cover !important; border-radius: 4px; background: #1a1a1a; display: block; content: visibility; }
+        .card img[src=""], .card img:not([src]) { opacity: 0; }
         
         .card.landscape { flex: 0 0 180px; width: 180px; }
         .card.landscape img { width: 180px !important; height: 110px !important; object-fit: contain !important; background: #111; border: 1px solid #333; }
@@ -568,7 +571,7 @@ window.addEventListener('popstate', function (event) {
     }
 });
 
-/* --- CORRECTION CHOC DES JAQUETTES TMDB (PAR SÉRIES/LOTS SÉQUENTIELS) --- */
+/* --- SYSTEME INTÉLLIGENT SÉQUENTIEL AVEC SEUIL DE DISPONIBILITÉ (THROTTLE DE SÉCURITÉ) --- */
 async function loadPlaylist() { 
     try { 
         const response = await fetch('films.json?v=' + Date.now()); 
@@ -576,7 +579,10 @@ async function loadPlaylist() {
         
         const apiKey = "ec1c8fecd38d1cc5a27f15766f0848d5";
         
-        // On traite les films par paquets séquentiels pour ne pas saturer et déclencher le Rate-Limiting de TMDB
+        // Rendu immédiat des éléments basiques (évite l'écran blanc ou vide)
+        render();
+
+        // Traitement progressif controlé pour ne jamais saturer l'API
         for (let i = 0; i < playlistData.length; i++) {
             let m = playlistData[i];
             m.original_index = i;
@@ -585,15 +591,17 @@ async function loadPlaylist() {
                 try {
                     const url = `https://api.themoviedb.org/3/movie/${m.id_tmdb}?api_key=${apiKey}&language=fr-FR&append_to_response=videos,credits&include_video_language=en,fr,null`;
                     const res = await fetch(url);
+                    
                     if (res.status === 429) { 
-                        // Si TMDB dit de ralentir, on attend un peu avant le prochain film
-                        await new Promise(resolve => setTimeout(resolve, 800));
+                        // Bloqué par TMDB temporairement -> pause forcée de 1.5 seconde
+                        await new Promise(resolve => setTimeout(resolve, 1500));
                         i--; continue; 
                     }
+                    
                     const data = await res.json();
                     
-                    m.img = m.img || `https://image.tmdb.org/t/p/w500${data.poster_path}`;
-                    m.bg = m.bg || `https://image.tmdb.org/t/p/original${data.backdrop_path}`;
+                    m.img = m.img || (data.poster_path ? `https://image.tmdb.org/t/p/w500${data.poster_path}` : '');
+                    m.bg = m.bg || (data.backdrop_path ? `https://image.tmdb.org/t/p/original${data.backdrop_path}` : '');
                     m.desc = m.desc || data.overview;
                     m.year = m.year || (data.release_date ? data.release_date.split('-')[0] : "2025");
                     m.note = m.note || Math.round(data.vote_average / 2);
@@ -606,25 +614,49 @@ async function loadPlaylist() {
                         const video = data.videos.results.find(v => 
                             (v.type === "Trailer" || v.type === "Teaser") && v.site === "YouTube"
                         ) || data.videos.results[0];
-                        
                         if (video) m.trailer = video.key;
                     }
 
                     if (!m.actors_pics && data.credits && data.credits.cast) {
                         m.actors_pics = data.credits.cast.slice(0, 10).map(a => ({
                             name: a.name,
-                            img: `https://image.tmdb.org/t/p/w185${a.profile_path}`
+                            img: a.profile_path ? `https://image.tmdb.org/t/p/w185${a.profile_path}` : ''
                         }));
                     }
+                    
+                    // Met à jour l'élément visuel à la volée dès qu'il est chargé
+                    updateCardVisual(i);
+
                 } catch (e) { console.log("Erreur TMDB ID: " + m.id_tmdb); }
                 
-                // Petit espace temporel de 40ms entre chaque requête réussie pour lisser la charge
-                await new Promise(resolve => setTimeout(resolve, 40));
+                // Petit délai tampon constant entre les appels
+                await new Promise(resolve => setTimeout(resolve, 80));
             }
         }
-        render(); 
     } catch (e) {} 
 }
+
+// Fonction de secours qui rafraîchit uniquement la carte modifiée sans tout reconstruire
+function updateCardVisual(index) {
+    const m = playlistData[index];
+    const images = document.querySelectorAll(`img[data-index="${index}"]`);
+    images.forEach(img => {
+        if(m.img) {
+            img.src = m.img;
+            img.style.opacity = "1";
+        }
+    });
+}
+
+// Fonction globale de secours si une image saute malgré tout (Fallback Propre)
+window.handleImgError = function(el, fallbackUrl) {
+    el.onerror = null; 
+    // Supprime la vilaine icône cassée par défaut
+    el.style.content = "visibility";
+    setTimeout(() => { 
+        el.src = fallbackUrl + '?' + Date.now(); 
+    }, 2000);
+};
 
 function openDetails(idx) {
     if (window.history.state?.overlay !== 'details') {
@@ -636,7 +668,7 @@ function openDetails(idx) {
     document.getElementById('details-title').innerText = m.t;
     document.getElementById('details-desc').innerText = m.desc || "Aucun résumé disponible.";
     document.getElementById('details-meta-year').innerText = m.year || "2024";
-    document.getElementById('details-meta-cat').innerText = m.cat;
+    document.getElementById('details-meta-cat').innerText = m.cat || "Film";
 
     const lineInfo = m.num ? m.num : (m.original_index * 7) + 2;
     const numTag = document.getElementById('details-meta-num');
@@ -652,7 +684,7 @@ function openDetails(idx) {
     if (m.actors_pics && m.actors_pics.length > 0) {
         castHtml = m.actors_pics.map(a => `
                 <div class="actor-item" onclick="searchByActor('${a.name}')" title="Voir les films avec ${a.name}">
-                    <img src="${a.img}" onerror="this.src='https://via.placeholder.com/80x80?text=?'">
+                    <img src="${a.img || ''}" onerror="this.src='https://via.placeholder.com/80x80?text=?'">
                     <div class="actor-name">${a.name}</div>
                 </div>
             `).join('');
@@ -684,12 +716,13 @@ function openDetails(idx) {
         const s_note = s.note || 5;
         for (let i = 0; i < 5; i++) { s_stars += (i < s_note) ? "★" : "☆"; }
         
+        const sIdx = playlistData.indexOf(s);
         return `
         <div class="actor-item" style="flex:0 0 120px; position:relative;">
             <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${s.t.replace(/'/g, "\\'")}');">${heartIcon}</div>
             <div class="card-rating">${s_stars}</div>
-            <div onclick="openDetails(${playlistData.indexOf(s)})">
-                <img src="${s.img || ''}" style="border-radius:4px; height:160px; width:110px; object-fit:cover;" loading="lazy" onerror="this.onerror=null; setTimeout(() => { this.src='${s.img || ''}?'+Date.now(); }, 1000);">
+            <div onclick="openDetails(${sIdx})">
+                <img src="${s.img || ''}" data-index="${sIdx}" style="border-radius:4px; height:160px; width:110px; object-fit:cover;" loading="lazy" onerror="handleImgError(this, '${s.img || ''}');">
                 <div class="actor-name">${s.t}</div>
             </div>
         </div>
@@ -779,7 +812,6 @@ function saveP() {
 
 function scrollSide(btn, amt) { const car = btn.parentElement.querySelector('.carousel'); car.scrollBy({ left: amt, behavior: 'smooth' }); }
 
-/* --- CORRECTION ONERROR DANS LE RENDER POUR ASSURER LES JAQUETTES AU RE-TRY --- */
 function render(search = "") {
     const cont = document.getElementById('categories-container');
     const histSec = document.getElementById('history-sec');
@@ -804,10 +836,11 @@ function render(search = "") {
             history.slice().reverse().forEach(title => {
                 const m = playlistData.find(item => item.t === title);
                 if(m) {
+                    const idx = playlistData.indexOf(m);
                     const isTV = m.cat && (m.cat.toUpperCase().includes("DIRECT") || m.cat.toUpperCase().includes("TV"));
                     const landscapeClass = isTV ? "landscape" : "";
                     const pct = (prog[m.t] && prog[m.t].p > 1) ? `<div class="prog-bg"><div class="prog-fill" style="width:${prog[m.t].p}%"></div></div>` : "";
-                    const clickAction = isTV ? `playMovie(${playlistData.indexOf(m)})` : `openDetails(${playlistData.indexOf(m)})`;
+                    const clickAction = isTV ? `playMovie(${idx})` : `openDetails(${idx})`;
                     
                     const is_fav = favs.includes(m.t);
                     const heartClass = is_fav ? 'is-fav' : '';
@@ -822,7 +855,7 @@ function render(search = "") {
                             <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${m.t.replace(/'/g, "\\'")}');">${heartIcon}</div>
                             ${!isTV ? `<div class="card-rating">${m_stars}</div>` : ''}
                             <div onclick="${clickAction}">
-                                <img src="${m.img || ''}" loading="lazy" onerror="this.onerror=null; setTimeout(() => { this.src='${m.img || ''}?'+Date.now(); }, 1000);">${pct}
+                                <img src="${m.img || ''}" data-index="${idx}" loading="lazy" onerror="handleImgError(this, '${m.img || ''}');">${pct}
                                 <div class="card-name">${m.t}</div>
                             </div>
                         </div>`;
@@ -836,6 +869,7 @@ function render(search = "") {
         if (allMovies.length > 0) {
             let html = `<div class="category-title">TOUS LES FILMS</div><div class="category-row"><div class="nav-arrow arrow-left" onclick="scrollSide(this, -400)">‹</div><div class="carousel">`;
             allMovies.forEach(m => {
+                const idx = playlistData.indexOf(m);
                 const is_fav = favs.includes(m.t);
                 const heartClass = is_fav ? 'is-fav' : '';
                 const heartIcon = is_fav ? '❤️' : '♡';
@@ -849,8 +883,8 @@ function render(search = "") {
                     <div class="card" tabindex="0">
                         <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${m.t.replace(/'/g, "\\'")}');">${heartIcon}</div>
                         <div class="card-rating">${m_stars}</div>
-                        <div onclick="openDetails(${playlistData.indexOf(m)})">
-                            <img src="${m.img || ''}" loading="lazy" onerror="this.onerror=null; setTimeout(() => { this.src='${m.img || ''}?'+Date.now(); }, 1000);">${pct}
+                        <div onclick="openDetails(${idx})">
+                            <img src="${m.img || ''}" data-index="${idx}" loading="lazy" onerror="handleImgError(this, '${m.img || ''}');">${pct}
                             <div class="card-name">${m.t}</div>
                         </div>
                     </div>`;
@@ -884,10 +918,11 @@ function render(search = "") {
         
         let html = `<div class="category-title">${c}</div><div class="category-row"><div class="nav-arrow arrow-left" onclick="scrollSide(this, -400)">‹</div><div class="carousel">`;
         filtered.forEach(m => {
+            const idx = playlistData.indexOf(m);
             const is_fav = favs.includes(m.t);
             const heartClass = is_fav ? 'is-fav' : '';
             const heartIcon = is_fav ? '❤️' : '♡';
-            const clickAction = isTVCat ? `playMovie(${playlistData.indexOf(m)})` : `openDetails(${playlistData.indexOf(m)})`;
+            const clickAction = isTVCat ? `playMovie(${idx})` : `openDetails(${idx})`;
             
             let m_stars = "";
             const m_note = m.note || 5;
@@ -898,7 +933,7 @@ function render(search = "") {
                     <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${m.t.replace(/'/g, "\\'")}');">${heartIcon}</div>
                     ${!isTVCat ? `<div class="card-rating">${m_stars}</div>` : ''}
                     <div onclick="${clickAction}">
-                        <img src="${m.img || ''}" loading="lazy" onerror="this.onerror=null; setTimeout(() => { this.src='${m.img || ''}?'+Date.now(); }, 1000);">
+                        <img src="${m.img || ''}" data-index="${idx}" loading="lazy" onerror="handleImgError(this, '${m.img || ''}');">
                         <div class="card-name">${m.t}</div>
                     </div>
                 </div>`;
@@ -914,7 +949,7 @@ function openSeries(name) {
     const content = document.getElementById('series-detail-content');
     const eps = playlistData.filter(m => m.t.startsWith(name));
     overlay.style.display = 'block';
-    let html = `<div class="overlay-header"><img src="${eps[0].img || ''}" class="overlay-img" onerror="this.onerror=null; setTimeout(() => { this.src='${eps[0].img || ''}?'+Date.now(); }, 1000);"><div><h2>${name}</h2></div></div>`;
+    let html = `<div class="overlay-header"><img src="${eps[0].img || ''}" class="overlay-img" onerror="handleImgError(this, '${eps[0].img || ''}');"><div><h2>${name}</h2></div></div>`;
     const seasons = {};
     const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
     eps.forEach(ep => {
@@ -937,7 +972,7 @@ function openSeries(name) {
     content.innerHTML = html;
 }
 
-/* --- OPTIMISATION DU PLAYER ET RETRAIT DE LA DOUBLE ASSIGNATION DE SOURCE --- */
+/* --- REMISE EN PLACE DE LA CONFIGURATION ET DE L'INJECTION DU PLAYER MULTI-LANGUES --- */
 function playMovie(idx) {
     history.replaceState({ overlay: 'player' }, "");
     const m = playlistData[idx];
@@ -991,7 +1026,9 @@ function playMovie(idx) {
         if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
         player.play();
     }
-    // Suppression ici de la ligne redondante (player.src) qui réinitialisait inutilement le player.
+    
+    // Rétablit l'assignation globale finale de video.js indispensable au fonctionnement du menu Audio Track (Langues)
+    player.src({ src: decodedUrl, type: type });
 }
 
 function playNextEpisode() {
