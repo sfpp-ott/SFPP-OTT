@@ -568,18 +568,28 @@ window.addEventListener('popstate', function (event) {
     }
 });
 
+/* --- CORRECTION CHOC DES JAQUETTES TMDB (PAR SÉRIES/LOTS SÉQUENTIELS) --- */
 async function loadPlaylist() { 
     try { 
         const response = await fetch('films.json?v=' + Date.now()); 
         playlistData = await response.json(); 
         
         const apiKey = "ec1c8fecd38d1cc5a27f15766f0848d5";
-        const promises = playlistData.map(async (m, index) => {
-            m.original_index = index;
+        
+        // On traite les films par paquets séquentiels pour ne pas saturer et déclencher le Rate-Limiting de TMDB
+        for (let i = 0; i < playlistData.length; i++) {
+            let m = playlistData[i];
+            m.original_index = i;
+            
             if (m.id_tmdb && (!m.img || !m.desc || !m.trailer)) {
                 try {
                     const url = `https://api.themoviedb.org/3/movie/${m.id_tmdb}?api_key=${apiKey}&language=fr-FR&append_to_response=videos,credits&include_video_language=en,fr,null`;
                     const res = await fetch(url);
+                    if (res.status === 429) { 
+                        // Si TMDB dit de ralentir, on attend un peu avant le prochain film
+                        await new Promise(resolve => setTimeout(resolve, 800));
+                        i--; continue; 
+                    }
                     const data = await res.json();
                     
                     m.img = m.img || `https://image.tmdb.org/t/p/w500${data.poster_path}`;
@@ -607,10 +617,11 @@ async function loadPlaylist() {
                         }));
                     }
                 } catch (e) { console.log("Erreur TMDB ID: " + m.id_tmdb); }
+                
+                // Petit espace temporel de 40ms entre chaque requête réussie pour lisser la charge
+                await new Promise(resolve => setTimeout(resolve, 40));
             }
-        });
-
-        await Promise.all(promises);
+        }
         render(); 
     } catch (e) {} 
 }
@@ -678,7 +689,7 @@ function openDetails(idx) {
             <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${s.t.replace(/'/g, "\\'")}');">${heartIcon}</div>
             <div class="card-rating">${s_stars}</div>
             <div onclick="openDetails(${playlistData.indexOf(s)})">
-                <img src="${s.img}" style="border-radius:4px; height:160px; width:110px; object-fit:cover;" loading="lazy">
+                <img src="${s.img || ''}" style="border-radius:4px; height:160px; width:110px; object-fit:cover;" loading="lazy" onerror="this.onerror=null; setTimeout(() => { this.src='${s.img || ''}?'+Date.now(); }, 1000);">
                 <div class="actor-name">${s.t}</div>
             </div>
         </div>
@@ -768,6 +779,7 @@ function saveP() {
 
 function scrollSide(btn, amt) { const car = btn.parentElement.querySelector('.carousel'); car.scrollBy({ left: amt, behavior: 'smooth' }); }
 
+/* --- CORRECTION ONERROR DANS LE RENDER POUR ASSURER LES JAQUETTES AU RE-TRY --- */
 function render(search = "") {
     const cont = document.getElementById('categories-container');
     const histSec = document.getElementById('history-sec');
@@ -779,7 +791,6 @@ function render(search = "") {
 
     const favs = JSON.parse(localStorage.getItem('sfpp_fav_' + currentProfile) || "[]");
     const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
-    const now = new Date();
     
     let data = playlistData;
     if(currentView === 'movies') data = playlistData.filter(m => m.cat && !m.cat.includes("SÉRIES"));
@@ -811,7 +822,7 @@ function render(search = "") {
                             <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${m.t.replace(/'/g, "\\'")}');">${heartIcon}</div>
                             ${!isTV ? `<div class="card-rating">${m_stars}</div>` : ''}
                             <div onclick="${clickAction}">
-                                <img src="${m.img}" loading="lazy">${pct}
+                                <img src="${m.img || ''}" loading="lazy" onerror="this.onerror=null; setTimeout(() => { this.src='${m.img || ''}?'+Date.now(); }, 1000);">${pct}
                                 <div class="card-name">${m.t}</div>
                             </div>
                         </div>`;
@@ -839,7 +850,7 @@ function render(search = "") {
                         <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${m.t.replace(/'/g, "\\'")}');">${heartIcon}</div>
                         <div class="card-rating">${m_stars}</div>
                         <div onclick="openDetails(${playlistData.indexOf(m)})">
-                            <img src="${m.img}" loading="lazy">${pct}
+                            <img src="${m.img || ''}" loading="lazy" onerror="this.onerror=null; setTimeout(() => { this.src='${m.img || ''}?'+Date.now(); }, 1000);">${pct}
                             <div class="card-name">${m.t}</div>
                         </div>
                     </div>`;
@@ -887,7 +898,7 @@ function render(search = "") {
                     <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${m.t.replace(/'/g, "\\'")}');">${heartIcon}</div>
                     ${!isTVCat ? `<div class="card-rating">${m_stars}</div>` : ''}
                     <div onclick="${clickAction}">
-                        <img src="${m.img}" loading="lazy">
+                        <img src="${m.img || ''}" loading="lazy" onerror="this.onerror=null; setTimeout(() => { this.src='${m.img || ''}?'+Date.now(); }, 1000);">
                         <div class="card-name">${m.t}</div>
                     </div>
                 </div>`;
@@ -903,7 +914,7 @@ function openSeries(name) {
     const content = document.getElementById('series-detail-content');
     const eps = playlistData.filter(m => m.t.startsWith(name));
     overlay.style.display = 'block';
-    let html = `<div class="overlay-header"><img src="${eps[0].img}" class="overlay-img"><div><h2>${name}</h2></div></div>`;
+    let html = `<div class="overlay-header"><img src="${eps[0].img || ''}" class="overlay-img" onerror="this.onerror=null; setTimeout(() => { this.src='${eps[0].img || ''}?'+Date.now(); }, 1000);"><div><h2>${name}</h2></div></div>`;
     const seasons = {};
     const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
     eps.forEach(ep => {
@@ -926,6 +937,7 @@ function openSeries(name) {
     content.innerHTML = html;
 }
 
+/* --- OPTIMISATION DU PLAYER ET RETRAIT DE LA DOUBLE ASSIGNATION DE SOURCE --- */
 function playMovie(idx) {
     history.replaceState({ overlay: 'player' }, "");
     const m = playlistData[idx];
@@ -957,7 +969,6 @@ function playMovie(idx) {
     try { decodedUrl = window.atob(m.url); } catch(e) { decodedUrl = m.url; }
 
     const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
-
     let type = decodedUrl.includes('.m3u8') ? 'application/x-mpegURL' : 'video/mp4';
 
     if (type === 'application/x-mpegURL') {
@@ -980,8 +991,7 @@ function playMovie(idx) {
         if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
         player.play();
     }
-    
-    player.src({ src: decodedUrl, type: type });
+    // Suppression ici de la ligne redondante (player.src) qui réinitialisait inutilement le player.
 }
 
 function playNextEpisode() {
