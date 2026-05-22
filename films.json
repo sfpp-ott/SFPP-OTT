@@ -1,10 +1,80 @@
 [
   {
-    "num": "1069",
+    "num": "1079",
     "t": "Barbie : Agents Secrets",
     "id_tmdb": "377897",
     "cat": "",
     "url": "https://filemoon.org/download/eyJpdiI6IkNIL3IzQ3dhWkRtQmxtTE54aFF1d2c9PSIsInZhbHVlIjoiWkc4bGlMUU9qSDM5Qng0NzRUVU03MCtiaDlIS285N3FQSVJZRGtQUFBBRT0iLCJtYWMiOiIxYjEwMWJjNGY3ZmM2ODcwYTg4NjczNjRlMmMzOTdlYzEwN2JkNWQ3ZjJlYTI1ODliYjQyMzBlNjU4MjBjZmUxIiwidGFnIjoiIn0=/B960526836.mp4"
+  },
+  {
+    "num": "1078",
+    "t": "Hellraiser : Hellseeker",
+    "id_tmdb": "11246",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/04fe86b26a848f04a5306ad4d605841706cef8723435ac304324613877181738/master.m3u8"
+  },
+  {
+    "num": "1077",
+    "t": "Hellraiser : Inferno",
+    "id_tmdb": "12597",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/da6dff3a7ed41ad923ac6f5ec703440aceedc7687670971ce861b6605be4f364/master.m3u8"
+  },
+  {
+    "num": "1076",
+    "t": "‎Interstella 5555",
+    "id_tmdb": "11049",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/d12e0eb323ff154983d30a52f2cf240233b7311fb2994454d49a29b4353150df/master.m3u8"
+  },
+  {
+    "num": "1075",
+    "t": "Josee, the Tiger and the Fish",
+    "id_tmdb": "652837",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/49d432aa20e7bb7ea7539f2cd0253ebea0e9bec377050aeb34ab9818dfe8dcd9/master.m3u8"
+  },
+  {
+    "num": "1074",
+    "t": "Le Dernier Duel",
+    "id_tmdb": "617653",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/76da2a698608333ef58e1dae0e47b7747a836a0b2b7f87f676176c96a3463ed5/master.m3u8"
+  },
+  {
+    "num": "1073",
+    "t": "Link",
+    "id_tmdb": "62131",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/d5896c0195b64969bfef319837d2132d2688cdb62a70b07cbaa8ad8bee131bec/master.m3u8"
+  },
+  {
+    "num": "1072",
+    "t": "Samba Traoré",
+    "id_tmdb": "241172",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/ada5455b56a79f13d24623cee633e1f595d3be39e39e8e32d7bc0f7160fe025a/master.m3u8"
+  },
+  {
+    "num": "1071",
+    "t": "Push",
+    "id_tmdb": "13455",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/4a189da34d4a640c964ed9a076857d767c7a43f12befaa03d793734700f44ef6/master.m3u8"
+  },
+  {
+    "num": "1070",
+    "t": "Wesh wesh, qu'est-ce qui se passe?",
+    "id_tmdb": "104234",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/fd9cb1cabacc02da7980bb47325841f687ccbb9727a3b4a8acf62e91479cafd2/master.m3u8"
+  },
+  {
+    "num": "1069",
+    "t": "Bleeder",
+    "id_tmdb": "17985",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/46f9e08d57e2a144039ac0e62ea12c67d6b3d8d93abff11a303ce32c56efdcd3/master.m3u8"
   },
   {
     "num": "1068",
