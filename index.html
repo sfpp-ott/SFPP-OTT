@@ -208,7 +208,7 @@
         .prog-bg { position: absolute; bottom: 25px; left: 0; width: 100%; height: 4px; background: rgba(255,255,255,0.2); border-radius: 0 0 4px 4px; overflow: hidden; }
         .prog-fill { height: 100%; background: var(--accent); transition: width 0.3s; }
 
-        /* --- STYLE PAGINATION COMPLET --- */
+        /* --- STYLE PAGINATION --- */
         .pagination-container { display: flex; justify-content: center; align-items: center; gap: 15px; margin: 40px 0 20px; }
         .pagination-btn { background: #222; color: white; border: 1px solid #444; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 14px; }
         .pagination-btn:hover:not(:disabled) { background: var(--accent); border-color: var(--accent); }
@@ -364,7 +364,6 @@
     </div>
     
     <div id="categories-container"></div>
-    
     <div id="pagination-controls" class="pagination-container"></div>
 </div>
 
@@ -528,12 +527,12 @@ setInterval(function() { (function() { debugger; }).call(); }, 5000);
 let player, playlistData = [], currentProfile = null, isEditMode = false, currentView = 'all', currentPlayingTitle = "", exitConfirmed = false;
 let isAdminMode = false, epgData = {}, hls; 
 
-// CONFIGURATION DU MODE FOCUS "VOIR TOUT EN PAGINATION"
-let focusGenre = null; // Si null, on affiche la vue carrousels normale
+// CONFIGURATION DU MODE FOCUS HYBRIDE
+let focusGenre = null; 
 let currentPage = 1;
 const itemsPerPage = 20; 
 let totalPages = 1;
-const limitCarousel = 50; // Limite stricte de films chargés par carrousel pour préserver l'API TMDB
+const limitCarousel = 50; // Limite de sécurité TMDB par ligne
 
 async function fetchEPG() {
     try {
@@ -574,7 +573,6 @@ window.addEventListener('popstate', function (event) {
         return;
     }
 
-    // Si on est en mode "Voir tout" d'un genre, le bouton retour repasse à la vue d'accueil générale
     if (focusGenre !== null) {
         focusGenre = null;
         render();
@@ -595,23 +593,22 @@ async function loadPlaylist() {
     try { 
         const response = await fetch('films.json?v=' + Date.now()); 
         playlistData = await response.json(); 
+        
+        // On conserve précisément l'ordre d'insertion d'origine via original_index
         playlistData.forEach((m, i) => m.original_index = i);
         
         render();
-        // Lancement intelligent du chargement TMDB automatique en tâche de fond (Progressif)
         lazyFetchTMDB();
     } catch (e) {} 
 }
 
-/* --- RECHERCHE PROGRESSIVE INTELLIGENTE SUR LES ELEMENTS EN COURS --- */
 async function lazyFetchTMDB() {
     const apiKey = "ec1c8fecd38d1cc5a27f15766f0848d5";
     for (let m of playlistData) {
         if (m.id_tmdb && (!m.img || !m.desc || !m.trailer)) {
             try {
-                // On ne charge que les éléments visibles ou demandés pour ne pas saturer l'API en une seconde
                 const targetImg = document.querySelector(`img[data-id="${m.original_index}"]`);
-                if (!targetImg && focusGenre === null) continue; // Skip si l'élément n'est pas affiché actuellement
+                if (!targetImg && focusGenre === null) continue; 
 
                 const url = `https://api.themoviedb.org/3/movie/${m.id_tmdb}?api_key=${apiKey}&language=fr-FR&append_to_response=videos,credits&include_video_language=en,fr,null`;
                 const res = await fetch(url);
@@ -640,12 +637,11 @@ async function lazyFetchTMDB() {
                 
                 if (targetImg) targetImg.src = m.img;
             } catch (e) {}
-            await new Promise(r => setTimeout(r, 60)); // Lissage des requêtes
+            await new Promise(r => setTimeout(r, 60)); 
         }
     }
 }
 
-// Déclencheur manuel pour le bouton "VOIR TOUT" d'un genre
 window.enableGenreFocus = function(genreName) {
     focusGenre = genreName;
     currentPage = 1;
@@ -815,7 +811,7 @@ function saveP() {
 
 function scrollSide(btn, amt) { const car = btn.parentElement.querySelector('.carousel'); car.scrollBy({ left: amt, behavior: 'smooth' }); }
 
-/* --- SYSTÈME HYBRIDE : CARROUSELS DE 50 FILMS + VUE GLOBAL EN PAGES "SEE ALL" --- */
+/* --- ENGINE HYBRIDE : PRISE EN COMPTE STRICTE DE L'ORDRE D'AJOUT NATUREL (JSON) --- */
 function render(search = "") {
     const cont = document.getElementById('categories-container');
     const histSec = document.getElementById('history-sec');
@@ -830,22 +826,19 @@ function render(search = "") {
     const favs = JSON.parse(localStorage.getItem('sfpp_fav_' + currentProfile) || "[]");
     const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
     
-    // Si l'utilisateur tape une recherche, on active automatiquement le mode Focus global pour lister proprement les résultats
-    if(s !== "") {
-        focusGenre = "Résultats de recherche";
-    }
+    if(s !== "") { focusGenre = "Résultats de recherche"; }
 
-    // --- LOGIQUE 1 : SI ON EST EN MODE FOCUS "VOIR TOUT" (PAGINATION LUMEO GRID) ---
+    // --- REPRÉSENTATION GRID PAGINÉE (MODE SÉCURISÉ LUMEO) ---
     if (focusGenre !== null) {
         histSec.style.display = "none";
-        
         let filteredFocusData = playlistData;
+        
         if (focusGenre === "Résultats de recherche") {
             filteredFocusData = playlistData.filter(m => m.t.toLowerCase().includes(s) || (m.cat && m.cat.toLowerCase().includes(s)));
-        } else if (focusGenre === "TOUS LES FILMS") {
-            filteredFocusData = playlistData.filter(m => m.cat && !m.cat.includes("SÉRIES") && !m.cat.toUpperCase().includes("DIRECT") && !m.cat.toUpperCase().includes("TV"));
+        } else if (focusGenre === "NOUVELLEMENT AJOUTÉS") {
+            // Respecte à 100% l'ordre d'origine de ton JSON (Inversé pour voir les derniers en premier)
+            filteredFocusData = [...playlistData].reverse().filter(m => m.cat && !m.cat.toUpperCase().includes("DIRECT") && !m.cat.toUpperCase().includes("TV"));
         } else {
-            // Filtrage par nom de catégorie de genre
             filteredFocusData = playlistData.filter(m => m.cat && m.cat.toUpperCase().includes(focusGenre));
         }
 
@@ -857,7 +850,7 @@ function render(search = "") {
             let html = `
                 <div class="category-header-box">
                     <div class="category-title">${focusGenre} (Page ${currentPage}/${totalPages})</div>
-                    <button class="btn-see-all" onclick="window.enableGenreFocus(null);">← Retour aux lignes</button>
+                    <button class="btn-see-all" onclick="window.enableGenreFocus(null);">← Retour</button>
                 </div>
                 <div class="category-row" style="padding: 0 4%; display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 15px;">`;
             
@@ -893,19 +886,17 @@ function render(search = "") {
                 <span class="page-info">Page ${currentPage} sur ${totalPages}</span>
                 <button class="pagination-btn" onclick="changePage('next')" ${currentPage === totalPages ? 'disabled' : ''}>Suivant →</button>
             `;
-        } else {
-            cont.innerHTML = `<div class="category-title" style="text-align:center; margin-top:50px; color:#666;">Aucun résultat trouvé. <button class="btn-see-all" onclick="window.enableGenreFocus(null);">Retour</button></div>`;
         }
         return;
     }
 
-    // --- LOGIQUE 2 : MODE NORMAL (CARROUSELS ILLIMITÉS PAR LIGNES MAIS AVEC BRIDE DE SÉCURITÉ À 50 FILMS) ---
+    // --- REPRÉSENTATION CARROUSELS NORMAUX (MODE LIGNES SÉCURISÉES) ---
     let data = playlistData;
     if(currentView === 'movies') data = playlistData.filter(m => m.cat && !m.cat.includes("SÉRIES"));
     else if(currentView === 'series') data = playlistData.filter(m => m.cat && m.cat.includes("SÉRIES"));
     else if(currentView === 'fav') data = playlistData.filter(m => favs.includes(m.t));
 
-    // Ligne de l'historique (Reprendre la lecture)
+    // Historique de lecture
     if(currentProfile && currentView === 'all') {
         let history = JSON.parse(localStorage.getItem('sfpp_hist_' + currentProfile) || "[]");
         if(history.length > 0) {
@@ -940,19 +931,19 @@ function render(search = "") {
         } else histSec.style.display = "none";
     } else histSec.style.display = "none";
 
-    // Ligne : Tous les films (Bridé à 50, avec bouton "Voir tout")
+    // --- CARROUSEL PRIORITAIRE 1 : NOUVELLEMENT AJOUTÉS (ORDRE STRICT DE TA PLAYLIST JSON) ---
     if (currentView === 'all' || currentView === 'movies') {
-        const allMovies = playlistData.filter(m => m.cat && !m.cat.includes("SÉRIES") && !m.cat.toUpperCase().includes("DIRECT") && !m.cat.toUpperCase().includes("TV"));
-        if (allMovies.length > 0) {
+        // Copie inversée pour afficher l'ordre d'ajout du JSON (les derniers en premier)
+        const updatesList = [...playlistData].reverse().filter(m => m.cat && !m.cat.toUpperCase().includes("DIRECT") && !m.cat.toUpperCase().includes("TV"));
+        if (updatesList.length > 0) {
             let html = `
                 <div class="category-header-box">
-                    <h2 class="category-title">TOUS LES FILMS</h2>
-                    <button class="btn-see-all" onclick="window.enableGenreFocus('TOUS LES FILMS')">Voir tout (${allMovies.length})</button>
+                    <h2 class="category-title" style="color:#e50914;">🔥 Nouveautés</h2>
+                    <button class="btn-see-all" onclick="window.enableGenreFocus('NOUVELLEMENT AJOUTÉS')">Voir tout (${updatesList.length})</button>
                 </div>
                 <div class="category-row"><div class="nav-arrow arrow-left" onclick="scrollSide(this, -400)">‹</div><div class="carousel">`;
             
-            // On affiche seulement les 50 premiers films dans le carrousel principal
-            allMovies.slice(0, limitCarousel).forEach(m => {
+            updatesList.slice(0, limitCarousel).forEach(m => {
                 const is_fav = favs.includes(m.t);
                 const heartClass = is_fav ? 'is-fav' : '';
                 const heartIcon = is_fav ? '❤️' : '♡';
@@ -977,7 +968,7 @@ function render(search = "") {
         }
     }
 
-    // Récupération automatique de l'ensemble des genres présents
+    // Extraction et rendu des lignes de catégories triées par genre
     const allGenres = [];
     data.forEach(m => {
         if(m.cat) {
@@ -986,7 +977,6 @@ function render(search = "") {
         }
     });
 
-    // Génération automatique des lignes de catégories de genres
     allGenres.sort().forEach(c => {
         const filtered = data.filter(m => m.cat && m.cat.toUpperCase().includes(c));
         if (filtered.length === 0) return;
@@ -1001,7 +991,6 @@ function render(search = "") {
             </div>
             <div class="category-row"><div class="nav-arrow arrow-left" onclick="scrollSide(this, -400)">‹</div><div class="carousel">`;
         
-        // On affiche seulement les 50 premiers films par catégorie pour éviter les coupures d'images
         filtered.slice(0, limitCarousel).forEach(m => {
             const is_fav = favs.includes(m.t);
             const heartClass = is_fav ? 'is-fav' : '';
@@ -1109,8 +1098,6 @@ function playMovie(idx) {
         if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
         player.play();
     }
-    
-    // Assure le fonctionnement des langues natives (VF/VO) du flux M3U8
     player.src({ src: decodedUrl, type: type });
 }
 
@@ -1127,7 +1114,7 @@ function closeSeries() { if (document.getElementById('series-overlay').style.dis
 
 function changeView(v) { 
     currentView = v; 
-    focusGenre = null; // Réinitialise le focus genre quand on change d'onglet principal
+    focusGenre = null; 
     document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active')); 
     document.getElementById('btn-'+v).classList.add('active'); 
     render(); 
