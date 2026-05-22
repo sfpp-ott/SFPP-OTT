@@ -671,7 +671,6 @@ window.enableGenreFocus = function(genreName) {
     render(document.getElementById('searchBar').value);
 };
 
-// Modifié pour remettre le focus à zéro lors d'un retour propre à la page d'accueil
 window.disableFocusMode = function() {
     focusGenre = null;
     document.getElementById('searchBar').value = '';
@@ -838,7 +837,7 @@ function saveP() {
 
 function scrollSide(btn, amt) { const car = btn.parentElement.querySelector('.carousel'); car.scrollBy({ left: amt, behavior: 'smooth' }); }
 
-/* --- RENDER SÉCURISÉ MULTI-GENRES SANS DOUBLONS NI LIGNE "SORTIES" --- */
+/* --- CORRECTION INTÉGRALE ET SÉCURISÉE DES CATÉGORIES SANS PERTE --- */
 function render(search = "") {
     const cont = document.getElementById('categories-container');
     const histSec = document.getElementById('history-sec');
@@ -856,7 +855,7 @@ function render(search = "") {
     let activeFocus = focusGenre;
     if (s !== "") { activeFocus = "Résultats de recherche"; }
 
-    // --- LOGIQUE GRID EN MODE FOCUS (PAGINATION) ---
+    // --- REPRÉSENTATION GRID PAGINÉE (MODE SÉCURISÉ LUMEO) ---
     if (activeFocus !== null) {
         histSec.style.display = "none";
         let filteredFocusData = playlistData;
@@ -924,7 +923,7 @@ function render(search = "") {
         return;
     }
 
-    // --- LOGIQUE CARROUSELS ACCUEIL INTERFACE NORMAUX ---
+    // --- REPRÉSENTATION EN CARROUSELS SUR L'ACCUEIL ---
     if(currentProfile && currentView === 'all') {
         let history = JSON.parse(localStorage.getItem('sfpp_hist_' + currentProfile) || "[]");
         if(history.length > 0) {
@@ -959,7 +958,7 @@ function render(search = "") {
         } else histSec.style.display = "none";
     } else histSec.style.display = "none";
 
-    // CARROUSEL TOUS LES FILMS (ORDRE JSON INTÉGRAL SANS EXCLUSION NI PERTE)
+    // LIGNE MAJEURE SANS EXCLUSION : TOUS LES FILMS (ORDRE JSON INTÉGRAL NATUREL BRUT)
     if (currentView === 'all' || currentView === 'movies') {
         const globalMovies = playlistData.filter(m => m.cat ? (!m.cat.toUpperCase().includes("SÉRIES") && !m.cat.toUpperCase().includes("DIRECT") && !m.cat.toUpperCase().includes("TV")) : true);
         if (globalMovies.length > 0) {
@@ -995,23 +994,23 @@ function render(search = "") {
         }
     }
 
-    // Filtrage des données selon la vue (onglet) active
-    let baseData = playlistData;
+    // Sélection de la base selon l'onglet actif sans détruire l'index d'origine
+    let targetData = playlistData;
     if(currentView === 'fav') {
-        baseData = playlistData.filter(m => favs.includes(m.t));
+        targetData = playlistData.filter(m => favs.includes(m.t));
     } else if (currentView === 'series') {
-        baseData = playlistData.filter(m => m.cat && m.cat.toUpperCase().includes("SÉRIES"));
+        targetData = playlistData.filter(m => m.cat && m.cat.toUpperCase().includes("SÉRIES"));
     } else if (currentView === 'movies') {
-        baseData = playlistData.filter(m => m.cat ? (!m.cat.toUpperCase().includes("SÉRIES") && !m.cat.toUpperCase().includes("DIRECT") && !m.cat.toUpperCase().includes("TV")) : true);
+        targetData = playlistData.filter(m => m.cat ? (!m.cat.toUpperCase().includes("SÉRIES") && !m.cat.toUpperCase().includes("DIRECT") && !m.cat.toUpperCase().includes("TV")) : true);
     }
 
-    // Récupération de tous les genres disponibles sans distinction restrictive
+    // EXTRACTION COMPLÈTE DE CHAQUE GENRE SANS PERTE SUR TOUTE LA PLAYLIST
     const allGenres = [];
-    baseData.forEach(m => {
+    playlistData.forEach(m => {
         if(m.cat) {
             const genres = m.cat.split(',').map(g => g.trim().toUpperCase());
             genres.forEach(g => { 
-                // CORRECTION : Élimination stricte de la catégorie "SORTIES" ou vide
+                // EXCLUSION CHIRURGICALE : Filtre uniquement la pollution du mot "SORTIES"
                 if(g !== "SORTIES" && g !== "" && !allGenres.includes(g)) {
                     allGenres.push(g);
                 }
@@ -1019,9 +1018,9 @@ function render(search = "") {
         }
     });
 
-    // Génération automatique des lignes de catégories de genres sans perte
+    // Génération automatique des lignes de catégories triées par genre (sans pertes)
     allGenres.sort().forEach(c => {
-        const filtered = baseData.filter(m => m.cat && m.cat.toUpperCase().includes(c));
+        const filtered = targetData.filter(m => m.cat && m.cat.toUpperCase().includes(c));
         if (filtered.length === 0) return;
         
         const isTVCat = c.includes("DIRECT") || c.includes("TV");
