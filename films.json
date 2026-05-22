@@ -1,10 +1,80 @@
 [
   {
-    "num": "1049",
+    "num": "1059",
     "t": "Barbie : Agents Secrets",
     "id_tmdb": "377897",
     "cat": "",
     "url": "https://filemoon.org/download/eyJpdiI6IkNIL3IzQ3dhWkRtQmxtTE54aFF1d2c9PSIsInZhbHVlIjoiWkc4bGlMUU9qSDM5Qng0NzRUVU03MCtiaDlIS285N3FQSVJZRGtQUFBBRT0iLCJtYWMiOiIxYjEwMWJjNGY3ZmM2ODcwYTg4NjczNjRlMmMzOTdlYzEwN2JkNWQ3ZjJlYTI1ODliYjQyMzBlNjU4MjBjZmUxIiwidGFnIjoiIn0=/B960526836.mp4"
+  },
+  {
+    "num": "1058",
+    "t": "Anaconda",
+    "id_tmdb": "1234731",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/fcb876a620d0603879d97877097358220d389d18283aef4f600026698a184c2b/master.m3u8"
+  },
+  {
+    "num": "1057",
+    "t": "Ballerina Assassin",
+    "id_tmdb": "1478052",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/09805183f281d0029efb74247da47217ee9a8de6d105cc9bd99c510da6d82f31/master.m3u8"
+  },
+  {
+    "num": "1056",
+    "t": "‎Ella McCay",
+    "id_tmdb": "1206008",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/077234383cefc219c9a63b2121fcfa684854e2d197490d120af2335682fa8935/master.m3u8"
+  },
+  {
+    "num": "1055",
+    "t": "Fear Below",
+    "id_tmdb": "1232933",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/505dd495b9012a3d1158f8851459db836507b1043e5ce5d9b08891a829a2f311/master.m3u8"
+  },
+  {
+    "num": "1054",
+    "t": "Halloween",
+    "id_tmdb": "2082",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/229eed9141d2e33df067531699d670f468e1037a84a7a15c866008534ce5ecdd/master.m3u8"
+  },
+  {
+    "num": "1053",
+    "t": "Halloween II",
+    "id_tmdb": "11281",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/ca71acf73d9b591af9db1e8c94bc5c4efdfd8516c0c9c5f371e5612bf27bef96/master.m3u8"
+  },
+  {
+    "num": "1052",
+    "t": "La Disparition de Josef Mengele",
+    "id_tmdb": "1037264",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/e4e15b906e2c41897e8d9c2aa451b147cbc6c3ab094b97a8e1f35bbb2dd61412/master.m3u8"
+  },
+  {
+    "num": "1051",
+    "t": "Les Veuves",
+    "id_tmdb": "401469",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/9e9931ec7f8cccea3da937642e0caa126a87a4e35175d339fe1c9b7169964667/master.m3u8"
+  },
+  {
+    "num": "1050",
+    "t": "Moi qui t'aimais",
+    "id_tmdb": "1383266",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/b459bd28f2f5cfeff68f9662da26c2419673d75e4096ee72fe32dde273b6be5f/master.m3u8"
+  },
+  {
+    "num": "1049",
+    "t": "Nino",
+    "id_tmdb": "1313229",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/a2b0dae2654260b686fa67427b2822419791d289c55a22c1bcaa53e535a77764/master.m3u8"
   },
   {
     "num": "1048",
