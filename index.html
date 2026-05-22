@@ -527,7 +527,7 @@ setInterval(function() { (function() { debugger; }).call(); }, 5000);
 let player, playlistData = [], currentProfile = null, isEditMode = false, currentView = 'all', currentPlayingTitle = "", exitConfirmed = false;
 let isAdminMode = false, epgData = {}, hls; 
 
-// SYSTÈME DE FOCUS ET FILTRAGE SANS PERTE
+// CONFIGURATION DU MODE FOCUS ET DE LA PAGINATION SÉCURISÉE
 let focusGenre = null; 
 let currentPage = 1;
 const itemsPerPage = 20; 
@@ -631,7 +631,7 @@ async function lazyFetchTMDB() {
                     const video = data.videos.results.find(v => (v.type === "Trailer" || v.type === "Teaser") && v.site === "YouTube") || data.videos.results[0];
                     if (video) m.trailer = video.key;
                 }
-                if (!m.actors_pics && data.credits && data.credits.cast) {
+                if (!m.trailer_pics && data.credits && data.credits.cast) {
                     m.actors_pics = data.credits.cast.slice(0, 10).map(a => ({ name: a.name, img: `https://image.tmdb.org/t/p/w185${a.profile_path}` }));
                 }
                 
@@ -811,7 +811,7 @@ function saveP() {
 
 function scrollSide(btn, amt) { const car = btn.parentElement.querySelector('.carousel'); car.scrollBy({ left: amt, behavior: 'smooth' }); }
 
-/* --- ENGINE GLOBAL CORRIGÉ : AUCUN FILTRAGE DESTRUCTEUR --- */
+/* --- RENDER SANS LA CATÉGORIE NOUVEAUTÉ --- */
 function render(search = "") {
     const cont = document.getElementById('categories-container');
     const histSec = document.getElementById('history-sec');
@@ -828,7 +828,7 @@ function render(search = "") {
     
     if(s !== "") { focusGenre = "Résultats de recherche"; }
 
-    // --- LOGIQUE A : VUE STRIP GRID PAGINÉE (MODE SÉCURISÉ TOTAL LUMEO) ---
+    // --- GRILLE PAGINÉE EN MODE FOCUS (STYLE LUMEO) ---
     if (focusGenre !== null) {
         histSec.style.display = "none";
         let filteredFocusData = playlistData;
@@ -836,11 +836,7 @@ function render(search = "") {
         if (focusGenre === "Résultats de recherche") {
             filteredFocusData = playlistData.filter(m => m.t.toLowerCase().includes(s) || (m.cat && m.cat.toLowerCase().includes(s)));
         } else if (focusGenre === "TOUS LES FILMS") {
-            // Renvoie TOUS les films bruts sans exception
             filteredFocusData = playlistData.filter(m => m.cat ? (!m.cat.toUpperCase().includes("SÉRIES") && !m.cat.toUpperCase().includes("DIRECT") && !m.cat.toUpperCase().includes("TV")) : true);
-        } else if (focusGenre === "NOUVEAUTÉS") {
-            // Ordre d'ajout inverse strict du JSON
-            filteredFocusData = [...playlistData].reverse().filter(m => m.cat ? (!m.cat.toUpperCase().includes("DIRECT") && !m.cat.toUpperCase().includes("TV")) : true);
         } else {
             filteredFocusData = playlistData.filter(m => m.cat && m.cat.toUpperCase().includes(focusGenre));
         }
@@ -893,9 +889,7 @@ function render(search = "") {
         return;
     }
 
-    // --- LOGIQUE B : APPARENCE EN CARROUSELS SUR L'ACCUEIL ---
-    
-    // Reprendre la lecture (Historique)
+    // --- APPARENCE CARROUSELS ACCUEIL ---
     if(currentProfile && currentView === 'all') {
         let history = JSON.parse(localStorage.getItem('sfpp_hist_' + currentProfile) || "[]");
         if(history.length > 0) {
@@ -930,7 +924,7 @@ function render(search = "") {
         } else histSec.style.display = "none";
     } else histSec.style.display = "none";
 
-    // 1. CARROUSEL MAJEUR SANS EXCLUSION : TOUS LES FILMS (ORDRE BRUT DU JSON COMPLET)
+    // CARROUSEL TOUS LES FILMS (ORDRE JSON INTÉGRAL SANS PERTE)
     if (currentView === 'all' || currentView === 'movies') {
         const globalMovies = playlistData.filter(m => m.cat ? (!m.cat.toUpperCase().includes("SÉRIES") && !m.cat.toUpperCase().includes("DIRECT") && !m.cat.toUpperCase().includes("TV")) : true);
         if (globalMovies.length > 0) {
@@ -966,43 +960,6 @@ function render(search = "") {
         }
     }
 
-    // 2. CARROUSEL : NOUVEAUTÉS (ORDRE BRUT INVERSÉ POUR LES DERNIERS AJOUTS)
-    if (currentView === 'all' || currentView === 'movies') {
-        const freshList = [...playlistData].reverse().filter(m => m.cat ? (!m.cat.toUpperCase().includes("DIRECT") && !m.cat.toUpperCase().includes("TV")) : true);
-        if (freshList.length > 0) {
-            let html = `
-                <div class="category-header-box">
-                    <h2 class="category-title" style="color: var(--accent);">🔥 Nouveautés</h2>
-                    <button class="btn-see-all" onclick="window.enableGenreFocus('NOUVEAUTÉS')">Voir tout (${freshList.length})</button>
-                </div>
-                <div class="category-row"><div class="nav-arrow arrow-left" onclick="scrollSide(this, -400)">‹</div><div class="carousel">`;
-            
-            freshList.slice(0, limitCarousel).forEach(m => {
-                const is_fav = favs.includes(m.t);
-                const heartClass = is_fav ? 'is-fav' : '';
-                const heartIcon = is_fav ? '❤️' : '♡';
-                const pct = (prog[m.t] && prog[m.t].p > 1) ? `<div class="prog-bg"><div class="prog-fill" style="width:${prog[m.t].p}%"></div></div>` : "";
-                
-                let m_stars = "";
-                const m_note = m.note || 5;
-                for (let i = 0; i < 5; i++) { m_stars += (i < m_note) ? "★" : "☆"; }
-
-                html += `
-                    <div class="card" tabindex="0">
-                        <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${m.t.replace(/'/g, "\\'")}');">${heartIcon}</div>
-                        <div class="card-rating">${m_stars}</div>
-                        <div onclick="openDetails(${m.original_index})">
-                            <img src="${m.img || 'https://via.placeholder.com/150x225?text=Chargement...'}" data-id="${m.original_index}">${pct}
-                            <div class="card-name">${m.t}</div>
-                        </div>
-                    </div>`;
-            });
-            html += `</div><div class="nav-arrow arrow-right" onclick="scrollSide(this, 400)">›</div></div>`;
-            cont.innerHTML += html;
-        }
-    }
-
-    // 3. CARROUSELS FILTRÉS PAR LES GENRES AYANT REÇU LE MARQUAGE TMDB SANS INTERFÉRER AVEC LA BASE BRUTE
     let currentFilteredData = playlistData;
     if(currentView === 'fav') {
         currentFilteredData = playlistData.filter(m => favs.includes(m.t));
