@@ -191,13 +191,11 @@
         
         .nav-arrow { position: absolute; top: 0; bottom: 30px; width: 50px; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; z-index: 10; cursor: pointer; color: white; font-size: 30px; opacity: 0; transition: opacity 0.3s; }
         .category-row:hover .nav-arrow { opacity: 1; }
-        .arrow-left { left: 0; }
-        .arrow-right { right: 0; }
+        .carousel-left { left: 0; }
+        .carousel-right { right: 0; }
 
         .card { flex: 0 0 150px; width: 150px; cursor: pointer; position: relative; display: flex; flex-direction: column; }
-        
-        /* Arrière plan sombre fixe style Netflix pendant l'attente du chargement */
-        .card img { width: 150px !important; height: 225px !important; object-fit: cover !important; border-radius: 4px; background: #151515; display: block; }
+        .card img { width: 150px !important; height: 225px !important; object-fit: cover !important; border-radius: 4px; background: #222; display: block; }
         
         .card.landscape { flex: 0 0 180px; width: 180px; }
         .card.landscape img { width: 180px !important; height: 110px !important; object-fit: contain !important; background: #111; border: 1px solid #333; }
@@ -245,6 +243,10 @@
             backdrop-filter: blur(4px);
             pointer-events: none;
         }
+
+        /* --- STYLES EPG REELS --- */
+        .epg-info { font-size: 10px; color: #e50914; margin-top: 4px; text-align: center; font-weight: bold; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; width: 100%; }
+        .epg-time { font-size: 9px; color: #777; text-align: center; display: block; }
 
         #series-overlay { position: fixed; inset: 0; background: var(--bg); z-index: 3000; display: none; overflow-y: auto; padding: 80px 5% 40px; }
         .overlay-header { display: flex; gap: 20px; margin-bottom: 30px; align-items: center; }
@@ -349,9 +351,9 @@
     <div id="history-sec" style="display:none">
         <div class="category-title">Reprendre avec <span id="current-user-name"></span></div>
         <div class="category-row">
-            <div class="nav-arrow arrow-left" onclick="scrollSide(this, -300)">‹</div>
+            <div class="nav-arrow carousel-left" onclick="scrollSide(this, -300)">‹</div>
             <div class="carousel" id="history-container"></div>
-            <div class="nav-arrow arrow-right" onclick="scrollSide(this, 300)">›</div>
+            <div class="nav-arrow carousel-right" onclick="scrollSide(this, 300)">›</div>
         </div>
     </div>
     <div id="categories-container"></div>
@@ -516,121 +518,64 @@ setInterval(function() { (function() { debugger; }).call(); }, 5000);
 
 let player, playlistData = [], currentProfile = null, isEditMode = false, currentView = 'all', currentPlayingTitle = "", exitConfirmed = false;
 let isAdminMode = false, epgData = {}, hls; 
-let scrollObserver = null; // Notre observateur de défilement unique
-
-async function fetchEPG() {
-    try {
-        const response = await fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent('https://iptv-org.github.io/epg/guides/fr/telerama.fr.json'));
-        const data = await response.json();
-        if (data.channels) {
-            data.channels.forEach(ch => {
-                epgData[ch.name.toUpperCase()] = ch.programs || [];
-            });
-            render(); 
-        }
-    } catch (e) {
-        console.log("Erreur EPG:", e);
-    }
-}
-
-window.addEventListener('popstate', function (event) {
-    const detailsOverlay = document.getElementById('details-overlay');
-    const seriesOverlay = document.getElementById('series-overlay');
-    const playerSection = document.getElementById('player-section');
-
-    if (detailsOverlay.style.display === 'flex') {
-        detailsOverlay.style.display = 'none';
-        document.getElementById('details-trailer-box').innerHTML = "";
-        return;
-    }
-    if (seriesOverlay.style.display === 'block') {
-        seriesOverlay.style.display = 'none';
-        return;
-    }
-    if (playerSection.style.display === 'block') {
-        saveP(); 
-        if(hls) { hls.destroy(); hls = null; }
-        player.pause(); 
-        player.src("");
-        playerSection.style.display = 'none';
-        render();
-        return;
-    }
-
-    if (!exitConfirmed) {
-        history.pushState({ overlay: 'home' }, "");
-        const quitter = confirm("Souhaitez-vous vraiment quitter l'application ?");
-        if (quitter) {
-            exitConfirmed = true;
-            history.back();
-        }
-    }
-});
 
 async function loadPlaylist() { 
     try { 
         const response = await fetch('films.json?v=' + Date.now()); 
         playlistData = await response.json(); 
-        playlistData.forEach((m, index) => m.original_index = index);
-        render(); 
-    } catch (e) {} 
-}
+        
+        const apiKey = "ec1c8fecd38d1cc5a27f15766f0848d5";
+        
+        // Rendu immédiat de l'interface d'origine avec l'index mémorisé
+        playlistData.forEach((m, index) => { m.original_index = index; });
+        render();
 
-/* --- LE SYSTEME INTERSECTION OBSERVER NETFLIX / LUMEO STYLE --- */
-function startIntersectionObserverEngine() {
-    if (scrollObserver) scrollObserver.disconnect();
-    const apiKey = "ec1c8fecd38d1cc5a27f15766f0848d5";
+        // CORRECTIF PROFESSIONNEL : Chargement séquentiel fluide avec pause de 40ms pour lisser la charge sur GitHub Pages et TMDB
+        for (let m of playlistData) {
+            if (m.id_tmdb && (!m.img || !m.desc || !m.trailer)) {
+                try {
+                    const url = `https://api.themoviedb.org/3/movie/${m.id_tmdb}?api_key=${apiKey}&language=fr-FR&append_to_response=videos,credits&include_video_language=en,fr,null`;
+                    const res = await fetch(url);
+                    if (res.status === 429) {
+                        await new Promise(resolve => setTimeout(resolve, 1500)); // Pause de sécurité si TMDB demande de ralentir
+                        continue;
+                    }
+                    const data = await res.json();
+                    
+                    m.img = m.img || `https://image.tmdb.org/t/p/w500${data.poster_path}`;
+                    m.bg = m.bg || `https://image.tmdb.org/t/p/original${data.backdrop_path}`;
+                    m.desc = m.desc || data.overview;
+                    m.year = m.year || (data.release_date ? data.release_date.split('-')[0] : "2025");
+                    m.note = m.note || Math.round(data.vote_average / 2);
 
-    scrollObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(async (entry) => {
-            // N'exécute la requête TMDB QUE si le film arrive dans le champ visuel
-            if (entry.isIntersecting) {
-                const imgEl = entry.target;
-                const idx = parseInt(imgEl.getAttribute('data-id'));
-                const m = playlistData[idx];
+                    if (data.genres && data.genres.length > 0) {
+                        m.cat = data.genres.map(g => g.name.toUpperCase()).join(', ');
+                    }
 
-                if (!m) return;
-                observer.unobserve(imgEl); // Retire immédiatement le film de l'écouteur
-
-                if (m.id_tmdb && (!m.img || !m.desc || !m.trailer)) {
-                    try {
-                        const url = `https://api.themoviedb.org/3/movie/${m.id_tmdb}?api_key=${apiKey}&language=fr-FR&append_to_response=videos,credits&include_video_language=en,fr,null`;
-                        const res = await fetch(url);
-                        if (res.status === 429) {
-                            setTimeout(() => { observer.observe(imgEl); }, 1000); // Réessaie plus tard si TMDB sature
-                            return;
-                        }
-                        const data = await res.json();
+                    if (!m.trailer && data.videos && data.videos.results.length > 0) {
+                        const video = data.videos.results.find(v => 
+                            (v.type === "Trailer" || v.type === "Teaser") && v.site === "YouTube"
+                        ) || data.videos.results[0];
                         
-                        m.img = m.img || `https://image.tmdb.org/t/p/w500${data.poster_path}`;
-                        m.bg = m.bg || `https://image.tmdb.org/t/p/original${data.backdrop_path}`;
-                        m.desc = m.desc || data.overview;
-                        m.year = m.year || (data.release_date ? data.release_date.split('-')[0] : "2025");
-                        m.note = m.note || Math.round(data.vote_average / 2);
+                        if (video) m.trailer = video.key;
+                    }
 
-                        if (data.genres && data.genres.length > 0) {
-                            m.cat = data.genres.map(g => g.name.toUpperCase()).join(', ');
-                        }
-                        if (!m.trailer && data.videos && data.videos.results.length > 0) {
-                            const video = data.videos.results.find(v => (v.type === "Trailer" || v.type === "Teaser") && v.site === "YouTube") || data.videos.results[0];
-                            if (video) m.trailer = video.key;
-                        }
-                        if (!m.actors_pics && data.credits && data.credits.cast) {
-                            m.actors_pics = data.credits.cast.slice(0, 10).map(a => ({ name: a.name, img: `https://image.tmdb.org/t/p/w185${a.profile_path}` }));
-                        }
-                    } catch (e) {}
-                }
+                    if (!m.actors_pics && data.credits && data.credits.cast) {
+                        m.actors_pics = data.credits.cast.slice(0, 10).map(a => ({
+                            name: a.name,
+                            img: `https://image.tmdb.org/t/p/w185${a.profile_path}`
+                        }));
+                    }
 
-                // Applique l'image finale sur toutes les cartes du même film
-                const matches = document.querySelectorAll(`.img-sync-${m.original_index}`);
-                matches.forEach(el => {
-                    if (m.img) el.src = m.img;
-                });
+                    // Injection ciblée immédiate de l'image sur l'écran sans rafraîchir tout le DOM
+                    const cardImages = document.querySelectorAll(`.img-sync-${m.original_index}`);
+                    cardImages.forEach(img => { if (m.img) img.src = m.img; });
+
+                } catch (e) { console.log("Erreur TMDB ID: " + m.id_tmdb); }
+                await new Promise(resolve => setTimeout(resolve, 40)); // Délai tampon de lissage
             }
-        });
-    }, { rootMargin: "0px 200px 0px 200px" }); // Marge d'anticipation pour charger l'image avant qu'elle apparaisse à l'écran
-
-    document.querySelectorAll('.observer-trigger-img').forEach(img => scrollObserver.observe(img));
+        }
+    } catch (e) {} 
 }
 
 function openDetails(idx) {
@@ -691,12 +636,13 @@ function openDetails(idx) {
         const s_note = s.note || 5;
         for (let i = 0; i < 5; i++) { s_stars += (i < s_note) ? "★" : "☆"; }
         
+        const currentSuggIndex = playlistData.indexOf(s);
         return `
         <div class="actor-item" style="flex:0 0 120px; position:relative;">
             <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${s.t.replace(/'/g, "\\'")}');">${heartIcon}</div>
             <div class="card-rating">${s_stars}</div>
-            <div onclick="openDetails(${playlistData.indexOf(s)})">
-                <img src="${s.img || 'https://via.placeholder.com/150x225?text=SFPP'}" style="border-radius:4px; height:160px; width:110px; object-fit:cover;" loading="lazy">
+            <div onclick="openDetails(${currentSuggIndex})">
+                <img src="${s.img || ''}" class="img-sync-${currentSuggIndex}" style="border-radius:4px; height:160px; width:110px; object-fit:cover;" loading="lazy">
                 <div class="actor-name">${s.t}</div>
             </div>
         </div>
@@ -786,7 +732,7 @@ function saveP() {
 
 function scrollSide(btn, amt) { const car = btn.parentElement.querySelector('.carousel'); car.scrollBy({ left: amt, behavior: 'smooth' }); }
 
-/* --- ARCHITECTURE DU RENDU DE BASE INTÉGRALE RESTAURÉE (SANS PERTE) --- */
+/* --- ARCHITECTURE DU RENDU DE BASE STRICEMENT RESTAURÉE D'ORIGINE SANS COMPRESSION --- */
 function render(search = "") {
     const cont = document.getElementById('categories-container');
     const histSec = document.getElementById('history-sec');
@@ -829,7 +775,7 @@ function render(search = "") {
                             <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${m.t.replace(/'/g, "\\'")}');">${heartIcon}</div>
                             ${!isTV ? `<div class="card-rating">${m_stars}</div>` : ''}
                             <div onclick="${clickAction}">
-                                <img class="observer-trigger-img img-sync-${m.original_index}" src="${m.img || ''}" data-id="${m.original_index}">${pct}
+                                <img src="${m.img || ''}" class="img-sync-${m.original_index}" loading="lazy">${pct}
                                 <div class="card-name">${m.t}</div>
                             </div>
                         </div>`;
@@ -841,7 +787,7 @@ function render(search = "") {
     if (s === "" && (currentView === 'all' || currentView === 'movies')) {
         const allMovies = playlistData.filter(m => m.cat && !m.cat.includes("SÉRIES") && !m.cat.toUpperCase().includes("DIRECT") && !m.cat.toUpperCase().includes("TV"));
         if (allMovies.length > 0) {
-            let html = `<div class="category-title">TOUS LES FILMS</div><div class="category-row"><div class="nav-arrow arrow-left" onclick="scrollSide(this, -400)">‹</div><div class="carousel">`;
+            let html = `<div class="category-title">TOUS LES FILMS</div><div class="category-row"><div class="nav-arrow carousel-left" onclick="scrollSide(this, -400)">‹</div><div class="carousel">`;
             allMovies.forEach(m => {
                 const is_fav = favs.includes(m.t);
                 const heartClass = is_fav ? 'is-fav' : '';
@@ -857,12 +803,12 @@ function render(search = "") {
                         <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${m.t.replace(/'/g, "\\'")}');">${heartIcon}</div>
                         <div class="card-rating">${m_stars}</div>
                         <div onclick="openDetails(${m.original_index})">
-                            <img class="observer-trigger-img img-sync-${m.original_index}" src="${m.img || ''}" data-id="${m.original_index}">${pct}
+                            <img src="${m.img || ''}" class="img-sync-${m.original_index}" loading="lazy">${pct}
                             <div class="card-name">${m.t}</div>
                         </div>
                     </div>`;
             });
-            html += `</div><div class="nav-arrow arrow-right" onclick="scrollSide(this, 400)">›</div></div>`;
+            html += `</div><div class="nav-arrow carousel-right" onclick="scrollSide(this, 400)">›</div></div>`;
             cont.innerHTML += html;
         }
     }
@@ -872,7 +818,7 @@ function render(search = "") {
         if(m.cat) {
             const genres = m.cat.split(',').map(g => g.trim().toUpperCase());
             genres.forEach(g => { 
-                // RETRAIT STRICT UNIQUEMENT DE LA CATÉGORIE "SORTIES" SANS TOUCHER AU RESTE
+                // RETRAIT STRICEMENT EXCLUSIF DE LA POLLUTION "SORTIES" SANS ALTÉRER TES COMPTES OU FILMS
                 if(g !== "SORTIES" && g !== "" && !allGenres.includes(g)) { allGenres.push(g); } 
             });
         }
@@ -892,7 +838,7 @@ function render(search = "") {
         const isTVCat = c.includes("DIRECT") || c.includes("TV");
         const landscapeClass = isTVCat ? "landscape" : "";
         
-        let html = `<div class="category-title">${c}</div><div class="category-row"><div class="nav-arrow arrow-left" onclick="scrollSide(this, -400)">‹</div><div class="carousel">`;
+        let html = `<div class="category-title">${c}</div><div class="category-row"><div class="nav-arrow carousel-left" onclick="scrollSide(this, -400)">‹</div><div class="carousel">`;
         filtered.forEach(m => {
             const is_fav = favs.includes(m.t);
             const heartClass = is_fav ? 'is-fav' : '';
@@ -908,16 +854,14 @@ function render(search = "") {
                     <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${m.t.replace(/'/g, "\\'")}');">${heartIcon}</div>
                     ${!isTVCat ? `<div class="card-rating">${m_stars}</div>` : ''}
                     <div onclick="${clickAction}">
-                        <img class="observer-trigger-img img-sync-${m.original_index}" src="${m.img || ''}" data-id="${m.original_index}">
+                        <img src="${m.img || ''}" class="img-sync-${m.original_index}" loading="lazy">
                         <div class="card-name">${m.t}</div>
                     </div>
                 </div>`;
         });
-        html += `</div><div class="nav-arrow arrow-right" onclick="scrollSide(this, 400)">›</div></div>`;
+        html += `</div><div class="nav-arrow carousel-right" onclick="scrollSide(this, 400)">›</div></div>`;
         cont.innerHTML += html;
     });
-
-    startIntersectionObserverEngine(); // Active l'observateur pour charger les jaquettes visibles
 }
 
 function openSeries(name) {
@@ -926,7 +870,7 @@ function openSeries(name) {
     const content = document.getElementById('series-detail-content');
     const eps = playlistData.filter(m => m.t.startsWith(name));
     overlay.style.display = 'block';
-    let html = `<div class="overlay-header"><img src="${eps[0].img || 'https://via.placeholder.com/120x180?text=SFPP'}" class="overlay-img"><div><h2>${name}</h2></div></div>`;
+    let html = `<div class="overlay-header"><img src="${eps[0].img || ''}" class="img-sync-${eps[0].original_index} overlay-img"><div><h2>${name}</h2></div></div>`;
     const seasons = {};
     const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
     eps.forEach(ep => {
@@ -1003,7 +947,7 @@ function playMovie(idx) {
         player.play();
     }
     
-    // Conserve le fonctionnement multi-langues et pistes audio Video.js d'origine
+    // Rétablit l'assignation globale finale de video.js indispensable au fonctionnement du menu Audio Track (Langues)
     player.src({ src: decodedUrl, type: type });
 }
 
