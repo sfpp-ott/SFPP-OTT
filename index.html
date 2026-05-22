@@ -198,10 +198,22 @@
         .arrow-right { right: 0; }
 
         .card { flex: 0 0 150px; width: 150px; cursor: pointer; position: relative; display: flex; flex-direction: column; }
-        .card img { width: 150px !important; height: 225px !important; object-fit: cover !important; border-radius: 4px; background: #222; display: block; }
+        
+        /* Modifié pour avoir un squelette de chargement dégradé très propre pendant l'attente */
+        .card img { 
+            width: 150px !important; height: 225px !important; object-fit: cover !important; border-radius: 4px; 
+            background: linear-gradient(90deg, #111 25%, #222 50%, #111 75%);
+            background-size: 200% 100%;
+            animation: loadingShimmer 1.5s infinite linear;
+            display: block; 
+        }
+        @keyframes loadingShimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
         
         .card.landscape { flex: 0 0 180px; width: 180px; }
-        .card.landscape img { width: 180px !important; height: 110px !important; object-fit: contain !important; background: #111; border: 1px solid #333; }
+        .card.landscape img { width: 180px !important; height: 110px !important; object-fit: contain !important; background: #111; border: 1px solid #333; animation: none; }
 
         .card-name { margin-top: 6px; font-size: 12px; text-align: center; color: #bbb; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; width: 100%; }
 
@@ -527,12 +539,12 @@ setInterval(function() { (function() { debugger; }).call(); }, 5000);
 let player, playlistData = [], currentProfile = null, isEditMode = false, currentView = 'all', currentPlayingTitle = "", exitConfirmed = false;
 let isAdminMode = false, epgData = {}, hls; 
 
-// CONFIGURATION DU MODE FOCUS ET DE LA PAGINATION SÉCURISÉE
 let focusGenre = null; 
 let currentPage = 1;
 const itemsPerPage = 20; 
 let totalPages = 1;
 const limitCarousel = 50; 
+let imageObserver = null; // Stocke notre observateur de visibilité
 
 async function fetchEPG() {
     try {
@@ -593,60 +605,78 @@ async function loadPlaylist() {
     try { 
         const response = await fetch('films.json?v=' + Date.now()); 
         playlistData = await response.json(); 
-        
-        // Indexation fixe basée UNIQUEMENT sur l'ordre brut d'apparition dans ton JSON
         playlistData.forEach((m, i) => m.original_index = i);
-        
         render();
-        lazyFetchTMDB();
     } catch (e) {} 
 }
 
-async function lazyFetchTMDB() {
+/* --- LE MOTEUR "PRO" : LAZY LOADING PAR INTERSECTION OBSERVER --- */
+function initLazyLoading() {
+    if (imageObserver) imageObserver.disconnect();
+
     const apiKey = "ec1c8fecd38d1cc5a27f15766f0848d5";
-    for (let m of playlistData) {
-        if (m.id_tmdb && (!m.img || !m.desc || !m.trailer)) {
-            try {
-                const targetImg = document.querySelector(`img[data-id="${m.original_index}"]`);
-                if (!targetImg && focusGenre === null) continue; 
 
-                const url = `https://api.themoviedb.org/3/movie/${m.id_tmdb}?api_key=${apiKey}&language=fr-FR&append_to_response=videos,credits&include_video_language=en,fr,null`;
-                const res = await fetch(url);
-                if (res.status === 429) {
-                    await new Promise(r => setTimeout(r, 1200));
-                    continue;
-                }
-                const data = await res.json();
-                
-                m.img = m.img || `https://image.tmdb.org/t/p/w500${data.poster_path}`;
-                m.bg = m.bg || `https://image.tmdb.org/t/p/original${data.backdrop_path}`;
-                m.desc = m.desc || data.overview;
-                m.year = m.year || (data.release_date ? data.release_date.split('-')[0] : "2025");
-                m.note = m.note || Math.round(data.vote_average / 2);
+    imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(async (entry) => {
+            // N'exécute la requête TMDB QUE si le film apparaît physiquement à l'écran
+            if (entry.isIntersecting) {
+                const imgEl = entry.target;
+                const idx = parseInt(imgEl.getAttribute('data-id'));
+                const m = playlistData[idx];
 
-                if (data.genres && data.genres.length > 0) {
-                    m.cat = data.genres.map(g => g.name.toUpperCase()).join(', ');
+                if (!m) return;
+                observer.unobserve(imgEl); // Stop l'écoute pour cette image
+
+                if (m.id_tmdb && (!m.img || !m.desc || !m.trailer)) {
+                    try {
+                        const url = `https://api.themoviedb.org/3/movie/${m.id_tmdb}?api_key=${apiKey}&language=fr-FR&append_to_response=videos,credits&include_video_language=en,fr,null`;
+                        const res = await fetch(url);
+                        if (res.status === 429) {
+                            // En cas de surcharge, on réécoute l'image plus tard
+                            setTimeout(() => { observer.observe(imgEl); }, 1000);
+                            return;
+                        }
+                        const data = await res.json();
+                        
+                        m.img = m.img || `https://image.tmdb.org/t/p/w500${data.poster_path}`;
+                        m.bg = m.bg || `https://image.tmdb.org/t/p/original${data.backdrop_path}`;
+                        m.desc = m.desc || data.overview;
+                        m.year = m.year || (data.release_date ? data.release_date.split('-')[0] : "2025");
+                        m.note = m.note || Math.round(data.vote_average / 2);
+
+                        if (data.genres && data.genres.length > 0) {
+                            m.cat = data.genres.map(g => g.name.toUpperCase()).join(', ');
+                        }
+                        if (!m.trailer && data.videos && data.videos.results.length > 0) {
+                            const video = data.videos.results.find(v => (v.type === "Trailer" || v.type === "Teaser") && v.site === "YouTube") || data.videos.results[0];
+                            if (video) m.trailer = video.key;
+                        }
+                        if (!m.actors_pics && data.credits && data.credits.cast) {
+                            m.actors_pics = data.credits.cast.slice(0, 10).map(a => ({ name: a.name, img: `https://image.tmdb.org/t/p/w185${a.profile_path}` }));
+                        }
+                    } catch (e) {}
                 }
-                if (!m.trailer && data.videos && data.videos.results.length > 0) {
-                    const video = data.videos.results.find(v => (v.type === "Trailer" || v.type === "Teaser") && v.site === "YouTube") || data.videos.results[0];
-                    if (video) m.trailer = video.key;
+
+                // Applique l'image finale et retire l'effet d'animation Shimmer
+                if(m.img) {
+                    imgEl.src = m.img;
+                    imgEl.style.animation = "none";
+                } else {
+                    imgEl.src = "https://via.placeholder.com/150x225?text=SFPP";
+                    imgEl.style.animation = "none";
                 }
-                if (!m.trailer_pics && data.credits && data.credits.cast) {
-                    m.actors_pics = data.credits.cast.slice(0, 10).map(a => ({ name: a.name, img: `https://image.tmdb.org/t/p/w185${a.profile_path}` }));
-                }
-                
-                if (targetImg) targetImg.src = m.img;
-            } catch (e) {}
-            await new Promise(r => setTimeout(r, 50)); 
-        }
-    }
+            }
+        });
+    }, { rootMargin: "0px 100px 0px 100px" }); // Marge d'anticipation pour charger l'image juste avant qu'elle n'entre à l'écran
+
+    // Assigne l'observateur à toutes les jaquettes générées
+    document.querySelectorAll('.lazy-card-img').forEach(img => imageObserver.observe(img));
 }
 
 window.enableGenreFocus = function(genreName) {
     focusGenre = genreName;
     currentPage = 1;
     render();
-    lazyFetchTMDB();
 };
 
 function changePage(direction) {
@@ -654,7 +684,6 @@ function changePage(direction) {
     else if (direction === 'prev' && currentPage > 1) currentPage--;
     window.scrollTo({ top: 0, behavior: 'smooth' });
     render();
-    lazyFetchTMDB();
 }
 
 function openDetails(idx) {
@@ -747,7 +776,6 @@ function toggleFav(title) {
     localStorage.setItem(key, JSON.stringify(favs));
     updateFavBtnUI(title);
     render(document.getElementById('searchBar').value);
-    lazyFetchTMDB();
 }
 
 function updateFavBtnUI(title) {
@@ -811,7 +839,6 @@ function saveP() {
 
 function scrollSide(btn, amt) { const car = btn.parentElement.querySelector('.carousel'); car.scrollBy({ left: amt, behavior: 'smooth' }); }
 
-/* --- RENDER SANS LA CATÉGORIE NOUVEAUTÉ --- */
 function render(search = "") {
     const cont = document.getElementById('categories-container');
     const histSec = document.getElementById('history-sec');
@@ -828,7 +855,7 @@ function render(search = "") {
     
     if(s !== "") { focusGenre = "Résultats de recherche"; }
 
-    // --- GRILLE PAGINÉE EN MODE FOCUS (STYLE LUMEO) ---
+    // --- MODE GRID AVEC FILTRAGE SÉCURISÉ TOTAL (STYLE LUMEO) ---
     if (focusGenre !== null) {
         histSec.style.display = "none";
         let filteredFocusData = playlistData;
@@ -867,12 +894,13 @@ function render(search = "") {
                 const m_note = m.note || 5;
                 for (let i = 0; i < 5; i++) { m_stars += (i < m_note) ? "★" : "☆"; }
 
+                // Injection d'une source vide '' ou de l'image si déjà en cache locale, l'observer injectera la suite
                 html += `
                     <div class="card ${landscapeClass}" tabindex="0" style="width:100%;">
                         <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${m.t.replace(/'/g, "\\'")}');">${heartIcon}</div>
                         ${!isTV ? `<div class="card-rating">${m_stars}</div>` : ''}
                         <div onclick="${clickAction}">
-                            <img src="${m.img || 'https://via.placeholder.com/150x225?text=SFPP'}" data-id="${m.original_index}" style="width: 100% !important; height: auto !important; aspect-ratio: 2/3; max-height:225px;">${pct}
+                            <img class="lazy-card-img" src="${m.img || ''}" data-id="${m.original_index}" style="width: 100% !important; height: auto !important; aspect-ratio: 2/3; max-height:225px;">${pct}
                             <div class="card-name">${m.t}</div>
                         </div>
                     </div>`;
@@ -886,10 +914,11 @@ function render(search = "") {
                 <button class="pagination-btn" onclick="changePage('next')" ${currentPage === totalPages ? 'disabled' : ''}>Suivant →</button>
             `;
         }
+        initLazyLoading(); // Initialisation de l'observateur pro
         return;
     }
 
-    // --- APPARENCE CARROUSELS ACCUEIL ---
+    // --- APPARENCE LIGNES / CARROUSELS ACCUEIL ---
     if(currentProfile && currentView === 'all') {
         let history = JSON.parse(localStorage.getItem('sfpp_hist_' + currentProfile) || "[]");
         if(history.length > 0) {
@@ -915,7 +944,7 @@ function render(search = "") {
                             <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${m.t.replace(/'/g, "\\'")}');">${heartIcon}</div>
                             ${!isTV ? `<div class="card-rating">${m_stars}</div>` : ''}
                             <div onclick="${clickAction}">
-                                <img src="${m.img || 'https://via.placeholder.com/150x225?text=Chargement...'}" data-id="${m.original_index}">${pct}
+                                <img class="lazy-card-img" src="${m.img || ''}" data-id="${m.original_index}">${pct}
                                 <div class="card-name">${m.t}</div>
                             </div>
                         </div>`;
@@ -924,14 +953,14 @@ function render(search = "") {
         } else histSec.style.display = "none";
     } else histSec.style.display = "none";
 
-    // CARROUSEL TOUS LES FILMS (ORDRE JSON INTÉGRAL SANS PERTE)
+    // TOUS LES FILMS (ORDRE CHRONOLOGIQUE JSON PROPRE)
     if (currentView === 'all' || currentView === 'movies') {
         const globalMovies = playlistData.filter(m => m.cat ? (!m.cat.toUpperCase().includes("SÉRIES") && !m.cat.toUpperCase().includes("DIRECT") && !m.cat.toUpperCase().includes("TV")) : true);
         if (globalMovies.length > 0) {
             let html = `
                 <div class="category-header-box">
                     <h2 class="category-title">TOUS LES FILMS</h2>
-                    <button class="btn-see-all" onclick="window.enableGenreFocus('TOUS LES FILMS')">Voir la liste entière (${globalMovies.length})</button>
+                    <button class="btn-see-all" onclick="window.enableGenreFocus('TOUS LES FILMS')">Voir tout (${globalMovies.length})</button>
                 </div>
                 <div class="category-row"><div class="nav-arrow arrow-left" onclick="scrollSide(this, -400)">‹</div><div class="carousel">`;
             
@@ -950,7 +979,7 @@ function render(search = "") {
                         <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${m.t.replace(/'/g, "\\'")}');">${heartIcon}</div>
                         <div class="card-rating">${m_stars}</div>
                         <div onclick="openDetails(${m.original_index})">
-                            <img src="${m.img || 'https://via.placeholder.com/150x225?text=Chargement...'}" data-id="${m.original_index}">${pct}
+                            <img class="lazy-card-img" src="${m.img || ''}" data-id="${m.original_index}">${pct}
                             <div class="card-name">${m.t}</div>
                         </div>
                     </div>`;
@@ -1002,7 +1031,7 @@ function render(search = "") {
                     <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${m.t.replace(/'/g, "\\'")}');">${heartIcon}</div>
                     ${!isTVCat ? `<div class="card-rating">${m_stars}</div>` : ''}
                     <div onclick="${clickAction}">
-                        <img src="${m.img || 'https://via.placeholder.com/150x225?text=Chargement...'}" data-id="${m.original_index}">
+                        <img class="lazy-card-img" src="${m.img || ''}" data-id="${m.original_index}">
                         <div class="card-name">${m.t}</div>
                     </div>
                 </div>`;
@@ -1010,6 +1039,8 @@ function render(search = "") {
         html += `</div><div class="nav-arrow arrow-right" onclick="scrollSide(this, 400)">›</div></div>`;
         cont.innerHTML += html;
     });
+
+    initLazyLoading(); // On active l'observateur visuel global
 }
 
 function openSeries(name) {
@@ -1114,19 +1145,11 @@ function changeView(v) {
     document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active')); 
     document.getElementById('btn-'+v).classList.add('active'); 
     render(); 
-    lazyFetchTMDB();
 }
 
 function filter() { 
     render(document.getElementById('searchBar').value); 
-    lazyFetchTMDB();
 }
-
-function toggleEditMode() { isEditMode = !isEditMode; document.getElementById('profile-screen').classList.toggle('is-editing'); }
-function switchProfile() { localStorage.removeItem('sfpp_profile'); location.reload(); }
-function requestAccess() { window.location.href = "mailto:sfpp.ott@gmail.com"; }
-function openSearch() { document.getElementById('search-overlay').style.display = 'flex'; document.getElementById('searchBar').focus(); }
-function closeSearch() { document.getElementById('search-overlay').style.display = 'none'; document.getElementById('searchBar').value = ''; filter(); }
 
 document.addEventListener('DOMContentLoaded', () => {
     player = videojs('main-video', { 
