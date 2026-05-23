@@ -210,7 +210,7 @@
         .prog-bg { position: absolute; bottom: 25px; left: 0; width: 100%; height: 4px; background: rgba(255,255,255,0.2); border-radius: 0 0 4px 4px; overflow: hidden; }
         .prog-fill { height: 100%; background: var(--accent); transition: width 0.3s; }
 
-        /* --- STYLES PAGINATION --- */
+        /* --- STYLES CONTENEUR PAGINATION LUMEO --- */
         .pagination-container { display: flex; justify-content: center; align-items: center; gap: 15px; margin: 40px 0 20px; }
         .pagination-btn { background: #222; color: white; border: 1px solid #444; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 14px; }
         .pagination-btn:hover:not(:disabled) { background: var(--accent); border-color: var(--accent); }
@@ -529,7 +529,7 @@ setInterval(function() { (function() { debugger; }).call(); }, 5000);
 let player, playlistData = [], currentProfile = null, isEditMode = false, currentView = 'all', currentPlayingTitle = "", exitConfirmed = false;
 let isAdminMode = false, epgData = {}, hls; 
 
-// SÉCURISATION DES VARIABLES DOUBLE FILTRAGE HYBRIDE LUMEO
+// DÉCLARATION INITIALE STRICTE DES COMPOSANTS LUMEO HYBRIDE
 window.focusGenre = null; 
 let currentPage = 1;
 const itemsPerPage = 20; 
@@ -545,7 +545,7 @@ async function loadPlaylist() {
 
         const apiKey = "ec1c8fecd38d1cc5a27f15766f0848d5";
         
-        // MOTEUR PROGRESSIF INTELLIGENT : Parcours fluide synchrone cadencé à 50ms (Empeche tout blocage GitHub/TMDB)
+        // SÉCURISATION DU CHARGEMENT DES JAQUETTES (LISSAGE TMDB À 50MS)
         for (let m of playlistData) {
             if (m.id_tmdb && (!m.img || !m.desc || !m.trailer)) {
                 try {
@@ -574,9 +574,9 @@ async function loadPlaylist() {
                         m.actors_pics = data.credits.cast.slice(0, 10).map(a => ({ name: a.name, img: `https://image.tmdb.org/t/p/w185${a.profile_path}` }));
                     }
 
-                    // Injection à la volée sur les classes img-sync assignées par le render
-                    const cardImages = document.querySelectorAll(`.img-sync-${m.original_index}`);
-                    cardImages.forEach(img => {
+                    // Injection ciblée instantanée sur l'écran
+                    const targets = document.querySelectorAll(`.img-sync-${m.original_index}`);
+                    targets.forEach(img => {
                         if(m.img) {
                             img.src = m.img;
                             img.style.animation = "none";
@@ -763,7 +763,7 @@ function saveP() {
 
 function scrollSide(btn, amt) { const car = btn.parentElement.querySelector('.carousel'); car.scrollBy({ left: amt, behavior: 'smooth' }); }
 
-/* --- ARCHITECTURE EN CARROUSELS INTEGRALE RESTAURÉE SANS PERTE DE FILMS --- */
+/* --- RENDER HYBRIDE : ENTIÈREMENT SÉCURISÉ SANS RISQUE D'ÉCRAN NOIR OU PERTE --- */
 function render(search = "") {
     const cont = document.getElementById('categories-container');
     const histSec = document.getElementById('history-sec');
@@ -781,7 +781,7 @@ function render(search = "") {
     let activeFocus = window.focusGenre;
     if (s !== "") { activeFocus = "Résultats de recherche"; }
 
-    // --- LOGIQUE A : GRILLE DE TYPE PAGINATION STYLE LUMEO ---
+    // --- LOGIQUE A : GRILLE DE RECHANGE STYLE LUMEO (LORSQU'ON ACTIVE LE FOCUS GENRE) ---
     if (activeFocus !== null) {
         histSec.style.display = "none";
         let filteredFocusData = playlistData;
@@ -846,7 +846,7 @@ function render(search = "") {
         return;
     }
 
-    // --- LOGIQUE B : LIGNES ET CARROUSELS D'ORIGINE DE TA PREMIÈRE PAGE (BRIDE SÉCURISÉ A 50 SUR L'ACCUEIL) ---
+    // --- LOGIQUE B : APPARENCE EN CARROUSELS SUR L'ACCUEIL (NETFLIX STYLE MAIS BRIDÉ A 50 SUR L'ACCUEIL POUR SÉCURISER) ---
     let data = playlistData;
     if(currentView === 'movies') data = playlistData.filter(m => m.cat && !m.cat.includes("SÉRIES"));
     else if(currentView === 'series') data = playlistData.filter(m => m.cat && m.cat.includes("SÉRIES"));
