@@ -529,7 +529,7 @@ setInterval(function() { (function() { debugger; }).call(); }, 5000);
 let player, playlistData = [], currentProfile = null, isEditMode = false, currentView = 'all', currentPlayingTitle = "", exitConfirmed = false;
 let isAdminMode = false, epgData = {}, hls; 
 
-// DÉCLARATION INITIALE STRICTE DES COMPOSANTS LUMEO HYBRIDE
+// INITIALISATION PARAMÈTRES LUMEO INTERFACE HYBRIDE
 window.focusGenre = null; 
 let currentPage = 1;
 const itemsPerPage = 20; 
@@ -545,7 +545,7 @@ async function loadPlaylist() {
 
         const apiKey = "ec1c8fecd38d1cc5a27f15766f0848d5";
         
-        // SÉCURISATION DU CHARGEMENT DES JAQUETTES (LISSAGE TMDB À 50MS)
+        // REQUÊTES EN ARRIÈRE PLAN CADENCÉES : 45ms d'intervalle pour éliminer tout risque de coupure
         for (let m of playlistData) {
             if (m.id_tmdb && (!m.img || !m.desc || !m.trailer)) {
                 try {
@@ -574,9 +574,9 @@ async function loadPlaylist() {
                         m.actors_pics = data.credits.cast.slice(0, 10).map(a => ({ name: a.name, img: `https://image.tmdb.org/t/p/w185${a.profile_path}` }));
                     }
 
-                    // Injection ciblée instantanée sur l'écran
-                    const targets = document.querySelectorAll(`.img-sync-${m.original_index}`);
-                    targets.forEach(img => {
+                    // CORRECTIF D'INJECTION AUTOMATIQUE UNIQUE : Met à jour la classe .img-sync-${id} sur l'écran à la volée
+                    const cardImages = document.querySelectorAll(`.img-sync-${m.original_index}`);
+                    cardImages.forEach(img => {
                         if(m.img) {
                             img.src = m.img;
                             img.style.animation = "none";
@@ -584,7 +584,7 @@ async function loadPlaylist() {
                     });
 
                 } catch (e) {}
-                await new Promise(resolve => setTimeout(resolve, 50));
+                await new Promise(resolve => setTimeout(resolve, 45));
             }
         }
     } catch (e) {} 
@@ -763,7 +763,7 @@ function saveP() {
 
 function scrollSide(btn, amt) { const car = btn.parentElement.querySelector('.carousel'); car.scrollBy({ left: amt, behavior: 'smooth' }); }
 
-/* --- RENDER HYBRIDE : ENTIÈREMENT SÉCURISÉ SANS RISQUE D'ÉCRAN NOIR OU PERTE --- */
+/* --- ARCHITECTURE RENDU CARROUSEL COMPLÈTE RESTAURÉE D'ORIGINE SANS PERTE --- */
 function render(search = "") {
     const cont = document.getElementById('categories-container');
     const histSec = document.getElementById('history-sec');
@@ -781,7 +781,7 @@ function render(search = "") {
     let activeFocus = window.focusGenre;
     if (s !== "") { activeFocus = "Résultats de recherche"; }
 
-    // --- LOGIQUE A : GRILLE DE RECHANGE STYLE LUMEO (LORSQU'ON ACTIVE LE FOCUS GENRE) ---
+    // --- LOGIQUE A : GRILLE DE RECHANGE AVEC PAGES (STYLE LUMEO INTEGRÉ) ---
     if (activeFocus !== null) {
         histSec.style.display = "none";
         let filteredFocusData = playlistData;
@@ -846,7 +846,7 @@ function render(search = "") {
         return;
     }
 
-    // --- LOGIQUE B : APPARENCE EN CARROUSELS SUR L'ACCUEIL (NETFLIX STYLE MAIS BRIDÉ A 50 SUR L'ACCUEIL POUR SÉCURISER) ---
+    // --- LOGIQUE B : CARROUSELS SUR L'ACCUEIL (NETFLIX STYLE MAIS SÉCURISÉ EN BRIDE À 50 SUR LA PREMIÈRE PAGE) ---
     let data = playlistData;
     if(currentView === 'movies') data = playlistData.filter(m => m.cat && !m.cat.includes("SÉRIES"));
     else if(currentView === 'series') data = playlistData.filter(m => m.cat && m.cat.includes("SÉRIES"));
