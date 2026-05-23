@@ -185,7 +185,7 @@
         
         .category-row { position: relative; width: 100%; margin-bottom: 20px; }
         
-        /* En-tête de catégorie flexible avec disposition bouton Voir tout */
+        /* En-tête flexible pour l'alignement des titres et des boutons Voir tout */
         .category-title-row { display: flex; justify-content: space-between; align-items: center; padding: 0 4%; margin: 20px 0 10px; }
         .category-title { font-size: 18px; font-weight: bold; color: #fff; text-transform: uppercase; margin: 0; }
         .show-more-btn { background: #222; border: 1px solid #444; color: white; padding: 8px 14px; border-radius: 8px; cursor: pointer; font-size: 12px; transition: 0.2s; font-weight: bold; }
@@ -210,7 +210,7 @@
         .prog-bg { position: absolute; bottom: 25px; left: 0; width: 100%; height: 4px; background: rgba(255,255,255,0.2); border-radius: 0 0 4px 4px; overflow: hidden; }
         .prog-fill { height: 100%; background: var(--accent); transition: width 0.3s; }
 
-        /* Styles de la grille paginée Lumeo Style */
+        /* Styles de pagination pour l'affichage en grille */
         .pagination-container { display: flex; justify-content: center; align-items: center; gap: 15px; margin: 40px 0 20px; }
         .pagination-btn { background: #222; color: white; border: 1px solid #444; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 14px; }
         .pagination-btn:hover:not(:disabled) { background: var(--accent); border-color: var(--accent); }
@@ -528,8 +528,8 @@ setInterval(function() { (function() { debugger; }).call(); }, 5000);
 let player, playlistData = [], currentProfile = null, isEditMode = false, currentView = 'all', currentPlayingTitle = "", exitConfirmed = false;
 let isAdminMode = false, epgData = {}, hls; 
 
-// VARIABLES LUMEO DE BASE INITIALISÉES SANS CHANGER TON COMPORTEMENT TMDB ORIGINAL
-const CATEGORY_LIMIT = 35; // Entre 30 et 40 jaquettes par ligne sur l'accueil
+// VARIABLES DU FLUX HYBRIDE ÉPURÉ
+const CATEGORY_LIMIT = 35; // Reste calé entre 30 et 40 jaquettes sur l'accueil
 window.focusGenre = null; 
 let currentPage = 1;
 const itemsPerPage = 20; 
@@ -595,9 +595,12 @@ async function loadPlaylist() {
         const response = await fetch('films.json?v=' + Date.now()); 
         playlistData = await response.json(); 
         
+        // On initialise l'index de base d'origine
+        playlistData.forEach((m, index) => { m.original_index = index; });
+        render();
+
         const apiKey = "ec1c8fecd38d1cc5a27f15766f0848d5";
         const promises = playlistData.map(async (m, index) => {
-            m.original_index = index;
             if (m.id_tmdb && (!m.img || !m.desc || !m.trailer)) {
                 try {
                     const url = `https://api.themoviedb.org/3/movie/${m.id_tmdb}?api_key=${apiKey}&language=fr-FR&append_to_response=videos,credits&include_video_language=en,fr,null`;
@@ -809,7 +812,7 @@ function saveP() {
 
 function scrollSide(btn, amt) { const car = btn.parentElement.querySelector('.carousel'); car.scrollBy({ left: amt, behavior: 'smooth' }); }
 
-/* --- TON RENDU DE ACCUEIL COMPLET D'ORIGINE RESTAURÉ SANS AUCUNE MODIFICATION D'IMAGES --- */
+/* --- ARCHITECTURE EN CARROUSELS D'ORIGINE COUPLÉE SANS COMPRESSION --- */
 function render(search = "") {
     const cont = document.getElementById('categories-container');
     const histSec = document.getElementById('history-sec');
@@ -827,7 +830,7 @@ function render(search = "") {
     let activeFocus = window.focusGenre;
     if (s !== "") { activeFocus = "Résultats de recherche"; }
 
-    // --- LOGIQUE A : MODE GRILLE PAGINÉE LUMEO S'IL Y A UN GENRE EN FOCUS ---
+    // --- LOGIQUE A : GRILLE DE TYPE PAGINATION LUMEO QUAND ON CLIQUE SUR UN BOUTON "VOIR TOUT" ---
     if (activeFocus !== null) {
         histSec.style.display = "none";
         let filteredFocusData = playlistData;
@@ -875,7 +878,7 @@ function render(search = "") {
                         <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${m.t.replace(/'/g, "\\'")}');">${heartIcon}</div>
                         ${!isTV ? `<div class="card-rating">${m_stars}</div>` : ''}
                         <div onclick="${clickAction}">
-                            <img class="img-sync-target-${m.original_index}" src="${m.img || ''}" style="width: 100% !important; height: auto !important; aspect-ratio: 2/3; max-height:225px;">${pct}
+                            <img src="${m.img}" style="width: 100% !important; height: auto !important; aspect-ratio: 2/3; max-height:225px;">${pct}
                             <div class="card-name">${m.t}</div>
                         </div>
                     </div>`;
@@ -892,7 +895,7 @@ function render(search = "") {
         return;
     }
 
-    // --- LOGIQUE B : TA PREMIÈRE PAGE PAR CARROUSELS SUR L'ACCUEIL (AVEC BRIDAGE À 35 FILMS) ---
+    // --- LOGIQUE B : TA PREMIÈRE PAGE PAR CARROUSELS SUR L'ACCUEIL (AVEC BRIDAGE À 35 FILMS ET BOUTONS "VOIR TOUT") ---
     let data = playlistData;
     if(currentView === 'movies') data = playlistData.filter(m => m.cat && !m.cat.includes("SÉRIES"));
     else if(currentView === 'series') data = playlistData.filter(m => m.cat && m.cat.includes("SÉRIES"));
@@ -923,7 +926,7 @@ function render(search = "") {
                             <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${m.t.replace(/'/g, "\\'")}');">${heartIcon}</div>
                             ${!isTV ? `<div class="card-rating">${m_stars}</div>` : ''}
                             <div onclick="${clickAction}">
-                                <img src="${m.img || ''}" class="img-sync-target-${m.original_index}" loading="lazy">${pct}
+                                <img src="${m.img}" loading="lazy">${pct}
                                 <div class="card-name">${m.t}</div>
                             </div>
                         </div>`;
@@ -943,7 +946,7 @@ function render(search = "") {
             let html = `
                 <div class="category-title-row">
                     <div class="category-title">TOUS LES FILMS</div>
-                    ${totalFilms > CATEGORY_LIMIT ? `<button class="show-more-btn" onclick="window.enableGenreFocus('TOUS LES FILMS')">Voir tout Lumeo (${totalFilms})</button>` : ''}
+                    ${totalFilms > CATEGORY_LIMIT ? `<button class="show-more-btn" onclick="window.enableGenreFocus('TOUS LES FILMS')">Voir tout (${totalFilms})</button>` : ''}
                 </div>
                 <div class="category-row"><div class="nav-arrow arrow-left" onclick="scrollSide(this, -400)">‹</div><div class="carousel">`;
             
@@ -962,7 +965,7 @@ function render(search = "") {
                         <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${m.t.replace(/'/g, "\\'")}');">${heartIcon}</div>
                         <div class="card-rating">${m_stars}</div>
                         <div onclick="openDetails(${m.original_index})">
-                            <img src="${m.img || ''}" class="img-sync-target-${m.original_index}" loading="lazy">${pct}
+                            <img src="${m.img}" loading="lazy">${pct}
                             <div class="card-name">${m.t}</div>
                         </div>
                     </div>`;
@@ -976,9 +979,7 @@ function render(search = "") {
     data.forEach(m => {
         if(m.cat) {
             const genres = m.cat.split(',').map(g => g.trim().toUpperCase());
-            genres.forEach(g => { 
-                if(g !== "" && !allGenres.includes(g)) allGenres.push(g); 
-            });
+            genres.forEach(g => { if(g !== "" && !allGenres.includes(g)) allGenres.push(g); });
         }
     });
 
@@ -1024,7 +1025,7 @@ function render(search = "") {
                     <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${m.t.replace(/'/g, "\\'")}');">${heartIcon}</div>
                     ${!isTVCat ? `<div class="card-rating">${m_stars}</div>` : ''}
                     <div onclick="${clickAction}">
-                        <img src="${m.img || ''}" class="img-sync-target-${m.original_index}" loading="lazy">
+                        <img src="${m.img}" loading="lazy">
                         <div class="card-name">${m.t}</div>
                     </div>
                 </div>`;
@@ -1040,7 +1041,7 @@ function openSeries(name) {
     const content = document.getElementById('series-detail-content');
     const eps = playlistData.filter(m => m.t.startsWith(name));
     overlay.style.display = 'block';
-    let html = `<div class="overlay-header"><img src="${eps[0].img || ''}" class="img-sync-target-${eps[0].original_index} overlay-img"><div><h2>${name}</h2></div></div>`;
+    let html = `<div class="overlay-header"><img src="${eps[0].img}" class="overlay-img"><div><h2>${name}</h2></div></div>`;
     const seasons = {};
     const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
     eps.forEach(ep => {
@@ -1130,7 +1131,7 @@ function playNextEpisode() {
 
 function closeP() { if (document.getElementById('player-section').style.display === 'block') history.back(); }
 function closeSeries() { if (document.getElementById('series-overlay').style.display === 'block') history.back(); }
-function changeView(v) { currentView = v; window.focusGenre = null; document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active')); document.getElementById('btn-'+v).classList.add('active'); render(); }
+function changeView(v) { currentView = v; document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active')); document.getElementById('btn-'+v).classList.add('active'); render(); }
 function filter() { render(document.getElementById('searchBar').value); }
 function toggleEditMode() { isEditMode = !isEditMode; document.getElementById('profile-screen').classList.toggle('is-editing'); }
 function switchProfile() { localStorage.removeItem('sfpp_profile'); location.reload(); }
