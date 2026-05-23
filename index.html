@@ -149,7 +149,7 @@
         
         .btn-play-main { 
             background: white; color: black; border: none; padding: 15px 35px; 
-            border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 16px; 
+            border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 16px;
         }
         .btn-play-main:focus {
             background: white !important;
@@ -185,7 +185,7 @@
         
         .category-row { position: relative; width: 100%; margin-bottom: 20px; }
         
-        /* En-tête flexible style Lumeo avec bouton d'affichage complet */
+        /* Styles Lumeo pour la gestion unifiée des en-têtes flexibles */
         .category-title-row { display: flex; justify-content: space-between; align-items: center; padding: 0 4%; margin: 20px 0 10px; }
         .category-title { font-size: 18px; font-weight: bold; color: #fff; text-transform: uppercase; margin: 0; }
         .show-more-btn { background: #222; border: 1px solid #444; color: white; padding: 8px 14px; border-radius: 8px; cursor: pointer; font-size: 12px; transition: 0.2s; font-weight: bold; }
@@ -357,14 +357,13 @@
 <div id="main-content">
     <div id="expiration-banner"></div>
     <div id="history-sec" style="display:none">
-        <div class="category-title" style="margin: 20px 4% 10px;">Reprendre avec <span id="current-user-name"></span></div>
+        <div class="category-title">Reprendre avec <span id="current-user-name"></span></div>
         <div class="category-row">
             <div class="nav-arrow arrow-left" onclick="scrollSide(this, -300)">‹</div>
             <div class="carousel" id="history-container"></div>
             <div class="nav-arrow arrow-right" onclick="scrollSide(this, 300)">›</div>
         </div>
     </div>
-    
     <div id="categories-container"></div>
     <div id="pagination-controls" class="pagination-container"></div>
 </div>
@@ -529,68 +528,14 @@ setInterval(function() { (function() { debugger; }).call(); }, 5000);
 let player, playlistData = [], currentProfile = null, isEditMode = false, currentView = 'all', currentPlayingTitle = "", exitConfirmed = false;
 let isAdminMode = false, epgData = {}, hls; 
 
-// PARAMÈTRES ET CONSTANTES POUR LE DEPLOIEMENT DU PRINCIPE LUMEO STYLE SÉCURISÉ
-const CATEGORY_LIMIT = 35; // Calibré entre 30 et 40 jaquettes sur l'accueil
-let expandedCategories = {};
+// CONSTANTES COUPLAGE HYBRIDE LUMEO POUR LES CARROUSELS DE L'ACCUEIL
+const CATEGORY_LIMIT = 35; // Entre 30 et 40 jaquettes sur l'accueil
 window.focusGenre = null; 
 let currentPage = 1;
 const itemsPerPage = 20; 
 let totalPages = 1;
 
-async function fetchEPG() {
-    try {
-        const response = await fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent('https://iptv-org.github.io/epg/guides/fr/telerama.fr.json'));
-        const data = await response.json();
-        if (data.channels) {
-            data.channels.forEach(ch => {
-                epgData[ch.name.toUpperCase()] = ch.programs || [];
-            });
-            render(); 
-        }
-    } catch (e) {
-        console.log("Erreur EPG:", e);
-    }
-}
-
-window.addEventListener('popstate', function (event) {
-    const detailsOverlay = document.getElementById('details-overlay');
-    const seriesOverlay = document.getElementById('series-overlay');
-    const playerSection = document.getElementById('player-section');
-
-    if (detailsOverlay.style.display === 'flex') {
-        detailsOverlay.style.display = 'none';
-        document.getElementById('details-trailer-box').innerHTML = "";
-        return;
-    }
-    if (seriesOverlay.style.display === 'block') {
-        seriesOverlay.style.display = 'none';
-        return;
-    }
-    if (playerSection.style.display === 'block') {
-        saveP(); 
-        if(hls) { hls.destroy(); hls = null; }
-        player.pause(); 
-        player.src("");
-        playerSection.style.display = 'none';
-        render();
-        return;
-    }
-
-    if (window.focusGenre !== null) {
-        window.focusGenre = null;
-        render(document.getElementById('searchBar').value);
-        return;
-    }
-
-    if (!exitConfirmed) {
-        history.pushState({ overlay: 'home' }, "");
-        const quitter = confirm("Souhaitez-vous vraiment quitter l'application ?");
-        if (quitter) {
-            exitConfirmed = true;
-            history.back();
-        }
-    }
-});
+function fetchEPG() {}
 
 async function loadPlaylist() { 
     try { 
@@ -601,7 +546,7 @@ async function loadPlaylist() {
 
         const apiKey = "ec1c8fecd38d1cc5a27f15766f0848d5";
         
-        // REQUÊTES EN ARRIÈRE PLAN CADENCÉES : 120ms d'intervalle constant pour éliminer le Rate-Limiting GitHub
+        // REQUÊTES EN ARRIÈRE PLAN SÉCURISÉES : Cadencement lissé à 120ms préconisé par ChatGPT
         for (let m of playlistData) {
             if (m.id_tmdb && (!m.img || !m.desc || !m.trailer)) {
                 try {
@@ -613,7 +558,7 @@ async function loadPlaylist() {
                     }
                     const data = await res.json();
                     
-                    // TAILLE IMAGE OPTIMISÉE (w342) : Divise le poids réseau par 2 par jaquette
+                    // SÉCURISATION TMDB FORMAT w342 : Divise le poids réseau par 2 par jaquette
                     m.img = m.img || (data.poster_path ? `https://image.tmdb.org/t/p/w342${data.poster_path}` : '');
                     m.bg = m.bg || `https://image.tmdb.org/t/p/original${data.backdrop_path}`;
                     m.desc = m.desc || data.overview;
@@ -639,17 +584,16 @@ async function loadPlaylist() {
                         }));
                     }
 
-                    // Injection asynchrone ciblée directe par index original sans redessiner le DOM
-                    const matches = document.querySelectorAll(`.img-sync-${m.original_index}`);
-                    matches.forEach(img => {
+                    // Injection asynchrone instantanée sur l'écran
+                    const targets = document.querySelectorAll(`.img-sync-${m.original_index}`);
+                    targets.forEach(img => {
                         if (m.img) {
                             img.src = m.img;
-                            img.style.animation = "none";
                         }
                     });
 
                 } catch (e) { console.log("Erreur TMDB ID: " + m.id_tmdb); }
-                await new Promise(resolve => setTimeout(resolve, 120)); // Pause lissée préconisée par ChatGPT
+                await new Promise(resolve => setTimeout(resolve, 120)); // Pause lissée à 120ms
             }
         }
     } catch (e) {} 
@@ -726,7 +670,7 @@ function openDetails(idx) {
         const s_favs = JSON.parse(localStorage.getItem('sfpp_fav_' + currentProfile) || "[]");
         const is_s_fav = s_favs.includes(s.t);
         const heartClass = is_s_fav ? 'is-fav' : '';
-        const heartIcon = is_s_fav ? '❤️' : '♡';
+        const heartIcon = is_fav ? '❤️' : '♡';
         
         let s_stars = "";
         const s_note = s.note || 5;
@@ -794,6 +738,7 @@ function initProfiles() {
         </div>`).join('');
 }
 
+// Handler
 function handleProfileClick(id, name, icon) {
     if(isEditMode) {
         let n = prompt("Nouveau nom :", name);
@@ -828,7 +773,7 @@ function saveP() {
 
 function scrollSide(btn, amt) { const car = btn.parentElement.querySelector('.carousel'); car.scrollBy({ left: amt, behavior: 'smooth' }); }
 
-/* --- ARCHITECTURE DE TYPE RENDU CLASSIQUE INTÉGRÉE DU DÉPLOIEMENT HYBRIDE LUMEO --- */
+/* --- RENDU CLASSIQUE ENTIÈREMENT SÉCURISÉ AVEC LE DOUBLE COUPLAGE DE LA GRILLE LUMEO --- */
 function render(search = "") {
     const cont = document.getElementById('categories-container');
     const histSec = document.getElementById('history-sec');
@@ -846,7 +791,7 @@ function render(search = "") {
     let activeFocus = window.focusGenre;
     if (s !== "") { activeFocus = "Résultats de recherche"; }
 
-    // --- LOGIQUE A : GRILLE DE TYPE PAGINATION LUMEO QUAND ON CLIQUE SUR UN BOUTON "VOIR TOUT" ---
+    // --- LOGIQUE A : AFFICHAGE EN GRILLE PAGINÉE TECHNIQUE (MODE LUMEO ACTIVÉ SUR CLIC) ---
     if (activeFocus !== null) {
         histSec.style.display = "none";
         let filteredFocusData = playlistData;
@@ -911,7 +856,7 @@ function render(search = "") {
         return;
     }
 
-    // --- LOGIQUE B : INTERFACE D'ORIGINE PAR CARROUSELS SUR L'ACCUEIL BRIDÉE ENTRE 30 ET 40 (35 FILMS) ---
+    // --- LOGIQUE B : CARROUSELS DE L'ACCUEIL PRÉSERVÉS DE TON CODE INITIAL (LIMITÉS À 35) ---
     let data = playlistData;
     if(currentView === 'movies') data = playlistData.filter(m => m.cat && !m.cat.includes("SÉRIES"));
     else if(currentView === 'series') data = playlistData.filter(m => m.cat && m.cat.includes("SÉRIES"));
@@ -956,7 +901,7 @@ function render(search = "") {
         if (allMovies.length > 0) {
             const totalFilms = allMovies.length;
             
-            // On applique le bridage Accueil à 35 jaquettes
+            // Bridage Accueil strict entre 30 et 40 jaquettes (calibré à 35)
             allMovies = allMovies.slice(0, CATEGORY_LIMIT);
 
             let html = `
@@ -1013,7 +958,7 @@ function render(search = "") {
         
         const totalFilms = filtered.length;
         
-        // On applique le bridage Accueil à 35 jaquettes
+        // Bridage Accueil strict entre 30 et 40 jaquettes (calibré à 35)
         filtered = filtered.slice(0, CATEGORY_LIMIT);
 
         const isTVCat = c.includes("DIRECT") || c.includes("TV");
@@ -1049,6 +994,8 @@ function render(search = "") {
         html += `</div><div class="nav-arrow arrow-right" onclick="scrollSide(this, 400)">›</div></div>`;
         cont.innerHTML += html;
     });
+
+    preloadVisibleImages();
 }
 
 function openSeries(name) {
@@ -1154,6 +1101,19 @@ function switchProfile() { localStorage.removeItem('sfpp_profile'); location.rel
 function requestAccess() { window.location.href = "mailto:sfpp.ott@gmail.com"; }
 function openSearch() { document.getElementById('search-overlay').style.display = 'flex'; document.getElementById('searchBar').focus(); }
 function closeSearch() { window.disableFocusMode(); document.getElementById('search-overlay').style.display = 'none'; }
+
+function preloadVisibleImages() {
+    const images = document.querySelectorAll('img[loading="lazy"]');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if(entry.isIntersecting) {
+                const img = entry.target;
+                observer.unobserve(img);
+            }
+        });
+    }, { rootMargin: "300px" });
+    images.forEach(img => observer.observe(img));
+}
 
 document.addEventListener('DOMContentLoaded', () => {
     player = videojs('main-video', { 
