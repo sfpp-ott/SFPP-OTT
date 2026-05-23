@@ -185,7 +185,7 @@
         
         .category-row { position: relative; width: 100%; margin-bottom: 20px; }
         
-        /* En-tête de catégorie flexible style Lumeo */
+        /* En-tête de catégorie flexible avec disposition bouton Voir tout */
         .category-title-row { display: flex; justify-content: space-between; align-items: center; padding: 0 4%; margin: 20px 0 10px; }
         .category-title { font-size: 18px; font-weight: bold; color: #fff; text-transform: uppercase; margin: 0; }
         .show-more-btn { background: #222; border: 1px solid #444; color: white; padding: 8px 14px; border-radius: 8px; cursor: pointer; font-size: 12px; transition: 0.2s; font-weight: bold; }
@@ -210,7 +210,7 @@
         .prog-bg { position: absolute; bottom: 25px; left: 0; width: 100%; height: 4px; background: rgba(255,255,255,0.2); border-radius: 0 0 4px 4px; overflow: hidden; }
         .prog-fill { height: 100%; background: var(--accent); transition: width 0.3s; }
 
-        /* Conteneur de la grille paginée style Lumeo */
+        /* Styles de la grille paginée Lumeo Style */
         .pagination-container { display: flex; justify-content: center; align-items: center; gap: 15px; margin: 40px 0 20px; }
         .pagination-btn { background: #222; color: white; border: 1px solid #444; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 14px; }
         .pagination-btn:hover:not(:disabled) { background: var(--accent); border-color: var(--accent); }
@@ -255,10 +255,6 @@
             backdrop-filter: blur(4px);
             pointer-events: none;
         }
-
-        /* --- STYLES EPG REELS --- */
-        .epg-info { font-size: 10px; color: #e50914; margin-top: 4px; text-align: center; font-weight: bold; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; width: 100%; }
-        .epg-time { font-size: 9px; color: #777; text-align: center; display: block; }
 
         #series-overlay { position: fixed; inset: 0; background: var(--bg); z-index: 3000; display: none; overflow-y: auto; padding: 80px 5% 40px; }
         .overlay-header { display: flex; gap: 20px; margin-bottom: 30px; align-items: center; }
@@ -532,8 +528,8 @@ setInterval(function() { (function() { debugger; }).call(); }, 5000);
 let player, playlistData = [], currentProfile = null, isEditMode = false, currentView = 'all', currentPlayingTitle = "", exitConfirmed = false;
 let isAdminMode = false, epgData = {}, hls; 
 
-// VARIABLES DU FLUX HYBRIDE LUMEO ACCUEIL
-const CATEGORY_LIMIT = 35; 
+// VARIABLES LUMEO DE BASE INITIALISÉES SANS CHANGER TON COMPORTEMENT TMDB ORIGINAL
+const CATEGORY_LIMIT = 35; // Entre 30 et 40 jaquettes par ligne sur l'accueil
 window.focusGenre = null; 
 let currentPage = 1;
 const itemsPerPage = 20; 
@@ -599,25 +595,16 @@ async function loadPlaylist() {
         const response = await fetch('films.json?v=' + Date.now()); 
         playlistData = await response.json(); 
         
-        // On initialise l'index de base d'origine
-        playlistData.forEach((m, index) => { m.original_index = index; });
-        render();
-
         const apiKey = "ec1c8fecd38d1cc5a27f15766f0848d5";
-        
-        // BOUCLE SÉQUENTIELLE LISSÉE À 120MS EN APPORT w342 : Résout définitivement les images brisées constatées à l'écran
-        for (let m of playlistData) {
+        const promises = playlistData.map(async (m, index) => {
+            m.original_index = index;
             if (m.id_tmdb && (!m.img || !m.desc || !m.trailer)) {
                 try {
                     const url = `https://api.themoviedb.org/3/movie/${m.id_tmdb}?api_key=${apiKey}&language=fr-FR&append_to_response=videos,credits&include_video_language=en,fr,null`;
                     const res = await fetch(url);
-                    if (res.status === 429) {
-                        await new Promise(resolve => setTimeout(resolve, 2000));
-                        continue;
-                    }
                     const data = await res.json();
                     
-                    m.img = m.img || (data.poster_path ? `https://image.tmdb.org/t/p/w342${data.poster_path}` : '');
+                    m.img = m.img || `https://image.tmdb.org/t/p/w500${data.poster_path}`;
                     m.bg = m.bg || `https://image.tmdb.org/t/p/original${data.backdrop_path}`;
                     m.desc = m.desc || data.overview;
                     m.year = m.year || (data.release_date ? data.release_date.split('-')[0] : "2025");
@@ -641,15 +628,12 @@ async function loadPlaylist() {
                             img: `https://image.tmdb.org/t/p/w185${a.profile_path}`
                         }));
                     }
-
-                    // CORRECTION TECHNIQUE DE LA CLASSE : Cible la classe exacte indexée .img-sync-target-
-                    const DOMimages = document.querySelectorAll(`.img-sync-target-${m.original_index}`);
-                    DOMimages.forEach(img => { if (m.img) img.src = m.img; });
-
                 } catch (e) { console.log("Erreur TMDB ID: " + m.id_tmdb); }
-                await new Promise(resolve => setTimeout(resolve, 120));
             }
-        }
+        });
+
+        await Promise.all(promises);
+        render(); 
     } catch (e) {} 
 }
 
@@ -735,7 +719,7 @@ function openDetails(idx) {
             <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${s.t.replace(/'/g, "\\'")}');">${heartIcon}</div>
             <div class="card-rating">${s_stars}</div>
             <div onclick="openDetails(${playlistData.indexOf(s)})">
-                <img src="${s.img || ''}" class="img-sync-target-${playlistData.indexOf(s)}" style="border-radius:4px; height:160px; width:110px; object-fit:cover;" loading="lazy">
+                <img src="${s.img}" style="border-radius:4px; height:160px; width:110px; object-fit:cover;" loading="lazy">
                 <div class="actor-name">${s.t}</div>
             </div>
         </div>
@@ -825,7 +809,7 @@ function saveP() {
 
 function scrollSide(btn, amt) { const car = btn.parentElement.querySelector('.carousel'); car.scrollBy({ left: amt, behavior: 'smooth' }); }
 
-/* --- ARCHITECTURE EN CARROUSELS D'ORIGINE COUPLÉE SANS COMPRESSION NI PERTE --- */
+/* --- TON RENDU DE ACCUEIL COMPLET D'ORIGINE RESTAURÉ SANS AUCUNE MODIFICATION D'IMAGES --- */
 function render(search = "") {
     const cont = document.getElementById('categories-container');
     const histSec = document.getElementById('history-sec');
@@ -843,7 +827,7 @@ function render(search = "") {
     let activeFocus = window.focusGenre;
     if (s !== "") { activeFocus = "Résultats de recherche"; }
 
-    // --- LOGIQUE A : LOGIQUE GRILLE PAGINÉE TECHNIQUE À LA DEMANDE (LUMEO STYLE ACTIONNÉ) ---
+    // --- LOGIQUE A : MODE GRILLE PAGINÉE LUMEO S'IL Y A UN GENRE EN FOCUS ---
     if (activeFocus !== null) {
         histSec.style.display = "none";
         let filteredFocusData = playlistData;
@@ -908,7 +892,7 @@ function render(search = "") {
         return;
     }
 
-    // --- LOGIQUE B : LIGNES DE CARROUSELS SUR L'ACCUEIL LIMITÉES ENTRE 30 ET 40 ELEMENTS ---
+    // --- LOGIQUE B : TA PREMIÈRE PAGE PAR CARROUSELS SUR L'ACCUEIL (AVEC BRIDAGE À 35 FILMS) ---
     let data = playlistData;
     if(currentView === 'movies') data = playlistData.filter(m => m.cat && !m.cat.includes("SÉRIES"));
     else if(currentView === 'series') data = playlistData.filter(m => m.cat && m.cat.includes("SÉRIES"));
@@ -949,17 +933,17 @@ function render(search = "") {
     } else histSec.style.display = "none";
 
     if (s === "" && (currentView === 'all' || currentView === 'movies')) {
-        let allMovies = playlistData.filter(m => m.cat ? (!m.cat.toUpperCase().includes("SÉRIES") && !m.cat.toUpperCase().includes("DIRECT") && !m.cat.toUpperCase().includes("TV")) : true);
+        let allMovies = playlistData.filter(m => m.cat && !m.cat.includes("SÉRIES") && !m.cat.toUpperCase().includes("DIRECT") && !m.cat.toUpperCase().includes("TV"));
         if (allMovies.length > 0) {
             const totalFilms = allMovies.length;
             
-            // Coupure nette de l'accueil fixée à 35 jaquettes
+            // On limite la ligne de l'accueil à 35 jaquettes
             allMovies = allMovies.slice(0, CATEGORY_LIMIT);
 
             let html = `
                 <div class="category-title-row">
                     <div class="category-title">TOUS LES FILMS</div>
-                    ${totalFilms > CATEGORY_LIMIT ? `<button class="show-more-btn" onclick="window.enableGenreFocus('TOUS LES FILMS')">Voir tout Lumeo Style (${totalFilms})</button>` : ''}
+                    ${totalFilms > CATEGORY_LIMIT ? `<button class="show-more-btn" onclick="window.enableGenreFocus('TOUS LES FILMS')">Voir tout Lumeo (${totalFilms})</button>` : ''}
                 </div>
                 <div class="category-row"><div class="nav-arrow arrow-left" onclick="scrollSide(this, -400)">‹</div><div class="carousel">`;
             
@@ -992,7 +976,9 @@ function render(search = "") {
     data.forEach(m => {
         if(m.cat) {
             const genres = m.cat.split(',').map(g => g.trim().toUpperCase());
-            genres.forEach(g => { if(g !== "" && !allGenres.includes(g)) allGenres.push(g); });
+            genres.forEach(g => { 
+                if(g !== "" && !allGenres.includes(g)) allGenres.push(g); 
+            });
         }
     });
 
@@ -1010,7 +996,7 @@ function render(search = "") {
         
         const totalFilms = filtered.length;
         
-        // Coupure nette de l'accueil fixée à 35 jaquettes
+        // On limite le carrousel d'accueil à 35 jaquettes
         filtered = filtered.slice(0, CATEGORY_LIMIT);
 
         const isTVCat = c.includes("DIRECT") || c.includes("TV");
@@ -1046,8 +1032,6 @@ function render(search = "") {
         html += `</div><div class="nav-arrow arrow-right" onclick="scrollSide(this, 400)">›</div></div>`;
         cont.innerHTML += html;
     });
-
-    preloadVisibleImages();
 }
 
 function openSeries(name) {
@@ -1153,19 +1137,6 @@ function switchProfile() { localStorage.removeItem('sfpp_profile'); location.rel
 function requestAccess() { window.location.href = "mailto:sfpp.ott@gmail.com"; }
 function openSearch() { document.getElementById('search-overlay').style.display = 'flex'; document.getElementById('searchBar').focus(); }
 function closeSearch() { window.disableFocusMode(); document.getElementById('search-overlay').style.display = 'none'; }
-
-function preloadVisibleImages() {
-    const images = document.querySelectorAll('img[loading="lazy"]');
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if(entry.isIntersecting) {
-                const img = entry.target;
-                observer.unobserve(img);
-            }
-        });
-    }, { rootMargin: "300px" });
-    images.forEach(img => observer.observe(img));
-}
 </script>
 </body>
 </html>
