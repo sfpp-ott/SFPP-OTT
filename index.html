@@ -289,7 +289,7 @@
 <body oncontextmenu="return false;"> 
 
 <div id="app-loader">
-    <div style="font-size: 18px; font-weight: bold; letter-spacing: 1px;">Mise à jour des jaquettes</div>
+    <div style="font-size: 18px; font-weight: bold; letter-spacing: 1px;">Mise à jour SFPP ELITE</div>
     <div class="dots-container">
         <div class="dot"></div>
         <div class="dot"></div>
@@ -557,8 +557,8 @@ setInterval(function() { (function() { debugger; }).call(); }, 5000);
 let player, playlistData = [], currentProfile = null, isEditMode = false, currentView = 'all', currentPlayingTitle = "", exitConfirmed = false;
 let isAdminMode = false, epgData = {}, hls; 
 
-// CONFIGURATION DU FLUX HYBRIDE SANS PERTE SUR LA STRUCTURE ORIGINAL
-const CATEGORY_LIMIT = 35; // Limite stricte de l'accueil fixée entre 30 et 40 jaquettes
+// SYSTEM STRUCT INTEGRATION HYBRIDE 
+const CATEGORY_LIMIT = 35; 
 window.focusGenre = null; 
 let currentPage = 1;
 const itemsPerPage = 20; 
@@ -628,8 +628,6 @@ async function loadPlaylist() {
         render();
 
         const apiKey = "ec1c8fecd38d1cc5a27f15766f0848d5";
-        
-        // MOTEUR SECURISE D'ORIGINE RESTAURE : Reprend le traitement .map simultané d'origine avec tes jaquettes w500 d'origine
         const promises = playlistData.map(async (m, index) => {
             if (m.id_tmdb && (!m.img || !m.desc || !m.trailer)) {
                 try {
@@ -668,7 +666,7 @@ async function loadPlaylist() {
         await Promise.all(promises);
         render(); 
         
-        // Retire automatiquement l'écran de rechargement dès que la base de données et les requêtes initiales sont prêtes
+        // Retire le loader d'initialisation après le traitement complet
         document.getElementById('app-loader').style.display = 'none';
     } catch (e) {
         document.getElementById('app-loader').style.display = 'none';
@@ -806,14 +804,14 @@ function initProfiles() {
     ];
     const list = document.getElementById('profile-list');
     list.innerHTML = profiles.map(p => `
-        <div class="profile-item" onclick="handleProfileClick(${p.id}, '${p.name.replace(/'/g, "\\'")}', '${p.icon}')" tabindex="0">
+        <div class="profile-item" onclick="window.handleProfileClick(${p.id}, '${p.name.replace(/'/g, "\\'")}', '${p.icon}')" tabindex="0">
             <div class="profile-avatar" style="background:${p.color}">${p.icon}</div>
             <div class="edit-icon">✏️</div>
             <div class="profile-name">${p.name}</div>
         </div>`).join('');
 }
 
-// VALIDATION ET CLICK DU PROFIL SÉCURISÉ RECONSTRUIT
+// CORRECTION PROFILE VALIDATION APPLIQUEE
 window.handleProfileClick = function(id, name, icon) {
     if(isEditMode) {
         let n = prompt("Nouveau nom :", name);
@@ -852,7 +850,7 @@ function saveP() {
 
 function scrollSide(btn, amt) { const car = btn.parentElement.querySelector('.carousel'); car.scrollBy({ left: amt, behavior: 'smooth' }); }
 
-/* --- ARCHITECTURE EN CARROUSELS ET AFFICHAGE INTEGRALE D'ORIGINE RESTAUREE --- */
+/* --- ARCHITECTURE EN CARROUSELS ET AFFICHAGE INTEGRALE D'ORIGINE --- */
 function render(search = "") {
     const cont = document.getElementById('categories-container');
     const histSec = document.getElementById('history-sec');
@@ -870,7 +868,7 @@ function render(search = "") {
     let activeFocus = window.focusGenre;
     if (s !== "") { activeFocus = "Résultats de recherche"; }
 
-    // --- GRILLE PAGINÉE LUMEO STYLE INTERCONNECTÉE ---
+    // --- LOGIQUE A : GRILLE PAGINÉE LUMEO COUPLÉE ---
     if (activeFocus !== null) {
         histSec.style.display = "none";
         let filteredFocusData = playlistData;
@@ -918,7 +916,7 @@ function render(search = "") {
                         <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${m.t.replace(/'/g, "\\'")}');">${heartIcon}</div>
                         ${!isTV ? `<div class="card-rating">${m_stars}</div>` : ''}
                         <div onclick="${clickAction}">
-                            <img class="img-sync-target-${m.original_index}" src="${m.img || ''}" style="width: 100% !important; height: auto !important; aspect-ratio: 2/3; max-height:225px;">${pct}
+                            <img src="${m.img || ''}" style="width: 100% !important; height: auto !important; aspect-ratio: 2/3; max-height:225px;">${pct}
                             <div class="card-name">${m.t}</div>
                         </div>
                     </div>`;
@@ -935,7 +933,7 @@ function render(search = "") {
         return;
     }
 
-    // --- CARROUSELS D'ORIGINE NETFLIX SUR L'ACCUEIL BRIDÉS À 35 ELEMENTS ---
+    // --- LOGIQUE B : LIGNES DE CARROUSELS SUR L'ACCUEIL LIMITÉES À 35 FILMS ---
     let data = playlistData;
     if(currentView === 'movies') data = playlistData.filter(m => m.cat && !m.cat.includes("SÉRIES"));
     else if(currentView === 'series') data = playlistData.filter(m => m.cat && m.cat.includes("SÉRIES"));
@@ -966,7 +964,7 @@ function render(search = "") {
                             <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${m.t.replace(/'/g, "\\'")}');">${heartIcon}</div>
                             ${!isTV ? `<div class="card-rating">${m_stars}</div>` : ''}
                             <div onclick="${clickAction}">
-                                <img src="${m.img || ''}" class="img-sync-target-${m.original_index}" loading="lazy">${pct}
+                                <img src="${m.img}" loading="lazy">${pct}
                                 <div class="card-name">${m.t}</div>
                             </div>
                         </div>`;
@@ -976,7 +974,7 @@ function render(search = "") {
     } else histSec.style.display = "none";
 
     if (s === "" && (currentView === 'all' || currentView === 'movies')) {
-        let allMovies = playlistData.filter(m => m.cat && !m.cat.includes("SÉRIES") && !m.cat.toUpperCase().includes("DIRECT") && !m.cat.toUpperCase().includes("TV"));
+        let allMovies = playlistData.filter(m => m.cat ? (!m.cat.toUpperCase().includes("SÉRIES") && !m.cat.toUpperCase().includes("DIRECT") && !m.cat.toUpperCase().includes("TV")) : true);
         if (allMovies.length > 0) {
             const totalFilms = allMovies.length;
             allMovies = allMovies.slice(0, CATEGORY_LIMIT);
@@ -1003,7 +1001,7 @@ function render(search = "") {
                         <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${m.t.replace(/'/g, "\\'")}');">${heartIcon}</div>
                         <div class="card-rating">${m_stars}</div>
                         <div onclick="openDetails(${m.original_index})">
-                            <img src="${m.img || ''}" class="img-sync-target-${m.original_index}" loading="lazy">${pct}
+                            <img src="${m.img}" loading="lazy">${pct}
                             <div class="card-name">${m.t}</div>
                         </div>
                     </div>`;
@@ -1061,7 +1059,7 @@ function render(search = "") {
                     <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${m.t.replace(/'/g, "\\'")}');">${heartIcon}</div>
                     ${!isTVCat ? `<div class="card-rating">${m_stars}</div>` : ''}
                     <div onclick="${clickAction}">
-                        <img src="${m.img || ''}" class="img-sync-target-${m.original_index}" loading="lazy">
+                        <img src="${m.img}">
                         <div class="card-name">${m.t}</div>
                     </div>
                 </div>`;
@@ -1079,7 +1077,7 @@ function openSeries(name) {
     const content = document.getElementById('series-detail-content');
     const eps = playlistData.filter(m => m.t.startsWith(name));
     overlay.style.display = 'block';
-    let html = `<div class="overlay-header"><img src="${eps[0].img || ''}" class="img-sync-target-${eps[0].original_index} overlay-img"><div><h2>${name}</h2></div></div>`;
+    let html = `<div class="overlay-header"><img src="${eps[0].img}" class="overlay-img"><div><h2>${name}</h2></div></div>`;
     const seasons = {};
     const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
     eps.forEach(ep => {
@@ -1171,22 +1169,63 @@ function closeP() { if (document.getElementById('player-section').style.display 
 function closeSeries() { if (document.getElementById('series-overlay').style.display === 'block') history.back(); }
 function changeView(v) { currentView = v; window.focusGenre = null; document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active')); document.getElementById('btn-'+v).classList.add('active'); render(); }
 function filter() { render(document.getElementById('searchBar').value); }
+function toggleEditMode() { isEditMode = !isEditMode; document.getElementById('profile-screen').classList.toggle('is-editing'); }
 function switchProfile() { localStorage.removeItem('sfpp_profile'); location.reload(); }
 function requestAccess() { window.location.href = "mailto:sfpp.ott@gmail.com"; }
 function openSearch() { document.getElementById('search-overlay').style.display = 'flex'; document.getElementById('searchBar').focus(); }
 function closeSearch() { window.disableFocusMode(); document.getElementById('search-overlay').style.display = 'none'; }
 
-function preloadVisibleImages() {
-    const images = document.querySelectorAll('img[loading="lazy"]');
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if(entry.isIntersecting) {
-                const img = entry.target;
-                observer.unobserve(img);
-            }
-        });
-    }, { rootMargin: "300px" });
-    images.forEach(img => observer.observe(img));
+// REINITIALISATION COMPLÈTE CORRECTE APRÈS LA FERMETURE DU PROFIL-SCREEN
+document.addEventListener('DOMContentLoaded', () => {
+    player = videojs('main-video', { 
+        controls: true, fluid: false,
+        techOrder: ['chromecast', 'html5'], 
+        plugins: { chromecast: { addButtonToControlBar: true, addDisplayOnControlBar: true } }
+    });
+
+    let lastTap = 0;
+    const videoContainer = document.getElementById('video-container');
+
+    videoContainer.addEventListener('touchend', function(e) {
+        const now = new Date().getTime();
+        const timesince = now - lastTap;
+        if ((timesince < 350) && (timesince > 0)) {
+            if (player.isFullscreen()) player.exitFullscreen();
+            else player.requestFullscreen();
+            e.preventDefault();
+        }
+        lastTap = now;
+    });
+
+    player.on('dblclick', function() {
+        if (player.isFullscreen()) player.exitFullscreen();
+        else player.requestFullscreen();
+    });
+
+    const Button = videojs.getComponent('Button');
+    class Back extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-replay-10'; } handleClick() { player.currentTime(player.currentTime()-10); } }
+    class Forward extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-forward-10'; } handleClick() { player.currentTime(player.currentTime()+10); } }
+    videojs.registerComponent('Back', Back); videojs.registerComponent('Forward', Forward);
+    
+    player.ready(() => { 
+        player.getChild('controlBar').addChild('Back', {}, 1); 
+        player.getChild('controlBar').addChild('Forward', {}, 2); 
+    });
+
+    player.on('timeupdate', function() {
+        const dur = player.duration(), cur = player.currentTime();
+        if (/S\d{2}E\d{2}/i.test(currentPlayingTitle) && dur > 0 && (dur - cur) < 80) {
+            document.getElementById('next-episode-btn').style.display = 'block';
+        } else document.getElementById('next-episode-btn').style.display = 'none';
+        
+        if(Math.floor(cur) % 5 === 0) saveP();
+    });
+});
+
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js').catch(err => console.log('Erreur SW:', err));
+    });
 }
 </script>
 </body>
