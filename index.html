@@ -209,6 +209,43 @@
         .prog-bg { position: absolute; bottom: 25px; left: 0; width: 100%; height: 4px; background: rgba(255,255,255,0.2); border-radius: 0 0 4px 4px; overflow: hidden; }
         .prog-fill { height: 100%; background: var(--accent); transition: width 0.3s; }
 
+        .btn-fav-card {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 10;
+            background: rgba(0,0,0,0.5);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 16px;
+            transition: transform 0.2s, background 0.2s;
+            backdrop-filter: blur(5px);
+        }
+        .btn-fav-card:active { transform: scale(0.9); }
+        .btn-fav-card.is-fav { color: #e50914; background: rgba(0,0,0,0.7); }
+        .btn-fav-card:not(.is-fav) { color: white; }
+
+        .card-rating {
+            position: absolute;
+            bottom: 35px;
+            left: 8px;
+            z-index: 10;
+            background: rgba(0,0,0,0.6);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 10px;
+            color: var(--gold);
+            font-weight: bold;
+            backdrop-filter: blur(4px);
+            pointer-events: none;
+        }
+
         @media (max-width: 768px) {
             .card { flex: 0 0 130px; width: 130px; }
             .card img { width: 130px !important; height: 195px !important; }
@@ -392,7 +429,6 @@
             if (await verifyExpiration(user)) return;
             window.startSessionSync(user.uid);
             document.getElementById('login-screen').style.display = 'none';
-            fetchEPG(); 
             loadPlaylist();
             initProfiles();
             
@@ -473,24 +509,8 @@ setInterval(function() { (function() { debugger; }).call(); }, 5000);
 let player, playlistData = [], currentProfile = null, isEditMode = false, currentView = 'all', currentPlayingTitle = "", exitConfirmed = false;
 let isAdminMode = false, epgData = {}, hls; 
 
-// LIMITE DE L'ACCUEIL CHIRURGICALE POUR SÉCURISER GITHUB PAGES
 const CATEGORY_LIMIT = 35;
 window.focusGenre = null;
-
-async function fetchEPG() {
-    try {
-        const response = await fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent('https://iptv-org.github.io/epg/guides/fr/telerama.fr.json'));
-        const data = await response.json();
-        if (data.channels) {
-            data.channels.forEach(ch => {
-                epgData[ch.name.toUpperCase()] = ch.programs || [];
-            });
-            render(); 
-        }
-    } catch (e) {
-        console.log("Erreur EPG:", e);
-    }
-}
 
 window.addEventListener('popstate', function (event) {
     const detailsOverlay = document.getElementById('details-overlay');
@@ -696,9 +716,6 @@ function updateFavBtnUI(title) {
     }
 }
 
-// Nettoyage EPG
-function fetchEPG() {}
-
 function closeDetails() { if (document.getElementById('details-overlay').style.display === 'flex') history.back(); }
 
 function initProfiles() {
@@ -755,7 +772,6 @@ function saveP() {
 
 function scrollSide(btn, amt) { const car = btn.parentElement.querySelector('.carousel'); car.scrollBy({ left: amt, behavior: 'smooth' }); }
 
-/* --- ARCHITECTURE DU RENDU PAR CARROUSEL D'ORIGINE RESTAURÉE --- */
 function render(search = "") {
     const cont = document.getElementById('categories-container');
     const histSec = document.getElementById('history-sec');
@@ -772,7 +788,6 @@ function render(search = "") {
     let activeFocus = window.focusGenre;
     if (s !== "") { activeFocus = "Résultats de recherche"; }
 
-    // --- GRILLE COMPLÈTE DÉVELOPPÉE À LA DEMANDE ---
     if (activeFocus !== null) {
         histSec.style.display = "none";
         let filteredFocusData = playlistData;
@@ -875,7 +890,7 @@ function render(search = "") {
             let html = `
                 <div class="category-title-row">
                     <div class="category-title">TOUS LES FILMS</div>
-                    ${totalFilms > CATEGORY_LIMIT ? `<button class="show-more-btn" onclick="window.openGenreFocus('TOUS LES FILMS')">Voir tout (${totalFilms})</button>` : ''}
+                    ${totalFilms > CATEGORY_LIMIT ? `<button class="show-more-btn" onclick="window.enableGenreFocus('TOUS LES FILMS')">Voir tout (${totalFilms})</button>` : ''}
                 </div>
                 <div class="category-row"><div class="nav-arrow arrow-left" onclick="scrollSide(this, -400)">‹</div><div class="carousel">`;
             
@@ -993,6 +1008,7 @@ function openSeries(name) {
     content.innerHTML = html;
 }
 
+// CORRECTION IMPORTANTE DE LA DOUBLE ASSIGNATION NATIVE D'ORIGINE POUR LES PISTES VF/VO
 function playMovie(idx) {
     history.replaceState({ overlay: 'player' }, "");
     const m = playlistData[idx];
@@ -1047,7 +1063,7 @@ function playMovie(idx) {
         player.play();
     }
     
-    // SÉCURISATION DOUBLE ASSIGNATION NATIVE D'ORIGINE : Rétablit l'injection forcée des flux pour le menu audio (VO/VF)
+    // Indispensable pour rafraîchir et forcer le montage natif des langues (VO/VF) par le navigateur
     player.src({ src: decodedUrl, type: type });
 }
 
@@ -1081,7 +1097,7 @@ function preloadVisibleImages() {
     images.forEach(img => observer.observe(img));
 }
 
-// RESTAURATION RESTRICTIVE DU COMPOSANT TECHORDER NATIF AUDIO MULTI-LANGUES
+// INITIALISATION SÉCURISÉE DES EXTENSIONS LECTEUR (DOM-LOADED DIRECT)
 document.addEventListener('DOMContentLoaded', () => {
     player = videojs('main-video', { 
         controls: true, fluid: false,
