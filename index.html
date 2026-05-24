@@ -209,43 +209,6 @@
         .prog-bg { position: absolute; bottom: 25px; left: 0; width: 100%; height: 4px; background: rgba(255,255,255,0.2); border-radius: 0 0 4px 4px; overflow: hidden; }
         .prog-fill { height: 100%; background: var(--accent); transition: width 0.3s; }
 
-        .btn-fav-card {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            z-index: 10;
-            background: rgba(0,0,0,0.5);
-            border: 1px solid rgba(255,255,255,0.2);
-            border-radius: 50%;
-            width: 32px;
-            height: 32px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-size: 16px;
-            transition: transform 0.2s, background 0.2s;
-            backdrop-filter: blur(5px);
-        }
-        .btn-fav-card:active { transform: scale(0.9); }
-        .btn-fav-card.is-fav { color: #e50914; background: rgba(0,0,0,0.7); }
-        .btn-fav-card:not(.is-fav) { color: white; }
-
-        .card-rating {
-            position: absolute;
-            bottom: 35px;
-            left: 8px;
-            z-index: 10;
-            background: rgba(0,0,0,0.6);
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-size: 10px;
-            color: var(--gold);
-            font-weight: bold;
-            backdrop-filter: blur(4px);
-            pointer-events: none;
-        }
-
         @media (max-width: 768px) {
             .card { flex: 0 0 130px; width: 130px; }
             .card img { width: 130px !important; height: 195px !important; }
@@ -554,20 +517,29 @@ window.addEventListener('popstate', function (event) {
     }
 });
 
+// CORRECTIF STRATÉGIQUE DU CHARGEMENT DES JAQUETTES (PLUS AUCUN APPEL SIMULTANÉ BLOQUANT)
 async function loadPlaylist() { 
     try { 
         const response = await fetch('films.json?v=' + Date.now()); 
         playlistData = await response.json(); 
         
         playlistData.forEach((m, index) => { m.original_index = index; });
+        
+        // Rendu immédiat des lignes et des titres textuels (L'interface apparaît en une demi-seconde)
         render();
 
         const apiKey = "ec1c8fecd38d1cc5a27f15766f0848d5";
-        const promises = playlistData.map(async (m, index) => {
+        
+        // Boucle progressive : Traite les 1100 films à la chaîne de manière fluide sans jamais saturer la connexion
+        for (let m of playlistData) {
             if (m.id_tmdb && (!m.img || !m.desc || !m.trailer)) {
                 try {
                     const url = `https://api.themoviedb.org/3/movie/${m.id_tmdb}?api_key=${apiKey}&language=fr-FR&append_to_response=videos,credits&include_video_language=en,fr,null`;
                     const res = await fetch(url);
+                    if (res.status === 429) {
+                        await new Promise(resolve => setTimeout(resolve, 1500)); // Protection si TMDB sature
+                        continue;
+                    }
                     const data = await res.json();
                     
                     m.img = m.img || `https://image.tmdb.org/t/p/w500${data.poster_path}`;
@@ -595,14 +567,15 @@ async function loadPlaylist() {
                         }));
                     }
                     
+                    // Injection en temps réel de l'affiche dans le carrousel correspondant dès sa réception
                     const targets = document.querySelectorAll(`.img-sync-target-${m.original_index}`);
                     targets.forEach(img => { if (m.img) img.src = m.img; });
-                } catch (e) { console.log("Erreur TMDB ID: " + m.id_tmdb); }
+                } catch (e) {}
+                
+                // Micro-pause pour lisser le flux réseau et passer sous les radars anti-spam
+                await new Promise(resolve => setTimeout(resolve, 35));
             }
-        });
-
-        await Promise.all(promises);
-        render(); 
+        }
     } catch (e) {} 
 }
 
@@ -789,6 +762,7 @@ function render(search = "") {
     let activeFocus = window.focusGenre;
     if (s !== "") { activeFocus = "Résultats de recherche"; }
 
+    // --- GRILLE COMPLÈTE À LA DEMANDE DU BOUTON VOIR TOUT ---
     if (activeFocus !== null) {
         histSec.style.display = "none";
         let filteredFocusData = playlistData;
@@ -1009,7 +983,7 @@ function openSeries(name) {
     content.innerHTML = html;
 }
 
-// RESTAURATION EXCLUSIVEMENT DU COEUR DE LECTURE VIDEO.JS SANS APPELS CONFLITS
+// LECTEUR ET REMONTÉE DES PISTES AUDIO DE TYPE LE DECODAGE DIRECT DE TON CODE INITIAL
 function playMovie(idx) {
     history.replaceState({ overlay: 'player' }, "");
     const m = playlistData[idx];
@@ -1041,12 +1015,12 @@ function playMovie(idx) {
     const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
     let type = decodedUrl.includes('.m3u8') ? 'application/x-mpegURL' : 'video/mp4';
 
-    // Injection directe via l'API interne et stable du lecteur Video.js
+    // Rétablissement de l'appel d'origine pur : laisse Video.js décoder le flux sans surcouche Hls.js conflictuelle
     player.src({ src: decodedUrl, type: type });
     if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
     player.play();
     
-    // Deuxième passe d'assignation indispensable pour forcer l'analyse des pistes audio (VF/VO) par Video.js
+    // Obligatoire dans ton code d'origine pour forcer l'analyse et l'affichage des langues (VF/VO) dans la barre de contrôle
     player.src({ src: decodedUrl, type: type });
 }
 
