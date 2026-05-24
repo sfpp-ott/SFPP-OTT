@@ -512,6 +512,9 @@ let isAdminMode = false, epgData = {}, hls;
 const CATEGORY_LIMIT = 35;
 window.focusGenre = null;
 
+// Suppression de fetchEPG inutile pour fiabiliser la rapidité d'affichage
+function fetchEPG() {}
+
 window.addEventListener('popstate', function (event) {
     const detailsOverlay = document.getElementById('details-overlay');
     const seriesOverlay = document.getElementById('series-overlay');
@@ -772,11 +775,11 @@ function saveP() {
 
 function scrollSide(btn, amt) { const car = btn.parentElement.querySelector('.carousel'); car.scrollBy({ left: amt, behavior: 'smooth' }); }
 
+/* --- ARCHITECTURE DU RENDU PAR CARROUSEL D'ORIGINE RESTAURÉE COMPLET --- */
 function render(search = "") {
     const cont = document.getElementById('categories-container');
     const histSec = document.getElementById('history-sec');
     const histCont = document.getElementById('history-container');
-    
     cont.innerHTML = ""; histCont.innerHTML = "";
     const s = search.toLowerCase();
 
@@ -788,6 +791,7 @@ function render(search = "") {
     let activeFocus = window.focusGenre;
     if (s !== "") { activeFocus = "Résultats de recherche"; }
 
+    // --- GRILLE D'AFFICHAGE COMPLÈTE À LA DEMANDE ---
     if (activeFocus !== null) {
         histSec.style.display = "none";
         let filteredFocusData = playlistData;
@@ -915,7 +919,7 @@ function render(search = "") {
                     </div>`;
             });
             html += `</div><div class="nav-arrow arrow-right" onclick="scrollSide(this, 400)">›</div></div>`;
-            cont.innerHTML += html;
+            document.getElementById('categories-container').innerHTML += html;
         }
     }
 
@@ -1008,12 +1012,11 @@ function openSeries(name) {
     content.innerHTML = html;
 }
 
-// CORRECTION IMPORTANTE DE LA DOUBLE ASSIGNATION NATIVE D'ORIGINE POUR LES PISTES VF/VO
+// FIXÉ - STABILISATION LECTEUR MULTI-LANGUES DE VIDEO.JS
 function playMovie(idx) {
     history.replaceState({ overlay: 'player' }, "");
     const m = playlistData[idx];
     currentPlayingTitle = m.t;
-    document.getElementById('next-episode-btn').style.display = 'none';
 
     if (hls) { hls.destroy(); hls = null; }
     player.pause();
@@ -1042,11 +1045,14 @@ function playMovie(idx) {
     const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
     let type = decodedUrl.includes('.m3u8') ? 'application/x-mpegURL' : 'video/mp4';
 
+    // Ciblage du cœur de l'élément HTML5 vidéo généré par l'instance Video.js active
+    const targetVideoElement = player.el().querySelector('video');
+
     if (type === 'application/x-mpegURL') {
         if (Hls.isSupported()) {
             hls = new Hls();
             hls.loadSource(decodedUrl);
-            hls.attachMedia(document.querySelector('#main-video_html5_api'));
+            hls.attachMedia(targetVideoElement);
             hls.on(Hls.Events.MANIFEST_PARSED, function() { 
                 if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
                 player.play(); 
@@ -1063,7 +1069,7 @@ function playMovie(idx) {
         player.play();
     }
     
-    // Indispensable pour rafraîchir et forcer le montage natif des langues (VO/VF) par le navigateur
+    // Double injection pour initialiser la réactivation de la piste audio VO/VF
     player.src({ src: decodedUrl, type: type });
 }
 
@@ -1097,7 +1103,6 @@ function preloadVisibleImages() {
     images.forEach(img => observer.observe(img));
 }
 
-// INITIALISATION SÉCURISÉE DES EXTENSIONS LECTEUR (DOM-LOADED DIRECT)
 document.addEventListener('DOMContentLoaded', () => {
     player = videojs('main-video', { 
         controls: true, fluid: false,
