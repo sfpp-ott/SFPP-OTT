@@ -512,7 +512,6 @@ let isAdminMode = false, epgData = {}, hls;
 const CATEGORY_LIMIT = 35;
 window.focusGenre = null;
 
-// Suppression de fetchEPG inutile pour fiabiliser la rapidité d'affichage
 function fetchEPG() {}
 
 window.addEventListener('popstate', function (event) {
@@ -775,7 +774,6 @@ function saveP() {
 
 function scrollSide(btn, amt) { const car = btn.parentElement.querySelector('.carousel'); car.scrollBy({ left: amt, behavior: 'smooth' }); }
 
-/* --- ARCHITECTURE DU RENDU PAR CARROUSEL D'ORIGINE RESTAURÉE COMPLET --- */
 function render(search = "") {
     const cont = document.getElementById('categories-container');
     const histSec = document.getElementById('history-sec');
@@ -791,7 +789,6 @@ function render(search = "") {
     let activeFocus = window.focusGenre;
     if (s !== "") { activeFocus = "Résultats de recherche"; }
 
-    // --- GRILLE D'AFFICHAGE COMPLÈTE À LA DEMANDE ---
     if (activeFocus !== null) {
         histSec.style.display = "none";
         let filteredFocusData = playlistData;
@@ -919,7 +916,7 @@ function render(search = "") {
                     </div>`;
             });
             html += `</div><div class="nav-arrow arrow-right" onclick="scrollSide(this, 400)">›</div></div>`;
-            document.getElementById('categories-container').innerHTML += html;
+            cont.innerHTML += html;
         }
     }
 
@@ -1012,13 +1009,12 @@ function openSeries(name) {
     content.innerHTML = html;
 }
 
-// FIXÉ - STABILISATION LECTEUR MULTI-LANGUES DE VIDEO.JS
+// RESTAURATION EXCLUSIVEMENT DU COEUR DE LECTURE VIDEO.JS SANS APPELS CONFLITS
 function playMovie(idx) {
     history.replaceState({ overlay: 'player' }, "");
     const m = playlistData[idx];
     currentPlayingTitle = m.t;
 
-    if (hls) { hls.destroy(); hls = null; }
     player.pause();
     player.src("");
     player.load();
@@ -1045,31 +1041,12 @@ function playMovie(idx) {
     const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
     let type = decodedUrl.includes('.m3u8') ? 'application/x-mpegURL' : 'video/mp4';
 
-    // Ciblage du cœur de l'élément HTML5 vidéo généré par l'instance Video.js active
-    const targetVideoElement = player.el().querySelector('video');
-
-    if (type === 'application/x-mpegURL') {
-        if (Hls.isSupported()) {
-            hls = new Hls();
-            hls.loadSource(decodedUrl);
-            hls.attachMedia(targetVideoElement);
-            hls.on(Hls.Events.MANIFEST_PARSED, function() { 
-                if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
-                player.play(); 
-            });
-            hls.on(Hls.Events.LEVEL_LOADED, function() { player.on('timeupdate', saveP); });
-        } else {
-            player.src({ src: decodedUrl, type: type });
-            if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
-            player.play();
-        }
-    } else {
-        player.src({ src: decodedUrl, type: type });
-        if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
-        player.play();
-    }
+    // Injection directe via l'API interne et stable du lecteur Video.js
+    player.src({ src: decodedUrl, type: type });
+    if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
+    player.play();
     
-    // Double injection pour initialiser la réactivation de la piste audio VO/VF
+    // Deuxième passe d'assignation indispensable pour forcer l'analyse des pistes audio (VF/VO) par Video.js
     player.src({ src: decodedUrl, type: type });
 }
 
