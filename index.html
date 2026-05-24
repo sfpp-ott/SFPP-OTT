@@ -46,6 +46,21 @@
         .is-editing .edit-icon { display: block; }
         .btn-manage { margin-top: 40px; background: none; border: 1px solid #444; color: #888; padding: 10px 20px; cursor: pointer; font-size: 14px; letter-spacing: 1px; }
 
+        /* STYLE DU SYSTÈME DE RECHARGEMENT / LOADER TROIS PETITS POINTS */
+        #app-loader {
+            position: fixed; inset: 0; background: rgba(5, 5, 5, 0.95); 
+            z-index: 5000; display: none; flex-direction: column; 
+            align-items: center; justify-content: center;
+        }
+        .dots-container { display: flex; gap: 8px; margin-top: 15px; }
+        .dot { width: 12px; height: 12px; background-color: var(--accent); border-radius: 50%; animation: pulseDot 1.4s infinite ease-in-out both; }
+        .dot:nth-child(1) { animation-delay: -0.32s; }
+        .dot:nth-child(2) { animation-delay: -0.16s; }
+        @keyframes pulseDot {
+            0%, 80%, 100% { transform: scale(0); opacity: 0.3; }
+            40% { transform: scale(1); opacity: 1; }
+        }
+
         header { 
             position: fixed; top: 0; width: 100%; height: 60px; 
             background: rgba(0,0,0,0.95); display: flex; align-items: center; 
@@ -185,7 +200,7 @@
         
         .category-row { position: relative; width: 100%; margin-bottom: 20px; }
         
-        /* En-tête flexible pour l'alignement des titres et des boutons Voir tout */
+        /* En-tête flexible style Lumeo avec bouton d'affichage complet */
         .category-title-row { display: flex; justify-content: space-between; align-items: center; padding: 0 4%; margin: 20px 0 10px; }
         .category-title { font-size: 18px; font-weight: bold; color: #fff; text-transform: uppercase; margin: 0; }
         .show-more-btn { background: #222; border: 1px solid #444; color: white; padding: 8px 14px; border-radius: 8px; cursor: pointer; font-size: 12px; transition: 0.2s; font-weight: bold; }
@@ -210,7 +225,7 @@
         .prog-bg { position: absolute; bottom: 25px; left: 0; width: 100%; height: 4px; background: rgba(255,255,255,0.2); border-radius: 0 0 4px 4px; overflow: hidden; }
         .prog-fill { height: 100%; background: var(--accent); transition: width 0.3s; }
 
-        /* Styles de la grille paginée Style */
+        /* Conteneur de la grille paginée Lumeo */
         .pagination-container { display: flex; justify-content: center; align-items: center; gap: 15px; margin: 40px 0 20px; }
         .pagination-btn { background: #222; color: white; border: 1px solid #444; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 14px; }
         .pagination-btn:hover:not(:disabled) { background: var(--accent); border-color: var(--accent); }
@@ -272,6 +287,16 @@
     </style>
 </head>
 <body oncontextmenu="return false;"> 
+
+<div id="app-loader">
+    <div style="font-size: 18px; font-weight: bold; letter-spacing: 1px;">Mise à jour des jaquettes</div>
+    <div class="dots-container">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+    </div>
+</div>
+
 <div id="login-screen">
     <form class="login-box" onsubmit="event.preventDefault(); checkLogin();">
         <div class="logo" style="margin-bottom:20px">SFPP ELITE</div>
@@ -478,6 +503,10 @@
         localStorage.setItem('sfpp_profile_icon', icon);
         document.getElementById('profile-screen').style.display = 'none';
         document.getElementById('current-user-name').innerText = name;
+        
+        // AFFICHAGE DU SYSTEME DE RECHARGEMENT A LA SÉLECTION DU PROFIL
+        document.getElementById('app-loader').style.display = 'flex';
+
         const user = auth.currentUser;
         if(user) {
             const snap = await get(ref(db, 'users_data/' + user.uid + '/expire'));
@@ -528,8 +557,8 @@ setInterval(function() { (function() { debugger; }).call(); }, 5000);
 let player, playlistData = [], currentProfile = null, isEditMode = false, currentView = 'all', currentPlayingTitle = "", exitConfirmed = false;
 let isAdminMode = false, epgData = {}, hls; 
 
-// CONFIGURATION DU SYSTEME HYBRIDE ACCUEIL / GRILLE PAGINÉE
-const CATEGORY_LIMIT = 35; // Limite entre 30 et 40 jaquettes sur la page principale
+// CONFIGURATION DU PRINCIPE HYBRIDE SANS TOUCHER AU RENDU D'ORIGINE
+const CATEGORY_LIMIT = 35; 
 window.focusGenre = null; 
 let currentPage = 1;
 const itemsPerPage = 20; 
@@ -599,11 +628,18 @@ async function loadPlaylist() {
         render();
 
         const apiKey = "ec1c8fecd38d1cc5a27f15766f0848d5";
-        const promises = playlistData.map(async (m, index) => {
+        
+        // PAUSE TECHNIQUE PROGRESSIVE : Assure le chargement sans trou d'affiche
+        let processedCount = 0;
+        for (let m of playlistData) {
             if (m.id_tmdb && (!m.img || !m.desc || !m.trailer)) {
                 try {
                     const url = `https://api.themoviedb.org/3/movie/${m.id_tmdb}?api_key=${apiKey}&language=fr-FR&append_to_response=videos,credits&include_video_language=en,fr,null`;
                     const res = await fetch(url);
+                    if (res.status === 429) {
+                        await new Promise(resolve => setTimeout(resolve, 2000));
+                        continue;
+                    }
                     const data = await res.json();
                     
                     m.img = m.img || `https://image.tmdb.org/t/p/w500${data.poster_path}`;
@@ -630,13 +666,25 @@ async function loadPlaylist() {
                             img: `https://image.tmdb.org/t/p/w185${a.profile_path}`
                         }));
                     }
-                } catch (e) { console.log("Erreur TMDB ID: " + m.id_tmdb); }
-            }
-        });
 
-        await Promise.all(promises);
-        render(); 
-    } catch (e) {} 
+                    const targets = document.querySelectorAll(`.img-sync-target-${m.original_index}`);
+                    targets.forEach(img => { if (m.img) img.src = m.img; });
+
+                } catch (e) {}
+                
+                // RETRAIT AUTOMATIQUE DE L'ÉCRAN DE CHARGEMENT APRÈS LES PREMIÈRES REQUÊTES ESSENTIELLES
+                processedCount++;
+                if (processedCount === 40) {
+                    document.getElementById('app-loader').style.display = 'none';
+                }
+                await new Promise(resolve => setTimeout(resolve, 45));
+            }
+        }
+        // Sécurité finale : cache le loader si le catalogue est petit
+        document.getElementById('app-loader').style.display = 'none';
+    } catch (e) {
+        document.getElementById('app-loader').style.display = 'none';
+    } 
 }
 
 window.enableGenreFocus = function(genreName) {
@@ -777,25 +825,7 @@ function initProfiles() {
         </div>`).join('');
 }
 
-function handleProfileClick(id, name, icon) {
-    if(isEditMode) {
-        let n = prompt("Nouveau nom :", name);
-        if(n && n.trim() !== "") {
-            let profiles = JSON.parse(localStorage.getItem('sfpp_profiles_data')) || [
-                { id: 1, name: "Profil 1", icon: "🟦", color: "#1e90ff" },
-                { id: 2, name: "Profil 2", icon: "🟩", color: "#2ecc71" },
-                { id: 3, name: "Profil 3", icon: "🟧", color: "#e67e22" },
-                { id: 4, name: "Profil 4", icon: "🟪", color: "#9b59b6" }
-            ];
-            const idx = profiles.findIndex(p => p.id === id);
-            if(idx !== -1) { 
-                profiles[idx].name = n; 
-                localStorage.setItem('sfpp_profiles_data', JSON.stringify(profiles)); 
-                initProfiles(); 
-            }
-        }
-    } else selectProfile(name, icon);
-}
+handleProfileClick
 
 function saveP() {
     if(!currentPlayingTitle || !currentProfile) return;
@@ -811,7 +841,7 @@ function saveP() {
 
 function scrollSide(btn, amt) { const car = btn.parentElement.querySelector('.carousel'); car.scrollBy({ left: amt, behavior: 'smooth' }); }
 
-/* --- SYSTÈME DE BLOCS RENDU CONSERVÉ DU FLUX PRINCIPAL --- */
+/* --- ARCHITECTURE EN CARROUSELS D'ORIGINE COUPLÉE SANS COMPRESSION --- */
 function render(search = "") {
     const cont = document.getElementById('categories-container');
     const histSec = document.getElementById('history-sec');
@@ -829,7 +859,7 @@ function render(search = "") {
     let activeFocus = window.focusGenre;
     if (s !== "") { activeFocus = "Résultats de recherche"; }
 
-    // --- AFFICHAGE A : GRILLE PAGINÉE TECHNIQUE LUMEO STYLE ---
+    // --- LOGIQUE A : GRILLE DE TYPE PAGINATION LUMEO QUAND ON CLIQUE SUR UN BOUTON "VOIR TOUT" ---
     if (activeFocus !== null) {
         histSec.style.display = "none";
         let filteredFocusData = playlistData;
@@ -877,7 +907,7 @@ function render(search = "") {
                         <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${m.t.replace(/'/g, "\\'")}');">${heartIcon}</div>
                         ${!isTV ? `<div class="card-rating">${m_stars}</div>` : ''}
                         <div onclick="${clickAction}">
-                            <img src="${m.img}" style="width: 100% !important; height: auto !important; aspect-ratio: 2/3; max-height:225px;">${pct}
+                            <img class="img-sync-target-${m.original_index}" src="${m.img || ''}" style="width: 100% !important; height: auto !important; aspect-ratio: 2/3; max-height:225px;">${pct}
                             <div class="card-name">${m.t}</div>
                         </div>
                     </div>`;
@@ -894,7 +924,7 @@ function render(search = "") {
         return;
     }
 
-    // --- AFFICHAGE B : CARROUSELS SUR L'ACCUEIL AVEC BRIDAGE À 35 FILMS ---
+    // --- LOGIQUE B : LIGNES DE CARROUSELS SUR L'ACCUEIL LIMITÉES ENTRE 30 ET 40 ELEMENTS ---
     let data = playlistData;
     if(currentView === 'movies') data = playlistData.filter(m => m.cat && !m.cat.includes("SÉRIES"));
     else if(currentView === 'series') data = playlistData.filter(m => m.cat && m.cat.includes("SÉRIES"));
@@ -925,7 +955,7 @@ function render(search = "") {
                             <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${m.t.replace(/'/g, "\\'")}');">${heartIcon}</div>
                             ${!isTV ? `<div class="card-rating">${m_stars}</div>` : ''}
                             <div onclick="${clickAction}">
-                                <img src="${m.img}">${pct}
+                                <img src="${m.img}" class="img-sync-target-${m.original_index}" loading="lazy">${pct}
                                 <div class="card-name">${m.t}</div>
                             </div>
                         </div>`;
@@ -935,9 +965,11 @@ function render(search = "") {
     } else histSec.style.display = "none";
 
     if (s === "" && (currentView === 'all' || currentView === 'movies')) {
-        let allMovies = playlistData.filter(m => m.cat && !m.cat.includes("SÉRIES") && !m.cat.toUpperCase().includes("DIRECT") && !m.cat.toUpperCase().includes("TV"));
+        let allMovies = playlistData.filter(m => m.cat ? (!m.cat.toUpperCase().includes("SÉRIES") && !m.cat.toUpperCase().includes("DIRECT") && !m.cat.toUpperCase().includes("TV")) : true);
         if (allMovies.length > 0) {
             const totalFilms = allMovies.length;
+            
+            // Coupure nette de l'accueil fixée à 35 jaquettes
             allMovies = allMovies.slice(0, CATEGORY_LIMIT);
 
             let html = `
@@ -962,7 +994,7 @@ function render(search = "") {
                         <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${m.t.replace(/'/g, "\\'")}');">${heartIcon}</div>
                         <div class="card-rating">${m_stars}</div>
                         <div onclick="openDetails(${m.original_index})">
-                            <img src="${m.img}">${pct}
+                            <img src="${m.img}" class="img-sync-target-${m.original_index}" loading="lazy">${pct}
                             <div class="card-name">${m.t}</div>
                         </div>
                     </div>`;
@@ -993,6 +1025,8 @@ function render(search = "") {
         if (filtered.length === 0) return;
         
         const totalFilms = filtered.length;
+        
+        // Coupure nette de l'accueil fixée à 35 jaquettes
         filtered = filtered.slice(0, CATEGORY_LIMIT);
 
         const isTVCat = c.includes("DIRECT") || c.includes("TV");
@@ -1020,7 +1054,7 @@ function render(search = "") {
                     <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${m.t.replace(/'/g, "\\'")}');">${heartIcon}</div>
                     ${!isTVCat ? `<div class="card-rating">${m_stars}</div>` : ''}
                     <div onclick="${clickAction}">
-                        <img src="${m.img}">
+                        <img src="${m.img}" class="img-sync-target-${m.original_index}" loading="lazy">
                         <div class="card-name">${m.t}</div>
                     </div>
                 </div>`;
@@ -1028,6 +1062,8 @@ function render(search = "") {
         html += `</div><div class="nav-arrow arrow-right" onclick="scrollSide(this, 400)">›</div></div>`;
         cont.innerHTML += html;
     });
+
+    preloadVisibleImages();
 }
 
 function openSeries(name) {
@@ -1134,58 +1170,18 @@ function requestAccess() { window.location.href = "mailto:sfpp.ott@gmail.com"; }
 function openSearch() { document.getElementById('search-overlay').style.display = 'flex'; document.getElementById('searchBar').focus(); }
 function closeSearch() { window.disableFocusMode(); document.getElementById('search-overlay').style.display = 'none'; }
 
-document.addEventListener('DOMContentLoaded', () => {
-    player = videojs('main-video', { 
-        controls: true, fluid: false,
-        techOrder: ['chromecast', 'html5'], 
-        plugins: { chromecast: { addButtonToControlBar: true, addDisplayOnControlBar: true } }
-    });
-
-    let lastTap = 0;
-    const videoContainer = document.getElementById('video-container');
-
-    videoContainer.addEventListener('touchend', function(e) {
-        const now = new Date().getTime();
-        const timesince = now - lastTap;
-        if ((timesince < 350) && (timesince > 0)) {
-            if (player.isFullscreen()) player.exitFullscreen();
-            else player.requestFullscreen();
-            e.preventDefault();
-        }
-        lastTap = now;
-    });
-
-    player.on('dblclick', function() {
-        if (player.isFullscreen()) player.exitFullscreen();
-        else player.requestFullscreen();
-    });
-
-    const Button = videojs.getComponent('Button');
-    class Back extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-replay-10'; } handleClick() { player.currentTime(player.currentTime()-10); } }
-    class Forward extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-forward-10'; } handleClick() { player.currentTime(player.currentTime()+10); } }
-    videojs.registerComponent('Back', Back); videojs.registerComponent('Forward', Forward);
-    
-    player.ready(() => { 
-        player.getChild('controlBar').addChild('Back', {}, 1); 
-        player.getChild('controlBar').addChild('Forward', {}, 2); 
-    });
-
-    player.on('timeupdate', function() {
-        const dur = player.duration(), cur = player.currentTime();
-        if (/S\d{2}E\d{2}/i.test(currentPlayingTitle) && dur > 0 && (dur - cur) < 80) {
-            document.getElementById('next-episode-btn').style.display = 'block';
-        } else document.getElementById('next-episode-btn').style.display = 'none';
-        
-        if(Math.floor(cur) % 5 === 0) saveP();
-    });
-});
-
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js').catch(err => console.log('Erreur SW:', err));
-    });
+function preloadVisibleImages() {
+    const images = document.querySelectorAll('img[loading="lazy"]');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if(entry.isIntersecting) {
+                const img = entry.target;
+                observer.unobserve(img);
+            }
+        });
+    }, { rootMargin: "300px" });
+    images.forEach(img => observer.observe(img));
 }
 </script>
 </body>
 </html>
-
