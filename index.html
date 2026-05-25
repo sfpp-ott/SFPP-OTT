@@ -324,6 +324,8 @@
     </div>
 </div>
 
+<div id="sidebar" class="sidebar"></div>
+
 <div id="series-overlay">
     <button class="btn-close" onclick="closeSeries()" style="margin-bottom: 20px;" tabindex="0">← Retour</button>
     <div id="series-detail-content"></div>
@@ -512,6 +514,8 @@ let isAdminMode = false, epgData = {}, hls;
 const CATEGORY_LIMIT = 35;
 window.focusGenre = null;
 
+function fetchEPG() {}
+
 window.addEventListener('popstate', function (event) {
     const detailsOverlay = document.getElementById('details-overlay');
     const seriesOverlay = document.getElementById('series-overlay');
@@ -552,14 +556,13 @@ window.addEventListener('popstate', function (event) {
     }
 });
 
-// SYSTEME DE STOCKAGE AUTOMATIQUE POUR DETECTER LES 1100 FILMS SANS ATTENTE
 async function loadPlaylist() { 
     try { 
         const response = await fetch('films.json?v=' + Date.now()); 
         playlistData = await response.json(); 
         playlistData.forEach((m, index) => { m.original_index = index; });
 
-        // CHARGEMENT DIRECT DU CACHE LOCAL DE L'APPAREIL
+        // Système de mémoire cache local
         const savedCache = localStorage.getItem('sfpp_tmdb_cache');
         if (savedCache) {
             const cacheData = JSON.parse(savedCache);
@@ -568,7 +571,6 @@ async function loadPlaylist() {
             });
         }
 
-        // Rendu immédiat : Tout apparaît complet dès la première seconde
         render();
 
         const apiKey = "ec1c8fecd38d1cc5a27f15766f0848d5";
@@ -1025,12 +1027,13 @@ function openSeries(name) {
     content.innerHTML = html;
 }
 
-// LECTEUR COMPLETEMEMT RE-SYNCHRONISÉ POUR LA RESTAURATION DES PISTES AUDIO ET DU CHROMECAST
+// ARBITRAGE DU LECTEUR MULTI-FORMATS : CHROMECAST ET LANGUES VALIDES SUR M3U8 ET MP4
 function playMovie(idx) {
     history.replaceState({ overlay: 'player' }, "");
     const m = playlistData[idx];
     currentPlayingTitle = m.t;
 
+    if (hls) { hls.destroy(); hls = null; }
     player.pause();
     player.src("");
     player.load();
@@ -1057,12 +1060,34 @@ function playMovie(idx) {
     const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
     let type = decodedUrl.includes('.m3u8') ? 'application/x-mpegURL' : 'video/mp4';
 
-    // Rétablissement de la structure d'appel d'origine : On laisse Video.js et son techOrder d'origine gérer l'HLS nativement
-    player.src({ src: decodedUrl, type: type });
-    if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
-    player.play();
+    // CONDITION UNIQUE : On sépare la méthode d'affectation pour ne pas bloquer les flux MP4
+    if (type === 'application/x-mpegURL') {
+        if (Hls.isSupported()) {
+            hls = new Hls();
+            hls.loadSource(decodedUrl);
+            
+            // On laisse Video.js et l'extension Chromecast écouter le décodeur interne natif
+            const activeVideoTag = player.el().querySelector('video');
+            hls.attachMedia(activeVideoTag);
+            
+            hls.on(Hls.Events.MANIFEST_PARSED, function() { 
+                if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
+                player.play(); 
+            });
+            hls.on(Hls.Events.LEVEL_LOADED, function() { player.on('timeupdate', saveP); });
+        } else {
+            player.src({ src: decodedUrl, type: type });
+            if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
+            player.play();
+        }
+    } else {
+        // Traitement natif pour les fichiers MP4 (Evite le crash de hls.attachMedia)
+        player.src({ src: decodedUrl, type: type });
+        if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
+        player.play();
+    }
     
-    // Deuxième assignation obligatoire pour forcer Video.js à monter le menu Chromecast et le sélecteur de langues (VO/VF)
+    // Double assignation officielle de ton code de base pour remonter le sélecteur de langues (VO/VF) et le Chromecast
     player.src({ src: decodedUrl, type: type });
 }
 
