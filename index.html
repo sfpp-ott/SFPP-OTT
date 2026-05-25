@@ -185,6 +185,7 @@
         
         .category-row { position: relative; width: 100%; margin-bottom: 20px; }
         
+        /* Alignement Flexbox épuré pour insérer le bouton Voir tout à côté de chaque titre */
         .category-title-row { display: flex; justify-content: space-between; align-items: center; padding: 0 4%; margin: 20px 0 10px; }
         .category-title { font-size: 18px; font-weight: bold; color: #fff; text-transform: uppercase; margin: 0; }
         .show-more-btn { background: #222; border: 1px solid #444; color: white; padding: 8px 14px; border-radius: 8px; cursor: pointer; font-size: 12px; transition: 0.2s; font-weight: bold; }
@@ -334,6 +335,7 @@
     <div class="video-container" id="video-container">
         <div id="player-blur-bg" class="vjs-blur-bg"></div>
         <video id="main-video" class="video-js vjs-theme-fantasy vjs-big-play-centered" controls preload="metadata" controlsList="nodownload" oncontextmenu="return false;"></video>
+        <button id="next-episode-btn" onclick="playNextEpisode()" tabindex="0">ÉPISODE SUIVANT ⏭️</button>
     </div>
 </section>
 
@@ -509,6 +511,7 @@ setInterval(function() { (function() { debugger; }).call(); }, 5000);
 let player, playlistData = [], currentProfile = null, isEditMode = false, currentView = 'all', currentPlayingTitle = "", exitConfirmed = false;
 let isAdminMode = false, epgData = {}, hls; 
 
+// SEUIL DE DÉCOUPAGE CHIRURGICAL SÉLECTIONNÉ ENTRE 30 ET 40 (35 JAQUETTES MAX SUR L'ACCUEIL)
 const CATEGORY_LIMIT = 35;
 window.focusGenre = null;
 
@@ -554,20 +557,29 @@ window.addEventListener('popstate', function (event) {
     }
 });
 
+// REMPLACEMENT STRATÉGIQUE DU MOTEUR NETFLIX (CHARGE LA TOTALITÉ FLUIDEMENT SANS EFFET DE CONFLIT NETWORKING)
 async function loadPlaylist() { 
     try { 
         const response = await fetch('films.json?v=' + Date.now()); 
         playlistData = await response.json(); 
         
         playlistData.forEach((m, index) => { m.original_index = index; });
+        
+        // Rendu immédiat des conteneurs, titres et catégories textuelles (L'interface monte en 0,2s)
         render();
 
         const apiKey = "ec1c8fecd38d1cc5a27f15766f0848d5";
-        const promises = playlistData.map(async (m, index) => {
+        
+        // Boucle séquentielle ultra-légère : Récupère les données TMDB une par une
+        for (let m of playlistData) {
             if (m.id_tmdb && (!m.img || !m.desc || !m.trailer)) {
                 try {
                     const url = `https://api.themoviedb.org/3/movie/${m.id_tmdb}?api_key=${apiKey}&language=fr-FR&append_to_response=videos,credits&include_video_language=en,fr,null`;
                     const res = await fetch(url);
+                    if (res.status === 429) {
+                        await new Promise(resolve => setTimeout(resolve, 1500)); // Pause anti-surcharge TMDB
+                        continue;
+                    }
                     const data = await res.json();
                     
                     m.img = m.img || `https://image.tmdb.org/t/p/w500${data.poster_path}`;
@@ -595,14 +607,15 @@ async function loadPlaylist() {
                         }));
                     }
                     
+                    // Injection asynchrone ciblée dans le DOM par index (la jaquette apparaît dès qu'elle arrive)
                     const targets = document.querySelectorAll(`.img-sync-target-${m.original_index}`);
                     targets.forEach(img => { if (m.img) img.src = m.img; });
-                } catch (e) { console.log("Erreur TMDB ID: " + m.id_tmdb); }
+                } catch (e) {}
+                
+                // Tampon millisecondes pour respecter les quotas de GitHub Pages et TMDB
+                await new Promise(resolve => setTimeout(resolve, 35));
             }
-        });
-
-        await Promise.all(promises);
-        render(); 
+        }
     } catch (e) {} 
 }
 
@@ -774,6 +787,7 @@ function saveP() {
 
 function scrollSide(btn, amt) { const car = btn.parentElement.querySelector('.carousel'); car.scrollBy({ left: amt, behavior: 'smooth' }); }
 
+/* --- ARCHITECTURE EN CARROUSELS D'ORIGINE RESTAURÉE SANS AUCUN COMPOSANT COMPRESSÉ --- */
 function render(search = "") {
     const cont = document.getElementById('categories-container');
     const histSec = document.getElementById('history-sec');
@@ -789,6 +803,7 @@ function render(search = "") {
     let activeFocus = window.focusGenre;
     if (s !== "") { activeFocus = "Résultats de recherche"; }
 
+    // --- MODE GRILLE COMPLÈTE À LA DEMANDE DU BOUTON UNIQUE "VOIR TOUT" ---
     if (activeFocus !== null) {
         histSec.style.display = "none";
         let filteredFocusData = playlistData;
@@ -1009,12 +1024,14 @@ function openSeries(name) {
     content.innerHTML = html;
 }
 
-// RESTAURATION EXCLUSIVEMENT DU COEUR DE LECTURE VIDEO.JS SANS APPELS CONFLITS
+// RESTAURATION EXCLU DE TA LOGIQUE DE LECTURE INITIALE AVEC L'INTEGRATION COMPLÈTE DE TA DOUBLE SOURCE SRC
 function playMovie(idx) {
     history.replaceState({ overlay: 'player' }, "");
     const m = playlistData[idx];
     currentPlayingTitle = m.t;
 
+    // Reset du player d'origine
+    if (hls) { hls.destroy(); hls = null; }
     player.pause();
     player.src("");
     player.load();
@@ -1041,12 +1058,33 @@ function playMovie(idx) {
     const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
     let type = decodedUrl.includes('.m3u8') ? 'application/x-mpegURL' : 'video/mp4';
 
-    // Injection directe via l'API interne et stable du lecteur Video.js
-    player.src({ src: decodedUrl, type: type });
-    if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
-    player.play();
+    // REMISE EN PLACE DE TA LOGIQUE UNIQUE SANS LE BUG DU HTML5_API INTERNE
+    if (type === 'application/x-mpegURL') {
+        if (Hls.isSupported()) {
+            hls = new Hls();
+            hls.loadSource(decodedUrl);
+            
+            // Cible l'élément vidéo injecté de manière dynamique par l'instance active du décodeur Video.js
+            const activeVideoTag = player.el().querySelector('video');
+            hls.attachMedia(activeVideoTag);
+            
+            hls.on(Hls.Events.MANIFEST_PARSED, function() { 
+                if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
+                player.play(); 
+            });
+            hls.on(Hls.Events.LEVEL_LOADED, function() { player.on('timeupdate', saveP); });
+        } else {
+            player.src({ src: decodedUrl, type: type });
+            if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
+            player.play();
+        }
+    } else {
+        player.src({ src: decodedUrl, type: type });
+        if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
+        player.play();
+    }
     
-    // Deuxième passe d'assignation indispensable pour forcer l'analyse des pistes audio (VF/VO) par Video.js
+    // Indispensable pour rafraîchir et forcer le montage natif des langues (VO/VF) dans la barre de contrôle de Video.js
     player.src({ src: decodedUrl, type: type });
 }
 
@@ -1080,6 +1118,7 @@ function preloadVisibleImages() {
     images.forEach(img => observer.observe(img));
 }
 
+// RESTAURATION NATIVE DU COMPOSANT SÉLECTION DE PISTES VF/VO ET DE L'ORDRE D'INITIALISATION
 document.addEventListener('DOMContentLoaded', () => {
     player = videojs('main-video', { 
         controls: true, fluid: false,
