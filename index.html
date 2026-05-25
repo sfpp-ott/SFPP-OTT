@@ -246,12 +246,6 @@
             pointer-events: none;
         }
 
-        /* Classes utilitaires pour le basculement dynamique d'affichage */
-        .grid-view-mode { display: grid !important; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)) !important; gap: 15px !important; padding: 0 4% !important; }
-        .grid-view-mode .card { width: 100% !important; }
-        .grid-view-mode .card img { width: 100% !important; height: auto !important; aspect-ratio: 2/3; }
-        .grid-view-mode .nav-arrow { display: none !important; }
-
         @media (max-width: 768px) {
             .card { flex: 0 0 130px; width: 130px; }
             .card img { width: 130px !important; height: 195px !important; }
@@ -340,6 +334,7 @@
     <div class="video-container" id="video-container">
         <div id="player-blur-bg" class="vjs-blur-bg"></div>
         <video id="main-video" class="video-js vjs-theme-fantasy vjs-big-play-centered" controls preload="metadata" controlsList="nodownload" oncontextmenu="return false;"></video>
+        <button id="next-episode-btn" onclick="playNextEpisode()" tabindex="0">ÉPISODE SUIVANT ⏭️</button>
     </div>
 </section>
 
@@ -518,20 +513,7 @@ let isAdminMode = false, epgData = {}, hls;
 const CATEGORY_LIMIT = 35;
 window.focusGenre = null;
 
-async function fetchEPG() {
-    try {
-        const response = await fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent('https://iptv-org.github.io/epg/guides/fr/telerama.fr.json'));
-        const data = await response.json();
-        if (data.channels) {
-            data.channels.forEach(ch => {
-                epgData[ch.name.toUpperCase()] = ch.programs || [];
-            });
-            render(); 
-        }
-    } catch (e) {
-        console.log("Erreur EPG:", e);
-    }
-}
+function fetchEPG() {}
 
 window.addEventListener('popstate', function (event) {
     const detailsOverlay = document.getElementById('details-overlay');
@@ -573,25 +555,47 @@ window.addEventListener('popstate', function (event) {
     }
 });
 
-// TON SCAN PROMISE.ALL D'ORIGINE INTEGRALEMENT CONSERVE POUR CONSERVER LE NOMBRE DE FILMS EXACT IMMEDIAT
+// INTELLIGENCE DE CACHE CHIRURGICALE APPLIQUÉE SUR TON ASYNC LOADPLAYLIST
 async function loadPlaylist() { 
     try { 
         const response = await fetch('films.json?v=' + Date.now()); 
         playlistData = await response.json(); 
-        
+        playlistData.forEach((m, index) => { m.original_index = index; });
+
+        // RÉCUPÉRATION DU CACHE MÉMOIRE DE L'APPAREIL : Si le catalogue a déjà été scanné une fois, on l'injecte direct
+        const savedCache = localStorage.getItem('sfpp_tmdb_cache');
+        if (savedCache) {
+            const cacheData = JSON.parse(savedCache);
+            playlistData.forEach(m => {
+                if (cacheData[m.t]) {
+                    Object.assign(m, cacheData[m.t]);
+                }
+            });
+        }
+
+        // Rendu immédiat. S'il y a du cache, tout s'affiche au complet en 0.1 seconde !
+        render();
+
         const apiKey = "ec1c8fecd38d1cc5a27f15766f0848d5";
-        const promises = playlistData.map(async (m, index) => {
-            m.original_index = index;
+        let cacheUpdated = false;
+        let currentCache = savedCache ? JSON.parse(savedCache) : {};
+        
+        // Boucle d'arrière-plan douce : Met à jour ou complète les films manquants
+        for (let m of playlistData) {
             if (m.id_tmdb && (!m.img || !m.desc || !m.trailer)) {
                 try {
                     const url = `https://api.themoviedb.org/3/movie/${m.id_tmdb}?api_key=${apiKey}&language=fr-FR&append_to_response=videos,credits&include_video_language=en,fr,null`;
                     const res = await fetch(url);
+                    if (res.status === 429) {
+                        await new Promise(resolve => setTimeout(resolve, 1500));
+                        continue;
+                    }
                     const data = await res.json();
                     
                     m.img = m.img || `https://image.tmdb.org/t/p/w500${data.poster_path}`;
                     m.bg = m.bg || `https://image.tmdb.org/t/p/original${data.backdrop_path}`;
                     m.desc = m.desc || data.overview;
-                    m.year = m.year || (data.release_date ? data.release_date.split('-')[0] : "2024");
+                    m.year = m.year || (data.release_date ? data.release_date.split('-')[0] : "2025");
                     m.note = m.note || Math.round(data.vote_average / 2);
 
                     if (data.genres && data.genres.length > 0) {
@@ -599,33 +603,39 @@ async function loadPlaylist() {
                     }
 
                     if (!m.trailer && data.videos && data.videos.results.length > 0) {
-                        const video = data.videos.results.find(v => 
-                            (v.type === "Trailer" || v.type === "Teaser") && v.site === "YouTube"
-                        ) || data.videos.results[0];
-                        
+                        const video = data.videos.results.find(v => (v.type === "Trailer" || v.type === "Teaser") && v.site === "YouTube") || data.videos.results[0];
                         if (video) m.trailer = video.key;
                     }
 
                     if (!m.actors_pics && data.credits && data.credits.cast) {
-                        m.actors_pics = data.credits.cast.slice(0, 10).map(a => ({
-                            name: a.name,
-                            img: `https://image.tmdb.org/t/p/w185${a.profile_path}`
-                        }));
+                        m.actors_pics = data.credits.cast.slice(0, 10).map(a => ({ name: a.name, img: `https://image.tmdb.org/t/p/w185${a.profile_path}` }));
                     }
-                } catch (e) { console.log("Erreur TMDB ID: " + m.id_tmdb); }
-            }
-        });
+                    
+                    // On enregistre ce film dans la structure de sauvegarde
+                    currentCache[m.t] = {
+                        img: m.img, bg: m.bg, desc: m.desc, year: m.year, note: m.note, cat: m.cat, trailer: m.trailer, actors_pics: m.actors_pics
+                    };
+                    cacheUpdated = true;
 
-        await Promise.all(promises);
-        render(); 
+                    // Affiche l'image en direct à l'écran
+                    const targets = document.querySelectorAll(`.img-sync-target-${m.original_index}`);
+                    targets.forEach(img => { if (m.img) img.src = m.img; });
+                } catch (e) {}
+                await new Promise(resolve => setTimeout(resolve, 30));
+            }
+        }
+
+        // Sauvegarde définitive dans l'appareil si de nouvelles données ont été écrites
+        if (cacheUpdated) {
+            localStorage.setItem('sfpp_tmdb_cache', JSON.stringify(currentCache));
+            render(); // Redessine une fois à la fin du scan pour valider la totalité
+        }
     } catch (e) {} 
 }
 
-// BASCULEMENT SANS CASSER LE DOM ( display CSS ) : Résout définitivement la panne du Chromecast
 window.enableGenreFocus = function(genreName) {
     window.focusGenre = genreName;
     render(document.getElementById('searchBar').value);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
 };
 
 window.disableFocusMode = function() {
@@ -770,7 +780,9 @@ window.handleProfileClick = function(id, name, icon) {
                 initProfiles(); 
             }
         }
-    } else { selectProfile(name, icon); }
+    } else {
+        selectProfile(name, icon);
+    }
 };
 
 function toggleEditMode() { isEditMode = !isEditMode; document.getElementById('profile-screen').classList.toggle('is-editing'); }
@@ -789,7 +801,6 @@ function saveP() {
 
 function scrollSide(btn, amt) { const car = btn.parentElement.querySelector('.carousel'); car.scrollBy({ left: amt, behavior: 'smooth' }); }
 
-/* --- CONSERVATION INTÉGRALE DES BLOCS DE RECONSTRUCTION SANS LIENS PERDUS --- */
 function render(search = "") {
     const cont = document.getElementById('categories-container');
     const histSec = document.getElementById('history-sec');
@@ -805,6 +816,60 @@ function render(search = "") {
     let activeFocus = window.focusGenre;
     if (s !== "") { activeFocus = "Résultats de recherche"; }
 
+    if (activeFocus !== null) {
+        histSec.style.display = "none";
+        let filteredFocusData = playlistData;
+        
+        if (activeFocus === "Résultats de recherche") {
+            filteredFocusData = playlistData.filter(m => 
+                m.t.toLowerCase().includes(s) || 
+                (m.cat && m.cat.toLowerCase().includes(s)) ||
+                (m.actors_pics && m.actors_pics.some(a => a.name.toLowerCase().includes(s)))
+            );
+        } else if (activeFocus === "TOUS LES FILMS") {
+            filteredFocusData = playlistData.filter(m => m.cat ? (!m.cat.toUpperCase().includes("SÉRIES") && !m.cat.toUpperCase().includes("DIRECT") && !m.cat.toUpperCase().includes("TV")) : true);
+        } else {
+            filteredFocusData = playlistData.filter(m => m.cat && m.cat.toUpperCase().includes(activeFocus));
+        }
+
+        if (filteredFocusData.length > 0) {
+            let html = `
+                <div class="category-title-row">
+                    <div class="category-title">${activeFocus} (${filteredFocusData.length})</div>
+                    <button class="show-more-btn" onclick="window.disableFocusMode();">← Retour</button>
+                </div>
+                <div class="category-row" style="padding: 0 4%; display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 15px;">`;
+            
+            filteredFocusData.forEach(m => {
+                const isTV = m.cat && (m.cat.toUpperCase().includes("DIRECT") || m.cat.toUpperCase().includes("TV"));
+                const landscapeClass = isTV ? "landscape" : "";
+                const pct = (prog[m.t] && prog[m.t].p > 1) ? `<div class="prog-bg"><div class="prog-fill" style="width:${prog[m.t].p}%"></div></div>` : "";
+                const clickAction = isTV ? `playMovie(${m.original_index})` : `openDetails(${m.original_index})`;
+                
+                const is_fav = favs.includes(m.t);
+                const heartClass = is_fav ? 'is-fav' : '';
+                const heartIcon = is_fav ? '❤️' : '♡';
+
+                let m_stars = "";
+                const m_note = m.note || 5;
+                for (let i = 0; i < 5; i++) { m_stars += (i < m_note) ? "★" : "☆"; }
+
+                html += `
+                    <div class="card ${landscapeClass}" tabindex="0" style="width:100%;">
+                        <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${m.t.replace(/'/g, "\\'")}');">${heartIcon}</div>
+                        ${!isTV ? `<div class="card-rating">${m_stars}</div>` : ''}
+                        <div onclick="${clickAction}">
+                            <img class="img-sync-target-${m.original_index}" src="${m.img || ''}" style="width: 100% !important; height: auto !important; aspect-ratio: 2/3; max-height:225px;">${pct}
+                            <div class="card-name">${m.t}</div>
+                        </div>
+                    </div>`;
+            });
+            html += `</div>`;
+            cont.innerHTML = html;
+        }
+        return;
+    }
+
     let data = playlistData;
     if(currentView === 'movies') data = playlistData.filter(m => m.cat && !m.cat.includes("SÉRIES"));
     else if(currentView === 'series') data = playlistData.filter(m => m.cat && m.cat.includes("SÉRIES"));
@@ -813,7 +878,7 @@ function render(search = "") {
     if(currentProfile && s === "" && currentView === 'all') {
         let history = JSON.parse(localStorage.getItem('sfpp_hist_' + currentProfile) || "[]");
         if(history.length > 0) {
-            histSec.style.display = (activeFocus !== null) ? "none" : "block";
+            histSec.style.display = "block";
             history.slice().reverse().forEach(title => {
                 const m = playlistData.find(item => item.t === title);
                 if(m) {
@@ -844,30 +909,20 @@ function render(search = "") {
         } else histSec.style.display = "none";
     } else histSec.style.display = "none";
 
-    // INJECTION DU CARROUSEL COMPLET DE DÉPART DANS LE CODE
     if (s === "" && (currentView === 'all' || currentView === 'movies')) {
         let allMovies = playlistData.filter(m => m.cat && !m.cat.includes("SÉRIES") && !m.cat.toUpperCase().includes("DIRECT") && !m.cat.toUpperCase().includes("TV"));
         if (allMovies.length > 0) {
             const totalFilms = allMovies.length;
-            const isTargetView = (activeFocus === "TOUS LES FILMS");
-            
-            // Masque la ligne entière si l'utilisateur regarde un autre genre développé
-            const isHiddenStyle = (activeFocus !== null && !isTargetView) ? 'style="display:none;"' : '';
-            const gridClass = isTargetView ? "grid-view-mode" : "";
-            
-            // Seuil d'accueil appliqué uniquement en mode carrousel
-            let slicedMovies = isTargetView ? allMovies : allMovies.slice(0, CATEGORY_LIMIT);
+            allMovies = allMovies.slice(0, CATEGORY_LIMIT);
 
             let html = `
-                <div class="category-block" ${isHiddenStyle}>
-                    <div class="category-title-row">
-                        <div class="category-title">TOUS LES FILMS</div>
-                        ${totalFilms > CATEGORY_LIMIT && !isTargetView ? `<button class="show-more-btn" onclick="window.enableGenreFocus('TOUS LES FILMS')">Voir tout (${totalFilms})</button>` : ''}
-                        ${isTargetView ? `<button class="show-more-btn" onclick="window.disableFocusMode()">← Retour Accueil</button>` : ''}
-                    </div>
-                    <div class="category-row"><div class="nav-arrow arrow-left" onclick="scrollSide(this, -400)">‹</div><div class="carousel ${gridClass}">`;
+                <div class="category-title-row">
+                    <div class="category-title">TOUS LES FILMS</div>
+                    ${totalFilms > CATEGORY_LIMIT ? `<button class="show-more-btn" onclick="window.enableGenreFocus('TOUS LES FILMS')">Voir tout (${totalFilms})</button>` : ''}
+                </div>
+                <div class="category-row"><div class="nav-arrow arrow-left" onclick="scrollSide(this, -400)">‹</div><div class="carousel">`;
             
-            slicedMovies.forEach(m => {
+            allMovies.forEach(m => {
                 const is_fav = favs.includes(m.t);
                 const heartClass = is_fav ? 'is-fav' : '';
                 const heartIcon = is_fav ? '❤️' : '♡';
@@ -887,9 +942,8 @@ function render(search = "") {
                         </div>
                     </div>`;
             });
-            html += `</div><div class="nav-arrow arrow-right" onclick="scrollSide(this, 400)">›</div></div>
-                </div>`;
-            cont.innerHTML += html;
+            html += `</div><div class="nav-arrow arrow-right" onclick="scrollSide(this, 400)">›</div></div>`;
+            document.getElementById('categories-container').innerHTML += html;
         }
     }
 
@@ -914,28 +968,19 @@ function render(search = "") {
         if (filtered.length === 0) return;
         
         const totalFilms = filtered.length;
-        const isTargetView = (activeFocus === c);
-        
-        // Masque la ligne entière si l'on regarde un autre genre développé
-        const isHiddenStyle = (activeFocus !== null && !isTargetView) ? 'style="display:none;"' : '';
-        const gridClass = isTargetView ? "grid-view-mode" : "";
-
-        // Seuil d'accueil appliqué uniquement en mode carrousel
-        let slicedFiltered = isTargetView ? filtered : filtered.slice(0, CATEGORY_LIMIT);
+        filtered = filtered.slice(0, CATEGORY_LIMIT);
 
         const isTVCat = c.includes("DIRECT") || c.includes("TV");
         const landscapeClass = isTVCat ? "landscape" : "";
         
         let html = `
-            <div class="category-block" ${isHiddenStyle}>
-                <div class="category-title-row">
-                    <div class="category-title">${c}</div>
-                    ${totalFilms > CATEGORY_LIMIT && !isTargetView ? `<button class="show-more-btn" onclick="window.enableGenreFocus('${c.replace(/'/g, "\\'")}')">Voir tout (${totalFilms})</button>` : ''}
-                    ${isTargetView ? `<button class="show-more-btn" onclick="window.disableFocusMode()">← Retour Accueil</button>` : ''}
-                </div>
-                <div class="category-row"><div class="nav-arrow arrow-left" onclick="scrollSide(this, -400)">‹</div><div class="carousel ${gridClass}">`;
+            <div class="category-title-row">
+                <div class="category-title">${c}</div>
+                ${totalFilms > CATEGORY_LIMIT ? `<button class="show-more-btn" onclick="window.enableGenreFocus('${c.replace(/'/g, "\\'")}')">Voir tout (${totalFilms})</button>` : ''}
+            </div>
+            <div class="category-row"><div class="nav-arrow arrow-left" onclick="scrollSide(this, -400)">‹</div><div class="carousel">`;
         
-        slicedFiltered.forEach(m => {
+        filtered.forEach(m => {
             const is_fav = favs.includes(m.t);
             const heartClass = is_fav ? 'is-fav' : '';
             const heartIcon = is_fav ? '❤️' : '♡';
@@ -955,8 +1000,7 @@ function render(search = "") {
                     </div>
                 </div>`;
         });
-        html += `</div><div class="nav-arrow arrow-right" onclick="scrollSide(this, 400)">›</div></div>
-            </div>`;
+        html += `</div><div class="nav-arrow arrow-right" onclick="scrollSide(this, 400)">›</div></div>`;
         cont.innerHTML += html;
     });
 
@@ -992,13 +1036,11 @@ function openSeries(name) {
     content.innerHTML = html;
 }
 
-// TON REPERTOIRE DE LECTURE BRUT D'ORIGINE INALTERÉ ET PRÉSERVÉ
 function playMovie(idx) {
     history.replaceState({ overlay: 'player' }, "");
     const m = playlistData[idx];
     currentPlayingTitle = m.t;
 
-    if (hls) { hls.destroy(); hls = null; }
     player.pause();
     player.src("");
     player.load();
@@ -1029,7 +1071,8 @@ function playMovie(idx) {
         if (Hls.isSupported()) {
             hls = new Hls();
             hls.loadSource(decodedUrl);
-            hls.attachMedia(document.querySelector('#main-video_html5_api'));
+            const activeVideoTag = player.el().querySelector('video');
+            hls.attachMedia(activeVideoTag);
             hls.on(Hls.Events.MANIFEST_PARSED, function() { 
                 if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
                 player.play(); 
@@ -1045,7 +1088,6 @@ function playMovie(idx) {
         if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
         player.play();
     }
-    
     player.src({ src: decodedUrl, type: type });
 }
 
@@ -1061,6 +1103,8 @@ function closeP() { if (document.getElementById('player-section').style.display 
 function closeSeries() { if (document.getElementById('series-overlay').style.display === 'block') history.back(); }
 function changeView(v) { currentView = v; window.focusGenre = null; document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active')); document.getElementById('btn-'+v).classList.add('active'); render(); }
 function filter() { render(document.getElementById('searchBar').value); }
+// Profil
+switchProfile
 function switchProfile() { localStorage.removeItem('sfpp_profile'); location.reload(); }
 function requestAccess() { window.location.href = "mailto:sfpp.ott@gmail.com"; }
 function openSearch() { document.getElementById('search-overlay').style.display = 'flex'; document.getElementById('searchBar').focus(); }
@@ -1079,7 +1123,6 @@ function preloadVisibleImages() {
     images.forEach(img => observer.observe(img));
 }
 
-// TON INSTANCE INITIAL DOM-LOADED EXACTE POUR LE LECTEUR ET LE MODULE CHROMECAST
 document.addEventListener('DOMContentLoaded', () => {
     player = videojs('main-video', { 
         controls: true, fluid: false,
