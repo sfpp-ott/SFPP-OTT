@@ -334,7 +334,6 @@
     <div class="video-container" id="video-container">
         <div id="player-blur-bg" class="vjs-blur-bg"></div>
         <video id="main-video" class="video-js vjs-theme-fantasy vjs-big-play-centered" controls preload="metadata" controlsList="nodownload" oncontextmenu="return false;"></video>
-        <button id="next-episode-btn" onclick="playNextEpisode()" tabindex="0">ÉPISODE SUIVANT ⏭️</button>
     </div>
 </section>
 
@@ -513,8 +512,6 @@ let isAdminMode = false, epgData = {}, hls;
 const CATEGORY_LIMIT = 35;
 window.focusGenre = null;
 
-function fetchEPG() {}
-
 window.addEventListener('popstate', function (event) {
     const detailsOverlay = document.getElementById('details-overlay');
     const seriesOverlay = document.getElementById('series-overlay');
@@ -555,32 +552,29 @@ window.addEventListener('popstate', function (event) {
     }
 });
 
-// INTELLIGENCE DE CACHE CHIRURGICALE APPLIQUÉE SUR TON ASYNC LOADPLAYLIST
+// SYSTEME DE STOCKAGE AUTOMATIQUE POUR DETECTER LES 1100 FILMS SANS ATTENTE
 async function loadPlaylist() { 
     try { 
         const response = await fetch('films.json?v=' + Date.now()); 
         playlistData = await response.json(); 
         playlistData.forEach((m, index) => { m.original_index = index; });
 
-        // RÉCUPÉRATION DU CACHE MÉMOIRE DE L'APPAREIL : Si le catalogue a déjà été scanné une fois, on l'injecte direct
+        // CHARGEMENT DIRECT DU CACHE LOCAL DE L'APPAREIL
         const savedCache = localStorage.getItem('sfpp_tmdb_cache');
         if (savedCache) {
             const cacheData = JSON.parse(savedCache);
             playlistData.forEach(m => {
-                if (cacheData[m.t]) {
-                    Object.assign(m, cacheData[m.t]);
-                }
+                if (cacheData[m.t]) { Object.assign(m, cacheData[m.t]); }
             });
         }
 
-        // Rendu immédiat. S'il y a du cache, tout s'affiche au complet en 0.1 seconde !
+        // Rendu immédiat : Tout apparaît complet dès la première seconde
         render();
 
         const apiKey = "ec1c8fecd38d1cc5a27f15766f0848d5";
         let cacheUpdated = false;
         let currentCache = savedCache ? JSON.parse(savedCache) : {};
         
-        // Boucle d'arrière-plan douce : Met à jour ou complète les films manquants
         for (let m of playlistData) {
             if (m.id_tmdb && (!m.img || !m.desc || !m.trailer)) {
                 try {
@@ -611,24 +605,21 @@ async function loadPlaylist() {
                         m.actors_pics = data.credits.cast.slice(0, 10).map(a => ({ name: a.name, img: `https://image.tmdb.org/t/p/w185${a.profile_path}` }));
                     }
                     
-                    // On enregistre ce film dans la structure de sauvegarde
                     currentCache[m.t] = {
                         img: m.img, bg: m.bg, desc: m.desc, year: m.year, note: m.note, cat: m.cat, trailer: m.trailer, actors_pics: m.actors_pics
                     };
                     cacheUpdated = true;
 
-                    // Affiche l'image en direct à l'écran
                     const targets = document.querySelectorAll(`.img-sync-target-${m.original_index}`);
                     targets.forEach(img => { if (m.img) img.src = m.img; });
                 } catch (e) {}
-                await new Promise(resolve => setTimeout(resolve, 30));
+                await new Promise(resolve => setTimeout(resolve, 35));
             }
         }
 
-        // Sauvegarde définitive dans l'appareil si de nouvelles données ont été écrites
         if (cacheUpdated) {
             localStorage.setItem('sfpp_tmdb_cache', JSON.stringify(currentCache));
-            render(); // Redessine une fois à la fin du scan pour valider la totalité
+            render(); 
         }
     } catch (e) {} 
 }
@@ -780,9 +771,7 @@ window.handleProfileClick = function(id, name, icon) {
                 initProfiles(); 
             }
         }
-    } else {
-        selectProfile(name, icon);
-    }
+    } else { selectProfile(name, icon); }
 };
 
 function toggleEditMode() { isEditMode = !isEditMode; document.getElementById('profile-screen').classList.toggle('is-editing'); }
@@ -1036,6 +1025,7 @@ function openSeries(name) {
     content.innerHTML = html;
 }
 
+// LECTEUR COMPLETEMEMT RE-SYNCHRONISÉ POUR LA RESTAURATION DES PISTES AUDIO ET DU CHROMECAST
 function playMovie(idx) {
     history.replaceState({ overlay: 'player' }, "");
     const m = playlistData[idx];
@@ -1067,27 +1057,12 @@ function playMovie(idx) {
     const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
     let type = decodedUrl.includes('.m3u8') ? 'application/x-mpegURL' : 'video/mp4';
 
-    if (type === 'application/x-mpegURL') {
-        if (Hls.isSupported()) {
-            hls = new Hls();
-            hls.loadSource(decodedUrl);
-            const activeVideoTag = player.el().querySelector('video');
-            hls.attachMedia(activeVideoTag);
-            hls.on(Hls.Events.MANIFEST_PARSED, function() { 
-                if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
-                player.play(); 
-            });
-            hls.on(Hls.Events.LEVEL_LOADED, function() { player.on('timeupdate', saveP); });
-        } else {
-            player.src({ src: decodedUrl, type: type });
-            if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
-            player.play();
-        }
-    } else {
-        player.src({ src: decodedUrl, type: type });
-        if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
-        player.play();
-    }
+    // Rétablissement de la structure d'appel d'origine : On laisse Video.js et son techOrder d'origine gérer l'HLS nativement
+    player.src({ src: decodedUrl, type: type });
+    if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
+    player.play();
+    
+    // Deuxième assignation obligatoire pour forcer Video.js à monter le menu Chromecast et le sélecteur de langues (VO/VF)
     player.src({ src: decodedUrl, type: type });
 }
 
@@ -1103,8 +1078,6 @@ function closeP() { if (document.getElementById('player-section').style.display 
 function closeSeries() { if (document.getElementById('series-overlay').style.display === 'block') history.back(); }
 function changeView(v) { currentView = v; window.focusGenre = null; document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active')); document.getElementById('btn-'+v).classList.add('active'); render(); }
 function filter() { render(document.getElementById('searchBar').value); }
-// Profil
-switchProfile
 function switchProfile() { localStorage.removeItem('sfpp_profile'); location.reload(); }
 function requestAccess() { window.location.href = "mailto:sfpp.ott@gmail.com"; }
 function openSearch() { document.getElementById('search-overlay').style.display = 'flex'; document.getElementById('searchBar').focus(); }
