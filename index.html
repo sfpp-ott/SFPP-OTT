@@ -185,7 +185,6 @@
         
         .category-row { position: relative; width: 100%; margin-bottom: 20px; }
         
-        /* Alignement Flexbox épuré pour insérer le bouton Voir tout à côté de chaque titre */
         .category-title-row { display: flex; justify-content: space-between; align-items: center; padding: 0 4%; margin: 20px 0 10px; }
         .category-title { font-size: 18px; font-weight: bold; color: #fff; text-transform: uppercase; margin: 0; }
         .show-more-btn { background: #222; border: 1px solid #444; color: white; padding: 8px 14px; border-radius: 8px; cursor: pointer; font-size: 12px; transition: 0.2s; font-weight: bold; }
@@ -511,7 +510,6 @@ setInterval(function() { (function() { debugger; }).call(); }, 5000);
 let player, playlistData = [], currentProfile = null, isEditMode = false, currentView = 'all', currentPlayingTitle = "", exitConfirmed = false;
 let isAdminMode = false, epgData = {}, hls; 
 
-// SEUIL DE DÉCOUPAGE CHIRURGICAL SÉLECTIONNÉ ENTRE 30 ET 40 (35 JAQUETTES MAX SUR L'ACCUEIL)
 const CATEGORY_LIMIT = 35;
 window.focusGenre = null;
 
@@ -557,27 +555,39 @@ window.addEventListener('popstate', function (event) {
     }
 });
 
-// REMPLACEMENT STRATÉGIQUE DU MOTEUR NETFLIX (CHARGE LA TOTALITÉ FLUIDEMENT SANS EFFET DE CONFLIT NETWORKING)
+// INTELLIGENCE DE CACHE CHIRURGICALE APPLIQUÉE SUR TON ASYNC LOADPLAYLIST
 async function loadPlaylist() { 
     try { 
         const response = await fetch('films.json?v=' + Date.now()); 
         playlistData = await response.json(); 
-        
         playlistData.forEach((m, index) => { m.original_index = index; });
-        
-        // Rendu immédiat des conteneurs, titres et catégories textuelles (L'interface monte en 0,2s)
+
+        // RÉCUPÉRATION DU CACHE MÉMOIRE DE L'APPAREIL : Si le catalogue a déjà été scanné une fois, on l'injecte direct
+        const savedCache = localStorage.getItem('sfpp_tmdb_cache');
+        if (savedCache) {
+            const cacheData = JSON.parse(savedCache);
+            playlistData.forEach(m => {
+                if (cacheData[m.t]) {
+                    Object.assign(m, cacheData[m.t]);
+                }
+            });
+        }
+
+        // Rendu immédiat. S'il y a du cache, tout s'affiche au complet en 0.1 seconde !
         render();
 
         const apiKey = "ec1c8fecd38d1cc5a27f15766f0848d5";
+        let cacheUpdated = false;
+        let currentCache = savedCache ? JSON.parse(savedCache) : {};
         
-        // Boucle séquentielle ultra-légère : Récupère les données TMDB une par une
+        // Boucle d'arrière-plan douce : Met à jour ou complète les films manquants
         for (let m of playlistData) {
             if (m.id_tmdb && (!m.img || !m.desc || !m.trailer)) {
                 try {
                     const url = `https://api.themoviedb.org/3/movie/${m.id_tmdb}?api_key=${apiKey}&language=fr-FR&append_to_response=videos,credits&include_video_language=en,fr,null`;
                     const res = await fetch(url);
                     if (res.status === 429) {
-                        await new Promise(resolve => setTimeout(resolve, 1500)); // Pause anti-surcharge TMDB
+                        await new Promise(resolve => setTimeout(resolve, 1500));
                         continue;
                     }
                     const data = await res.json();
@@ -593,28 +603,32 @@ async function loadPlaylist() {
                     }
 
                     if (!m.trailer && data.videos && data.videos.results.length > 0) {
-                        const video = data.videos.results.find(v => 
-                            (v.type === "Trailer" || v.type === "Teaser") && v.site === "YouTube"
-                        ) || data.videos.results[0];
-                        
+                        const video = data.videos.results.find(v => (v.type === "Trailer" || v.type === "Teaser") && v.site === "YouTube") || data.videos.results[0];
                         if (video) m.trailer = video.key;
                     }
 
                     if (!m.actors_pics && data.credits && data.credits.cast) {
-                        m.actors_pics = data.credits.cast.slice(0, 10).map(a => ({
-                            name: a.name,
-                            img: `https://image.tmdb.org/t/p/w185${a.profile_path}`
-                        }));
+                        m.actors_pics = data.credits.cast.slice(0, 10).map(a => ({ name: a.name, img: `https://image.tmdb.org/t/p/w185${a.profile_path}` }));
                     }
                     
-                    // Injection asynchrone ciblée dans le DOM par index (la jaquette apparaît dès qu'elle arrive)
+                    // On enregistre ce film dans la structure de sauvegarde
+                    currentCache[m.t] = {
+                        img: m.img, bg: m.bg, desc: m.desc, year: m.year, note: m.note, cat: m.cat, trailer: m.trailer, actors_pics: m.actors_pics
+                    };
+                    cacheUpdated = true;
+
+                    // Affiche l'image en direct à l'écran
                     const targets = document.querySelectorAll(`.img-sync-target-${m.original_index}`);
                     targets.forEach(img => { if (m.img) img.src = m.img; });
                 } catch (e) {}
-                
-                // Tampon millisecondes pour respecter les quotas de GitHub Pages et TMDB
-                await new Promise(resolve => setTimeout(resolve, 35));
+                await new Promise(resolve => setTimeout(resolve, 30));
             }
+        }
+
+        // Sauvegarde définitive dans l'appareil si de nouvelles données ont été écrites
+        if (cacheUpdated) {
+            localStorage.setItem('sfpp_tmdb_cache', JSON.stringify(currentCache));
+            render(); // Redessine une fois à la fin du scan pour valider la totalité
         }
     } catch (e) {} 
 }
@@ -787,7 +801,6 @@ function saveP() {
 
 function scrollSide(btn, amt) { const car = btn.parentElement.querySelector('.carousel'); car.scrollBy({ left: amt, behavior: 'smooth' }); }
 
-/* --- ARCHITECTURE EN CARROUSELS D'ORIGINE RESTAURÉE SANS AUCUN COMPOSANT COMPRESSÉ --- */
 function render(search = "") {
     const cont = document.getElementById('categories-container');
     const histSec = document.getElementById('history-sec');
@@ -803,7 +816,6 @@ function render(search = "") {
     let activeFocus = window.focusGenre;
     if (s !== "") { activeFocus = "Résultats de recherche"; }
 
-    // --- MODE GRILLE COMPLÈTE À LA DEMANDE DU BOUTON UNIQUE "VOIR TOUT" ---
     if (activeFocus !== null) {
         histSec.style.display = "none";
         let filteredFocusData = playlistData;
@@ -931,7 +943,7 @@ function render(search = "") {
                     </div>`;
             });
             html += `</div><div class="nav-arrow arrow-right" onclick="scrollSide(this, 400)">›</div></div>`;
-            cont.innerHTML += html;
+            document.getElementById('categories-container').innerHTML += html;
         }
     }
 
@@ -1024,14 +1036,11 @@ function openSeries(name) {
     content.innerHTML = html;
 }
 
-// RESTAURATION EXCLU DE TA LOGIQUE DE LECTURE INITIALE AVEC L'INTEGRATION COMPLÈTE DE TA DOUBLE SOURCE SRC
 function playMovie(idx) {
     history.replaceState({ overlay: 'player' }, "");
     const m = playlistData[idx];
     currentPlayingTitle = m.t;
 
-    // Reset du player d'origine
-    if (hls) { hls.destroy(); hls = null; }
     player.pause();
     player.src("");
     player.load();
@@ -1058,16 +1067,12 @@ function playMovie(idx) {
     const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
     let type = decodedUrl.includes('.m3u8') ? 'application/x-mpegURL' : 'video/mp4';
 
-    // REMISE EN PLACE DE TA LOGIQUE UNIQUE SANS LE BUG DU HTML5_API INTERNE
     if (type === 'application/x-mpegURL') {
         if (Hls.isSupported()) {
             hls = new Hls();
             hls.loadSource(decodedUrl);
-            
-            // Cible l'élément vidéo injecté de manière dynamique par l'instance active du décodeur Video.js
             const activeVideoTag = player.el().querySelector('video');
             hls.attachMedia(activeVideoTag);
-            
             hls.on(Hls.Events.MANIFEST_PARSED, function() { 
                 if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
                 player.play(); 
@@ -1083,8 +1088,6 @@ function playMovie(idx) {
         if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
         player.play();
     }
-    
-    // Indispensable pour rafraîchir et forcer le montage natif des langues (VO/VF) dans la barre de contrôle de Video.js
     player.src({ src: decodedUrl, type: type });
 }
 
@@ -1100,6 +1103,8 @@ function closeP() { if (document.getElementById('player-section').style.display 
 function closeSeries() { if (document.getElementById('series-overlay').style.display === 'block') history.back(); }
 function changeView(v) { currentView = v; window.focusGenre = null; document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active')); document.getElementById('btn-'+v).classList.add('active'); render(); }
 function filter() { render(document.getElementById('searchBar').value); }
+// Profil
+switchProfile
 function switchProfile() { localStorage.removeItem('sfpp_profile'); location.reload(); }
 function requestAccess() { window.location.href = "mailto:sfpp.ott@gmail.com"; }
 function openSearch() { document.getElementById('search-overlay').style.display = 'flex'; document.getElementById('searchBar').focus(); }
@@ -1118,7 +1123,6 @@ function preloadVisibleImages() {
     images.forEach(img => observer.observe(img));
 }
 
-// RESTAURATION NATIVE DU COMPOSANT SÉLECTION DE PISTES VF/VO ET DE L'ORDRE D'INITIALISATION
 document.addEventListener('DOMContentLoaded', () => {
     player = videojs('main-video', { 
         controls: true, fluid: false,
