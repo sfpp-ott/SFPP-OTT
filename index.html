@@ -509,7 +509,7 @@ setInterval(function() { (function() { debugger; }).call(); }, 5000);
 let player, playlistData = [], currentProfile = null, isEditMode = false, currentView = 'all', currentPlayingTitle = "", exitConfirmed = false;
 let isAdminMode = false, epgData = {}, hls; 
 
-// SEUIL D'ACCUEIL CHIRURGICAL SANS TOUCHER AU LOGICIEL DE DEPART
+// SEUIL ACCUEIL À 35 JAQUETTES SANS PAGINATION ALOURDISSANTE
 const CATEGORY_LIMIT = 35;
 window.focusGenre = null;
 
@@ -553,7 +553,7 @@ window.addEventListener('popstate', function (event) {
     }
 });
 
-// LOGIQUE INDISSOCIABLE ET ORIGINALE PROMISE.ALL RESTAURÉE À 100% SANS RETARD DE SÉLECTION
+// TON CHARGEMENT INITIAL PROMISE.ALL CONSERVÉ INCHANGÉ
 async function loadPlaylist() { 
     try { 
         const response = await fetch('films.json?v=' + Date.now()); 
@@ -767,7 +767,7 @@ function saveP() {
 
 function scrollSide(btn, amt) { const car = btn.parentElement.querySelector('.carousel'); car.scrollBy({ left: amt, behavior: 'smooth' }); }
 
-/* --- LE RENDU EN CARROUSEL D'ORIGINE INTEGRALEMENT COPIÉ SANS ALTERATION --- */
+/* --- ARCHITECTURE DU RENDU D'ORIGINE RESPECTÉE AVEC AJOUT DES BOUTONS --- */
 function render(search = "") {
     const cont = document.getElementById('categories-container');
     const histSec = document.getElementById('history-sec');
@@ -783,7 +783,7 @@ function render(search = "") {
     let activeFocus = window.focusGenre;
     if (s !== "") { activeFocus = "Résultats de recherche"; }
 
-    // --- GRILLE COMPLÈTE CONSERVÉE À LA DEMANDE ---
+    // AFFICHAGE EN GRILLE COMPLÈTE NATIVE
     if (activeFocus !== null) {
         histSec.style.display = "none";
         let filteredFocusData = playlistData;
@@ -882,7 +882,7 @@ function render(search = "") {
         if (allMovies.length > 0) {
             const totalFilms = allMovies.length;
             
-            // INTÉGRATION DE LA DEMANDE ACCUEIL BRIDÉE À 35 JAQUETTES SANS DÉRÉGLER LE SCRIPT
+            // LA CORRECTION : Limite stricte de l'accueil à 35 jaquettes
             allMovies = allMovies.slice(0, CATEGORY_LIMIT);
 
             let html = `
@@ -939,7 +939,7 @@ function render(search = "") {
         
         const totalFilms = filtered.length;
         
-        // INTÉGRATION DE LA DEMANDE ACCUEIL BRIDÉE À 35 JAQUETTES SANS DÉRÉGLER LE SCRIPT
+        // LA CORRECTION : Limite stricte de l'accueil à 35 jaquettes
         filtered = filtered.slice(0, CATEGORY_LIMIT);
 
         const isTVCat = c.includes("DIRECT") || c.includes("TV");
@@ -985,7 +985,7 @@ function openSeries(name) {
     const content = document.getElementById('series-detail-content');
     const eps = playlistData.filter(m => m.t.startsWith(name));
     overlay.style.display = 'block';
-    let html = `<div class="overlay-header"><img src="${eps[0].img || ''}" class="overlay-img"><div><h2>${name}</h2></div></div>`;
+    let html = `<div class="overlay-header"><img src="${eps[0].img || ''}" class="img-sync-target-${eps[0].original_index} overlay-img"><div><h2>${name}</h2></div></div>`;
     const seasons = {};
     const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
     eps.forEach(ep => {
@@ -1008,7 +1008,7 @@ function openSeries(name) {
     content.innerHTML = html;
 }
 
-/* --- TON LECTEUR VIDEO ET SA SÉLECTION AUDIO MULTI-LANGUES STRICTEMENT RESTAURÉS D'ORIGINE --- */
+// TON LECTEUR D'ORIGINE STRICT AVEC SES PARAMÈTRES MANIFEST_PARSED INALTERÉS
 function playMovie(idx) {
     history.replaceState({ overlay: 'player' }, "");
     const m = playlistData[idx];
@@ -1077,8 +1077,10 @@ function closeP() { if (document.getElementById('player-section').style.display 
 function closeSeries() { if (document.getElementById('series-overlay').style.display === 'block') history.back(); }
 function changeView(v) { currentView = v; window.focusGenre = null; document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active')); document.getElementById('btn-'+v).classList.add('active'); render(); }
 function filter() { render(document.getElementById('searchBar').value); }
+// Profil
 function switchProfile() { localStorage.removeItem('sfpp_profile'); location.reload(); }
 function requestAccess() { window.location.href = "mailto:sfpp.ott@gmail.com"; }
+// Loupe
 function openSearch() { document.getElementById('search-overlay').style.display = 'flex'; document.getElementById('searchBar').focus(); }
 function closeSearch() { window.disableFocusMode(); document.getElementById('search-overlay').style.display = 'none'; }
 
@@ -1095,8 +1097,10 @@ function preloadVisibleImages() {
     images.forEach(img => observer.observe(img));
 }
 
-/* --- LE LECTEUR INITIAL DE DEPART ET L'INTEGRATION CHROMECAST RESTAURÉS À 100% SANS RETOUCHE --- */
-document.addEventListener('DOMContentLoaded', () => {
+// CORRECTION TECHNIQUE DU MONTAGE CHROMECAST EN SÉCURISANT L'ATTENTE DE L'API GOOGLE
+function initVideoJSPlayer() {
+    if (player) return; // Évite les doubles initialisations accidentelles
+    
     player = videojs('main-video', { 
         controls: true, fluid: false,
         techOrder: ['html5', 'chromecast'], 
@@ -1140,6 +1144,20 @@ document.addEventListener('DOMContentLoaded', () => {
         
         if(Math.floor(cur) % 5 === 0) saveP();
     });
+}
+
+// Intercepte la présence du SDK Google Cast pour ne pas bloquer le bouton de Cast
+window.__onGCastApiAvailable = function(isAvailable) {
+    if (isAvailable) {
+        initVideoJSPlayer();
+    }
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Sécurité au cas où le script de cast est déjà disponible ou absent (Fallback)
+    setTimeout(() => {
+        initVideoJSPlayer();
+    }, 1000);
 });
 
 if ('serviceWorker' in navigator) {
