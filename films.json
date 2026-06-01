@@ -1,10 +1,80 @@
 [
   {
-    "num": "1339",
+    "num": "1349",
     "t": "Barbie : Agents Secrets",
     "id_tmdb": "377897",
     "cat": "",
     "url": "https://filemoon.org/download/eyJpdiI6IkNIL3IzQ3dhWkRtQmxtTE54aFF1d2c9PSIsInZhbHVlIjoiWkc4bGlMUU9qSDM5Qng0NzRUVU03MCtiaDlIS285N3FQSVJZRGtQUFBBRT0iLCJtYWMiOiIxYjEwMWJjNGY3ZmM2ODcwYTg4NjczNjRlMmMzOTdlYzEwN2JkNWQ3ZjJlYTI1ODliYjQyMzBlNjU4MjBjZmUxIiwidGFnIjoiIn0=/B960526836.mp4"
+  },
+  {
+    "num": "1348",
+    "t": "Big World",
+    "id_tmdb": "1278101",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/31f1cc9173612257d994401255de18113b936deb674a0e5858fab5e3a825352e/master.m3u8"
+  },
+  {
+    "num": "1347",
+    "t": "Blown Away",
+    "id_tmdb": "178",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/0b2502c962fce7848b58c699df705388d805de708e1429549b228a3a6cea0f53/master.m3u8"
+  },
+  {
+    "num": "1346",
+    "t": "‎Bone Lake",
+    "id_tmdb": "1330421",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/22132f9646f0ad446c81bb1f119be80e68f927341284878c9123767f11718c2f/master.m3u8"
+  },
+  {
+    "num": "1345",
+    "t": "Hell in Paradise",
+    "id_tmdb": "1309587",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/225b585405dcab38a566a32c059aa27024c2f347130ee970e3917a26e3f8ccfd/master.m3u8"
+  },
+  {
+    "num": "1344",
+    "t": "À l'ancienne",
+    "id_tmdb": "1140721",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/9c0d630888d836504e4b897aaa9600151709ab11fc108d5189b0759b2a9fa9b7/master.m3u8"
+  },
+  {
+    "num": "1343",
+    "t": "Fric-Frac",
+    "id_tmdb": "64423",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/8730beaa83e209fdfd52cd4a04c9bbe2d061592f1b233105f7440e9141d89357/master.m3u8"
+  },
+  {
+    "num": "1342",
+    "t": "Banlieusards 3",
+    "id_tmdb": "1629382",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/c3415cbafeef2cb18e6cd10f3da95fee7599d0537fe64b3d4ef9ea2dede4966b/master.m3u8"
+  },
+  {
+    "num": "1341",
+    "t": "La ferme du pendu",
+    "id_tmdb": "283813",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/a2a8c12ecd80fec60ff734a1fbed931c16e5361c8ec39d638a08c603912eca45/master.m3u8"
+  },
+  {
+    "num": "1340",
+    "t": "Le Jour J",
+    "id_tmdb": "1318037",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/149f100bc9599b4e811bebecfd499b514eaf7ee4a8b209312e30125221578a44/master.m3u8"
+  },
+  {
+    "num": "1339",
+    "t": "Cold Storage",
+    "id_tmdb": "696393",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/f35e81a4b6216c5e42fb7fd5e573f3dfcfff45f05600e001528b05437eaa284f/master.m3u8"
   },
   {
     "num": "1338",
