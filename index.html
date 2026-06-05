@@ -641,7 +641,7 @@ function openDetails(idx) {
     if (m.actors_pics && m.actors_pics.length > 0) {
         castHtml = m.actors_pics.map(a => `
                 <div class="actor-item" onclick="searchByActor('${a.name}')" title="Voir les films avec ${a.name}">
-                    <img src="${a.img}" onerror="this.src='https://via.placeholder.com/80x80?text=?'">
+                    <img src="${a.img || 'https://via.placeholder.com/80x80/222/fff?text=?'}" onerror="this.onerror=null; this.src='https://via.placeholder.com/80x80/222/fff?text=?';">
                     <div class="actor-name">${a.name}</div>
                 </div>
             `).join('');
@@ -678,7 +678,7 @@ function openDetails(idx) {
             <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${s.t.replace(/'/g, "\\'")}');">${heartIcon}</div>
             <div class="card-rating">${s_stars}</div>
             <div onclick="openDetails(${playlistData.indexOf(s)})">
-                <img src="${s.img}" style="border-radius:4px; height:160px; width:110px; object-fit:cover;" loading="lazy">
+                <img src="${s.img || 'https://via.placeholder.com/110x160/222/fff?text=SFPP'}" style="border-radius:4px; height:160px; width:110px; object-fit:cover;" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/110x160/222/fff?text=SFPP';">
                 <div class="actor-name">${s.t}</div>
             </div>
         </div>
@@ -811,7 +811,7 @@ function render(search = "") {
                             <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${m.t.replace(/'/g, "\\'")}');">${heartIcon}</div>
                             ${!isTV ? `<div class="card-rating">${m_stars}</div>` : ''}
                             <div onclick="${clickAction}">
-                                <img src="${m.img}" loading="lazy">${pct}
+                                <img src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/150x225/222/fff?text=SFPP';">${pct}
                                 <div class="card-name">${m.t}</div>
                             </div>
                         </div>`;
@@ -839,7 +839,7 @@ function render(search = "") {
                         <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${m.t.replace(/'/g, "\\'")}');">${heartIcon}</div>
                         <div class="card-rating">${m_stars}</div>
                         <div onclick="openDetails(${playlistData.indexOf(m)})">
-                            <img src="${m.img}" loading="lazy">${pct}
+                            <img src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/150x225/222/fff?text=SFPP';">${pct}
                             <div class="card-name">${m.t}</div>
                         </div>
                     </div>`;
@@ -887,7 +887,7 @@ function render(search = "") {
                     <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${m.t.replace(/'/g, "\\'")}');">${heartIcon}</div>
                     ${!isTVCat ? `<div class="card-rating">${m_stars}</div>` : ''}
                     <div onclick="${clickAction}">
-                        <img src="${m.img}" loading="lazy">
+                        <img src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/150x225/222/fff?text=SFPP';">
                         <div class="card-name">${m.t}</div>
                     </div>
                 </div>`;
@@ -903,7 +903,7 @@ function openSeries(name) {
     const content = document.getElementById('series-detail-content');
     const eps = playlistData.filter(m => m.t.startsWith(name));
     overlay.style.display = 'block';
-    let html = `<div class="overlay-header"><img src="${eps[0].img}" class="overlay-img"><div><h2>${name}</h2></div></div>`;
+    let html = `<div class="overlay-header"><img src="${eps[0].img || 'https://via.placeholder.com/120x180/222/fff?text=SFPP'}" class="overlay-img" onerror="this.onerror=null; this.src='https://via.placeholder.com/120x180/222/fff?text=SFPP';"><div><h2>${name}</h2></div></div>`;
     const seasons = {};
     const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
     eps.forEach(ep => {
