@@ -30,6 +30,24 @@
             z-index: 100;
         }
 
+        /* --- ÉCRAN DE CHARGEMENT GLOBAL --- */
+        #global-loader {
+            position: fixed; inset: 0; background: var(--bg); z-index: 999999;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            transition: opacity 0.5s ease-out;
+        }
+        .spinner {
+            width: 60px; height: 60px; border: 5px solid rgba(229, 9, 20, 0.2);
+            border-top-color: var(--accent); border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .loader-text {
+            margin-top: 25px; color: #888; font-size: 14px; font-weight: bold; letter-spacing: 2px;
+            animation: pulseText 1.5s infinite alternate;
+        }
+        @keyframes pulseText { 0% { opacity: 0.5; } 100% { opacity: 1; } }
+
         #login-screen { position: fixed; inset: 0; background: #000; z-index: 9999; display: flex; align-items: center; justify-content: center; }
         .login-box { background: #111; padding: 30px; border-radius: 8px; width: 280px; text-align: center; border: 1px solid #333; position: relative; z-index: 10000; }
         .login-box input { width: 100%; padding: 12px; margin: 10px 0; background: #222; border: 1px solid #444; color: white; border-radius: 4px; box-sizing: border-box; font-size: 16px; }
@@ -195,7 +213,10 @@
         .arrow-right { right: 0; }
 
         .card { flex: 0 0 150px; width: 150px; cursor: pointer; position: relative; display: flex; flex-direction: column; }
-        .card img { width: 150px !important; height: 225px !important; object-fit: cover !important; border-radius: 4px; background: #222; display: block; }
+        /* SÉCURITÉ ET ANIMATION DES JAQUETTES */
+        .card img { width: 150px !important; height: 225px !important; object-fit: cover !important; border-radius: 4px; background: #222; display: block; transition: opacity 0.4s ease-in-out; opacity: 0; }
+        .card img.loaded { opacity: 1; }
+        .img-fallback { background: #1a1a1a !important; border: 1px solid #333; }
         
         .card.landscape { flex: 0 0 180px; width: 180px; }
         .card.landscape img { width: 180px !important; height: 110px !important; object-fit: contain !important; background: #111; border: 1px solid #333; }
@@ -207,22 +228,8 @@
 
         /* --- STYLES FAV HEART ON CARD --- */
         .btn-fav-card {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            z-index: 10;
-            background: rgba(0,0,0,0.5);
-            border: 1px solid rgba(255,255,255,0.2);
-            border-radius: 50%;
-            width: 32px;
-            height: 32px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-size: 16px;
-            transition: transform 0.2s, background 0.2s;
-            backdrop-filter: blur(5px);
+            position: absolute; top: 10px; right: 10px; z-index: 10; background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 16px; transition: transform 0.2s, background 0.2s; backdrop-filter: blur(5px);
         }
         .btn-fav-card:active { transform: scale(0.9); }
         .btn-fav-card.is-fav { color: #e50914; background: rgba(0,0,0,0.7); }
@@ -230,18 +237,8 @@
 
         /* --- STYLES RATING ON CARD --- */
         .card-rating {
-            position: absolute;
-            bottom: 35px;
-            left: 8px;
-            z-index: 10;
-            background: rgba(0,0,0,0.6);
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-size: 10px;
-            color: var(--gold);
-            font-weight: bold;
-            backdrop-filter: blur(4px);
-            pointer-events: none;
+            position: absolute; bottom: 35px; left: 8px; z-index: 10; background: rgba(0,0,0,0.6);
+            padding: 2px 6px; border-radius: 4px; font-size: 10px; color: var(--gold); font-weight: bold; backdrop-filter: blur(4px); pointer-events: none;
         }
 
         /* --- STYLES EPG REELS --- */
@@ -264,6 +261,12 @@
     </style>
 </head>
 <body oncontextmenu="return false;"> 
+
+<div id="global-loader" style="display: none;">
+    <div class="spinner"></div>
+    <div class="loader-text">CHARGEMENT DE SFPP ELITE...</div>
+</div>
+
 <div id="login-screen">
     <form class="login-box" onsubmit="event.preventDefault(); checkLogin();">
         <div class="logo" style="margin-bottom:20px">SFPP ELITE</div>
@@ -438,6 +441,9 @@
             if (await verifyExpiration(user)) return;
             window.startSessionSync(user.uid);
             document.getElementById('login-screen').style.display = 'none';
+            // Affiche le loader une fois connecté
+            document.getElementById('global-loader').style.display = 'flex';
+            
             fetchEPG(); 
             loadPlaylist();
             initProfiles();
@@ -509,6 +515,13 @@
 </script>
 
 <script>
+// FONCTION GLOBALE: Fallback si l'image est cassée
+window.handleImageError = function(img) {
+    img.onerror = null;
+    img.src = 'https://via.placeholder.com/150x225/222/fff?text=Indisponible';
+    img.parentElement.classList.add('img-fallback');
+};
+
 document.onkeydown = function(e) {
     if (e.keyCode == 123 || (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74)) || (e.ctrlKey && e.keyCode == 85)) {
         return false;
@@ -612,7 +625,17 @@ async function loadPlaylist() {
 
         await Promise.all(promises);
         render(); 
-    } catch (e) {} 
+
+        // Cache le loader global une fois que tout est chargé
+        const loader = document.getElementById('global-loader');
+        if (loader) {
+            loader.style.opacity = '0';
+            setTimeout(() => loader.style.display = 'none', 500);
+        }
+
+    } catch (e) {
+        console.error("Erreur playlist", e);
+    } 
 }
 
 function openDetails(idx) {
@@ -641,7 +664,7 @@ function openDetails(idx) {
     if (m.actors_pics && m.actors_pics.length > 0) {
         castHtml = m.actors_pics.map(a => `
                 <div class="actor-item" onclick="searchByActor('${a.name}')" title="Voir les films avec ${a.name}">
-                    <img src="${a.img || 'https://via.placeholder.com/80x80/222/fff?text=?'}" onerror="this.onerror=null; this.src='https://via.placeholder.com/80x80/222/fff?text=?';">
+                    <img src="${a.img || 'https://via.placeholder.com/80x80/222/fff?text=?'}" onerror="handleImageError(this)">
                     <div class="actor-name">${a.name}</div>
                 </div>
             `).join('');
@@ -678,7 +701,7 @@ function openDetails(idx) {
             <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${s.t.replace(/'/g, "\\'")}');">${heartIcon}</div>
             <div class="card-rating">${s_stars}</div>
             <div onclick="openDetails(${playlistData.indexOf(s)})">
-                <img src="${s.img || 'https://via.placeholder.com/110x160/222/fff?text=SFPP'}" style="border-radius:4px; height:160px; width:110px; object-fit:cover;" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/110x160/222/fff?text=SFPP';">
+                <img src="${s.img || 'https://via.placeholder.com/110x160/222/fff?text=SFPP'}" style="border-radius:4px; height:160px; width:110px; object-fit:cover;" loading="lazy" onerror="handleImageError(this)" onload="this.classList.add('loaded')">
                 <div class="actor-name">${s.t}</div>
             </div>
         </div>
@@ -811,7 +834,7 @@ function render(search = "") {
                             <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${m.t.replace(/'/g, "\\'")}');">${heartIcon}</div>
                             ${!isTV ? `<div class="card-rating">${m_stars}</div>` : ''}
                             <div onclick="${clickAction}">
-                                <img src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/150x225/222/fff?text=SFPP';">${pct}
+                                <img src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" loading="lazy" onerror="handleImageError(this)" onload="this.classList.add('loaded')">${pct}
                                 <div class="card-name">${m.t}</div>
                             </div>
                         </div>`;
@@ -839,7 +862,7 @@ function render(search = "") {
                         <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${m.t.replace(/'/g, "\\'")}');">${heartIcon}</div>
                         <div class="card-rating">${m_stars}</div>
                         <div onclick="openDetails(${playlistData.indexOf(m)})">
-                            <img src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/150x225/222/fff?text=SFPP';">${pct}
+                            <img src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" loading="lazy" onerror="handleImageError(this)" onload="this.classList.add('loaded')">${pct}
                             <div class="card-name">${m.t}</div>
                         </div>
                     </div>`;
@@ -887,7 +910,7 @@ function render(search = "") {
                     <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${m.t.replace(/'/g, "\\'")}');">${heartIcon}</div>
                     ${!isTVCat ? `<div class="card-rating">${m_stars}</div>` : ''}
                     <div onclick="${clickAction}">
-                        <img src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/150x225/222/fff?text=SFPP';">
+                        <img src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" loading="lazy" onerror="handleImageError(this)" onload="this.classList.add('loaded')">
                         <div class="card-name">${m.t}</div>
                     </div>
                 </div>`;
@@ -903,7 +926,7 @@ function openSeries(name) {
     const content = document.getElementById('series-detail-content');
     const eps = playlistData.filter(m => m.t.startsWith(name));
     overlay.style.display = 'block';
-    let html = `<div class="overlay-header"><img src="${eps[0].img || 'https://via.placeholder.com/120x180/222/fff?text=SFPP'}" class="overlay-img" onerror="this.onerror=null; this.src='https://via.placeholder.com/120x180/222/fff?text=SFPP';"><div><h2>${name}</h2></div></div>`;
+    let html = `<div class="overlay-header"><img src="${eps[0].img || 'https://via.placeholder.com/120x180/222/fff?text=SFPP'}" class="overlay-img" onerror="handleImageError(this)"><div><h2>${name}</h2></div></div>`;
     const seasons = {};
     const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
     eps.forEach(ep => {
