@@ -587,46 +587,84 @@ async function loadPlaylist() {
         playlistData = await response.json(); 
         
         const apiKey = "ec1c8fecd38d1cc5a27f15766f0848d5";
+        
+        // --- SYSTÈME DE MÉMOIRE DES MÉTADONNÉES TMDB ---
+        let metadataCache = JSON.parse(localStorage.getItem('sfpp_metadata_cache') || "{}");
+        let cacheUpdated = false;
+
         const promises = playlistData.map(async (m, index) => {
             m.original_index = index;
             if (m.id_tmdb && (!m.img || !m.desc || !m.trailer)) {
-                try {
-                    const url = `https://api.themoviedb.org/3/movie/${m.id_tmdb}?api_key=${apiKey}&language=fr-FR&append_to_response=videos,credits&include_video_language=en,fr,null`;
-                    const res = await fetch(url);
-                    const data = await res.json();
-                    
-                    m.img = m.img || `https://image.tmdb.org/t/p/w500${data.poster_path}`;
-                    m.bg = m.bg || `https://image.tmdb.org/t/p/original${data.backdrop_path}`;
-                    m.desc = m.desc || data.overview;
-                    m.year = m.year || (data.release_date ? data.release_date.split('-')[0] : "2025");
-                    m.note = m.note || Math.round(data.vote_average / 2);
-
-                    if (data.genres && data.genres.length > 0) {
-                        m.cat = data.genres.map(g => g.name.toUpperCase()).join(', ');
-                    }
-
-                    if (!m.trailer && data.videos && data.videos.results.length > 0) {
-                        const video = data.videos.results.find(v => 
-                            (v.type === "Trailer" || v.type === "Teaser") && v.site === "YouTube"
-                        ) || data.videos.results[0];
+                
+                // Si les données sont déjà en mémoire, on les injecte (m.url n'est PAS touché)
+                if (metadataCache[m.id_tmdb]) {
+                    const c = metadataCache[m.id_tmdb];
+                    m.img = m.img || c.img;
+                    m.bg = m.bg || c.bg;
+                    m.desc = m.desc || c.desc;
+                    m.year = m.year || c.year;
+                    m.note = m.note || c.note;
+                    m.cat = m.cat || c.cat;
+                    m.trailer = m.trailer || c.trailer;
+                    m.actors_pics = m.actors_pics || c.actors_pics;
+                } else {
+                    // Sinon, on requête TMDB et on sauvegarde
+                    try {
+                        const url = `https://api.themoviedb.org/3/movie/${m.id_tmdb}?api_key=${apiKey}&language=fr-FR&append_to_response=videos,credits&include_video_language=en,fr,null`;
+                        const res = await fetch(url);
+                        const data = await res.json();
                         
-                        if (video) m.trailer = video.key;
-                    }
+                        m.img = m.img || `https://image.tmdb.org/t/p/w500${data.poster_path}`;
+                        m.bg = m.bg || `https://image.tmdb.org/t/p/original${data.backdrop_path}`;
+                        m.desc = m.desc || data.overview;
+                        m.year = m.year || (data.release_date ? data.release_date.split('-')[0] : "2025");
+                        m.note = m.note || Math.round(data.vote_average / 2);
 
-                    if (!m.actors_pics && data.credits && data.credits.cast) {
-                        m.actors_pics = data.credits.cast.slice(0, 10).map(a => ({
-                            name: a.name,
-                            img: `https://image.tmdb.org/t/p/w185${a.profile_path}`
-                        }));
-                    }
-                } catch (e) { console.log("Erreur TMDB ID: " + m.id_tmdb); }
+                        if (data.genres && data.genres.length > 0) {
+                            m.cat = data.genres.map(g => g.name.toUpperCase()).join(', ');
+                        }
+
+                        if (!m.trailer && data.videos && data.videos.results.length > 0) {
+                            const video = data.videos.results.find(v => 
+                                (v.type === "Trailer" || v.type === "Teaser") && v.site === "YouTube"
+                            ) || data.videos.results[0];
+                            
+                            if (video) m.trailer = video.key;
+                        }
+
+                        if (!m.actors_pics && data.credits && data.credits.cast) {
+                            m.actors_pics = data.credits.cast.slice(0, 10).map(a => ({
+                                name: a.name,
+                                img: `https://image.tmdb.org/t/p/w185${a.profile_path}`
+                            }));
+                        }
+
+                        // Ajout à la mémoire locale
+                        metadataCache[m.id_tmdb] = {
+                            img: m.img, bg: m.bg, desc: m.desc, year: m.year, 
+                            note: m.note, cat: m.cat, trailer: m.trailer, actors_pics: m.actors_pics
+                        };
+                        cacheUpdated = true;
+
+                    } catch (e) { console.log("Erreur TMDB ID: " + m.id_tmdb); }
+                }
             }
         });
 
         await Promise.all(promises);
+
+        // Sauvegarde du cache si de nouvelles jaquettes ont été trouvées
+        if (cacheUpdated) {
+            try {
+                localStorage.setItem('sfpp_metadata_cache', JSON.stringify(metadataCache));
+            } catch (e) {
+                console.warn("Mémoire locale pleine", e);
+            }
+        }
+
         render(); 
 
-        // Cache le loader global une fois que tout est chargé
+        // Cache le loader global une fois que tout est prêt
         const loader = document.getElementById('global-loader');
         if (loader) {
             loader.style.opacity = '0';
