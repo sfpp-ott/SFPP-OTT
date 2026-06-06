@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SFPP ELITE - PANEL ADMIN</title>
+    <style>
+        :root { --accent: #e50914; --bg: #050505; --panel: #111; }
+        body { background: var(--bg); color: white; font-family: Arial, sans-serif; margin: 0; padding: 20px; }
+        .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #333; padding-bottom: 20px; margin-bottom: 30px; }
+        h1 { color: var(--accent); margin: 0; }
+        
+        .admin-container { display: flex; gap: 30px; max-width: 1200px; margin: 0 auto; flex-wrap: wrap; }
+        
+        .box { background: var(--panel); padding: 25px; border-radius: 8px; border: 1px solid #333; flex: 1; min-width: 300px; }
+        .box h2 { margin-top: 0; font-size: 18px; border-bottom: 1px solid #333; padding-bottom: 10px; }
+        
+        input { width: 100%; padding: 12px; margin: 10px 0 20px; background: #222; border: 1px solid #444; color: white; border-radius: 4px; box-sizing: border-box; }
+        button { width: 100%; padding: 12px; background: var(--accent); color: white; border: none; font-weight: bold; border-radius: 4px; cursor: pointer; transition: 0.3s; }
+        button:hover { background: #b20710; }
+        
+        .user-list { margin-top: 20px; max-height: 400px; overflow-y: auto; }
+        .user-item { background: #222; padding: 15px; border-radius: 4px; margin-bottom: 10px; border-left: 4px solid var(--accent); display: flex; justify-content: space-between; align-items: center;}
+        .user-item span { font-size: 14px; color: #bbb; }
+        .expired { border-left-color: #ffcc00; }
+        
+        #auth-guard { position: fixed; inset: 0; background: #000; z-index: 9999; display: flex; align-items: center; justify-content: center; flex-direction: column; }
+    </style>
+</head>
+<body>
+
+<div id="auth-guard">
+    <h2 style="color: #e50914;">VÉRIFICATION ADMIN...</h2>
+    <p>Seul l'administrateur peut accéder à cette page.</p>
+</div>
+
+<div class="header">
+    <h1>PANEL ADMIN SFPP</h1>
+    <button onclick="logoutAdmin()" style="width: auto; padding: 10px 20px; background: #333;">Déconnexion</button>
+</div>
+
+<div class="admin-container">
+    <div class="box">
+        <h2>Créer un nouvel accès</h2>
+        <form id="create-user-form">
+            <label>Adresse E-mail</label>
+            <input type="email" id="new-email" placeholder="client@email.com" required>
+            
+            <label>Mot de passe (6 caractères min)</label>
+            <input type="password" id="new-pass" placeholder="Mot de passe" required minlength="6">
+            
+            <label>Date d'expiration de l'accès</label>
+            <input type="date" id="new-expire" required>
+            
+            <button type="submit" id="btn-create">CRÉER LE COMPTE</button>
+        </form>
+    </div>
+
+    <div class="box" style="flex: 2;">
+        <h2>Comptes Enregistrés (Base de données)</h2>
+        <div class="user-list" id="users-container">
+            <i>Chargement des utilisateurs...</i>
+        </div>
+    </div>
+</div>
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+    import { getAuth, onAuthStateChanged, signOut, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDipnvk8nHn_mnj6HObA038DhS2U39kSgU",
+      authDomain: "sfpp-elite.firebaseapp.com",
+      databaseURL: "https://sfpp-elite-default-rtdb.europe-west1.firebasedatabase.app",
+      projectId: "sfpp-elite"
+    };
+
+    // 1. Instance Principale (Pour vérifier qui est connecté et lire la DB)
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getDatabase(app);
+
+    // 2. Instance Secondaire (L'ASTUCE : pour créer des comptes sans déconnecter l'Admin)
+    const adminApp = initializeApp(firebaseConfig, "AdminCreatorApp");
+    const adminAuth = getAuth(adminApp);
+
+    // DÉFINIS ICI TON ADRESSE EMAIL ADMIN
+    const ADMIN_EMAIL = "sfpp.ott@gmail.com"; 
+
+    // Vérification de sécurité
+    onAuthStateChanged(auth, (user) => {
+        if (user && user.email === ADMIN_EMAIL) {
+            document.getElementById('auth-guard').style.display = 'none';
+            loadUsers();
+        } else {
+            alert("Accès refusé. Vous allez être redirigé.");
+            window.location.href = "index.html";
+        }
+    });
+
+    // Création d'un utilisateur
+    document.getElementById('create-user-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn = document.getElementById('btn-create');
+        const email = document.getElementById('new-email').value.trim();
+        const pass = document.getElementById('new-pass').value;
+        const expire = document.getElementById('new-expire').value;
+
+        btn.innerText = "CRÉATION EN COURS...";
+        btn.disabled = true;
+
+        try {
+            // Création sur l'instance secondaire
+            const userCred = await createUserWithEmailAndPassword(adminAuth, email, pass);
+            const newUid = userCred.user.uid;
+
+            // Enregistrement de l'expiration et de l'email dans la Base de données
+            await set(ref(db, 'users_data/' + newUid), {
+                email: email,
+                expire: expire,
+                created_at: new Date().toISOString()
+            });
+
+            // Déconnexion immédiate de l'instance secondaire pour la garder propre
+            await signOut(adminAuth);
+
+            alert("✅ Compte créé avec succès !");
+            document.getElementById('create-user-form').reset();
+        } catch (error) {
+            console.error(error);
+            alert("❌ Erreur : " + error.message);
+        } finally {
+            btn.innerText = "CRÉER LE COMPTE";
+            btn.disabled = false;
+        }
+    });
+
+    // Charger la liste des utilisateurs depuis la DB
+    function loadUsers() {
+        onValue(ref(db, 'users_data'), (snapshot) => {
+            const data = snapshot.val();
+            const container = document.getElementById('users-container');
+            container.innerHTML = "";
+
+            if (!data) {
+                container.innerHTML = "<i>Aucun compte trouvé.</i>";
+                return;
+            }
+
+            const today = new Date().toISOString().split('T')[0];
+
+            Object.keys(data).forEach(uid => {
+                const user = data[uid];
+                const isExpired = user.expire < today;
+                const statusClass = isExpired ? 'expired' : '';
+                const statusText = isExpired ? '🔴 Expiré' : '🟢 Actif';
+
+                container.innerHTML += `
+                    <div class="user-item ${statusClass}">
+                        <div>
+                            <strong>${user.email || 'Email inconnu'}</strong><br>
+                            <span>Expiration : ${user.expire}</span>
+                        </div>
+                        <div>${statusText}</div>
+                    </div>
+                `;
+            });
+        });
+    }
+
+    // Déconnexion de l'admin
+    window.logoutAdmin = () => {
+        signOut(auth).then(() => {
+            window.location.href = "index.html";
+        });
+    };
+</script>
+</body>
+</html>
