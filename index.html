@@ -596,11 +596,18 @@ window.addEventListener('popstate', function (event) {
     }
     if (playerSection.style.display === 'block') {
         saveP(); 
-        if(hls) { hls.destroy(); hls = null; }
         player.pause(); 
         player.src("");
+        
+        // 1. On cache le lecteur IMMÉDIATEMENT (Correction TV)
         playerSection.style.display = 'none';
-        render();
+        
+        // 2. On fait le calcul en arrière-plan
+        setTimeout(() => {
+            if(hls) { hls.destroy(); hls = null; }
+            render();
+        }, 100);
+        
         return;
     }
 
