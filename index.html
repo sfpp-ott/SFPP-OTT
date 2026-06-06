@@ -22,12 +22,13 @@
         :root { --accent: #e50914; --gold: #ffcc00; --bg: #050505; }
         body { background: var(--bg); color: white; font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; padding-bottom: 50px; -webkit-user-select: none; user-select: none; }
         
+        /* OPTIMISATION TV : Focus allégé sans agrandissement pour ne pas faire ramer */
         [tabindex="0"]:focus {
-            outline: 3px solid white !important;
-            outline-offset: 2px;
-            transform: scale(1.05);
+            outline: 4px solid white !important;
+            outline-offset: -2px;
             background: rgba(255,255,255,0.1);
             z-index: 100;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
         }
 
         /* --- ÉCRAN DE CHARGEMENT GLOBAL --- */
@@ -205,16 +206,29 @@
         .category-row { position: relative; width: 100%; margin-bottom: 20px; }
         .category-title { font-size: 18px; font-weight: bold; margin: 20px 4% 10px; color: #fff; text-transform: uppercase; }
         
-        .carousel { display: flex; overflow-x: auto; gap: 12px; padding: 0 4% 10px; scrollbar-width: none; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; }
+        /* OPTIMISATION TV : Accélération matérielle du défilement */
+        .carousel { 
+            display: flex; overflow-x: auto; gap: 12px; padding: 0 4% 10px; 
+            scrollbar-width: none; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; 
+            transform: translateZ(0); will-change: scroll-position;
+        }
         
         .nav-arrow { position: absolute; top: 0; bottom: 30px; width: 50px; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; z-index: 10; cursor: pointer; color: white; font-size: 30px; opacity: 0; transition: opacity 0.3s; }
         .category-row:hover .nav-arrow { opacity: 1; }
         .arrow-left { left: 0; }
         .arrow-right { right: 0; }
 
-        .card { flex: 0 0 150px; width: 150px; cursor: pointer; position: relative; display: flex; flex-direction: column; }
-        /* SÉCURITÉ ET ANIMATION DES JAQUETTES */
-        .card img { width: 150px !important; height: 225px !important; object-fit: cover !important; border-radius: 4px; background: #222; display: block; transition: opacity 0.4s ease-in-out; opacity: 0; }
+        /* OPTIMISATION TV : Accélération des cartes */
+        .card { 
+            flex: 0 0 150px; width: 150px; cursor: pointer; position: relative; display: flex; flex-direction: column; 
+            transform: translateZ(0); will-change: transform; backface-visibility: hidden;
+        }
+        /* SÉCURITÉ ET ANIMATION DES JAQUETTES (OPTIMISÉ GPU) */
+        .card img { 
+            width: 150px !important; height: 225px !important; object-fit: cover !important; 
+            border-radius: 4px; background: #222; display: block; transition: opacity 0.4s ease-in-out; opacity: 0; 
+            transform: translateZ(0);
+        }
         .card img.loaded { opacity: 1; }
         .img-fallback { background: #1a1a1a !important; border: 1px solid #333; }
         
@@ -404,7 +418,6 @@
         const snapshot = await get(ref(db, 'users_data/' + user.uid + '/expire'));
         const expireValue = snapshot.val();
         
-        // --- NOUVELLE SÉCURITÉ : Bloque si compte supprimé depuis le panel
         if (!expireValue) {
             alert("Ce compte a été supprimé ou n'est pas autorisé.");
             await signOut(auth);
@@ -463,7 +476,6 @@
             if (await verifyExpiration(user)) return;
             window.startSessionSync(user.uid);
             document.getElementById('login-screen').style.display = 'none';
-            // Affiche le loader une fois connecté
             document.getElementById('global-loader').style.display = 'flex';
             
             fetchEPG(); 
@@ -537,7 +549,6 @@
 </script>
 
 <script>
-// FONCTION GLOBALE: Fallback si l'image est cassée
 window.handleImageError = function(img) {
     img.onerror = null;
     img.src = 'https://via.placeholder.com/150x225/222/fff?text=Indisponible';
@@ -610,7 +621,6 @@ async function loadPlaylist() {
         
         const apiKey = "ec1c8fecd38d1cc5a27f15766f0848d5";
         
-        // --- SYSTÈME DE MÉMOIRE DES MÉTADONNÉES TMDB ---
         let metadataCache = JSON.parse(localStorage.getItem('sfpp_metadata_cache') || "{}");
         let cacheUpdated = false;
 
@@ -618,7 +628,6 @@ async function loadPlaylist() {
             m.original_index = index;
             if (m.id_tmdb && (!m.img || !m.desc || !m.trailer)) {
                 
-                // Si les données sont déjà en mémoire, on les injecte (m.url n'est PAS touché)
                 if (metadataCache[m.id_tmdb]) {
                     const c = metadataCache[m.id_tmdb];
                     m.img = m.img || c.img;
@@ -630,7 +639,6 @@ async function loadPlaylist() {
                     m.trailer = m.trailer || c.trailer;
                     m.actors_pics = m.actors_pics || c.actors_pics;
                 } else {
-                    // Sinon, on requête TMDB et on sauvegarde
                     try {
                         const url = `https://api.themoviedb.org/3/movie/${m.id_tmdb}?api_key=${apiKey}&language=fr-FR&append_to_response=videos,credits&include_video_language=en,fr,null`;
                         const res = await fetch(url);
@@ -661,7 +669,6 @@ async function loadPlaylist() {
                             }));
                         }
 
-                        // Ajout à la mémoire locale
                         metadataCache[m.id_tmdb] = {
                             img: m.img, bg: m.bg, desc: m.desc, year: m.year, 
                             note: m.note, cat: m.cat, trailer: m.trailer, actors_pics: m.actors_pics
@@ -722,7 +729,7 @@ function openDetails(idx) {
     if (m.actors_pics && m.actors_pics.length > 0) {
         castHtml = m.actors_pics.map(a => `
                 <div class="actor-item" onclick="searchByActor('${a.name}')" title="Voir les films avec ${a.name}">
-                    <img src="${a.img || 'https://via.placeholder.com/80x80/222/fff?text=?'}" onerror="handleImageError(this)">
+                    <img src="${a.img || 'https://via.placeholder.com/80x80/222/fff?text=?'}" onerror="handleImageError(this)" loading="lazy" decoding="async">
                     <div class="actor-name">${a.name}</div>
                 </div>
             `).join('');
@@ -759,7 +766,7 @@ function openDetails(idx) {
             <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${s.t.replace(/'/g, "\\'")}');">${heartIcon}</div>
             <div class="card-rating">${s_stars}</div>
             <div onclick="openDetails(${playlistData.indexOf(s)})">
-                <img src="${s.img || 'https://via.placeholder.com/110x160/222/fff?text=SFPP'}" style="border-radius:4px; height:160px; width:110px; object-fit:cover;" loading="lazy" onerror="handleImageError(this)" onload="this.classList.add('loaded')">
+                <img src="${s.img || 'https://via.placeholder.com/110x160/222/fff?text=SFPP'}" style="border-radius:4px; height:160px; width:110px; object-fit:cover;" loading="lazy" decoding="async" onerror="handleImageError(this)" onload="this.classList.add('loaded')">
                 <div class="actor-name">${s.t}</div>
             </div>
         </div>
@@ -815,7 +822,6 @@ function initProfiles() {
         </div>`).join('');
 }
 
-// Variable globale pour mémoriser le profil en cours de modification
 let editingProfileId = null;
 
 function handleProfileClick(id, name, icon) {
@@ -878,7 +884,6 @@ function render(search = "") {
 
     const favs = JSON.parse(localStorage.getItem('sfpp_fav_' + currentProfile) || "[]");
     const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
-    const now = new Date();
     
     let data = playlistData;
     if(currentView === 'movies') data = playlistData.filter(m => m.cat && !m.cat.includes("SÉRIES"));
@@ -910,7 +915,7 @@ function render(search = "") {
                             <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${m.t.replace(/'/g, "\\'")}');">${heartIcon}</div>
                             ${!isTV ? `<div class="card-rating">${m_stars}</div>` : ''}
                             <div onclick="${clickAction}">
-                                <img src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" loading="lazy" onerror="handleImageError(this)" onload="this.classList.add('loaded')">${pct}
+                                <img src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" loading="lazy" decoding="async" onerror="handleImageError(this)" onload="this.classList.add('loaded')">${pct}
                                 <div class="card-name">${m.t}</div>
                             </div>
                         </div>`;
@@ -938,7 +943,7 @@ function render(search = "") {
                         <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${m.t.replace(/'/g, "\\'")}');">${heartIcon}</div>
                         <div class="card-rating">${m_stars}</div>
                         <div onclick="openDetails(${playlistData.indexOf(m)})">
-                            <img src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" loading="lazy" onerror="handleImageError(this)" onload="this.classList.add('loaded')">${pct}
+                            <img src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" loading="lazy" decoding="async" onerror="handleImageError(this)" onload="this.classList.add('loaded')">${pct}
                             <div class="card-name">${m.t}</div>
                         </div>
                     </div>`;
@@ -986,7 +991,7 @@ function render(search = "") {
                     <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${m.t.replace(/'/g, "\\'")}');">${heartIcon}</div>
                     ${!isTVCat ? `<div class="card-rating">${m_stars}</div>` : ''}
                     <div onclick="${clickAction}">
-                        <img src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" loading="lazy" onerror="handleImageError(this)" onload="this.classList.add('loaded')">
+                        <img src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" loading="lazy" decoding="async" onerror="handleImageError(this)" onload="this.classList.add('loaded')">
                         <div class="card-name">${m.t}</div>
                     </div>
                 </div>`;
@@ -1002,7 +1007,7 @@ function openSeries(name) {
     const content = document.getElementById('series-detail-content');
     const eps = playlistData.filter(m => m.t.startsWith(name));
     overlay.style.display = 'block';
-    let html = `<div class="overlay-header"><img src="${eps[0].img || 'https://via.placeholder.com/120x180/222/fff?text=SFPP'}" class="overlay-img" onerror="handleImageError(this)"><div><h2>${name}</h2></div></div>`;
+    let html = `<div class="overlay-header"><img src="${eps[0].img || 'https://via.placeholder.com/120x180/222/fff?text=SFPP'}" class="overlay-img" onerror="handleImageError(this)" loading="lazy" decoding="async"><div><h2>${name}</h2></div></div>`;
     const seasons = {};
     const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
     eps.forEach(ep => {
