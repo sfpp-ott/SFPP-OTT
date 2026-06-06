@@ -8,7 +8,7 @@
         :root { --accent: #e50914; --bg: #050505; --panel: #111; }
         body { background: var(--bg); color: white; font-family: Arial, sans-serif; margin: 0; padding: 20px; }
         .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #333; padding-bottom: 20px; margin-bottom: 30px; }
-        h1 { color: var(--accent); margin: 0; }
+        h1 { color: var(--accent); margin: 0; font-size: 24px;}
         
         .admin-container { display: flex; gap: 30px; max-width: 1200px; margin: 0 auto; flex-wrap: wrap; }
         
@@ -16,13 +16,21 @@
         .box h2 { margin-top: 0; font-size: 18px; border-bottom: 1px solid #333; padding-bottom: 10px; }
         
         input { width: 100%; padding: 12px; margin: 10px 0 20px; background: #222; border: 1px solid #444; color: white; border-radius: 4px; box-sizing: border-box; }
-        button { width: 100%; padding: 12px; background: var(--accent); color: white; border: none; font-weight: bold; border-radius: 4px; cursor: pointer; transition: 0.3s; }
-        button:hover { background: #b20710; }
+        .btn-main { width: 100%; padding: 12px; background: var(--accent); color: white; border: none; font-weight: bold; border-radius: 4px; cursor: pointer; transition: 0.3s; }
+        .btn-main:hover { background: #b20710; }
         
-        .user-list { margin-top: 20px; max-height: 400px; overflow-y: auto; }
-        .user-item { background: #222; padding: 15px; border-radius: 4px; margin-bottom: 10px; border-left: 4px solid var(--accent); display: flex; justify-content: space-between; align-items: center;}
+        .user-list { margin-top: 20px; max-height: 500px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px;}
+        .user-item { background: #222; padding: 15px; border-radius: 4px; border-left: 4px solid var(--accent); display: flex; flex-direction: column; gap: 10px;}
+        .user-info { display: flex; justify-content: space-between; align-items: flex-start; }
         .user-item span { font-size: 14px; color: #bbb; }
-        .expired { border-left-color: #ffcc00; }
+        .user-pass { background: #000; padding: 4px 8px; border-radius: 4px; font-family: monospace; color: #ffcc00; font-size: 13px;}
+        .expired { border-left-color: #555; opacity: 0.7;}
+        
+        .action-buttons { display: flex; gap: 10px; margin-top: 10px; }
+        .action-buttons button { padding: 8px 12px; border: none; border-radius: 4px; font-weight: bold; font-size: 11px; cursor: pointer; color: white; flex: 1;}
+        .btn-extend { background: #2ecc71; }
+        .btn-suspend { background: #e67e22; }
+        .btn-delete { background: #c0392b; }
         
         #auth-guard { position: fixed; inset: 0; background: #000; z-index: 9999; display: flex; align-items: center; justify-content: center; flex-direction: column; }
     </style>
@@ -31,12 +39,12 @@
 
 <div id="auth-guard">
     <h2 style="color: #e50914;">VÉRIFICATION ADMIN...</h2>
-    <p>Seul l'administrateur peut accéder à cette page.</p>
+    <p>Patientez...</p>
 </div>
 
 <div class="header">
     <h1>PANEL ADMIN SFPP</h1>
-    <button onclick="logoutAdmin()" style="width: auto; padding: 10px 20px; background: #333;">Déconnexion</button>
+    <button class="btn-main" onclick="logoutAdmin()" style="width: auto; padding: 10px 20px; background: #333;">Déconnexion</button>
 </div>
 
 <div class="admin-container">
@@ -47,17 +55,17 @@
             <input type="email" id="new-email" placeholder="client@email.com" required>
             
             <label>Mot de passe (6 caractères min)</label>
-            <input type="password" id="new-pass" placeholder="Mot de passe" required minlength="6">
+            <input type="text" id="new-pass" placeholder="Mot de passe" required minlength="6">
             
-            <label>Date d'expiration de l'accès</label>
+            <label>Date d'expiration</label>
             <input type="date" id="new-expire" required>
             
-            <button type="submit" id="btn-create">CRÉER LE COMPTE</button>
+            <button type="submit" id="btn-create" class="btn-main">CRÉER LE COMPTE</button>
         </form>
     </div>
 
     <div class="box" style="flex: 2;">
-        <h2>Comptes Enregistrés (Base de données)</h2>
+        <h2>Comptes Enregistrés</h2>
         <div class="user-list" id="users-container">
             <i>Chargement des utilisateurs...</i>
         </div>
@@ -66,7 +74,7 @@
 
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-    import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+    import { getDatabase, ref, set, update, remove, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
     import { getAuth, onAuthStateChanged, signOut, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
     const firebaseConfig = {
@@ -76,30 +84,25 @@
       projectId: "sfpp-elite"
     };
 
-    // 1. Instance Principale (Pour vérifier qui est connecté et lire la DB)
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
     const db = getDatabase(app);
 
-    // 2. Instance Secondaire (L'ASTUCE : pour créer des comptes sans déconnecter l'Admin)
     const adminApp = initializeApp(firebaseConfig, "AdminCreatorApp");
     const adminAuth = getAuth(adminApp);
 
     // DÉFINIS ICI TON ADRESSE EMAIL ADMIN
-    const ADMIN_EMAIL = "sfpp.ott@gmail.com"; 
+    const ADMIN_EMAIL = "ton_email_admin@gmail.com"; 
 
-    // Vérification de sécurité
     onAuthStateChanged(auth, (user) => {
         if (user && user.email === ADMIN_EMAIL) {
             document.getElementById('auth-guard').style.display = 'none';
             loadUsers();
         } else {
-            alert("Accès refusé. Vous allez être redirigé.");
             window.location.href = "index.html";
         }
     });
 
-    // Création d'un utilisateur
     document.getElementById('create-user-form').addEventListener('submit', async (e) => {
         e.preventDefault();
         const btn = document.getElementById('btn-create');
@@ -107,28 +110,25 @@
         const pass = document.getElementById('new-pass').value;
         const expire = document.getElementById('new-expire').value;
 
-        btn.innerText = "CRÉATION EN COURS...";
+        btn.innerText = "CRÉATION...";
         btn.disabled = true;
 
         try {
-            // Création sur l'instance secondaire
             const userCred = await createUserWithEmailAndPassword(adminAuth, email, pass);
             const newUid = userCred.user.uid;
 
-            // Enregistrement de l'expiration et de l'email dans la Base de données
+            // Enregistrement dans la DB (incluant le mot de passe en clair pour le panel)
             await set(ref(db, 'users_data/' + newUid), {
                 email: email,
+                pass: pass, // ASTUCE : On garde une trace du MDP
                 expire: expire,
                 created_at: new Date().toISOString()
             });
 
-            // Déconnexion immédiate de l'instance secondaire pour la garder propre
             await signOut(adminAuth);
-
-            alert("✅ Compte créé avec succès !");
+            alert("✅ Compte créé !");
             document.getElementById('create-user-form').reset();
         } catch (error) {
-            console.error(error);
             alert("❌ Erreur : " + error.message);
         } finally {
             btn.innerText = "CRÉER LE COMPTE";
@@ -136,45 +136,65 @@
         }
     });
 
-    // Charger la liste des utilisateurs depuis la DB
     function loadUsers() {
         onValue(ref(db, 'users_data'), (snapshot) => {
             const data = snapshot.val();
             const container = document.getElementById('users-container');
             container.innerHTML = "";
 
-            if (!data) {
-                container.innerHTML = "<i>Aucun compte trouvé.</i>";
-                return;
-            }
+            if (!data) { container.innerHTML = "<i>Aucun compte trouvé.</i>"; return; }
 
             const today = new Date().toISOString().split('T')[0];
+
+            // Attacher les fonctions au window pour les boutons HTML
+            window.extendUser = (uid, currentExpire) => {
+                let newDate = prompt("Nouvelle date d'expiration (YYYY-MM-DD) :", currentExpire);
+                if (newDate) { update(ref(db, 'users_data/' + uid), { expire: newDate }); }
+            };
+
+            window.suspendUser = (uid) => {
+                if (confirm("Suspendre ce compte ? (Son accès sera expiré)")) {
+                    update(ref(db, 'users_data/' + uid), { expire: '2000-01-01' });
+                }
+            };
+
+            window.deleteUser = (uid) => {
+                if (confirm("Supprimer ce compte de la base ? (Il ne pourra plus jamais se connecter)")) {
+                    remove(ref(db, 'users_data/' + uid));
+                }
+            };
 
             Object.keys(data).forEach(uid => {
                 const user = data[uid];
                 const isExpired = user.expire < today;
                 const statusClass = isExpired ? 'expired' : '';
-                const statusText = isExpired ? '🔴 Expiré' : '🟢 Actif';
+                const statusText = isExpired ? '<span style="color:#e50914">🔴 Inactif</span>' : '<span style="color:#2ecc71">🟢 Actif</span>';
+                const passDisplay = user.pass ? `<span class="user-pass">🔑 ${user.pass}</span>` : `<span class="user-pass" style="color:#555">MDP masqué</span>`;
 
                 container.innerHTML += `
                     <div class="user-item ${statusClass}">
-                        <div>
-                            <strong>${user.email || 'Email inconnu'}</strong><br>
-                            <span>Expiration : ${user.expire}</span>
+                        <div class="user-info">
+                            <div>
+                                <strong style="font-size:16px;">${user.email}</strong><br>
+                                <span>Expire le : <b>${user.expire === '2000-01-01' ? 'SUSPENDU' : user.expire}</b></span>
+                            </div>
+                            <div style="text-align:right">
+                                ${statusText}<br>
+                                ${passDisplay}
+                            </div>
                         </div>
-                        <div>${statusText}</div>
+                        <div class="action-buttons">
+                            <button class="btn-extend" onclick="extendUser('${uid}', '${user.expire}')">📅 PROLONGER</button>
+                            <button class="btn-suspend" onclick="suspendUser('${uid}')">⏸️ SUSPENDRE</button>
+                            <button class="btn-delete" onclick="deleteUser('${uid}')">❌ SUPPRIMER</button>
+                        </div>
                     </div>
                 `;
             });
         });
     }
 
-    // Déconnexion de l'admin
-    window.logoutAdmin = () => {
-        signOut(auth).then(() => {
-            window.location.href = "index.html";
-        });
-    };
+    window.logoutAdmin = () => { signOut(auth).then(() => { window.location.href = "index.html"; }); };
 </script>
 </body>
 </html>
