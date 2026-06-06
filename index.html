@@ -1241,6 +1241,29 @@ const domObserver = new MutationObserver(() => {
 });
 domObserver.observe(document.getElementById('main-content'), { childList: true, subtree: true });
 domObserver.observe(document.getElementById('profile-list'), { childList: true });
+<style>
+    .sn-spatial-navigation :focus { outline: 4px solid var(--accent) !important; outline-offset: 2px !important; transform: scale(1.05); transition: transform 0.2s ease; z-index: 10000; box-shadow: 0 0 20px rgba(255,255,255,0.5); }
+    input:focus { transform: none !important; }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/spatial-navigation-js@1.0.1/spatial_navigation.min.js"></script>
+<script>
+window.addEventListener('load', function() {
+    SpatialNavigation.init();
+    SpatialNavigation.add({ selector: 'button, input, [tabindex="0"], .card, .episode-item, .nav-btn, .actor-item' });
+    SpatialNavigation.makeFocusable();
+    SpatialNavigation.focus();
+    window.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' || e.key === 'Backspace') {
+            if (document.activeElement.tagName === 'INPUT') return;
+            e.preventDefault();
+            if (document.getElementById('player-section').style.display === 'block') closeP();
+            else if (document.getElementById('details-overlay').style.display === 'flex') closeDetails();
+            else if (document.getElementById('series-overlay').style.display === 'block') closeSeries();
+            else if (document.getElementById('search-overlay').style.display === 'flex') closeSearch();
+        }
+    });
+});
 </script>
+
 </body>
 </html>
