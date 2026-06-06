@@ -267,6 +267,17 @@
     <div class="loader-text">CHARGEMENT DE SFPP ELITE...</div>
 </div>
 
+<div id="custom-prompt-modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.9); z-index:99999; align-items:center; justify-content:center;">
+    <div style="background:#111; padding:30px; border-radius:8px; text-align:center; border:1px solid #333; width: 300px;">
+        <h3 style="margin-top:0; color:#fff;">Nouveau nom de profil</h3>
+        <input type="text" id="custom-prompt-input" style="width:100%; padding:12px; margin-bottom:20px; background:#222; color:#fff; border:1px solid #555; border-radius:4px; font-size:16px;">
+        <div style="display:flex; gap:10px;">
+            <button onclick="closeCustomPrompt()" style="flex:1; padding:12px; background:#444; color:white; border:none; border-radius:4px; cursor:pointer;" tabindex="0">Annuler</button>
+            <button onclick="saveCustomPrompt()" style="flex:1; padding:12px; background:#e50914; color:white; border:none; border-radius:4px; cursor:pointer; font-weight:bold;" tabindex="0">Enregistrer</button>
+        </div>
+    </div>
+</div>
+
 <div id="login-screen">
     <form class="login-box" onsubmit="event.preventDefault(); checkLogin();">
         <div class="logo" style="margin-bottom:20px">SFPP ELITE</div>
@@ -388,12 +399,12 @@
     const savedEmail = localStorage.getItem('sfpp_last_email');
     if(savedEmail) document.getElementById('user').value = savedEmail;
 
-        async function verifyExpiration(user) {
+    async function verifyExpiration(user) {
         if (!user) return false;
         const snapshot = await get(ref(db, 'users_data/' + user.uid + '/expire'));
         const expireValue = snapshot.val();
         
-        // --- NOUVELLE SÉCURITÉ : Si la date n'existe pas (compte supprimé), ON BLOQUE ---
+        // --- NOUVELLE SÉCURITÉ : Bloque si compte supprimé depuis le panel
         if (!expireValue) {
             alert("Ce compte a été supprimé ou n'est pas autorisé.");
             await signOut(auth);
@@ -664,7 +675,6 @@ async function loadPlaylist() {
 
         await Promise.all(promises);
 
-        // Sauvegarde du cache si de nouvelles jaquettes ont été trouvées
         if (cacheUpdated) {
             try {
                 localStorage.setItem('sfpp_metadata_cache', JSON.stringify(metadataCache));
@@ -675,7 +685,6 @@ async function loadPlaylist() {
 
         render(); 
 
-        // Cache le loader global une fois que tout est prêt
         const loader = document.getElementById('global-loader');
         if (loader) {
             loader.style.opacity = '0';
@@ -806,25 +815,43 @@ function initProfiles() {
         </div>`).join('');
 }
 
+// Variable globale pour mémoriser le profil en cours de modification
+let editingProfileId = null;
+
 function handleProfileClick(id, name, icon) {
     if(isEditMode) {
-        let n = prompt("Nouveau nom :", name);
-        if(n && n.trim() !== "") {
-            let profiles = JSON.parse(localStorage.getItem('sfpp_profiles_data')) || [
-                { id: 1, name: "Profil 1", icon: "🟦", color: "#1e90ff" },
-                { id: 2, name: "Profil 2", icon: "🟩", color: "#2ecc71" },
-                { id: 3, name: "Profil 3", icon: "🟧", color: "#e67e22" },
-                { id: 4, name: "Profil 4", icon: "🟪", color: "#9b59b6" }
-            ];
-            const idx = profiles.findIndex(p => p.id === id);
-            if(idx !== -1) { 
-                profiles[idx].name = n; 
-                localStorage.setItem('sfpp_profiles_data', JSON.stringify(profiles)); 
-                initProfiles(); 
-            }
-        }
-    } else selectProfile(name, icon);
+        editingProfileId = id;
+        document.getElementById('custom-prompt-input').value = name;
+        document.getElementById('custom-prompt-modal').style.display = 'flex';
+        setTimeout(() => document.getElementById('custom-prompt-input').focus(), 100);
+    } else {
+        selectProfile(name, icon);
+    }
 }
+
+window.closeCustomPrompt = function() {
+    document.getElementById('custom-prompt-modal').style.display = 'none';
+    editingProfileId = null;
+};
+
+window.saveCustomPrompt = function() {
+    let n = document.getElementById('custom-prompt-input').value;
+    if(n && n.trim() !== "" && editingProfileId !== null) {
+        let profiles = JSON.parse(localStorage.getItem('sfpp_profiles_data')) || [
+            { id: 1, name: "Profil 1", icon: "🟦", color: "#1e90ff" },
+            { id: 2, name: "Profil 2", icon: "🟩", color: "#2ecc71" },
+            { id: 3, name: "Profil 3", icon: "🟧", color: "#e67e22" },
+            { id: 4, name: "Profil 4", icon: "🟪", color: "#9b59b6" }
+        ];
+        const idx = profiles.findIndex(p => p.id === editingProfileId);
+        if(idx !== -1) { 
+            profiles[idx].name = n; 
+            localStorage.setItem('sfpp_profiles_data', JSON.stringify(profiles)); 
+            initProfiles(); 
+        }
+    }
+    closeCustomPrompt();
+};
 
 function saveP() {
     if(!currentPlayingTitle || !currentProfile) return;
