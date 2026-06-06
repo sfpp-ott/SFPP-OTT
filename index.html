@@ -388,11 +388,22 @@
     const savedEmail = localStorage.getItem('sfpp_last_email');
     if(savedEmail) document.getElementById('user').value = savedEmail;
 
-    async function verifyExpiration(user) {
+        async function verifyExpiration(user) {
         if (!user) return false;
         const snapshot = await get(ref(db, 'users_data/' + user.uid + '/expire'));
         const expireValue = snapshot.val();
-        if (!expireValue) return false;
+        
+        // --- NOUVELLE SÉCURITÉ : Si la date n'existe pas (compte supprimé), ON BLOQUE ---
+        if (!expireValue) {
+            alert("Ce compte a été supprimé ou n'est pas autorisé.");
+            await signOut(auth);
+            const mail = localStorage.getItem('sfpp_last_email');
+            localStorage.clear();
+            localStorage.setItem('sfpp_last_email', mail);
+            localStorage.setItem('sfpp_device_id', deviceId);
+            location.reload();
+            return true;
+        }
         
         const now = new Date();
         const y = now.getFullYear();
