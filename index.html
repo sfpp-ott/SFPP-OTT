@@ -1255,33 +1255,36 @@ domObserver.observe(document.getElementById('profile-list'), { childList: true }
 
     <script src="https://cdn.jsdelivr.net/npm/spatial-navigation-js@1.0.1/spatial_navigation.min.js"></script>
     <script>
-        window.addEventListener('load', function() {
-            SpatialNavigation.init();
-            SpatialNavigation.add({
-                selector: 'button, input, [tabindex="0"], .card, .episode-item, .nav-btn, .actor-item, .profile-item',
-                rememberSource: true
-            });
-            SpatialNavigation.makeFocusable();
-            SpatialNavigation.focus();
-
-            window.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape' || e.key === 'Backspace' || e.keyCode === 27 || e.keyCode === 8) {
-                    if (document.activeElement.tagName === 'INPUT') return;
-                    e.preventDefault();
-                    if (document.getElementById('player-section').style.display === 'block') closeP();
-                    else if (document.getElementById('details-overlay').style.display === 'flex') closeDetails();
-                    else if (document.getElementById('series-overlay').style.display === 'block') closeSeries();
-                    else if (document.getElementById('search-overlay').style.display === 'flex') closeSearch();
-                    setTimeout(() => SpatialNavigation.focus(), 200);
-                }
-            });
+            // --- NAVIGATION TV AUTOMATIQUE ---
+    window.addEventListener('load', function() {
+        SpatialNavigation.init();
+        SpatialNavigation.add({
+            selector: 'button, input, [tabindex="0"], .card, .episode-item, .nav-btn, .actor-item, .profile-item',
+            rememberSource: true
         });
+        SpatialNavigation.makeFocusable();
+        SpatialNavigation.focus();
 
-        // Fonction pour mettre à jour la navigation quand tu charges des nouveaux films
-        window.updateNav = () => {
-            setTimeout(() => SpatialNavigation.makeFocusable(), 300);
-        };
-    </script>
+        // Ce bloc surveille tout changement dans le contenu des films
+        // Il mettra à jour la navigation TOUT SEUL dès qu'une image apparaît
+        const observer = new MutationObserver(() => {
+            SpatialNavigation.makeFocusable();
+        });
+        observer.observe(document.body, { childList: true, subtree: true });
+
+        // Gestion du bouton Retour
+        window.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' || e.key === 'Backspace' || e.keyCode === 27 || e.keyCode === 8) {
+                if (document.activeElement.tagName === 'INPUT') return;
+                e.preventDefault();
+                if (document.getElementById('player-section').style.display === 'block') closeP();
+                else if (document.getElementById('details-overlay').style.display === 'flex') closeDetails();
+                else if (document.getElementById('series-overlay').style.display === 'block') closeSeries();
+                else if (document.getElementById('search-overlay').style.display === 'flex') closeSearch();
+                setTimeout(() => SpatialNavigation.focus(), 200);
+            }
+        });
+    });
     
 </body>
 </html>
