@@ -1165,7 +1165,7 @@ if ('serviceWorker' in navigator) {
     });
 }
 </script>
-
+    <!-- BLOC NAVIGATION TV UNIQUE ET CORRIGÉ -->
     <style>
         .sn-focused {
             outline: 5px solid #e50914 !important;
@@ -1184,15 +1184,12 @@ if ('serviceWorker' in navigator) {
             SpatialNavigation.init();
             
             function refreshNav() {
-                // Force le tabindex sur tout ce qui est cliquable
-                document.querySelectorAll('.card, .card div, .episode-item, .nav-btn').forEach(el => {
-    el.setAttribute('tabindex', '0');
-});
+                // Force le tabindex sur tout ce qui doit être sélectionnable
+                document.querySelectorAll('.card, .card div, .episode-item, .nav-btn, .actor-item').forEach(el => {
+                    el.setAttribute('tabindex', '0');
+                });
                 SpatialNavigation.makeFocusable();
             }
-            // Observer pour actualiser la navigation automatiquement
-new MutationObserver(refreshNav).observe(document.body, { childList: true, subtree: true });
-
 
             SpatialNavigation.add({
                 selector: 'button, input, .nav-btn, .actor-item, .profile-item, .card, .card div, .episode-item',
@@ -1201,7 +1198,7 @@ new MutationObserver(refreshNav).observe(document.body, { childList: true, subtr
 
             refreshNav();
             
-            // Observer unique pour tout le site
+            // Observer unique pour actualiser quand les films apparaissent
             new MutationObserver(refreshNav).observe(document.body, { childList: true, subtree: true });
 
             // Gestion Retour TV
@@ -1218,5 +1215,6 @@ new MutationObserver(refreshNav).observe(document.body, { childList: true, subtr
             });
         });
     </script>
+
 </body>
 </html>
