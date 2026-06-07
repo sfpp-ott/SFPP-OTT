@@ -899,6 +899,7 @@ function render(search = "") {
     else if(currentView === 'series') data = playlistData.filter(m => m.cat && m.cat.includes("SÉRIES"));
     else if(currentView === 'fav') data = playlistData.filter(m => favs.includes(m.t));
 
+    // HISTORIQUE
     if(currentProfile && s === "" && currentView === 'all') {
         let history = JSON.parse(localStorage.getItem('sfpp_hist_' + currentProfile) || "[]");
         if(history.length > 0) {
@@ -907,10 +908,7 @@ function render(search = "") {
                 const m = playlistData.find(item => item.t === title);
                 if(m) {
                     const isTV = m.cat && (m.cat.toUpperCase().includes("DIRECT") || m.cat.toUpperCase().includes("TV"));
-                    const landscapeClass = isTV ? "landscape" : "";
-                    const pct = (prog[m.t] && prog[m.t].p > 1) ? `<div class="prog-bg"><div class="prog-fill" style="width:${prog[m.t].p}%"></div></div>` : "";
                     const clickAction = isTV ? `playMovie(${playlistData.indexOf(m)})` : `openDetails(${playlistData.indexOf(m)})`;
-                    
                     const is_fav = favs.includes(m.t);
                     const heartClass = is_fav ? 'is-fav' : '';
                     const heartIcon = is_fav ? '❤️' : '♡';
@@ -920,69 +918,25 @@ function render(search = "") {
                     for (let i = 0; i < 5; i++) { m_stars += (i < m_note) ? "★" : "☆"; }
 
                     histCont.innerHTML += `
-                        <div class="card ${landscapeClass}" tabindex="0">
+                        <div class="card ${isTV ? "landscape" : ""}" tabindex="0" onclick="${clickAction}">
                             <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${m.t.replace(/'/g, "\\'")}');">${heartIcon}</div>
                             ${!isTV ? `<div class="card-rating">${m_stars}</div>` : ''}
-                            <div onclick="${clickAction}">
-                                <img src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" loading="lazy" decoding="async" onerror="handleImageError(this)" onload="this.classList.add('loaded')">${pct}
-                                <div class="card-name">${m.t}</div>
-                            </div>
+                            <img src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" loading="lazy" decoding="async" onerror="handleImageError(this)" onload="this.classList.add('loaded')">
+                            <div class="card-name">${m.t}</div>
                         </div>`;
                 }
             });
         } else histSec.style.display = "none";
     } else histSec.style.display = "none";
 
-    if (s === "" && (currentView === 'all' || currentView === 'movies')) {
-        const allMovies = playlistData.filter(m => m.cat && !m.cat.includes("SÉRIES") && !m.cat.toUpperCase().includes("DIRECT") && !m.cat.toUpperCase().includes("TV"));
-        if (allMovies.length > 0) {
-            let html = `<div class="category-title">TOUS LES FILMS</div><div class="category-row"><div class="nav-arrow arrow-left" onclick="scrollSide(this, -400)">‹</div><div class="carousel">`;
-            allMovies.forEach(m => {
-                const is_fav = favs.includes(m.t);
-                const heartClass = is_fav ? 'is-fav' : '';
-                const heartIcon = is_fav ? '❤️' : '♡';
-                const pct = (prog[m.t] && prog[m.t].p > 1) ? `<div class="prog-bg"><div class="prog-fill" style="width:${prog[m.t].p}%"></div></div>` : "";
-                
-                let m_stars = "";
-                const m_note = m.note || 5;
-                for (let i = 0; i < 5; i++) { m_stars += (i < m_note) ? "★" : "☆"; }
-
-                html += `
-                    <div class="card" tabindex="0">
-                        <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${m.t.replace(/'/g, "\\'")}');">${heartIcon}</div>
-                        <div class="card-rating">${m_stars}</div>
-                        <div onclick="openDetails(${playlistData.indexOf(m)})">
-                            <img src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" loading="lazy" decoding="async" onerror="handleImageError(this)" onload="this.classList.add('loaded')">${pct}
-                            <div class="card-name">${m.t}</div>
-                        </div>
-                    </div>`;
-            });
-            html += `</div><div class="nav-arrow arrow-right" onclick="scrollSide(this, 400)">›</div></div>`;
-            cont.innerHTML += html;
-        }
-    }
-
+    // FILMS & GENRES
     const allGenres = [];
-    data.forEach(m => {
-        if(m.cat) {
-            const genres = m.cat.split(',').map(g => g.trim().toUpperCase());
-            genres.forEach(g => { if(!allGenres.includes(g)) allGenres.push(g); });
-        }
-    });
+    data.forEach(m => { if(m.cat) { const genres = m.cat.split(',').map(g => g.trim().toUpperCase()); genres.forEach(g => { if(!allGenres.includes(g)) allGenres.push(g); }); } });
 
     allGenres.sort().forEach(c => {
-        const filtered = data.filter(m => {
-            const matchGenre = m.cat && m.cat.toUpperCase().includes(c);
-            const matchSearch = (s === "") || m.t.toLowerCase().includes(s) || 
-                                (m.year && m.year.toString().includes(s)) ||
-                                (m.actors_pics && m.actors_pics.some(a => a.name.toLowerCase().includes(s)));
-            
-            return matchGenre && matchSearch;
-        });
-
+        const filtered = data.filter(m => m.cat && m.cat.toUpperCase().includes(c) && (s === "" || m.t.toLowerCase().includes(s)));
         if (filtered.length === 0) return;
         const isTVCat = c.includes("DIRECT") || c.includes("TV");
-        const landscapeClass = isTVCat ? "landscape" : "";
         
         let html = `<div class="category-title">${c}</div><div class="category-row"><div class="nav-arrow arrow-left" onclick="scrollSide(this, -400)">‹</div><div class="carousel">`;
         filtered.forEach(m => {
@@ -996,19 +950,22 @@ function render(search = "") {
             for (let i = 0; i < 5; i++) { m_stars += (i < m_note) ? "★" : "☆"; }
 
             html += `
-                <div class="card ${landscapeClass}" tabindex="0">
+                <div class="card ${isTVCat ? 'landscape' : ''}" tabindex="0" onclick="${clickAction}">
                     <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${m.t.replace(/'/g, "\\'")}');">${heartIcon}</div>
                     ${!isTVCat ? `<div class="card-rating">${m_stars}</div>` : ''}
-                    <div onclick="${clickAction}">
-                        <img src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" loading="lazy" decoding="async" onerror="handleImageError(this)" onload="this.classList.add('loaded')">
-                        <div class="card-name">${m.t}</div>
-                    </div>
+                    <img src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" loading="lazy" decoding="async" onerror="handleImageError(this)" onload="this.classList.add('loaded')">
+                    <div class="card-name">${m.t}</div>
                 </div>`;
         });
         html += `</div><div class="nav-arrow arrow-right" onclick="scrollSide(this, 400)">›</div></div>`;
         cont.innerHTML += html;
     });
+
+    if (typeof updateSpatialNav === 'function') {
+        setTimeout(updateSpatialNav, 100);
+    }
 }
+
 
 function openSeries(name) {
     history.pushState({ overlay: 'series' }, "");
