@@ -1241,29 +1241,47 @@ const domObserver = new MutationObserver(() => {
 });
 domObserver.observe(document.getElementById('main-content'), { childList: true, subtree: true });
 domObserver.observe(document.getElementById('profile-list'), { childList: true });
-<style>
-    .sn-spatial-navigation :focus { outline: 4px solid var(--accent) !important; outline-offset: 2px !important; transform: scale(1.05); transition: transform 0.2s ease; z-index: 10000; box-shadow: 0 0 20px rgba(255,255,255,0.5); }
-    input:focus { transform: none !important; }
-</style>
-<script src="https://cdn.jsdelivr.net/npm/spatial-navigation-js@1.0.1/spatial_navigation.min.js"></script>
-<script>
-window.addEventListener('load', function() {
-    SpatialNavigation.init();
-    SpatialNavigation.add({ selector: 'button, input, [tabindex="0"], .card, .episode-item, .nav-btn, .actor-item' });
-    SpatialNavigation.makeFocusable();
-    SpatialNavigation.focus();
-    window.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' || e.key === 'Backspace') {
-            if (document.activeElement.tagName === 'INPUT') return;
-            e.preventDefault();
-            if (document.getElementById('player-section').style.display === 'block') closeP();
-            else if (document.getElementById('details-overlay').style.display === 'flex') closeDetails();
-            else if (document.getElementById('series-overlay').style.display === 'block') closeSeries();
-            else if (document.getElementById('search-overlay').style.display === 'flex') closeSearch();
+    <style>
+        /* Focus TV : Style pour voir où est la télécommande */
+        .sn-focused {
+            outline: 4px solid #e50914 !important;
+            outline-offset: 2px !important;
+            transform: scale(1.05) !important;
+            box-shadow: 0 0 20px rgba(229, 9, 20, 0.8) !important;
+            z-index: 10000 !important;
         }
-    });
-});
-</script>
+        input:focus { transform: none !important; }
+    </style>
 
+    <script src="https://cdn.jsdelivr.net/npm/spatial-navigation-js@1.0.1/spatial_navigation.min.js"></script>
+    <script>
+        window.addEventListener('load', function() {
+            SpatialNavigation.init();
+            SpatialNavigation.add({
+                selector: 'button, input, [tabindex="0"], .card, .episode-item, .nav-btn, .actor-item, .profile-item',
+                rememberSource: true
+            });
+            SpatialNavigation.makeFocusable();
+            SpatialNavigation.focus();
+
+            window.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' || e.key === 'Backspace' || e.keyCode === 27 || e.keyCode === 8) {
+                    if (document.activeElement.tagName === 'INPUT') return;
+                    e.preventDefault();
+                    if (document.getElementById('player-section').style.display === 'block') closeP();
+                    else if (document.getElementById('details-overlay').style.display === 'flex') closeDetails();
+                    else if (document.getElementById('series-overlay').style.display === 'block') closeSeries();
+                    else if (document.getElementById('search-overlay').style.display === 'flex') closeSearch();
+                    setTimeout(() => SpatialNavigation.focus(), 200);
+                }
+            });
+        });
+
+        // Fonction pour mettre à jour la navigation quand tu charges des nouveaux films
+        window.updateNav = () => {
+            setTimeout(() => SpatialNavigation.makeFocusable(), 300);
+        };
+    </script>
+    
 </body>
 </html>
