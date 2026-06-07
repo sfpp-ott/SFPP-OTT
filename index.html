@@ -1235,20 +1235,14 @@ window.addEventListener('load', function() {
     });
 });
 
-// 5. Astuce de pro : Actualiser la télécommande quand de nouveaux films apparaissent (lors du scroll ou des filtres)
-const domObserver = new MutationObserver(() => {
-    SpatialNavigation.makeFocusable();
-});
-domObserver.observe(document.getElementById('main-content'), { childList: true, subtree: true });
-domObserver.observe(document.getElementById('profile-list'), { childList: true });
-        <style>
-        /* Style du focus pour la télécommande */
+    <style>
         .sn-focused {
-            outline: 4px solid var(--accent) !important;
-            outline-offset: 2px !important;
+            outline: 5px solid #e50914 !important;
+            outline-offset: -5px !important;
             transform: scale(1.05) !important;
-            box-shadow: 0 0 20px rgba(229, 9, 20, 0.8) !important;
-            z-index: 10000 !important;
+            z-index: 99999 !important;
+            transition: all 0.1s ease !important;
+            border-radius: 4px !important;
         }
         input:focus { transform: none !important; }
     </style>
@@ -1256,36 +1250,38 @@ domObserver.observe(document.getElementById('profile-list'), { childList: true }
     <script src="https://cdn.jsdelivr.net/npm/spatial-navigation-js@1.0.1/spatial_navigation.min.js"></script>
     <script>
         window.addEventListener('load', function() {
-            // 1. Initialisation
             SpatialNavigation.init();
             
-            // 2. Configuration : on ajoute les classes .card et les divs cliquables
-            SpatialNavigation.add({
-                selector: 'button, input, [tabindex="0"], .card, .card div, .episode-item, .nav-btn, .actor-item, .profile-item',
-                rememberSource: true,
-                defaultElement: 'body'
-            });
-
-            SpatialNavigation.makeFocusable();
-            SpatialNavigation.focus();
-
-            // 3. Mise à jour automatique quand le contenu change (AJAX/Render)
-            const observer = new MutationObserver(() => {
+            function refreshNav() {
+                // Force le tabindex sur tout ce qui est cliquable
+                document.querySelectorAll('.card, .card div, .episode-item, .nav-btn').forEach(el => {
+    el.setAttribute('tabindex', '0');
+});
                 SpatialNavigation.makeFocusable();
-            });
-            observer.observe(document.body, { childList: true, subtree: true });
+            }
+            // Observer pour actualiser la navigation automatiquement
+new MutationObserver(refreshNav).observe(document.body, { childList: true, subtree: true });
 
-            // 4. Gestion du bouton Retour
+
+            SpatialNavigation.add({
+                selector: 'button, input, .nav-btn, .actor-item, .profile-item, .card, .card div, .episode-item',
+                rememberSource: true
+            });
+
+            refreshNav();
+            
+            // Observer unique pour tout le site
+            new MutationObserver(refreshNav).observe(document.body, { childList: true, subtree: true });
+
+            // Gestion Retour TV
             window.addEventListener('keydown', function(e) {
                 if (e.key === 'Escape' || e.key === 'Backspace' || e.keyCode === 27 || e.keyCode === 8) {
                     if (document.activeElement.tagName === 'INPUT') return;
                     e.preventDefault();
-                    
                     if (document.getElementById('player-section').style.display === 'block') closeP();
                     else if (document.getElementById('details-overlay').style.display === 'flex') closeDetails();
                     else if (document.getElementById('series-overlay').style.display === 'block') closeSeries();
                     else if (document.getElementById('search-overlay').style.display === 'flex') closeSearch();
-                    
                     setTimeout(() => SpatialNavigation.focus(), 200);
                 }
             });
