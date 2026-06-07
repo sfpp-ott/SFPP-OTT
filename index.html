@@ -698,7 +698,9 @@ async function loadPlaylist() {
         }
 
         render(); 
-
+            if (typeof updateSpatialNav === 'function') {
+        setTimeout(updateSpatialNav, 100);
+    }
         const loader = document.getElementById('global-loader');
         if (loader) {
             loader.style.opacity = '0';
@@ -1179,41 +1181,33 @@ if ('serviceWorker' in navigator) {
     </style>
 
     <script src="https://cdn.jsdelivr.net/npm/spatial-navigation-js@1.0.1/spatial_navigation.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/spatial-navigation-js@1.0.1/spatial_navigation.min.js"></script>
     <script>
-        window.addEventListener('load', function() {
-            SpatialNavigation.init();
-            
-            function refreshNav() {
-                // Force le tabindex sur tout ce qui doit être sélectionnable
-                document.querySelectorAll('.card, .card div, .episode-item, .nav-btn, .actor-item').forEach(el => {
-                    el.setAttribute('tabindex', '0');
-                });
-                SpatialNavigation.makeFocusable();
-            }
-
+        function updateSpatialNav() {
+            SpatialNavigation.clear();
             SpatialNavigation.add({
-                selector: 'button, input, .nav-btn, .actor-item, .profile-item, .card, .card div, .episode-item',
+                selector: '.nav-btn, .card, .actor-item, .episode-item, button, input',
                 rememberSource: true
             });
+            SpatialNavigation.makeFocusable();
+        }
 
-            refreshNav();
-            
-            // Observer unique pour actualiser quand les films apparaissent
-            new MutationObserver(refreshNav).observe(document.body, { childList: true, subtree: true });
+        window.addEventListener('load', function() {
+            SpatialNavigation.init();
+            updateSpatialNav();
+        });
 
-            // Gestion Retour TV
-                        window.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape' || e.key === 'Backspace' || e.keyCode === 27 || e.keyCode === 8) {
-                    if (document.activeElement.tagName === 'INPUT') return;
-                    e.preventDefault();
-                    if (document.getElementById('player-section').style.display === 'block') closeP();
-                    else if (document.getElementById('details-overlay').style.display === 'flex') closeDetails();
-                    else if (document.getElementById('series-overlay').style.display === 'block') closeSeries();
-                    else if (document.getElementById('search-overlay').style.display === 'flex') closeSearch();
-                    setTimeout(() => SpatialNavigation.focus(), 200);
-                }
-            }, {capture: true});
-
+        window.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' || e.key === 'Backspace' || e.keyCode === 27 || e.keyCode === 8) {
+                if (document.activeElement.tagName === 'INPUT') return;
+                e.preventDefault();
+                if (document.getElementById('player-section').style.display === 'block') closeP();
+                else if (document.getElementById('details-overlay').style.display === 'flex') closeDetails();
+                else if (document.getElementById('series-overlay').style.display === 'block') closeSeries();
+                else if (document.getElementById('search-overlay').style.display === 'flex') closeSearch();
+                setTimeout(() => SpatialNavigation.focus(), 200);
+            }
+        }, {capture: true});
     </script>
 
 </body>
