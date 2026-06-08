@@ -921,9 +921,10 @@ function render(search = "") {
     <div class="card sn-card ${isTV ? "landscape" : ""}" tabindex="0" onclick="${clickAction}">
         <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${m.t.replace(/'/g, "\\'")}');">${heartIcon}</div>
         ${!isTV ? `<div class="card-rating">${m_stars}</div>` : ''}
-        <img src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" loading="lazy" decoding="async" onerror="handleImageError(this)" onload="this.classList.add('loaded')">${pct}
+        <img src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" loading="lazy" decoding="async" onerror="handleImageError(this)" onload="this.classList.add('loaded')">
         <div class="card-name">${m.t}</div>
     </div>`;
+
 
             });
         } else histSec.style.display = "none";
@@ -951,19 +952,19 @@ function render(search = "") {
 
             html += `
     <div class="card sn-card ${isTVCat ? 'landscape' : ''}" tabindex="0" onclick="${clickAction}">
+        <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${m.t.replace(/'/g, "\\'")}');">${heartIcon}</div>
+        ${!isTVCat ? `<div class="card-rating">${m_stars}</div>` : ''}
+        <img src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" loading="lazy" decoding="async" onerror="handleImageError(this)" onload="this.classList.add('loaded')">
+        <div class="card-name">${m.t}</div>
+    </div>`;
 
-                    <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${m.t.replace(/'/g, "\\'")}');">${heartIcon}</div>
-                    ${!isTVCat ? `<div class="card-rating">${m_stars}</div>` : ''}
-                    <img src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" loading="lazy" decoding="async" onerror="handleImageError(this)" onload="this.classList.add('loaded')">
-                    <div class="card-name">${m.t}</div>
-                </div>`;
         });
         html += `</div><div class="nav-arrow arrow-right" onclick="scrollSide(this, 400)">›</div></div>`;
         cont.innerHTML += html;
     });
 
     if (typeof updateSpatialNav === 'function') {
-        setTimeout(updateSpatialNav, 100);
+        setTimeout(updateSpatialNav, 1000);
     }
 }
 
