@@ -899,7 +899,7 @@ function render(search = "") {
     else if(currentView === 'series') data = playlistData.filter(m => m.cat && m.cat.includes("SÉRIES"));
     else if(currentView === 'fav') data = playlistData.filter(m => favs.includes(m.t));
 
-    // --- HISTORIQUE (Avec cœurs et étoiles) ---
+    // HISTORIQUE
     if(currentProfile && s === "" && currentView === 'all') {
         let history = JSON.parse(localStorage.getItem('sfpp_hist_' + currentProfile) || "[]");
         if(history.length > 0) {
@@ -910,22 +910,25 @@ function render(search = "") {
                     const isTV = m.cat && (m.cat.toUpperCase().includes("DIRECT") || m.cat.toUpperCase().includes("TV"));
                     const clickAction = isTV ? `playMovie(${playlistData.indexOf(m)})` : `openDetails(${playlistData.indexOf(m)})`;
                     const is_fav = favs.includes(m.t);
-                    let m_stars = "";
-                    for (let i = 0; i < 5; i++) { m_stars += (i < (m.note || 5)) ? "★" : "☆"; }
+                    const pct = (prog[m.t] && prog[m.t].p > 1) ? `<div class="prog-bg"><div class="prog-fill" style="width:${prog[m.t].p}%"></div></div>` : "";
                     
+                    let m_stars = "";
+                    const m_note = m.note || 5;
+                    for (let i = 0; i < 5; i++) { m_stars += (i < m_note) ? "★" : "☆"; }
+
                     histCont.innerHTML += `
                         <div class="card sn-card ${isTV ? "landscape" : ""}" tabindex="0" onclick="${clickAction}">
                             <div class="btn-fav-card ${is_fav ? 'is-fav' : ''}" onclick="event.stopPropagation(); toggleFav('${m.t.replace(/'/g, "\\'")}');">${is_fav ? '❤️' : '♡'}</div>
                             ${!isTV ? `<div class="card-rating">${m_stars}</div>` : ''}
-                            <img src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" loading="lazy" onload="this.classList.add('loaded')">
+                            <img src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" loading="lazy" decoding="async" onerror="handleImageError(this)" onload="this.classList.add('loaded')">${pct}
                             <div class="card-name">${m.t}</div>
                         </div>`;
                 }
             });
         } else histSec.style.display = "none";
-    }
+    } else histSec.style.display = "none";
 
-    // --- FILMS & GENRES (Avec cœurs et étoiles) ---
+    // FILMS & GENRES
     const allGenres = [];
     data.forEach(m => { if(m.cat) m.cat.split(',').forEach(g => { if(!allGenres.includes(g.trim().toUpperCase())) allGenres.push(g.trim().toUpperCase()); }); });
     allGenres.sort().forEach(c => {
@@ -933,26 +936,31 @@ function render(search = "") {
         if (filtered.length === 0) return;
         const isTVCat = c.includes("DIRECT") || c.includes("TV");
         
-        let html = `<div class="category-title">${c}</div><div class="category-row"><div class="carousel">`;
+        let html = `<div class="category-title">${c}</div><div class="category-row"><div class="nav-arrow arrow-left" onclick="scrollSide(this, -400)">‹</div><div class="carousel">`;
         filtered.forEach(m => {
             const is_fav = favs.includes(m.t);
-            let m_stars = "";
-            for (let i = 0; i < 5; i++) { m_stars += (i < (m.note || 5)) ? "★" : "☆"; }
+            const clickAction = isTVCat ? `playMovie(${playlistData.indexOf(m)})` : `openDetails(${playlistData.indexOf(m)})`;
+            const pct = (prog[m.t] && prog[m.t].p > 1) ? `<div class="prog-bg"><div class="prog-fill" style="width:${prog[m.t].p}%"></div></div>` : "";
             
+            let m_stars = "";
+            const m_note = m.note || 5;
+            for (let i = 0; i < 5; i++) { m_stars += (i < m_note) ? "★" : "☆"; }
+
             html += `
-                <div class="card sn-card ${isTVCat ? 'landscape' : ''}" tabindex="0" onclick="${isTVCat ? `playMovie(${playlistData.indexOf(m)})` : `openDetails(${playlistData.indexOf(m)})`}">
+                <div class="card sn-card ${isTVCat ? 'landscape' : ''}" tabindex="0" onclick="${clickAction}">
                     <div class="btn-fav-card ${is_fav ? 'is-fav' : ''}" onclick="event.stopPropagation(); toggleFav('${m.t.replace(/'/g, "\\'")}');">${is_fav ? '❤️' : '♡'}</div>
-                    ${!isTVCat ? `<div class="card-rating">${m_stars}</div>` : ''}
-                    <img src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" loading="lazy" onload="this.classList.add('loaded')">
+                    ${!isTVCat ? `<div class="card-rating">${m_stars}</div>' : ''}
+                    <img src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" loading="lazy" decoding="async" onerror="handleImageError(this)" onload="this.classList.add('loaded')">${pct}
                     <div class="card-name">${m.t}</div>
                 </div>`;
         });
-        html += `</div></div>`;
+        html += `</div><div class="nav-arrow arrow-right" onclick="scrollSide(this, 400)">›</div></div>`;
         cont.innerHTML += html;
     });
 
     if (typeof updateSpatialNav === 'function') setTimeout(updateSpatialNav, 500);
 }
+
 
 
 function openSeries(name) {
