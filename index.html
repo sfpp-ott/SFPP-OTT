@@ -906,7 +906,7 @@ function render(search = "") {
         let html = `<div class="category-title">${c}</div><div class="category-row"><div class="carousel">`;
         filtered.forEach(m => {
             html += `
-                <div class="card" tabindex="0" onclick="openDetails(${playlistData.indexOf(m)})">
+                <div class="card sn-card" tabindex="0" onclick="openDetails(${playlistData.indexOf(m)})">
                     <img src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" loading="lazy" onload="this.classList.add('loaded')">
                     <div class="card-name">${m.t}</div>
                 </div>`;
@@ -914,8 +914,11 @@ function render(search = "") {
         html += `</div></div>`;
         cont.innerHTML += html;
     });
+    
+    if (typeof updateSpatialNav === 'function') {
+        setTimeout(updateSpatialNav, 500);
+    }
 }
-
 
 
 function openSeries(name) {
