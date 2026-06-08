@@ -700,8 +700,13 @@ async function loadPlaylist() {
     } catch (e) {
         console.error("Erreur playlist", e);
     } finally {
-        // CE BLOC GARANTIT QUE LE CHARGEMENT DISPARAÎT TOUJOURS
-        render(); 
+        // LE BLOC QUI FORCE LA DISPARITION DU CHARGEMENT QUOI QU'IL ARRIVE
+        try {
+            render(); 
+        } catch(err) {
+            console.error("Erreur dans render", err);
+        }
+        
         const loader = document.getElementById('global-loader');
         if (loader) {
             loader.style.opacity = '0';
@@ -735,7 +740,7 @@ function openDetails(idx) {
     let castHtml = "";
     if (m.actors_pics && m.actors_pics.length > 0) {
         castHtml = m.actors_pics.map(a => `
-                <div class="actor-item" onclick="searchByActor('${a.name.replace(/'/g, "\\'")}')" title="Voir les films avec ${a.name}">
+                <div class="actor-item" onclick="searchByActor('${String(a.name).replace(/'/g, "\\'")}')" title="Voir les films avec ${a.name}">
                     <img src="${a.img || 'https://via.placeholder.com/80x80/222/fff?text=?'}" onerror="handleImageError(this)" loading="lazy" decoding="async">
                     <div class="actor-name">${a.name}</div>
                 </div>
@@ -770,7 +775,7 @@ function openDetails(idx) {
         
         return `
         <div class="actor-item sn-card" style="flex:0 0 120px; position:relative;" tabindex="0" onclick="openDetails(${playlistData.indexOf(s)})">
-            <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${s.t.replace(/'/g, "\\'").replace(/"/g, '&quot;')}');">${heartIcon}</div>
+            <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${String(s.t).replace(/'/g, "\\'").replace(/"/g, '&quot;')}');">${heartIcon}</div>
             <div class="card-rating">${s_stars}</div>
             <img src="${s.img || 'https://via.placeholder.com/110x160/222/fff?text=SFPP'}" style="border-radius:4px; height:160px; width:110px; object-fit:cover;" loading="lazy" decoding="async" onerror="handleImageError(this)" onload="this.classList.add('loaded')">
             <div class="actor-name">${s.t}</div>
@@ -820,7 +825,7 @@ function initProfiles() {
     ];
     const list = document.getElementById('profile-list');
     list.innerHTML = profiles.map(p => `
-        <div class="profile-item" onclick="handleProfileClick(${p.id}, '${p.name.replace(/'/g, "\\'")}', '${p.icon}')" tabindex="0">
+        <div class="profile-item" onclick="handleProfileClick(${p.id}, '${String(p.name).replace(/'/g, "\\'")}', '${p.icon}')" tabindex="0">
             <div class="profile-avatar" style="background:${p.color}">${p.icon}</div>
             <div class="edit-icon">✏️</div>
             <div class="profile-name">${p.name}</div>
@@ -879,79 +884,12 @@ function saveP() {
 function scrollSide(btn, amt) { const car = btn.parentElement.querySelector('.carousel'); car.scrollBy({ left: amt, behavior: 'smooth' }); }
 
 function render(search = "") {
-    try {
-        const cont = document.getElementById('categories-container');
-        const histSec = document.getElementById('history-sec');
-        const histCont = document.getElementById('history-container');
-        
-        if(!cont || !histSec || !histCont) return;
-
-        cont.innerHTML = ""; histCont.innerHTML = "";
-        const s = search.toLowerCase();
-
-        if(s === "admin") { isAdminMode = true; document.getElementById('searchBar').value = ""; alert("Mode maintenance activé."); return render(""); }
-
-        const favs = JSON.parse(localStorage.getItem('sfpp_fav_' + currentProfile) || "[]");
-        const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
-        
-        let data = playlistData || [];
-        if(currentView === 'movies') data = data.filter(m => m.cat && !m.cat.includes("SÉRIES"));
-        else if(currentView === 'series') data = data.filter(m => m.cat && m.cat.includes("SÉRIES"));
-        else if(currentView === 'fav') data = data.filter(m => favs.includes(m.t));
-
-        // --- HISTORIQUE ---
-        if(currentProfile && s === "" && currentView === 'all') {
-            let history = JSON.parse(localStorage.getItem('sfpp_hist_' + currentProfile) || "[]");
-            if(history.length > 0) {
-                histSec.style.display = "block";
-                history.slice().reverse().forEach(title => {
-                    const m = playlistData.find(item => item.t === title);
-                    if(m) {
-                        const isTV = m.cat && (m.cat.toUpperCase().includes("DIRECT") || m.cat.toUpperCase().includes("TV"));
-                        const clickAction = isTV ? `playMovie(${playlistData.indexOf(m)})` : `openDetails(${playlistData.indexOf(m)})`;
-                        const is_fav = favs.includes(m.t);
-                        const heartClass = is_fav ? 'is-fav' : '';
-                        const heartIcon = is_fav ? '❤️' : '♡';
-                        const pct = (prog[m.t] && prog[m.t].p > 1) ? `<div class="prog-bg"><div class="prog-fill" style="width:${prog[m.t].p}%"></div></div>` : "";
-
-                        let m_stars = "";
-                        const m_note = m.note || 5;
-                        for (let i = 0; i < 5; i++) { m_stars += (i < m_note) ? "★" : "☆"; }
-                        
-                        const ratingHtml = !isTV ? `<div class="card-rating">${m_stars}</div>` : "";
-
-                        histCont.innerHTML += `
-                            <div class="card sn-card ${isTV ? "landscape" : ""}" tabindex="0" onclick="${clickAction}">
-                                <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${m.t.replace(/'/g, "\\'").replace(/"/g, '&quot;')}');">${heartIcon}</div>
-                                ${ratingHtml}
-                                <img src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" loading="lazy" decoding="async" onerror="handleImageError(this)" onload="this.classList.add('loaded')">${pct}
-                                <div class="card-name">${m.t}</div>
-                            </div>`;
-                    }
-                });
-            } else histSec.style.display = "none";
-        } else histSec.style.display = "none";
-
-        // --- FILMS & GENRES ---
-        const allGenres = [];
-        data.forEach(m => { 
-            if(m.cat) { 
-                const genres = m.cat.split(',').map(g => g.trim().toUpperCase()); 
-                genres.forEach(g => { if(!allGenres.includes(g)) allGenres.push(g); }); 
-            } 
-        });
-
-        allGenres.sort().forEach(c => {
-            const filtered = data.filter(m => m.cat && m.cat.toUpperCase().includes(c) && (s === "" || m.t.toLowerCase().includes(s)));
-            if (filtered.length === 0) return;
-            const isTVCat = c.includes("DIRECT") || c.includes("TV");
-            
-            let html = `<div class="category-title">${c}</div><div class="category-row"><div class="nav-arrow arrow-left" onclick="scrollSide(this, -400)">‹</div><div class="carousel">`;
-            filtered.forEach(m => {
-function render(search = "") {
     const cont = document.getElementById('categories-container');
     const histSec = document.getElementById('history-sec');
     const histCont = document.getElementById('history-container');
+    
+    if(!cont || !histSec || !histCont) return;
+
     cont.innerHTML = ""; histCont.innerHTML = "";
     const s = search.toLowerCase();
 
@@ -960,12 +898,12 @@ function render(search = "") {
     const favs = JSON.parse(localStorage.getItem('sfpp_fav_' + currentProfile) || "[]");
     const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
     
-    let data = playlistData;
-    if(currentView === 'movies') data = playlistData.filter(m => m.cat && !m.cat.includes("SÉRIES"));
-    else if(currentView === 'series') data = playlistData.filter(m => m.cat && m.cat.includes("SÉRIES"));
-    else if(currentView === 'fav') data = playlistData.filter(m => favs.includes(m.t));
+    let data = playlistData || [];
+    if(currentView === 'movies') data = data.filter(m => m.cat && !m.cat.includes("SÉRIES"));
+    else if(currentView === 'series') data = data.filter(m => m.cat && m.cat.includes("SÉRIES"));
+    else if(currentView === 'fav') data = data.filter(m => favs.includes(m.t));
 
-    // HISTORIQUE
+    // --- HISTORIQUE ---
     if(currentProfile && s === "" && currentView === 'all') {
         let history = JSON.parse(localStorage.getItem('sfpp_hist_' + currentProfile) || "[]");
         if(history.length > 0) {
@@ -983,11 +921,13 @@ function render(search = "") {
                     let m_stars = "";
                     const m_note = m.note || 5;
                     for (let i = 0; i < 5; i++) { m_stars += (i < m_note) ? "★" : "☆"; }
+                    
+                    const ratingHtml = !isTV ? `<div class="card-rating">${m_stars}</div>` : "";
 
                     histCont.innerHTML += `
                         <div class="card sn-card ${isTV ? "landscape" : ""}" tabindex="0" onclick="${clickAction}">
-                            <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${String(m.t).replace(/'/g, "\\'")}');">${heartIcon}</div>
-                            ${!isTV ? `<div class="card-rating">${m_stars}</div>` : ''}
+                            <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${String(m.t).replace(/'/g, "\\'").replace(/"/g, '&quot;')}');">${heartIcon}</div>
+                            ${ratingHtml}
                             <img src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" loading="lazy" decoding="async" onerror="handleImageError(this)" onload="this.classList.add('loaded')">${pct}
                             <div class="card-name">${m.t}</div>
                         </div>`;
@@ -996,9 +936,14 @@ function render(search = "") {
         } else histSec.style.display = "none";
     } else histSec.style.display = "none";
 
-    // FILMS & GENRES
+    // --- FILMS & GENRES ---
     const allGenres = [];
-    data.forEach(m => { if(m.cat) { const genres = m.cat.split(',').map(g => g.trim().toUpperCase()); genres.forEach(g => { if(!allGenres.includes(g)) allGenres.push(g); }); } });
+    data.forEach(m => { 
+        if(m.cat) { 
+            const genres = m.cat.split(',').map(g => g.trim().toUpperCase()); 
+            genres.forEach(g => { if(!allGenres.includes(g)) allGenres.push(g); }); 
+        } 
+    });
 
     allGenres.sort().forEach(c => {
         const filtered = data.filter(m => m.cat && m.cat.toUpperCase().includes(c) && (s === "" || m.t.toLowerCase().includes(s)));
@@ -1011,16 +956,19 @@ function render(search = "") {
             const heartClass = is_fav ? 'is-fav' : '';
             const heartIcon = is_fav ? '❤️' : '♡';
             const clickAction = isTVCat ? `playMovie(${playlistData.indexOf(m)})` : `openDetails(${playlistData.indexOf(m)})`;
+            const pct = (prog[m.t] && prog[m.t].p > 1) ? `<div class="prog-bg"><div class="prog-fill" style="width:${prog[m.t].p}%"></div></div>` : "";
             
             let m_stars = "";
             const m_note = m.note || 5;
             for (let i = 0; i < 5; i++) { m_stars += (i < m_note) ? "★" : "☆"; }
+            
+            const ratingHtml = !isTVCat ? `<div class="card-rating">${m_stars}</div>` : "";
 
             html += `
                 <div class="card sn-card ${isTVCat ? 'landscape' : ''}" tabindex="0" onclick="${clickAction}">
-                    <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${String(m.t).replace(/'/g, "\\'")}');">${heartIcon}</div>
-                    ${!isTVCat ? `<div class="card-rating">${m_stars}</div>` : ''}
-                    <img src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" loading="lazy" decoding="async" onerror="handleImageError(this)" onload="this.classList.add('loaded')">
+                    <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${String(m.t).replace(/'/g, "\\'").replace(/"/g, '&quot;')}');">${heartIcon}</div>
+                    ${ratingHtml}
+                    <img src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" loading="lazy" decoding="async" onerror="handleImageError(this)" onload="this.classList.add('loaded')">${pct}
                     <div class="card-name">${m.t}</div>
                 </div>`;
         });
@@ -1032,7 +980,6 @@ function render(search = "") {
         setTimeout(updateSpatialNav, 500);
     }
 }
-
 
 function openSeries(name) {
     history.pushState({ overlay: 'series' }, "");
