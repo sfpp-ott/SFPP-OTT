@@ -276,7 +276,7 @@
 </head>
 <body oncontextmenu="return false;"> 
 
-<div id="global-loader" style="display: none;">
+<div id="global-loader" style="display: flex;">
     <div class="spinner"></div>
     <div class="loader-text">CHARGEMENT DE SFPP ELITE...</div>
 </div>
@@ -700,13 +700,7 @@ async function loadPlaylist() {
     } catch (e) {
         console.error("Erreur playlist", e);
     } finally {
-        // LE BLOC QUI FORCE LA DISPARITION DU CHARGEMENT QUOI QU'IL ARRIVE
-        try {
-            render(); 
-        } catch(err) {
-            console.error("Erreur dans render", err);
-        }
-        
+        try { render(); } catch(err) { console.error("Erreur render", err); }
         const loader = document.getElementById('global-loader');
         if (loader) {
             loader.style.opacity = '0';
@@ -740,7 +734,7 @@ function openDetails(idx) {
     let castHtml = "";
     if (m.actors_pics && m.actors_pics.length > 0) {
         castHtml = m.actors_pics.map(a => `
-                <div class="actor-item" onclick="searchByActor('${String(a.name).replace(/'/g, "\\'")}')" title="Voir les films avec ${a.name}">
+                <div class="actor-item sn-card" onclick="searchByActor('${String(a.name).replace(/'/g, "\\'")}')" tabindex="0" title="Voir les films avec ${a.name}">
                     <img src="${a.img || 'https://via.placeholder.com/80x80/222/fff?text=?'}" onerror="handleImageError(this)" loading="lazy" decoding="async">
                     <div class="actor-name">${a.name}</div>
                 </div>
@@ -785,6 +779,10 @@ function openDetails(idx) {
 
     document.getElementById('details-overlay').style.display = 'flex';
     document.getElementById('details-play-btn').focus();
+    
+    if (typeof updateSpatialNav === 'function') {
+        setTimeout(updateSpatialNav, 100);
+    }
 }
 
 window.searchByActor = function(actorName) {
@@ -825,7 +823,7 @@ function initProfiles() {
     ];
     const list = document.getElementById('profile-list');
     list.innerHTML = profiles.map(p => `
-        <div class="profile-item" onclick="handleProfileClick(${p.id}, '${String(p.name).replace(/'/g, "\\'")}', '${p.icon}')" tabindex="0">
+        <div class="profile-item sn-card" onclick="handleProfileClick(${p.id}, '${String(p.name).replace(/'/g, "\\'")}', '${p.icon}')" tabindex="0">
             <div class="profile-avatar" style="background:${p.color}">${p.icon}</div>
             <div class="edit-icon">✏️</div>
             <div class="profile-name">${p.name}</div>
@@ -887,10 +885,9 @@ function render(search = "") {
     const cont = document.getElementById('categories-container');
     const histSec = document.getElementById('history-sec');
     const histCont = document.getElementById('history-container');
-    
-    if(!cont || !histSec || !histCont) return;
-
-    cont.innerHTML = ""; histCont.innerHTML = "";
+    if (!cont) return;
+    cont.innerHTML = ""; 
+    if (histCont) histCont.innerHTML = "";
     const s = search.toLowerCase();
 
     if(s === "admin") { isAdminMode = true; document.getElementById('searchBar').value = ""; alert("Mode maintenance activé."); return render(""); }
@@ -941,12 +938,12 @@ function render(search = "") {
     data.forEach(m => { 
         if(m.cat) { 
             const genres = m.cat.split(',').map(g => g.trim().toUpperCase()); 
-            genres.forEach(g => { if(!allGenres.includes(g)) allGenres.push(g); }); 
+            genres.forEach(g => { if(g && !allGenres.includes(g)) allGenres.push(g); }); 
         } 
     });
 
     allGenres.sort().forEach(c => {
-        const filtered = data.filter(m => m.cat && m.cat.toUpperCase().includes(c) && (s === "" || m.t.toLowerCase().includes(s)));
+        const filtered = data.filter(m => m.cat && m.cat.toUpperCase().includes(c) && (s === "" || String(m.t).toLowerCase().includes(s)));
         if (filtered.length === 0) return;
         const isTVCat = c.includes("DIRECT") || c.includes("TV");
         
@@ -985,13 +982,13 @@ function openSeries(name) {
     history.pushState({ overlay: 'series' }, "");
     const overlay = document.getElementById('series-overlay');
     const content = document.getElementById('series-detail-content');
-    const eps = playlistData.filter(m => m.t.startsWith(name));
+    const eps = playlistData.filter(m => String(m.t).startsWith(name));
     overlay.style.display = 'block';
     let html = `<div class="overlay-header"><img src="${eps[0].img || 'https://via.placeholder.com/120x180/222/fff?text=SFPP'}" class="overlay-img" onerror="handleImageError(this)" loading="lazy" decoding="async"><div><h2>${name}</h2></div></div>`;
     const seasons = {};
     const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
     eps.forEach(ep => {
-        const sMatch = ep.t.match(/S(\d{2})/);
+        const sMatch = String(ep.t).match(/S(\d{2})/);
         const sNum = sMatch ? sMatch[1] : "01";
         if(!seasons[sNum]) seasons[sNum] = [];
         seasons[sNum].push(ep);
@@ -999,7 +996,7 @@ function openSeries(name) {
     Object.keys(seasons).sort().forEach(s => {
         html += `<div class="season-title">SAISON ${s}</div>`;
         seasons[s].forEach(ep => {
-            const epName = ep.t.split(' - ')[1] || ep.t;
+            const epName = String(ep.t).split(' - ')[1] || ep.t;
             const pct = (prog[ep.t] && prog[ep.t].p > 1) ? `<div style="height:3px; background:#444; width:100px; margin-top:5px;"><div style="height:100%; background:var(--accent); width:${prog[ep.t].p}%"></div></div>` : "";
             html += `<div class="episode-item sn-card" onclick="playMovie(${playlistData.indexOf(ep)});" tabindex="0">
                         <div style="flex:1"><b>${epName}</b>${pct}</div>
@@ -1008,6 +1005,10 @@ function openSeries(name) {
         });
     });
     content.innerHTML = html;
+    
+    if (typeof updateSpatialNav === 'function') {
+        setTimeout(updateSpatialNav, 100);
+    }
 }
 
 function playMovie(idx) {
@@ -1069,10 +1070,10 @@ function playMovie(idx) {
 }
 
 function playNextEpisode() {
-    const parts = currentPlayingTitle.match(/(.*[SE])(\d+)(.*)/i);
+    const parts = String(currentPlayingTitle).match(/(.*[SE])(\d+)(.*)/i);
     if (!parts) return;
     const nextTitleSearch = (parts[1] + (parseInt(parts[2]) + 1).toString().padStart(2, '0')).toUpperCase();
-    const nextIdx = playlistData.findIndex(m => m.t.toUpperCase().includes(nextTitleSearch));
+    const nextIdx = playlistData.findIndex(m => String(m.t).toUpperCase().includes(nextTitleSearch));
     if (nextIdx !== -1) playMovie(nextIdx);
 }
 
@@ -1138,6 +1139,7 @@ if ('serviceWorker' in navigator) {
     });
 }
 </script>
+
     <style>
         .sn-focused {
             outline: 5px solid #e50914 !important;
@@ -1155,7 +1157,7 @@ if ('serviceWorker' in navigator) {
         function updateSpatialNav() {
             SpatialNavigation.clear();
             SpatialNavigation.add({
-                selector: '.nav-btn, .sn-card, .actor-item, .episode-item, button, input',
+                selector: '.nav-btn, .sn-card, .actor-item, .episode-item, .profile-item, button, input',
                 rememberSource: true
             });
             SpatialNavigation.makeFocusable();
