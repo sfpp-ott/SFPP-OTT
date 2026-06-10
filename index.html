@@ -22,7 +22,6 @@
         :root { --accent: #e50914; --gold: #ffcc00; --bg: #050505; }
         body { background: var(--bg); color: white; font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; padding-bottom: 50px; -webkit-user-select: none; user-select: none; }
         
-        /* OPTIMISATION TV : Focus allégé sans agrandissement pour ne pas faire ramer */
         [tabindex="0"]:focus {
             outline: 4px solid white !important;
             outline-offset: -2px;
@@ -31,7 +30,6 @@
             box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
         }
 
-        /* --- ÉCRAN DE CHARGEMENT GLOBAL --- */
         #global-loader {
             position: fixed; inset: 0; background: var(--bg); z-index: 999999;
             display: flex; flex-direction: column; align-items: center; justify-content: center;
@@ -171,10 +169,6 @@
             border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 16px; 
             display: flex; align-items: center; gap: 10px;
         }
-        .btn-play-main:focus {
-            background: white !important;
-            color: black !important;
-        }
 
         .btn-fav-details {
             background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.3); padding: 15px 25px; 
@@ -206,11 +200,10 @@
         .category-row { position: relative; width: 100%; margin-bottom: 20px; }
         .category-title { font-size: 18px; font-weight: bold; margin: 20px 4% 10px; color: #fff; text-transform: uppercase; }
         
-        /* OPTIMISATION TV : Accélération matérielle du défilement */
         .carousel { 
             display: flex; overflow-x: auto; gap: 12px; padding: 0 4% 10px; 
             scrollbar-width: none; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; 
-            transform: translateZ(0); will-change: scroll-position;
+            transform: translateZ(0);
         }
         
         .nav-arrow { position: absolute; top: 0; bottom: 30px; width: 50px; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; z-index: 10; cursor: pointer; color: white; font-size: 30px; opacity: 0; transition: opacity 0.3s; }
@@ -218,16 +211,13 @@
         .arrow-left { left: 0; }
         .arrow-right { right: 0; }
 
-        /* OPTIMISATION TV : Accélération des cartes */
         .card { 
             flex: 0 0 150px; width: 150px; cursor: pointer; position: relative; display: flex; flex-direction: column; 
-            transform: translateZ(0); will-change: transform; backface-visibility: hidden;
+            transform: translateZ(0); backface-visibility: hidden;
         }
-        /* SÉCURITÉ ET ANIMATION DES JAQUETTES (OPTIMISÉ GPU) */
         .card img { 
             width: 150px !important; height: 225px !important; object-fit: cover !important; 
             border-radius: 4px; background: #222; display: block; transition: opacity 0.4s ease-in-out; opacity: 0; 
-            transform: translateZ(0);
         }
         .card img.loaded { opacity: 1; }
         .img-fallback { background: #1a1a1a !important; border: 1px solid #333; }
@@ -240,22 +230,18 @@
         .prog-bg { position: absolute; bottom: 25px; left: 0; width: 100%; height: 4px; background: rgba(255,255,255,0.2); border-radius: 0 0 4px 4px; overflow: hidden; }
         .prog-fill { height: 100%; background: var(--accent); transition: width 0.3s; }
 
-        /* --- STYLES FAV HEART ON CARD --- */
         .btn-fav-card {
             position: absolute; top: 10px; right: 10px; z-index: 10; background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.2);
-            border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 16px; transition: transform 0.2s, background 0.2s; backdrop-filter: blur(5px);
+            border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 16px;
         }
-        .btn-fav-card:active { transform: scale(0.9); }
         .btn-fav-card.is-fav { color: #e50914; background: rgba(0,0,0,0.7); }
         .btn-fav-card:not(.is-fav) { color: white; }
 
-        /* --- STYLES RATING ON CARD --- */
         .card-rating {
             position: absolute; bottom: 35px; left: 8px; z-index: 10; background: rgba(0,0,0,0.6);
-            padding: 2px 6px; border-radius: 4px; font-size: 10px; color: var(--gold); font-weight: bold; backdrop-filter: blur(4px); pointer-events: none;
+            padding: 2px 6px; border-radius: 4px; font-size: 10px; color: var(--gold); font-weight: bold; pointer-events: none;
         }
 
-        /* --- STYLES EPG REELS --- */
         .epg-info { font-size: 10px; color: #e50914; margin-top: 4px; text-align: center; font-weight: bold; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; width: 100%; }
         .epg-time { font-size: 9px; color: #777; text-align: center; display: block; }
 
@@ -276,7 +262,7 @@
 </head>
 <body oncontextmenu="return false;"> 
 
-<div id="global-loader" style="display: flex;">
+<div id="global-loader" style="display: none;">
     <div class="spinner"></div>
     <div class="loader-text">CHARGEMENT DE SFPP ELITE...</div>
 </div>
@@ -433,7 +419,7 @@
         const y = now.getFullYear();
         const m = String(now.getMonth() + 1).padStart(2, '0');
         const d = String(now.getDate()).padStart(2, '0');
-        const todayStr = `${y}-${m}-${d}`;
+        const todayStr = y + '-' + m + '-' + d;
         
         if (todayStr >= expireValue) {
             alert("Accès expiré le " + expireValue);
@@ -491,7 +477,7 @@
                 const banner = document.getElementById('expiration-banner');
                 if(diffDays > 0 && diffDays <= 5) {
                     banner.style.display = 'block';
-                    banner.innerHTML = `⚠️ Fin d'accès dans ${diffDays} jour(s).`;
+                    banner.innerHTML = "⚠️ Fin d'accès dans " + diffDays + " jour(s).";
                 } else banner.style.display = 'none';
             }
             
@@ -512,7 +498,7 @@
         const user = auth.currentUser;
         if(user) {
             const snap = await get(ref(db, 'users_data/' + user.uid + '/expire'));
-            document.getElementById('header-logo').innerHTML = `SFPP | ${icon} <span style="font-size:10px; color:#666;">(${snap.val()})</span>`;
+            document.getElementById('header-logo').innerHTML = 'SFPP | ' + icon + ' <span style="font-size:10px; color:#666;">(' + snap.val() + ')</span>';
         }
         render();
         pushInitialState();
@@ -529,7 +515,7 @@
     };
 
     window.reportFilm = (title, lineInfo) => {
-        if(confirm(`Voulez-vous vraiment signaler "${title}" comme hors service ?`)) {
+        if(confirm("Voulez-vous vraiment signaler ce film comme hors service ?")) {
             const reportRef = ref(db, 'signalements');
             const newReportRef = push(reportRef);
             set(newReportRef, {
@@ -542,13 +528,21 @@
     };
 
     function pushInitialState() {
-        if (window.history.state?.overlay !== 'home') {
+        if (window.history && window.history.state && window.history.state.overlay !== 'home') {
+            window.history.pushState({ overlay: 'home' }, "");
+        } else if (!window.history.state) {
             window.history.pushState({ overlay: 'home' }, "");
         }
     }
 </script>
 
 <script>
+// Fonction utilitaire pour éviter les plantages avec les guillemets
+function safeStr(str) {
+    if (!str) return "";
+    return String(str).replace(/'/g, "\\'").replace(/"/g, "&quot;");
+}
+
 window.handleImageError = function(img) {
     img.onerror = null;
     img.src = 'https://via.placeholder.com/150x225/222/fff?text=Indisponible';
@@ -560,7 +554,6 @@ document.onkeydown = function(e) {
         return false;
     }
 };
-setInterval(function() { (function() { debugger; }).call(); }, 5000);
 
 let player, playlistData = [], currentProfile = null, isEditMode = false, currentView = 'all', currentPlayingTitle = "", exitConfirmed = false;
 let isAdminMode = false, epgData = {}, hls; 
@@ -569,7 +562,7 @@ async function fetchEPG() {
     try {
         const response = await fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent('https://iptv-org.github.io/epg/guides/fr/telerama.fr.json'));
         const data = await response.json();
-        if (data.channels) {
+        if (data && data.channels) {
             data.channels.forEach(ch => {
                 epgData[ch.name.toUpperCase()] = ch.programs || [];
             });
@@ -585,29 +578,25 @@ window.addEventListener('popstate', function (event) {
     const seriesOverlay = document.getElementById('series-overlay');
     const playerSection = document.getElementById('player-section');
 
-    if (detailsOverlay.style.display === 'flex') {
+    if (detailsOverlay && detailsOverlay.style.display === 'flex') {
         detailsOverlay.style.display = 'none';
         document.getElementById('details-trailer-box').innerHTML = "";
         return;
     }
-    if (seriesOverlay.style.display === 'block') {
+    if (seriesOverlay && seriesOverlay.style.display === 'block') {
         seriesOverlay.style.display = 'none';
         return;
     }
-    if (playerSection.style.display === 'block') {
+    if (playerSection && playerSection.style.display === 'block') {
         saveP(); 
         player.pause(); 
         player.src("");
-        
-        // 1. On cache le lecteur IMMÉDIATEMENT (Correction TV)
         playerSection.style.display = 'none';
         
-        // 2. On fait le calcul en arrière-plan
         setTimeout(() => {
             if(hls) { hls.destroy(); hls = null; }
             render();
         }, 100);
-        
         return;
     }
 
@@ -627,80 +616,85 @@ async function loadPlaylist() {
         playlistData = await response.json(); 
         
         const apiKey = "ec1c8fecd38d1cc5a27f15766f0848d5";
-        
         let metadataCache = JSON.parse(localStorage.getItem('sfpp_metadata_cache') || "{}");
         let cacheUpdated = false;
 
-        const promises = playlistData.map(async (m, index) => {
-            m.original_index = index;
-            if (m.id_tmdb && (!m.img || !m.desc || !m.trailer)) {
-                
-                if (metadataCache[m.id_tmdb]) {
-                    const c = metadataCache[m.id_tmdb];
-                    m.img = m.img || c.img;
-                    m.bg = m.bg || c.bg;
-                    m.desc = m.desc || c.desc;
-                    m.year = m.year || c.year;
-                    m.note = m.note || c.note;
-                    m.cat = m.cat || c.cat;
-                    m.trailer = m.trailer || c.trailer;
-                    m.actors_pics = m.actors_pics || c.actors_pics;
-                } else {
-                    try {
-                        const url = `https://api.themoviedb.org/3/movie/${m.id_tmdb}?api_key=${apiKey}&language=fr-FR&append_to_response=videos,credits&include_video_language=en,fr,null`;
-                        const res = await fetch(url);
-                        const data = await res.json();
-                        
-                        m.img = m.img || `https://image.tmdb.org/t/p/w500${data.poster_path}`;
-                        m.bg = m.bg || `https://image.tmdb.org/t/p/original${data.backdrop_path}`;
-                        m.desc = m.desc || data.overview;
-                        m.year = m.year || (data.release_date ? data.release_date.split('-')[0] : "2025");
-                        m.note = m.note || Math.round(data.vote_average / 2);
-
-                        if (data.genres && data.genres.length > 0) {
-                            m.cat = data.genres.map(g => g.name.toUpperCase()).join(', ');
-                        }
-
-                        if (!m.trailer && data.videos && data.videos.results.length > 0) {
-                            const video = data.videos.results.find(v => 
-                                (v.type === "Trailer" || v.type === "Teaser") && v.site === "YouTube"
-                            ) || data.videos.results[0];
+        if (playlistData && playlistData.length > 0) {
+            const promises = playlistData.map(async (m, index) => {
+                m.original_index = index;
+                if (m.id_tmdb && (!m.img || !m.desc || !m.trailer)) {
+                    if (metadataCache[m.id_tmdb]) {
+                        const c = metadataCache[m.id_tmdb];
+                        m.img = m.img || c.img;
+                        m.bg = m.bg || c.bg;
+                        m.desc = m.desc || c.desc;
+                        m.year = m.year || c.year;
+                        m.note = m.note || c.note;
+                        m.cat = m.cat || c.cat;
+                        m.trailer = m.trailer || c.trailer;
+                        m.actors_pics = m.actors_pics || c.actors_pics;
+                    } else {
+                        try {
+                            const url = "https://api.themoviedb.org/3/movie/" + m.id_tmdb + "?api_key=" + apiKey + "&language=fr-FR&append_to_response=videos,credits&include_video_language=en,fr,null";
+                            const res = await fetch(url);
+                            const data = await res.json();
                             
-                            if (video) m.trailer = video.key;
-                        }
+                            m.img = m.img || "https://image.tmdb.org/t/p/w500" + data.poster_path;
+                            m.bg = m.bg || "https://image.tmdb.org/t/p/original" + data.backdrop_path;
+                            m.desc = m.desc || data.overview;
+                            m.year = m.year || (data.release_date ? data.release_date.split('-')[0] : "2025");
+                            m.note = m.note || Math.round(data.vote_average / 2);
 
-                        if (!m.actors_pics && data.credits && data.credits.cast) {
-                            m.actors_pics = data.credits.cast.slice(0, 10).map(a => ({
-                                name: a.name,
-                                img: `https://image.tmdb.org/t/p/w185${a.profile_path}`
-                            }));
-                        }
+                            if (data.genres && data.genres.length > 0) {
+                                m.cat = data.genres.map(g => g.name.toUpperCase()).join(', ');
+                            }
 
-                        metadataCache[m.id_tmdb] = {
-                            img: m.img, bg: m.bg, desc: m.desc, year: m.year, 
-                            note: m.note, cat: m.cat, trailer: m.trailer, actors_pics: m.actors_pics
-                        };
-                        cacheUpdated = true;
+                            if (!m.trailer && data.videos && data.videos.results && data.videos.results.length > 0) {
+                                const video = data.videos.results.find(v => 
+                                    (v.type === "Trailer" || v.type === "Teaser") && v.site === "YouTube"
+                                ) || data.videos.results[0];
+                                
+                                if (video) m.trailer = video.key;
+                            }
 
-                    } catch (e) { console.log("Erreur TMDB ID: " + m.id_tmdb); }
+                            if (!m.actors_pics && data.credits && data.credits.cast) {
+                                m.actors_pics = data.credits.cast.slice(0, 10).map(a => ({
+                                    name: a.name,
+                                    img: "https://image.tmdb.org/t/p/w185" + a.profile_path
+                                }));
+                            }
+
+                            metadataCache[m.id_tmdb] = {
+                                img: m.img, bg: m.bg, desc: m.desc, year: m.year, 
+                                note: m.note, cat: m.cat, trailer: m.trailer, actors_pics: m.actors_pics
+                            };
+                            cacheUpdated = true;
+
+                        } catch (e) { console.log("Erreur TMDB ID"); }
+                    }
                 }
-            }
-        });
+            });
 
-        await Promise.all(promises);
+            await Promise.all(promises);
 
-        if (cacheUpdated) {
-            try {
-                localStorage.setItem('sfpp_metadata_cache', JSON.stringify(metadataCache));
-            } catch (e) {
-                console.warn("Mémoire locale pleine", e);
+            if (cacheUpdated) {
+                try {
+                    localStorage.setItem('sfpp_metadata_cache', JSON.stringify(metadataCache));
+                } catch (e) {
+                    console.warn("Mémoire locale pleine");
+                }
             }
         }
 
     } catch (e) {
         console.error("Erreur playlist", e);
     } finally {
-        try { render(); } catch(err) { console.error("Erreur render", err); }
+        try { 
+            render(); 
+        } catch(err) { 
+            console.error("Erreur de rendu final:", err); 
+        }
+        
         const loader = document.getElementById('global-loader');
         if (loader) {
             loader.style.opacity = '0';
@@ -710,20 +704,22 @@ async function loadPlaylist() {
 }
 
 function openDetails(idx) {
-    if (window.history.state?.overlay !== 'details') {
+    if (!window.history.state || window.history.state.overlay !== 'details') {
         history.pushState({ overlay: 'details' }, "");
     }
     const m = playlistData[idx];
+    if(!m) return;
+    
     const backdrop = m.bg || m.img;
-    document.getElementById('details-header-bg').style.backgroundImage = `url('${backdrop}')`;
+    document.getElementById('details-header-bg').style.backgroundImage = "url('" + backdrop + "')";
     document.getElementById('details-title').innerText = m.t;
     document.getElementById('details-desc').innerText = m.desc || "Aucun résumé disponible.";
     document.getElementById('details-meta-year').innerText = m.year || "2024";
-    document.getElementById('details-meta-cat').innerText = m.cat;
+    document.getElementById('details-meta-cat').innerText = m.cat || "";
 
     const lineInfo = m.num ? m.num : (m.original_index * 7) + 2;
     const numTag = document.getElementById('details-meta-num');
-    numTag.innerText = `[L${lineInfo}]`;
+    numTag.innerText = "[L" + lineInfo + "]";
     numTag.style.display = isAdminMode ? "inline" : "none";
 
     const note = m.note || 5; 
@@ -734,7 +730,7 @@ function openDetails(idx) {
     let castHtml = "";
     if (m.actors_pics && m.actors_pics.length > 0) {
         castHtml = m.actors_pics.map(a => `
-                <div class="actor-item sn-card" onclick="searchByActor('${String(a.name).replace(/'/g, "\\'")}')" tabindex="0" title="Voir les films avec ${a.name}">
+                <div class="actor-item sn-card" onclick="searchByActor('${safeStr(a.name)}')" tabindex="0">
                     <img src="${a.img || 'https://via.placeholder.com/80x80/222/fff?text=?'}" onerror="handleImageError(this)" loading="lazy" decoding="async">
                     <div class="actor-name">${a.name}</div>
                 </div>
@@ -743,7 +739,7 @@ function openDetails(idx) {
     document.getElementById('details-meta-cast').innerHTML = castHtml;
 
     document.getElementById('details-trailer-box').innerHTML = m.trailer ? 
-        `<iframe width="100%" height="100%" src="https://www.youtube.com/embed/${m.trailer}?rel=0" frameborder="0" allowfullscreen></iframe>` : "";
+        '<iframe width="100%" height="100%" src="https://www.youtube.com/embed/' + m.trailer + '?rel=0" frameborder="0" allowfullscreen></iframe>' : "";
     
     document.getElementById('details-play-btn').onclick = () => { playMovie(idx); };
     document.getElementById('details-fav-btn').onclick = () => { toggleFav(m.t); };
@@ -769,7 +765,7 @@ function openDetails(idx) {
         
         return `
         <div class="actor-item sn-card" style="flex:0 0 120px; position:relative;" tabindex="0" onclick="openDetails(${playlistData.indexOf(s)})">
-            <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${String(s.t).replace(/'/g, "\\'").replace(/"/g, '&quot;')}');">${heartIcon}</div>
+            <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${safeStr(s.t)}');">${heartIcon}</div>
             <div class="card-rating">${s_stars}</div>
             <img src="${s.img || 'https://via.placeholder.com/110x160/222/fff?text=SFPP'}" style="border-radius:4px; height:160px; width:110px; object-fit:cover;" loading="lazy" decoding="async" onerror="handleImageError(this)" onload="this.classList.add('loaded')">
             <div class="actor-name">${s.t}</div>
@@ -781,7 +777,7 @@ function openDetails(idx) {
     document.getElementById('details-play-btn').focus();
     
     if (typeof updateSpatialNav === 'function') {
-        setTimeout(updateSpatialNav, 100);
+        setTimeout(updateSpatialNav, 200);
     }
 }
 
@@ -823,7 +819,7 @@ function initProfiles() {
     ];
     const list = document.getElementById('profile-list');
     list.innerHTML = profiles.map(p => `
-        <div class="profile-item sn-card" onclick="handleProfileClick(${p.id}, '${String(p.name).replace(/'/g, "\\'")}', '${p.icon}')" tabindex="0">
+        <div class="profile-item sn-card" onclick="handleProfileClick(${p.id}, '${safeStr(p.name)}', '${p.icon}')" tabindex="0">
             <div class="profile-avatar" style="background:${p.color}">${p.icon}</div>
             <div class="edit-icon">✏️</div>
             <div class="profile-name">${p.name}</div>
@@ -882,109 +878,124 @@ function saveP() {
 function scrollSide(btn, amt) { const car = btn.parentElement.querySelector('.carousel'); car.scrollBy({ left: amt, behavior: 'smooth' }); }
 
 function render(search = "") {
-    const cont = document.getElementById('categories-container');
-    const histSec = document.getElementById('history-sec');
-    const histCont = document.getElementById('history-container');
-    if (!cont) return;
-    cont.innerHTML = ""; 
-    if (histCont) histCont.innerHTML = "";
-    const s = search.toLowerCase();
-
-    if(s === "admin") { isAdminMode = true; document.getElementById('searchBar').value = ""; alert("Mode maintenance activé."); return render(""); }
-
-    const favs = JSON.parse(localStorage.getItem('sfpp_fav_' + currentProfile) || "[]");
-    const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
-    
-    let data = playlistData || [];
-    if(currentView === 'movies') data = data.filter(m => m.cat && !m.cat.includes("SÉRIES"));
-    else if(currentView === 'series') data = data.filter(m => m.cat && m.cat.includes("SÉRIES"));
-    else if(currentView === 'fav') data = data.filter(m => favs.includes(m.t));
-
-    // --- HISTORIQUE ---
-    if(currentProfile && s === "" && currentView === 'all') {
-        let history = JSON.parse(localStorage.getItem('sfpp_hist_' + currentProfile) || "[]");
-        if(history.length > 0) {
-            histSec.style.display = "block";
-            history.slice().reverse().forEach(title => {
-                const m = playlistData.find(item => item.t === title);
-                if(m) {
-                    const isTV = m.cat && (m.cat.toUpperCase().includes("DIRECT") || m.cat.toUpperCase().includes("TV"));
-                    const clickAction = isTV ? `playMovie(${playlistData.indexOf(m)})` : `openDetails(${playlistData.indexOf(m)})`;
-                    const is_fav = favs.includes(m.t);
-                    const heartClass = is_fav ? 'is-fav' : '';
-                    const heartIcon = is_fav ? '❤️' : '♡';
-                    const pct = (prog[m.t] && prog[m.t].p > 1) ? `<div class="prog-bg"><div class="prog-fill" style="width:${prog[m.t].p}%"></div></div>` : "";
-
-                    let m_stars = "";
-                    const m_note = m.note || 5;
-                    for (let i = 0; i < 5; i++) { m_stars += (i < m_note) ? "★" : "☆"; }
-                    
-                    const ratingHtml = !isTV ? `<div class="card-rating">${m_stars}</div>` : "";
-
-                    histCont.innerHTML += `
-                        <div class="card sn-card ${isTV ? "landscape" : ""}" tabindex="0" onclick="${clickAction}">
-                            <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${String(m.t).replace(/'/g, "\\'").replace(/"/g, '&quot;')}');">${heartIcon}</div>
-                            ${ratingHtml}
-                            <img src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" loading="lazy" decoding="async" onerror="handleImageError(this)" onload="this.classList.add('loaded')">${pct}
-                            <div class="card-name">${m.t}</div>
-                        </div>`;
-                }
-            });
-        } else histSec.style.display = "none";
-    } else histSec.style.display = "none";
-
-    // --- FILMS & GENRES ---
-    const allGenres = [];
-    data.forEach(m => { 
-        if(m.cat) { 
-            const genres = m.cat.split(',').map(g => g.trim().toUpperCase()); 
-            genres.forEach(g => { if(g && !allGenres.includes(g)) allGenres.push(g); }); 
-        } 
-    });
-
-    allGenres.sort().forEach(c => {
-        const filtered = data.filter(m => m.cat && m.cat.toUpperCase().includes(c) && (s === "" || String(m.t).toLowerCase().includes(s)));
-        if (filtered.length === 0) return;
-        const isTVCat = c.includes("DIRECT") || c.includes("TV");
+    try {
+        const cont = document.getElementById('categories-container');
+        const histSec = document.getElementById('history-sec');
+        const histCont = document.getElementById('history-container');
         
-        let html = `<div class="category-title">${c}</div><div class="category-row"><div class="nav-arrow arrow-left" onclick="scrollSide(this, -400)">‹</div><div class="carousel">`;
-        filtered.forEach(m => {
-            const is_fav = favs.includes(m.t);
-            const heartClass = is_fav ? 'is-fav' : '';
-            const heartIcon = is_fav ? '❤️' : '♡';
-            const clickAction = isTVCat ? `playMovie(${playlistData.indexOf(m)})` : `openDetails(${playlistData.indexOf(m)})`;
-            const pct = (prog[m.t] && prog[m.t].p > 1) ? `<div class="prog-bg"><div class="prog-fill" style="width:${prog[m.t].p}%"></div></div>` : "";
-            
-            let m_stars = "";
-            const m_note = m.note || 5;
-            for (let i = 0; i < 5; i++) { m_stars += (i < m_note) ? "★" : "☆"; }
-            
-            const ratingHtml = !isTVCat ? `<div class="card-rating">${m_stars}</div>` : "";
+        if(!cont) return;
+        cont.innerHTML = ""; 
+        if(histCont) histCont.innerHTML = "";
 
-            html += `
-                <div class="card sn-card ${isTVCat ? 'landscape' : ''}" tabindex="0" onclick="${clickAction}">
-                    <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${String(m.t).replace(/'/g, "\\'").replace(/"/g, '&quot;')}');">${heartIcon}</div>
-                    ${ratingHtml}
-                    <img src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" loading="lazy" decoding="async" onerror="handleImageError(this)" onload="this.classList.add('loaded')">${pct}
-                    <div class="card-name">${m.t}</div>
-                </div>`;
+        const s = search ? String(search).toLowerCase() : "";
+
+        if(s === "admin") { isAdminMode = true; document.getElementById('searchBar').value = ""; alert("Mode maintenance activé."); return render(""); }
+
+        const favs = JSON.parse(localStorage.getItem('sfpp_fav_' + currentProfile) || "[]");
+        const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
+        
+        let data = playlistData || [];
+        if(currentView === 'movies') data = data.filter(m => m.cat && !m.cat.includes("SÉRIES"));
+        else if(currentView === 'series') data = data.filter(m => m.cat && m.cat.includes("SÉRIES"));
+        else if(currentView === 'fav') data = data.filter(m => m.t && favs.includes(m.t));
+
+        // --- HISTORIQUE ---
+        if(currentProfile && s === "" && currentView === 'all') {
+            let history = JSON.parse(localStorage.getItem('sfpp_hist_' + currentProfile) || "[]");
+            if(history.length > 0 && histSec && histCont) {
+                histSec.style.display = "block";
+                history.slice().reverse().forEach(title => {
+                    const m = playlistData.find(item => item.t === title);
+                    if(m) {
+                        const isTV = m.cat && (m.cat.toUpperCase().includes("DIRECT") || m.cat.toUpperCase().includes("TV"));
+                        const clickAction = isTV ? "playMovie(" + playlistData.indexOf(m) + ")" : "openDetails(" + playlistData.indexOf(m) + ")";
+                        const is_fav = favs.includes(m.t);
+                        const heartClass = is_fav ? 'is-fav' : '';
+                        const heartIcon = is_fav ? '❤️' : '♡';
+                        const pct = (prog[m.t] && prog[m.t].p > 1) ? '<div class="prog-bg"><div class="prog-fill" style="width:' + prog[m.t].p + '%"></div></div>' : "";
+
+                        let m_stars = "";
+                        const m_note = m.note || 5;
+                        for (let i = 0; i < 5; i++) { m_stars += (i < m_note) ? "★" : "☆"; }
+                        
+                        const ratingHtml = !isTV ? '<div class="card-rating">' + m_stars + '</div>' : "";
+
+                        histCont.innerHTML += `
+                            <div class="card sn-card ${isTV ? "landscape" : ""}" tabindex="0" onclick="${clickAction}">
+                                <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${safeStr(m.t)}');">${heartIcon}</div>
+                                ${ratingHtml}
+                                <img src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" loading="lazy" onerror="handleImageError(this)" onload="this.classList.add('loaded')">${pct}
+                                <div class="card-name">${m.t}</div>
+                            </div>`;
+                    }
+                });
+            } else if (histSec) {
+                histSec.style.display = "none";
+            }
+        } else if (histSec) {
+            histSec.style.display = "none";
+        }
+
+        // --- FILMS & GENRES ---
+        const allGenres = [];
+        data.forEach(m => { 
+            if(m.cat) { 
+                const genres = String(m.cat).split(',').map(g => g.trim().toUpperCase()); 
+                genres.forEach(g => { if(g && !allGenres.includes(g)) allGenres.push(g); }); 
+            } 
         });
-        html += `</div><div class="nav-arrow arrow-right" onclick="scrollSide(this, 400)">›</div></div>`;
-        cont.innerHTML += html;
-    });
 
-    if (typeof updateSpatialNav === 'function') {
-        setTimeout(updateSpatialNav, 500);
+        allGenres.sort().forEach(c => {
+            const filtered = data.filter(m => m.cat && m.cat.toUpperCase().includes(c) && (s === "" || String(m.t).toLowerCase().includes(s)));
+            if (filtered.length === 0) return;
+            const isTVCat = c.includes("DIRECT") || c.includes("TV");
+            
+            let html = '<div class="category-title">' + c + '</div><div class="category-row"><div class="nav-arrow arrow-left" onclick="scrollSide(this, -400)">‹</div><div class="carousel">';
+            filtered.forEach(m => {
+                const is_fav = favs.includes(m.t);
+                const heartClass = is_fav ? 'is-fav' : '';
+                const heartIcon = is_fav ? '❤️' : '♡';
+                const clickAction = isTVCat ? "playMovie(" + playlistData.indexOf(m) + ")" : "openDetails(" + playlistData.indexOf(m) + ")";
+                const pct = (prog[m.t] && prog[m.t].p > 1) ? '<div class="prog-bg"><div class="prog-fill" style="width:' + prog[m.t].p + '%"></div></div>' : "";
+                
+                let m_stars = "";
+                const m_note = m.note || 5;
+                for (let i = 0; i < 5; i++) { m_stars += (i < m_note) ? "★" : "☆"; }
+                
+                const ratingHtml = !isTVCat ? '<div class="card-rating">' + m_stars + '</div>' : "";
+
+                html += `
+                    <div class="card sn-card ${isTVCat ? 'landscape' : ''}" tabindex="0" onclick="${clickAction}">
+                        <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${safeStr(m.t)}');">${heartIcon}</div>
+                        ${ratingHtml}
+                        <img src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" loading="lazy" onerror="handleImageError(this)" onload="this.classList.add('loaded')">${pct}
+                        <div class="card-name">${m.t}</div>
+                    </div>`;
+            });
+            html += '</div><div class="nav-arrow arrow-right" onclick="scrollSide(this, 400)">›</div></div>';
+            cont.innerHTML += html;
+        });
+
+        if (typeof updateSpatialNav === 'function') {
+            setTimeout(updateSpatialNav, 500);
+        }
+    } catch(err) {
+        console.error("Erreur critique dans render:", err);
     }
 }
 
 function openSeries(name) {
-    history.pushState({ overlay: 'series' }, "");
+    if (!window.history.state || window.history.state.overlay !== 'series') {
+        history.pushState({ overlay: 'series' }, "");
+    }
     const overlay = document.getElementById('series-overlay');
     const content = document.getElementById('series-detail-content');
     const eps = playlistData.filter(m => String(m.t).startsWith(name));
+    if(!eps || eps.length === 0) return;
+    
     overlay.style.display = 'block';
-    let html = `<div class="overlay-header"><img src="${eps[0].img || 'https://via.placeholder.com/120x180/222/fff?text=SFPP'}" class="overlay-img" onerror="handleImageError(this)" loading="lazy" decoding="async"><div><h2>${name}</h2></div></div>`;
+    let html = '<div class="overlay-header"><img src="' + (eps[0].img || 'https://via.placeholder.com/120x180/222/fff?text=SFPP') + '" class="overlay-img" onerror="handleImageError(this)" loading="lazy"><div><h2>' + name + '</h2></div></div>';
+    
     const seasons = {};
     const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
     eps.forEach(ep => {
@@ -993,11 +1004,12 @@ function openSeries(name) {
         if(!seasons[sNum]) seasons[sNum] = [];
         seasons[sNum].push(ep);
     });
+    
     Object.keys(seasons).sort().forEach(s => {
-        html += `<div class="season-title">SAISON ${s}</div>`;
+        html += '<div class="season-title">SAISON ' + s + '</div>';
         seasons[s].forEach(ep => {
             const epName = String(ep.t).split(' - ')[1] || ep.t;
-            const pct = (prog[ep.t] && prog[ep.t].p > 1) ? `<div style="height:3px; background:#444; width:100px; margin-top:5px;"><div style="height:100%; background:var(--accent); width:${prog[ep.t].p}%"></div></div>` : "";
+            const pct = (prog[ep.t] && prog[ep.t].p > 1) ? '<div style="height:3px; background:#444; width:100px; margin-top:5px;"><div style="height:100%; background:var(--accent); width:' + prog[ep.t].p + '%"></div></div>' : "";
             html += `<div class="episode-item sn-card" onclick="playMovie(${playlistData.indexOf(ep)});" tabindex="0">
                         <div style="flex:1"><b>${epName}</b>${pct}</div>
                         <div style="color:var(--accent)">LECTURE ▶</div>
@@ -1007,13 +1019,16 @@ function openSeries(name) {
     content.innerHTML = html;
     
     if (typeof updateSpatialNav === 'function') {
-        setTimeout(updateSpatialNav, 100);
+        setTimeout(updateSpatialNav, 200);
     }
 }
 
 function playMovie(idx) {
-    history.replaceState({ overlay: 'player' }, "");
+    if (!window.history.state || window.history.state.overlay !== 'player') {
+        history.replaceState({ overlay: 'player' }, "");
+    }
     const m = playlistData[idx];
+    if(!m) return;
     currentPlayingTitle = m.t;
     document.getElementById('next-episode-btn').style.display = 'none';
 
@@ -1035,7 +1050,7 @@ function playMovie(idx) {
     pSection.style.display = 'block';
     
     const backdrop = m.bg || m.img;
-    document.getElementById('player-blur-bg').style.backgroundImage = `url('${backdrop}')`;
+    document.getElementById('player-blur-bg').style.backgroundImage = "url('" + backdrop + "')";
     player.poster(backdrop); 
     
     let decodedUrl = "";
@@ -1043,10 +1058,10 @@ function playMovie(idx) {
 
     const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
 
-    let type = decodedUrl.includes('.m3u8') ? 'application/x-mpegURL' : 'video/mp4';
+    let type = String(decodedUrl).includes('.m3u8') ? 'application/x-mpegURL' : 'video/mp4';
 
     if (type === 'application/x-mpegURL') {
-        if (Hls.isSupported()) {
+        if (typeof Hls !== 'undefined' && Hls.isSupported()) {
             hls = new Hls();
             hls.loadSource(decodedUrl);
             hls.attachMedia(document.querySelector('#main-video_html5_api'));
@@ -1065,8 +1080,6 @@ function playMovie(idx) {
         if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
         player.play();
     }
-    
-    player.src({ src: decodedUrl, type: type });
 }
 
 function playNextEpisode() {
@@ -1155,17 +1168,21 @@ if ('serviceWorker' in navigator) {
     <script src="https://cdn.jsdelivr.net/npm/spatial-navigation-js@1.0.1/spatial_navigation.min.js"></script>
     <script>
         function updateSpatialNav() {
-            SpatialNavigation.clear();
-            SpatialNavigation.add({
-                selector: '.nav-btn, .sn-card, .actor-item, .episode-item, .profile-item, button, input',
-                rememberSource: true
-            });
-            SpatialNavigation.makeFocusable();
+            if (typeof SpatialNavigation === 'undefined') return;
+            try {
+                SpatialNavigation.clear();
+                SpatialNavigation.add({
+                    selector: '.nav-btn, .sn-card, .actor-item, .episode-item, .profile-item, button, input',
+                    rememberSource: true
+                });
+                SpatialNavigation.makeFocusable();
+            } catch(e) {}
         }
 
         window.addEventListener('load', function() {
-            SpatialNavigation.init();
-            setTimeout(updateSpatialNav, 500);
+            if (typeof SpatialNavigation !== 'undefined') {
+                SpatialNavigation.init();
+            }
         });
 
         window.addEventListener('keydown', function(e) {
@@ -1176,7 +1193,10 @@ if ('serviceWorker' in navigator) {
                 else if (document.getElementById('details-overlay').style.display === 'flex') closeDetails();
                 else if (document.getElementById('series-overlay').style.display === 'block') closeSeries();
                 else if (document.getElementById('search-overlay').style.display === 'flex') closeSearch();
-                setTimeout(() => SpatialNavigation.focus(), 200);
+                
+                if (typeof SpatialNavigation !== 'undefined') {
+                    setTimeout(() => SpatialNavigation.focus(), 200);
+                }
             }
         }, {capture: true});
     </script>
