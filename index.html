@@ -485,7 +485,9 @@
             if(saved) selectProfile(saved, localStorage.getItem('sfpp_profile_icon'));
             else document.getElementById('profile-screen').style.display = 'flex';
         } else {
+            // CORRECTION ICI : On s'assure que le loader disparaît si on doit afficher l'écran de login
             document.getElementById('login-screen').style.display = 'flex';
+            document.getElementById('global-loader').style.display = 'none'; 
         }
     });
 
@@ -537,7 +539,6 @@
 </script>
 
 <script>
-// Fonction utilitaire pour éviter les plantages avec les guillemets
 function safeStr(str) {
     if (!str) return "";
     return String(str).replace(/'/g, "\\'").replace(/"/g, "&quot;");
