@@ -200,10 +200,11 @@
         .category-row { position: relative; width: 100%; margin-bottom: 20px; }
         .category-title { font-size: 18px; font-weight: bold; margin: 20px 4% 10px; color: #fff; text-transform: uppercase; }
         
+        /* CORRECTION POUR LE DÉFILEMENT TV : position relative obligatoire pour calculer la distance */
         .carousel { 
             display: flex; overflow-x: auto; gap: 12px; padding: 0 4% 10px; 
             scrollbar-width: none; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; 
-            transform: translateZ(0);
+            position: relative;
         }
         
         .nav-arrow { position: absolute; top: 0; bottom: 30px; width: 50px; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; z-index: 10; cursor: pointer; color: white; font-size: 30px; opacity: 0; transition: opacity 0.3s; }
@@ -213,7 +214,6 @@
 
         .card { 
             flex: 0 0 150px; width: 150px; cursor: pointer; position: relative; display: flex; flex-direction: column; 
-            transform: translateZ(0); backface-visibility: hidden;
         }
         .card img { 
             width: 150px !important; height: 225px !important; object-fit: cover !important; 
@@ -485,9 +485,8 @@
             if(saved) selectProfile(saved, localStorage.getItem('sfpp_profile_icon'));
             else document.getElementById('profile-screen').style.display = 'flex';
         } else {
-            // CORRECTION ICI : On s'assure que le loader disparaît si on doit afficher l'écran de login
             document.getElementById('login-screen').style.display = 'flex';
-            document.getElementById('global-loader').style.display = 'none'; 
+            document.getElementById('global-loader').style.display = 'none';
         }
     });
 
@@ -937,6 +936,37 @@ function render(search = "") {
             histSec.style.display = "none";
         }
 
+        // --- AJOUT DE LA CATÉGORIE TOUT (Affiche tous les films de la vue en cours) ---
+        if (data.length > 0) {
+            let htmlTout = '<div class="category-title">TOUT</div><div class="category-row"><div class="nav-arrow arrow-left" onclick="scrollSide(this, -400)">‹</div><div class="carousel">';
+            data.forEach(m => {
+                if (s !== "" && !String(m.t).toLowerCase().includes(s)) return;
+                
+                const isTVCat = m.cat && (m.cat.toUpperCase().includes("DIRECT") || m.cat.toUpperCase().includes("TV"));
+                const is_fav = favs.includes(m.t);
+                const heartClass = is_fav ? 'is-fav' : '';
+                const heartIcon = is_fav ? '❤️' : '♡';
+                const clickAction = isTVCat ? "playMovie(" + playlistData.indexOf(m) + ")" : "openDetails(" + playlistData.indexOf(m) + ")";
+                const pct = (prog[m.t] && prog[m.t].p > 1) ? '<div class="prog-bg"><div class="prog-fill" style="width:' + prog[m.t].p + '%"></div></div>' : "";
+                
+                let m_stars = "";
+                const m_note = m.note || 5;
+                for (let i = 0; i < 5; i++) { m_stars += (i < m_note) ? "★" : "☆"; }
+                
+                const ratingHtml = !isTVCat ? '<div class="card-rating">' + m_stars + '</div>' : "";
+
+                htmlTout += `
+                    <div class="card sn-card ${isTVCat ? 'landscape' : ''}" tabindex="0" onclick="${clickAction}">
+                        <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${safeStr(m.t)}');">${heartIcon}</div>
+                        ${ratingHtml}
+                        <img src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" loading="lazy" onerror="handleImageError(this)" onload="this.classList.add('loaded')">${pct}
+                        <div class="card-name">${m.t}</div>
+                    </div>`;
+            });
+            htmlTout += '</div><div class="nav-arrow arrow-right" onclick="scrollSide(this, 400)">›</div></div>';
+            cont.innerHTML += htmlTout;
+        }
+
         // --- FILMS & GENRES ---
         const allGenres = [];
         data.forEach(m => { 
@@ -1185,6 +1215,18 @@ if ('serviceWorker' in navigator) {
                 SpatialNavigation.init();
             }
         });
+
+        // CORRECTION DÉFINITIVE DE LA TÉLÉCOMMANDE TV (Force la TV à scroller sur le côté)
+        document.addEventListener('focus', function(e) {
+            if (e.target && e.target.classList && e.target.classList.contains('sn-card')) {
+                const carousel = e.target.closest('.carousel');
+                if (carousel) {
+                    // Centre la carte dans le carousel horizontal
+                    const offset = e.target.offsetLeft - (carousel.clientWidth / 2) + (e.target.clientWidth / 2);
+                    carousel.scrollLeft = offset;
+                }
+            }
+        }, true);
 
         window.addEventListener('keydown', function(e) {
             if (e.key === 'Escape' || e.key === 'Backspace' || e.keyCode === 27 || e.keyCode === 8) {
