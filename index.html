@@ -200,10 +200,10 @@
         .category-row { position: relative; width: 100%; margin-bottom: 20px; }
         .category-title { font-size: 18px; font-weight: bold; margin: 20px 4% 10px; color: #fff; text-transform: uppercase; }
         
+        /* CORRECTION FIRE STICK : On enlève translateZ(0) qui casse la détection spatiale 3D */
         .carousel { 
             display: flex; overflow-x: auto; gap: 12px; padding: 0 4% 10px; 
             scrollbar-width: none; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; 
-            transform: translateZ(0);
         }
         
         .nav-arrow { position: absolute; top: 0; bottom: 30px; width: 50px; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; z-index: 10; cursor: pointer; color: white; font-size: 30px; opacity: 0; transition: opacity 0.3s; }
@@ -211,9 +211,9 @@
         .arrow-left { left: 0; }
         .arrow-right { right: 0; }
 
+        /* CORRECTION FIRE STICK : On enlève translateZ(0) et backface-visibility */
         .card { 
             flex: 0 0 150px; width: 150px; cursor: pointer; position: relative; display: flex; flex-direction: column; 
-            transform: translateZ(0); backface-visibility: hidden;
         }
         .card img { 
             width: 150px !important; height: 225px !important; object-fit: cover !important; 
@@ -1201,16 +1201,10 @@ if ('serviceWorker' in navigator) {
             if (typeof SpatialNavigation === 'undefined') return;
             try {
                 SpatialNavigation.clear();
-                
-                // CORRECTION 1 : straightOnly sur false permet de sauter à la ligne du dessous même si les images ne sont pas alignées (ce que vous avez entouré en bleu)
-                SpatialNavigation.init({
-                    straightOnly: false,
-                    straightOverlapThreshold: 0.5,
-                    rememberSource: true
-                });
-                
+                SpatialNavigation.init();
                 SpatialNavigation.add({
-                    selector: '.nav-btn, .sn-card, .actor-item, .episode-item, .profile-item, button, input'
+                    selector: '.nav-btn, .sn-card, .actor-item, .episode-item, .profile-item, button, input',
+                    rememberSource: true
                 });
                 SpatialNavigation.makeFocusable();
             } catch(e) {}
@@ -1222,12 +1216,39 @@ if ('serviceWorker' in navigator) {
             }
         });
 
-        // CORRECTION 2 : Si on appuie sur droite dans une longue liste, on force la TV à y aller
+        // --- CORRECTION ABSOLUE POUR LA TÉLÉCOMMANDE TV ---
         window.addEventListener('keydown', function(e) {
             const key = e.key || e.keyCode;
+            const isDown = key === 'ArrowDown' || key === 40;
+            const isUp = key === 'ArrowUp' || key === 38;
             const isRight = key === 'ArrowRight' || key === 39;
             const isLeft = key === 'ArrowLeft' || key === 37;
 
+            // 1. Débloquer la descente depuis le menu du haut vers les films
+            if (isDown && document.activeElement && document.activeElement.classList.contains('nav-btn')) {
+                const firstCard = document.querySelector('.sn-card');
+                if (firstCard) {
+                    e.preventDefault();
+                    firstCard.focus();
+                    return;
+                }
+            }
+
+            // 2. Débloquer la remontée vers le menu depuis les films
+            if (isUp && document.activeElement && document.activeElement.classList.contains('sn-card')) {
+                const container = document.activeElement.closest('.category-row');
+                const allRows = document.querySelectorAll('.category-row');
+                if (allRows.length > 0 && container === allRows[0]) {
+                    const activeNav = document.querySelector('.nav-btn.active') || document.querySelector('.nav-btn');
+                    if (activeNav) {
+                        e.preventDefault();
+                        activeNav.focus();
+                        return;
+                    }
+                }
+            }
+
+            // 3. Forcer le déplacement sur les côtés même si les images sont "cachées" par la TV
             if ((isRight || isLeft) && document.activeElement && document.activeElement.classList.contains('sn-card')) {
                 const currentCard = document.activeElement;
                 const carousel = currentCard.closest('.carousel, .cast-row');
@@ -1247,22 +1268,9 @@ if ('serviceWorker' in navigator) {
                     }
                 }
             }
-        }, { capture: true });
-
-        // CORRECTION 3 : On centre physiquement l'image sélectionnée sur l'écran
-        document.addEventListener('focus', function(e) {
-            if (e.target && e.target.classList && (e.target.classList.contains('sn-card') || e.target.classList.contains('actor-item'))) {
-                const carousel = e.target.closest('.carousel, .cast-row');
-                if (carousel) {
-                    const offset = e.target.offsetLeft - (carousel.clientWidth / 2) + (e.target.clientWidth / 2);
-                    try { carousel.scrollTo({ left: offset, behavior: 'smooth' }); } 
-                    catch(err) { carousel.scrollLeft = offset; }
-                }
-            }
-        }, true);
-
-        window.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' || e.key === 'Backspace' || e.keyCode === 27 || e.keyCode === 8) {
+            
+            // Échap et retour
+            if (key === 'Escape' || key === 'Backspace' || key === 27 || key === 8) {
                 if (document.activeElement.tagName === 'INPUT') return;
                 e.preventDefault();
                 if (document.getElementById('player-section').style.display === 'block') closeP();
@@ -1274,7 +1282,19 @@ if ('serviceWorker' in navigator) {
                     setTimeout(() => SpatialNavigation.focus(), 200);
                 }
             }
-        }, {capture: true});
+        }, { capture: true });
+
+        // --- Force la TV à scroller et centrer l'image sélectionnée ---
+        document.addEventListener('focus', function(e) {
+            if (e.target && e.target.classList && (e.target.classList.contains('sn-card') || e.target.classList.contains('actor-item'))) {
+                const carousel = e.target.closest('.carousel, .cast-row');
+                if (carousel) {
+                    const offset = e.target.offsetLeft - (carousel.clientWidth / 2) + (e.target.clientWidth / 2);
+                    try { carousel.scrollTo({ left: offset, behavior: 'smooth' }); } 
+                    catch(err) { carousel.scrollLeft = offset; }
+                }
+            }
+        }, true);
     </script>
 
 </body>
