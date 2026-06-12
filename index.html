@@ -278,8 +278,8 @@
 <div id="login-screen">
     <form class="login-box" onsubmit="event.preventDefault(); checkLogin();">
         <div class="logo" style="margin-bottom:20px">SFPP ELITE</div>
-        <input type="email" id="user" name="email" placeholder="E-mail" autocapitalize="none" autocomplete="username" required>
-        <input type="password" id="pass" name="password" placeholder="Mot de passe" autocomplete="current-password" required>
+        <input type="email" id="user" name="email" placeholder="E-mail" autocapitalize="none" autocomplete="username" required tabindex="0">
+        <input type="password" id="pass" name="password" placeholder="Mot de passe" autocomplete="current-password" required tabindex="0">
         <button type="submit" tabindex="0">CONNEXION</button>
         <button type="button" class="btn-request" onclick="requestAccess()" tabindex="0">Nouveau ? Demander un accès</button>
     </form>
@@ -482,6 +482,12 @@
         } else {
             document.getElementById('login-screen').style.display = 'flex';
             document.getElementById('global-loader').style.display = 'none';
+            // BONUS : Focus direct sur l'email pour la TV
+            setTimeout(() => {
+                const emailField = document.getElementById('user');
+                if(emailField) emailField.focus();
+                if(typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus(emailField);
+            }, 500);
         }
     });
 
@@ -870,6 +876,8 @@ function saveP() {
     }
 }
 
+function scrollSide(btn, amt) { const car = btn.parentElement.querySelector('.carousel'); car.scrollBy({ left: amt, behavior: 'smooth' }); }
+
 function render(search = "") {
     try {
         const cont = document.getElementById('categories-container');
@@ -1197,8 +1205,19 @@ if ('serviceWorker' in navigator) {
             }
         });
 
-        // --- FORÇAGE ABSOLU DE LA TÉLÉCOMMANDE (DÉSACTIVE LE "CERVEAU" DE LA TV POUR FORCER LE DÉPLACEMENT) ---
+        // --- FORÇAGE ABSOLU DE LA TÉLÉCOMMANDE ---
         window.addEventListener('keydown', function(e) {
+            const loginScreen = document.getElementById('login-screen');
+            const profileScreen = document.getElementById('profile-screen');
+            const customPrompt = document.getElementById('custom-prompt-modal');
+            
+            // NE RIEN FORCER SUR L'ÉCRAN DE CONNEXION NI SUR LES PROFILS (Laisse la télécommande faire son travail normalement)
+            if ((loginScreen && loginScreen.style.display !== 'none') ||
+                (profileScreen && profileScreen.style.display !== 'none') ||
+                (customPrompt && customPrompt.style.display !== 'none')) {
+                return;
+            }
+
             const key = e.key || e.keyCode;
             const isDown = key === 'ArrowDown' || key === 40;
             const isUp = key === 'ArrowUp' || key === 38;
@@ -1207,8 +1226,8 @@ if ('serviceWorker' in navigator) {
 
             const active = document.activeElement;
 
-            // 1. FORCER LA DESCENTE DU MENU VERS LES FILMS
-            if (isDown && active && (active.classList.contains('nav-btn') || active.tagName === 'INPUT')) {
+            // 1. FORCER LA DESCENTE DU MENU VERS LES FILMS (Sauf si on est en train de taper la recherche)
+            if (isDown && active && (active.classList.contains('nav-btn') || active.id === 'searchBar')) {
                 e.preventDefault();
                 e.stopImmediatePropagation();
                 const firstCard = document.querySelector('.sn-card');
@@ -1219,14 +1238,13 @@ if ('serviceWorker' in navigator) {
                 return;
             }
 
-            // 2. FORCER LA REMONTÉE / DESCENTE ENTRE DEUX LIGNES (Empêche de rester bloqué en haut)
+            // 2. FORCER LA REMONTÉE / DESCENTE ENTRE DEUX LIGNES DE FILMS
             if ((isUp || isDown) && active && active.classList.contains('sn-card')) {
                 const currentRow = active.closest('.category-row');
                 if (currentRow) {
                     const allRows = Array.from(document.querySelectorAll('.category-row'));
                     const currentIndex = allRows.indexOf(currentRow);
 
-                    // Si on est sur la 1ère ligne et qu'on fait Haut -> Retour au Menu
                     if (isUp && currentIndex === 0) {
                         e.preventDefault();
                         e.stopImmediatePropagation();
@@ -1254,7 +1272,6 @@ if ('serviceWorker' in navigator) {
                         
                         if (cards.length > 0) {
                             let bestCard = cards[0];
-                            // Trouve le premier film qui est "visible" à gauche sur l'écran pour la nouvelle ligne
                             if (carousel) {
                                 const scrollLeft = carousel.scrollLeft;
                                 for (let card of cards) {
@@ -1272,7 +1289,7 @@ if ('serviceWorker' in navigator) {
                 return;
             }
 
-            // 3. FORCER LA NAVIGATION HORIZONTALE (Empêche la TV de zapper l'image cachée)
+            // 3. FORCER LA NAVIGATION HORIZONTALE
             if ((isRight || isLeft) && active && active.classList.contains('sn-card')) {
                 const carousel = active.closest('.carousel, .cast-row');
                 if (carousel) {
@@ -1310,7 +1327,7 @@ if ('serviceWorker' in navigator) {
             }
         }, { capture: true });
 
-        // --- FORCER LA TV À METTRE L'IMAGE SÉLECTIONNÉE AU MILIEU DE L'ÉCRAN ---
+        // --- FORCER LE DÉFILEMENT DE L'ÉCRAN ---
         document.addEventListener('focus', function(e) {
             if (e.target && e.target.classList && (e.target.classList.contains('sn-card') || e.target.classList.contains('actor-item'))) {
                 const carousel = e.target.closest('.carousel, .cast-row');
