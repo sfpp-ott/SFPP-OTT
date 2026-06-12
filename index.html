@@ -200,11 +200,10 @@
         .category-row { position: relative; width: 100%; margin-bottom: 20px; }
         .category-title { font-size: 18px; font-weight: bold; margin: 20px 4% 10px; color: #fff; text-transform: uppercase; }
         
-        /* CORRECTION POUR LE DÉFILEMENT TV : position relative obligatoire pour calculer la distance */
         .carousel { 
             display: flex; overflow-x: auto; gap: 12px; padding: 0 4% 10px; 
             scrollbar-width: none; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; 
-            position: relative;
+            transform: translateZ(0);
         }
         
         .nav-arrow { position: absolute; top: 0; bottom: 30px; width: 50px; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; z-index: 10; cursor: pointer; color: white; font-size: 30px; opacity: 0; transition: opacity 0.3s; }
@@ -214,6 +213,7 @@
 
         .card { 
             flex: 0 0 150px; width: 150px; cursor: pointer; position: relative; display: flex; flex-direction: column; 
+            transform: translateZ(0); backface-visibility: hidden;
         }
         .card img { 
             width: 150px !important; height: 225px !important; object-fit: cover !important; 
@@ -936,12 +936,11 @@ function render(search = "") {
             histSec.style.display = "none";
         }
 
-        // --- AJOUT DE LA CATÉGORIE TOUT (Affiche tous les films de la vue en cours) ---
+        // --- CATÉGORIE : TOUT ---
         if (data.length > 0) {
             let htmlTout = '<div class="category-title">TOUT</div><div class="category-row"><div class="nav-arrow arrow-left" onclick="scrollSide(this, -400)">‹</div><div class="carousel">';
             data.forEach(m => {
                 if (s !== "" && !String(m.t).toLowerCase().includes(s)) return;
-                
                 const isTVCat = m.cat && (m.cat.toUpperCase().includes("DIRECT") || m.cat.toUpperCase().includes("TV"));
                 const is_fav = favs.includes(m.t);
                 const heartClass = is_fav ? 'is-fav' : '';
@@ -1216,18 +1215,51 @@ if ('serviceWorker' in navigator) {
             }
         });
 
-        // CORRECTION DÉFINITIVE DE LA TÉLÉCOMMANDE TV (Force la TV à scroller sur le côté)
+        // --- CORRECTION ULTIME TÉLÉCOMMANDE TV (Force la sélection de la jaquette suivante même si cachée) ---
+        window.addEventListener('keydown', function(e) {
+            if (!document.activeElement || !document.activeElement.classList.contains('sn-card')) return;
+            
+            const currentCard = document.activeElement;
+            const carousel = currentCard.closest('.carousel');
+            
+            if (carousel) {
+                if (e.key === 'ArrowRight' || e.keyCode === 39) {
+                    let next = currentCard.nextElementSibling;
+                    while(next && !next.classList.contains('sn-card')) {
+                        next = next.nextElementSibling;
+                    }
+                    if (next) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        next.focus();
+                    }
+                } else if (e.key === 'ArrowLeft' || e.keyCode === 37) {
+                    let prev = currentCard.previousElementSibling;
+                    while(prev && !prev.classList.contains('sn-card')) {
+                        prev = prev.previousElementSibling;
+                    }
+                    if (prev) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        prev.focus();
+                    }
+                }
+            }
+        }, { capture: true });
+
+        // --- Force la TV à scroller sur la jaquette sélectionnée ---
         document.addEventListener('focus', function(e) {
             if (e.target && e.target.classList && e.target.classList.contains('sn-card')) {
                 const carousel = e.target.closest('.carousel');
                 if (carousel) {
-                    // Centre la carte dans le carousel horizontal
                     const offset = e.target.offsetLeft - (carousel.clientWidth / 2) + (e.target.clientWidth / 2);
-                    carousel.scrollLeft = offset;
+                    try { carousel.scrollTo({ left: offset, behavior: 'smooth' }); } 
+                    catch(err) { carousel.scrollLeft = offset; }
                 }
             }
         }, true);
 
+        // --- Empêcher de bloquer sur les champs de recherche ---
         window.addEventListener('keydown', function(e) {
             if (e.key === 'Escape' || e.key === 'Backspace' || e.keyCode === 27 || e.keyCode === 8) {
                 if (document.activeElement.tagName === 'INPUT') return;
