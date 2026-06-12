@@ -16,8 +16,6 @@
     <link href="https://unpkg.com/@videojs/themes@1.0.1/dist/fantasy/index.css" rel="stylesheet">
     <link href="https://unpkg.com/@silvermine/videojs-chromecast@1.5.0/dist/silvermine-videojs-chromecast.css" rel="stylesheet">
 
-    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
-
     <style>
         :root { --accent: #e50914; --gold: #ffcc00; --bg: #050505; }
         body { background: var(--bg); color: white; font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; padding-bottom: 50px; -webkit-user-select: none; user-select: none; overflow-x: hidden; }
@@ -552,7 +550,7 @@ window.handleImageError = function(img) {
 };
 
 let player, playlistData = [], currentProfile = null, isEditMode = false, currentView = 'all', currentPlayingTitle = "", exitConfirmed = false;
-let isAdminMode = false, epgData = {}, hls; 
+let isAdminMode = false, epgData = {}; 
 
 async function fetchEPG() {
     try {
@@ -590,8 +588,6 @@ window.addEventListener('popstate', function (event) {
         playerSection.style.display = 'none';
         
         setTimeout(() => {
-            if(hls) { hls.destroy(); hls = null; }
-            // NOUVEAU : MISE À JOUR RAPIDE SANS FAIRE PLANTER LA TV
             if(typeof window.updateProgBars === 'function') window.updateProgBars();
             if (typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus();
         }, 100);
@@ -608,95 +604,100 @@ window.addEventListener('popstate', function (event) {
     }
 });
 
-// NOUVEAU : CHARGEMENT INTELLIGENT (Sans bloquer la ligne rouge du navigateur)
+// --- CORRECTION DU CHARGEMENT (Plus de ligne rouge, catégories complètes) ---
 async function loadPlaylist() { 
     try { 
         const response = await fetch('films.json?v=' + Date.now()); 
         playlistData = await response.json(); 
         
-        // Application immédiate du cache existant
+        const apiKey = "ec1c8fecd38d1cc5a27f15766f0848d5";
         let metadataCache = JSON.parse(localStorage.getItem('sfpp_metadata_cache') || "{}");
-        playlistData.forEach((m, index) => {
-            m.original_index = index;
-            if (m.id_tmdb && metadataCache[m.id_tmdb]) {
-                const c = metadataCache[m.id_tmdb];
-                m.img = m.img || c.img;
-                m.bg = m.bg || c.bg;
-                m.desc = m.desc || c.desc;
-                m.year = m.year || c.year;
-                m.note = m.note || c.note;
-                m.cat = m.cat || c.cat;
-                m.trailer = m.trailer || c.trailer;
-                m.actors_pics = m.actors_pics || c.actors_pics;
-            }
-        });
+        let cacheUpdated = false;
 
-        // Rendu immédiat des images disponibles
-        render(); 
+        if (playlistData && playlistData.length > 0) {
+            let missingMetadata = [];
+
+            // 1. Appliquer le cache immédiatement
+            playlistData.forEach((m, index) => {
+                m.original_index = index;
+                if (m.id_tmdb && (!m.img || !m.desc || !m.trailer)) {
+                    if (metadataCache[m.id_tmdb]) {
+                        const c = metadataCache[m.id_tmdb];
+                        m.img = m.img || c.img;
+                        m.bg = m.bg || c.bg;
+                        m.desc = m.desc || c.desc;
+                        m.year = m.year || c.year;
+                        m.note = m.note || c.note;
+                        m.cat = m.cat || c.cat;
+                        m.trailer = m.trailer || c.trailer;
+                        m.actors_pics = m.actors_pics || c.actors_pics;
+                    } else {
+                        missingMetadata.push(m);
+                    }
+                }
+            });
+
+            // 2. Télécharger les jaquettes manquantes "par petits lots" pour ne pas planter la TV
+            const BATCH_SIZE = 15;
+            for (let i = 0; i < missingMetadata.length; i += BATCH_SIZE) {
+                const batch = missingMetadata.slice(i, i + BATCH_SIZE);
+                await Promise.all(batch.map(async (m) => {
+                    try {
+                        const url = "https://api.themoviedb.org/3/movie/" + m.id_tmdb + "?api_key=" + apiKey + "&language=fr-FR&append_to_response=videos,credits&include_video_language=en,fr,null";
+                        const res = await fetch(url);
+                        const data = await res.json();
+                        
+                        m.img = m.img || "https://image.tmdb.org/t/p/w500" + data.poster_path;
+                        m.bg = m.bg || "https://image.tmdb.org/t/p/original" + data.backdrop_path;
+                        m.desc = m.desc || data.overview;
+                        m.year = m.year || (data.release_date ? data.release_date.split('-')[0] : "2025");
+                        m.note = m.note || Math.round(data.vote_average / 2);
+
+                        if (data.genres && data.genres.length > 0) {
+                            m.cat = data.genres.map(g => g.name.toUpperCase()).join(', ');
+                        }
+
+                        if (!m.trailer && data.videos && data.videos.results && data.videos.results.length > 0) {
+                            const video = data.videos.results.find(v => (v.type === "Trailer" || v.type === "Teaser") && v.site === "YouTube") || data.videos.results[0];
+                            if (video) m.trailer = video.key;
+                        }
+
+                        if (!m.actors_pics && data.credits && data.credits.cast) {
+                            m.actors_pics = data.credits.cast.slice(0, 10).map(a => ({
+                                name: a.name, img: "https://image.tmdb.org/t/p/w185" + a.profile_path
+                            }));
+                        }
+
+                        metadataCache[m.id_tmdb] = {
+                            img: m.img, bg: m.bg, desc: m.desc, year: m.year, note: m.note, cat: m.cat, trailer: m.trailer, actors_pics: m.actors_pics
+                        };
+                        cacheUpdated = true;
+                    } catch (e) {}
+                }));
+                // Petite pause de 100ms pour laisser la TV respirer
+                await new Promise(r => setTimeout(r, 100));
+            }
+
+            if (cacheUpdated) {
+                try { localStorage.setItem('sfpp_metadata_cache', JSON.stringify(metadataCache)); } 
+                catch (e) { console.warn("Mémoire pleine"); }
+            }
+        }
 
     } catch (e) {
         console.error("Erreur playlist", e);
     } finally {
+        try { render(); } catch(err) {}
+        
         const loader = document.getElementById('global-loader');
         if (loader) {
             loader.style.opacity = '0';
             setTimeout(() => loader.style.display = 'none', 500);
         }
-        
-        // Téléchargement lent et silencieux en arrière-plan (Ne bloque plus la FireStick)
-        setTimeout(window.fetchMissingMetadata, 1000);
     }
 }
 
-// NOUVEAU : TÉLÉCHARGEMENT SILENCIEUX DES JAQUETTES
-window.fetchMissingMetadata = async function() {
-    const apiKey = "ec1c8fecd38d1cc5a27f15766f0848d5";
-    let metadataCache = JSON.parse(localStorage.getItem('sfpp_metadata_cache') || "{}");
-    let cacheUpdated = false;
-
-    for (let i = 0; i < playlistData.length; i++) {
-        let m = playlistData[i];
-        if (m.id_tmdb && (!m.img || !m.desc || !m.trailer)) {
-            try {
-                const url = "https://api.themoviedb.org/3/movie/" + m.id_tmdb + "?api_key=" + apiKey + "&language=fr-FR&append_to_response=videos,credits&include_video_language=en,fr,null";
-                const res = await fetch(url);
-                const data = await res.json();
-                
-                m.img = m.img || "https://image.tmdb.org/t/p/w500" + data.poster_path;
-                m.bg = m.bg || "https://image.tmdb.org/t/p/original" + data.backdrop_path;
-                m.desc = m.desc || data.overview;
-                m.year = m.year || (data.release_date ? data.release_date.split('-')[0] : "2025");
-                m.note = m.note || Math.round(data.vote_average / 2);
-
-                if (data.genres && data.genres.length > 0) m.cat = data.genres.map(g => g.name.toUpperCase()).join(', ');
-
-                if (!m.trailer && data.videos && data.videos.results && data.videos.results.length > 0) {
-                    const video = data.videos.results.find(v => (v.type === "Trailer" || v.type === "Teaser") && v.site === "YouTube") || data.videos.results[0];
-                    if (video) m.trailer = video.key;
-                }
-
-                if (!m.actors_pics && data.credits && data.credits.cast) {
-                    m.actors_pics = data.credits.cast.slice(0, 10).map(a => ({ name: a.name, img: "https://image.tmdb.org/t/p/w185" + a.profile_path }));
-                }
-
-                metadataCache[m.id_tmdb] = { img: m.img, bg: m.bg, desc: m.desc, year: m.year, note: m.note, cat: m.cat, trailer: m.trailer, actors_pics: m.actors_pics };
-                cacheUpdated = true;
-
-                // Mise à jour visuelle en direct
-                const imgEls = document.querySelectorAll(`img[data-id="${m.id_tmdb}"]`);
-                imgEls.forEach(img => { img.src = m.img; img.classList.add('loaded'); });
-
-                // Pause cruciale de 250ms pour ne pas saturer la Fire Stick
-                await new Promise(r => setTimeout(r, 250));
-            } catch (e) {}
-        }
-    }
-    if (cacheUpdated) {
-        try { localStorage.setItem('sfpp_metadata_cache', JSON.stringify(metadataCache)); } catch(e){}
-    }
-};
-
-// NOUVEAU : METTRE À JOUR LA BARRE SANS RECHARGER TOUTE LA PAGE
+// CORRECTION FLUIDITÉ : Mise à jour sans tout recharger
 window.updateProgBars = function() {
     const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
     document.querySelectorAll('.sn-card').forEach(card => {
@@ -804,7 +805,7 @@ window.searchByActor = function(actorName) {
     filter(); 
 };
 
-// NOUVEAU : AJOUT FAVORIS INSTANTANÉ SANS RECHARGEMENT
+// CORRECTION FLUIDITÉ : Ajout Favoris sans recharger la page
 function toggleFav(title) {
     let key = 'sfpp_fav_' + currentProfile;
     let favs = JSON.parse(localStorage.getItem(key) || "[]");
@@ -813,16 +814,16 @@ function toggleFav(title) {
     localStorage.setItem(key, JSON.stringify(favs));
     
     updateFavBtnUI(title);
-    
+
     if (currentView === 'fav') {
         render(document.getElementById('searchBar').value);
     } else {
         document.querySelectorAll('.sn-card').forEach(card => {
             const nameEl = card.querySelector('.card-name');
-            if(nameEl && nameEl.innerText === title) {
+            if (nameEl && nameEl.innerText === title) {
                 const heartBtn = card.querySelector('.btn-fav-card');
-                if(heartBtn) {
-                    if(favs.includes(title)) {
+                if (heartBtn) {
+                    if (favs.includes(title)) {
                         heartBtn.classList.add('is-fav');
                         heartBtn.innerText = '❤️';
                     } else {
@@ -933,6 +934,7 @@ function render(search = "") {
         else if(currentView === 'series') data = data.filter(m => m.cat && m.cat.includes("SÉRIES"));
         else if(currentView === 'fav') data = data.filter(m => m.t && favs.includes(m.t));
 
+        // --- HISTORIQUE ---
         if(currentProfile && s === "" && currentView === 'all') {
             let history = JSON.parse(localStorage.getItem('sfpp_hist_' + currentProfile) || "[]");
             if(history.length > 0 && histSec && histCont) {
@@ -948,21 +950,28 @@ function render(search = "") {
                         const pct = (prog[m.t] && prog[m.t].p > 1) ? '<div class="prog-bg"><div class="prog-fill" style="width:' + prog[m.t].p + '%"></div></div>' : "";
 
                         let m_stars = "";
-                        for (let i = 0; i < 5; i++) { m_stars += (i < (m.note || 5)) ? "★" : "☆"; }
+                        const m_note = m.note || 5;
+                        for (let i = 0; i < 5; i++) { m_stars += (i < m_note) ? "★" : "☆"; }
+                        
                         const ratingHtml = !isTV ? '<div class="card-rating">' + m_stars + '</div>' : "";
 
                         histCont.innerHTML += `
                             <div class="card sn-card ${isTV ? "landscape" : ""}" tabindex="0" onclick="${clickAction}">
                                 <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${safeStr(m.t)}');">${heartIcon}</div>
                                 ${ratingHtml}
-                                <img data-id="${m.id_tmdb || ''}" src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" loading="lazy" onerror="handleImageError(this)" onload="this.classList.add('loaded')">${pct}
+                                <img src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" loading="lazy" onerror="handleImageError(this)" onload="this.classList.add('loaded')">${pct}
                                 <div class="card-name">${m.t}</div>
                             </div>`;
                     }
                 });
-            } else if (histSec) histSec.style.display = "none";
-        } else if (histSec) histSec.style.display = "none";
+            } else if (histSec) {
+                histSec.style.display = "none";
+            }
+        } else if (histSec) {
+            histSec.style.display = "none";
+        }
 
+        // --- CATÉGORIE : TOUT ---
         if (data.length > 0) {
             let htmlTout = '<div class="category-title">TOUT</div><div class="category-row"><div class="carousel">';
             data.forEach(m => {
@@ -975,14 +984,16 @@ function render(search = "") {
                 const pct = (prog[m.t] && prog[m.t].p > 1) ? '<div class="prog-bg"><div class="prog-fill" style="width:' + prog[m.t].p + '%"></div></div>' : "";
                 
                 let m_stars = "";
-                for (let i = 0; i < 5; i++) { m_stars += (i < (m.note || 5)) ? "★" : "☆"; }
+                const m_note = m.note || 5;
+                for (let i = 0; i < 5; i++) { m_stars += (i < m_note) ? "★" : "☆"; }
+                
                 const ratingHtml = !isTVCat ? '<div class="card-rating">' + m_stars + '</div>' : "";
 
                 htmlTout += `
                     <div class="card sn-card ${isTVCat ? 'landscape' : ''}" tabindex="0" onclick="${clickAction}">
                         <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${safeStr(m.t)}');">${heartIcon}</div>
                         ${ratingHtml}
-                        <img data-id="${m.id_tmdb || ''}" src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" loading="lazy" onerror="handleImageError(this)" onload="this.classList.add('loaded')">${pct}
+                        <img src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" loading="lazy" onerror="handleImageError(this)" onload="this.classList.add('loaded')">${pct}
                         <div class="card-name">${m.t}</div>
                     </div>`;
             });
@@ -990,6 +1001,7 @@ function render(search = "") {
             cont.innerHTML += htmlTout;
         }
 
+        // --- FILMS & GENRES ---
         const allGenres = [];
         data.forEach(m => { 
             if(m.cat) { 
@@ -1012,14 +1024,16 @@ function render(search = "") {
                 const pct = (prog[m.t] && prog[m.t].p > 1) ? '<div class="prog-bg"><div class="prog-fill" style="width:' + prog[m.t].p + '%"></div></div>' : "";
                 
                 let m_stars = "";
-                for (let i = 0; i < 5; i++) { m_stars += (i < (m.note || 5)) ? "★" : "☆"; }
+                const m_note = m.note || 5;
+                for (let i = 0; i < 5; i++) { m_stars += (i < m_note) ? "★" : "☆"; }
+                
                 const ratingHtml = !isTVCat ? '<div class="card-rating">' + m_stars + '</div>' : "";
 
                 html += `
                     <div class="card sn-card ${isTVCat ? 'landscape' : ''}" tabindex="0" onclick="${clickAction}">
                         <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${safeStr(m.t)}');">${heartIcon}</div>
                         ${ratingHtml}
-                        <img data-id="${m.id_tmdb || ''}" src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" loading="lazy" onerror="handleImageError(this)" onload="this.classList.add('loaded')">${pct}
+                        <img src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" loading="lazy" onerror="handleImageError(this)" onload="this.classList.add('loaded')">${pct}
                         <div class="card-name">${m.t}</div>
                     </div>`;
             });
@@ -1072,6 +1086,7 @@ function openSeries(name) {
     }
 }
 
+// CORRECTION MOTEUR VIDÉO : Restaure les options de langue d'origine
 function playMovie(idx) {
     if (!window.history.state || window.history.state.overlay !== 'player') {
         history.replaceState({ overlay: 'player' }, "");
@@ -1081,7 +1096,6 @@ function playMovie(idx) {
     currentPlayingTitle = m.t;
     document.getElementById('next-episode-btn').style.display = 'none';
 
-    if (hls) { hls.destroy(); hls = null; }
     player.pause();
     player.src("");
     player.load();
@@ -1106,29 +1120,16 @@ function playMovie(idx) {
     try { decodedUrl = window.atob(m.url); } catch(e) { decodedUrl = m.url; }
 
     const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
-
     let type = String(decodedUrl).includes('.m3u8') ? 'application/x-mpegURL' : 'video/mp4';
 
-    if (type === 'application/x-mpegURL') {
-        if (typeof Hls !== 'undefined' && Hls.isSupported()) {
-            hls = new Hls();
-            hls.loadSource(decodedUrl);
-            hls.attachMedia(document.querySelector('#main-video_html5_api'));
-            hls.on(Hls.Events.MANIFEST_PARSED, function() { 
-                if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
-                player.play(); 
-            });
-            hls.on(Hls.Events.LEVEL_LOADED, function() { player.on('timeupdate', saveP); });
-        } else {
-            player.src({ src: decodedUrl, type: type });
-            if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
-            player.play();
+    player.src({ src: decodedUrl, type: type });
+    
+    player.ready(function() {
+        if(prog[m.t] && prog[m.t].t > 10) {
+            player.currentTime(prog[m.t].t);
         }
-    } else {
-        player.src({ src: decodedUrl, type: type });
-        if(prog[m.t] && prog[m.t].t > 10) player.currentTime(prog[m.t].t);
         player.play();
-    }
+    });
 }
 
 function playNextEpisode() {
@@ -1231,12 +1232,11 @@ if ('serviceWorker' in navigator) {
             const customPrompt = document.getElementById('custom-prompt-modal');
             const playerSection = document.getElementById('player-section');
             
-            // NOUVEAU : DOUBLE CLIC TÉLÉCOMMANDE (Touche OK / Entrée)
+            // DOUBLE APPUI RAPIDE SUR LA TOUCHE OK DE LA TÉLÉCOMMANDE POUR LE PLEIN ECRAN
             if (playerSection && playerSection.style.display === 'block') {
                 const key = e.key || e.keyCode;
                 if (key === 'Enter' || key === 13) {
                     const active = document.activeElement;
-                    // Ne pas déclencher si on clique sur la croix ou un bouton précis du lecteur
                     if (active && (active.closest('.vjs-control-bar') || active.id === 'next-episode-btn' || active.classList.contains('btn-close-player'))) {
                         return;
                     }
