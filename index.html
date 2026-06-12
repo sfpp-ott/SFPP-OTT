@@ -22,12 +22,14 @@
         :root { --accent: #e50914; --gold: #ffcc00; --bg: #050505; }
         body { background: var(--bg); color: white; font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; padding-bottom: 50px; -webkit-user-select: none; user-select: none; }
         
-        [tabindex="0"]:focus {
+        [tabindex="0"]:focus, .sn-focused {
             outline: 4px solid white !important;
             outline-offset: -2px;
             background: rgba(255,255,255,0.1);
             z-index: 100;
             box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+            transform: scale(1.02);
+            transition: transform 0.2s ease;
         }
 
         #global-loader {
@@ -200,7 +202,6 @@
         .category-row { position: relative; width: 100%; margin-bottom: 20px; }
         .category-title { font-size: 18px; font-weight: bold; margin: 20px 4% 10px; color: #fff; text-transform: uppercase; }
         
-        /* CORRECTION FIRE STICK : On enlève translateZ(0) qui casse la détection spatiale 3D */
         .carousel { 
             display: flex; overflow-x: auto; gap: 12px; padding: 0 4% 10px; 
             scrollbar-width: none; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; 
@@ -211,7 +212,6 @@
         .arrow-left { left: 0; }
         .arrow-right { right: 0; }
 
-        /* CORRECTION FIRE STICK : On enlève translateZ(0) et backface-visibility */
         .card { 
             flex: 0 0 150px; width: 150px; cursor: pointer; position: relative; display: flex; flex-direction: column; 
         }
@@ -1183,25 +1183,12 @@ if ('serviceWorker' in navigator) {
 }
 </script>
 
-    <style>
-        .sn-focused {
-            outline: 5px solid #e50914 !important;
-            outline-offset: -5px !important;
-            transform: scale(1.05) !important;
-            z-index: 99999 !important;
-            transition: all 0.1s ease !important;
-            border-radius: 4px !important;
-        }
-        input:focus { transform: none !important; }
-    </style>
-
     <script src="https://cdn.jsdelivr.net/npm/spatial-navigation-js@1.0.1/spatial_navigation.min.js"></script>
     <script>
         function updateSpatialNav() {
             if (typeof SpatialNavigation === 'undefined') return;
             try {
                 SpatialNavigation.clear();
-                SpatialNavigation.init();
                 SpatialNavigation.add({
                     selector: '.nav-btn, .sn-card, .actor-item, .episode-item, .profile-item, button, input',
                     rememberSource: true
@@ -1212,11 +1199,11 @@ if ('serviceWorker' in navigator) {
 
         window.addEventListener('load', function() {
             if (typeof SpatialNavigation !== 'undefined') {
-                updateSpatialNav();
+                SpatialNavigation.init();
             }
         });
 
-        // --- CORRECTION ABSOLUE POUR LA TÉLÉCOMMANDE TV ---
+        // --- FORÇAGE ABSOLU DE LA TÉLÉCOMMANDE ---
         window.addEventListener('keydown', function(e) {
             const key = e.key || e.keyCode;
             const isDown = key === 'ArrowDown' || key === 40;
@@ -1224,52 +1211,89 @@ if ('serviceWorker' in navigator) {
             const isRight = key === 'ArrowRight' || key === 39;
             const isLeft = key === 'ArrowLeft' || key === 37;
 
-            // 1. Débloquer la descente depuis le menu du haut vers les films
-            if (isDown && document.activeElement && document.activeElement.classList.contains('nav-btn')) {
+            const active = document.activeElement;
+
+            // 1. FORCER LA DESCENTE DU MENU VERS LES FILMS
+            if (isDown && active && (active.classList.contains('nav-btn') || active.tagName === 'INPUT')) {
+                e.preventDefault();
+                e.stopImmediatePropagation();
                 const firstCard = document.querySelector('.sn-card');
                 if (firstCard) {
-                    e.preventDefault();
                     firstCard.focus();
+                    if(typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus(firstCard);
+                }
+                return;
+            }
+
+            // 2. FORCER LA REMONTÉE DES FILMS VERS LE MENU
+            if (isUp && active && active.classList.contains('sn-card')) {
+                const currentRow = active.closest('.category-row');
+                const allRows = Array.from(document.querySelectorAll('.category-row'));
+                if (allRows.length > 0 && currentRow === allRows[0]) {
+                    e.preventDefault();
+                    e.stopImmediatePropagation();
+                    const activeNav = document.querySelector('.nav-btn.active') || document.querySelector('.nav-btn');
+                    if (activeNav) {
+                        activeNav.focus();
+                        if(typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus(activeNav);
+                    }
+                    return;
+                }
+                // Si on n'est pas sur la 1ere ligne, forcer la remontée à la ligne précédente
+                const rowIdx = allRows.indexOf(currentRow);
+                if (rowIdx > 0) {
+                    e.preventDefault();
+                    e.stopImmediatePropagation();
+                    const prevRowCards = allRows[rowIdx - 1].querySelectorAll('.sn-card');
+                    if(prevRowCards.length > 0) {
+                        prevRowCards[0].focus();
+                        if(typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus(prevRowCards[0]);
+                    }
+                    return;
+                }
+            }
+            
+            // 3. FORCER LA DESCENTE ENTRE DEUX LIGNES DE FILMS
+            if (isDown && active && active.classList.contains('sn-card')) {
+                const currentRow = active.closest('.category-row');
+                const allRows = Array.from(document.querySelectorAll('.category-row'));
+                const rowIdx = allRows.indexOf(currentRow);
+                if (rowIdx !== -1 && rowIdx < allRows.length - 1) {
+                    e.preventDefault();
+                    e.stopImmediatePropagation();
+                    const nextRowCards = allRows[rowIdx + 1].querySelectorAll('.sn-card');
+                    if(nextRowCards.length > 0) {
+                        nextRowCards[0].focus();
+                        if(typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus(nextRowCards[0]);
+                    }
                     return;
                 }
             }
 
-            // 2. Débloquer la remontée vers le menu depuis les films
-            if (isUp && document.activeElement && document.activeElement.classList.contains('sn-card')) {
-                const container = document.activeElement.closest('.category-row');
-                const allRows = document.querySelectorAll('.category-row');
-                if (allRows.length > 0 && container === allRows[0]) {
-                    const activeNav = document.querySelector('.nav-btn.active') || document.querySelector('.nav-btn');
-                    if (activeNav) {
+            // 4. FORCER LA NAVIGATION HORIZONTALE MÊME SI L'IMAGE EST CACHÉE
+            if ((isRight || isLeft) && active && active.classList.contains('sn-card')) {
+                const carousel = active.closest('.carousel, .cast-row');
+                if (carousel) {
+                    const cards = Array.from(carousel.querySelectorAll('.sn-card, .actor-item'));
+                    const currentIndex = cards.indexOf(active);
+                    
+                    if (isRight && currentIndex < cards.length - 1) {
                         e.preventDefault();
-                        activeNav.focus();
+                        e.stopImmediatePropagation();
+                        cards[currentIndex + 1].focus();
+                        if(typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus(cards[currentIndex + 1]);
+                        return;
+                    } else if (isLeft && currentIndex > 0) {
+                        e.preventDefault();
+                        e.stopImmediatePropagation();
+                        cards[currentIndex - 1].focus();
+                        if(typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus(cards[currentIndex - 1]);
                         return;
                     }
                 }
             }
-
-            // 3. Forcer le déplacement sur les côtés même si les images sont "cachées" par la TV
-            if ((isRight || isLeft) && document.activeElement && document.activeElement.classList.contains('sn-card')) {
-                const currentCard = document.activeElement;
-                const carousel = currentCard.closest('.carousel, .cast-row');
-                
-                if (carousel) {
-                    const cards = Array.from(carousel.querySelectorAll('.sn-card, .actor-item'));
-                    const currentIndex = cards.indexOf(currentCard);
-                    
-                    if (isRight && currentIndex < cards.length - 1) {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        cards[currentIndex + 1].focus();
-                    } else if (isLeft && currentIndex > 0) {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        cards[currentIndex - 1].focus();
-                    }
-                }
-            }
             
-            // Échap et retour
+            // 5. GÉRER LE RETOUR EN ARRIÈRE
             if (key === 'Escape' || key === 'Backspace' || key === 27 || key === 8) {
                 if (document.activeElement.tagName === 'INPUT') return;
                 e.preventDefault();
@@ -1282,9 +1306,9 @@ if ('serviceWorker' in navigator) {
                     setTimeout(() => SpatialNavigation.focus(), 200);
                 }
             }
-        }, { capture: true });
+        }, { capture: true }); // Le capture "true" est crucial pour forcer le code de la TV
 
-        // --- Force la TV à scroller et centrer l'image sélectionnée ---
+        // --- FORCER LE DÉFILEMENT (SCROLL) DE L'ÉCRAN SUR LE CÔTÉ ---
         document.addEventListener('focus', function(e) {
             if (e.target && e.target.classList && (e.target.classList.contains('sn-card') || e.target.classList.contains('actor-item'))) {
                 const carousel = e.target.closest('.carousel, .cast-row');
