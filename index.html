@@ -1201,9 +1201,16 @@ if ('serviceWorker' in navigator) {
             if (typeof SpatialNavigation === 'undefined') return;
             try {
                 SpatialNavigation.clear();
-                SpatialNavigation.add({
-                    selector: '.nav-btn, .sn-card, .actor-item, .episode-item, .profile-item, button, input',
+                
+                // CORRECTION 1 : straightOnly sur false permet de sauter à la ligne du dessous même si les images ne sont pas alignées (ce que vous avez entouré en bleu)
+                SpatialNavigation.init({
+                    straightOnly: false,
+                    straightOverlapThreshold: 0.5,
                     rememberSource: true
+                });
+                
+                SpatialNavigation.add({
+                    selector: '.nav-btn, .sn-card, .actor-item, .episode-item, .profile-item, button, input'
                 });
                 SpatialNavigation.makeFocusable();
             } catch(e) {}
@@ -1211,46 +1218,41 @@ if ('serviceWorker' in navigator) {
 
         window.addEventListener('load', function() {
             if (typeof SpatialNavigation !== 'undefined') {
-                SpatialNavigation.init();
+                updateSpatialNav();
             }
         });
 
-        // --- CORRECTION ULTIME TÉLÉCOMMANDE TV (Force la sélection de la jaquette suivante même si cachée) ---
+        // CORRECTION 2 : Si on appuie sur droite dans une longue liste, on force la TV à y aller
         window.addEventListener('keydown', function(e) {
-            if (!document.activeElement || !document.activeElement.classList.contains('sn-card')) return;
-            
-            const currentCard = document.activeElement;
-            const carousel = currentCard.closest('.carousel');
-            
-            if (carousel) {
-                if (e.key === 'ArrowRight' || e.keyCode === 39) {
-                    let next = currentCard.nextElementSibling;
-                    while(next && !next.classList.contains('sn-card')) {
-                        next = next.nextElementSibling;
-                    }
-                    if (next) {
+            const key = e.key || e.keyCode;
+            const isRight = key === 'ArrowRight' || key === 39;
+            const isLeft = key === 'ArrowLeft' || key === 37;
+
+            if ((isRight || isLeft) && document.activeElement && document.activeElement.classList.contains('sn-card')) {
+                const currentCard = document.activeElement;
+                const carousel = currentCard.closest('.carousel, .cast-row');
+                
+                if (carousel) {
+                    const cards = Array.from(carousel.querySelectorAll('.sn-card, .actor-item'));
+                    const currentIndex = cards.indexOf(currentCard);
+                    
+                    if (isRight && currentIndex < cards.length - 1) {
                         e.preventDefault();
                         e.stopPropagation();
-                        next.focus();
-                    }
-                } else if (e.key === 'ArrowLeft' || e.keyCode === 37) {
-                    let prev = currentCard.previousElementSibling;
-                    while(prev && !prev.classList.contains('sn-card')) {
-                        prev = prev.previousElementSibling;
-                    }
-                    if (prev) {
+                        cards[currentIndex + 1].focus();
+                    } else if (isLeft && currentIndex > 0) {
                         e.preventDefault();
                         e.stopPropagation();
-                        prev.focus();
+                        cards[currentIndex - 1].focus();
                     }
                 }
             }
         }, { capture: true });
 
-        // --- Force la TV à scroller sur la jaquette sélectionnée ---
+        // CORRECTION 3 : On centre physiquement l'image sélectionnée sur l'écran
         document.addEventListener('focus', function(e) {
-            if (e.target && e.target.classList && e.target.classList.contains('sn-card')) {
-                const carousel = e.target.closest('.carousel');
+            if (e.target && e.target.classList && (e.target.classList.contains('sn-card') || e.target.classList.contains('actor-item'))) {
+                const carousel = e.target.closest('.carousel, .cast-row');
                 if (carousel) {
                     const offset = e.target.offsetLeft - (carousel.clientWidth / 2) + (e.target.clientWidth / 2);
                     try { carousel.scrollTo({ left: offset, behavior: 'smooth' }); } 
@@ -1259,7 +1261,6 @@ if ('serviceWorker' in navigator) {
             }
         }, true);
 
-        // --- Empêcher de bloquer sur les champs de recherche ---
         window.addEventListener('keydown', function(e) {
             if (e.key === 'Escape' || e.key === 'Backspace' || e.keyCode === 27 || e.keyCode === 8) {
                 if (document.activeElement.tagName === 'INPUT') return;
