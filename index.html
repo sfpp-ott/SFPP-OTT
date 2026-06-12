@@ -482,6 +482,13 @@
         } else {
             document.getElementById('login-screen').style.display = 'flex';
             document.getElementById('global-loader').style.display = 'none';
+            setTimeout(() => {
+                const emailField = document.getElementById('user');
+                if(emailField) {
+                    emailField.focus();
+                    if(typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus(emailField);
+                }
+            }, 500);
         }
     });
 
@@ -870,6 +877,8 @@ function saveP() {
     }
 }
 
+function scrollSide(btn, amt) { const car = btn.parentElement.querySelector('.carousel'); car.scrollBy({ left: amt, behavior: 'smooth' }); }
+
 function render(search = "") {
     try {
         const cont = document.getElementById('categories-container');
@@ -1133,6 +1142,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let lastTap = 0;
     const videoContainer = document.getElementById('video-container');
 
+    // Conservation du tactile pour les téléphones
     videoContainer.addEventListener('touchend', function(e) {
         const now = new Date().getTime();
         const timesince = now - lastTap;
@@ -1144,6 +1154,7 @@ document.addEventListener('DOMContentLoaded', () => {
         lastTap = now;
     });
 
+    // Conservation du double-clic souris pour PC
     player.on('dblclick', function() {
         if (player.isFullscreen()) player.exitFullscreen();
         else player.requestFullscreen();
@@ -1197,7 +1208,9 @@ if ('serviceWorker' in navigator) {
             }
         });
 
-        // --- NOUVEAU FORÇAGE ABSOLU DE LA TÉLÉCOMMANDE ---
+        let lastEnterTap = 0;
+
+        // --- GESTION DE LA TÉLÉCOMMANDE ---
         window.addEventListener('keydown', function(e) {
             const loginScreen = document.getElementById('login-screen');
             const profileScreen = document.getElementById('profile-screen');
@@ -1211,6 +1224,25 @@ if ('serviceWorker' in navigator) {
             }
 
             const key = e.key || e.keyCode;
+            
+            // --- NOUVEAU : DOUBLE APPUI SUR "OK" POUR LE PLEIN ÉCRAN (TÉLÉCOMMANDE) ---
+            if (document.getElementById('player-section').style.display === 'block') {
+                if (key === 'Enter' || key === 13) {
+                    const active = document.activeElement;
+                    // Ne pas faire le plein écran si on clique sur un bouton de la barre de contrôle ou le bouton "Fermer"
+                    if (active && (active.closest('.vjs-control-bar') || active.id === 'next-episode-btn' || active.classList.contains('btn-close-player'))) {
+                        return;
+                    }
+                    const now = new Date().getTime();
+                    if (now - lastEnterTap < 400 && now - lastEnterTap > 0) {
+                        if (player.isFullscreen()) player.exitFullscreen();
+                        else player.requestFullscreen();
+                        e.preventDefault();
+                    }
+                    lastEnterTap = now;
+                }
+            }
+
             const isDown = key === 'ArrowDown' || key === 40;
             const isUp = key === 'ArrowUp' || key === 38;
             const isRight = key === 'ArrowRight' || key === 39;
@@ -1218,12 +1250,10 @@ if ('serviceWorker' in navigator) {
 
             const active = document.activeElement;
 
-            // Fonction pour trouver les lignes qui sont vraiment affichées (évite le bug des sauts)
             const validRows = Array.from(document.querySelectorAll('.category-row')).filter(row => {
                 return row.offsetParent !== null && row.querySelectorAll('.sn-card').length > 0;
             });
 
-            // 1. FORCER LA DESCENTE DE N'IMPORTE QUEL BOUTON DU MENU VERS LES FILMS
             if (isDown && active && active.closest('header')) {
                 e.preventDefault();
                 e.stopImmediatePropagation();
@@ -1233,7 +1263,6 @@ if ('serviceWorker' in navigator) {
                     const cards = Array.from(firstRow.querySelectorAll('.sn-card'));
                     let targetCard = cards[0];
 
-                    // Trouve la carte visible sous le curseur
                     if (carousel) {
                         const scrollLeft = carousel.scrollLeft;
                         for (let card of cards) {
@@ -1252,13 +1281,11 @@ if ('serviceWorker' in navigator) {
                 return;
             }
 
-            // 2. FORCER LA REMONTÉE / DESCENTE ENTRE LES LIGNES DE FILMS
             if ((isUp || isDown) && active && active.classList.contains('sn-card')) {
                 const currentRow = active.closest('.category-row');
                 if (currentRow) {
                     const currentIndex = validRows.indexOf(currentRow);
 
-                    // Remontée vers le menu depuis la 1ere ligne
                     if (isUp && currentIndex === 0) {
                         e.preventDefault();
                         e.stopImmediatePropagation();
@@ -1270,7 +1297,6 @@ if ('serviceWorker' in navigator) {
                         return;
                     }
 
-                    // Calcul de la ligne cible
                     let targetRow = null;
                     if (isDown && currentIndex !== -1 && currentIndex < validRows.length - 1) {
                         targetRow = validRows[currentIndex + 1];
@@ -1278,7 +1304,6 @@ if ('serviceWorker' in navigator) {
                         targetRow = validRows[currentIndex - 1];
                     }
 
-                    // Forcer le focus sur la ligne cible
                     if (targetRow) {
                         e.preventDefault();
                         e.stopImmediatePropagation();
@@ -1301,7 +1326,6 @@ if ('serviceWorker' in navigator) {
                             if(typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus(bestCard);
                         }
                     } else if (isDown && currentIndex === validRows.length - 1) {
-                        // Empêche le bug si on est tout en bas
                         e.preventDefault();
                         e.stopImmediatePropagation();
                     }
@@ -1309,7 +1333,6 @@ if ('serviceWorker' in navigator) {
                 return;
             }
 
-            // 3. FORCER LA NAVIGATION HORIZONTALE SUR LES FILMS
             if ((isRight || isLeft) && active && active.classList.contains('sn-card')) {
                 const carousel = active.closest('.carousel, .cast-row');
                 if (carousel) {
@@ -1332,7 +1355,6 @@ if ('serviceWorker' in navigator) {
                 }
             }
             
-            // 4. GÉRER LE RETOUR EN ARRIÈRE
             if (key === 'Escape' || key === 'Backspace' || key === 27 || key === 8) {
                 if (document.activeElement.tagName === 'INPUT') return;
                 e.preventDefault();
@@ -1347,7 +1369,6 @@ if ('serviceWorker' in navigator) {
             }
         }, { capture: true });
 
-        // --- FORCER LE DÉFILEMENT (SCROLL) DE L'ÉCRAN SUR LE CÔTÉ ---
         document.addEventListener('focus', function(e) {
             if (e.target && e.target.classList && (e.target.classList.contains('sn-card') || e.target.classList.contains('actor-item'))) {
                 const carousel = e.target.closest('.carousel, .cast-row');
