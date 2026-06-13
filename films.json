@@ -1,10 +1,80 @@
 [
   {
-    "num": "1379",
+    "num": "1389",
     "t": "Barbie : Agents Secrets",
     "id_tmdb": "377897",
     "cat": "",
     "url": "https://filemoon.org/download/eyJpdiI6IkNIL3IzQ3dhWkRtQmxtTE54aFF1d2c9PSIsInZhbHVlIjoiWkc4bGlMUU9qSDM5Qng0NzRUVU03MCtiaDlIS285N3FQSVJZRGtQUFBBRT0iLCJtYWMiOiIxYjEwMWJjNGY3ZmM2ODcwYTg4NjczNjRlMmMzOTdlYzEwN2JkNWQ3ZjJlYTI1ODliYjQyMzBlNjU4MjBjZmUxIiwidGFnIjoiIn0=/B960526836.mp4"
+  },
+  {
+    "num": "1388",
+    "t": "Armageddon",
+    "id_tmdb": "95",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/902aef893567f4ad0f25a48aaa7d1fd2bb9cf93708cf8570fc954b15b87d86ff/master.m3u8"
+  },
+  {
+    "num": "1387",
+    "t": "Copie conforme",
+    "id_tmdb": "48303",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/4f43a8c029a9698a3917acc3ce60a48274253d6a5b147ceaca7c5abded629f6d/master.m3u8"
+  },
+  {
+    "num": "1386",
+    "t": "‎Faut pas prendre les enfants du bon Dieu pour des canards sauvages",
+    "id_tmdb": "55317",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/9e470487202fda2bddb9953bee070ec601adfaac4ca3f5cd4af3fec61217b00f/master.m3u8"
+  },
+  {
+    "num": "1385",
+    "t": "Un simple accident",
+    "id_tmdb": "1456349",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/5f711798908dfb6804f5f285f466ee6749a4f229599b6fd39a89d3fa6c042e35/master.m3u8"
+  },
+  {
+    "num": "1384",
+    "t": "Kiss of the Spider Woman",
+    "id_tmdb": "1214684",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/c8fafb946374b55fed113ad4de81613a995688d4dfc4f840810ecc1b98638a9d/master.m3u8"
+  },
+  {
+    "num": "1383",
+    "t": "L'Imaginarium du Docteur Parnassus",
+    "id_tmdb": "8054",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/a230803bb975b94ccee156292a54d3ffad43c504c81f3b71a0104373a86ab967/master.m3u8"
+  },
+  {
+    "num": "1382",
+    "t": "La Horde",
+    "id_tmdb": "37905",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/bdcc9d8d93d5d2c5a1f1834521a62718099afebd03ddcd730f50fa61ed762ded/master.m3u8"
+  },
+  {
+    "num": "1381",
+    "t": "Le Retour du Grand Blond",
+    "id_tmdb": "10939",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/a04558a419cd11c5f3b08d40eba8197caebf23c63f1f33fbf75f6eb2a605ee0d/master.m3u8"
+  },
+  {
+    "num": "1380",
+    "t": "Le rouge est mis",
+    "id_tmdb": "58926",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/985eb5b886e03055a5dae557f82fc12ba1465c1297a0c29620ea85d6fcfd6cd4/master.m3u8"
+  },
+  {
+    "num": "1379",
+    "t": "Les Enfants du ciel",
+    "id_tmdb": "21334",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/7f8c2549c2e94cb86ddc813cf6c42b2d80b68b02bc98dec2b6e8f95632dc530c/master.m3u8"
   },
   {
     "num": "1378",
