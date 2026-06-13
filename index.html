@@ -219,7 +219,15 @@
             scrollbar-width: none; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; 
         }
         
-        .nav-arrow { display: none; }
+        /* RESTAURATION DES FLÈCHES DE NAVIGATION POUR SOURIS VIRTUELLE */
+        .nav-arrow { 
+            position: absolute; top: 0; bottom: 30px; width: 50px; background: rgba(0,0,0,0.5); 
+            display: flex; align-items: center; justify-content: center; z-index: 10; 
+            cursor: pointer; color: white; font-size: 30px; opacity: 0; transition: opacity 0.3s; 
+        }
+        .category-row:hover .nav-arrow { opacity: 1; }
+        .arrow-left { left: 0; }
+        .arrow-right { right: 0; }
 
         .card { 
             flex: 0 0 150px; width: 150px; cursor: pointer; position: relative; display: flex; flex-direction: column; 
@@ -362,7 +370,7 @@
 </div>
 
 <section id="player-section">
-    <button class="btn-close-player" onclick="handleBackAction()" tabindex="0">✕</button>
+    <button class="btn-close-player" onclick="closeP_internal()" tabindex="0">✕</button>
     <div class="video-container" id="video-container">
         <div id="player-blur-bg" class="vjs-blur-bg"></div>
         <video id="main-video" class="video-js vjs-theme-fantasy vjs-big-play-centered" controls preload="metadata" controlsList="nodownload" oncontextmenu="return false;"></video>
@@ -375,7 +383,9 @@
     <div id="history-sec" style="display:none">
         <div class="category-title">Reprendre avec <span id="current-user-name"></span></div>
         <div class="category-row">
+            <div class="nav-arrow arrow-left" onclick="scrollSide(this, -400)">‹</div>
             <div class="carousel" id="history-container"></div>
+            <div class="nav-arrow arrow-right" onclick="scrollSide(this, 400)">›</div>
         </div>
     </div>
     <div id="categories-container"></div>
@@ -557,12 +567,8 @@ window.handleImageError = function(img) {
 };
 
 let player, playlistData = [], currentProfile = null, isEditMode = false, currentView = 'all', currentPlayingTitle = "";
-let isAdminMode = false, epgData = {}, hls; 
+let isAdminMode = false, epgData = {}; 
 
-// ---------------------------------------------------------
-// 🚀 NOUVEAU SYSTÈME DE CACHE TÉLÉVISION AVEC INDEXEDDB
-// Résout l'erreur de "Quota Exceeded" et charge instantanément
-// ---------------------------------------------------------
 const dbPromise = new Promise((resolve, reject) => {
     const req = indexedDB.open('SFPP_Cache', 1);
     req.onupgradeneeded = (e) => { e.target.result.createObjectStore('tmdb', { keyPath: 'id' }); };
@@ -583,12 +589,118 @@ async function saveTMDB(id, data) {
     } catch(e) {}
 }
 
+// LE PIÈGE DE L'HISTORIQUE ET DU BOUTON RETOUR
+window.addEventListener('load', () => {
+    window.history.pushState({ noExit: true }, '');
+    window.history.pushState({ noExit: true }, '');
+});
+
+window.addEventListener('popstate', function (event) {
+    window.history.pushState({ noExit: true }, '');
+    window.handleBackAction();
+});
+
+window.handleBackAction = function() {
+    const customPrompt = document.getElementById('custom-prompt-modal');
+    if (customPrompt && customPrompt.style.display === 'flex') {
+        closeCustomPrompt();
+        return;
+    }
+
+    const pSection = document.getElementById('player-section');
+    if (pSection && pSection.style.display === 'block') {
+        if (player && player.isFullscreen()) {
+            player.exitFullscreen();
+        } else {
+            closeP_internal();
+        }
+        return;
+    }
+
+    const dOverlay = document.getElementById('details-overlay');
+    if (dOverlay && dOverlay.style.display === 'flex') {
+        closeDetails_internal();
+        return;
+    }
+
+    const sOverlay = document.getElementById('series-overlay');
+    if (sOverlay && sOverlay.style.display === 'block') {
+        closeSeries_internal();
+        return;
+    }
+
+    const searchOverlay = document.getElementById('search-overlay');
+    if (searchOverlay && searchOverlay.style.display === 'flex') {
+        closeSearch_internal();
+        return;
+    }
+};
+
+window.closeP_internal = function() {
+    const pSection = document.getElementById('player-section');
+    if (pSection && pSection.style.display === 'block') {
+        saveP(); 
+        if (player) { player.pause(); player.src(""); }
+        pSection.style.display = 'none';
+        setTimeout(() => {
+            if(typeof window.updateProgBars === 'function') window.updateProgBars();
+            if (typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus();
+        }, 100);
+    }
+};
+
+window.closeDetails_internal = function() {
+    const dOverlay = document.getElementById('details-overlay');
+    if (dOverlay && dOverlay.style.display === 'flex') {
+        dOverlay.style.display = 'none'; 
+        document.getElementById('details-trailer-box').innerHTML = "";
+        setTimeout(() => { if (typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus(); }, 100);
+    }
+};
+
+window.closeSeries_internal = function() {
+    const sOverlay = document.getElementById('series-overlay');
+    if (sOverlay && sOverlay.style.display === 'block') {
+        sOverlay.style.display = 'none'; 
+        setTimeout(() => { if (typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus(); }, 100);
+    }
+};
+
+window.closeSearch_internal = function() {
+    const sOverlay = document.getElementById('search-overlay');
+    if (sOverlay && sOverlay.style.display === 'flex') {
+        sOverlay.style.display = 'none'; 
+        const searchInput = document.getElementById('searchBar');
+        if (searchInput) { searchInput.value = ''; searchInput.blur(); }
+        filter(); 
+        setTimeout(() => { if (typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus(); }, 100);
+    }
+};
+
+window.closeP = function() { window.closeP_internal(); };
+window.closeDetails = function() { window.closeDetails_internal(); };
+window.closeSeries = function() { window.closeSeries_internal(); };
+window.closeSearch = function() { window.closeSearch_internal(); };
+
+
+async function fetchEPG() {
+    try {
+        const response = await fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent('https://iptv-org.github.io/epg/guides/fr/telerama.fr.json'));
+        const data = await response.json();
+        if (data && data.channels) {
+            data.channels.forEach(ch => {
+                epgData[ch.name.toUpperCase()] = ch.programs || [];
+            });
+            render(); 
+        }
+    } catch (e) {}
+}
+
 async function loadPlaylist() { 
     try { 
         const response = await fetch('films.json'); 
         playlistData = await response.json(); 
         
-        // On récupère tout le cache instantanément
         const db = await dbPromise;
         const tx = db.transaction('tmdb', 'readonly');
         const store = tx.objectStore('tmdb');
@@ -631,7 +743,7 @@ window.fetchMissingMetadata = async function() {
     const apiKey = "ec1c8fecd38d1cc5a27f15766f0848d5";
     let missingMetadata = playlistData.filter(m => m.id_tmdb && (!m.img || !m.desc || !m.trailer));
 
-    const BATCH_SIZE = 5; // Petits lots pour ne pas faire chauffer la TV
+    const BATCH_SIZE = 5; 
     for (let i = 0; i < missingMetadata.length; i += BATCH_SIZE) {
         const batch = missingMetadata.slice(i, i + BATCH_SIZE);
         await Promise.all(batch.map(async (m) => {
@@ -666,73 +778,6 @@ window.fetchMissingMetadata = async function() {
         await new Promise(r => setTimeout(r, 200));
     }
 };
-
-// ---------------------------------------------------------
-// 🛡️ NOUVEAU PIÈGE DE LA TOUCHE RETOUR DE LA TV
-// ---------------------------------------------------------
-window.addEventListener('load', () => {
-    // Injecte une fausse histoire continue au démarrage
-    window.history.pushState({ noExit: true }, '');
-    window.history.pushState({ noExit: true }, '');
-});
-
-window.addEventListener('popstate', function (event) {
-    // On remet le piège immédiatement
-    window.history.pushState({ noExit: true }, '');
-    // On déclenche l'action de retour normale
-    window.handleBackAction();
-});
-
-window.handleBackAction = function() {
-    const customPrompt = document.getElementById('custom-prompt-modal');
-    if (customPrompt && customPrompt.style.display === 'flex') {
-        closeCustomPrompt();
-        return;
-    }
-
-    const pSection = document.getElementById('player-section');
-    if (pSection && pSection.style.display === 'block') {
-        if (player && player.isFullscreen()) {
-            player.exitFullscreen();
-        } else {
-            closeP();
-        }
-        return;
-    }
-
-    const dOverlay = document.getElementById('details-overlay');
-    if (dOverlay && dOverlay.style.display === 'flex') {
-        closeDetails();
-        return;
-    }
-
-    const sOverlay = document.getElementById('series-overlay');
-    if (sOverlay && sOverlay.style.display === 'block') {
-        closeSeries();
-        return;
-    }
-
-    const searchOverlay = document.getElementById('search-overlay');
-    if (searchOverlay && searchOverlay.style.display === 'flex') {
-        closeSearch();
-        return;
-    }
-};
-
-// ---------------------------------------------------------
-
-async function fetchEPG() {
-    try {
-        const response = await fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent('https://iptv-org.github.io/epg/guides/fr/telerama.fr.json'));
-        const data = await response.json();
-        if (data && data.channels) {
-            data.channels.forEach(ch => {
-                epgData[ch.name.toUpperCase()] = ch.programs || [];
-            });
-            render(); 
-        }
-    } catch (e) {}
-}
 
 window.updateProgBars = function() {
     const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
@@ -842,7 +887,7 @@ window.openSearch = function() {
 };
 
 window.searchByActor = function(actorName) {
-    closeDetails();
+    window.closeDetails_internal();
     
     document.getElementById('search-overlay').style.display = 'flex'; 
     
@@ -895,41 +940,6 @@ function updateFavBtnUI(title) {
         else btn.innerText = "+ Ma Liste";
     }
 }
-
-window.closeDetails = function() { 
-    document.getElementById('details-overlay').style.display = 'none'; 
-    document.getElementById('details-trailer-box').innerHTML = "";
-    if (typeof SpatialNavigation !== 'undefined') setTimeout(() => SpatialNavigation.focus(), 100);
-};
-
-window.closeSeries = function() { 
-    document.getElementById('series-overlay').style.display = 'none'; 
-    if (typeof SpatialNavigation !== 'undefined') setTimeout(() => SpatialNavigation.focus(), 100);
-};
-
-window.closeSearch = function() { 
-    document.getElementById('search-overlay').style.display = 'none'; 
-    const searchInput = document.getElementById('searchBar');
-    if (searchInput) { searchInput.value = ''; searchInput.blur(); }
-    filter(); 
-    if (typeof SpatialNavigation !== 'undefined') setTimeout(() => SpatialNavigation.focus(), 100);
-};
-
-window.closeP = function() { 
-    const pSection = document.getElementById('player-section');
-    if (pSection && pSection.style.display === 'block') {
-        saveP(); 
-        if(player) {
-            player.pause(); 
-            player.src("");
-        }
-        pSection.style.display = 'none';
-        setTimeout(() => {
-            if(typeof window.updateProgBars === 'function') window.updateProgBars();
-            if (typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus();
-        }, 100);
-    }
-};
 
 function initProfiles() {
     let profiles = JSON.parse(localStorage.getItem('sfpp_profiles_data')) || [
@@ -985,7 +995,7 @@ window.saveCustomPrompt = function() {
 };
 
 function saveP() {
-    if(!currentPlayingTitle || !currentProfile || !player) return;
+    if(!currentPlayingTitle || !currentProfile) return;
     const cur = player.currentTime();
     const dur = player.duration();
     
@@ -996,7 +1006,7 @@ function saveP() {
     }
 }
 
-function scrollSide(btn, amt) { const car = btn.parentElement.querySelector('.carousel'); car.scrollBy({ left: amt, behavior: 'smooth' }); }
+window.scrollSide = function(btn, amt) { const car = btn.parentElement.querySelector('.carousel'); car.scrollBy({ left: amt, behavior: 'smooth' }); }
 
 function render(search = "") {
     try {
@@ -1055,7 +1065,7 @@ function render(search = "") {
         }
 
         if (data.length > 0) {
-            let htmlTout = '<div class="category-title">TOUT</div><div class="category-row"><div class="carousel">';
+            let htmlTout = '<div class="category-title">TOUT</div><div class="category-row"><div class="nav-arrow arrow-left" onclick="scrollSide(this, -400)">‹</div><div class="carousel">';
             data.forEach(m => {
                 if (s !== "" && !String(m.t).toLowerCase().includes(s)) return;
                 const isTVCat = m.cat && (m.cat.toUpperCase().includes("DIRECT") || m.cat.toUpperCase().includes("TV"));
@@ -1077,7 +1087,7 @@ function render(search = "") {
                         <div class="card-name">${m.t}</div>
                     </div>`;
             });
-            htmlTout += '</div></div>';
+            htmlTout += '</div><div class="nav-arrow arrow-right" onclick="scrollSide(this, 400)">›</div></div>';
             cont.innerHTML += htmlTout;
         }
 
@@ -1094,7 +1104,7 @@ function render(search = "") {
             if (filtered.length === 0) return;
             const isTVCat = c.includes("DIRECT") || c.includes("TV");
             
-            let html = '<div class="category-title">' + c + '</div><div class="category-row"><div class="carousel">';
+            let html = '<div class="category-title">' + c + '</div><div class="category-row"><div class="nav-arrow arrow-left" onclick="scrollSide(this, -400)">‹</div><div class="carousel">';
             filtered.forEach(m => {
                 const is_fav = favs.includes(m.t);
                 const heartClass = is_fav ? 'is-fav' : '';
@@ -1114,7 +1124,7 @@ function render(search = "") {
                         <div class="card-name">${m.t}</div>
                     </div>`;
             });
-            html += '</div></div>';
+            html += '</div><div class="nav-arrow arrow-right" onclick="scrollSide(this, 400)">›</div></div>';
             cont.innerHTML += html;
         });
 
@@ -1361,7 +1371,6 @@ if ('serviceWorker' in navigator) {
                 return;
             }
 
-            // CORRECTION DES FERMETURES : On empêche la TV d'exécuter la touche Retour native
             if (key === 'Escape' || key === 27 || key === 'GoBack' || key === 'BrowserBack' || e.keyCode === 10009 || e.keyCode === 4 || e.keyCode === 461) {
                 const isInput = document.activeElement && document.activeElement.tagName === 'INPUT';
                 if ((key === 'Backspace' || key === 8) && isInput) {
@@ -1383,7 +1392,7 @@ if ('serviceWorker' in navigator) {
             }
 
             if (key === 'Backspace' || key === 8) {
-                if (document.activeElement.tagName === 'INPUT') return; 
+                if (document.activeElement && document.activeElement.tagName === 'INPUT') return; 
                 e.preventDefault();
                 window.handleBackAction();
                 return;
