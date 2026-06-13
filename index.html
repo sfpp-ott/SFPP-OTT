@@ -32,6 +32,13 @@
             transition: all 0.2s ease !important;
         }
 
+        /* NOUVEAU : Rendre les boutons du lecteur vidéo bien visibles sur la TV */
+        .vjs-button:focus, .vjs-menu-item:focus {
+            outline: 4px solid var(--accent) !important;
+            background: rgba(255,255,255,0.2) !important;
+            border-radius: 4px;
+        }
+
         #global-loader {
             position: fixed; inset: 0; background: var(--bg); z-index: 999999;
             display: flex; flex-direction: column; align-items: center; justify-content: center;
@@ -790,7 +797,6 @@ function openDetails(idx) {
     }
 }
 
-// CORRECTION BARRE DE RECHERCHE : Focus automatique
 window.openSearch = function() { 
     document.getElementById('search-overlay').style.display = 'flex'; 
     setTimeout(() => {
@@ -804,7 +810,7 @@ window.closeSearch = function() {
     document.getElementById('search-overlay').style.display = 'none'; 
     const searchInput = document.getElementById('searchBar');
     searchInput.value = ''; 
-    searchInput.blur(); // Enlève le focus pour masquer le clavier TV
+    searchInput.blur(); 
     filter(); 
 };
 
@@ -1184,6 +1190,15 @@ document.addEventListener('DOMContentLoaded', () => {
     player.ready(() => { 
         player.getChild('controlBar').addChild('Back', {}, 1); 
         player.getChild('controlBar').addChild('Forward', {}, 2); 
+        
+        // CORRECTION LECTEUR TV : Enlever la sélection de la barre de temps pour éviter les blocages
+        player.on('loadeddata', () => {
+            setTimeout(() => {
+                document.querySelectorAll('.vjs-progress-control, .vjs-slider, .vjs-progress-holder').forEach(el => {
+                    if(el.hasAttribute('tabindex')) el.setAttribute('tabindex', '-1');
+                });
+            }, 500);
+        });
     });
 
     player.on('timeupdate', function() {
@@ -1210,8 +1225,9 @@ if ('serviceWorker' in navigator) {
             try {
                 SpatialNavigation.clear();
                 SpatialNavigation.init();
+                // Ajout explicite des boutons de lecteur et menus déroulants (.vjs-button, .vjs-menu-item)
                 SpatialNavigation.add({
-                    selector: '.nav-btn, .sn-card, .actor-item, .episode-item, .profile-item, button, input',
+                    selector: '.nav-btn, .sn-card, .actor-item, .episode-item, .profile-item, button, input, .vjs-button, .vjs-menu-item',
                     rememberSource: true
                 });
                 SpatialNavigation.makeFocusable();
@@ -1232,12 +1248,36 @@ if ('serviceWorker' in navigator) {
             const customPrompt = document.getElementById('custom-prompt-modal');
             const playerSection = document.getElementById('player-section');
             
+            const key = e.key || e.keyCode;
+
+            // --- CORRECTIONS DU LECTEUR VIDÉO ---
             if (playerSection && playerSection.style.display === 'block') {
-                const key = e.key || e.keyCode;
+                
+                // 1. Boutons Média de la télécommande TV
+                if (key === 'MediaFastForward' || key === 228 || key === 176) {
+                    e.preventDefault();
+                    if(player) player.currentTime(player.currentTime() + 10);
+                    return;
+                }
+                if (key === 'MediaTrackPrevious' || key === 'MediaRewind' || key === 227 || key === 177) {
+                    e.preventDefault();
+                    if(player) player.currentTime(player.currentTime() - 10);
+                    return;
+                }
+                if (key === 'MediaPlayPause' || key === 179) {
+                    e.preventDefault();
+                    if(player) {
+                        if (player.paused()) player.play();
+                        else player.pause();
+                    }
+                    return;
+                }
+
+                // 2. Double appui pour le plein écran
                 if (key === 'Enter' || key === 13) {
                     const active = document.activeElement;
                     if (active && (active.closest('.vjs-control-bar') || active.id === 'next-episode-btn' || active.classList.contains('btn-close-player'))) {
-                        return;
+                        return; // Laisse le bouton de langue ou sous-titre faire son action sans lancer le plein écran
                     }
                     const now = new Date().getTime();
                     if (now - lastEnterTap < 400 && now - lastEnterTap > 0) {
@@ -1255,11 +1295,8 @@ if ('serviceWorker' in navigator) {
                 return;
             }
 
-            const key = e.key || e.keyCode;
-            
-            // CORRECTION DU PIÈGE DE LA BARRE DE RECHERCHE
+            // CORRECTION BARRE DE RECHERCHE
             if (key === 'Escape' || key === 27 || key === 'GoBack' || e.keyCode === 10009) {
-                // La touche "Retour" ferme les menus
                 if (document.activeElement) document.activeElement.blur(); 
                 e.preventDefault();
                 if (document.getElementById('player-section').style.display === 'block') closeP();
@@ -1272,7 +1309,6 @@ if ('serviceWorker' in navigator) {
                 }
                 return;
             } else if (key === 'Backspace' || key === 8) {
-                // La touche "Effacer" supprime le texte, ne ferme pas
                 if (document.activeElement.tagName === 'INPUT') {
                     return; 
                 }
