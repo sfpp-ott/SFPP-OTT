@@ -89,7 +89,6 @@
         .nav-btn { background: none; border: none; color: #bbb; cursor: pointer; font-size: 13px; font-weight: 500; padding: 10px 5px; transition: color 0.3s; flex-shrink: 0; border-radius: 4px; }
         .nav-btn.active { color: white; font-weight: bold; border-bottom: 2px solid var(--accent); }
 
-        /* NOUVEAU : Indicateur de téléchargement des affiches */
         #dl-progress {
             color: #888;
             font-size: 11px;
@@ -691,7 +690,6 @@ window.closeDetails = function() { window.closeDetails_internal(); };
 window.closeSeries = function() { window.closeSeries_internal(); };
 window.closeSearch = function() { window.closeSearch_internal(); };
 
-
 async function fetchEPG() {
     try {
         const response = await fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent('https://iptv-org.github.io/epg/guides/fr/telerama.fr.json'));
@@ -734,8 +732,7 @@ async function loadPlaylist() {
                     m.actors_pics = m.actors_pics || c.actors_pics;
                 }
                 
-                // SÉCURITÉ : Si un nouveau film n'a pas encore de catégorie, on le force dans NOUVEAUTÉS
-                if (!m.cat) m.cat = "NOUVEAUTÉS";
+                if (!m.cat) m.cat = "AUTRES CATÉGORIES";
             });
             
             render(); 
@@ -754,7 +751,7 @@ async function loadPlaylist() {
 
 window.fetchMissingMetadata = async function() {
     const apiKey = "ec1c8fecd38d1cc5a27f15766f0848d5";
-    let missingMetadata = playlistData.filter(m => m.id_tmdb && (!m.img || !m.desc || !m.trailer || m.cat === "NOUVEAUTÉS"));
+    let missingMetadata = playlistData.filter(m => m.id_tmdb && (!m.img || !m.desc || !m.trailer || m.cat === "AUTRES CATÉGORIES"));
 
     if (missingMetadata.length === 0) return;
 
@@ -764,7 +761,6 @@ window.fetchMissingMetadata = async function() {
     let hasNewContent = false;
     let processedCount = 0;
     
-    // TÉLÉCHARGEMENT BOOSTER : Par lot de 20
     const BATCH_SIZE = 20; 
     for (let i = 0; i < missingMetadata.length; i += BATCH_SIZE) {
         const batch = missingMetadata.slice(i, i + BATCH_SIZE);
