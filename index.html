@@ -89,6 +89,16 @@
         .nav-btn { background: none; border: none; color: #bbb; cursor: pointer; font-size: 13px; font-weight: 500; padding: 10px 5px; transition: color 0.3s; flex-shrink: 0; border-radius: 4px; }
         .nav-btn.active { color: white; font-weight: bold; border-bottom: 2px solid var(--accent); }
 
+        /* NOUVEAU : Indicateur de téléchargement des affiches */
+        #dl-progress {
+            color: #888;
+            font-size: 11px;
+            font-weight: bold;
+            display: none;
+            white-space: nowrap;
+            animation: pulseText 1.5s infinite alternate;
+        }
+
         #search-overlay {
             position: absolute; top: 0; left: 0; width: 100%; height: 60px;
             background: #000; display: none; align-items: center; padding: 0 15px;
@@ -320,6 +330,7 @@
         <button class="nav-btn" id="btn-series" onclick="changeView('series')" tabindex="0">Séries</button>
         <button class="nav-btn" id="btn-fav" onclick="changeView('fav')" tabindex="0">Ma Liste ❤️</button>
         <button class="nav-btn" onclick="location.reload()" tabindex="0">Rafraîchir</button>
+        <div id="dl-progress"></div>
     </div>
     <div class="header-actions">
         <button class="btn-icon" onclick="openSearch()" tabindex="0">🔍</button>
@@ -722,7 +733,11 @@ async function loadPlaylist() {
                     m.trailer = m.trailer || c.trailer;
                     m.actors_pics = m.actors_pics || c.actors_pics;
                 }
+                
+                // SÉCURITÉ : Si un nouveau film n'a pas encore de catégorie, on le force dans NOUVEAUTÉS
+                if (!m.cat) m.cat = "NOUVEAUTÉS";
             });
+            
             render(); 
             
             const loader = document.getElementById('global-loader');
@@ -739,18 +754,25 @@ async function loadPlaylist() {
 
 window.fetchMissingMetadata = async function() {
     const apiKey = "ec1c8fecd38d1cc5a27f15766f0848d5";
-    let missingMetadata = playlistData.filter(m => m.id_tmdb && (!m.img || !m.desc || !m.trailer));
+    let missingMetadata = playlistData.filter(m => m.id_tmdb && (!m.img || !m.desc || !m.trailer || m.cat === "NOUVEAUTÉS"));
 
     if (missingMetadata.length === 0) return;
 
+    const dlProgress = document.getElementById('dl-progress');
+    if (dlProgress) dlProgress.style.display = 'block';
+
     let hasNewContent = false;
-    const BATCH_SIZE = 5; 
+    let processedCount = 0;
+    
+    // TÉLÉCHARGEMENT BOOSTER : Par lot de 20
+    const BATCH_SIZE = 20; 
     for (let i = 0; i < missingMetadata.length; i += BATCH_SIZE) {
         const batch = missingMetadata.slice(i, i + BATCH_SIZE);
         await Promise.all(batch.map(async (m) => {
             try {
                 const url = "https://api.themoviedb.org/3/movie/" + m.id_tmdb + "?api_key=" + apiKey + "&language=fr-FR&append_to_response=videos,credits&include_video_language=en,fr,null";
                 const res = await fetch(url);
+                if (!res.ok) return;
                 const data = await res.json();
                 
                 m.img = m.img || "https://image.tmdb.org/t/p/w500" + data.poster_path;
@@ -773,13 +795,17 @@ window.fetchMissingMetadata = async function() {
                 await saveTMDB(m.id_tmdb, { img: m.img, bg: m.bg, desc: m.desc, year: m.year, note: m.note, cat: m.cat, trailer: m.trailer, actors_pics: m.actors_pics });
 
                 hasNewContent = true;
-                const imgEls = document.querySelectorAll(`img[data-id="${m.id_tmdb}"]`);
-                imgEls.forEach(img => { img.src = m.img; img.classList.add('loaded'); });
             } catch (e) {}
         }));
-        await new Promise(r => setTimeout(r, 200));
+        
+        processedCount += batch.length;
+        if (dlProgress) dlProgress.innerText = `Mise à jour: ${processedCount}/${missingMetadata.length}`;
+        
+        await new Promise(r => setTimeout(r, 300));
     }
     
+    if (dlProgress) dlProgress.style.display = 'none';
+
     if (hasNewContent) {
         render(document.getElementById('searchBar') ? document.getElementById('searchBar').value : "");
     }
