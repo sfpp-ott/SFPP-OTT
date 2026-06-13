@@ -32,7 +32,6 @@
             transition: all 0.2s ease !important;
         }
 
-        /* NOUVEAU : Rendre les boutons du lecteur vidéo bien visibles sur la TV */
         .vjs-button:focus, .vjs-menu-item:focus {
             outline: 4px solid var(--accent) !important;
             background: rgba(255,255,255,0.2) !important;
@@ -1095,10 +1094,10 @@ function openSeries(name) {
     }
 }
 
+// CORRECTION HISTORIQUE LECTEUR : On push un state propre pour ne plus quitter l'application
 function playMovie(idx) {
-    if (!window.history.state || window.history.state.overlay !== 'player') {
-        history.replaceState({ overlay: 'player' }, "");
-    }
+    history.pushState({ overlay: 'player' }, "");
+
     const m = playlistData[idx];
     if(!m) return;
     currentPlayingTitle = m.t;
@@ -1148,7 +1147,22 @@ function playNextEpisode() {
     if (nextIdx !== -1) playMovie(nextIdx);
 }
 
-function closeP() { if (document.getElementById('player-section').style.display === 'block') history.back(); }
+// CORRECTION FERMETURE LECTEUR
+function closeP() { 
+    const pSection = document.getElementById('player-section');
+    if (pSection.style.display === 'block') {
+        saveP(); 
+        player.pause(); 
+        player.src("");
+        pSection.style.display = 'none';
+        setTimeout(() => {
+            if(hls) { hls.destroy(); hls = null; }
+            if(typeof window.updateProgBars === 'function') window.updateProgBars();
+            if (typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus();
+        }, 100);
+    }
+}
+
 function closeSeries() { if (document.getElementById('series-overlay').style.display === 'block') history.back(); }
 function changeView(v) { currentView = v; document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active')); document.getElementById('btn-'+v).classList.add('active'); render(); }
 function filter() { render(document.getElementById('searchBar').value); }
@@ -1191,7 +1205,6 @@ document.addEventListener('DOMContentLoaded', () => {
         player.getChild('controlBar').addChild('Back', {}, 1); 
         player.getChild('controlBar').addChild('Forward', {}, 2); 
         
-        // CORRECTION LECTEUR TV : Enlever la sélection de la barre de temps pour éviter les blocages
         player.on('loadeddata', () => {
             setTimeout(() => {
                 document.querySelectorAll('.vjs-progress-control, .vjs-slider, .vjs-progress-holder').forEach(el => {
@@ -1225,7 +1238,6 @@ if ('serviceWorker' in navigator) {
             try {
                 SpatialNavigation.clear();
                 SpatialNavigation.init();
-                // Ajout explicite des boutons de lecteur et menus déroulants (.vjs-button, .vjs-menu-item)
                 SpatialNavigation.add({
                     selector: '.nav-btn, .sn-card, .actor-item, .episode-item, .profile-item, button, input, .vjs-button, .vjs-menu-item',
                     rememberSource: true
@@ -1250,10 +1262,8 @@ if ('serviceWorker' in navigator) {
             
             const key = e.key || e.keyCode;
 
-            // --- CORRECTIONS DU LECTEUR VIDÉO ---
+            // GESTION DU LECTEUR VIDEO ET PLEIN ÉCRAN
             if (playerSection && playerSection.style.display === 'block') {
-                
-                // 1. Boutons Média de la télécommande TV
                 if (key === 'MediaFastForward' || key === 228 || key === 176) {
                     e.preventDefault();
                     if(player) player.currentTime(player.currentTime() + 10);
@@ -1273,11 +1283,10 @@ if ('serviceWorker' in navigator) {
                     return;
                 }
 
-                // 2. Double appui pour le plein écran
                 if (key === 'Enter' || key === 13) {
                     const active = document.activeElement;
                     if (active && (active.closest('.vjs-control-bar') || active.id === 'next-episode-btn' || active.classList.contains('btn-close-player'))) {
-                        return; // Laisse le bouton de langue ou sous-titre faire son action sans lancer le plein écran
+                        return; 
                     }
                     const now = new Date().getTime();
                     if (now - lastEnterTap < 400 && now - lastEnterTap > 0) {
@@ -1295,28 +1304,34 @@ if ('serviceWorker' in navigator) {
                 return;
             }
 
-            // CORRECTION BARRE DE RECHERCHE
-            if (key === 'Escape' || key === 27 || key === 'GoBack' || e.keyCode === 10009) {
-                if (document.activeElement) document.activeElement.blur(); 
-                e.preventDefault();
-                if (document.getElementById('player-section').style.display === 'block') closeP();
-                else if (document.getElementById('details-overlay').style.display === 'flex') closeDetails();
-                else if (document.getElementById('series-overlay').style.display === 'block') closeSeries();
-                else if (document.getElementById('search-overlay').style.display === 'flex') closeSearch();
+            // CORRECTION DES FERMETURES (TOUCHE RETOUR / EFFACER)
+            if (key === 'Escape' || key === 27 || key === 'GoBack' || e.keyCode === 10009 || key === 'Backspace' || key === 8 || key === 'BrowserBack') {
                 
-                if (typeof SpatialNavigation !== 'undefined') {
-                    setTimeout(() => SpatialNavigation.focus(), 200);
-                }
-                return;
-            } else if (key === 'Backspace' || key === 8) {
-                if (document.activeElement.tagName === 'INPUT') {
+                const isInput = document.activeElement && document.activeElement.tagName === 'INPUT';
+                
+                // Si on tape un texte et qu'on efface une lettre, on annule la fermeture
+                if ((key === 'Backspace' || key === 8) && isInput) {
                     return; 
                 }
+
                 e.preventDefault();
-                if (document.getElementById('player-section').style.display === 'block') closeP();
-                else if (document.getElementById('details-overlay').style.display === 'flex') closeDetails();
-                else if (document.getElementById('series-overlay').style.display === 'block') closeSeries();
-                else if (document.getElementById('search-overlay').style.display === 'flex') closeSearch();
+                if (document.activeElement) document.activeElement.blur();
+
+                if (document.getElementById('player-section').style.display === 'block') {
+                    if (player && player.isFullscreen()) {
+                        player.exitFullscreen();
+                    } else {
+                        // On ferme proprement la vidéo au lieu de faire "history.back" à la main pour éviter le double pop
+                        closeP();
+                    }
+                    return;
+                } else if (document.getElementById('details-overlay').style.display === 'flex') {
+                    closeDetails();
+                } else if (document.getElementById('series-overlay').style.display === 'block') {
+                    closeSeries();
+                } else if (document.getElementById('search-overlay').style.display === 'flex') {
+                    closeSearch();
+                }
                 
                 if (typeof SpatialNavigation !== 'undefined') {
                     setTimeout(() => SpatialNavigation.focus(), 200);
