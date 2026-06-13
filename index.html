@@ -320,7 +320,7 @@
 
 <div id="details-overlay">
     <div class="details-content">
-        <button class="btn-close-details" onclick="closeDetails()">✕</button>
+        <button class="btn-close-details" onclick="closeDetails()" tabindex="0">✕</button>
         <div class="details-hero">
              <div id="details-header-bg"></div>
         </div>
@@ -537,6 +537,7 @@
         }
     };
 
+    // Création du premier point d'ancrage de l'historique
     function pushInitialState() {
         if (window.history && window.history.state && window.history.state.overlay !== 'home') {
             window.history.pushState({ overlay: 'home' }, "");
@@ -558,7 +559,7 @@ window.handleImageError = function(img) {
     img.parentElement.classList.add('img-fallback');
 };
 
-let player, playlistData = [], currentProfile = null, isEditMode = false, currentView = 'all', currentPlayingTitle = "", exitConfirmed = false;
+let player, playlistData = [], currentProfile = null, isEditMode = false, currentView = 'all', currentPlayingTitle = "";
 let isAdminMode = false, epgData = {}, hls; 
 
 async function fetchEPG() {
@@ -574,28 +575,26 @@ async function fetchEPG() {
     } catch (e) {}
 }
 
+// CORRECTION CENTRALE DES RETOURS (Bouton physique de la TV) : 
+// Ce code surveille le bouton "Retour" de votre télécommande Fire Stick via le navigateur de la TV
 window.addEventListener('popstate', function (event) {
+    const searchOverlay = document.getElementById('search-overlay');
     const detailsOverlay = document.getElementById('details-overlay');
     const seriesOverlay = document.getElementById('series-overlay');
     const playerSection = document.getElementById('player-section');
 
-    if (detailsOverlay && detailsOverlay.style.display === 'flex') {
-        detailsOverlay.style.display = 'none';
-        document.getElementById('details-trailer-box').innerHTML = "";
-        setTimeout(() => { if (typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus(); }, 100);
-        return;
-    }
-    if (seriesOverlay && seriesOverlay.style.display === 'block') {
-        seriesOverlay.style.display = 'none';
-        setTimeout(() => { if (typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus(); }, 100);
-        return;
-    }
+    // 1. Fermeture Lecteur Vidéo
     if (playerSection && playerSection.style.display === 'block') {
+        if (player && player.isFullscreen()) {
+            // Remet le point d'ancrage car on sort juste du plein écran
+            history.pushState({ overlay: 'player' }, "");
+            player.exitFullscreen();
+            return;
+        }
         saveP(); 
         player.pause(); 
         player.src("");
         playerSection.style.display = 'none';
-        
         setTimeout(() => {
             if(hls) { hls.destroy(); hls = null; }
             if(typeof window.updateProgBars === 'function') window.updateProgBars();
@@ -604,15 +603,39 @@ window.addEventListener('popstate', function (event) {
         return;
     }
 
-    if (!exitConfirmed) {
-        history.pushState({ overlay: 'home' }, "");
-        const quitter = confirm("Souhaitez-vous vraiment quitter l'application ?");
-        if (quitter) {
-            exitConfirmed = true;
-            history.back();
-        }
+    // 2. Fermeture Recherche
+    if (searchOverlay && searchOverlay.style.display === 'flex') {
+        searchOverlay.style.display = 'none';
+        const searchInput = document.getElementById('searchBar');
+        if (searchInput) { searchInput.value = ''; searchInput.blur(); }
+        filter();
+        setTimeout(() => { if (typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus(); }, 100);
+        return;
+    }
+
+    // 3. Fermeture Fiche Film
+    if (detailsOverlay && detailsOverlay.style.display === 'flex') {
+        detailsOverlay.style.display = 'none';
+        const trailerBox = document.getElementById('details-trailer-box');
+        if (trailerBox) trailerBox.innerHTML = "";
+        setTimeout(() => { if (typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus(); }, 100);
+        return;
+    }
+
+    // 4. Fermeture Séries
+    if (seriesOverlay && seriesOverlay.style.display === 'block') {
+        seriesOverlay.style.display = 'none';
+        setTimeout(() => { if (typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus(); }, 100);
+        return;
     }
 });
+
+// Tous les boutons "Croix" utilisent maintenant l'historique pour rester synchronisés avec la télécommande
+window.closeP = function() { history.back(); };
+window.closeDetails = function() { history.back(); };
+window.closeSeries = function() { history.back(); };
+window.closeSearch = function() { history.back(); };
+
 
 async function loadPlaylist() { 
     try { 
@@ -719,9 +742,7 @@ window.updateProgBars = function() {
 };
 
 function openDetails(idx) {
-    if (!window.history.state || window.history.state.overlay !== 'details') {
-        history.pushState({ overlay: 'details' }, "");
-    }
+    history.pushState({ overlay: 'details' }, "");
     const m = playlistData[idx];
     if(!m) return;
     
@@ -797,28 +818,33 @@ function openDetails(idx) {
 }
 
 window.openSearch = function() { 
+    history.pushState({ overlay: 'search' }, "");
     document.getElementById('search-overlay').style.display = 'flex'; 
     setTimeout(() => {
         const searchInput = document.getElementById('searchBar');
-        searchInput.focus(); 
-        if(typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus(searchInput);
+        if (searchInput) {
+            searchInput.focus(); 
+            if(typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus(searchInput);
+        }
     }, 100);
 };
 
-window.closeSearch = function() { 
-    document.getElementById('search-overlay').style.display = 'none'; 
-    const searchInput = document.getElementById('searchBar');
-    searchInput.value = ''; 
-    searchInput.blur(); 
-    filter(); 
-};
-
 window.searchByActor = function(actorName) {
-    closeDetails(); 
-    openSearch(); 
+    document.getElementById('details-overlay').style.display = 'none';
+    document.getElementById('details-trailer-box').innerHTML = "";
+    
+    history.replaceState({ overlay: 'search' }, "");
+    document.getElementById('search-overlay').style.display = 'flex'; 
+    
     const searchBar = document.getElementById('searchBar');
-    searchBar.value = actorName;
-    filter(); 
+    if (searchBar) {
+        searchBar.value = actorName;
+        filter(); 
+        setTimeout(() => {
+            searchBar.focus(); 
+            if(typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus(searchBar);
+        }, 100);
+    }
 };
 
 function toggleFav(title) {
@@ -859,8 +885,6 @@ function updateFavBtnUI(title) {
         else btn.innerText = "+ Ma Liste";
     }
 }
-
-function closeDetails() { if (document.getElementById('details-overlay').style.display === 'flex') history.back(); }
 
 function initProfiles() {
     let profiles = JSON.parse(localStorage.getItem('sfpp_profiles_data')) || [
@@ -1056,9 +1080,7 @@ function render(search = "") {
 }
 
 function openSeries(name) {
-    if (!window.history.state || window.history.state.overlay !== 'series') {
-        history.pushState({ overlay: 'series' }, "");
-    }
+    history.pushState({ overlay: 'series' }, "");
     const overlay = document.getElementById('series-overlay');
     const content = document.getElementById('series-detail-content');
     const eps = playlistData.filter(m => String(m.t).startsWith(name));
@@ -1094,10 +1116,9 @@ function openSeries(name) {
     }
 }
 
-// CORRECTION HISTORIQUE LECTEUR : On push un state propre pour ne plus quitter l'application
 function playMovie(idx) {
     history.pushState({ overlay: 'player' }, "");
-
+    
     const m = playlistData[idx];
     if(!m) return;
     currentPlayingTitle = m.t;
@@ -1147,23 +1168,6 @@ function playNextEpisode() {
     if (nextIdx !== -1) playMovie(nextIdx);
 }
 
-// CORRECTION FERMETURE LECTEUR
-function closeP() { 
-    const pSection = document.getElementById('player-section');
-    if (pSection.style.display === 'block') {
-        saveP(); 
-        player.pause(); 
-        player.src("");
-        pSection.style.display = 'none';
-        setTimeout(() => {
-            if(hls) { hls.destroy(); hls = null; }
-            if(typeof window.updateProgBars === 'function') window.updateProgBars();
-            if (typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus();
-        }, 100);
-    }
-}
-
-function closeSeries() { if (document.getElementById('series-overlay').style.display === 'block') history.back(); }
 function changeView(v) { currentView = v; document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active')); document.getElementById('btn-'+v).classList.add('active'); render(); }
 function filter() { render(document.getElementById('searchBar').value); }
 function toggleEditMode() { isEditMode = !isEditMode; document.getElementById('profile-screen').classList.toggle('is-editing'); }
@@ -1262,7 +1266,6 @@ if ('serviceWorker' in navigator) {
             
             const key = e.key || e.keyCode;
 
-            // GESTION DU LECTEUR VIDEO ET PLEIN ÉCRAN
             if (playerSection && playerSection.style.display === 'block') {
                 if (key === 'MediaFastForward' || key === 228 || key === 176) {
                     e.preventDefault();
@@ -1304,39 +1307,23 @@ if ('serviceWorker' in navigator) {
                 return;
             }
 
-            // CORRECTION DES FERMETURES (TOUCHE RETOUR / EFFACER)
-            if (key === 'Escape' || key === 27 || key === 'GoBack' || e.keyCode === 10009 || key === 'Backspace' || key === 8 || key === 'BrowserBack') {
-                
+            // CORRECTION TOUCHE RETOUR PC (Éviter la fermeture sur PC aussi)
+            if (key === 'Escape' || key === 27 || key === 'Backspace' || key === 8) {
                 const isInput = document.activeElement && document.activeElement.tagName === 'INPUT';
-                
-                // Si on tape un texte et qu'on efface une lettre, on annule la fermeture
-                if ((key === 'Backspace' || key === 8) && isInput) {
-                    return; 
-                }
+                if ((key === 'Backspace' || key === 8) && isInput) return; 
 
-                e.preventDefault();
-                if (document.activeElement) document.activeElement.blur();
+                const isOverlayOpen = (
+                    (document.getElementById('player-section') && document.getElementById('player-section').style.display === 'block') ||
+                    (document.getElementById('details-overlay') && document.getElementById('details-overlay').style.display === 'flex') ||
+                    (document.getElementById('series-overlay') && document.getElementById('series-overlay').style.display === 'block') ||
+                    (document.getElementById('search-overlay') && document.getElementById('search-overlay').style.display === 'flex')
+                );
 
-                if (document.getElementById('player-section').style.display === 'block') {
-                    if (player && player.isFullscreen()) {
-                        player.exitFullscreen();
-                    } else {
-                        // On ferme proprement la vidéo au lieu de faire "history.back" à la main pour éviter le double pop
-                        closeP();
-                    }
+                if (isOverlayOpen) {
+                    e.preventDefault();
+                    history.back(); // Ordonne proprement de fermer la fenêtre en cours
                     return;
-                } else if (document.getElementById('details-overlay').style.display === 'flex') {
-                    closeDetails();
-                } else if (document.getElementById('series-overlay').style.display === 'block') {
-                    closeSeries();
-                } else if (document.getElementById('search-overlay').style.display === 'flex') {
-                    closeSearch();
                 }
-                
-                if (typeof SpatialNavigation !== 'undefined') {
-                    setTimeout(() => SpatialNavigation.focus(), 200);
-                }
-                return;
             }
 
             const isDown = key === 'ArrowDown' || key === 40;
