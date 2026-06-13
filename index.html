@@ -16,8 +16,6 @@
     <link href="https://unpkg.com/@videojs/themes@1.0.1/dist/fantasy/index.css" rel="stylesheet">
     <link href="https://unpkg.com/@silvermine/videojs-chromecast@1.5.0/dist/silvermine-videojs-chromecast.css" rel="stylesheet">
 
-    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
-
     <style>
         :root { --accent: #e50914; --gold: #ffcc00; --bg: #050505; }
         body { background: var(--bg); color: white; font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; padding-bottom: 50px; -webkit-user-select: none; user-select: none; overflow-x: hidden; }
@@ -219,7 +217,6 @@
             scrollbar-width: none; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; 
         }
         
-        /* RESTAURATION DES FLÈCHES POUR SOURIS VIRTUELLE */
         .nav-arrow { 
             position: absolute; top: 0; bottom: 30px; width: 50px; background: rgba(0,0,0,0.5); 
             display: flex; align-items: center; justify-content: center; z-index: 10; 
@@ -677,6 +674,11 @@ window.closeSearch_internal = function() {
     }
 };
 
+window.closeP = function() { window.closeP_internal(); };
+window.closeDetails = function() { window.closeDetails_internal(); };
+window.closeSeries = function() { window.closeSeries_internal(); };
+window.closeSearch = function() { window.closeSearch_internal(); };
+
 
 async function fetchEPG() {
     try {
@@ -693,7 +695,8 @@ async function fetchEPG() {
 
 async function loadPlaylist() { 
     try { 
-        const response = await fetch('films.json'); 
+        // CORRECTION CACHE JSON : On force le téléchargement du nouveau fichier
+        const response = await fetch('films.json?v=' + Date.now(), { cache: "no-store" }); 
         playlistData = await response.json(); 
         
         const db = await dbPromise;
@@ -738,6 +741,9 @@ window.fetchMissingMetadata = async function() {
     const apiKey = "ec1c8fecd38d1cc5a27f15766f0848d5";
     let missingMetadata = playlistData.filter(m => m.id_tmdb && (!m.img || !m.desc || !m.trailer));
 
+    if (missingMetadata.length === 0) return;
+
+    let hasNewContent = false;
     const BATCH_SIZE = 5; 
     for (let i = 0; i < missingMetadata.length; i += BATCH_SIZE) {
         const batch = missingMetadata.slice(i, i + BATCH_SIZE);
@@ -766,11 +772,17 @@ window.fetchMissingMetadata = async function() {
 
                 await saveTMDB(m.id_tmdb, { img: m.img, bg: m.bg, desc: m.desc, year: m.year, note: m.note, cat: m.cat, trailer: m.trailer, actors_pics: m.actors_pics });
 
+                hasNewContent = true;
                 const imgEls = document.querySelectorAll(`img[data-id="${m.id_tmdb}"]`);
                 imgEls.forEach(img => { img.src = m.img; img.classList.add('loaded'); });
             } catch (e) {}
         }));
         await new Promise(r => setTimeout(r, 200));
+    }
+    
+    // CORRECTION APPARITION NOUVEAUX FILMS : On rafraîchit la page à la fin du téléchargement 
+    if (hasNewContent) {
+        render(document.getElementById('searchBar') ? document.getElementById('searchBar').value : "");
     }
 };
 
@@ -1010,7 +1022,9 @@ function render(search = "") {
         const histCont = document.getElementById('history-container');
         
         if(!cont) return;
-        
+        cont.innerHTML = ""; 
+        if(histCont) histCont.innerHTML = "";
+
         const s = search ? String(search).toLowerCase() : "";
 
         if(s === "admin") { isAdminMode = true; document.getElementById('searchBar').value = ""; alert("Mode maintenance activé."); return render(""); }
