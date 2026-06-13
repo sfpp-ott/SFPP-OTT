@@ -1,10 +1,80 @@
 [
   {
-    "num": "1389",
+    "num": "1399",
     "t": "Barbie : Agents Secrets",
     "id_tmdb": "377897",
     "cat": "",
     "url": "https://filemoon.org/download/eyJpdiI6IkNIL3IzQ3dhWkRtQmxtTE54aFF1d2c9PSIsInZhbHVlIjoiWkc4bGlMUU9qSDM5Qng0NzRUVU03MCtiaDlIS285N3FQSVJZRGtQUFBBRT0iLCJtYWMiOiIxYjEwMWJjNGY3ZmM2ODcwYTg4NjczNjRlMmMzOTdlYzEwN2JkNWQ3ZjJlYTI1ODliYjQyMzBlNjU4MjBjZmUxIiwidGFnIjoiIn0=/B960526836.mp4"
+  },
+  {
+    "num": "1398",
+    "t": "Les Ombres persanes",
+    "id_tmdb": "1008043",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/c6332366af5d816a9e17d840d9e17d2d54d7ca5b551bcb616ec666794263e266/master.m3u8"
+  },
+  {
+    "num": "1397",
+    "t": "Maniac",
+    "id_tmdb": "27346",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/ab85010bc8f70fc5ba570f259e1ed2af313aca21e4343b239ec76cdcdbe84f9e/master.m3u8"
+  },
+  {
+    "num": "1396",
+    "t": "‎Massacre à la tronçonneuse 2",
+    "id_tmdb": "16337",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/1b8e3f7e283511d8dfa61565da5cc35b136971e47ac364c70c43bad7b14cdfaf/master.m3u8"
+  },
+  {
+    "num": "1395",
+    "t": "Master and Commander: The Far Side of the World",
+    "id_tmdb": "8619",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/2ebed57a5b272d67df6002f8e6fb8199cdb3cfd06f5e8080c856ac5d3e736aa3/master.m3u8"
+  },
+  {
+    "num": "1394",
+    "t": "Mort d'un pourri",
+    "id_tmdb": "69517",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/2dc41fc2c3541ff4d42adb2092fea7664c75804a802e85bb30b2fea6569cb70b/master.m3u8"
+  },
+  {
+    "num": "1393",
+    "t": "Pas de problème !",
+    "id_tmdb": "76590",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/89f977fd1b63dd0ce88687786b02875e93be6be68e915cf0165d937c1fe9b624/master.m3u8"
+  },
+  {
+    "num": "1392",
+    "t": "Perfect Sense",
+    "id_tmdb": "51999",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/72197aba8aaaa04a4c5256b948897a5c9943dcc70c1d987808ff07c2048f2e03/master.m3u8"
+  },
+  {
+    "num": "1391",
+    "t": "Pleure pas la bouche pleine",
+    "id_tmdb": "314149",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/1ccf0b62579fdfe6185f3423e9fc983cd8e70dedf4a0231e9e7d7ea7d67867ba/master.m3u8"
+  },
+  {
+    "num": "1390",
+    "t": "Mesrine : L'Instinct de mort",
+    "id_tmdb": "13635",
+    "cat": "",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/3bf8ecb5a4341776b374f9bc15e7495c34a9c183e9e883239f9f0a0485751d8c.mp4"
+  },
+  {
+    "num": "1389",
+    "t": "Mesrine : L'Ennemi public n°1",
+    "id_tmdb": "15362",
+    "cat": "",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/e3874f871d02fbe58b5779016f81c03f866e360f4587b80488d0ab24e2814388.mp4"
   },
   {
     "num": "1388",
