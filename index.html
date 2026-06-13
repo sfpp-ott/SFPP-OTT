@@ -219,15 +219,7 @@
             scrollbar-width: none; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; 
         }
         
-        /* RESTAURATION DES FLÈCHES DE NAVIGATION POUR SOURIS VIRTUELLE */
-        .nav-arrow { 
-            position: absolute; top: 0; bottom: 30px; width: 50px; background: rgba(0,0,0,0.5); 
-            display: flex; align-items: center; justify-content: center; z-index: 10; 
-            cursor: pointer; color: white; font-size: 30px; opacity: 0; transition: opacity 0.3s; 
-        }
-        .category-row:hover .nav-arrow { opacity: 1; }
-        .arrow-left { left: 0; }
-        .arrow-right { right: 0; }
+        .nav-arrow { display: none; }
 
         .card { 
             flex: 0 0 150px; width: 150px; cursor: pointer; position: relative; display: flex; flex-direction: column; 
@@ -334,7 +326,7 @@
 
 <div id="details-overlay">
     <div class="details-content">
-        <button class="btn-close-details" onclick="closeDetails()" tabindex="0">✕</button>
+        <button class="btn-close-details" onclick="closeDetails_internal()" tabindex="0">✕</button>
         <div class="details-hero">
              <div id="details-header-bg"></div>
         </div>
@@ -365,7 +357,7 @@
 </div>
 
 <div id="series-overlay">
-    <button class="btn-close" onclick="closeSeries()" style="margin-bottom: 20px;" tabindex="0">← Retour</button>
+    <button class="btn-close" onclick="closeSeries_internal()" style="margin-bottom: 20px;" tabindex="0">← Retour</button>
     <div id="series-detail-content"></div>
 </div>
 
@@ -383,9 +375,7 @@
     <div id="history-sec" style="display:none">
         <div class="category-title">Reprendre avec <span id="current-user-name"></span></div>
         <div class="category-row">
-            <div class="nav-arrow arrow-left" onclick="scrollSide(this, -400)">‹</div>
             <div class="carousel" id="history-container"></div>
-            <div class="nav-arrow arrow-right" onclick="scrollSide(this, 400)">›</div>
         </div>
     </div>
     <div id="categories-container"></div>
@@ -589,14 +579,16 @@ async function saveTMDB(id, data) {
     } catch(e) {}
 }
 
-// LE PIÈGE DE L'HISTORIQUE ET DU BOUTON RETOUR
+// --- LE PIÈGE ANTI-FERMETURE ABSOLU (HISTORY TRAP) ---
 window.addEventListener('load', () => {
-    window.history.pushState({ noExit: true }, '');
-    window.history.pushState({ noExit: true }, '');
+    window.history.pushState({ trap: true }, '');
+    window.history.pushState({ trap: true }, '');
 });
 
 window.addEventListener('popstate', function (event) {
-    window.history.pushState({ noExit: true }, '');
+    // Si la TV a tenté de faire "Retour", on referme la trappe
+    window.history.pushState({ trap: true }, '');
+    // On appelle notre fonction de fermeture manuelle
     window.handleBackAction();
 });
 
@@ -676,11 +668,6 @@ window.closeSearch_internal = function() {
         setTimeout(() => { if (typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus(); }, 100);
     }
 };
-
-window.closeP = function() { window.closeP_internal(); };
-window.closeDetails = function() { window.closeDetails_internal(); };
-window.closeSeries = function() { window.closeSeries_internal(); };
-window.closeSearch = function() { window.closeSearch_internal(); };
 
 
 async function fetchEPG() {
@@ -1006,8 +993,6 @@ function saveP() {
     }
 }
 
-window.scrollSide = function(btn, amt) { const car = btn.parentElement.querySelector('.carousel'); car.scrollBy({ left: amt, behavior: 'smooth' }); }
-
 function render(search = "") {
     try {
         const cont = document.getElementById('categories-container');
@@ -1015,9 +1000,7 @@ function render(search = "") {
         const histCont = document.getElementById('history-container');
         
         if(!cont) return;
-        cont.innerHTML = ""; 
-        if(histCont) histCont.innerHTML = "";
-
+        
         const s = search ? String(search).toLowerCase() : "";
 
         if(s === "admin") { isAdminMode = true; document.getElementById('searchBar').value = ""; alert("Mode maintenance activé."); return render(""); }
@@ -1030,6 +1013,7 @@ function render(search = "") {
         else if(currentView === 'series') data = data.filter(m => m.cat && m.cat.includes("SÉRIES"));
         else if(currentView === 'fav') data = data.filter(m => m.t && favs.includes(m.t));
 
+        let histHtml = "";
         if(currentProfile && s === "" && currentView === 'all') {
             let history = JSON.parse(localStorage.getItem('sfpp_hist_' + currentProfile) || "[]");
             if(history.length > 0 && histSec && histCont) {
@@ -1048,7 +1032,7 @@ function render(search = "") {
                         for (let i = 0; i < 5; i++) { m_stars += (i < (m.note || 5)) ? "★" : "☆"; }
                         const ratingHtml = !isTV ? '<div class="card-rating">' + m_stars + '</div>' : "";
 
-                        histCont.innerHTML += `
+                        histHtml += `
                             <div class="card sn-card ${isTV ? "landscape" : ""}" tabindex="0" onclick="${clickAction}">
                                 <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${safeStr(m.t)}');">${heartIcon}</div>
                                 ${ratingHtml}
@@ -1063,9 +1047,12 @@ function render(search = "") {
         } else if (histSec) {
             histSec.style.display = "none";
         }
+        if (histCont) histCont.innerHTML = histHtml;
+
+        let finalHTML = "";
 
         if (data.length > 0) {
-            let htmlTout = '<div class="category-title">TOUT</div><div class="category-row"><div class="nav-arrow arrow-left" onclick="scrollSide(this, -400)">‹</div><div class="carousel">';
+            let htmlTout = '<div class="category-title">TOUT</div><div class="category-row"><div class="carousel">';
             data.forEach(m => {
                 if (s !== "" && !String(m.t).toLowerCase().includes(s)) return;
                 const isTVCat = m.cat && (m.cat.toUpperCase().includes("DIRECT") || m.cat.toUpperCase().includes("TV"));
@@ -1087,8 +1074,8 @@ function render(search = "") {
                         <div class="card-name">${m.t}</div>
                     </div>`;
             });
-            htmlTout += '</div><div class="nav-arrow arrow-right" onclick="scrollSide(this, 400)">›</div></div>';
-            cont.innerHTML += htmlTout;
+            htmlTout += '</div></div>';
+            finalHTML += htmlTout;
         }
 
         const allGenres = [];
@@ -1104,7 +1091,7 @@ function render(search = "") {
             if (filtered.length === 0) return;
             const isTVCat = c.includes("DIRECT") || c.includes("TV");
             
-            let html = '<div class="category-title">' + c + '</div><div class="category-row"><div class="nav-arrow arrow-left" onclick="scrollSide(this, -400)">‹</div><div class="carousel">';
+            let html = '<div class="category-title">' + c + '</div><div class="category-row"><div class="carousel">';
             filtered.forEach(m => {
                 const is_fav = favs.includes(m.t);
                 const heartClass = is_fav ? 'is-fav' : '';
@@ -1124,9 +1111,11 @@ function render(search = "") {
                         <div class="card-name">${m.t}</div>
                     </div>`;
             });
-            html += '</div><div class="nav-arrow arrow-right" onclick="scrollSide(this, 400)">›</div></div>';
-            cont.innerHTML += html;
+            html += '</div></div>';
+            finalHTML += html;
         });
+
+        cont.innerHTML = finalHTML;
 
         if (typeof updateSpatialNav === 'function') {
             setTimeout(updateSpatialNav, 500);
@@ -1223,7 +1212,14 @@ function playNextEpisode() {
     if (nextIdx !== -1) playMovie(nextIdx);
 }
 
-function changeView(v) { currentView = v; document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active')); document.getElementById('btn-'+v).classList.add('active'); render(); }
+function changeView(v) { 
+    currentView = v; 
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active')); 
+    document.getElementById('btn-'+v).classList.add('active'); 
+    document.getElementById('categories-container').innerHTML = '<div style="text-align:center; margin-top:50px; color:#888;">Génération des films...</div>';
+    setTimeout(render, 50);
+}
+
 function filter() { render(document.getElementById('searchBar').value); }
 function toggleEditMode() { isEditMode = !isEditMode; document.getElementById('profile-screen').classList.toggle('is-editing'); }
 function switchProfile() { localStorage.removeItem('sfpp_profile'); location.reload(); }
@@ -1371,31 +1367,22 @@ if ('serviceWorker' in navigator) {
                 return;
             }
 
-            if (key === 'Escape' || key === 27 || key === 'GoBack' || key === 'BrowserBack' || e.keyCode === 10009 || e.keyCode === 4 || e.keyCode === 461) {
+            if (key === 'Escape' || key === 27 || key === 'Backspace' || key === 8) {
                 const isInput = document.activeElement && document.activeElement.tagName === 'INPUT';
-                if ((key === 'Backspace' || key === 8) && isInput) {
-                    return; 
-                }
+                if ((key === 'Backspace' || key === 8) && isInput) return; 
 
-                e.preventDefault();
-                e.stopPropagation();
-                
-                if (document.activeElement) document.activeElement.blur();
-                
-                if (document.getElementById('player-section').style.display === 'block' && player && player.isFullscreen()) {
-                    player.exitFullscreen();
+                const isOverlayOpen = (
+                    (document.getElementById('player-section') && document.getElementById('player-section').style.display === 'block') ||
+                    (document.getElementById('details-overlay') && document.getElementById('details-overlay').style.display === 'flex') ||
+                    (document.getElementById('series-overlay') && document.getElementById('series-overlay').style.display === 'block') ||
+                    (document.getElementById('search-overlay') && document.getElementById('search-overlay').style.display === 'flex')
+                );
+
+                if (isOverlayOpen) {
+                    e.preventDefault();
+                    window.handleBackAction();
                     return;
                 }
-                
-                window.handleBackAction();
-                return;
-            }
-
-            if (key === 'Backspace' || key === 8) {
-                if (document.activeElement && document.activeElement.tagName === 'INPUT') return; 
-                e.preventDefault();
-                window.handleBackAction();
-                return;
             }
 
             const isDown = key === 'ArrowDown' || key === 40;
