@@ -112,17 +112,24 @@
         .video-js { z-index: 1 !important; width: 100% !important; height: 100% !important; }
         .video-js video { object-fit: contain !important; }
 
+        /* CORRECTION CROIX DU LECTEUR : Ajout d'une animation d'opacité fluide */
+        .btn-close-player {
+            position: absolute; top: 20px; left: 20px; z-index: 5000;
+            background: rgba(0,0,0,0.5); border: none; color: white;
+            width: 45px; height: 45px; border-radius: 50%; font-size: 20px; cursor: pointer;
+            transition: opacity 0.5s ease;
+        }
+        
+        .btn-close-player.hidden {
+            opacity: 0 !important;
+            pointer-events: none !important;
+        }
+
         #next-episode-btn {
             position: absolute; bottom: 85px; right: 25px; z-index: 99999 !important;
             background: #e50914; color: white; border: 2px solid #fff; padding: 15px 25px;
             border-radius: 8px; font-weight: bold; font-size: 15px; display: none; cursor: pointer;
             box-shadow: 0 4px 20px rgba(0,0,0,0.9); animation: fadeIn 0.5s;
-        }
-
-        .btn-close-player {
-            position: absolute; top: 20px; left: 20px; z-index: 5000;
-            background: rgba(0,0,0,0.5); border: none; color: white;
-            width: 45px; height: 45px; border-radius: 50%; font-size: 20px; cursor: pointer;
         }
 
         #expiration-banner { display: none; background: #ffcc00; color: #000; text-align: center; padding: 10px; font-size: 13px; font-weight: bold; position: relative; z-index: 1500; }
@@ -356,7 +363,7 @@
 </div>
 
 <section id="player-section">
-    <button class="btn-close-player" onclick="closeP()" tabindex="0">✕</button>
+    <button class="btn-close-player" onclick="closeP_internal()" tabindex="0">✕</button>
     <div class="video-container" id="video-container">
         <div id="player-blur-bg" class="vjs-blur-bg"></div>
         <video id="main-video" class="video-js vjs-theme-fantasy vjs-big-play-centered" controls preload="metadata" controlsList="nodownload" oncontextmenu="return false;"></video>
@@ -505,6 +512,7 @@
         localStorage.setItem('sfpp_profile_icon', icon);
         document.getElementById('profile-screen').style.display = 'none';
         document.getElementById('current-user-name').innerText = name;
+
         const user = auth.currentUser;
         if(user) {
             const snap = await get(ref(db, 'users_data/' + user.uid + '/expire'));
@@ -564,6 +572,110 @@ async function fetchEPG() {
         }
     } catch (e) {}
 }
+
+
+// --- 🛡️ LE PIÈGE DE LA TOUCHE RETOUR DE LA TV (HISTORY TRAP) ---
+// Cette fonction ajoute une page fantôme dans la mémoire de la TV. 
+// Quand vous faites "Retour", la TV revient sur cette page fantôme au lieu de fermer l'app.
+function trapHistory() {
+    window.history.pushState({ trap: true }, "");
+}
+
+// On arme le piège dès le début
+window.addEventListener('load', () => { trapHistory(); });
+
+// La TV a appuyé sur "Retour", on attrape sa commande ici :
+window.addEventListener('popstate', function (event) {
+    let handled = false;
+    
+    // 1. Fermeture Lecteur Vidéo
+    const pSection = document.getElementById('player-section');
+    if (pSection && pSection.style.display === 'block') {
+        if (player && player.isFullscreen()) {
+            player.exitFullscreen();
+        } else {
+            window.closeP_internal();
+        }
+        handled = true;
+    }
+    // 2. Fermeture Recherche
+    else {
+        const searchOverlay = document.getElementById('search-overlay');
+        if (searchOverlay && searchOverlay.style.display === 'flex') {
+            window.closeSearch_internal();
+            handled = true;
+        }
+        // 3. Fermeture Fiche Film
+        else {
+            const detailsOverlay = document.getElementById('details-overlay');
+            if (detailsOverlay && detailsOverlay.style.display === 'flex') {
+                window.closeDetails_internal();
+                handled = true;
+            }
+            // 4. Fermeture Séries
+            else {
+                const seriesOverlay = document.getElementById('series-overlay');
+                if (seriesOverlay && seriesOverlay.style.display === 'block') {
+                    window.closeSeries_internal();
+                    handled = true;
+                }
+            }
+        }
+    }
+
+    // Quoi qu'il arrive, on remet le piège pour le prochain appui sur "Retour"
+    trapHistory();
+});
+
+
+// --- FONCTIONS DE FERMETURE DES FENÊTRES ---
+window.closeP_internal = function() {
+    const pSection = document.getElementById('player-section');
+    if (pSection && pSection.style.display === 'block') {
+        saveP(); 
+        if (player) { player.pause(); player.src(""); }
+        pSection.style.display = 'none';
+        setTimeout(() => {
+            if(typeof window.updateProgBars === 'function') window.updateProgBars();
+            if (typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus();
+        }, 100);
+    }
+};
+
+window.closeDetails_internal = function() {
+    const dOverlay = document.getElementById('details-overlay');
+    if (dOverlay && dOverlay.style.display === 'flex') {
+        dOverlay.style.display = 'none'; 
+        document.getElementById('details-trailer-box').innerHTML = "";
+        setTimeout(() => { if (typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus(); }, 100);
+    }
+};
+
+window.closeSeries_internal = function() {
+    const sOverlay = document.getElementById('series-overlay');
+    if (sOverlay && sOverlay.style.display === 'block') {
+        sOverlay.style.display = 'none'; 
+        setTimeout(() => { if (typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus(); }, 100);
+    }
+};
+
+window.closeSearch_internal = function() {
+    const sOverlay = document.getElementById('search-overlay');
+    if (sOverlay && sOverlay.style.display === 'flex') {
+        sOverlay.style.display = 'none'; 
+        const searchInput = document.getElementById('searchBar');
+        if (searchInput) { searchInput.value = ''; searchInput.blur(); }
+        filter(); 
+        setTimeout(() => { if (typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus(); }, 100);
+    }
+};
+
+// Les boutons "Croix" à l'écran font appel à la fermeture interne sans toucher à l'historique
+window.closeP = function() { window.closeP_internal(); };
+window.closeDetails = function() { window.closeDetails_internal(); };
+window.closeSeries = function() { window.closeSeries_internal(); };
+window.closeSearch = function() { window.closeSearch_internal(); };
+
 
 async function loadPlaylist() { 
     try { 
@@ -756,8 +868,7 @@ window.openSearch = function() {
 };
 
 window.searchByActor = function(actorName) {
-    document.getElementById('details-overlay').style.display = 'none';
-    document.getElementById('details-trailer-box').innerHTML = "";
+    window.closeDetails_internal();
     
     document.getElementById('search-overlay').style.display = 'flex'; 
     
@@ -810,40 +921,6 @@ function updateFavBtnUI(title) {
         else btn.innerText = "+ Ma Liste";
     }
 }
-
-window.closeDetails = function() { 
-    document.getElementById('details-overlay').style.display = 'none'; 
-    document.getElementById('details-trailer-box').innerHTML = "";
-    if (typeof SpatialNavigation !== 'undefined') setTimeout(() => SpatialNavigation.focus(), 100);
-};
-
-window.closeSeries = function() { 
-    document.getElementById('series-overlay').style.display = 'none'; 
-    if (typeof SpatialNavigation !== 'undefined') setTimeout(() => SpatialNavigation.focus(), 100);
-};
-
-window.closeSearch = function() { 
-    document.getElementById('search-overlay').style.display = 'none'; 
-    const searchInput = document.getElementById('searchBar');
-    if (searchInput) { searchInput.value = ''; searchInput.blur(); }
-    filter(); 
-    if (typeof SpatialNavigation !== 'undefined') setTimeout(() => SpatialNavigation.focus(), 100);
-};
-
-window.closeP = function() { 
-    const pSection = document.getElementById('player-section');
-    if (pSection && pSection.style.display === 'block') {
-        saveP(); 
-        player.pause(); 
-        player.src("");
-        pSection.style.display = 'none';
-        setTimeout(() => {
-            if(hls) { hls.destroy(); hls = null; }
-            if(typeof window.updateProgBars === 'function') window.updateProgBars();
-            if (typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus();
-        }, 100);
-    }
-};
 
 function initProfiles() {
     let profiles = JSON.parse(localStorage.getItem('sfpp_profiles_data')) || [
@@ -1168,6 +1245,16 @@ document.addEventListener('DOMContentLoaded', () => {
         player.getChild('controlBar').addChild('Back', {}, 1); 
         player.getChild('controlBar').addChild('Forward', {}, 2); 
         
+        // CORRECTION CROIX FANTÔME : Fait disparaître la croix quand le lecteur est inactif
+        player.on('useractive', function() {
+            const btnClose = document.querySelector('.btn-close-player');
+            if(btnClose) btnClose.classList.remove('hidden');
+        });
+        player.on('userinactive', function() {
+            const btnClose = document.querySelector('.btn-close-player');
+            if(btnClose) btnClose.classList.add('hidden');
+        });
+
         player.on('loadeddata', () => {
             setTimeout(() => {
                 document.querySelectorAll('.vjs-progress-control, .vjs-slider, .vjs-progress-holder').forEach(el => {
@@ -1266,7 +1353,7 @@ if ('serviceWorker' in navigator) {
                 return;
             }
 
-            // GESTION DU CLAVIER PC ET BOUTONS DE RECHERCHE
+            // GESTION DU CLAVIER PC (Touche Échap) ET EFFACER SUR TV
             if (key === 'Escape' || key === 27 || key === 'Backspace' || key === 8) {
                 const isInput = document.activeElement && document.activeElement.tagName === 'INPUT';
                 if ((key === 'Backspace' || key === 8) && isInput) return; 
@@ -1280,7 +1367,7 @@ if ('serviceWorker' in navigator) {
 
                 if (isOverlayOpen) {
                     e.preventDefault();
-                    history.back();
+                    window.handleBackAction();
                     return;
                 }
             }
