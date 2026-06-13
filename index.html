@@ -16,6 +16,8 @@
     <link href="https://unpkg.com/@videojs/themes@1.0.1/dist/fantasy/index.css" rel="stylesheet">
     <link href="https://unpkg.com/@silvermine/videojs-chromecast@1.5.0/dist/silvermine-videojs-chromecast.css" rel="stylesheet">
 
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+
     <style>
         :root { --accent: #e50914; --gold: #ffcc00; --bg: #050505; }
         body { background: var(--bg); color: white; font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; padding-bottom: 50px; -webkit-user-select: none; user-select: none; overflow-x: hidden; }
@@ -503,10 +505,6 @@
         localStorage.setItem('sfpp_profile_icon', icon);
         document.getElementById('profile-screen').style.display = 'none';
         document.getElementById('current-user-name').innerText = name;
-        
-        // Initialisation de l'ancre pour piéger la touche Retour
-        if (window.location.hash === '') window.location.hash = 'home';
-
         const user = auth.currentUser;
         if(user) {
             const snap = await get(ref(db, 'users_data/' + user.uid + '/expire'));
@@ -552,7 +550,7 @@ window.handleImageError = function(img) {
 };
 
 let player, playlistData = [], currentProfile = null, isEditMode = false, currentView = 'all', currentPlayingTitle = "";
-let isAdminMode = false, epgData = {}; 
+let isAdminMode = false, epgData = {}, hls; 
 
 async function fetchEPG() {
     try {
@@ -566,81 +564,6 @@ async function fetchEPG() {
         }
     } catch (e) {}
 }
-
-// --- LE PIÈGE DE LA TOUCHE RETOUR ---
-window.addEventListener('hashchange', function() {
-    const h = window.location.hash;
-    
-    // Si on retourne à l'accueil (ou qu'il n'y a plus de hash)
-    if (h === '' || h === '#home') {
-        window.closeP_internal();
-        window.closeDetails_internal();
-        window.closeSeries_internal();
-        window.closeSearch_internal();
-    } 
-    // Si on sortait du lecteur vidéo pour revenir aux détails
-    else if (h === '#details') {
-        window.closeP_internal();
-    } 
-    // Si on sortait du lecteur vidéo pour revenir aux séries
-    else if (h === '#series') {
-        window.closeP_internal();
-    } 
-    // Si on sortait du lecteur ou détails pour revenir à la recherche
-    else if (h === '#search') {
-        window.closeP_internal();
-        window.closeDetails_internal();
-    }
-});
-
-// Les fonctions qui cachent physiquement les fenêtres sans toucher à l'historique
-window.closeP_internal = function() {
-    const pSection = document.getElementById('player-section');
-    if (pSection && pSection.style.display === 'block') {
-        saveP(); 
-        if (player) { player.pause(); player.src(""); }
-        pSection.style.display = 'none';
-        setTimeout(() => {
-            if(typeof window.updateProgBars === 'function') window.updateProgBars();
-            if (typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus();
-        }, 100);
-    }
-};
-
-window.closeDetails_internal = function() {
-    const dOverlay = document.getElementById('details-overlay');
-    if (dOverlay && dOverlay.style.display === 'flex') {
-        dOverlay.style.display = 'none'; 
-        document.getElementById('details-trailer-box').innerHTML = "";
-        setTimeout(() => { if (typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus(); }, 100);
-    }
-};
-
-window.closeSeries_internal = function() {
-    const sOverlay = document.getElementById('series-overlay');
-    if (sOverlay && sOverlay.style.display === 'block') {
-        sOverlay.style.display = 'none'; 
-        setTimeout(() => { if (typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus(); }, 100);
-    }
-};
-
-window.closeSearch_internal = function() {
-    const sOverlay = document.getElementById('search-overlay');
-    if (sOverlay && sOverlay.style.display === 'flex') {
-        sOverlay.style.display = 'none'; 
-        const searchInput = document.getElementById('searchBar');
-        if (searchInput) { searchInput.value = ''; searchInput.blur(); }
-        filter(); 
-        setTimeout(() => { if (typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus(); }, 100);
-    }
-};
-
-// Les boutons "Croix" à l'écran demandent désormais simplement un retour en arrière au navigateur
-window.closeP = function() { history.back(); };
-window.closeDetails = function() { history.back(); };
-window.closeSeries = function() { history.back(); };
-window.closeSearch = function() { history.back(); };
-
 
 async function loadPlaylist() { 
     try { 
@@ -747,8 +670,6 @@ window.updateProgBars = function() {
 };
 
 function openDetails(idx) {
-    window.location.hash = 'details'; // Crée un point dans l'historique
-    
     const m = playlistData[idx];
     if(!m) return;
     
@@ -824,7 +745,6 @@ function openDetails(idx) {
 }
 
 window.openSearch = function() { 
-    window.location.hash = 'search'; 
     document.getElementById('search-overlay').style.display = 'flex'; 
     setTimeout(() => {
         const searchInput = document.getElementById('searchBar');
@@ -836,8 +756,8 @@ window.openSearch = function() {
 };
 
 window.searchByActor = function(actorName) {
-    window.closeDetails_internal();
-    window.location.hash = 'search';
+    document.getElementById('details-overlay').style.display = 'none';
+    document.getElementById('details-trailer-box').innerHTML = "";
     
     document.getElementById('search-overlay').style.display = 'flex'; 
     
@@ -890,6 +810,40 @@ function updateFavBtnUI(title) {
         else btn.innerText = "+ Ma Liste";
     }
 }
+
+window.closeDetails = function() { 
+    document.getElementById('details-overlay').style.display = 'none'; 
+    document.getElementById('details-trailer-box').innerHTML = "";
+    if (typeof SpatialNavigation !== 'undefined') setTimeout(() => SpatialNavigation.focus(), 100);
+};
+
+window.closeSeries = function() { 
+    document.getElementById('series-overlay').style.display = 'none'; 
+    if (typeof SpatialNavigation !== 'undefined') setTimeout(() => SpatialNavigation.focus(), 100);
+};
+
+window.closeSearch = function() { 
+    document.getElementById('search-overlay').style.display = 'none'; 
+    const searchInput = document.getElementById('searchBar');
+    if (searchInput) { searchInput.value = ''; searchInput.blur(); }
+    filter(); 
+    if (typeof SpatialNavigation !== 'undefined') setTimeout(() => SpatialNavigation.focus(), 100);
+};
+
+window.closeP = function() { 
+    const pSection = document.getElementById('player-section');
+    if (pSection && pSection.style.display === 'block') {
+        saveP(); 
+        player.pause(); 
+        player.src("");
+        pSection.style.display = 'none';
+        setTimeout(() => {
+            if(hls) { hls.destroy(); hls = null; }
+            if(typeof window.updateProgBars === 'function') window.updateProgBars();
+            if (typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus();
+        }, 100);
+    }
+};
 
 function initProfiles() {
     let profiles = JSON.parse(localStorage.getItem('sfpp_profiles_data')) || [
@@ -1085,8 +1039,6 @@ function render(search = "") {
 }
 
 function openSeries(name) {
-    window.location.hash = 'series';
-    
     const overlay = document.getElementById('series-overlay');
     const content = document.getElementById('series-detail-content');
     const eps = playlistData.filter(m => String(m.t).startsWith(name));
@@ -1123,8 +1075,6 @@ function openSeries(name) {
 }
 
 function playMovie(idx) {
-    window.location.hash = 'player';
-    
     const m = playlistData[idx];
     if(!m) return;
     currentPlayingTitle = m.t;
@@ -1316,35 +1266,23 @@ if ('serviceWorker' in navigator) {
                 return;
             }
 
-            // CORRECTION DES FERMETURES (Détournement du bouton Retour de la TV)
-            if (key === 'Escape' || key === 27 || key === 'GoBack' || key === 'BrowserBack' || e.keyCode === 10009 || e.keyCode === 4 || e.keyCode === 461) {
+            // GESTION DU CLAVIER PC ET BOUTONS DE RECHERCHE
+            if (key === 'Escape' || key === 27 || key === 'Backspace' || key === 8) {
                 const isInput = document.activeElement && document.activeElement.tagName === 'INPUT';
-                if ((key === 'Backspace' || key === 8) && isInput) {
-                    return; 
-                }
+                if ((key === 'Backspace' || key === 8) && isInput) return; 
 
-                e.preventDefault();
-                e.stopPropagation();
-                
-                if (document.activeElement) document.activeElement.blur();
-                
-                // Si on est en plein écran, on sort d'abord du plein écran
-                if (document.getElementById('player-section').style.display === 'block' && player && player.isFullscreen()) {
-                    player.exitFullscreen();
+                const isOverlayOpen = (
+                    (document.getElementById('player-section') && document.getElementById('player-section').style.display === 'block') ||
+                    (document.getElementById('details-overlay') && document.getElementById('details-overlay').style.display === 'flex') ||
+                    (document.getElementById('series-overlay') && document.getElementById('series-overlay').style.display === 'block') ||
+                    (document.getElementById('search-overlay') && document.getElementById('search-overlay').style.display === 'flex')
+                );
+
+                if (isOverlayOpen) {
+                    e.preventDefault();
+                    history.back();
                     return;
                 }
-                
-                // Sinon, on recule dans l'historique (ce qui déclenche le "hashchange" et ferme les fenêtres proprement)
-                history.back();
-                return;
-            }
-
-            // Le retour arrière PC efface le texte normalement
-            if (key === 'Backspace' || key === 8) {
-                if (document.activeElement.tagName === 'INPUT') return; 
-                e.preventDefault();
-                history.back();
-                return;
             }
 
             const isDown = key === 'ArrowDown' || key === 40;
