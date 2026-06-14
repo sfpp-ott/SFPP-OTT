@@ -259,7 +259,7 @@
         .btn-fav-card {
             position: absolute; top: 10px; right: 10px; z-index: 10; background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.2);
             border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 16px;
-            transition: transform 0.2s ease;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), background 0.2s ease;
         }
         .btn-fav-card.is-fav { color: #e50914; background: rgba(0,0,0,0.7); }
         .btn-fav-card:not(.is-fav) { color: white; }
@@ -580,18 +580,20 @@ let player, playlistData = [], currentProfile = null, isEditMode = false, curren
 let isAdminMode = false, epgData = {}; 
 
 // -----------------------------------------------------
-// SYSTÈME DE CLIC LONG POUR FAVORIS (Sécurisé pour TV)
+// SYSTÈME DE CLIC LONG POUR FAVORIS (Sécurité absolue TV)
 // -----------------------------------------------------
-let cardPressTimer = null;
-let cardLongPressed = false;
+let pressTimer = null;
+let isLongPress = false;
+let ignoreNextClick = false;
 
-window.cardPressStart = function(title, el) {
-    if (cardPressTimer) return;
-    cardLongPressed = false;
-    
-    // Le délai est de 800ms pour éviter de confondre avec un clic normal lent de télécommande
-    cardPressTimer = setTimeout(function() {
-        cardLongPressed = true;
+window.startPress = function(title, el) {
+    if (pressTimer) return;
+    isLongPress = false;
+    ignoreNextClick = false;
+
+    pressTimer = setTimeout(function() {
+        isLongPress = true;
+        ignoreNextClick = true; // On indique au système qu'il faudra ignorer le clic d'ouverture
         toggleFav(title);
         
         // Animation du coeur pour confirmer visuellement
@@ -600,30 +602,62 @@ window.cardPressStart = function(title, el) {
             heartBtn.style.transform = 'scale(1.5)';
             setTimeout(() => { heartBtn.style.transform = 'scale(1)'; }, 300);
         }
-        cardPressTimer = null;
-    }, 800); 
+        pressTimer = null;
+    }, 800); // 0.8s est la durée idéale pour la télécommande TV
 };
 
-window.cardPressEnd = function() {
-    if (cardPressTimer) {
-        clearTimeout(cardPressTimer);
-        cardPressTimer = null;
+window.cancelPress = function() {
+    if (pressTimer) {
+        clearTimeout(pressTimer);
+        pressTimer = null;
     }
 };
 
-window.cardClick = function(event, idx, isTV) {
-    // Sécurité absolue : on détruit le chrono si un clic passe
-    window.cardPressEnd();
+window.handleCardKeyDown = function(event, title, el) {
+    // Si c'est la touche OK/Entrée de la télécommande
+    if (event.key === 'Enter' || event.keyCode === 13) {
+        event.stopPropagation(); // BLOQUE le faux-clic instantané de la Fire Stick
+        if (!event.repeat) {
+            window.startPress(title, el);
+        }
+    }
+};
+
+window.handleCardKeyUp = function(event, idx, isTV) {
+    // Si on relâche la touche OK/Entrée
+    if (event.key === 'Enter' || event.keyCode === 13) {
+        event.stopPropagation();
+        window.cancelPress(); // Kill-switch du chrono !
+        
+        if (!isLongPress) {
+            // Si le chrono n'a pas atteint 0.8s, c'est un clic normal, on ouvre le film
+            if (isTV) playMovie(idx);
+            else openDetails(idx);
+        }
+        isLongPress = false; // Réinitialisation pour la prochaine fois
+    }
+};
+
+// Fonction spéciale pour la souris / le doigt
+window.handleCardMouseDown = function(event, title, el) {
+    window.startPress(title, el);
+};
+
+window.handleCardMouseUp = function() {
+    window.cancelPress();
+};
+
+window.handleCardClick = function(event, idx, isTV) {
+    // Kill switch final au cas où
+    window.cancelPress();
     
-    if (cardLongPressed) {
-        // Si c'était un clic long, on bloque l'ouverture du film
+    if (ignoreNextClick) {
         event.preventDefault();
         event.stopPropagation();
-        cardLongPressed = false; // on réinitialise pour le prochain coup
+        ignoreNextClick = false;
         return;
     }
     
-    // Si c'est un clic normal court
     if (isTV) playMovie(idx);
     else openDetails(idx);
 };
@@ -855,7 +889,7 @@ window.fetchMissingMetadata = async function() {
 
                 hasNewContent = true;
                 
-                // CORRECTION : On met à jour l'image en direct pour que la jaquette apparaisse
+                // Maintient le chargement visuel en arrière plan sans casser
                 const imgEls = document.querySelectorAll(`img[data-id="${m.id_tmdb}"]`);
                 imgEls.forEach(img => { 
                     img.src = m.img; 
@@ -955,18 +989,19 @@ function openDetails(idx) {
         const s_note = s.note || 5;
         for (let i = 0; i < 5; i++) { s_stars += (i < s_note) ? "★" : "☆"; }
         
+        // Application de la nouvelle logique sécurisée aux suggestions
         return `
         <div class="actor-item sn-card" style="flex:0 0 120px; position:relative;" tabindex="0"
-             onmousedown="window.cardPressStart('${safeStr(s.t)}', this)" 
-             onmouseup="window.cardPressEnd()" 
-             onmouseleave="window.cardPressEnd()" 
-             ontouchstart="window.cardPressStart('${safeStr(s.t)}', this)" 
-             ontouchend="window.cardPressEnd()" 
-             ontouchcancel="window.cardPressEnd()" 
-             onkeydown="if(event.key==='Enter'||event.keyCode===13){ if(!event.repeat) window.cardPressStart('${safeStr(s.t)}', this); }" 
-             onkeyup="if(event.key==='Enter'||event.keyCode===13) window.cardPressEnd()" 
-             onclick="window.cardClick(event, ${playlistData.indexOf(s)}, false)">
-            <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); window.cardPressEnd(); toggleFav('${safeStr(s.t)}');">${heartIcon}</div>
+             onmousedown="window.handleCardMouseDown(event, '${safeStr(s.t)}', this)" 
+             onmouseup="window.handleCardMouseUp()" 
+             onmouseleave="window.handleCardMouseUp()" 
+             ontouchstart="window.handleCardMouseDown(event, '${safeStr(s.t)}', this)" 
+             ontouchend="window.handleCardMouseUp()" 
+             ontouchcancel="window.handleCardMouseUp()" 
+             onkeydown="window.handleCardKeyDown(event, '${safeStr(s.t)}', this)" 
+             onkeyup="window.handleCardKeyUp(event, ${playlistData.indexOf(s)}, false)" 
+             onclick="window.handleCardClick(event, ${playlistData.indexOf(s)}, false)">
+            <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); window.cancelPress(); toggleFav('${safeStr(s.t)}');">${heartIcon}</div>
             <div class="card-rating">${s_stars}</div>
             <img data-id="${s.id_tmdb || ''}" data-src="${s.img || 'https://via.placeholder.com/110x160/222/fff?text=SFPP'}" style="border-radius:4px; height:160px; width:110px; object-fit:cover;" class="lazy-img" onerror="handleImageError(this)">
             <div class="actor-name">${s.t}</div>
@@ -1172,18 +1207,19 @@ function render(search = "") {
                         for (let i = 0; i < 5; i++) { m_stars += (i < (m.note || 5)) ? "★" : "☆"; }
                         const ratingHtml = !isTV ? '<div class="card-rating">' + m_stars + '</div>' : "";
 
+                        // Injection du Kill-Switch sur l'historique
                         histHtml += `
                             <div class="card sn-card ${isTV ? "landscape" : ""}" tabindex="0" 
-                                 onmousedown="window.cardPressStart('${safeStr(m.t)}', this)" 
-                                 onmouseup="window.cardPressEnd()" 
-                                 onmouseleave="window.cardPressEnd()" 
-                                 ontouchstart="window.cardPressStart('${safeStr(m.t)}', this)" 
-                                 ontouchend="window.cardPressEnd()" 
-                                 ontouchcancel="window.cardPressEnd()" 
-                                 onkeydown="if(event.key==='Enter'||event.keyCode===13){ if(!event.repeat) window.cardPressStart('${safeStr(m.t)}', this); }" 
-                                 onkeyup="if(event.key==='Enter'||event.keyCode===13) window.cardPressEnd()" 
-                                 onclick="window.cardClick(event, ${playlistData.indexOf(m)}, ${isTV ? 'true' : 'false'})">
-                                <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); window.cardPressEnd(); toggleFav('${safeStr(m.t)}');">${heartIcon}</div>
+                                 onmousedown="window.handleCardMouseDown(event, '${safeStr(m.t)}', this)" 
+                                 onmouseup="window.handleCardMouseUp()" 
+                                 onmouseleave="window.handleCardMouseUp()" 
+                                 ontouchstart="window.handleCardMouseDown(event, '${safeStr(m.t)}', this)" 
+                                 ontouchend="window.handleCardMouseUp()" 
+                                 ontouchcancel="window.handleCardMouseUp()" 
+                                 onkeydown="window.handleCardKeyDown(event, '${safeStr(m.t)}', this)" 
+                                 onkeyup="window.handleCardKeyUp(event, ${playlistData.indexOf(m)}, ${isTV ? 'true' : 'false'})" 
+                                 onclick="window.handleCardClick(event, ${playlistData.indexOf(m)}, ${isTV ? 'true' : 'false'})">
+                                <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); window.cancelPress(); toggleFav('${safeStr(m.t)}');">${heartIcon}</div>
                                 ${ratingHtml}
                                 <img data-id="${m.id_tmdb || ''}" data-src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" class="lazy-img" onerror="handleImageError(this)">${pct}
                                 <div class="card-name">${m.t}</div>
@@ -1214,18 +1250,19 @@ function render(search = "") {
                     for (let i = 0; i < 5; i++) { m_stars += (i < (m.note || 5)) ? "★" : "☆"; }
                     const ratingHtml = !isTVCat ? '<div class="card-rating">' + m_stars + '</div>' : "";
 
+                    // Injection du Kill-Switch sur les recherches
                     htmlTout += `
                         <div class="card sn-card ${isTVCat ? 'landscape' : ''}" tabindex="0" 
-                             onmousedown="window.cardPressStart('${safeStr(m.t)}', this)" 
-                             onmouseup="window.cardPressEnd()" 
-                             onmouseleave="window.cardPressEnd()" 
-                             ontouchstart="window.cardPressStart('${safeStr(m.t)}', this)" 
-                             ontouchend="window.cardPressEnd()" 
-                             ontouchcancel="window.cardPressEnd()" 
-                             onkeydown="if(event.key==='Enter'||event.keyCode===13){ if(!event.repeat) window.cardPressStart('${safeStr(m.t)}', this); }" 
-                             onkeyup="if(event.key==='Enter'||event.keyCode===13) window.cardPressEnd()" 
-                             onclick="window.cardClick(event, ${playlistData.indexOf(m)}, ${isTVCat ? 'true' : 'false'})">
-                            <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); window.cardPressEnd(); toggleFav('${safeStr(m.t)}');">${heartIcon}</div>
+                             onmousedown="window.handleCardMouseDown(event, '${safeStr(m.t)}', this)" 
+                             onmouseup="window.handleCardMouseUp()" 
+                             onmouseleave="window.handleCardMouseUp()" 
+                             ontouchstart="window.handleCardMouseDown(event, '${safeStr(m.t)}', this)" 
+                             ontouchend="window.handleCardMouseUp()" 
+                             ontouchcancel="window.handleCardMouseUp()" 
+                             onkeydown="window.handleCardKeyDown(event, '${safeStr(m.t)}', this)" 
+                             onkeyup="window.handleCardKeyUp(event, ${playlistData.indexOf(m)}, ${isTVCat ? 'true' : 'false'})" 
+                             onclick="window.handleCardClick(event, ${playlistData.indexOf(m)}, ${isTVCat ? 'true' : 'false'})">
+                            <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); window.cancelPress(); toggleFav('${safeStr(m.t)}');">${heartIcon}</div>
                             ${ratingHtml}
                             <img data-id="${m.id_tmdb || ''}" data-src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" class="lazy-img" onerror="handleImageError(this)">${pct}
                             <div class="card-name">${m.t}</div>
@@ -1253,16 +1290,16 @@ function render(search = "") {
 
                     htmlTout += `
                         <div class="card sn-card ${isTVCat ? 'landscape' : ''}" tabindex="0" 
-                             onmousedown="window.cardPressStart('${safeStr(m.t)}', this)" 
-                             onmouseup="window.cardPressEnd()" 
-                             onmouseleave="window.cardPressEnd()" 
-                             ontouchstart="window.cardPressStart('${safeStr(m.t)}', this)" 
-                             ontouchend="window.cardPressEnd()" 
-                             ontouchcancel="window.cardPressEnd()" 
-                             onkeydown="if(event.key==='Enter'||event.keyCode===13){ if(!event.repeat) window.cardPressStart('${safeStr(m.t)}', this); }" 
-                             onkeyup="if(event.key==='Enter'||event.keyCode===13) window.cardPressEnd()" 
-                             onclick="window.cardClick(event, ${playlistData.indexOf(m)}, ${isTVCat ? 'true' : 'false'})">
-                            <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); window.cardPressEnd(); toggleFav('${safeStr(m.t)}');">${heartIcon}</div>
+                             onmousedown="window.handleCardMouseDown(event, '${safeStr(m.t)}', this)" 
+                             onmouseup="window.handleCardMouseUp()" 
+                             onmouseleave="window.handleCardMouseUp()" 
+                             ontouchstart="window.handleCardMouseDown(event, '${safeStr(m.t)}', this)" 
+                             ontouchend="window.handleCardMouseUp()" 
+                             ontouchcancel="window.handleCardMouseUp()" 
+                             onkeydown="window.handleCardKeyDown(event, '${safeStr(m.t)}', this)" 
+                             onkeyup="window.handleCardKeyUp(event, ${playlistData.indexOf(m)}, ${isTVCat ? 'true' : 'false'})" 
+                             onclick="window.handleCardClick(event, ${playlistData.indexOf(m)}, ${isTVCat ? 'true' : 'false'})">
+                            <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); window.cancelPress(); toggleFav('${safeStr(m.t)}');">${heartIcon}</div>
                             ${ratingHtml}
                             <img data-id="${m.id_tmdb || ''}" data-src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" class="lazy-img" onerror="handleImageError(this)">${pct}
                             <div class="card-name">${m.t}</div>
@@ -1296,18 +1333,19 @@ function render(search = "") {
                     for (let i = 0; i < 5; i++) { m_stars += (i < (m.note || 5)) ? "★" : "☆"; }
                     const ratingHtml = !isTVCat ? '<div class="card-rating">' + m_stars + '</div>' : "";
 
+                    // Injection du Kill-Switch par catégorie
                     html += `
                         <div class="card sn-card ${isTVCat ? 'landscape' : ''}" tabindex="0" 
-                             onmousedown="window.cardPressStart('${safeStr(m.t)}', this)" 
-                             onmouseup="window.cardPressEnd()" 
-                             onmouseleave="window.cardPressEnd()" 
-                             ontouchstart="window.cardPressStart('${safeStr(m.t)}', this)" 
-                             ontouchend="window.cardPressEnd()" 
-                             ontouchcancel="window.cardPressEnd()" 
-                             onkeydown="if(event.key==='Enter'||event.keyCode===13){ if(!event.repeat) window.cardPressStart('${safeStr(m.t)}', this); }" 
-                             onkeyup="if(event.key==='Enter'||event.keyCode===13) window.cardPressEnd()" 
-                             onclick="window.cardClick(event, ${playlistData.indexOf(m)}, ${isTVCat ? 'true' : 'false'})">
-                            <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); window.cardPressEnd(); toggleFav('${safeStr(m.t)}');">${heartIcon}</div>
+                             onmousedown="window.handleCardMouseDown(event, '${safeStr(m.t)}', this)" 
+                             onmouseup="window.handleCardMouseUp()" 
+                             onmouseleave="window.handleCardMouseUp()" 
+                             ontouchstart="window.handleCardMouseDown(event, '${safeStr(m.t)}', this)" 
+                             ontouchend="window.handleCardMouseUp()" 
+                             ontouchcancel="window.handleCardMouseUp()" 
+                             onkeydown="window.handleCardKeyDown(event, '${safeStr(m.t)}', this)" 
+                             onkeyup="window.handleCardKeyUp(event, ${playlistData.indexOf(m)}, ${isTVCat ? 'true' : 'false'})" 
+                             onclick="window.handleCardClick(event, ${playlistData.indexOf(m)}, ${isTVCat ? 'true' : 'false'})">
+                            <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); window.cancelPress(); toggleFav('${safeStr(m.t)}');">${heartIcon}</div>
                             ${ratingHtml}
                             <img data-id="${m.id_tmdb || ''}" data-src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" class="lazy-img" onerror="handleImageError(this)">${pct}
                             <div class="card-name">${m.t}</div>
@@ -1323,7 +1361,7 @@ function render(search = "") {
         document.querySelectorAll('.lazy-img').forEach(img => lazyImgObserver.observe(img));
 
         if (typeof updateSpatialNav === 'function') {
-            setTimeout(updateSpatialNav, 500);
+            setTimeout(updateSpatialNav, 200);
         }
     } catch(err) {}
 }
@@ -1421,11 +1459,14 @@ function changeView(v) {
     currentView = v; 
     document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active')); 
     document.getElementById('btn-'+v).classList.add('active'); 
+    
     const cont = document.getElementById('categories-container');
     cont.innerHTML = '<div style="text-align:center; margin-top:50px; color:#888;">Chargement...</div>';
+    
     setTimeout(render, 50);
 }
 
+function filter() { render(document.getElementById('searchBar').value); }
 function toggleEditMode() { isEditMode = !isEditMode; document.getElementById('profile-screen').classList.toggle('is-editing'); }
 function switchProfile() { localStorage.removeItem('sfpp_profile'); location.reload(); }
 function requestAccess() { window.location.href = "mailto:sfpp.ott@gmail.com"; }
