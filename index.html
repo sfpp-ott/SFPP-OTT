@@ -30,7 +30,6 @@
             box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
             transform: scale(1.05) !important;
             transition: all 0.2s ease !important;
-            will-change: transform;
         }
 
         .vjs-button:focus, .vjs-menu-item:focus {
@@ -1067,7 +1066,7 @@ function render(search = "") {
         
         if(!cont) return;
 
-        const s = search ? String(search).toLowerCase() : "";
+        const s = search ? String(search).toLowerCase().trim() : "";
 
         if(s === "admin") { isAdminMode = true; document.getElementById('searchBar').value = ""; alert("Mode maintenance activé."); return render(""); }
 
@@ -1078,6 +1077,21 @@ function render(search = "") {
         if(currentView === 'movies') data = data.filter(m => m.cat && !m.cat.includes("SÉRIES"));
         else if(currentView === 'series') data = data.filter(m => m.cat && m.cat.includes("SÉRIES"));
         else if(currentView === 'fav') data = data.filter(m => m.t && favs.includes(m.t));
+
+        // --- NOUVEAU : MOTEUR DE RECHERCHE GLOBAL AVANCÉ ---
+        if (s !== "") {
+            data = data.filter(m => {
+                // Recherche dans le Titre
+                if (String(m.t).toLowerCase().includes(s)) return true;
+                // Recherche dans l'Année
+                if (m.year && String(m.year).includes(s)) return true;
+                // Recherche dans le Casting
+                if (m.actors_pics && Array.isArray(m.actors_pics)) {
+                    if (m.actors_pics.some(a => a.name && String(a.name).toLowerCase().includes(s))) return true;
+                }
+                return false;
+            });
+        }
 
         let histHtml = "";
         if(currentProfile && s === "" && currentView === 'all') {
@@ -1120,7 +1134,6 @@ function render(search = "") {
         if (data.length > 0) {
             let htmlTout = '<div class="category-title">TOUT</div><div class="category-row"><div class="nav-arrow arrow-left" onclick="window.scrollSide(this, -400)">‹</div><div class="carousel">';
             data.forEach(m => {
-                if (s !== "" && !String(m.t).toLowerCase().includes(s)) return;
                 const isTVCat = m.cat && (m.cat.toUpperCase().includes("DIRECT") || m.cat.toUpperCase().includes("TV"));
                 const is_fav = favs.includes(m.t);
                 const heartClass = is_fav ? 'is-fav' : '';
@@ -1153,7 +1166,7 @@ function render(search = "") {
         });
 
         allGenres.sort().forEach(c => {
-            const filtered = data.filter(m => m.cat && m.cat.toUpperCase().includes(c) && (s === "" || String(m.t).toLowerCase().includes(s)));
+            const filtered = data.filter(m => m.cat && m.cat.toUpperCase().includes(c));
             if (filtered.length === 0) return;
             const isTVCat = c.includes("DIRECT") || c.includes("TV");
             
@@ -1291,7 +1304,6 @@ function changeView(v) {
     setTimeout(render, 50);
 }
 
-function filter() { render(document.getElementById('searchBar').value); }
 function toggleEditMode() { isEditMode = !isEditMode; document.getElementById('profile-screen').classList.toggle('is-editing'); }
 function switchProfile() { localStorage.removeItem('sfpp_profile'); location.reload(); }
 function requestAccess() { window.location.href = "mailto:sfpp.ott@gmail.com"; }
@@ -1472,7 +1484,6 @@ if ('serviceWorker' in navigator) {
 
             const active = document.activeElement;
 
-            // CORRECTION DES FLÈCHES : On utilise TOUTES les vraies rangées (.category-row) peu importe où elles sont
             const validRows = Array.from(document.querySelectorAll('.category-row')).filter(row => {
                 return row.offsetParent !== null && row.querySelectorAll('.sn-card').length > 0;
             });
