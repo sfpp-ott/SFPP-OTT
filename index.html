@@ -206,7 +206,7 @@
 
         .section-label { font-weight: bold; color: white; margin: 30px 0 15px; font-size: 18px; border-left: 4px solid var(--accent); padding-left: 10px; }
         
-        /* BANDE-ANNONCE YOUTUBE SANDBOX */
+        /* LA FAÇADE BANDE-ANNONCE (Plus d'iframe ici !) */
         .trailer-box { width: 100%; max-width: 800px; aspect-ratio: 16/9; background: #000; border-radius: 8px; margin-bottom: 25px; position: relative; border: 1px solid #333; }
         .trailer-facade { position: absolute; inset: 0; cursor: pointer; display: flex; align-items: center; justify-content: center; background: #111; overflow: hidden; z-index: 20; border-radius: 8px; }
         .trailer-facade img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.5; transition: opacity 0.3s; }
@@ -227,7 +227,7 @@
 
         #main-content { padding-top: 80px; }
         
-        .category-row { position: relative; width: 100%; margin-bottom: 20px; }
+        .category-row { position: relative; width: 100%; margin-bottom: 20px; content-visibility: auto; contain-intrinsic-size: 270px; }
         .category-title { font-size: 18px; font-weight: bold; margin: 20px 4% 10px; color: #fff; text-transform: uppercase; }
         
         .carousel { 
@@ -408,6 +408,7 @@
 </div>
 
 <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-youtube/3.0.1/Youtube.min.js"></script>
 <script src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1"></script>
 <script src="https://unpkg.com/@silvermine/videojs-chromecast@1.5.0/dist/silvermine-videojs-chromecast.min.js"></script>
 
@@ -584,7 +585,7 @@ window.handleImageError = function(img) {
 
 let player, playlistData = [], currentProfile = null, isEditMode = false, currentView = 'all', currentPlayingTitle = "";
 let isAdminMode = false, epgData = {}; 
-let currentDetailsIdx = -1;
+let isTrailerPlaying = false; // Drapeau pour savoir si on lit une bande annonce
 
 const lazyImgObserver = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
@@ -647,12 +648,6 @@ window.handleBackAction = function() {
         return;
     }
 
-    // NOUVEAU : Ferme la bande-annonce YouTube si elle est ouverte et empêche de quitter la page
-    if (document.getElementById('btn-close-trailer')) {
-        window.closeTrailerUI();
-        return;
-    }
-
     const dOverlay = document.getElementById('details-overlay');
     if (dOverlay && dOverlay.style.display === 'flex') {
         closeDetails_internal();
@@ -676,8 +671,19 @@ window.closeP_internal = function() {
     const pSection = document.getElementById('player-section');
     if (pSection && pSection.style.display === 'block') {
         saveP(); 
-        if (player) { player.pause(); player.src(""); }
+        if (player) { 
+            player.pause(); 
+            // On met un src vide générique pour réinitialiser le lecteur proprement
+            player.src({ type: 'video/mp4', src: '' }); 
+        }
         pSection.style.display = 'none';
+        
+        // Magie : Si c'était une bande-annonce, on revient sur la fiche du film !
+        if (isTrailerPlaying) {
+            document.getElementById('details-overlay').style.display = 'flex';
+            isTrailerPlaying = false;
+        }
+
         setTimeout(() => {
             if(typeof window.updateProgBars === 'function') window.updateProgBars();
             if (typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus();
@@ -689,7 +695,6 @@ window.closeDetails_internal = function() {
     const dOverlay = document.getElementById('details-overlay');
     if (dOverlay && dOverlay.style.display === 'flex') {
         dOverlay.style.display = 'none'; 
-        document.getElementById('details-trailer-box').innerHTML = "";
         setTimeout(() => { if (typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus(); }, 100);
     }
 };
@@ -856,62 +861,7 @@ window.updateProgBars = function() {
     });
 };
 
-// -------------------------------------------------------------
-// 🛡️ SANDBOX YOUTUBE : LA CAGE DE SÉCURITÉ POUR LA TV
-// -------------------------------------------------------------
-window.startTrailer = function(id) {
-    const box = document.getElementById('details-trailer-box');
-    
-    // Le secret de cette méthode : Le "sandbox" empêche toute redirection vers YouTube.com
-    // On force un bouton de fermeture "FERMER LA VIDÉO" qui prend le contrôle de la télécommande.
-    box.innerHTML = `
-        <div style="position:relative; width:100%; height:100%; border-radius:8px; overflow:hidden; background:#000;">
-            <button id="btn-close-trailer" class="sn-card" onclick="window.closeTrailerUI()" style="position:absolute; top:10px; right:10px; z-index:9999; background:#e50914; color:#fff; border:2px solid #fff; padding:10px 20px; border-radius:4px; font-weight:bold; cursor:pointer;" tabindex="0">FERMER LA VIDÉO</button>
-            <iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&controls=1&rel=0&disablekb=1&modestbranding=1&playsinline=1" 
-                width="100%" height="100%" 
-                frameborder="0" 
-                allow="autoplay; encrypted-media" 
-                sandbox="allow-scripts allow-same-origin allow-presentation"
-                style="width:100%; height:100%;">
-            </iframe>
-        </div>
-    `;
-
-    setTimeout(() => {
-        const btn = document.getElementById('btn-close-trailer');
-        if (btn) {
-            btn.focus();
-            if (typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus(btn);
-        }
-    }, 300);
-};
-
-window.closeTrailerUI = function() {
-    const box = document.getElementById('details-trailer-box');
-    if(!box) return;
-    const m = playlistData[currentDetailsIdx];
-    
-    if(m && m.trailer) {
-        box.innerHTML = `
-            <div class="trailer-facade sn-card" tabindex="0" onclick="window.startTrailer('${m.trailer}')">
-                <img src="https://img.youtube.com/vi/${m.trailer}/hqdefault.jpg" onerror="this.src='${m.bg || m.img || ''}'">
-                <div class="trailer-play-btn">▶ Lancer la bande-annonce</div>
-            </div>`;
-        setTimeout(() => {
-            const facade = box.querySelector('.trailer-facade');
-            if(facade) {
-                facade.focus();
-                if(typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus(facade);
-            }
-        }, 100);
-    } else {
-        box.innerHTML = "";
-    }
-};
-// -------------------------------------------------------------
-
 function openDetails(idx) {
-    currentDetailsIdx = idx;
     const m = playlistData[idx];
     if(!m) return;
     
@@ -945,7 +895,7 @@ function openDetails(idx) {
 
     if(m.trailer) {
         document.getElementById('details-trailer-box').innerHTML = `
-            <div class="trailer-facade sn-card" tabindex="0" onclick="window.startTrailer('${m.trailer}')">
+            <div class="trailer-facade sn-card" tabindex="0" onclick="window.playTrailer(${idx})" onkeydown="if(event.key==='Enter'||event.keyCode===13) window.playTrailer(${idx})">
                 <img src="https://img.youtube.com/vi/${m.trailer}/hqdefault.jpg" onerror="this.src='${m.bg || m.img || ''}'">
                 <div class="trailer-play-btn">▶ Lancer la bande-annonce</div>
             </div>`;
@@ -1114,8 +1064,9 @@ window.saveCustomPrompt = function() {
     closeCustomPrompt();
 };
 
+// SÉCURITÉ : Ne pas enregistrer la barre de progression pour les bandes-annonces
 function saveP() {
-    if(!currentPlayingTitle || !currentProfile) return;
+    if(!currentPlayingTitle || !currentProfile || isTrailerPlaying) return;
     const cur = player.currentTime();
     const dur = player.duration();
     
@@ -1343,7 +1294,38 @@ function openSeries(name) {
     }
 }
 
+
+// --- NOUVEAU : LE LECTEUR UNIFIÉ POUR LES FILMS ET LES BANDES-ANNONCES ---
+
+window.playTrailer = function(idx) {
+    const m = playlistData[idx];
+    if(!m || !m.trailer) return;
+    
+    isTrailerPlaying = true;
+    currentPlayingTitle = "Bande-annonce : " + m.t;
+    document.getElementById('next-episode-btn').style.display = 'none';
+
+    if(player) {
+        player.pause();
+    }
+
+    document.getElementById('details-overlay').style.display = 'none';
+    
+    const pSection = document.getElementById('player-section');
+    pSection.style.display = 'block';
+    
+    if(player) {
+        // La magie opère ici : le lecteur principal aspire la vidéo YouTube !
+        player.src({ type: 'video/youtube', src: 'https://www.youtube.com/watch?v=' + m.trailer });
+        player.ready(function() {
+            player.play();
+        });
+    }
+}
+
+
 function playMovie(idx) {
+    isTrailerPlaying = false;
     const m = playlistData[idx];
     if(!m) return;
     currentPlayingTitle = m.t;
@@ -1361,12 +1343,9 @@ function playMovie(idx) {
         hist.push(m.t); if(hist.length > 15) hist.shift();
         localStorage.setItem(key, JSON.stringify(hist));
     }
-    
-    // Fermeture du trailer si on lance le film !
-    window.closeTrailerUI();
     document.getElementById('details-overlay').style.display = 'none';
+    document.getElementById('details-trailer-box').innerHTML = "";
     document.getElementById('series-overlay').style.display = 'none';
-    
     const pSection = document.getElementById('player-section');
     pSection.style.display = 'block';
     
@@ -1410,14 +1389,23 @@ function changeView(v) {
     setTimeout(render, 50);
 }
 
+function filter() { render(document.getElementById('searchBar').value); }
 function toggleEditMode() { isEditMode = !isEditMode; document.getElementById('profile-screen').classList.toggle('is-editing'); }
 function switchProfile() { localStorage.removeItem('sfpp_profile'); location.reload(); }
 function requestAccess() { window.location.href = "mailto:sfpp.ott@gmail.com"; }
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Initialisation du lecteur avec la capacité de lire YouTube !
     player = videojs('main-video', { 
         controls: true, fluid: false,
-        techOrder: ['chromecast', 'html5'], 
+        techOrder: ['chromecast', 'youtube', 'html5'], 
+        youtube: {
+            ytControls: 0,
+            modestbranding: 1,
+            rel: 0,
+            showinfo: 0,
+            fs: 0
+        },
         plugins: { chromecast: { addButtonToControlBar: true, addDisplayOnControlBar: true } }
     });
 
