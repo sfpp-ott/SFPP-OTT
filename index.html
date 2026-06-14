@@ -22,7 +22,6 @@
         :root { --accent: #e50914; --gold: #ffcc00; --bg: #050505; }
         body { background: var(--bg); color: white; font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; padding-bottom: 50px; -webkit-user-select: none; user-select: none; overflow-x: hidden; }
         
-        /* OPTIMISATION GRAPHIQUE TV : will-change force la carte graphique à fluidifier le zoom */
         [tabindex="0"]:focus, .sn-focused {
             outline: 4px solid white !important;
             outline-offset: -2px;
@@ -30,7 +29,7 @@
             z-index: 100;
             box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
             transform: scale(1.05) !important;
-            transition: transform 0.2s ease, outline 0.1s ease !important;
+            transition: all 0.2s ease !important;
             will-change: transform;
         }
 
@@ -222,7 +221,6 @@
 
         #main-content { padding-top: 80px; }
         
-        /* OPTIMISATION DOM TV : Cache les éléments hors écran pour la carte graphique */
         .category-row { position: relative; width: 100%; margin-bottom: 20px; content-visibility: auto; contain-intrinsic-size: 270px; }
         .category-title { font-size: 18px; font-weight: bold; margin: 20px 4% 10px; color: #fff; text-transform: uppercase; }
         
@@ -579,11 +577,8 @@ window.handleImageError = function(img) {
 };
 
 let player, playlistData = [], currentProfile = null, isEditMode = false, currentView = 'all', currentPlayingTitle = "";
-let isAdminMode = false, epgData = {}; 
+let isAdminMode = false, epgData = {}, hls; 
 
-// ------------------------------------------------------------------
-// NOUVEAU : "INTERSECTION OBSERVER" POUR TÉLÉCHARGEMENT LAZY TV
-// ------------------------------------------------------------------
 const lazyImgObserver = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -1058,13 +1053,10 @@ function saveP() {
 
 window.scrollSide = function(btn, amt) { const car = btn.parentElement.querySelector('.carousel'); car.scrollBy({ left: amt, behavior: 'smooth' }); }
 
-// ------------------------------------------------------------------
-// NOUVEAU : RENDU "LAZY-DOM" ET "DEBOUNCE" DE RECHERCHE
-// ------------------------------------------------------------------
 let searchTimeout;
 window.debounceSearch = function() {
     clearTimeout(searchTimeout);
-    searchTimeout = setTimeout(() => { filter(); }, 400); // Attend 0.4s après la frappe
+    searchTimeout = setTimeout(() => { filter(); }, 400); 
 };
 
 function render(search = "") {
@@ -1123,7 +1115,6 @@ function render(search = "") {
         }
         if (histCont) histCont.innerHTML = histHtml;
 
-        // On construit tout l'HTML en mémoire avant de l'afficher (100x plus rapide pour la TV)
         let finalHTML = "";
 
         if (data.length > 0) {
@@ -1141,7 +1132,6 @@ function render(search = "") {
                 for (let i = 0; i < 5; i++) { m_stars += (i < (m.note || 5)) ? "★" : "☆"; }
                 const ratingHtml = !isTVCat ? '<div class="card-rating">' + m_stars + '</div>' : "";
 
-                // Utilisation de data-src pour que l'image ne charge pas tant qu'elle n'est pas à l'écran
                 htmlTout += `
                     <div class="card sn-card ${isTVCat ? 'landscape' : ''}" tabindex="0" onclick="${clickAction}">
                         <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${safeStr(m.t)}');">${heartIcon}</div>
@@ -1193,7 +1183,6 @@ function render(search = "") {
 
         cont.innerHTML = finalHTML;
 
-        // Activation de l'Observer sur toutes les nouvelles images
         document.querySelectorAll('.lazy-img').forEach(img => lazyImgObserver.observe(img));
 
         if (typeof updateSpatialNav === 'function') {
@@ -1296,7 +1285,6 @@ function changeView(v) {
     document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active')); 
     document.getElementById('btn-'+v).classList.add('active'); 
     
-    // NOUVEAU : On libère la mémoire AVANT de dessiner la nouvelle page
     const cont = document.getElementById('categories-container');
     cont.innerHTML = '<div style="text-align:center; margin-top:50px; color:#888;">Chargement...</div>';
     
@@ -1484,14 +1472,34 @@ if ('serviceWorker' in navigator) {
 
             const active = document.activeElement;
 
-            // OPTIMISATION TV : La télécommande ne fouille plus toute la page.
+            // CORRECTION DES FLÈCHES : On utilise TOUTES les vraies rangées (.category-row) peu importe où elles sont
+            const validRows = Array.from(document.querySelectorAll('.category-row')).filter(row => {
+                return row.offsetParent !== null && row.querySelectorAll('.sn-card').length > 0;
+            });
+
             if (isDown && active && active.closest('header')) {
                 e.preventDefault();
                 e.stopImmediatePropagation();
-                const firstCard = document.querySelector('.category-row .sn-card');
-                if (firstCard) {
-                    firstCard.focus();
-                    if (typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus(firstCard);
+                if (validRows.length > 0) {
+                    const firstRow = validRows[0];
+                    const carousel = firstRow.querySelector('.carousel');
+                    const cards = Array.from(firstRow.querySelectorAll('.sn-card'));
+                    let targetCard = cards[0];
+
+                    if (carousel) {
+                        const scrollLeft = carousel.scrollLeft;
+                        for (let card of cards) {
+                            if (card.offsetLeft + (card.offsetWidth / 2) >= scrollLeft) {
+                                targetCard = card;
+                                break;
+                            }
+                        }
+                    }
+
+                    if (targetCard) {
+                        targetCard.focus();
+                        if (typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus(targetCard);
+                    }
                 }
                 return;
             }
@@ -1499,10 +1507,9 @@ if ('serviceWorker' in navigator) {
             if ((isUp || isDown) && active && active.classList.contains('sn-card')) {
                 const currentRow = active.closest('.category-row');
                 if (currentRow) {
-                    const allRows = Array.from(document.getElementById('categories-container').children);
-                    const currentIndex = allRows.indexOf(currentRow);
+                    const currentIndex = validRows.indexOf(currentRow);
 
-                    if (isUp && currentIndex <= 0) {
+                    if (isUp && currentIndex === 0) {
                         e.preventDefault();
                         e.stopImmediatePropagation();
                         const activeNav = document.querySelector('.nav-btn.active') || document.querySelector('.nav-btn');
@@ -1514,10 +1521,10 @@ if ('serviceWorker' in navigator) {
                     }
 
                     let targetRow = null;
-                    if (isDown && currentIndex !== -1 && currentIndex < allRows.length - 1) {
-                        targetRow = allRows[currentIndex + 1];
+                    if (isDown && currentIndex !== -1 && currentIndex < validRows.length - 1) {
+                        targetRow = validRows[currentIndex + 1];
                     } else if (isUp && currentIndex > 0) {
-                        targetRow = allRows[currentIndex - 1];
+                        targetRow = validRows[currentIndex - 1];
                     }
 
                     if (targetRow) {
@@ -1541,7 +1548,7 @@ if ('serviceWorker' in navigator) {
                             bestCard.focus();
                             if(typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus(bestCard);
                         }
-                    } else if (isDown) {
+                    } else if (isDown && currentIndex === validRows.length - 1) {
                         e.preventDefault();
                         e.stopImmediatePropagation();
                     }
