@@ -206,13 +206,18 @@
 
         .section-label { font-weight: bold; color: white; margin: 30px 0 15px; font-size: 18px; border-left: 4px solid var(--accent); padding-left: 10px; }
         
-        /* LA FAÇADE BANDE-ANNONCE (Plus d'iframe ici !) */
+        /* LA FAÇADE BANDE-ANNONCE DE LA FICHE FILM */
         .trailer-box { width: 100%; max-width: 800px; aspect-ratio: 16/9; background: #000; border-radius: 8px; margin-bottom: 25px; position: relative; border: 1px solid #333; }
         .trailer-facade { position: absolute; inset: 0; cursor: pointer; display: flex; align-items: center; justify-content: center; background: #111; overflow: hidden; z-index: 20; border-radius: 8px; }
         .trailer-facade img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.5; transition: opacity 0.3s; }
         .trailer-facade:focus img, .trailer-facade:hover img { opacity: 0.2; }
         .trailer-play-btn { position: relative; z-index: 22; background: rgba(229,9,20,0.9); color: white; padding: 15px 30px; border-radius: 8px; font-weight: bold; font-size: 16px; border: 2px solid white; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
         
+        /* NOUVEAU : LE BOUCLIER PLEIN ECRAN POUR LA VIDEO YOUTUBE */
+        #trailer-fullscreen-overlay { display: none; position: fixed; inset: 0; background: #000; z-index: 9000; }
+        #trailer-wrapper { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+        #trailer-trap { position: absolute; inset: 0; z-index: 9001; cursor: pointer; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.01); }
+
         .cast-row { display: flex; gap: 15px; overflow-x: auto; padding-bottom: 15px; scrollbar-width: none; }
         .actor-item { flex: 0 0 90px; text-align: center; cursor: pointer; transition: transform 0.2s; will-change: transform; }
         .actor-item img { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 2px solid #333; transition: border-color 0.3s; }
@@ -294,6 +299,16 @@
     </style>
 </head>
 <body oncontextmenu="return false;"> 
+
+<script>
+    window.isYtApiReady = false;
+    window.onYouTubeIframeAPIReady = function() {
+        window.isYtApiReady = true;
+    };
+    const ytScript = document.createElement('script');
+    ytScript.src = "https://www.youtube.com/iframe_api";
+    document.head.appendChild(ytScript);
+</script>
 
 <div id="global-loader" style="display: none;">
     <div class="spinner"></div>
@@ -394,6 +409,14 @@
     </div>
 </section>
 
+<div id="trailer-fullscreen-overlay">
+    <div id="trailer-wrapper"></div>
+    <div id="trailer-trap" tabindex="0" class="sn-card" onclick="window.toggleFullscreenTrailer()">
+        <div id="trailer-status-icon">Chargement...</div>
+        <div style="position:absolute; top:20px; right:20px; background:rgba(0,0,0,0.8); padding:10px 20px; border-radius:4px; font-size:14px; color:white; border:1px solid #444;">Retour ↩ : Fermer  |  OK : Play/Pause</div>
+    </div>
+</div>
+
 <div id="main-content">
     <div id="expiration-banner"></div>
     <div id="history-sec" style="display:none">
@@ -408,7 +431,6 @@
 </div>
 
 <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-youtube/3.0.1/Youtube.min.js"></script>
 <script src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1"></script>
 <script src="https://unpkg.com/@silvermine/videojs-chromecast@1.5.0/dist/silvermine-videojs-chromecast.min.js"></script>
 
@@ -585,7 +607,7 @@ window.handleImageError = function(img) {
 
 let player, playlistData = [], currentProfile = null, isEditMode = false, currentView = 'all', currentPlayingTitle = "";
 let isAdminMode = false, epgData = {}; 
-let isTrailerPlaying = false; // Drapeau pour savoir si on lit une bande annonce
+let ytPlayerObj = null;
 
 const lazyImgObserver = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
@@ -648,6 +670,13 @@ window.handleBackAction = function() {
         return;
     }
 
+    // NOUVEAU : Fermeture parfaite de la bande-annonce
+    const tOverlay = document.getElementById('trailer-fullscreen-overlay');
+    if (tOverlay && tOverlay.style.display === 'block') {
+        window.closeFullscreenTrailer();
+        return;
+    }
+
     const dOverlay = document.getElementById('details-overlay');
     if (dOverlay && dOverlay.style.display === 'flex') {
         closeDetails_internal();
@@ -671,19 +700,8 @@ window.closeP_internal = function() {
     const pSection = document.getElementById('player-section');
     if (pSection && pSection.style.display === 'block') {
         saveP(); 
-        if (player) { 
-            player.pause(); 
-            // On met un src vide générique pour réinitialiser le lecteur proprement
-            player.src({ type: 'video/mp4', src: '' }); 
-        }
+        if (player) { player.pause(); player.src(""); }
         pSection.style.display = 'none';
-        
-        // Magie : Si c'était une bande-annonce, on revient sur la fiche du film !
-        if (isTrailerPlaying) {
-            document.getElementById('details-overlay').style.display = 'flex';
-            isTrailerPlaying = false;
-        }
-
         setTimeout(() => {
             if(typeof window.updateProgBars === 'function') window.updateProgBars();
             if (typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus();
@@ -861,7 +879,89 @@ window.updateProgBars = function() {
     });
 };
 
+// ------------------------------------------------------------------
+// 🛡️ L'ÉCRAN GÉANT "PRISON DE VERRE" POUR YOUTUBE
+// ------------------------------------------------------------------
+window.openFullscreenTrailer = function(id) {
+    // On cache la fiche du film
+    document.getElementById('details-overlay').style.display = 'none';
+    
+    // On affiche notre écran géant
+    document.getElementById('trailer-fullscreen-overlay').style.display = 'block';
+    
+    // On prépare le conteneur vierge
+    document.getElementById('trailer-wrapper').innerHTML = '<div id="yt-player-container"></div>';
+    document.getElementById('trailer-status-icon').innerText = 'Chargement...';
+    document.getElementById('trailer-status-icon').style.opacity = '1';
+
+    let attempts = 0;
+    const checkReady = setInterval(() => {
+        if (window.isYtApiReady && window.YT && window.YT.Player) {
+            clearInterval(checkReady);
+            ytPlayerObj = new window.YT.Player('yt-player-container', {
+                width: '100%', height: '100%', videoId: id,
+                playerVars: { 'autoplay': 1, 'controls': 0, 'rel': 0, 'disablekb': 1, 'modestbranding': 1, 'fs': 0, 'iv_load_policy': 3, 'playsinline': 1 },
+                events: { 
+                    'onReady': function(event) { event.target.playVideo(); },
+                    'onStateChange': function(event) {
+                        const icon = document.getElementById('trailer-status-icon');
+                        if(event.data === window.YT.PlayerState.PLAYING) {
+                            icon.style.opacity = '0';
+                        } else {
+                            icon.innerText = "▶ PAUSE";
+                            icon.style.opacity = '1';
+                        }
+                    }
+                }
+            });
+        } else if (attempts > 20) {
+            clearInterval(checkReady);
+            // Mode de secours si YouTube bloque l'API
+            document.getElementById('trailer-wrapper').innerHTML = `<iframe width="100%" height="100%" src="https://www.youtube.com/embed/${id}?autoplay=1&controls=0&rel=0&disablekb=1&modestbranding=1" frameborder="0" allow="autoplay; encrypted-media"></iframe>`;
+            document.getElementById('trailer-status-icon').style.opacity = '0';
+        }
+        attempts++;
+    }, 200);
+
+    // On force la télécommande à regarder la vitre, impossible d'aller ailleurs
+    setTimeout(() => {
+        const trap = document.getElementById('trailer-trap');
+        if(trap) {
+            trap.focus();
+            if(typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus(trap);
+        }
+    }, 300);
+};
+
+window.toggleFullscreenTrailer = function() {
+    if(ytPlayerObj && typeof ytPlayerObj.getPlayerState === 'function') {
+        const state = ytPlayerObj.getPlayerState();
+        if(state === 1) ytPlayerObj.pauseVideo();
+        else ytPlayerObj.playVideo();
+    }
+};
+
+window.closeFullscreenTrailer = function() {
+    if (ytPlayerObj && typeof ytPlayerObj.destroy === 'function') {
+        ytPlayerObj.destroy();
+    }
+    ytPlayerObj = null;
+    
+    // On détruit tout le HTML de YouTube
+    document.getElementById('trailer-wrapper').innerHTML = '';
+    document.getElementById('trailer-fullscreen-overlay').style.display = 'none';
+    
+    // On réaffiche la fiche du film en fond
+    document.getElementById('details-overlay').style.display = 'flex';
+    
+    setTimeout(() => {
+        if(typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus();
+    }, 100);
+};
+// ------------------------------------------------------------------
+
 function openDetails(idx) {
+    currentDetailsIdx = idx;
     const m = playlistData[idx];
     if(!m) return;
     
@@ -895,7 +995,7 @@ function openDetails(idx) {
 
     if(m.trailer) {
         document.getElementById('details-trailer-box').innerHTML = `
-            <div class="trailer-facade sn-card" tabindex="0" onclick="window.playTrailer(${idx})" onkeydown="if(event.key==='Enter'||event.keyCode===13) window.playTrailer(${idx})">
+            <div class="trailer-facade sn-card" tabindex="0" onclick="window.openFullscreenTrailer('${m.trailer}')">
                 <img src="https://img.youtube.com/vi/${m.trailer}/hqdefault.jpg" onerror="this.src='${m.bg || m.img || ''}'">
                 <div class="trailer-play-btn">▶ Lancer la bande-annonce</div>
             </div>`;
@@ -1064,9 +1164,8 @@ window.saveCustomPrompt = function() {
     closeCustomPrompt();
 };
 
-// SÉCURITÉ : Ne pas enregistrer la barre de progression pour les bandes-annonces
 function saveP() {
-    if(!currentPlayingTitle || !currentProfile || isTrailerPlaying) return;
+    if(!currentPlayingTitle || !currentProfile) return;
     const cur = player.currentTime();
     const dur = player.duration();
     
@@ -1294,38 +1393,7 @@ function openSeries(name) {
     }
 }
 
-
-// --- NOUVEAU : LE LECTEUR UNIFIÉ POUR LES FILMS ET LES BANDES-ANNONCES ---
-
-window.playTrailer = function(idx) {
-    const m = playlistData[idx];
-    if(!m || !m.trailer) return;
-    
-    isTrailerPlaying = true;
-    currentPlayingTitle = "Bande-annonce : " + m.t;
-    document.getElementById('next-episode-btn').style.display = 'none';
-
-    if(player) {
-        player.pause();
-    }
-
-    document.getElementById('details-overlay').style.display = 'none';
-    
-    const pSection = document.getElementById('player-section');
-    pSection.style.display = 'block';
-    
-    if(player) {
-        // La magie opère ici : le lecteur principal aspire la vidéo YouTube !
-        player.src({ type: 'video/youtube', src: 'https://www.youtube.com/watch?v=' + m.trailer });
-        player.ready(function() {
-            player.play();
-        });
-    }
-}
-
-
 function playMovie(idx) {
-    isTrailerPlaying = false;
     const m = playlistData[idx];
     if(!m) return;
     currentPlayingTitle = m.t;
@@ -1344,7 +1412,6 @@ function playMovie(idx) {
         localStorage.setItem(key, JSON.stringify(hist));
     }
     document.getElementById('details-overlay').style.display = 'none';
-    document.getElementById('details-trailer-box').innerHTML = "";
     document.getElementById('series-overlay').style.display = 'none';
     const pSection = document.getElementById('player-section');
     pSection.style.display = 'block';
@@ -1395,17 +1462,9 @@ function switchProfile() { localStorage.removeItem('sfpp_profile'); location.rel
 function requestAccess() { window.location.href = "mailto:sfpp.ott@gmail.com"; }
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Initialisation du lecteur avec la capacité de lire YouTube !
     player = videojs('main-video', { 
         controls: true, fluid: false,
-        techOrder: ['chromecast', 'youtube', 'html5'], 
-        youtube: {
-            ytControls: 0,
-            modestbranding: 1,
-            rel: 0,
-            showinfo: 0,
-            fs: 0
-        },
+        techOrder: ['chromecast', 'html5'], 
         plugins: { chromecast: { addButtonToControlBar: true, addDisplayOnControlBar: true } }
     });
 
@@ -1480,7 +1539,7 @@ if ('serviceWorker' in navigator) {
                 SpatialNavigation.clear();
                 SpatialNavigation.init();
                 SpatialNavigation.add({
-                    selector: '.nav-btn, .sn-card, .actor-item, .episode-item, .profile-item, button, input, .vjs-button, .vjs-menu-item',
+                    selector: '.nav-btn, .sn-card, .actor-item, .episode-item, .profile-item, button, input, .vjs-button, .vjs-menu-item, #trailer-trap',
                     rememberSource: true
                 });
                 SpatialNavigation.makeFocusable();
@@ -1500,8 +1559,18 @@ if ('serviceWorker' in navigator) {
             const profileScreen = document.getElementById('profile-screen');
             const customPrompt = document.getElementById('custom-prompt-modal');
             const playerSection = document.getElementById('player-section');
+            const trailerOverlay = document.getElementById('trailer-fullscreen-overlay');
             
             const key = e.key || e.keyCode;
+
+            // Touche Entrée dans la prison Youtube
+            if (trailerOverlay && trailerOverlay.style.display === 'block') {
+                if (key === 'Enter' || key === 13) {
+                    e.preventDefault();
+                    window.toggleFullscreenTrailer();
+                    return;
+                }
+            }
 
             if (playerSection && playerSection.style.display === 'block') {
                 if (key === 'MediaFastForward' || key === 228 || key === 176) {
@@ -1555,6 +1624,11 @@ if ('serviceWorker' in navigator) {
                 
                 if (document.activeElement) document.activeElement.blur();
                 
+                if (trailerOverlay && trailerOverlay.style.display === 'block') {
+                    window.closeFullscreenTrailer();
+                    return;
+                }
+
                 if (document.getElementById('player-section').style.display === 'block' && player && player.isFullscreen()) {
                     player.exitFullscreen();
                     return;
@@ -1567,6 +1641,12 @@ if ('serviceWorker' in navigator) {
             if (key === 'Backspace' || key === 8) {
                 if (document.activeElement && document.activeElement.tagName === 'INPUT') return; 
                 e.preventDefault();
+                
+                if (trailerOverlay && trailerOverlay.style.display === 'block') {
+                    window.closeFullscreenTrailer();
+                    return;
+                }
+
                 window.handleBackAction();
                 return;
             }
