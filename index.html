@@ -17,7 +17,6 @@
     <link href="https://unpkg.com/@silvermine/videojs-chromecast@1.5.0/dist/silvermine-videojs-chromecast.css" rel="stylesheet">
 
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
-    <script src="https://www.youtube.com/iframe_api"></script>
 
     <style>
         :root { --accent: #e50914; --gold: #ffcc00; --bg: #050505; }
@@ -207,7 +206,7 @@
 
         .section-label { font-weight: bold; color: white; margin: 30px 0 15px; font-size: 18px; border-left: 4px solid var(--accent); padding-left: 10px; }
         
-        /* SYSTÈME DE FAÇADE ET DE PRISON POUR BANDE-ANNONCE YOUTUBE */
+        /* LA PRISON DE VERRE YOUTUBE */
         .trailer-box { width: 100%; max-width: 800px; aspect-ratio: 16/9; background: #000; border-radius: 8px; margin-bottom: 25px; position: relative; border: 1px solid #333; }
         .trailer-facade { position: absolute; inset: 0; cursor: pointer; display: flex; align-items: center; justify-content: center; background: #111; overflow: hidden; z-index: 20; border-radius: 8px; }
         .trailer-facade img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.5; transition: opacity 0.3s; }
@@ -295,6 +294,16 @@
     </style>
 </head>
 <body oncontextmenu="return false;"> 
+
+<script>
+    window.isYtApiReady = false;
+    window.onYouTubeIframeAPIReady = function() {
+        window.isYtApiReady = true;
+    };
+    const ytScript = document.createElement('script');
+    ytScript.src = "https://www.youtube.com/iframe_api";
+    document.head.appendChild(ytScript);
+</script>
 
 <div id="global-loader" style="display: none;">
     <div class="spinner"></div>
@@ -584,7 +593,7 @@ window.handleImageError = function(img) {
 };
 
 let player, playlistData = [], currentProfile = null, isEditMode = false, currentView = 'all', currentPlayingTitle = "";
-let isAdminMode = false, epgData = {}; 
+let isAdminMode = false, epgData = {}, hls; 
 let currentDetailsIdx = -1;
 let ytPlayer = null;
 
@@ -649,7 +658,7 @@ window.handleBackAction = function() {
         return;
     }
 
-    // NOUVEAU : Si la bande-annonce tourne dans sa prison de verre, on la détruit avant de fermer la fiche !
+    // NOUVEAU : Ferme la bande-annonce YouTube si elle est ouverte
     if (document.getElementById('yt-trap')) {
         window.closeTrailerUI();
         return;
@@ -691,7 +700,7 @@ window.closeDetails_internal = function() {
     const dOverlay = document.getElementById('details-overlay');
     if (dOverlay && dOverlay.style.display === 'flex') {
         dOverlay.style.display = 'none'; 
-        document.getElementById('details-trailer-box').innerHTML = ""; // Vide la vidéo pour couper le son
+        document.getElementById('details-trailer-box').innerHTML = "";
         setTimeout(() => { if (typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus(); }, 100);
     }
 };
@@ -859,30 +868,59 @@ window.updateProgBars = function() {
 };
 
 // -------------------------------------------------------------
-// LA PRISON DE VERRE YOUTUBE - CONTRÔLE PARFAIT SUR LA TV
+// 🛡️ PRISON DE VERRE YOUTUBE : Empêche la TV de fuir
 // -------------------------------------------------------------
-
 window.startTrailer = function(id) {
     const box = document.getElementById('details-trailer-box');
     
-    // On enferme la vidéo dans une div "pointer-events: none" pour que la télécommande ne puisse RIEN cliquer
+    // La div yt-trap agit comme un mur physique (z-index 50) avec fond transparent.
     box.innerHTML = `
-        <div id="yt-trap" tabindex="0" class="sn-card" style="position:absolute; inset:0; z-index:50; border-radius:8px; cursor:pointer;" onclick="toggleYtPlayer()"></div>
-        <div style="position:absolute; inset:0; width:100%; height:100%; pointer-events:none; border-radius:8px; overflow:hidden;">
-            <div id="yt-iframe-container"></div>
+        <div style="position:relative; width:100%; height:100%; border-radius:8px; overflow:hidden;">
+            <div id="yt-iframe-container" style="position:absolute; inset:0; z-index:10;"></div>
+            
+            <div id="yt-trap" tabindex="0" class="sn-card" style="position:absolute; inset:0; z-index:50; cursor:pointer; background:rgba(0,0,0,0.01);" onclick="window.toggleYtPlayer()" onkeydown="if(event.key==='Enter'||event.keyCode===13) window.toggleYtPlayer()">
+                <div id="yt-play-icon" style="position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); background:rgba(229,9,20,0.9); padding:15px 30px; border-radius:8px; font-weight:bold; color:white; border:2px solid white; transition: opacity 0.3s; font-size:16px; pointer-events:none;">Chargement...</div>
+                <div style="position:absolute; top:10px; right:10px; background:rgba(0,0,0,0.8); padding:5px 15px; border-radius:4px; font-size:12px; color:white; pointer-events:none; border:1px solid #444;">Retour ↩ fermer • OK pour Pause/Lecture</div>
+            </div>
         </div>
-        <div style="position:absolute; top:10px; right:10px; z-index:51; background:rgba(0,0,0,0.8); padding:5px 15px; border-radius:4px; font-size:12px; color:white; pointer-events:none; border:1px solid #444;">Retour ↩ pour fermer • OK pour Pause</div>
     `;
 
-    // On lance la vidéo via l'API pour pouvoir la mettre en pause si l'utilisateur clique
-    if (window.YT && window.YT.Player) {
-        ytPlayer = new YT.Player('yt-iframe-container', {
+    function initPlayer() {
+        const icon = document.getElementById('yt-play-icon');
+        if(icon) icon.innerHTML = "▶ Lecture / Pause";
+
+        ytPlayer = new window.YT.Player('yt-iframe-container', {
             width: '100%', height: '100%', videoId: id,
             playerVars: { 'autoplay': 1, 'controls': 0, 'rel': 0, 'disablekb': 1, 'modestbranding': 1, 'fs': 0, 'iv_load_policy': 3 },
-            events: { 'onReady': function(event) { event.target.playVideo(); } }
+            events: { 
+                'onReady': function(event) { event.target.playVideo(); },
+                'onStateChange': function(event) {
+                    const playIcon = document.getElementById('yt-play-icon');
+                    if(playIcon) {
+                        if(event.data === window.YT.PlayerState.PLAYING) playIcon.style.opacity = '0';
+                        else playIcon.style.opacity = '1';
+                    }
+                }
+            }
         });
+    }
+
+    if (window.isYtApiReady && window.YT && window.YT.Player) {
+        initPlayer();
     } else {
-        document.getElementById('yt-iframe-container').innerHTML = `<iframe width="100%" height="100%" src="https://www.youtube.com/embed/${id}?autoplay=1&controls=0&rel=0&disablekb=1&modestbranding=1" frameborder="0" allow="autoplay; encrypted-media"></iframe>`;
+        let attempts = 0;
+        const checkReady = setInterval(() => {
+            if ((window.isYtApiReady && window.YT && window.YT.Player) || attempts > 20) {
+                clearInterval(checkReady);
+                if (window.isYtApiReady) initPlayer();
+                else {
+                    document.getElementById('yt-iframe-container').innerHTML = `<iframe width="100%" height="100%" src="https://www.youtube.com/embed/${id}?autoplay=1&controls=0&rel=0&disablekb=1&modestbranding=1" frameborder="0" allow="autoplay; encrypted-media"></iframe>`;
+                    const icon = document.getElementById('yt-play-icon');
+                    if(icon) { icon.innerHTML = "▶ Lecture en cours"; setTimeout(() => { icon.style.opacity = '0'; }, 3000); }
+                }
+            }
+            attempts++;
+        }, 200);
     }
 
     setTimeout(() => {
@@ -897,7 +935,7 @@ window.startTrailer = function(id) {
 window.toggleYtPlayer = function() {
     if(ytPlayer && typeof ytPlayer.getPlayerState === 'function') {
         const state = ytPlayer.getPlayerState();
-        if(state === 1) ytPlayer.pauseVideo();
+        if(state === 1 || state === 3) ytPlayer.pauseVideo();
         else ytPlayer.playVideo();
     }
 };
@@ -907,9 +945,11 @@ window.closeTrailerUI = function() {
         const m = playlistData[currentDetailsIdx];
         const box = document.getElementById('details-trailer-box');
         if(box && m && m.trailer) {
-            ytPlayer = null; // On tue le lecteur en mémoire
+            if(ytPlayer && typeof ytPlayer.destroy === 'function') ytPlayer.destroy();
+            ytPlayer = null; 
+            
             box.innerHTML = `
-                <div class="trailer-facade sn-card" tabindex="0" onclick="window.startTrailer('${m.trailer}')">
+                <div class="trailer-facade sn-card" tabindex="0" onclick="window.startTrailer('${m.trailer}')" onkeydown="if(event.key==='Enter'||event.keyCode===13) window.startTrailer('${m.trailer}')">
                     <img src="https://img.youtube.com/vi/${m.trailer}/hqdefault.jpg" onerror="this.src='${m.bg || m.img || ''}'">
                     <div class="trailer-play-btn">▶ Lancer la bande-annonce</div>
                 </div>`;
@@ -923,11 +963,10 @@ window.closeTrailerUI = function() {
         }
     }
 };
-
 // -------------------------------------------------------------
 
 function openDetails(idx) {
-    currentDetailsIdx = idx; // On mémorise la fiche en cours
+    currentDetailsIdx = idx;
     const m = playlistData[idx];
     if(!m) return;
     
@@ -959,10 +998,9 @@ function openDetails(idx) {
     }
     document.getElementById('details-meta-cast').innerHTML = castHtml;
 
-    // LA MINIATURE FAÇADE
     if(m.trailer) {
         document.getElementById('details-trailer-box').innerHTML = `
-            <div class="trailer-facade sn-card" tabindex="0" onclick="window.startTrailer('${m.trailer}')">
+            <div class="trailer-facade sn-card" tabindex="0" onclick="window.startTrailer('${m.trailer}')" onkeydown="if(event.key==='Enter'||event.keyCode===13) window.startTrailer('${m.trailer}')">
                 <img src="https://img.youtube.com/vi/${m.trailer}/hqdefault.jpg" onerror="this.src='${m.bg || m.img || ''}'">
                 <div class="trailer-play-btn">▶ Lancer la bande-annonce</div>
             </div>`;
@@ -1379,7 +1417,10 @@ function playMovie(idx) {
         localStorage.setItem(key, JSON.stringify(hist));
     }
     document.getElementById('details-overlay').style.display = 'none';
-    document.getElementById('details-trailer-box').innerHTML = "";
+    
+    // NOUVEAU : Quand on lance un vrai film, on coupe YouTube pour ne pas avoir 2 sons
+    window.closeTrailerUI();
+    
     document.getElementById('series-overlay').style.display = 'none';
     const pSection = document.getElementById('player-section');
     pSection.style.display = 'block';
@@ -1507,7 +1548,7 @@ if ('serviceWorker' in navigator) {
                 SpatialNavigation.clear();
                 SpatialNavigation.init();
                 SpatialNavigation.add({
-                    selector: '.nav-btn, .sn-card, .actor-item, .episode-item, .profile-item, button, input, .vjs-button, .vjs-menu-item',
+                    selector: '.nav-btn, .sn-card, .actor-item, .episode-item, .profile-item, button, input, .vjs-button, .vjs-menu-item, .trailer-facade',
                     rememberSource: true
                 });
                 SpatialNavigation.makeFocusable();
@@ -1582,7 +1623,6 @@ if ('serviceWorker' in navigator) {
                 
                 if (document.activeElement) document.activeElement.blur();
                 
-                // Si la bande annonce YT tourne, on la ferme
                 if (document.getElementById('yt-trap')) {
                     window.closeTrailerUI();
                     return;
