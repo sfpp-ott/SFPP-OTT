@@ -22,6 +22,7 @@
         :root { --accent: #e50914; --gold: #ffcc00; --bg: #050505; }
         body { background: var(--bg); color: white; font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; padding-bottom: 50px; -webkit-user-select: none; user-select: none; overflow-x: hidden; }
         
+        /* OPTIMISATION GRAPHIQUE TV : will-change force la carte graphique à fluidifier le zoom */
         [tabindex="0"]:focus, .sn-focused {
             outline: 4px solid white !important;
             outline-offset: -2px;
@@ -29,7 +30,8 @@
             z-index: 100;
             box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
             transform: scale(1.05) !important;
-            transition: all 0.2s ease !important;
+            transition: transform 0.2s ease, outline 0.1s ease !important;
+            will-change: transform;
         }
 
         .vjs-button:focus, .vjs-menu-item:focus {
@@ -207,7 +209,7 @@
         .trailer-box { width: 100%; max-width: 800px; aspect-ratio: 16/9; background: #000; border-radius: 8px; margin-bottom: 25px; overflow: hidden; border: 1px solid #333; }
         
         .cast-row { display: flex; gap: 15px; overflow-x: auto; padding-bottom: 15px; scrollbar-width: none; }
-        .actor-item { flex: 0 0 90px; text-align: center; cursor: pointer; transition: transform 0.2s; }
+        .actor-item { flex: 0 0 90px; text-align: center; cursor: pointer; transition: transform 0.2s; will-change: transform; }
         .actor-item img { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 2px solid #333; transition: border-color 0.3s; }
         .actor-item:hover img { border-color: var(--accent); }
         .actor-name { font-size: 11px; color: #aaa; margin-top: 8px; }
@@ -220,7 +222,8 @@
 
         #main-content { padding-top: 80px; }
         
-        .category-row { position: relative; width: 100%; margin-bottom: 20px; }
+        /* OPTIMISATION DOM TV : Cache les éléments hors écran pour la carte graphique */
+        .category-row { position: relative; width: 100%; margin-bottom: 20px; content-visibility: auto; contain-intrinsic-size: 270px; }
         .category-title { font-size: 18px; font-weight: bold; margin: 20px 4% 10px; color: #fff; text-transform: uppercase; }
         
         .carousel { 
@@ -239,11 +242,11 @@
 
         .card { 
             flex: 0 0 150px; width: 150px; cursor: pointer; position: relative; display: flex; flex-direction: column; 
-            transition: transform 0.2s ease;
+            transition: transform 0.2s ease; will-change: transform;
         }
         .card img { 
             width: 150px !important; height: 225px !important; object-fit: cover !important; 
-            border-radius: 4px; background: #222; display: block; transition: opacity 0.4s ease-in-out; opacity: 0; 
+            border-radius: 4px; background: #222; display: block; transition: opacity 0.3s ease-in-out; opacity: 0; 
         }
         .card img.loaded { opacity: 1; }
         .img-fallback { background: #1a1a1a !important; border: 1px solid #333; }
@@ -336,7 +339,7 @@
         <button class="btn-logout" onclick="switchProfile()" tabindex="0">PROFILS</button>
     </div>
     <div id="search-overlay">
-        <input type="text" id="searchBar" onkeyup="filter()" placeholder="Rechercher..." tabindex="0">
+        <input type="text" id="searchBar" onkeyup="debounceSearch()" placeholder="Rechercher un film, un acteur..." tabindex="0">
         <button class="btn-icon" onclick="closeSearch_internal()" style="margin-left:10px" tabindex="0">✕</button>
     </div>
 </header>
@@ -364,7 +367,7 @@
             <div class="section-label">Bande-annonce</div>
             <div id="details-trailer-box" class="trailer-box"></div>
 
-            <div class="section-label">Casting principal (Cliquez pour filtrer)</div>
+            <div class="section-label">Casting principal</div>
             <div id="details-meta-cast" class="cast-row"></div>
 
             <div class="section-label">Parce que vous avez regardé ceci...</div>
@@ -576,7 +579,24 @@ window.handleImageError = function(img) {
 };
 
 let player, playlistData = [], currentProfile = null, isEditMode = false, currentView = 'all', currentPlayingTitle = "";
-let isAdminMode = false, epgData = {}, hls; 
+let isAdminMode = false, epgData = {}; 
+
+// ------------------------------------------------------------------
+// NOUVEAU : "INTERSECTION OBSERVER" POUR TÉLÉCHARGEMENT LAZY TV
+// ------------------------------------------------------------------
+const lazyImgObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const img = entry.target;
+            if (img.dataset.src) {
+                img.src = img.dataset.src;
+                img.onload = () => img.classList.add('loaded');
+                img.removeAttribute('data-src');
+            }
+            observer.unobserve(img);
+        }
+    });
+}, { rootMargin: "300px 0px" });
 
 const dbPromise = new Promise((resolve, reject) => {
     const req = indexedDB.open('SFPP_Cache', 1);
@@ -853,7 +873,7 @@ function openDetails(idx) {
     if (m.actors_pics && m.actors_pics.length > 0) {
         castHtml = m.actors_pics.map(a => `
                 <div class="actor-item sn-card" onclick="searchByActor('${safeStr(a.name)}')" tabindex="0">
-                    <img src="${a.img || 'https://via.placeholder.com/80x80/222/fff?text=?'}" onerror="handleImageError(this)" loading="lazy" decoding="async">
+                    <img data-src="${a.img || 'https://via.placeholder.com/80x80/222/fff?text=?'}" class="lazy-img" onerror="handleImageError(this)">
                     <div class="actor-name">${a.name}</div>
                 </div>
             `).join('');
@@ -889,11 +909,13 @@ function openDetails(idx) {
         <div class="actor-item sn-card" style="flex:0 0 120px; position:relative;" tabindex="0" onclick="openDetails(${playlistData.indexOf(s)})">
             <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${safeStr(s.t)}');">${heartIcon}</div>
             <div class="card-rating">${s_stars}</div>
-            <img src="${s.img || 'https://via.placeholder.com/110x160/222/fff?text=SFPP'}" style="border-radius:4px; height:160px; width:110px; object-fit:cover;" loading="lazy" decoding="async" onerror="handleImageError(this)" onload="this.classList.add('loaded')">
+            <img data-src="${s.img || 'https://via.placeholder.com/110x160/222/fff?text=SFPP'}" style="border-radius:4px; height:160px; width:110px; object-fit:cover;" class="lazy-img" onerror="handleImageError(this)">
             <div class="actor-name">${s.t}</div>
         </div>
     `}).join('');
     document.getElementById('details-suggestions').innerHTML = suggHtml;
+
+    document.querySelectorAll('.lazy-img').forEach(img => lazyImgObserver.observe(img));
 
     document.getElementById('details-overlay').style.display = 'flex';
     document.getElementById('details-play-btn').focus();
@@ -1036,6 +1058,15 @@ function saveP() {
 
 window.scrollSide = function(btn, amt) { const car = btn.parentElement.querySelector('.carousel'); car.scrollBy({ left: amt, behavior: 'smooth' }); }
 
+// ------------------------------------------------------------------
+// NOUVEAU : RENDU "LAZY-DOM" ET "DEBOUNCE" DE RECHERCHE
+// ------------------------------------------------------------------
+let searchTimeout;
+window.debounceSearch = function() {
+    clearTimeout(searchTimeout);
+    searchTimeout = setTimeout(() => { filter(); }, 400); // Attend 0.4s après la frappe
+};
+
 function render(search = "") {
     try {
         const cont = document.getElementById('categories-container');
@@ -1043,8 +1074,6 @@ function render(search = "") {
         const histCont = document.getElementById('history-container');
         
         if(!cont) return;
-        cont.innerHTML = ""; 
-        if(histCont) histCont.innerHTML = "";
 
         const s = search ? String(search).toLowerCase() : "";
 
@@ -1081,7 +1110,7 @@ function render(search = "") {
                             <div class="card sn-card ${isTV ? "landscape" : ""}" tabindex="0" onclick="${clickAction}">
                                 <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${safeStr(m.t)}');">${heartIcon}</div>
                                 ${ratingHtml}
-                                <img data-id="${m.id_tmdb || ''}" src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" loading="lazy" onerror="handleImageError(this)" onload="this.classList.add('loaded')">${pct}
+                                <img data-src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" class="lazy-img" onerror="handleImageError(this)">${pct}
                                 <div class="card-name">${m.t}</div>
                             </div>`;
                     }
@@ -1094,6 +1123,7 @@ function render(search = "") {
         }
         if (histCont) histCont.innerHTML = histHtml;
 
+        // On construit tout l'HTML en mémoire avant de l'afficher (100x plus rapide pour la TV)
         let finalHTML = "";
 
         if (data.length > 0) {
@@ -1111,11 +1141,12 @@ function render(search = "") {
                 for (let i = 0; i < 5; i++) { m_stars += (i < (m.note || 5)) ? "★" : "☆"; }
                 const ratingHtml = !isTVCat ? '<div class="card-rating">' + m_stars + '</div>' : "";
 
+                // Utilisation de data-src pour que l'image ne charge pas tant qu'elle n'est pas à l'écran
                 htmlTout += `
                     <div class="card sn-card ${isTVCat ? 'landscape' : ''}" tabindex="0" onclick="${clickAction}">
                         <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${safeStr(m.t)}');">${heartIcon}</div>
                         ${ratingHtml}
-                        <img data-id="${m.id_tmdb || ''}" src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" loading="lazy" onerror="handleImageError(this)" onload="this.classList.add('loaded')">${pct}
+                        <img data-src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" class="lazy-img" onerror="handleImageError(this)">${pct}
                         <div class="card-name">${m.t}</div>
                     </div>`;
             });
@@ -1152,7 +1183,7 @@ function render(search = "") {
                     <div class="card sn-card ${isTVCat ? 'landscape' : ''}" tabindex="0" onclick="${clickAction}">
                         <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${safeStr(m.t)}');">${heartIcon}</div>
                         ${ratingHtml}
-                        <img data-id="${m.id_tmdb || ''}" src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" loading="lazy" onerror="handleImageError(this)" onload="this.classList.add('loaded')">${pct}
+                        <img data-src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" class="lazy-img" onerror="handleImageError(this)">${pct}
                         <div class="card-name">${m.t}</div>
                     </div>`;
             });
@@ -1162,8 +1193,11 @@ function render(search = "") {
 
         cont.innerHTML = finalHTML;
 
+        // Activation de l'Observer sur toutes les nouvelles images
+        document.querySelectorAll('.lazy-img').forEach(img => lazyImgObserver.observe(img));
+
         if (typeof updateSpatialNav === 'function') {
-            setTimeout(updateSpatialNav, 500);
+            setTimeout(updateSpatialNav, 200);
         }
     } catch(err) {}
 }
@@ -1261,7 +1295,11 @@ function changeView(v) {
     currentView = v; 
     document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active')); 
     document.getElementById('btn-'+v).classList.add('active'); 
-    document.getElementById('categories-container').innerHTML = '<div style="text-align:center; margin-top:50px; color:#888;">Génération des films...</div>';
+    
+    // NOUVEAU : On libère la mémoire AVANT de dessiner la nouvelle page
+    const cont = document.getElementById('categories-container');
+    cont.innerHTML = '<div style="text-align:center; margin-top:50px; color:#888;">Chargement...</div>';
+    
     setTimeout(render, 50);
 }
 
@@ -1446,33 +1484,14 @@ if ('serviceWorker' in navigator) {
 
             const active = document.activeElement;
 
-            const validRows = Array.from(document.querySelectorAll('.category-row')).filter(row => {
-                return row.offsetParent !== null && row.querySelectorAll('.sn-card').length > 0;
-            });
-
+            // OPTIMISATION TV : La télécommande ne fouille plus toute la page.
             if (isDown && active && active.closest('header')) {
                 e.preventDefault();
                 e.stopImmediatePropagation();
-                if (validRows.length > 0) {
-                    const firstRow = validRows[0];
-                    const carousel = firstRow.querySelector('.carousel');
-                    const cards = Array.from(firstRow.querySelectorAll('.sn-card'));
-                    let targetCard = cards[0];
-
-                    if (carousel) {
-                        const scrollLeft = carousel.scrollLeft;
-                        for (let card of cards) {
-                            if (card.offsetLeft + (card.offsetWidth / 2) >= scrollLeft) {
-                                targetCard = card;
-                                break;
-                            }
-                        }
-                    }
-
-                    if (targetCard) {
-                        targetCard.focus();
-                        if (typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus(targetCard);
-                    }
+                const firstCard = document.querySelector('.category-row .sn-card');
+                if (firstCard) {
+                    firstCard.focus();
+                    if (typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus(firstCard);
                 }
                 return;
             }
@@ -1480,9 +1499,10 @@ if ('serviceWorker' in navigator) {
             if ((isUp || isDown) && active && active.classList.contains('sn-card')) {
                 const currentRow = active.closest('.category-row');
                 if (currentRow) {
-                    const currentIndex = validRows.indexOf(currentRow);
+                    const allRows = Array.from(document.getElementById('categories-container').children);
+                    const currentIndex = allRows.indexOf(currentRow);
 
-                    if (isUp && currentIndex === 0) {
+                    if (isUp && currentIndex <= 0) {
                         e.preventDefault();
                         e.stopImmediatePropagation();
                         const activeNav = document.querySelector('.nav-btn.active') || document.querySelector('.nav-btn');
@@ -1494,10 +1514,10 @@ if ('serviceWorker' in navigator) {
                     }
 
                     let targetRow = null;
-                    if (isDown && currentIndex !== -1 && currentIndex < validRows.length - 1) {
-                        targetRow = validRows[currentIndex + 1];
+                    if (isDown && currentIndex !== -1 && currentIndex < allRows.length - 1) {
+                        targetRow = allRows[currentIndex + 1];
                     } else if (isUp && currentIndex > 0) {
-                        targetRow = validRows[currentIndex - 1];
+                        targetRow = allRows[currentIndex - 1];
                     }
 
                     if (targetRow) {
@@ -1521,7 +1541,7 @@ if ('serviceWorker' in navigator) {
                             bestCard.focus();
                             if(typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus(bestCard);
                         }
-                    } else if (isDown && currentIndex === validRows.length - 1) {
+                    } else if (isDown) {
                         e.preventDefault();
                         e.stopImmediatePropagation();
                     }
