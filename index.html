@@ -580,60 +580,88 @@ let player, playlistData = [], currentProfile = null, isEditMode = false, curren
 let isAdminMode = false, epgData = {}; 
 
 // -----------------------------------------------------
-// SYSTÈME DE CLIC LONG (SÉCURISÉ)
+// SYSTÈME DE CLIC LONG POUR FAVORIS (Sécurisé pour TV)
 // -----------------------------------------------------
-let pressTimer = null;
-let longPressTriggered = false;
+let cardPressTimer = null;
+let cardLongPressed = false;
 
-window.startPress = function(title, el) {
-    if (pressTimer) return;
-    longPressTriggered = false;
-    pressTimer = setTimeout(function() {
-        longPressTriggered = true;
+window.cardPressStart = function(title, el) {
+    if (cardPressTimer) return;
+    cardLongPressed = false;
+    
+    // Le délai est de 800ms pour éviter de confondre avec un clic normal lent de télécommande
+    cardPressTimer = setTimeout(function() {
+        cardLongPressed = true;
         toggleFav(title);
-        pressTimer = null;
-        // Animation du coeur pour confirmer
+        
+        // Animation du coeur pour confirmer visuellement
         const heartBtn = el.querySelector('.btn-fav-card');
         if (heartBtn) {
             heartBtn.style.transform = 'scale(1.5)';
-            setTimeout(() => heartBtn.style.transform = 'scale(1)', 300);
+            setTimeout(() => { heartBtn.style.transform = 'scale(1)'; }, 300);
         }
-    }, 700);
+        cardPressTimer = null;
+    }, 800); 
 };
 
-window.cancelPress = function() {
-    if (pressTimer) {
-        clearTimeout(pressTimer);
-        pressTimer = null;
+window.cardPressEnd = function() {
+    if (cardPressTimer) {
+        clearTimeout(cardPressTimer);
+        cardPressTimer = null;
     }
 };
 
-window.handleCardKeyDown = function(event, title, el) {
-    if (event.key === 'Enter' || event.keyCode === 13) {
-        if(!pressTimer) window.startPress(title, el);
-    }
-};
-
-window.handleCardKeyUp = function(event) {
-    if (event.key === 'Enter' || event.keyCode === 13) {
-        window.cancelPress();
-    }
-};
-
-window.handleCardClick = function(event, idx, isTV) {
-    window.cancelPress(); // KILL-SWITCH du chrono au clic
+window.cardClick = function(event, idx, isTV) {
+    // Sécurité absolue : on détruit le chrono si un clic passe
+    window.cardPressEnd();
     
-    if (longPressTriggered) {
+    if (cardLongPressed) {
+        // Si c'était un clic long, on bloque l'ouverture du film
         event.preventDefault();
         event.stopPropagation();
-        longPressTriggered = false;
+        cardLongPressed = false; // on réinitialise pour le prochain coup
         return;
     }
     
+    // Si c'est un clic normal court
     if (isTV) playMovie(idx);
     else openDetails(idx);
 };
 // -----------------------------------------------------
+
+const lazyImgObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const img = entry.target;
+            if (img.dataset.src) {
+                img.src = img.dataset.src;
+                img.onload = () => img.classList.add('loaded');
+                img.removeAttribute('data-src');
+            }
+            observer.unobserve(img);
+        }
+    });
+}, { rootMargin: "300px 0px" });
+
+const dbPromise = new Promise((resolve, reject) => {
+    const req = indexedDB.open('SFPP_Cache', 1);
+    req.onupgradeneeded = (e) => { e.target.result.createObjectStore('tmdb', { keyPath: 'id' }); };
+    req.onsuccess = () => resolve(req.result);
+    req.onerror = () => reject(req.error);
+});
+
+async function saveTMDB(id, data) {
+    try {
+        const db = await dbPromise;
+        return new Promise(resolve => {
+            const tx = db.transaction('tmdb', 'readwrite');
+            const store = tx.objectStore('tmdb');
+            data.id = id;
+            store.put(data);
+            tx.oncomplete = () => resolve();
+        });
+    } catch(e) {}
+}
 
 window.addEventListener('load', () => {
     window.history.pushState({ noExit: true }, '');
@@ -745,13 +773,20 @@ async function loadPlaylist() {
         const response = await fetch('films.json?v=' + Date.now(), { cache: "no-store" }); 
         playlistData = await response.json(); 
         
-        let metadataCache = JSON.parse(localStorage.getItem('sfpp_metadata_cache') || "{}");
+        const db = await dbPromise;
+        const tx = db.transaction('tmdb', 'readonly');
+        const store = tx.objectStore('tmdb');
+        const allMetaReq = store.getAll();
+        
+        allMetaReq.onsuccess = () => {
+            const cacheList = allMetaReq.result || [];
+            const cacheMap = {};
+            cacheList.forEach(c => cacheMap[c.id] = c);
 
-        if (playlistData && playlistData.length > 0) {
             playlistData.forEach((m, index) => {
                 m.original_index = index;
-                if (m.id_tmdb && metadataCache[m.id_tmdb]) {
-                    const c = metadataCache[m.id_tmdb];
+                if (m.id_tmdb && cacheMap[m.id_tmdb]) {
+                    const c = cacheMap[m.id_tmdb];
                     m.img = m.img || c.img;
                     m.bg = m.bg || c.bg;
                     m.desc = m.desc || c.desc;
@@ -762,41 +797,41 @@ async function loadPlaylist() {
                     m.actors_pics = m.actors_pics || c.actors_pics;
                 }
             });
+            
             render(); 
-        }
+            
+            const loader = document.getElementById('global-loader');
+            if (loader) {
+                loader.style.opacity = '0';
+                setTimeout(() => loader.style.display = 'none', 500);
+            }
+            setTimeout(window.fetchMissingMetadata, 1000);
+        };
     } catch (e) {
         console.error("Erreur playlist", e);
-    } finally {
-        const loader = document.getElementById('global-loader');
-        if (loader) {
-            loader.style.opacity = '0';
-            setTimeout(() => loader.style.display = 'none', 500);
-        }
-        setTimeout(window.fetchMissingMetadata, 1000);
     }
 }
 
 window.fetchMissingMetadata = async function() {
     const apiKey = "ec1c8fecd38d1cc5a27f15766f0848d5";
-    let metadataCache = JSON.parse(localStorage.getItem('sfpp_metadata_cache') || "{}");
-    let cacheUpdated = false;
-
     let missingMetadata = playlistData.filter(m => m.id_tmdb && (!m.img || !m.desc || !m.trailer));
 
+    if (missingMetadata.length === 0) return;
+
     const dlProgress = document.getElementById('dl-progress');
-    if (missingMetadata.length > 0 && dlProgress) {
-        dlProgress.style.display = 'block';
-    }
+    if (dlProgress) dlProgress.style.display = 'block';
 
+    let hasNewContent = false;
     let processedCount = 0;
+    
     const BATCH_SIZE = 20; 
-
     for (let i = 0; i < missingMetadata.length; i += BATCH_SIZE) {
         const batch = missingMetadata.slice(i, i + BATCH_SIZE);
         await Promise.all(batch.map(async (m) => {
             try {
                 const url = "https://api.themoviedb.org/3/movie/" + m.id_tmdb + "?api_key=" + apiKey + "&language=fr-FR&append_to_response=videos,credits&include_video_language=en,fr,null";
                 const res = await fetch(url);
+                if (!res.ok) return;
                 const data = await res.json();
                 
                 m.img = m.img || "https://image.tmdb.org/t/p/w500" + data.poster_path;
@@ -816,24 +851,28 @@ window.fetchMissingMetadata = async function() {
                     m.actors_pics = data.credits.cast.slice(0, 10).map(a => ({ name: a.name, img: "https://image.tmdb.org/t/p/w185" + a.profile_path }));
                 }
 
-                metadataCache[m.id_tmdb] = { img: m.img, bg: m.bg, desc: m.desc, year: m.year, note: m.note, cat: m.cat, trailer: m.trailer, actors_pics: m.actors_pics };
-                cacheUpdated = true;
+                await saveTMDB(m.id_tmdb, { img: m.img, bg: m.bg, desc: m.desc, year: m.year, note: m.note, cat: m.cat, trailer: m.trailer, actors_pics: m.actors_pics });
 
+                hasNewContent = true;
+                
+                // CORRECTION : On met à jour l'image en direct pour que la jaquette apparaisse
                 const imgEls = document.querySelectorAll(`img[data-id="${m.id_tmdb}"]`);
-                imgEls.forEach(img => { img.src = m.img; img.classList.add('loaded'); });
+                imgEls.forEach(img => { 
+                    img.src = m.img; 
+                    img.classList.add('loaded'); 
+                });
             } catch (e) {}
         }));
         
         processedCount += batch.length;
         if (dlProgress) dlProgress.innerText = `Mise à jour: ${processedCount}/${missingMetadata.length}`;
         
-        await new Promise(r => setTimeout(r, 200));
+        await new Promise(r => setTimeout(r, 300));
     }
-
+    
     if (dlProgress) dlProgress.style.display = 'none';
 
-    if (cacheUpdated) {
-        try { localStorage.setItem('sfpp_metadata_cache', JSON.stringify(metadataCache)); } catch(e){}
+    if (hasNewContent) {
         render(document.getElementById('searchBar') ? document.getElementById('searchBar').value : "");
     }
 };
@@ -883,17 +922,8 @@ function openDetails(idx) {
     let castHtml = "";
     if (m.actors_pics && m.actors_pics.length > 0) {
         castHtml = m.actors_pics.map(a => `
-                <div class="actor-item sn-card" tabindex="0"
-                     onmousedown="window.startPress('${safeStr(a.name)}', this)" 
-                     onmouseup="window.cancelPress()" 
-                     onmouseleave="window.cancelPress()" 
-                     ontouchstart="window.startPress('${safeStr(a.name)}', this)" 
-                     ontouchmove="window.cancelPress()"
-                     ontouchend="window.cancelPress()" 
-                     onkeydown="window.handleCardKeyDown(event, '${safeStr(a.name)}', this)" 
-                     onkeyup="window.handleCardKeyUp(event)" 
-                     onclick="window.cancelPress(); searchByActor('${safeStr(a.name)}')">
-                    <img src="${a.img || 'https://via.placeholder.com/80x80/222/fff?text=?'}" onerror="handleImageError(this)" loading="lazy" decoding="async">
+                <div class="actor-item sn-card" onclick="searchByActor('${safeStr(a.name)}')" tabindex="0">
+                    <img data-src="${a.img || 'https://via.placeholder.com/80x80/222/fff?text=?'}" class="lazy-img" onerror="handleImageError(this)">
                     <div class="actor-name">${a.name}</div>
                 </div>
             `).join('');
@@ -926,23 +956,25 @@ function openDetails(idx) {
         for (let i = 0; i < 5; i++) { s_stars += (i < s_note) ? "★" : "☆"; }
         
         return `
-        <div class="actor-item sn-card" style="flex:0 0 120px; position:relative;" tabindex="0" 
-             onmousedown="window.startPress('${safeStr(s.t)}', this)" 
-             onmouseup="window.cancelPress()" 
-             onmouseleave="window.cancelPress()" 
-             ontouchstart="window.startPress('${safeStr(s.t)}', this)" 
-             ontouchmove="window.cancelPress()"
-             ontouchend="window.cancelPress()" 
-             onkeydown="window.handleCardKeyDown(event, '${safeStr(s.t)}', this)" 
-             onkeyup="window.handleCardKeyUp(event)" 
-             onclick="window.handleCardClick(event, ${playlistData.indexOf(s)}, false)">
-            <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); window.cancelPress(); toggleFav('${safeStr(s.t)}');">${heartIcon}</div>
+        <div class="actor-item sn-card" style="flex:0 0 120px; position:relative;" tabindex="0"
+             onmousedown="window.cardPressStart('${safeStr(s.t)}', this)" 
+             onmouseup="window.cardPressEnd()" 
+             onmouseleave="window.cardPressEnd()" 
+             ontouchstart="window.cardPressStart('${safeStr(s.t)}', this)" 
+             ontouchend="window.cardPressEnd()" 
+             ontouchcancel="window.cardPressEnd()" 
+             onkeydown="if(event.key==='Enter'||event.keyCode===13){ if(!event.repeat) window.cardPressStart('${safeStr(s.t)}', this); }" 
+             onkeyup="if(event.key==='Enter'||event.keyCode===13) window.cardPressEnd()" 
+             onclick="window.cardClick(event, ${playlistData.indexOf(s)}, false)">
+            <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); window.cardPressEnd(); toggleFav('${safeStr(s.t)}');">${heartIcon}</div>
             <div class="card-rating">${s_stars}</div>
-            <img src="${s.img || 'https://via.placeholder.com/110x160/222/fff?text=SFPP'}" style="border-radius:4px; height:160px; width:110px; object-fit:cover;" loading="lazy" decoding="async" onerror="handleImageError(this)" onload="this.classList.add('loaded')">
+            <img data-id="${s.id_tmdb || ''}" data-src="${s.img || 'https://via.placeholder.com/110x160/222/fff?text=SFPP'}" style="border-radius:4px; height:160px; width:110px; object-fit:cover;" class="lazy-img" onerror="handleImageError(this)">
             <div class="actor-name">${s.t}</div>
         </div>
     `}).join('');
     document.getElementById('details-suggestions').innerHTML = suggHtml;
+
+    document.querySelectorAll('.lazy-img').forEach(img => lazyImgObserver.observe(img));
 
     document.getElementById('details-overlay').style.display = 'flex';
     document.getElementById('details-play-btn').focus();
@@ -1098,8 +1130,6 @@ function render(search = "") {
         const histCont = document.getElementById('history-container');
         
         if(!cont) return;
-        cont.innerHTML = ""; 
-        if(histCont) histCont.innerHTML = "";
 
         const s = search ? String(search).toLowerCase().trim() : "";
 
@@ -1144,18 +1174,18 @@ function render(search = "") {
 
                         histHtml += `
                             <div class="card sn-card ${isTV ? "landscape" : ""}" tabindex="0" 
-                                 onmousedown="window.startPress('${safeStr(m.t)}', this)" 
-                                 onmouseup="window.cancelPress()" 
-                                 onmouseleave="window.cancelPress()" 
-                                 ontouchstart="window.startPress('${safeStr(m.t)}', this)" 
-                                 ontouchmove="window.cancelPress()"
-                                 ontouchend="window.cancelPress()" 
-                                 onkeydown="window.handleCardKeyDown(event, '${safeStr(m.t)}', this)" 
-                                 onkeyup="window.handleCardKeyUp(event)" 
-                                 onclick="window.handleCardClick(event, ${playlistData.indexOf(m)}, ${isTV ? 'true' : 'false'})">
-                                <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); window.cancelPress(); toggleFav('${safeStr(m.t)}');">${heartIcon}</div>
+                                 onmousedown="window.cardPressStart('${safeStr(m.t)}', this)" 
+                                 onmouseup="window.cardPressEnd()" 
+                                 onmouseleave="window.cardPressEnd()" 
+                                 ontouchstart="window.cardPressStart('${safeStr(m.t)}', this)" 
+                                 ontouchend="window.cardPressEnd()" 
+                                 ontouchcancel="window.cardPressEnd()" 
+                                 onkeydown="if(event.key==='Enter'||event.keyCode===13){ if(!event.repeat) window.cardPressStart('${safeStr(m.t)}', this); }" 
+                                 onkeyup="if(event.key==='Enter'||event.keyCode===13) window.cardPressEnd()" 
+                                 onclick="window.cardClick(event, ${playlistData.indexOf(m)}, ${isTV ? 'true' : 'false'})">
+                                <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); window.cardPressEnd(); toggleFav('${safeStr(m.t)}');">${heartIcon}</div>
                                 ${ratingHtml}
-                                <img data-id="${m.id_tmdb || ''}" src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" loading="lazy" onerror="handleImageError(this)" onload="this.classList.add('loaded')">${pct}
+                                <img data-id="${m.id_tmdb || ''}" data-src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" class="lazy-img" onerror="handleImageError(this)">${pct}
                                 <div class="card-name">${m.t}</div>
                             </div>`;
                     }
@@ -1186,18 +1216,18 @@ function render(search = "") {
 
                     htmlTout += `
                         <div class="card sn-card ${isTVCat ? 'landscape' : ''}" tabindex="0" 
-                             onmousedown="window.startPress('${safeStr(m.t)}', this)" 
-                             onmouseup="window.cancelPress()" 
-                             onmouseleave="window.cancelPress()" 
-                             ontouchstart="window.startPress('${safeStr(m.t)}', this)" 
-                             ontouchmove="window.cancelPress()"
-                             ontouchend="window.cancelPress()" 
-                             onkeydown="window.handleCardKeyDown(event, '${safeStr(m.t)}', this)" 
-                             onkeyup="window.handleCardKeyUp(event)" 
-                             onclick="window.handleCardClick(event, ${playlistData.indexOf(m)}, ${isTVCat ? 'true' : 'false'})">
-                            <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); window.cancelPress(); toggleFav('${safeStr(m.t)}');">${heartIcon}</div>
+                             onmousedown="window.cardPressStart('${safeStr(m.t)}', this)" 
+                             onmouseup="window.cardPressEnd()" 
+                             onmouseleave="window.cardPressEnd()" 
+                             ontouchstart="window.cardPressStart('${safeStr(m.t)}', this)" 
+                             ontouchend="window.cardPressEnd()" 
+                             ontouchcancel="window.cardPressEnd()" 
+                             onkeydown="if(event.key==='Enter'||event.keyCode===13){ if(!event.repeat) window.cardPressStart('${safeStr(m.t)}', this); }" 
+                             onkeyup="if(event.key==='Enter'||event.keyCode===13) window.cardPressEnd()" 
+                             onclick="window.cardClick(event, ${playlistData.indexOf(m)}, ${isTVCat ? 'true' : 'false'})">
+                            <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); window.cardPressEnd(); toggleFav('${safeStr(m.t)}');">${heartIcon}</div>
                             ${ratingHtml}
-                            <img data-id="${m.id_tmdb || ''}" src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" loading="lazy" onerror="handleImageError(this)" onload="this.classList.add('loaded')">${pct}
+                            <img data-id="${m.id_tmdb || ''}" data-src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" class="lazy-img" onerror="handleImageError(this)">${pct}
                             <div class="card-name">${m.t}</div>
                         </div>`;
                 });
@@ -1223,18 +1253,18 @@ function render(search = "") {
 
                     htmlTout += `
                         <div class="card sn-card ${isTVCat ? 'landscape' : ''}" tabindex="0" 
-                             onmousedown="window.startPress('${safeStr(m.t)}', this)" 
-                             onmouseup="window.cancelPress()" 
-                             onmouseleave="window.cancelPress()" 
-                             ontouchstart="window.startPress('${safeStr(m.t)}', this)" 
-                             ontouchmove="window.cancelPress()"
-                             ontouchend="window.cancelPress()" 
-                             onkeydown="window.handleCardKeyDown(event, '${safeStr(m.t)}', this)" 
-                             onkeyup="window.handleCardKeyUp(event)" 
-                             onclick="window.handleCardClick(event, ${playlistData.indexOf(m)}, ${isTVCat ? 'true' : 'false'})">
-                            <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); window.cancelPress(); toggleFav('${safeStr(m.t)}');">${heartIcon}</div>
+                             onmousedown="window.cardPressStart('${safeStr(m.t)}', this)" 
+                             onmouseup="window.cardPressEnd()" 
+                             onmouseleave="window.cardPressEnd()" 
+                             ontouchstart="window.cardPressStart('${safeStr(m.t)}', this)" 
+                             ontouchend="window.cardPressEnd()" 
+                             ontouchcancel="window.cardPressEnd()" 
+                             onkeydown="if(event.key==='Enter'||event.keyCode===13){ if(!event.repeat) window.cardPressStart('${safeStr(m.t)}', this); }" 
+                             onkeyup="if(event.key==='Enter'||event.keyCode===13) window.cardPressEnd()" 
+                             onclick="window.cardClick(event, ${playlistData.indexOf(m)}, ${isTVCat ? 'true' : 'false'})">
+                            <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); window.cardPressEnd(); toggleFav('${safeStr(m.t)}');">${heartIcon}</div>
                             ${ratingHtml}
-                            <img data-id="${m.id_tmdb || ''}" src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" loading="lazy" onerror="handleImageError(this)" onload="this.classList.add('loaded')">${pct}
+                            <img data-id="${m.id_tmdb || ''}" data-src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" class="lazy-img" onerror="handleImageError(this)">${pct}
                             <div class="card-name">${m.t}</div>
                         </div>`;
                 });
@@ -1268,18 +1298,18 @@ function render(search = "") {
 
                     html += `
                         <div class="card sn-card ${isTVCat ? 'landscape' : ''}" tabindex="0" 
-                             onmousedown="window.startPress('${safeStr(m.t)}', this)" 
-                             onmouseup="window.cancelPress()" 
-                             onmouseleave="window.cancelPress()" 
-                             ontouchstart="window.startPress('${safeStr(m.t)}', this)" 
-                             ontouchmove="window.cancelPress()"
-                             ontouchend="window.cancelPress()" 
-                             onkeydown="window.handleCardKeyDown(event, '${safeStr(m.t)}', this)" 
-                             onkeyup="window.handleCardKeyUp(event)" 
-                             onclick="window.handleCardClick(event, ${playlistData.indexOf(m)}, ${isTVCat ? 'true' : 'false'})">
-                            <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); window.cancelPress(); toggleFav('${safeStr(m.t)}');">${heartIcon}</div>
+                             onmousedown="window.cardPressStart('${safeStr(m.t)}', this)" 
+                             onmouseup="window.cardPressEnd()" 
+                             onmouseleave="window.cardPressEnd()" 
+                             ontouchstart="window.cardPressStart('${safeStr(m.t)}', this)" 
+                             ontouchend="window.cardPressEnd()" 
+                             ontouchcancel="window.cardPressEnd()" 
+                             onkeydown="if(event.key==='Enter'||event.keyCode===13){ if(!event.repeat) window.cardPressStart('${safeStr(m.t)}', this); }" 
+                             onkeyup="if(event.key==='Enter'||event.keyCode===13) window.cardPressEnd()" 
+                             onclick="window.cardClick(event, ${playlistData.indexOf(m)}, ${isTVCat ? 'true' : 'false'})">
+                            <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); window.cardPressEnd(); toggleFav('${safeStr(m.t)}');">${heartIcon}</div>
                             ${ratingHtml}
-                            <img data-id="${m.id_tmdb || ''}" src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" loading="lazy" onerror="handleImageError(this)" onload="this.classList.add('loaded')">${pct}
+                            <img data-id="${m.id_tmdb || ''}" data-src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" class="lazy-img" onerror="handleImageError(this)">${pct}
                             <div class="card-name">${m.t}</div>
                         </div>`;
                 });
@@ -1289,6 +1319,8 @@ function render(search = "") {
         }
 
         cont.innerHTML = finalHTML;
+
+        document.querySelectorAll('.lazy-img').forEach(img => lazyImgObserver.observe(img));
 
         if (typeof updateSpatialNav === 'function') {
             setTimeout(updateSpatialNav, 500);
@@ -1394,7 +1426,6 @@ function changeView(v) {
     setTimeout(render, 50);
 }
 
-function filter() { render(document.getElementById('searchBar').value); }
 function toggleEditMode() { isEditMode = !isEditMode; document.getElementById('profile-screen').classList.toggle('is-editing'); }
 function switchProfile() { localStorage.removeItem('sfpp_profile'); location.reload(); }
 function requestAccess() { window.location.href = "mailto:sfpp.ott@gmail.com"; }
