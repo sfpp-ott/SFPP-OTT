@@ -204,10 +204,29 @@
         }
 
         .section-label { font-weight: bold; color: white; margin: 30px 0 15px; font-size: 18px; border-left: 4px solid var(--accent); padding-left: 10px; }
-        .trailer-box { width: 100%; max-width: 800px; aspect-ratio: 16/9; background: #000; border-radius: 8px; margin-bottom: 25px; overflow: hidden; border: 1px solid #333; }
+        
+        /* FIX ACCÉLÉRATION MATÉRIELLE TV (Empêche l'écran noir YT) */
+        .trailer-box { 
+            width: 100%; 
+            max-width: 800px; 
+            aspect-ratio: 16/9; 
+            background: #000; 
+            border-radius: 8px; 
+            margin-bottom: 25px; 
+            overflow: hidden; 
+            border: 1px solid #333; 
+            transform: translate3d(0,0,0);
+            -webkit-transform: translate3d(0,0,0);
+            backface-visibility: hidden;
+        }
+        .trailer-box iframe {
+            width: 100%;
+            height: 100%;
+            background: #000;
+        }
         
         .cast-row { display: flex; gap: 15px; overflow-x: auto; padding-bottom: 15px; scrollbar-width: none; }
-        .actor-item { flex: 0 0 90px; text-align: center; cursor: pointer; transition: transform 0.2s; will-change: transform; }
+        .actor-item { flex: 0 0 90px; text-align: center; cursor: pointer; transition: transform 0.2s; }
         .actor-item img { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 2px solid #333; transition: border-color 0.3s; }
         .actor-item:hover img { border-color: var(--accent); }
         .actor-name { font-size: 11px; color: #aaa; margin-top: 8px; }
@@ -239,11 +258,11 @@
 
         .card { 
             flex: 0 0 150px; width: 150px; cursor: pointer; position: relative; display: flex; flex-direction: column; 
-            transition: transform 0.2s ease; will-change: transform;
+            transition: transform 0.2s ease;
         }
         .card img { 
             width: 150px !important; height: 225px !important; object-fit: cover !important; 
-            border-radius: 4px; background: #222; display: block; transition: opacity 0.3s ease-in-out; opacity: 0; 
+            border-radius: 4px; background: #222; display: block; transition: opacity 0.4s ease-in-out; opacity: 0; 
         }
         .card img.loaded { opacity: 1; }
         .img-fallback { background: #1a1a1a !important; border: 1px solid #333; }
@@ -259,6 +278,7 @@
         .btn-fav-card {
             position: absolute; top: 10px; right: 10px; z-index: 10; background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.2);
             border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 16px;
+            transition: transform 0.2s ease;
         }
         .btn-fav-card.is-fav { color: #e50914; background: rgba(0,0,0,0.7); }
         .btn-fav-card:not(.is-fav) { color: white; }
@@ -576,7 +596,67 @@ window.handleImageError = function(img) {
 };
 
 let player, playlistData = [], currentProfile = null, isEditMode = false, currentView = 'all', currentPlayingTitle = "";
-let isAdminMode = false, epgData = {}, hls; 
+let isAdminMode = false, epgData = {}; 
+
+// --- GESTION DU CLIC LONG ---
+let pressTimer = null;
+let longPressTriggered = false;
+
+window.startPress = function(title, el) {
+    if (pressTimer) return;
+    longPressTriggered = false;
+    pressTimer = setTimeout(function() {
+        longPressTriggered = true;
+        toggleFav(title);
+        pressTimer = null;
+        // Animation du coeur pour montrer que ça a marché
+        const heartBtn = el.querySelector('.btn-fav-card');
+        if (heartBtn) {
+            heartBtn.style.transform = 'scale(1.5)';
+            setTimeout(() => { heartBtn.style.transform = 'scale(1)'; }, 300);
+        }
+        try { if (navigator.vibrate) navigator.vibrate(50); } catch(e){}
+    }, 800); // 0.8 seconde pour la TV
+};
+
+window.cancelPress = function() {
+    if (pressTimer) {
+        clearTimeout(pressTimer);
+        pressTimer = null;
+    }
+};
+
+window.handleCardKeyDown = function(event, title, el) {
+    if (event.key === 'Enter' || event.keyCode === 13) {
+        event.stopPropagation();
+        if(!event.repeat) window.startPress(title, el);
+    }
+};
+
+window.handleCardKeyUp = function(event, idx, isTV) {
+    if (event.key === 'Enter' || event.keyCode === 13) {
+        event.stopPropagation();
+        window.cancelPress();
+        if (!longPressTriggered) {
+            if (isTV) playMovie(idx);
+            else openDetails(idx);
+        }
+        longPressTriggered = false;
+    }
+};
+
+window.handleCardClick = function(event, idx, isTV) {
+    window.cancelPress();
+    if (longPressTriggered) {
+        event.preventDefault();
+        event.stopPropagation();
+        longPressTriggered = false;
+        return;
+    }
+    if (isTV) playMovie(idx);
+    else openDetails(idx);
+};
+// ------------------------------
 
 const lazyImgObserver = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
@@ -722,67 +802,52 @@ async function loadPlaylist() {
         const response = await fetch('films.json?v=' + Date.now(), { cache: "no-store" }); 
         playlistData = await response.json(); 
         
-        const db = await dbPromise;
-        const tx = db.transaction('tmdb', 'readonly');
-        const store = tx.objectStore('tmdb');
-        const allMetaReq = store.getAll();
-        
-        allMetaReq.onsuccess = () => {
-            const cacheList = allMetaReq.result || [];
-            const cacheMap = {};
-            cacheList.forEach(c => cacheMap[c.id] = c);
+        let metadataCache = JSON.parse(localStorage.getItem('sfpp_metadata_cache') || "{}");
 
+        if (playlistData && playlistData.length > 0) {
             playlistData.forEach((m, index) => {
                 m.original_index = index;
-                if (m.id_tmdb && cacheMap[m.id_tmdb]) {
-                    const c = cacheMap[m.id_tmdb];
-                    // Si l'image était marquée comme introuvable ("N/A"), on garde la valeur d'origine
-                    m.img = c.img !== "N/A" ? (m.img || c.img) : m.img;
-                    m.bg = c.bg !== "N/A" ? (m.bg || c.bg) : m.bg;
-                    m.desc = c.desc !== "N/A" ? (m.desc || c.desc) : m.desc;
-                    m.year = c.year !== "N/A" ? (m.year || c.year) : m.year;
-                    m.note = c.note !== "N/A" ? (m.note || c.note) : m.note;
-                    m.cat = c.cat !== "N/A" ? (m.cat || c.cat) : m.cat;
-                    m.trailer = c.trailer !== "N/A" ? (m.trailer || c.trailer) : m.trailer;
-                    m.actors_pics = c.actors_pics !== "N/A" ? (m.actors_pics || c.actors_pics) : m.actors_pics;
-                    
-                    // CORRECTION MAJEURE : On indique à l'app qu'on a déjà cherché ce film, même si on n'a pas tout trouvé.
-                    m.is_fetched_tmdb = true; 
+                if (m.id_tmdb && metadataCache[m.id_tmdb]) {
+                    const c = metadataCache[m.id_tmdb];
+                    m.img = m.img || c.img;
+                    m.bg = m.bg || c.bg;
+                    m.desc = m.desc || c.desc;
+                    m.year = m.year || c.year;
+                    m.note = m.note || c.note;
+                    m.cat = m.cat || c.cat;
+                    m.trailer = m.trailer || c.trailer;
+                    m.actors_pics = m.actors_pics || c.actors_pics;
                 }
-                
-                if (!m.cat) m.cat = "AUTRES CATÉGORIES";
             });
-            
             render(); 
-            
-            const loader = document.getElementById('global-loader');
-            if (loader) {
-                loader.style.opacity = '0';
-                setTimeout(() => loader.style.display = 'none', 500);
-            }
-            setTimeout(window.fetchMissingMetadata, 1000);
-        };
+        }
     } catch (e) {
         console.error("Erreur playlist", e);
+    } finally {
+        const loader = document.getElementById('global-loader');
+        if (loader) {
+            loader.style.opacity = '0';
+            setTimeout(() => loader.style.display = 'none', 500);
+        }
+        setTimeout(window.fetchMissingMetadata, 1000);
     }
 }
 
 window.fetchMissingMetadata = async function() {
     const apiKey = "ec1c8fecd38d1cc5a27f15766f0848d5";
-    
-    // CORRECTION MAJEURE : On cherche uniquement les films qui n'ont JAMAIS été scannés par TMDB.
-    // Cela empêche la boucle infinie des "1180" films à chaque démarrage.
-    let missingMetadata = playlistData.filter(m => m.id_tmdb && !m.is_fetched_tmdb);
+    let metadataCache = JSON.parse(localStorage.getItem('sfpp_metadata_cache') || "{}");
+    let cacheUpdated = false;
+
+    let missingMetadata = playlistData.filter(m => m.id_tmdb && (!m.img || !m.desc || !m.trailer));
 
     if (missingMetadata.length === 0) return;
 
     const dlProgress = document.getElementById('dl-progress');
     if (dlProgress) dlProgress.style.display = 'block';
 
-    let hasNewContent = false;
     let processedCount = 0;
-    
     const BATCH_SIZE = 20; 
+
     for (let i = 0; i < missingMetadata.length; i += BATCH_SIZE) {
         const batch = missingMetadata.slice(i, i + BATCH_SIZE);
         await Promise.all(batch.map(async (m) => {
@@ -809,32 +874,24 @@ window.fetchMissingMetadata = async function() {
                     m.actors_pics = data.credits.cast.slice(0, 10).map(a => ({ name: a.name, img: "https://image.tmdb.org/t/p/w185" + a.profile_path }));
                 }
 
-                // On sauvegarde en cache et on force l'arrêt des recherches futures sur ce film
-                await saveTMDB(m.id_tmdb, { 
-                    img: m.img || "N/A", 
-                    bg: m.bg || "N/A", 
-                    desc: m.desc || "N/A", 
-                    year: m.year || "N/A", 
-                    note: m.note || "N/A", 
-                    cat: m.cat || "N/A", 
-                    trailer: m.trailer || "N/A", 
-                    actors_pics: m.actors_pics || "N/A",
-                    is_fetched_tmdb: true 
-                });
+                metadataCache[m.id_tmdb] = { img: m.img, bg: m.bg, desc: m.desc, year: m.year, note: m.note, cat: m.cat, trailer: m.trailer, actors_pics: m.actors_pics };
+                cacheUpdated = true;
 
-                hasNewContent = true;
+                const imgEls = document.querySelectorAll(`img[data-id="${m.id_tmdb}"]`);
+                imgEls.forEach(img => { img.src = m.img; img.classList.add('loaded'); });
             } catch (e) {}
         }));
         
         processedCount += batch.length;
         if (dlProgress) dlProgress.innerText = `Mise à jour: ${processedCount}/${missingMetadata.length}`;
         
-        await new Promise(r => setTimeout(r, 300));
+        await new Promise(r => setTimeout(r, 200));
     }
-    
+
     if (dlProgress) dlProgress.style.display = 'none';
 
-    if (hasNewContent) {
+    if (cacheUpdated) {
+        try { localStorage.setItem('sfpp_metadata_cache', JSON.stringify(metadataCache)); } catch(e){}
         render(document.getElementById('searchBar') ? document.getElementById('searchBar').value : "");
     }
 };
@@ -884,16 +941,26 @@ function openDetails(idx) {
     let castHtml = "";
     if (m.actors_pics && m.actors_pics.length > 0) {
         castHtml = m.actors_pics.map(a => `
-                <div class="actor-item sn-card" onclick="searchByActor('${safeStr(a.name)}')" tabindex="0">
-                    <img data-src="${a.img || 'https://via.placeholder.com/80x80/222/fff?text=?'}" class="lazy-img" onerror="handleImageError(this)">
+                <div class="actor-item sn-card" tabindex="0"
+                     onmousedown="window.startPress('${safeStr(a.name)}', this)" 
+                     onmouseup="window.cancelPress()" 
+                     onmouseleave="window.cancelPress()" 
+                     ontouchstart="window.startPress('${safeStr(a.name)}', this)" 
+                     ontouchend="window.cancelPress()" 
+                     ontouchcancel="window.cancelPress()" 
+                     onkeydown="window.handleCardKeyDown(event, '${safeStr(a.name)}', this)" 
+                     onkeyup="window.handleCardKeyUp(event, '${safeStr(a.name)}', false)" 
+                     onclick="window.cancelPress(); searchByActor('${safeStr(a.name)}')">
+                    <img src="${a.img || 'https://via.placeholder.com/80x80/222/fff?text=?'}" onerror="handleImageError(this)" loading="lazy" decoding="async">
                     <div class="actor-name">${a.name}</div>
                 </div>
             `).join('');
     }
     document.getElementById('details-meta-cast').innerHTML = castHtml;
 
+    // INJECTION DU LECTEUR YOUTUBE AVEC LES BALISES DE SÉCURITÉ CORRECTES
     document.getElementById('details-trailer-box').innerHTML = m.trailer ? 
-        '<iframe width="100%" height="100%" src="https://www.youtube.com/embed/' + m.trailer + '?rel=0" frameborder="0" allowfullscreen></iframe>' : "";
+        '<iframe width="100%" height="100%" src="https://www.youtube.com/embed/' + m.trailer + '?rel=0&modestbranding=1&playsinline=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>' : "";
     
     document.getElementById('details-play-btn').onclick = () => { playMovie(idx); };
     document.getElementById('details-fav-btn').onclick = () => { toggleFav(m.t); };
@@ -918,8 +985,17 @@ function openDetails(idx) {
         for (let i = 0; i < 5; i++) { s_stars += (i < s_note) ? "★" : "☆"; }
         
         return `
-        <div class="actor-item sn-card" style="flex:0 0 120px; position:relative;" tabindex="0" onclick="openDetails(${playlistData.indexOf(s)})">
-            <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${safeStr(s.t)}');">${heartIcon}</div>
+        <div class="actor-item sn-card" style="flex:0 0 120px; position:relative;" tabindex="0" 
+             onmousedown="window.startPress('${safeStr(s.t)}', this)" 
+             onmouseup="window.cancelPress()" 
+             onmouseleave="window.cancelPress()" 
+             ontouchstart="window.startPress('${safeStr(s.t)}', this)" 
+             ontouchend="window.cancelPress()" 
+             ontouchcancel="window.cancelPress()" 
+             onkeydown="window.handleCardKeyDown(event, '${safeStr(s.t)}', this)" 
+             onkeyup="window.handleCardKeyUp(event, ${playlistData.indexOf(s)}, false)" 
+             onclick="window.handleCardClick(event, ${playlistData.indexOf(s)}, false)">
+            <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); window.cancelPress(); toggleFav('${safeStr(s.t)}');">${heartIcon}</div>
             <div class="card-rating">${s_stars}</div>
             <img data-src="${s.img || 'https://via.placeholder.com/110x160/222/fff?text=SFPP'}" style="border-radius:4px; height:160px; width:110px; object-fit:cover;" class="lazy-img" onerror="handleImageError(this)">
             <div class="actor-name">${s.t}</div>
@@ -1116,7 +1192,6 @@ function render(search = "") {
                     const m = playlistData.find(item => item.t === title);
                     if(m) {
                         const isTV = m.cat && (m.cat.toUpperCase().includes("DIRECT") || m.cat.toUpperCase().includes("TV"));
-                        const clickAction = isTV ? "playMovie(" + playlistData.indexOf(m) + ")" : "openDetails(" + playlistData.indexOf(m) + ")";
                         const is_fav = favs.includes(m.t);
                         const heartClass = is_fav ? 'is-fav' : '';
                         const heartIcon = is_fav ? '❤️' : '♡';
@@ -1127,8 +1202,17 @@ function render(search = "") {
                         const ratingHtml = !isTV ? '<div class="card-rating">' + m_stars + '</div>' : "";
 
                         histHtml += `
-                            <div class="card sn-card ${isTV ? "landscape" : ""}" tabindex="0" onclick="${clickAction}">
-                                <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${safeStr(m.t)}');">${heartIcon}</div>
+                            <div class="card sn-card ${isTV ? "landscape" : ""}" tabindex="0" 
+                                 onmousedown="window.startPress('${safeStr(m.t)}', this)" 
+                                 onmouseup="window.cancelPress()" 
+                                 onmouseleave="window.cancelPress()" 
+                                 ontouchstart="window.startPress('${safeStr(m.t)}', this)" 
+                                 ontouchend="window.cancelPress()" 
+                                 ontouchcancel="window.cancelPress()" 
+                                 onkeydown="window.handleCardKeyDown(event, '${safeStr(m.t)}', this)" 
+                                 onkeyup="window.handleCardKeyUp(event, ${playlistData.indexOf(m)}, ${isTV ? 'true' : 'false'})" 
+                                 onclick="window.handleCardClick(event, ${playlistData.indexOf(m)}, ${isTV ? 'true' : 'false'})">
+                                <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); window.cancelPress(); toggleFav('${safeStr(m.t)}');">${heartIcon}</div>
                                 ${ratingHtml}
                                 <img data-src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" class="lazy-img" onerror="handleImageError(this)">${pct}
                                 <div class="card-name">${m.t}</div>
@@ -1153,7 +1237,6 @@ function render(search = "") {
                     const is_fav = favs.includes(m.t);
                     const heartClass = is_fav ? 'is-fav' : '';
                     const heartIcon = is_fav ? '❤️' : '♡';
-                    const clickAction = isTVCat ? "playMovie(" + playlistData.indexOf(m) + ")" : "openDetails(" + playlistData.indexOf(m) + ")";
                     const pct = (prog[m.t] && prog[m.t].p > 1) ? '<div class="prog-bg"><div class="prog-fill" style="width:' + prog[m.t].p + '%"></div></div>' : "";
                     
                     let m_stars = "";
@@ -1161,10 +1244,19 @@ function render(search = "") {
                     const ratingHtml = !isTVCat ? '<div class="card-rating">' + m_stars + '</div>' : "";
 
                     htmlTout += `
-                        <div class="card sn-card ${isTVCat ? 'landscape' : ''}" tabindex="0" onclick="${clickAction}">
-                            <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${safeStr(m.t)}');">${heartIcon}</div>
+                        <div class="card sn-card ${isTVCat ? 'landscape' : ''}" tabindex="0" 
+                             onmousedown="window.startPress('${safeStr(m.t)}', this)" 
+                             onmouseup="window.cancelPress()" 
+                             onmouseleave="window.cancelPress()" 
+                             ontouchstart="window.startPress('${safeStr(m.t)}', this)" 
+                             ontouchend="window.cancelPress()" 
+                             ontouchcancel="window.cancelPress()" 
+                             onkeydown="window.handleCardKeyDown(event, '${safeStr(m.t)}', this)" 
+                             onkeyup="window.handleCardKeyUp(event, ${playlistData.indexOf(m)}, ${isTVCat ? 'true' : 'false'})" 
+                             onclick="window.handleCardClick(event, ${playlistData.indexOf(m)}, ${isTVCat ? 'true' : 'false'})">
+                            <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); window.cancelPress(); toggleFav('${safeStr(m.t)}');">${heartIcon}</div>
                             ${ratingHtml}
-                            <img data-src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" class="lazy-img" onerror="handleImageError(this)">${pct}
+                            <img data-id="${m.id_tmdb || ''}" data-src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" class="lazy-img" onerror="handleImageError(this)">${pct}
                             <div class="card-name">${m.t}</div>
                         </div>`;
                 });
@@ -1190,10 +1282,19 @@ function render(search = "") {
                     const ratingHtml = !isTVCat ? '<div class="card-rating">' + m_stars + '</div>' : "";
 
                     htmlTout += `
-                        <div class="card sn-card ${isTVCat ? 'landscape' : ''}" tabindex="0" onclick="${clickAction}">
-                            <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${safeStr(m.t)}');">${heartIcon}</div>
+                        <div class="card sn-card ${isTVCat ? 'landscape' : ''}" tabindex="0" 
+                             onmousedown="window.startPress('${safeStr(m.t)}', this)" 
+                             onmouseup="window.cancelPress()" 
+                             onmouseleave="window.cancelPress()" 
+                             ontouchstart="window.startPress('${safeStr(m.t)}', this)" 
+                             ontouchend="window.cancelPress()" 
+                             ontouchcancel="window.cancelPress()" 
+                             onkeydown="window.handleCardKeyDown(event, '${safeStr(m.t)}', this)" 
+                             onkeyup="window.handleCardKeyUp(event, ${playlistData.indexOf(m)}, ${isTVCat ? 'true' : 'false'})" 
+                             onclick="window.handleCardClick(event, ${playlistData.indexOf(m)}, ${isTVCat ? 'true' : 'false'})">
+                            <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); window.cancelPress(); toggleFav('${safeStr(m.t)}');">${heartIcon}</div>
                             ${ratingHtml}
-                            <img data-src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" class="lazy-img" onerror="handleImageError(this)">${pct}
+                            <img data-id="${m.id_tmdb || ''}" data-src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" class="lazy-img" onerror="handleImageError(this)">${pct}
                             <div class="card-name">${m.t}</div>
                         </div>`;
                 });
@@ -1227,10 +1328,19 @@ function render(search = "") {
                     const ratingHtml = !isTVCat ? '<div class="card-rating">' + m_stars + '</div>' : "";
 
                     html += `
-                        <div class="card sn-card ${isTVCat ? 'landscape' : ''}" tabindex="0" onclick="${clickAction}">
-                            <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${safeStr(m.t)}');">${heartIcon}</div>
+                        <div class="card sn-card ${isTVCat ? 'landscape' : ''}" tabindex="0" 
+                             onmousedown="window.startPress('${safeStr(m.t)}', this)" 
+                             onmouseup="window.cancelPress()" 
+                             onmouseleave="window.cancelPress()" 
+                             ontouchstart="window.startPress('${safeStr(m.t)}', this)" 
+                             ontouchend="window.cancelPress()" 
+                             ontouchcancel="window.cancelPress()" 
+                             onkeydown="window.handleCardKeyDown(event, '${safeStr(m.t)}', this)" 
+                             onkeyup="window.handleCardKeyUp(event, ${playlistData.indexOf(m)}, ${isTVCat ? 'true' : 'false'})" 
+                             onclick="window.handleCardClick(event, ${playlistData.indexOf(m)}, ${isTVCat ? 'true' : 'false'})">
+                            <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); window.cancelPress(); toggleFav('${safeStr(m.t)}');">${heartIcon}</div>
                             ${ratingHtml}
-                            <img data-src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" class="lazy-img" onerror="handleImageError(this)">${pct}
+                            <img data-id="${m.id_tmdb || ''}" data-src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" class="lazy-img" onerror="handleImageError(this)">${pct}
                             <div class="card-name">${m.t}</div>
                         </div>`;
                 });
@@ -1342,13 +1452,12 @@ function changeView(v) {
     currentView = v; 
     document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active')); 
     document.getElementById('btn-'+v).classList.add('active'); 
-    
     const cont = document.getElementById('categories-container');
     cont.innerHTML = '<div style="text-align:center; margin-top:50px; color:#888;">Chargement...</div>';
-    
     setTimeout(render, 50);
 }
 
+function filter() { render(document.getElementById('searchBar').value); }
 function toggleEditMode() { isEditMode = !isEditMode; document.getElementById('profile-screen').classList.toggle('is-editing'); }
 function switchProfile() { localStorage.removeItem('sfpp_profile'); location.reload(); }
 function requestAccess() { window.location.href = "mailto:sfpp.ott@gmail.com"; }
