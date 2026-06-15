@@ -288,6 +288,14 @@
 </head>
 <body oncontextmenu="return false;"> 
 
+<div id="system-message-modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.85); z-index:999999; align-items:center; justify-content:center; flex-direction:column;">
+    <div style="background:#111; padding:30px; border-radius:8px; text-align:center; border:1px solid #e50914; max-width:400px; width:80%; box-shadow: 0 10px 30px rgba(0,0,0,0.8);">
+        <h2 style="color:#e50914; margin-top:0; margin-bottom:15px; font-size:24px;">Message de l'Admin</h2>
+        <p id="system-message-text" style="font-size:16px; line-height:1.5; color:#fff; margin-bottom:25px;"></p>
+        <button id="btn-close-msg" onclick="window.closeSystemMessage()" class="sn-card" style="padding:12px 30px; background:#e50914; color:white; border:none; border-radius:4px; font-weight:bold; cursor:pointer; font-size:16px;" tabindex="0">J'ai compris</button>
+    </div>
+</div>
+
 <div id="global-loader" style="display: none;">
     <div class="spinner"></div>
     <div class="loader-text">CHARGEMENT DE SFPP ELITE...</div>
@@ -511,6 +519,44 @@
                     banner.innerHTML = "⚠️ Fin d'accès dans " + diffDays + " jour(s).";
                 } else banner.style.display = 'none';
             }
+
+            // NOUVEAU : SYSTÈME DE RÉCEPTION DE MESSAGES FIREBASE (Ne touche pas au DOM principal)
+            onValue(ref(db, 'messages/global'), (snapshot) => {
+                const msg = snapshot.val();
+                if (msg && msg.text && msg.id) {
+                    const lastSeen = localStorage.getItem('sfpp_seen_global_msg');
+                    if (lastSeen !== String(msg.id)) {
+                        document.getElementById('system-message-text').innerText = msg.text;
+                        const modal = document.getElementById('system-message-modal');
+                        modal.style.display = 'flex';
+                        modal.dataset.msgId = msg.id;
+                        modal.dataset.msgType = 'global';
+                        setTimeout(() => {
+                            const btn = document.getElementById('btn-close-msg');
+                            if(btn) { btn.focus(); if(typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus(btn); }
+                        }, 200);
+                    }
+                }
+            });
+
+            onValue(ref(db, 'messages/users/' + user.uid), (snapshot) => {
+                const msg = snapshot.val();
+                if (msg && msg.text && msg.id) {
+                    const lastSeen = localStorage.getItem('sfpp_seen_private_msg_' + user.uid);
+                    if (lastSeen !== String(msg.id)) {
+                        document.getElementById('system-message-text').innerText = msg.text;
+                        const modal = document.getElementById('system-message-modal');
+                        modal.style.display = 'flex';
+                        modal.dataset.msgId = msg.id;
+                        modal.dataset.msgType = 'private';
+                        modal.dataset.uid = user.uid;
+                        setTimeout(() => {
+                            const btn = document.getElementById('btn-close-msg');
+                            if(btn) { btn.focus(); if(typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus(btn); }
+                        }, 200);
+                    }
+                }
+            });
             
             const saved = localStorage.getItem('sfpp_profile');
             if(saved) selectProfile(saved, localStorage.getItem('sfpp_profile_icon'));
@@ -565,48 +611,43 @@
             }).then(() => alert("⚠️ Film signalé ! Merci.")).catch(() => alert("Erreur d'envoi."));
         }
     };
+    
+    // NOUVEAU : Fonction admin pour envoyer un message global
+    window.sendGlobalMessage = function(texte) {
+        set(ref(db, 'messages/global'), { text: texte, id: Date.now() })
+        .then(() => alert("Message envoyé à tous vos utilisateurs avec succès !"))
+        .catch(() => alert("Erreur lors de l'envoi du message."));
+    };
 </script>
 
 <script>
-// NOUVEAU : Fonction sécurisée pour effacer toutes les données du navigateur
 window.clearSiteData = async function() {
-    if(confirm("Voulez-vous vraiment effacer toutes les données de l'application (cache, favoris, profils locaux) ? Vous devrez vous reconnecter.")) {
-        // Sauvegarde de l'email pour faciliter la reconnexion
+    if(confirm("Voulez-vous vraiment effacer toutes les données de l'application (cache, favoris, profils) ? Vous devrez vous reconnecter.")) {
         const savedMail = localStorage.getItem('sfpp_last_email');
         const savedId = localStorage.getItem('sfpp_device_id');
-        
-        // 1. Vidage du Local Storage
         localStorage.clear();
-        
-        // On remet l'email et l'ID
         if(savedMail) localStorage.setItem('sfpp_last_email', savedMail);
         if(savedId) localStorage.setItem('sfpp_device_id', savedId);
-
-        // 2. Vidage du Session Storage
         sessionStorage.clear();
-
-        // 3. Vidage de la base de données des images TMDB
         try { indexedDB.deleteDatabase('SFPP_Cache'); } catch(e) {}
-
-        // 4. Vidage des caches du navigateur (Service Workers)
-        if ('caches' in window) {
-            try {
-                const keys = await caches.keys();
-                await Promise.all(keys.map(key => caches.delete(key)));
-            } catch(e) {}
-        }
-
-        // 5. Désinscription du Service Worker
-        if ('serviceWorker' in navigator) {
-            try {
-                const regs = await navigator.serviceWorker.getRegistrations();
-                for (let reg of regs) { await reg.unregister(); }
-            } catch(e) {}
-        }
-
-        // 6. Redémarrage propre
+        if ('caches' in window) { try { const keys = await caches.keys(); await Promise.all(keys.map(k => caches.delete(k))); } catch(e) {} }
+        if ('serviceWorker' in navigator) { try { const regs = await navigator.serviceWorker.getRegistrations(); for (let reg of regs) { await reg.unregister(); } } catch(e) {} }
         window.location.reload(true);
     }
+};
+
+window.closeSystemMessage = function() {
+    const modal = document.getElementById('system-message-modal');
+    modal.style.display = 'none';
+    const type = modal.dataset.msgType;
+    const id = modal.dataset.msgId;
+    if (type === 'global') {
+        localStorage.setItem('sfpp_seen_global_msg', id);
+    } else if (type === 'private') {
+        const uid = modal.dataset.uid;
+        localStorage.setItem('sfpp_seen_private_msg_' + uid, id);
+    }
+    if(typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus();
 };
 
 function safeStr(str) {
@@ -668,6 +709,12 @@ window.addEventListener('popstate', function (event) {
 });
 
 window.handleBackAction = function() {
+    const sysMsgModal = document.getElementById('system-message-modal');
+    if (sysMsgModal && sysMsgModal.style.display === 'flex') {
+        window.closeSystemMessage();
+        return;
+    }
+
     const customPrompt = document.getElementById('custom-prompt-modal');
     if (customPrompt && customPrompt.style.display === 'flex') {
         closeCustomPrompt();
@@ -767,20 +814,13 @@ async function loadPlaylist() {
         const response = await fetch('films.json?v=' + Date.now(), { cache: "no-store" }); 
         playlistData = await response.json(); 
         
-        const db = await dbPromise;
-        const tx = db.transaction('tmdb', 'readonly');
-        const store = tx.objectStore('tmdb');
-        const allMetaReq = store.getAll();
-        
-        allMetaReq.onsuccess = () => {
-            const cacheList = allMetaReq.result || [];
-            const cacheMap = {};
-            cacheList.forEach(c => cacheMap[c.id] = c);
+        let metadataCache = JSON.parse(localStorage.getItem('sfpp_metadata_cache') || "{}");
 
+        if (playlistData && playlistData.length > 0) {
             playlistData.forEach((m, index) => {
                 m.original_index = index;
-                if (m.id_tmdb && cacheMap[m.id_tmdb]) {
-                    const c = cacheMap[m.id_tmdb];
+                if (m.id_tmdb && metadataCache[m.id_tmdb]) {
+                    const c = metadataCache[m.id_tmdb];
                     m.img = m.img || c.img;
                     m.bg = m.bg || c.bg;
                     m.desc = m.desc || c.desc;
@@ -789,13 +829,10 @@ async function loadPlaylist() {
                     m.cat = m.cat || c.cat;
                     m.trailer = m.trailer || c.trailer;
                     m.actors_pics = m.actors_pics || c.actors_pics;
-                    // SÉCURITÉ : Stoppe la boucle infinie de téléchargement TMDB
                     m.tmdb_checked = true;
                 }
-                
                 if (!m.cat) m.cat = "AUTRES CATÉGORIES";
             });
-            
             render(); 
             
             const loader = document.getElementById('global-loader');
@@ -812,19 +849,19 @@ async function loadPlaylist() {
 
 window.fetchMissingMetadata = async function() {
     const apiKey = "ec1c8fecd38d1cc5a27f15766f0848d5";
-    
-    // On ne cherche QUE les films jamais vérifiés pour éviter le ralentissement infini
-    let missingMetadata = playlistData.filter(m => m.id_tmdb && !m.tmdb_checked);
+    let metadataCache = JSON.parse(localStorage.getItem('sfpp_metadata_cache') || "{}");
+    let cacheUpdated = false;
+
+    let missingMetadata = playlistData.filter(m => m.id_tmdb && (!m.img || !m.desc || !m.trailer) && !m.tmdb_checked);
 
     if (missingMetadata.length === 0) return;
 
     const dlProgress = document.getElementById('dl-progress');
     if (dlProgress) dlProgress.style.display = 'block';
 
-    let hasNewContent = false;
     let processedCount = 0;
-    
     const BATCH_SIZE = 20; 
+
     for (let i = 0; i < missingMetadata.length; i += BATCH_SIZE) {
         const batch = missingMetadata.slice(i, i + BATCH_SIZE);
         await Promise.all(batch.map(async (m) => {
@@ -834,8 +871,8 @@ window.fetchMissingMetadata = async function() {
                 if (!res.ok) return;
                 const data = await res.json();
                 
-                m.img = m.img || "https://image.tmdb.org/t/p/w500" + data.poster_path;
-                m.bg = m.bg || "https://image.tmdb.org/t/p/original" + data.backdrop_path;
+                m.img = m.img || (data.poster_path ? "https://image.tmdb.org/t/p/w500" + data.poster_path : null);
+                m.bg = m.bg || (data.backdrop_path ? "https://image.tmdb.org/t/p/original" + data.backdrop_path : null);
                 m.desc = m.desc || data.overview;
                 m.year = m.year || (data.release_date ? data.release_date.split('-')[0] : "2025");
                 m.note = m.note || Math.round(data.vote_average / 2);
@@ -851,39 +888,22 @@ window.fetchMissingMetadata = async function() {
                     m.actors_pics = data.credits.cast.slice(0, 10).map(a => ({ name: a.name, img: "https://image.tmdb.org/t/p/w185" + a.profile_path }));
                 }
 
-                await saveTMDB(m.id_tmdb, { 
-                    img: m.img || "N/A", 
-                    bg: m.bg || "N/A", 
-                    desc: m.desc || "N/A", 
-                    year: m.year || "N/A", 
-                    note: m.note || "N/A", 
-                    cat: m.cat || "AUTRES CATÉGORIES", 
-                    trailer: m.trailer || "N/A", 
-                    actors_pics: m.actors_pics || "N/A" 
-                });
-                
-                m.tmdb_checked = true;
-                hasNewContent = true;
-                
+                metadataCache[m.id_tmdb] = { img: m.img, bg: m.bg, desc: m.desc, year: m.year, note: m.note, cat: m.cat, trailer: m.trailer, actors_pics: m.actors_pics };
+                cacheUpdated = true;
+
                 const imgEls = document.querySelectorAll(`img[data-id="${m.id_tmdb}"]`);
-                imgEls.forEach(img => { 
-                    if(m.img) {
-                        img.src = m.img; 
-                        img.classList.add('loaded'); 
-                    }
-                });
-            } catch (e) {}
+                imgEls.forEach(img => { if(m.img){ img.src = m.img; img.classList.add('loaded'); } });
+            } catch (e) {} finally { m.tmdb_checked = true; }
         }));
         
         processedCount += batch.length;
         if (dlProgress) dlProgress.innerText = `Mise à jour: ${processedCount}/${missingMetadata.length}`;
-        
-        await new Promise(r => setTimeout(r, 300));
+        await new Promise(r => setTimeout(r, 200));
     }
-    
-    if (dlProgress) dlProgress.style.display = 'none';
 
-    if (hasNewContent) {
+    if (dlProgress) dlProgress.style.display = 'none';
+    if (cacheUpdated) {
+        try { localStorage.setItem('sfpp_metadata_cache', JSON.stringify(metadataCache)); } catch(e){}
         render(document.getElementById('searchBar') ? document.getElementById('searchBar').value : "");
     }
 };
@@ -1119,7 +1139,6 @@ function saveP() {
 
 window.scrollSide = function(btn, amt) { const car = btn.parentElement.querySelector('.carousel'); car.scrollBy({ left: amt, behavior: 'smooth' }); }
 
-// DELAI DE RECHERCHE POUR EMPÊCHER LE CLAVIER DE LA TV DE PLANTER
 let searchTimeout;
 window.debounceSearch = function() {
     clearTimeout(searchTimeout);
@@ -1136,12 +1155,22 @@ function render(search = "") {
 
         const s = search ? String(search).toLowerCase().trim() : "";
 
-        // NOUVEAU : ACTIVATION DU MODE ADMIN SANS CHERCHER LE MOT "ADMIN"
+        // MODE ADMIN VIA RECHERCHE
         if(s === "admin") { 
             isAdminMode = !isAdminMode; 
             document.getElementById('searchBar').value = ""; 
             alert(isAdminMode ? "Mode Admin Activé" : "Mode Admin Désactivé"); 
             return render(""); 
+        }
+        
+        // ENVOI DE MESSAGE GLOBAL VIA RECHERCHE
+        if(s === "msg_global") {
+            document.getElementById('searchBar').value = "";
+            let texte = prompt("Taper le message à envoyer à TOUS les utilisateurs :");
+            if (texte && texte.trim() !== "") {
+                window.sendGlobalMessage(texte);
+            }
+            return render("");
         }
 
         const favs = JSON.parse(localStorage.getItem('sfpp_fav_' + currentProfile) || "[]");
@@ -1152,7 +1181,6 @@ function render(search = "") {
         else if(currentView === 'series') data = data.filter(m => m.cat && m.cat.includes("SÉRIES"));
         else if(currentView === 'fav') data = data.filter(m => m.t && favs.includes(m.t));
 
-        // NOUVEAU : RECHERCHE SUR TITRE, ANNÉE ET ACTEURS
         if (s !== "") {
             data = data.filter(m => {
                 if (m.t && String(m.t).toLowerCase().includes(s)) return true;
@@ -1183,7 +1211,6 @@ function render(search = "") {
                         for (let i = 0; i < 5; i++) { m_stars += (i < (m.note || 5)) ? "★" : "☆"; }
                         const ratingHtml = !isTV ? '<div class="card-rating">' + m_stars + '</div>' : "";
 
-                        // NOUVEAU : BADGE DU NUMÉRO DE LIGNE EN MODE ADMIN
                         const lineInfo = m.num ? m.num : (m.original_index * 7) + 2;
                         const adminBadge = isAdminMode ? `<div style="position:absolute; top:10px; left:10px; z-index:15; background:rgba(229,9,20,0.9); padding:2px 6px; border-radius:4px; font-size:11px; font-weight:bold; border:1px solid white;">L${lineInfo}</div>` : "";
 
@@ -1421,6 +1448,7 @@ function changeView(v) {
     setTimeout(render, 50);
 }
 
+function filter() { render(document.getElementById('searchBar').value); }
 function toggleEditMode() { isEditMode = !isEditMode; document.getElementById('profile-screen').classList.toggle('is-editing'); }
 function switchProfile() { localStorage.removeItem('sfpp_profile'); location.reload(); }
 function requestAccess() { window.location.href = "mailto:sfpp.ott@gmail.com"; }
@@ -1523,8 +1551,18 @@ if ('serviceWorker' in navigator) {
             const profileScreen = document.getElementById('profile-screen');
             const customPrompt = document.getElementById('custom-prompt-modal');
             const playerSection = document.getElementById('player-section');
+            const sysMsgModal = document.getElementById('system-message-modal');
             
             const key = e.key || e.keyCode;
+
+            // Bloquer le reste si la modale de message est ouverte
+            if (sysMsgModal && sysMsgModal.style.display === 'flex') {
+                if (key === 'Enter' || key === 13) {
+                    window.closeSystemMessage();
+                    e.preventDefault();
+                }
+                return; 
+            }
 
             if (playerSection && playerSection.style.display === 'block') {
                 if (key === 'MediaFastForward' || key === 228 || key === 176) {
