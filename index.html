@@ -520,7 +520,6 @@
                 } else banner.style.display = 'none';
             }
 
-            // NOUVEAU : SYSTÈME DE RÉCEPTION DE MESSAGES FIREBASE (Ne touche pas au DOM principal)
             onValue(ref(db, 'messages/global'), (snapshot) => {
                 const msg = snapshot.val();
                 if (msg && msg.text && msg.id) {
@@ -612,11 +611,17 @@
         }
     };
     
-    // NOUVEAU : Fonction admin pour envoyer un message global
     window.sendGlobalMessage = function(texte) {
         set(ref(db, 'messages/global'), { text: texte, id: Date.now() })
         .then(() => alert("Message envoyé à tous vos utilisateurs avec succès !"))
         .catch(() => alert("Erreur lors de l'envoi du message."));
+    };
+
+    // NOUVEAU : Fonction admin pour supprimer le message global
+    window.deleteGlobalMessage = function() {
+        set(ref(db, 'messages/global'), null)
+        .then(() => alert("Message global supprimé avec succès ! Il n'apparaîtra plus."))
+        .catch(() => alert("Erreur lors de la suppression."));
     };
 </script>
 
@@ -1155,7 +1160,6 @@ function render(search = "") {
 
         const s = search ? String(search).toLowerCase().trim() : "";
 
-        // MODE ADMIN VIA RECHERCHE
         if(s === "admin") { 
             isAdminMode = !isAdminMode; 
             document.getElementById('searchBar').value = ""; 
@@ -1163,12 +1167,20 @@ function render(search = "") {
             return render(""); 
         }
         
-        // ENVOI DE MESSAGE GLOBAL VIA RECHERCHE
         if(s === "msg_global") {
             document.getElementById('searchBar').value = "";
             let texte = prompt("Taper le message à envoyer à TOUS les utilisateurs :");
             if (texte && texte.trim() !== "") {
                 window.sendGlobalMessage(texte);
+            }
+            return render("");
+        }
+
+        // NOUVEAU : SUPPRESSION DU MESSAGE GLOBAL VIA RECHERCHE
+        if(s === "msg_clear") {
+            document.getElementById('searchBar').value = "";
+            if(confirm("Voulez-vous supprimer le message global actuel ?")) {
+                window.deleteGlobalMessage();
             }
             return render("");
         }
@@ -1448,7 +1460,6 @@ function changeView(v) {
     setTimeout(render, 50);
 }
 
-function filter() { render(document.getElementById('searchBar').value); }
 function toggleEditMode() { isEditMode = !isEditMode; document.getElementById('profile-screen').classList.toggle('is-editing'); }
 function switchProfile() { localStorage.removeItem('sfpp_profile'); location.reload(); }
 function requestAccess() { window.location.href = "mailto:sfpp.ott@gmail.com"; }
