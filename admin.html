@@ -18,12 +18,16 @@
         input, textarea { width: 100%; padding: 12px; margin: 10px 0 20px; background: #222; border: 1px solid #444; color: white; border-radius: 4px; box-sizing: border-box; font-family: inherit; }
         textarea { resize: vertical; min-height: 80px; }
         
+        /* Style spécifique pour la barre de recherche */
+        #search-user { margin-top: 5px; margin-bottom: 15px; border-color: #555; background: #1a1a1a; }
+        #search-user:focus { border-color: var(--accent); outline: none; }
+        
         .btn-main { width: 100%; padding: 12px; background: var(--accent); color: white; border: none; font-weight: bold; border-radius: 4px; cursor: pointer; transition: 0.3s; }
         .btn-main:hover { background: #b20710; }
         .btn-secondary { background: #444; margin-top: 10px; }
         .btn-secondary:hover { background: #555; }
         
-        .user-list { margin-top: 20px; max-height: 600px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px;}
+        .user-list { margin-top: 10px; max-height: 600px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px;}
         .user-item { background: #222; padding: 15px; border-radius: 4px; border-left: 4px solid var(--accent); display: flex; flex-direction: column; gap: 10px;}
         .user-info { display: flex; justify-content: space-between; align-items: flex-start; }
         .user-item span { font-size: 14px; color: #bbb; }
@@ -85,6 +89,9 @@
 
     <div class="box" style="flex: 2;">
         <h2>Comptes Enregistrés <span id="user-count" style="font-size:12px; color:#888;"></span></h2>
+        
+        <input type="text" id="search-user" placeholder="🔍 Rechercher par adresse e-mail..." oninput="window.renderUsers()">
+        
         <div class="user-list" id="users-container">
             <i>Chargement des utilisateurs...</i>
         </div>
@@ -107,7 +114,6 @@
     const auth = getAuth(app);
     const db = getDatabase(app);
     
-    // Le module secondaire pour créer des comptes sans déconnecter l'admin
     const adminApp = initializeApp(firebaseConfig, "AdminCreatorApp");
     const adminAuth = getAuth(adminApp);
 
@@ -209,20 +215,19 @@
     let allPrivateMessages = {};
 
     function loadUsers() {
-        // Écouter les données utilisateurs
         onValue(ref(db, 'users_data'), (snapshot) => {
             allUsersData = snapshot.val() || {};
-            renderUsers();
+            window.renderUsers();
         });
 
-        // Écouter les messages privés pour savoir qui a un message en cours
         onValue(ref(db, 'messages/users'), (snapshot) => {
             allPrivateMessages = snapshot.val() || {};
-            renderUsers(); // Met à jour l'interface si un message est lu/supprimé
+            window.renderUsers();
         });
     }
 
-    function renderUsers() {
+    // NOUVEAU : FONCTION DE RENDU AVEC RECHERCHE ET TRI
+    window.renderUsers = function() {
         const container = document.getElementById('users-container');
         container.innerHTML = "";
 
@@ -233,9 +238,38 @@
         }
 
         const today = new Date().toISOString().split('T')[0];
-        document.getElementById('user-count').innerText = `(${Object.keys(allUsersData).length})`;
+        const searchTerm = (document.getElementById('search-user').value || "").toLowerCase().trim();
 
-        // Attacher les actions standards
+        // 1. Transformation de l'objet en tableau pour le tri et la recherche
+        let usersArray = Object.keys(allUsersData).map(uid => {
+            return { uid: uid, ...allUsersData[uid] };
+        });
+
+        // 2. Filtre de la barre de recherche
+        if (searchTerm !== "") {
+            usersArray = usersArray.filter(user => user.email.toLowerCase().includes(searchTerm));
+        }
+
+        document.getElementById('user-count').innerText = `(${usersArray.length})`;
+
+        // 3. Tri chronologique par date d'expiration
+        usersArray.sort((a, b) => {
+            // Les comptes suspendus (2000-01-01) vont tout en bas
+            if (a.expire === '2000-01-01' && b.expire !== '2000-01-01') return 1;
+            if (b.expire === '2000-01-01' && a.expire !== '2000-01-01') return -1;
+            
+            // Ordre croissant : les plus proches d'expirer sont en haut
+            if (a.expire < b.expire) return -1;
+            if (a.expire > b.expire) return 1;
+            return 0;
+        });
+
+        if (usersArray.length === 0) {
+            container.innerHTML = "<i>Aucun compte ne correspond à votre recherche.</i>";
+            return;
+        }
+
+        // 4. Génération de l'affichage HTML
         window.extendUser = (uid, currentExpire) => {
             let newDate = prompt("Nouvelle date d'expiration (YYYY-MM-DD) :", currentExpire);
             if (newDate) { update(ref(db, 'users_data/' + uid), { expire: newDate }); }
@@ -250,18 +284,17 @@
         window.deleteUser = (uid) => {
             if (confirm("Attention : Supprimer ce compte de la base ? Il ne pourra plus jamais se connecter.")) {
                 remove(ref(db, 'users_data/' + uid));
-                remove(ref(db, 'messages/users/' + uid)); // Nettoie les messages de ce user
+                remove(ref(db, 'messages/users/' + uid));
             }
         };
 
-        Object.keys(allUsersData).forEach(uid => {
-            const user = allUsersData[uid];
+        usersArray.forEach(user => {
+            const uid = user.uid;
             const isExpired = user.expire < today;
             const statusClass = isExpired ? 'expired' : '';
             const statusText = isExpired ? '<span style="color:#e50914">🔴 Inactif</span>' : '<span style="color:#2ecc71">🟢 Actif</span>';
             const passDisplay = user.pass ? `<span class="user-pass">🔑 ${user.pass}</span>` : `<span class="user-pass" style="color:#555">MDP masqué</span>`;
             
-            // Vérifie s'il a un message privé en cours
             let privateMsgHtml = "";
             if (allPrivateMessages[uid] && allPrivateMessages[uid].text) {
                 privateMsgHtml = `
