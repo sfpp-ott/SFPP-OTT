@@ -207,7 +207,7 @@
         .trailer-box { width: 100%; max-width: 800px; aspect-ratio: 16/9; background: #000; border-radius: 8px; margin-bottom: 25px; overflow: hidden; border: 1px solid #333; }
         
         .cast-row { display: flex; gap: 15px; overflow-x: auto; padding-bottom: 15px; scrollbar-width: none; }
-        .actor-item { flex: 0 0 90px; text-align: center; cursor: pointer; transition: transform 0.2s; }
+        .actor-item { flex: 0 0 90px; text-align: center; cursor: pointer; transition: transform 0.2s; will-change: transform; }
         .actor-item img { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 2px solid #333; transition: border-color 0.3s; }
         .actor-item:hover img { border-color: var(--accent); }
         .actor-name { font-size: 11px; color: #aaa; margin-top: 8px; }
@@ -220,7 +220,7 @@
 
         #main-content { padding-top: 80px; }
         
-        .category-row { position: relative; width: 100%; margin-bottom: 20px; }
+        .category-row { position: relative; width: 100%; margin-bottom: 20px; content-visibility: auto; contain-intrinsic-size: 270px; }
         .category-title { font-size: 18px; font-weight: bold; margin: 20px 4% 10px; color: #fff; text-transform: uppercase; }
         
         .carousel { 
@@ -239,11 +239,11 @@
 
         .card { 
             flex: 0 0 150px; width: 150px; cursor: pointer; position: relative; display: flex; flex-direction: column; 
-            transition: transform 0.2s ease;
+            transition: transform 0.2s ease; will-change: transform;
         }
         .card img { 
             width: 150px !important; height: 225px !important; object-fit: cover !important; 
-            border-radius: 4px; background: #222; display: block; transition: opacity 0.4s ease-in-out; opacity: 0; 
+            border-radius: 4px; background: #222; display: block; transition: opacity 0.3s ease-in-out; opacity: 0; 
         }
         .card img.loaded { opacity: 1; }
         .img-fallback { background: #1a1a1a !important; border: 1px solid #333; }
@@ -336,7 +336,7 @@
         <button class="btn-logout" onclick="switchProfile()" tabindex="0">PROFILS</button>
     </div>
     <div id="search-overlay">
-        <input type="text" id="searchBar" onkeyup="debounceSearch()" placeholder="Rechercher..." tabindex="0">
+        <input type="text" id="searchBar" onkeyup="debounceSearch()" placeholder="Rechercher un film, un acteur..." tabindex="0">
         <button class="btn-icon" onclick="closeSearch_internal()" style="margin-left:10px" tabindex="0">✕</button>
     </div>
 </header>
@@ -576,7 +576,21 @@ window.handleImageError = function(img) {
 };
 
 let player, playlistData = [], currentProfile = null, isEditMode = false, currentView = 'all', currentPlayingTitle = "";
-let isAdminMode = false, epgData = {}; 
+let isAdminMode = false, epgData = {}, hls; 
+
+const lazyImgObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const img = entry.target;
+            if (img.dataset.src) {
+                img.src = img.dataset.src;
+                img.onload = () => img.classList.add('loaded');
+                img.removeAttribute('data-src');
+            }
+            observer.unobserve(img);
+        }
+    });
+}, { rootMargin: "300px 0px" });
 
 const dbPromise = new Promise((resolve, reject) => {
     const req = indexedDB.open('SFPP_Cache', 1);
@@ -731,7 +745,10 @@ async function loadPlaylist() {
                     m.trailer = m.trailer || c.trailer;
                     m.actors_pics = m.actors_pics || c.actors_pics;
                 }
+                
+                if (!m.cat) m.cat = "AUTRES CATÉGORIES";
             });
+            
             render(); 
             
             const loader = document.getElementById('global-loader');
@@ -748,20 +765,24 @@ async function loadPlaylist() {
 
 window.fetchMissingMetadata = async function() {
     const apiKey = "ec1c8fecd38d1cc5a27f15766f0848d5";
-    let missingMetadata = playlistData.filter(m => m.id_tmdb && (!m.img || !m.desc || !m.trailer));
+    let missingMetadata = playlistData.filter(m => m.id_tmdb && (!m.img || !m.desc || !m.trailer || m.cat === "AUTRES CATÉGORIES"));
+
+    if (missingMetadata.length === 0) return;
 
     const dlProgress = document.getElementById('dl-progress');
-    if (missingMetadata.length > 0 && dlProgress) dlProgress.style.display = 'block';
+    if (dlProgress) dlProgress.style.display = 'block';
 
-    const BATCH_SIZE = 5; 
+    let hasNewContent = false;
     let processedCount = 0;
-
+    
+    const BATCH_SIZE = 20; 
     for (let i = 0; i < missingMetadata.length; i += BATCH_SIZE) {
         const batch = missingMetadata.slice(i, i + BATCH_SIZE);
         await Promise.all(batch.map(async (m) => {
             try {
                 const url = "https://api.themoviedb.org/3/movie/" + m.id_tmdb + "?api_key=" + apiKey + "&language=fr-FR&append_to_response=videos,credits&include_video_language=en,fr,null";
                 const res = await fetch(url);
+                if (!res.ok) return;
                 const data = await res.json();
                 
                 m.img = m.img || "https://image.tmdb.org/t/p/w500" + data.poster_path;
@@ -783,17 +804,21 @@ window.fetchMissingMetadata = async function() {
 
                 await saveTMDB(m.id_tmdb, { img: m.img, bg: m.bg, desc: m.desc, year: m.year, note: m.note, cat: m.cat, trailer: m.trailer, actors_pics: m.actors_pics });
 
-                const imgEls = document.querySelectorAll(`img[data-id="${m.id_tmdb}"]`);
-                imgEls.forEach(img => { img.src = m.img; img.classList.add('loaded'); });
+                hasNewContent = true;
             } catch (e) {}
         }));
         
         processedCount += batch.length;
         if (dlProgress) dlProgress.innerText = `Mise à jour: ${processedCount}/${missingMetadata.length}`;
-        await new Promise(r => setTimeout(r, 200));
+        
+        await new Promise(r => setTimeout(r, 300));
     }
     
     if (dlProgress) dlProgress.style.display = 'none';
+
+    if (hasNewContent) {
+        render(document.getElementById('searchBar') ? document.getElementById('searchBar').value : "");
+    }
 };
 
 window.updateProgBars = function() {
@@ -842,7 +867,7 @@ function openDetails(idx) {
     if (m.actors_pics && m.actors_pics.length > 0) {
         castHtml = m.actors_pics.map(a => `
                 <div class="actor-item sn-card" onclick="searchByActor('${safeStr(a.name)}')" tabindex="0">
-                    <img src="${a.img || 'https://via.placeholder.com/80x80/222/fff?text=?'}" onerror="handleImageError(this)" loading="lazy" decoding="async">
+                    <img data-src="${a.img || 'https://via.placeholder.com/80x80/222/fff?text=?'}" class="lazy-img" onerror="handleImageError(this)">
                     <div class="actor-name">${a.name}</div>
                 </div>
             `).join('');
@@ -878,11 +903,13 @@ function openDetails(idx) {
         <div class="actor-item sn-card" style="flex:0 0 120px; position:relative;" tabindex="0" onclick="openDetails(${playlistData.indexOf(s)})">
             <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${safeStr(s.t)}');">${heartIcon}</div>
             <div class="card-rating">${s_stars}</div>
-            <img src="${s.img || 'https://via.placeholder.com/110x160/222/fff?text=SFPP'}" style="border-radius:4px; height:160px; width:110px; object-fit:cover;" loading="lazy" decoding="async" onerror="handleImageError(this)" onload="this.classList.add('loaded')">
+            <img data-src="${s.img || 'https://via.placeholder.com/110x160/222/fff?text=SFPP'}" style="border-radius:4px; height:160px; width:110px; object-fit:cover;" class="lazy-img" onerror="handleImageError(this)">
             <div class="actor-name">${s.t}</div>
         </div>
     `}).join('');
     document.getElementById('details-suggestions').innerHTML = suggHtml;
+
+    document.querySelectorAll('.lazy-img').forEach(img => lazyImgObserver.observe(img));
 
     document.getElementById('details-overlay').style.display = 'flex';
     document.getElementById('details-play-btn').focus();
@@ -1025,7 +1052,6 @@ function saveP() {
 
 window.scrollSide = function(btn, amt) { const car = btn.parentElement.querySelector('.carousel'); car.scrollBy({ left: amt, behavior: 'smooth' }); }
 
-// DELAI SUR LE CLAVIER POUR ÉVITER QUE LA RECHERCHE FASSE PLANTER LA TV
 let searchTimeout;
 window.debounceSearch = function() {
     clearTimeout(searchTimeout);
@@ -1052,7 +1078,6 @@ function render(search = "") {
         else if(currentView === 'series') data = data.filter(m => m.cat && m.cat.includes("SÉRIES"));
         else if(currentView === 'fav') data = data.filter(m => m.t && favs.includes(m.t));
 
-        // NOUVEAU : MOTEUR DE RECHERCHE AVANCÉ (Titres, Années, Acteurs)
         if (s !== "") {
             data = data.filter(m => {
                 if (m.t && String(m.t).toLowerCase().includes(s)) return true;
@@ -1083,15 +1108,11 @@ function render(search = "") {
                         for (let i = 0; i < 5; i++) { m_stars += (i < (m.note || 5)) ? "★" : "☆"; }
                         const ratingHtml = !isTV ? '<div class="card-rating">' + m_stars + '</div>' : "";
 
-                        const lineInfo = m.num ? m.num : (m.original_index * 7) + 2;
-                        const adminBadge = isAdminMode ? `<div style="position:absolute; top:10px; left:10px; z-index:15; background:rgba(229,9,20,0.9); padding:2px 6px; border-radius:4px; font-size:11px; font-weight:bold; border:1px solid white;">L${lineInfo}</div>` : "";
-
                         histHtml += `
                             <div class="card sn-card ${isTV ? "landscape" : ""}" tabindex="0" onclick="${clickAction}">
-                                ${adminBadge}
                                 <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${safeStr(m.t)}');">${heartIcon}</div>
                                 ${ratingHtml}
-                                <img data-id="${m.id_tmdb || ''}" src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" loading="lazy" onerror="handleImageError(this)" onload="this.classList.add('loaded')">${pct}
+                                <img data-src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" class="lazy-img" onerror="handleImageError(this)">${pct}
                                 <div class="card-name">${m.t}</div>
                             </div>`;
                     }
@@ -1106,37 +1127,64 @@ function render(search = "") {
 
         let finalHTML = "";
 
-        if (data.length > 0) {
-            let htmlTout = '<div class="category-title">' + (s !== "" ? 'RÉSULTATS DE RECHERCHE' : 'TOUT') + '</div><div class="category-row"><div class="nav-arrow arrow-left" onclick="window.scrollSide(this, -400)">‹</div><div class="carousel">';
-            data.forEach(m => {
-                const isTVCat = m.cat && (m.cat.toUpperCase().includes("DIRECT") || m.cat.toUpperCase().includes("TV"));
-                const is_fav = favs.includes(m.t);
-                const heartClass = is_fav ? 'is-fav' : '';
-                const heartIcon = is_fav ? '❤️' : '♡';
-                const clickAction = isTVCat ? "playMovie(" + playlistData.indexOf(m) + ")" : "openDetails(" + playlistData.indexOf(m) + ")";
-                const pct = (prog[m.t] && prog[m.t].p > 1) ? '<div class="prog-bg"><div class="prog-fill" style="width:' + prog[m.t].p + '%"></div></div>' : "";
-                
-                let m_stars = "";
-                for (let i = 0; i < 5; i++) { m_stars += (i < (m.note || 5)) ? "★" : "☆"; }
-                const ratingHtml = !isTVCat ? '<div class="card-rating">' + m_stars + '</div>' : "";
+        // CORRECTION DE L'AFFICHAGE LORS D'UNE RECHERCHE : On affiche tout dans un bloc unifié si "s" n'est pas vide
+        if (s !== "") {
+            if (data.length > 0) {
+                let htmlTout = '<div class="category-title">RÉSULTATS DE RECHERCHE</div><div class="category-row"><div class="nav-arrow arrow-left" onclick="window.scrollSide(this, -400)">‹</div><div class="carousel">';
+                data.forEach(m => {
+                    const isTVCat = m.cat && (m.cat.toUpperCase().includes("DIRECT") || m.cat.toUpperCase().includes("TV"));
+                    const is_fav = favs.includes(m.t);
+                    const heartClass = is_fav ? 'is-fav' : '';
+                    const heartIcon = is_fav ? '❤️' : '♡';
+                    const clickAction = isTVCat ? "playMovie(" + playlistData.indexOf(m) + ")" : "openDetails(" + playlistData.indexOf(m) + ")";
+                    const pct = (prog[m.t] && prog[m.t].p > 1) ? '<div class="prog-bg"><div class="prog-fill" style="width:' + prog[m.t].p + '%"></div></div>' : "";
+                    
+                    let m_stars = "";
+                    for (let i = 0; i < 5; i++) { m_stars += (i < (m.note || 5)) ? "★" : "☆"; }
+                    const ratingHtml = !isTVCat ? '<div class="card-rating">' + m_stars + '</div>' : "";
 
-                const lineInfo = m.num ? m.num : (m.original_index * 7) + 2;
-                const adminBadge = isAdminMode ? `<div style="position:absolute; top:10px; left:10px; z-index:15; background:rgba(229,9,20,0.9); padding:2px 6px; border-radius:4px; font-size:11px; font-weight:bold; border:1px solid white;">L${lineInfo}</div>` : "";
+                    htmlTout += `
+                        <div class="card sn-card ${isTVCat ? 'landscape' : ''}" tabindex="0" onclick="${clickAction}">
+                            <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${safeStr(m.t)}');">${heartIcon}</div>
+                            ${ratingHtml}
+                            <img data-src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" class="lazy-img" onerror="handleImageError(this)">${pct}
+                            <div class="card-name">${m.t}</div>
+                        </div>`;
+                });
+                htmlTout += '</div><div class="nav-arrow arrow-right" onclick="window.scrollSide(this, 400)">›</div></div>';
+                finalHTML += htmlTout;
+            } else {
+                finalHTML = '<div style="text-align:center; margin-top:50px; color:#888;">Aucun résultat trouvé.</div>';
+            }
+        } 
+        // AFFICHAGE NORMAL (Si pas de recherche)
+        else {
+            if (data.length > 0) {
+                let htmlTout = '<div class="category-title">TOUT</div><div class="category-row"><div class="nav-arrow arrow-left" onclick="window.scrollSide(this, -400)">‹</div><div class="carousel">';
+                data.forEach(m => {
+                    const isTVCat = m.cat && (m.cat.toUpperCase().includes("DIRECT") || m.cat.toUpperCase().includes("TV"));
+                    const is_fav = favs.includes(m.t);
+                    const heartClass = is_fav ? 'is-fav' : '';
+                    const heartIcon = is_fav ? '❤️' : '♡';
+                    const clickAction = isTVCat ? "playMovie(" + playlistData.indexOf(m) + ")" : "openDetails(" + playlistData.indexOf(m) + ")";
+                    const pct = (prog[m.t] && prog[m.t].p > 1) ? '<div class="prog-bg"><div class="prog-fill" style="width:' + prog[m.t].p + '%"></div></div>' : "";
+                    
+                    let m_stars = "";
+                    for (let i = 0; i < 5; i++) { m_stars += (i < (m.note || 5)) ? "★" : "☆"; }
+                    const ratingHtml = !isTVCat ? '<div class="card-rating">' + m_stars + '</div>' : "";
 
-                htmlTout += `
-                    <div class="card sn-card ${isTVCat ? 'landscape' : ''}" tabindex="0" onclick="${clickAction}">
-                        ${adminBadge}
-                        <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${safeStr(m.t)}');">${heartIcon}</div>
-                        ${ratingHtml}
-                        <img data-id="${m.id_tmdb || ''}" src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" loading="lazy" onerror="handleImageError(this)" onload="this.classList.add('loaded')">${pct}
-                        <div class="card-name">${m.t}</div>
-                    </div>`;
-            });
-            htmlTout += '</div><div class="nav-arrow arrow-right" onclick="window.scrollSide(this, 400)">›</div></div>';
-            finalHTML += htmlTout;
-        }
+                    htmlTout += `
+                        <div class="card sn-card ${isTVCat ? 'landscape' : ''}" tabindex="0" onclick="${clickAction}">
+                            <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${safeStr(m.t)}');">${heartIcon}</div>
+                            ${ratingHtml}
+                            <img data-src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" class="lazy-img" onerror="handleImageError(this)">${pct}
+                            <div class="card-name">${m.t}</div>
+                        </div>`;
+                });
+                htmlTout += '</div><div class="nav-arrow arrow-right" onclick="window.scrollSide(this, 400)">›</div></div>';
+                finalHTML += htmlTout;
+            }
 
-        if (s === "") {
             const allGenres = [];
             data.forEach(m => { 
                 if(m.cat) { 
@@ -1162,15 +1210,11 @@ function render(search = "") {
                     for (let i = 0; i < 5; i++) { m_stars += (i < (m.note || 5)) ? "★" : "☆"; }
                     const ratingHtml = !isTVCat ? '<div class="card-rating">' + m_stars + '</div>' : "";
 
-                    const lineInfo = m.num ? m.num : (m.original_index * 7) + 2;
-                    const adminBadge = isAdminMode ? `<div style="position:absolute; top:10px; left:10px; z-index:15; background:rgba(229,9,20,0.9); padding:2px 6px; border-radius:4px; font-size:11px; font-weight:bold; border:1px solid white;">L${lineInfo}</div>` : "";
-
                     html += `
                         <div class="card sn-card ${isTVCat ? 'landscape' : ''}" tabindex="0" onclick="${clickAction}">
-                            ${adminBadge}
                             <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${safeStr(m.t)}');">${heartIcon}</div>
                             ${ratingHtml}
-                            <img data-id="${m.id_tmdb || ''}" src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" loading="lazy" onerror="handleImageError(this)" onload="this.classList.add('loaded')">${pct}
+                            <img data-src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" class="lazy-img" onerror="handleImageError(this)">${pct}
                             <div class="card-name">${m.t}</div>
                         </div>`;
                 });
@@ -1181,8 +1225,10 @@ function render(search = "") {
 
         cont.innerHTML = finalHTML;
 
+        document.querySelectorAll('.lazy-img').forEach(img => lazyImgObserver.observe(img));
+
         if (typeof updateSpatialNav === 'function') {
-            setTimeout(updateSpatialNav, 500);
+            setTimeout(updateSpatialNav, 200);
         }
     } catch(err) {}
 }
@@ -1242,6 +1288,7 @@ function playMovie(idx) {
         localStorage.setItem(key, JSON.stringify(hist));
     }
     document.getElementById('details-overlay').style.display = 'none';
+    document.getElementById('details-trailer-box').innerHTML = "";
     document.getElementById('series-overlay').style.display = 'none';
     const pSection = document.getElementById('player-section');
     pSection.style.display = 'block';
@@ -1279,12 +1326,13 @@ function changeView(v) {
     currentView = v; 
     document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active')); 
     document.getElementById('btn-'+v).classList.add('active'); 
+    
     const cont = document.getElementById('categories-container');
     cont.innerHTML = '<div style="text-align:center; margin-top:50px; color:#888;">Chargement...</div>';
+    
     setTimeout(render, 50);
 }
 
-function filter() { render(document.getElementById('searchBar').value); }
 function toggleEditMode() { isEditMode = !isEditMode; document.getElementById('profile-screen').classList.toggle('is-editing'); }
 function switchProfile() { localStorage.removeItem('sfpp_profile'); location.reload(); }
 function requestAccess() { window.location.href = "mailto:sfpp.ott@gmail.com"; }
