@@ -207,7 +207,7 @@
         .trailer-box { width: 100%; max-width: 800px; aspect-ratio: 16/9; background: #000; border-radius: 8px; margin-bottom: 25px; overflow: hidden; border: 1px solid #333; }
         
         .cast-row { display: flex; gap: 15px; overflow-x: auto; padding-bottom: 15px; scrollbar-width: none; }
-        .actor-item { flex: 0 0 90px; text-align: center; cursor: pointer; transition: transform 0.2s; will-change: transform; }
+        .actor-item { flex: 0 0 90px; text-align: center; cursor: pointer; transition: transform 0.2s; }
         .actor-item img { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 2px solid #333; transition: border-color 0.3s; }
         .actor-item:hover img { border-color: var(--accent); }
         .actor-name { font-size: 11px; color: #aaa; margin-top: 8px; }
@@ -220,7 +220,7 @@
 
         #main-content { padding-top: 80px; }
         
-        .category-row { position: relative; width: 100%; margin-bottom: 20px; content-visibility: auto; contain-intrinsic-size: 270px; }
+        .category-row { position: relative; width: 100%; margin-bottom: 20px; }
         .category-title { font-size: 18px; font-weight: bold; margin: 20px 4% 10px; color: #fff; text-transform: uppercase; }
         
         .carousel { 
@@ -239,11 +239,11 @@
 
         .card { 
             flex: 0 0 150px; width: 150px; cursor: pointer; position: relative; display: flex; flex-direction: column; 
-            transition: transform 0.2s ease; will-change: transform;
+            transition: transform 0.2s ease;
         }
         .card img { 
             width: 150px !important; height: 225px !important; object-fit: cover !important; 
-            border-radius: 4px; background: #222; display: block; transition: opacity 0.3s ease-in-out; opacity: 0; 
+            border-radius: 4px; background: #222; display: block; transition: opacity 0.4s ease-in-out; opacity: 0; 
         }
         .card img.loaded { opacity: 1; }
         .img-fallback { background: #1a1a1a !important; border: 1px solid #333; }
@@ -259,6 +259,7 @@
         .btn-fav-card {
             position: absolute; top: 10px; right: 10px; z-index: 10; background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.2);
             border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 16px;
+            transition: transform 0.2s ease;
         }
         .btn-fav-card.is-fav { color: #e50914; background: rgba(0,0,0,0.7); }
         .btn-fav-card:not(.is-fav) { color: white; }
@@ -576,7 +577,57 @@ window.handleImageError = function(img) {
 };
 
 let player, playlistData = [], currentProfile = null, isEditMode = false, currentView = 'all', currentPlayingTitle = "";
-let isAdminMode = false, epgData = {}, hls; 
+let isAdminMode = false, epgData = {}; 
+
+// -----------------------------------------------------
+// SYSTÈME DE CLIC LONG POUR FAVORIS (Sécurisé pour TV)
+// -----------------------------------------------------
+let cardPressTimer = null;
+let cardLongPressed = false;
+
+window.cardPressStart = function(title, el) {
+    if (cardPressTimer) return;
+    cardLongPressed = false;
+    
+    // Le délai est de 800ms pour éviter de confondre avec un clic normal lent de télécommande
+    cardPressTimer = setTimeout(function() {
+        cardLongPressed = true;
+        toggleFav(title);
+        
+        // Animation du coeur pour confirmer visuellement
+        const heartBtn = el.querySelector('.btn-fav-card');
+        if (heartBtn) {
+            heartBtn.style.transform = 'scale(1.5)';
+            setTimeout(() => { heartBtn.style.transform = 'scale(1)'; }, 300);
+        }
+        cardPressTimer = null;
+    }, 800); 
+};
+
+window.cardPressEnd = function() {
+    if (cardPressTimer) {
+        clearTimeout(cardPressTimer);
+        cardPressTimer = null;
+    }
+};
+
+window.cardClick = function(event, idx, isTV) {
+    // Sécurité absolue : on détruit le chrono si un clic passe
+    window.cardPressEnd();
+    
+    if (cardLongPressed) {
+        // Si c'était un clic long, on bloque l'ouverture du film
+        event.preventDefault();
+        event.stopPropagation();
+        cardLongPressed = false; // on réinitialise pour le prochain coup
+        return;
+    }
+    
+    // Si c'est un clic normal court
+    if (isTV) playMovie(idx);
+    else openDetails(idx);
+};
+// -----------------------------------------------------
 
 const lazyImgObserver = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
@@ -805,6 +856,13 @@ window.fetchMissingMetadata = async function() {
                 await saveTMDB(m.id_tmdb, { img: m.img, bg: m.bg, desc: m.desc, year: m.year, note: m.note, cat: m.cat, trailer: m.trailer, actors_pics: m.actors_pics });
 
                 hasNewContent = true;
+                
+                // Maintient le chargement visuel en arrière plan sans casser
+                const imgEls = document.querySelectorAll(`img[data-id="${m.id_tmdb}"]`);
+                imgEls.forEach(img => { 
+                    if(m.img) img.src = m.img; 
+                    img.classList.add('loaded'); 
+                });
             } catch (e) {}
         }));
         
@@ -900,10 +958,19 @@ function openDetails(idx) {
         for (let i = 0; i < 5; i++) { s_stars += (i < s_note) ? "★" : "☆"; }
         
         return `
-        <div class="actor-item sn-card" style="flex:0 0 120px; position:relative;" tabindex="0" onclick="openDetails(${playlistData.indexOf(s)})">
-            <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${safeStr(s.t)}');">${heartIcon}</div>
+        <div class="actor-item sn-card" style="flex:0 0 120px; position:relative;" tabindex="0"
+             onmousedown="window.startPress('${safeStr(s.t)}', this)" 
+             onmouseup="window.cancelPress()" 
+             onmouseleave="window.cancelPress()" 
+             ontouchstart="window.startPress('${safeStr(s.t)}', this)" 
+             ontouchend="window.cancelPress()" 
+             ontouchcancel="window.cancelPress()" 
+             onkeydown="window.handleCardKeyDown(event, '${safeStr(s.t)}', this)" 
+             onkeyup="window.handleCardKeyUp(event, ${playlistData.indexOf(s)}, false)" 
+             onclick="window.cardClick(event, ${playlistData.indexOf(s)}, false)">
+            <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); window.cancelPress(); toggleFav('${safeStr(s.t)}');">${heartIcon}</div>
             <div class="card-rating">${s_stars}</div>
-            <img data-src="${s.img || 'https://via.placeholder.com/110x160/222/fff?text=SFPP'}" style="border-radius:4px; height:160px; width:110px; object-fit:cover;" class="lazy-img" onerror="handleImageError(this)">
+            <img data-id="${s.id_tmdb || ''}" data-src="${s.img || 'https://via.placeholder.com/110x160/222/fff?text=SFPP'}" style="border-radius:4px; height:160px; width:110px; object-fit:cover;" class="lazy-img" onerror="handleImageError(this)">
             <div class="actor-name">${s.t}</div>
         </div>
     `}).join('');
@@ -1098,7 +1165,6 @@ function render(search = "") {
                     const m = playlistData.find(item => item.t === title);
                     if(m) {
                         const isTV = m.cat && (m.cat.toUpperCase().includes("DIRECT") || m.cat.toUpperCase().includes("TV"));
-                        const clickAction = isTV ? "playMovie(" + playlistData.indexOf(m) + ")" : "openDetails(" + playlistData.indexOf(m) + ")";
                         const is_fav = favs.includes(m.t);
                         const heartClass = is_fav ? 'is-fav' : '';
                         const heartIcon = is_fav ? '❤️' : '♡';
@@ -1108,11 +1174,24 @@ function render(search = "") {
                         for (let i = 0; i < 5; i++) { m_stars += (i < (m.note || 5)) ? "★" : "☆"; }
                         const ratingHtml = !isTV ? '<div class="card-rating">' + m_stars + '</div>' : "";
 
+                        const lineInfo = m.num ? m.num : (m.original_index * 7) + 2;
+                        const adminBadge = isAdminMode ? `<div style="position:absolute; top:10px; left:10px; z-index:15; background:rgba(229,9,20,0.9); padding:2px 6px; border-radius:4px; font-size:11px; font-weight:bold; border:1px solid white;">L${lineInfo}</div>` : "";
+
                         histHtml += `
-                            <div class="card sn-card ${isTV ? "landscape" : ""}" tabindex="0" onclick="${clickAction}">
-                                <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${safeStr(m.t)}');">${heartIcon}</div>
+                            <div class="card sn-card ${isTV ? "landscape" : ""}" tabindex="0" 
+                                 onmousedown="window.startPress('${safeStr(m.t)}', this)" 
+                                 onmouseup="window.cancelPress()" 
+                                 onmouseleave="window.cancelPress()" 
+                                 ontouchstart="window.startPress('${safeStr(m.t)}', this)" 
+                                 ontouchend="window.cancelPress()" 
+                                 ontouchcancel="window.cancelPress()" 
+                                 onkeydown="window.handleCardKeyDown(event, '${safeStr(m.t)}', this)" 
+                                 onkeyup="window.handleCardKeyUp(event, ${playlistData.indexOf(m)}, ${isTV ? 'true' : 'false'})" 
+                                 onclick="window.cardClick(event, ${playlistData.indexOf(m)}, ${isTV ? 'true' : 'false'})">
+                                ${adminBadge}
+                                <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); window.cancelPress(); toggleFav('${safeStr(m.t)}');">${heartIcon}</div>
                                 ${ratingHtml}
-                                <img data-src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" class="lazy-img" onerror="handleImageError(this)">${pct}
+                                <img data-id="${m.id_tmdb || ''}" data-src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" class="lazy-img" onerror="handleImageError(this)">${pct}
                                 <div class="card-name">${m.t}</div>
                             </div>`;
                     }
@@ -1127,7 +1206,6 @@ function render(search = "") {
 
         let finalHTML = "";
 
-        // CORRECTION DE L'AFFICHAGE LORS D'UNE RECHERCHE : On affiche tout dans un bloc unifié si "s" n'est pas vide
         if (s !== "") {
             if (data.length > 0) {
                 let htmlTout = '<div class="category-title">RÉSULTATS DE RECHERCHE</div><div class="category-row"><div class="nav-arrow arrow-left" onclick="window.scrollSide(this, -400)">‹</div><div class="carousel">';
@@ -1136,18 +1214,30 @@ function render(search = "") {
                     const is_fav = favs.includes(m.t);
                     const heartClass = is_fav ? 'is-fav' : '';
                     const heartIcon = is_fav ? '❤️' : '♡';
-                    const clickAction = isTVCat ? "playMovie(" + playlistData.indexOf(m) + ")" : "openDetails(" + playlistData.indexOf(m) + ")";
                     const pct = (prog[m.t] && prog[m.t].p > 1) ? '<div class="prog-bg"><div class="prog-fill" style="width:' + prog[m.t].p + '%"></div></div>' : "";
                     
                     let m_stars = "";
                     for (let i = 0; i < 5; i++) { m_stars += (i < (m.note || 5)) ? "★" : "☆"; }
                     const ratingHtml = !isTVCat ? '<div class="card-rating">' + m_stars + '</div>' : "";
 
+                    const lineInfo = m.num ? m.num : (m.original_index * 7) + 2;
+                    const adminBadge = isAdminMode ? `<div style="position:absolute; top:10px; left:10px; z-index:15; background:rgba(229,9,20,0.9); padding:2px 6px; border-radius:4px; font-size:11px; font-weight:bold; border:1px solid white;">L${lineInfo}</div>` : "";
+
                     htmlTout += `
-                        <div class="card sn-card ${isTVCat ? 'landscape' : ''}" tabindex="0" onclick="${clickAction}">
-                            <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${safeStr(m.t)}');">${heartIcon}</div>
+                        <div class="card sn-card ${isTVCat ? 'landscape' : ''}" tabindex="0" 
+                             onmousedown="window.startPress('${safeStr(m.t)}', this)" 
+                             onmouseup="window.cancelPress()" 
+                             onmouseleave="window.cancelPress()" 
+                             ontouchstart="window.startPress('${safeStr(m.t)}', this)" 
+                             ontouchend="window.cancelPress()" 
+                             ontouchcancel="window.cancelPress()" 
+                             onkeydown="window.handleCardKeyDown(event, '${safeStr(m.t)}', this)" 
+                             onkeyup="window.handleCardKeyUp(event, ${playlistData.indexOf(m)}, ${isTVCat ? 'true' : 'false'})" 
+                             onclick="window.cardClick(event, ${playlistData.indexOf(m)}, ${isTVCat ? 'true' : 'false'})">
+                            ${adminBadge}
+                            <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); window.cancelPress(); toggleFav('${safeStr(m.t)}');">${heartIcon}</div>
                             ${ratingHtml}
-                            <img data-src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" class="lazy-img" onerror="handleImageError(this)">${pct}
+                            <img data-id="${m.id_tmdb || ''}" data-src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" class="lazy-img" onerror="handleImageError(this)">${pct}
                             <div class="card-name">${m.t}</div>
                         </div>`;
                 });
@@ -1157,7 +1247,6 @@ function render(search = "") {
                 finalHTML = '<div style="text-align:center; margin-top:50px; color:#888;">Aucun résultat trouvé.</div>';
             }
         } 
-        // AFFICHAGE NORMAL (Si pas de recherche)
         else {
             if (data.length > 0) {
                 let htmlTout = '<div class="category-title">TOUT</div><div class="category-row"><div class="nav-arrow arrow-left" onclick="window.scrollSide(this, -400)">‹</div><div class="carousel">';
@@ -1166,18 +1255,30 @@ function render(search = "") {
                     const is_fav = favs.includes(m.t);
                     const heartClass = is_fav ? 'is-fav' : '';
                     const heartIcon = is_fav ? '❤️' : '♡';
-                    const clickAction = isTVCat ? "playMovie(" + playlistData.indexOf(m) + ")" : "openDetails(" + playlistData.indexOf(m) + ")";
                     const pct = (prog[m.t] && prog[m.t].p > 1) ? '<div class="prog-bg"><div class="prog-fill" style="width:' + prog[m.t].p + '%"></div></div>' : "";
                     
                     let m_stars = "";
                     for (let i = 0; i < 5; i++) { m_stars += (i < (m.note || 5)) ? "★" : "☆"; }
                     const ratingHtml = !isTVCat ? '<div class="card-rating">' + m_stars + '</div>' : "";
 
+                    const lineInfo = m.num ? m.num : (m.original_index * 7) + 2;
+                    const adminBadge = isAdminMode ? `<div style="position:absolute; top:10px; left:10px; z-index:15; background:rgba(229,9,20,0.9); padding:2px 6px; border-radius:4px; font-size:11px; font-weight:bold; border:1px solid white;">L${lineInfo}</div>` : "";
+
                     htmlTout += `
-                        <div class="card sn-card ${isTVCat ? 'landscape' : ''}" tabindex="0" onclick="${clickAction}">
-                            <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${safeStr(m.t)}');">${heartIcon}</div>
+                        <div class="card sn-card ${isTVCat ? 'landscape' : ''}" tabindex="0" 
+                             onmousedown="window.startPress('${safeStr(m.t)}', this)" 
+                             onmouseup="window.cancelPress()" 
+                             onmouseleave="window.cancelPress()" 
+                             ontouchstart="window.startPress('${safeStr(m.t)}', this)" 
+                             ontouchend="window.cancelPress()" 
+                             ontouchcancel="window.cancelPress()" 
+                             onkeydown="window.handleCardKeyDown(event, '${safeStr(m.t)}', this)" 
+                             onkeyup="window.handleCardKeyUp(event, ${playlistData.indexOf(m)}, ${isTVCat ? 'true' : 'false'})" 
+                             onclick="window.cardClick(event, ${playlistData.indexOf(m)}, ${isTVCat ? 'true' : 'false'})">
+                            ${adminBadge}
+                            <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); window.cancelPress(); toggleFav('${safeStr(m.t)}');">${heartIcon}</div>
                             ${ratingHtml}
-                            <img data-src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" class="lazy-img" onerror="handleImageError(this)">${pct}
+                            <img data-id="${m.id_tmdb || ''}" data-src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" class="lazy-img" onerror="handleImageError(this)">${pct}
                             <div class="card-name">${m.t}</div>
                         </div>`;
                 });
@@ -1203,18 +1304,30 @@ function render(search = "") {
                     const is_fav = favs.includes(m.t);
                     const heartClass = is_fav ? 'is-fav' : '';
                     const heartIcon = is_fav ? '❤️' : '♡';
-                    const clickAction = isTVCat ? "playMovie(" + playlistData.indexOf(m) + ")" : "openDetails(" + playlistData.indexOf(m) + ")";
                     const pct = (prog[m.t] && prog[m.t].p > 1) ? '<div class="prog-bg"><div class="prog-fill" style="width:' + prog[m.t].p + '%"></div></div>' : "";
                     
                     let m_stars = "";
                     for (let i = 0; i < 5; i++) { m_stars += (i < (m.note || 5)) ? "★" : "☆"; }
                     const ratingHtml = !isTVCat ? '<div class="card-rating">' + m_stars + '</div>' : "";
 
+                    const lineInfo = m.num ? m.num : (m.original_index * 7) + 2;
+                    const adminBadge = isAdminMode ? `<div style="position:absolute; top:10px; left:10px; z-index:15; background:rgba(229,9,20,0.9); padding:2px 6px; border-radius:4px; font-size:11px; font-weight:bold; border:1px solid white;">L${lineInfo}</div>` : "";
+
                     html += `
-                        <div class="card sn-card ${isTVCat ? 'landscape' : ''}" tabindex="0" onclick="${clickAction}">
-                            <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${safeStr(m.t)}');">${heartIcon}</div>
+                        <div class="card sn-card ${isTVCat ? 'landscape' : ''}" tabindex="0" 
+                             onmousedown="window.startPress('${safeStr(m.t)}', this)" 
+                             onmouseup="window.cancelPress()" 
+                             onmouseleave="window.cancelPress()" 
+                             ontouchstart="window.startPress('${safeStr(m.t)}', this)" 
+                             ontouchend="window.cancelPress()" 
+                             ontouchcancel="window.cancelPress()" 
+                             onkeydown="window.handleCardKeyDown(event, '${safeStr(m.t)}', this)" 
+                             onkeyup="window.handleCardKeyUp(event, ${playlistData.indexOf(m)}, ${isTVCat ? 'true' : 'false'})" 
+                             onclick="window.cardClick(event, ${playlistData.indexOf(m)}, ${isTVCat ? 'true' : 'false'})">
+                            ${adminBadge}
+                            <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); window.cancelPress(); toggleFav('${safeStr(m.t)}');">${heartIcon}</div>
                             ${ratingHtml}
-                            <img data-src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" class="lazy-img" onerror="handleImageError(this)">${pct}
+                            <img data-id="${m.id_tmdb || ''}" data-src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" class="lazy-img" onerror="handleImageError(this)">${pct}
                             <div class="card-name">${m.t}</div>
                         </div>`;
                 });
@@ -1333,6 +1446,7 @@ function changeView(v) {
     setTimeout(render, 50);
 }
 
+function filter() { render(document.getElementById('searchBar').value); }
 function toggleEditMode() { isEditMode = !isEditMode; document.getElementById('profile-screen').classList.toggle('is-editing'); }
 function switchProfile() { localStorage.removeItem('sfpp_profile'); location.reload(); }
 function requestAccess() { window.location.href = "mailto:sfpp.ott@gmail.com"; }
