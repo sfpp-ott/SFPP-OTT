@@ -10,28 +10,36 @@
         .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #333; padding-bottom: 20px; margin-bottom: 30px; }
         h1 { color: var(--accent); margin: 0; font-size: 24px;}
         
-        .admin-container { display: flex; gap: 30px; max-width: 1200px; margin: 0 auto; flex-wrap: wrap; }
+        .admin-container { display: flex; gap: 30px; max-width: 1200px; margin: 0 auto; flex-wrap: wrap; align-items: flex-start; }
         
-        .box { background: var(--panel); padding: 25px; border-radius: 8px; border: 1px solid #333; flex: 1; min-width: 300px; }
-        .box h2 { margin-top: 0; font-size: 18px; border-bottom: 1px solid #333; padding-bottom: 10px; }
+        .box { background: var(--panel); padding: 25px; border-radius: 8px; border: 1px solid #333; flex: 1; min-width: 300px; margin-bottom: 20px; }
+        .box h2 { margin-top: 0; font-size: 18px; border-bottom: 1px solid #333; padding-bottom: 10px; display: flex; justify-content: space-between; align-items: center; }
         
-        input { width: 100%; padding: 12px; margin: 10px 0 20px; background: #222; border: 1px solid #444; color: white; border-radius: 4px; box-sizing: border-box; }
+        input, textarea { width: 100%; padding: 12px; margin: 10px 0 20px; background: #222; border: 1px solid #444; color: white; border-radius: 4px; box-sizing: border-box; font-family: inherit; }
+        textarea { resize: vertical; min-height: 80px; }
+        
         .btn-main { width: 100%; padding: 12px; background: var(--accent); color: white; border: none; font-weight: bold; border-radius: 4px; cursor: pointer; transition: 0.3s; }
         .btn-main:hover { background: #b20710; }
+        .btn-secondary { background: #444; margin-top: 10px; }
+        .btn-secondary:hover { background: #555; }
         
-        .user-list { margin-top: 20px; max-height: 500px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px;}
+        .user-list { margin-top: 20px; max-height: 600px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px;}
         .user-item { background: #222; padding: 15px; border-radius: 4px; border-left: 4px solid var(--accent); display: flex; flex-direction: column; gap: 10px;}
         .user-info { display: flex; justify-content: space-between; align-items: flex-start; }
         .user-item span { font-size: 14px; color: #bbb; }
         .user-pass { background: #000; padding: 4px 8px; border-radius: 4px; font-family: monospace; color: #ffcc00; font-size: 13px;}
         .expired { border-left-color: #555; opacity: 0.7;}
         
-        .action-buttons { display: flex; gap: 10px; margin-top: 10px; }
-        .action-buttons button { padding: 8px 12px; border: none; border-radius: 4px; font-weight: bold; font-size: 11px; cursor: pointer; color: white; flex: 1;}
+        .action-buttons { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
+        .action-buttons button { padding: 8px 12px; border: none; border-radius: 4px; font-weight: bold; font-size: 11px; cursor: pointer; color: white; flex: 1; min-width: 80px; }
         .btn-extend { background: #2ecc71; }
         .btn-suspend { background: #e67e22; }
+        .btn-msg { background: #3498db; }
         .btn-delete { background: #c0392b; }
         
+        .current-msg-banner { background: rgba(229, 9, 20, 0.1); border: 1px solid var(--accent); padding: 10px; border-radius: 4px; margin-bottom: 20px; font-size: 13px; }
+        .user-private-msg { margin-top: 5px; padding: 8px; background: rgba(52, 152, 219, 0.1); border: 1px solid #3498db; border-radius: 4px; font-size: 12px; display: flex; justify-content: space-between; align-items: center; }
+
         #auth-guard { position: fixed; inset: 0; background: #000; z-index: 9999; display: flex; align-items: center; justify-content: center; flex-direction: column; }
     </style>
 </head>
@@ -48,24 +56,35 @@
 </div>
 
 <div class="admin-container">
-    <div class="box">
-        <h2>Créer un nouvel accès</h2>
-        <form id="create-user-form">
-            <label>Adresse E-mail</label>
-            <input type="email" id="new-email" placeholder="client@email.com" required>
-            
-            <label>Mot de passe (6 caractères min)</label>
-            <input type="text" id="new-pass" placeholder="Mot de passe" required minlength="6">
-            
-            <label>Date d'expiration</label>
-            <input type="date" id="new-expire" required>
-            
-            <button type="submit" id="btn-create" class="btn-main">CRÉER LE COMPTE</button>
-        </form>
+    
+    <div style="flex: 1; display: flex; flex-direction: column; gap: 20px; min-width: 300px;">
+        
+        <div class="box">
+            <h2>Créer un compte</h2>
+            <form id="create-user-form">
+                <label>Adresse E-mail</label>
+                <input type="email" id="new-email" placeholder="client@email.com" required>
+                <label>Mot de passe (6 caractères min)</label>
+                <input type="text" id="new-pass" placeholder="Mot de passe" required minlength="6">
+                <label>Date d'expiration</label>
+                <input type="date" id="new-expire" required>
+                <button type="submit" id="btn-create" class="btn-main">CRÉER LE COMPTE</button>
+            </form>
+        </div>
+
+        <div class="box">
+            <h2>Message Global (Toutes les TV)</h2>
+            <div id="global-msg-status" style="display: none;"></div>
+            <label>Nouveau message d'alerte :</label>
+            <textarea id="global-msg-text" placeholder="Ex: Maintenance du serveur ce soir à minuit..."></textarea>
+            <button onclick="sendGlobalMsg()" class="btn-main">ENVOYER À TOUS</button>
+            <button onclick="clearGlobalMsg()" class="btn-main btn-secondary">SUPPRIMER LE MESSAGE ACTUEL</button>
+        </div>
+
     </div>
 
     <div class="box" style="flex: 2;">
-        <h2>Comptes Enregistrés</h2>
+        <h2>Comptes Enregistrés <span id="user-count" style="font-size:12px; color:#888;"></span></h2>
         <div class="user-list" id="users-container">
             <i>Chargement des utilisateurs...</i>
         </div>
@@ -87,7 +106,8 @@
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
     const db = getDatabase(app);
-
+    
+    // Le module secondaire pour créer des comptes sans déconnecter l'admin
     const adminApp = initializeApp(firebaseConfig, "AdminCreatorApp");
     const adminAuth = getAuth(adminApp);
 
@@ -98,11 +118,28 @@
         if (user && user.email === ADMIN_EMAIL) {
             document.getElementById('auth-guard').style.display = 'none';
             loadUsers();
+            listenToGlobalMessage();
         } else {
-            window.location.href = "index.html";
+            window.location.href = "index.html"; // Retour à l'accueil si non admin
         }
     });
 
+    // ÉCOUTEUR DU MESSAGE GLOBAL EN COURS
+    function listenToGlobalMessage() {
+        onValue(ref(db, 'messages/global'), (snapshot) => {
+            const msg = snapshot.val();
+            const statusBox = document.getElementById('global-msg-status');
+            if (msg && msg.text) {
+                statusBox.style.display = 'block';
+                statusBox.className = 'current-msg-banner';
+                statusBox.innerHTML = `<b>Message actif :</b><br>${msg.text}`;
+            } else {
+                statusBox.style.display = 'none';
+            }
+        });
+    }
+
+    // CRÉATION COMPTE
     document.getElementById('create-user-form').addEventListener('submit', async (e) => {
         e.preventDefault();
         const btn = document.getElementById('btn-create');
@@ -117,16 +154,15 @@
             const userCred = await createUserWithEmailAndPassword(adminAuth, email, pass);
             const newUid = userCred.user.uid;
 
-            // Enregistrement dans la DB (incluant le mot de passe en clair pour le panel)
             await set(ref(db, 'users_data/' + newUid), {
                 email: email,
-                pass: pass, // ASTUCE : On garde une trace du MDP
+                pass: pass,
                 expire: expire,
                 created_at: new Date().toISOString()
             });
 
             await signOut(adminAuth);
-            alert("✅ Compte créé !");
+            alert("✅ Compte créé avec succès !");
             document.getElementById('create-user-form').reset();
         } catch (error) {
             alert("❌ Erreur : " + error.message);
@@ -136,61 +172,126 @@
         }
     });
 
+    // GESTION DES MESSAGES 
+    window.sendGlobalMsg = () => {
+        const text = document.getElementById('global-msg-text').value.trim();
+        if (!text) { alert("Veuillez taper un message."); return; }
+        
+        if (confirm("Envoyer ce message à TOUTES les télévisions connectées ?")) {
+            set(ref(db, 'messages/global'), { text: text, id: Date.now() })
+            .then(() => { 
+                alert("Message envoyé !"); 
+                document.getElementById('global-msg-text').value = ''; 
+            });
+        }
+    };
+
+    window.clearGlobalMsg = () => {
+        if (confirm("Voulez-vous supprimer l'alerte globale actuelle ?")) {
+            set(ref(db, 'messages/global'), null).then(() => alert("Message supprimé."));
+        }
+    };
+
+    window.sendPrivateMsg = (uid, email) => {
+        const text = prompt(`Message privé pour ${email} :`);
+        if (text && text.trim() !== "") {
+            set(ref(db, 'messages/users/' + uid), { text: text, id: Date.now() })
+            .then(() => alert("Message privé envoyé au client !"));
+        }
+    };
+
+    window.clearPrivateMsg = (uid) => {
+        set(ref(db, 'messages/users/' + uid), null);
+    };
+
+    // CHARGEMENT DE LA LISTE DES CLIENTS
+    let allUsersData = {};
+    let allPrivateMessages = {};
+
     function loadUsers() {
+        // Écouter les données utilisateurs
         onValue(ref(db, 'users_data'), (snapshot) => {
-            const data = snapshot.val();
-            const container = document.getElementById('users-container');
-            container.innerHTML = "";
+            allUsersData = snapshot.val() || {};
+            renderUsers();
+        });
 
-            if (!data) { container.innerHTML = "<i>Aucun compte trouvé.</i>"; return; }
+        // Écouter les messages privés pour savoir qui a un message en cours
+        onValue(ref(db, 'messages/users'), (snapshot) => {
+            allPrivateMessages = snapshot.val() || {};
+            renderUsers(); // Met à jour l'interface si un message est lu/supprimé
+        });
+    }
 
-            const today = new Date().toISOString().split('T')[0];
+    function renderUsers() {
+        const container = document.getElementById('users-container');
+        container.innerHTML = "";
 
-            // Attacher les fonctions au window pour les boutons HTML
-            window.extendUser = (uid, currentExpire) => {
-                let newDate = prompt("Nouvelle date d'expiration (YYYY-MM-DD) :", currentExpire);
-                if (newDate) { update(ref(db, 'users_data/' + uid), { expire: newDate }); }
-            };
+        if (Object.keys(allUsersData).length === 0) { 
+            container.innerHTML = "<i>Aucun compte trouvé.</i>"; 
+            document.getElementById('user-count').innerText = "(0)";
+            return; 
+        }
 
-            window.suspendUser = (uid) => {
-                if (confirm("Suspendre ce compte ? (Son accès sera expiré)")) {
-                    update(ref(db, 'users_data/' + uid), { expire: '2000-01-01' });
-                }
-            };
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('user-count').innerText = `(${Object.keys(allUsersData).length})`;
 
-            window.deleteUser = (uid) => {
-                if (confirm("Supprimer ce compte de la base ? (Il ne pourra plus jamais se connecter)")) {
-                    remove(ref(db, 'users_data/' + uid));
-                }
-            };
+        // Attacher les actions standards
+        window.extendUser = (uid, currentExpire) => {
+            let newDate = prompt("Nouvelle date d'expiration (YYYY-MM-DD) :", currentExpire);
+            if (newDate) { update(ref(db, 'users_data/' + uid), { expire: newDate }); }
+        };
 
-            Object.keys(data).forEach(uid => {
-                const user = data[uid];
-                const isExpired = user.expire < today;
-                const statusClass = isExpired ? 'expired' : '';
-                const statusText = isExpired ? '<span style="color:#e50914">🔴 Inactif</span>' : '<span style="color:#2ecc71">🟢 Actif</span>';
-                const passDisplay = user.pass ? `<span class="user-pass">🔑 ${user.pass}</span>` : `<span class="user-pass" style="color:#555">MDP masqué</span>`;
+        window.suspendUser = (uid) => {
+            if (confirm("Suspendre ce compte ? (Son accès sera expiré immédiatement)")) {
+                update(ref(db, 'users_data/' + uid), { expire: '2000-01-01' });
+            }
+        };
 
-                container.innerHTML += `
-                    <div class="user-item ${statusClass}">
-                        <div class="user-info">
-                            <div>
-                                <strong style="font-size:16px;">${user.email}</strong><br>
-                                <span>Expire le : <b>${user.expire === '2000-01-01' ? 'SUSPENDU' : user.expire}</b></span>
-                            </div>
-                            <div style="text-align:right">
-                                ${statusText}<br>
-                                ${passDisplay}
-                            </div>
+        window.deleteUser = (uid) => {
+            if (confirm("Attention : Supprimer ce compte de la base ? Il ne pourra plus jamais se connecter.")) {
+                remove(ref(db, 'users_data/' + uid));
+                remove(ref(db, 'messages/users/' + uid)); // Nettoie les messages de ce user
+            }
+        };
+
+        Object.keys(allUsersData).forEach(uid => {
+            const user = allUsersData[uid];
+            const isExpired = user.expire < today;
+            const statusClass = isExpired ? 'expired' : '';
+            const statusText = isExpired ? '<span style="color:#e50914">🔴 Inactif</span>' : '<span style="color:#2ecc71">🟢 Actif</span>';
+            const passDisplay = user.pass ? `<span class="user-pass">🔑 ${user.pass}</span>` : `<span class="user-pass" style="color:#555">MDP masqué</span>`;
+            
+            // Vérifie s'il a un message privé en cours
+            let privateMsgHtml = "";
+            if (allPrivateMessages[uid] && allPrivateMessages[uid].text) {
+                privateMsgHtml = `
+                    <div class="user-private-msg">
+                        <span>💬 <b>Message lu/en cours :</b> ${allPrivateMessages[uid].text}</span>
+                        <button onclick="clearPrivateMsg('${uid}')" style="background:none; border:none; color:#c0392b; cursor:pointer;">❌</button>
+                    </div>`;
+            }
+
+            container.innerHTML += `
+                <div class="user-item ${statusClass}">
+                    <div class="user-info">
+                        <div>
+                            <strong style="font-size:16px;">${user.email}</strong><br>
+                            <span>Expire le : <b>${user.expire === '2000-01-01' ? 'SUSPENDU' : user.expire}</b></span>
                         </div>
-                        <div class="action-buttons">
-                            <button class="btn-extend" onclick="extendUser('${uid}', '${user.expire}')">📅 PROLONGER</button>
-                            <button class="btn-suspend" onclick="suspendUser('${uid}')">⏸️ SUSPENDRE</button>
-                            <button class="btn-delete" onclick="deleteUser('${uid}')">❌ SUPPRIMER</button>
+                        <div style="text-align:right">
+                            ${statusText}<br>
+                            ${passDisplay}
                         </div>
                     </div>
-                `;
-            });
+                    ${privateMsgHtml}
+                    <div class="action-buttons">
+                        <button class="btn-extend" onclick="extendUser('${uid}', '${user.expire}')">📅 PROLONGER</button>
+                        <button class="btn-suspend" onclick="suspendUser('${uid}')">⏸️ SUSPENDRE</button>
+                        <button class="btn-msg" onclick="sendPrivateMsg('${uid}', '${user.email}')">✉️ MESSAGE</button>
+                        <button class="btn-delete" onclick="deleteUser('${uid}')">❌</button>
+                    </div>
+                </div>
+            `;
         });
     }
 
