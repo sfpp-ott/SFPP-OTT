@@ -284,15 +284,36 @@
             .card.landscape { flex: 0 0 140px; width: 140px; }
             .card.landscape img { width: 140px !important; height: 85px !important; }
         }
+
+        /* NOUVEAU : STYLE POUR LES NOTIFICATIONS TOAST ET MODALE D'ADMIN */
+        #toast-msg {
+            display: none; position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
+            background: rgba(229,9,20,0.95); color: white; padding: 12px 24px; border-radius: 30px;
+            font-weight: bold; z-index: 9999999; box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            border: 2px solid #fff; font-size: 14px; text-align: center;
+        }
     </style>
 </head>
 <body oncontextmenu="return false;"> 
+
+<div id="toast-msg"></div>
 
 <div id="system-message-modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.85); z-index:999999; align-items:center; justify-content:center; flex-direction:column;">
     <div style="background:#111; padding:30px; border-radius:8px; text-align:center; border:1px solid #e50914; max-width:400px; width:80%; box-shadow: 0 10px 30px rgba(0,0,0,0.8);">
         <h2 style="color:#e50914; margin-top:0; margin-bottom:15px; font-size:24px;">Message de l'Admin</h2>
         <p id="system-message-text" style="font-size:16px; line-height:1.5; color:#fff; margin-bottom:25px;"></p>
         <button id="btn-close-msg" onclick="window.closeSystemMessage()" class="sn-card" style="padding:12px 30px; background:#e50914; color:white; border:none; border-radius:4px; font-weight:bold; cursor:pointer; font-size:16px;" tabindex="0">J'ai compris</button>
+    </div>
+</div>
+
+<div id="admin-msg-modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.9); z-index:99999; align-items:center; justify-content:center;">
+    <div style="background:#111; padding:30px; border-radius:8px; text-align:center; border:1px solid #e50914; width: 350px;">
+        <h3 style="margin-top:0; color:#fff;">Envoyer un message global</h3>
+        <input type="text" id="admin-msg-input" style="width:100%; padding:12px; margin-bottom:20px; background:#222; color:#fff; border:1px solid #555; border-radius:4px; font-size:16px;" placeholder="Tapez votre message ici...">
+        <div style="display:flex; gap:10px;">
+            <button onclick="window.closeAdminMsg()" style="flex:1; padding:12px; background:#444; color:white; border:none; border-radius:4px; cursor:pointer;" tabindex="0">Annuler</button>
+            <button onclick="window.confirmSendAdminMsg()" style="flex:1; padding:12px; background:#e50914; color:white; border:none; border-radius:4px; cursor:pointer; font-weight:bold;" tabindex="0">Envoyer</button>
+        </div>
     </div>
 </div>
 
@@ -437,6 +458,19 @@
 
     const savedEmail = localStorage.getItem('sfpp_last_email');
     if(savedEmail) document.getElementById('user').value = savedEmail;
+
+    // NOUVEAU : COMMANDES FIREBASE INTEGREES AU MODULE
+    window.sendGlobalMessage = function(texte) {
+        set(ref(db, 'messages/global'), { text: texte, id: Date.now() })
+        .then(() => { if(window.showToast) window.showToast("Message envoyé à tous !"); })
+        .catch(() => { if(window.showToast) window.showToast("Erreur d'envoi."); });
+    };
+
+    window.deleteGlobalMessage = function() {
+        set(ref(db, 'messages/global'), null)
+        .then(() => { if(window.showToast) window.showToast("Message global supprimé !"); })
+        .catch(() => { if(window.showToast) window.showToast("Erreur lors de la suppression."); });
+    };
 
     async function verifyExpiration(user) {
         if (!user) return false;
@@ -610,22 +644,33 @@
             }).then(() => alert("⚠️ Film signalé ! Merci.")).catch(() => alert("Erreur d'envoi."));
         }
     };
-    
-    window.sendGlobalMessage = function(texte) {
-        set(ref(db, 'messages/global'), { text: texte, id: Date.now() })
-        .then(() => alert("Message envoyé à tous vos utilisateurs avec succès !"))
-        .catch(() => alert("Erreur lors de l'envoi du message."));
-    };
-
-    // NOUVEAU : Fonction admin pour supprimer le message global
-    window.deleteGlobalMessage = function() {
-        set(ref(db, 'messages/global'), null)
-        .then(() => alert("Message global supprimé avec succès ! Il n'apparaîtra plus."))
-        .catch(() => alert("Erreur lors de la suppression."));
-    };
 </script>
 
 <script>
+// NOUVEAU : Fonction sécurisée d'alerte (Toast)
+window.showToast = function(msg) {
+    const toast = document.getElementById('toast-msg');
+    if(!toast) return;
+    toast.innerText = msg;
+    toast.style.display = 'block';
+    setTimeout(() => { toast.style.display = 'none'; }, 3000);
+}
+
+// NOUVEAU : Gestion sécurisée de la fenêtre de saisie de message (Sans Prompt)
+window.closeAdminMsg = function() {
+    document.getElementById('admin-msg-modal').style.display = 'none';
+    document.getElementById('admin-msg-input').value = '';
+    if(typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus();
+}
+
+window.confirmSendAdminMsg = function() {
+    const texte = document.getElementById('admin-msg-input').value;
+    if(texte && texte.trim() !== "") {
+        if (window.sendGlobalMessage) window.sendGlobalMessage(texte);
+    }
+    window.closeAdminMsg();
+}
+
 window.clearSiteData = async function() {
     if(confirm("Voulez-vous vraiment effacer toutes les données de l'application (cache, favoris, profils) ? Vous devrez vous reconnecter.")) {
         const savedMail = localStorage.getItem('sfpp_last_email');
@@ -717,6 +762,12 @@ window.handleBackAction = function() {
     const sysMsgModal = document.getElementById('system-message-modal');
     if (sysMsgModal && sysMsgModal.style.display === 'flex') {
         window.closeSystemMessage();
+        return;
+    }
+    
+    const adminMsgModal = document.getElementById('admin-msg-modal');
+    if (adminMsgModal && adminMsgModal.style.display === 'flex') {
+        window.closeAdminMsg();
         return;
     }
 
@@ -819,13 +870,20 @@ async function loadPlaylist() {
         const response = await fetch('films.json?v=' + Date.now(), { cache: "no-store" }); 
         playlistData = await response.json(); 
         
-        let metadataCache = JSON.parse(localStorage.getItem('sfpp_metadata_cache') || "{}");
+        const db = await dbPromise;
+        const tx = db.transaction('tmdb', 'readonly');
+        const store = tx.objectStore('tmdb');
+        const allMetaReq = store.getAll();
+        
+        allMetaReq.onsuccess = () => {
+            const cacheList = allMetaReq.result || [];
+            const cacheMap = {};
+            cacheList.forEach(c => cacheMap[c.id] = c);
 
-        if (playlistData && playlistData.length > 0) {
             playlistData.forEach((m, index) => {
                 m.original_index = index;
-                if (m.id_tmdb && metadataCache[m.id_tmdb]) {
-                    const c = metadataCache[m.id_tmdb];
+                if (m.id_tmdb && cacheMap[m.id_tmdb]) {
+                    const c = cacheMap[m.id_tmdb];
                     m.img = m.img || c.img;
                     m.bg = m.bg || c.bg;
                     m.desc = m.desc || c.desc;
@@ -834,10 +892,11 @@ async function loadPlaylist() {
                     m.cat = m.cat || c.cat;
                     m.trailer = m.trailer || c.trailer;
                     m.actors_pics = m.actors_pics || c.actors_pics;
-                    m.tmdb_checked = true;
                 }
+                
                 if (!m.cat) m.cat = "AUTRES CATÉGORIES";
             });
+            
             render(); 
             
             const loader = document.getElementById('global-loader');
@@ -854,19 +913,17 @@ async function loadPlaylist() {
 
 window.fetchMissingMetadata = async function() {
     const apiKey = "ec1c8fecd38d1cc5a27f15766f0848d5";
-    let metadataCache = JSON.parse(localStorage.getItem('sfpp_metadata_cache') || "{}");
-    let cacheUpdated = false;
-
-    let missingMetadata = playlistData.filter(m => m.id_tmdb && (!m.img || !m.desc || !m.trailer) && !m.tmdb_checked);
+    let missingMetadata = playlistData.filter(m => m.id_tmdb && (!m.img || !m.desc || !m.trailer || m.cat === "AUTRES CATÉGORIES"));
 
     if (missingMetadata.length === 0) return;
 
     const dlProgress = document.getElementById('dl-progress');
     if (dlProgress) dlProgress.style.display = 'block';
 
+    let hasNewContent = false;
     let processedCount = 0;
+    
     const BATCH_SIZE = 20; 
-
     for (let i = 0; i < missingMetadata.length; i += BATCH_SIZE) {
         const batch = missingMetadata.slice(i, i + BATCH_SIZE);
         await Promise.all(batch.map(async (m) => {
@@ -876,8 +933,8 @@ window.fetchMissingMetadata = async function() {
                 if (!res.ok) return;
                 const data = await res.json();
                 
-                m.img = m.img || (data.poster_path ? "https://image.tmdb.org/t/p/w500" + data.poster_path : null);
-                m.bg = m.bg || (data.backdrop_path ? "https://image.tmdb.org/t/p/original" + data.backdrop_path : null);
+                m.img = m.img || "https://image.tmdb.org/t/p/w500" + data.poster_path;
+                m.bg = m.bg || "https://image.tmdb.org/t/p/original" + data.backdrop_path;
                 m.desc = m.desc || data.overview;
                 m.year = m.year || (data.release_date ? data.release_date.split('-')[0] : "2025");
                 m.note = m.note || Math.round(data.vote_average / 2);
@@ -893,22 +950,21 @@ window.fetchMissingMetadata = async function() {
                     m.actors_pics = data.credits.cast.slice(0, 10).map(a => ({ name: a.name, img: "https://image.tmdb.org/t/p/w185" + a.profile_path }));
                 }
 
-                metadataCache[m.id_tmdb] = { img: m.img, bg: m.bg, desc: m.desc, year: m.year, note: m.note, cat: m.cat, trailer: m.trailer, actors_pics: m.actors_pics };
-                cacheUpdated = true;
+                await saveTMDB(m.id_tmdb, { img: m.img, bg: m.bg, desc: m.desc, year: m.year, note: m.note, cat: m.cat, trailer: m.trailer, actors_pics: m.actors_pics });
 
-                const imgEls = document.querySelectorAll(`img[data-id="${m.id_tmdb}"]`);
-                imgEls.forEach(img => { if(m.img){ img.src = m.img; img.classList.add('loaded'); } });
-            } catch (e) {} finally { m.tmdb_checked = true; }
+                hasNewContent = true;
+            } catch (e) {}
         }));
         
         processedCount += batch.length;
         if (dlProgress) dlProgress.innerText = `Mise à jour: ${processedCount}/${missingMetadata.length}`;
-        await new Promise(r => setTimeout(r, 200));
+        
+        await new Promise(r => setTimeout(r, 300));
     }
-
+    
     if (dlProgress) dlProgress.style.display = 'none';
-    if (cacheUpdated) {
-        try { localStorage.setItem('sfpp_metadata_cache', JSON.stringify(metadataCache)); } catch(e){}
+
+    if (hasNewContent) {
         render(document.getElementById('searchBar') ? document.getElementById('searchBar').value : "");
     }
 };
@@ -1160,26 +1216,33 @@ function render(search = "") {
 
         const s = search ? String(search).toLowerCase().trim() : "";
 
+        // NOUVEAU : COMMANDES SECURISÉES SANS PROMPT NATIF
         if(s === "admin") { 
             isAdminMode = !isAdminMode; 
             document.getElementById('searchBar').value = ""; 
-            alert(isAdminMode ? "Mode Admin Activé" : "Mode Admin Désactivé"); 
+            window.closeSearch_internal();
+            window.showToast(isAdminMode ? "Mode Admin Activé" : "Mode Admin Désactivé"); 
             return render(""); 
         }
         
         if(s === "msg_global") {
             document.getElementById('searchBar').value = "";
-            let texte = prompt("Taper le message à envoyer à TOUS les utilisateurs :");
-            if (texte && texte.trim() !== "") {
-                window.sendGlobalMessage(texte);
-            }
+            window.closeSearch_internal();
+            document.getElementById('admin-msg-modal').style.display = 'flex';
+            setTimeout(() => {
+                const input = document.getElementById('admin-msg-input');
+                if(input) {
+                    input.focus();
+                    if(typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus(input);
+                }
+            }, 100);
             return render("");
         }
 
-        // NOUVEAU : SUPPRESSION DU MESSAGE GLOBAL VIA RECHERCHE
         if(s === "msg_clear") {
             document.getElementById('searchBar').value = "";
-            if(confirm("Voulez-vous supprimer le message global actuel ?")) {
+            window.closeSearch_internal();
+            if (window.deleteGlobalMessage) {
                 window.deleteGlobalMessage();
             }
             return render("");
@@ -1460,6 +1523,7 @@ function changeView(v) {
     setTimeout(render, 50);
 }
 
+function filter() { render(document.getElementById('searchBar').value); }
 function toggleEditMode() { isEditMode = !isEditMode; document.getElementById('profile-screen').classList.toggle('is-editing'); }
 function switchProfile() { localStorage.removeItem('sfpp_profile'); location.reload(); }
 function requestAccess() { window.location.href = "mailto:sfpp.ott@gmail.com"; }
@@ -1563,16 +1627,20 @@ if ('serviceWorker' in navigator) {
             const customPrompt = document.getElementById('custom-prompt-modal');
             const playerSection = document.getElementById('player-section');
             const sysMsgModal = document.getElementById('system-message-modal');
+            const adminMsgModal = document.getElementById('admin-msg-modal');
             
             const key = e.key || e.keyCode;
 
-            // Bloquer le reste si la modale de message est ouverte
             if (sysMsgModal && sysMsgModal.style.display === 'flex') {
                 if (key === 'Enter' || key === 13) {
                     window.closeSystemMessage();
                     e.preventDefault();
                 }
                 return; 
+            }
+
+            if (adminMsgModal && adminMsgModal.style.display === 'flex') {
+                return;
             }
 
             if (playerSection && playerSection.style.display === 'block') {
