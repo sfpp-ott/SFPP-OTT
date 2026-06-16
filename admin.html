@@ -19,7 +19,7 @@
         textarea { resize: vertical; min-height: 80px; }
         
         /* Style spécifique pour la barre de recherche */
-        #search-user { margin-top: 5px; margin-bottom: 15px; border-color: #555; background: #1a1a1a; }
+        #search-user { margin-top: 5px; margin-bottom: 15px; border-color: #555; background: #1a1a1a; font-size: 15px;}
         #search-user:focus { border-color: var(--accent); outline: none; }
         
         .btn-main { width: 100%; padding: 12px; background: var(--accent); color: white; border: none; font-weight: bold; border-radius: 4px; cursor: pointer; transition: 0.3s; }
@@ -126,11 +126,10 @@
             loadUsers();
             listenToGlobalMessage();
         } else {
-            window.location.href = "index.html"; // Retour à l'accueil si non admin
+            window.location.href = "index.html"; 
         }
     });
 
-    // ÉCOUTEUR DU MESSAGE GLOBAL EN COURS
     function listenToGlobalMessage() {
         onValue(ref(db, 'messages/global'), (snapshot) => {
             const msg = snapshot.val();
@@ -145,7 +144,6 @@
         });
     }
 
-    // CRÉATION COMPTE
     document.getElementById('create-user-form').addEventListener('submit', async (e) => {
         e.preventDefault();
         const btn = document.getElementById('btn-create');
@@ -178,7 +176,6 @@
         }
     });
 
-    // GESTION DES MESSAGES 
     window.sendGlobalMsg = () => {
         const text = document.getElementById('global-msg-text').value.trim();
         if (!text) { alert("Veuillez taper un message."); return; }
@@ -210,7 +207,6 @@
         set(ref(db, 'messages/users/' + uid), null);
     };
 
-    // CHARGEMENT DE LA LISTE DES CLIENTS
     let allUsersData = {};
     let allPrivateMessages = {};
 
@@ -226,10 +222,10 @@
         });
     }
 
-    // NOUVEAU : FONCTION DE RENDU AVEC RECHERCHE ET TRI
+    // FONCTION DE RENDU SÉCURISÉE (Protégée contre les erreurs de données Firebase)
     window.renderUsers = function() {
         const container = document.getElementById('users-container');
-        container.innerHTML = "";
+        if (!container) return;
 
         if (Object.keys(allUsersData).length === 0) { 
             container.innerHTML = "<i>Aucun compte trouvé.</i>"; 
@@ -238,30 +234,35 @@
         }
 
         const today = new Date().toISOString().split('T')[0];
-        const searchTerm = (document.getElementById('search-user').value || "").toLowerCase().trim();
+        const searchInput = document.getElementById('search-user');
+        const searchTerm = searchInput ? searchInput.value.toLowerCase().trim() : "";
 
-        // 1. Transformation de l'objet en tableau pour le tri et la recherche
+        // Transformation sécurisée des données
         let usersArray = Object.keys(allUsersData).map(uid => {
             return { uid: uid, ...allUsersData[uid] };
         });
 
-        // 2. Filtre de la barre de recherche
+        // FILTRE SÉCURISÉ (Empêche l'erreur si user.email n'existe pas)
         if (searchTerm !== "") {
-            usersArray = usersArray.filter(user => user.email.toLowerCase().includes(searchTerm));
+            usersArray = usersArray.filter(user => {
+                const emailStr = user.email ? String(user.email).toLowerCase() : "";
+                return emailStr.includes(searchTerm);
+            });
         }
 
         document.getElementById('user-count').innerText = `(${usersArray.length})`;
 
-        // 3. Tri chronologique par date d'expiration
+        // TRI SÉCURISÉ (Empêche l'erreur si user.expire n'existe pas)
         usersArray.sort((a, b) => {
-            // Les comptes suspendus (2000-01-01) vont tout en bas
-            if (a.expire === '2000-01-01' && b.expire !== '2000-01-01') return 1;
-            if (b.expire === '2000-01-01' && a.expire !== '2000-01-01') return -1;
+            const expA = a.expire || "";
+            const expB = b.expire || "";
             
-            // Ordre croissant : les plus proches d'expirer sont en haut
-            if (a.expire < b.expire) return -1;
-            if (a.expire > b.expire) return 1;
-            return 0;
+            if (expA === '2000-01-01' && expB !== '2000-01-01') return 1;
+            if (expB === '2000-01-01' && expA !== '2000-01-01') return -1;
+            
+            if (expA < expB) return -1;
+            if (expA > expB) return 1;
+            return 0; // Si identiques
         });
 
         if (usersArray.length === 0) {
@@ -269,7 +270,9 @@
             return;
         }
 
-        // 4. Génération de l'affichage HTML
+        // Création du HTML en bloc pour ne pas faire "clignoter" l'interface
+        let htmlContent = "";
+
         window.extendUser = (uid, currentExpire) => {
             let newDate = prompt("Nouvelle date d'expiration (YYYY-MM-DD) :", currentExpire);
             if (newDate) { update(ref(db, 'users_data/' + uid), { expire: newDate }); }
@@ -290,7 +293,10 @@
 
         usersArray.forEach(user => {
             const uid = user.uid;
-            const isExpired = user.expire < today;
+            const exp = user.expire || "1970-01-01"; // Date par défaut si corrompue
+            const emailDisp = user.email || "Email inconnu (Erreur Base de données)";
+            const isExpired = exp < today;
+            
             const statusClass = isExpired ? 'expired' : '';
             const statusText = isExpired ? '<span style="color:#e50914">🔴 Inactif</span>' : '<span style="color:#2ecc71">🟢 Actif</span>';
             const passDisplay = user.pass ? `<span class="user-pass">🔑 ${user.pass}</span>` : `<span class="user-pass" style="color:#555">MDP masqué</span>`;
@@ -300,16 +306,16 @@
                 privateMsgHtml = `
                     <div class="user-private-msg">
                         <span>💬 <b>Message lu/en cours :</b> ${allPrivateMessages[uid].text}</span>
-                        <button onclick="clearPrivateMsg('${uid}')" style="background:none; border:none; color:#c0392b; cursor:pointer;">❌</button>
+                        <button onclick="clearPrivateMsg('${uid}')" style="background:none; border:none; color:#c0392b; cursor:pointer;" title="Effacer le message">❌</button>
                     </div>`;
             }
 
-            container.innerHTML += `
+            htmlContent += `
                 <div class="user-item ${statusClass}">
                     <div class="user-info">
                         <div>
-                            <strong style="font-size:16px;">${user.email}</strong><br>
-                            <span>Expire le : <b>${user.expire === '2000-01-01' ? 'SUSPENDU' : user.expire}</b></span>
+                            <strong style="font-size:16px;">${emailDisp}</strong><br>
+                            <span>Expire le : <b>${exp === '2000-01-01' ? 'SUSPENDU' : exp}</b></span>
                         </div>
                         <div style="text-align:right">
                             ${statusText}<br>
@@ -318,15 +324,17 @@
                     </div>
                     ${privateMsgHtml}
                     <div class="action-buttons">
-                        <button class="btn-extend" onclick="extendUser('${uid}', '${user.expire}')">📅 PROLONGER</button>
+                        <button class="btn-extend" onclick="extendUser('${uid}', '${exp}')">📅 PROLONGER</button>
                         <button class="btn-suspend" onclick="suspendUser('${uid}')">⏸️ SUSPENDRE</button>
-                        <button class="btn-msg" onclick="sendPrivateMsg('${uid}', '${user.email}')">✉️ MESSAGE</button>
+                        <button class="btn-msg" onclick="sendPrivateMsg('${uid}', '${emailDisp}')">✉️ MESSAGE</button>
                         <button class="btn-delete" onclick="deleteUser('${uid}')">❌</button>
                     </div>
                 </div>
             `;
         });
-    }
+        
+        container.innerHTML = htmlContent;
+    };
 
     window.logoutAdmin = () => { signOut(auth).then(() => { window.location.href = "index.html"; }); };
 </script>
