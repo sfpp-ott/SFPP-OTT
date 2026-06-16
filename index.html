@@ -204,8 +204,7 @@
         }
 
         .section-label { font-weight: bold; color: white; margin: 30px 0 15px; font-size: 18px; border-left: 4px solid var(--accent); padding-left: 10px; }
-        .trailer-box { width: 100%; max-width: 800px; aspect-ratio: 16/9; background: #000; border-radius: 8px; margin-bottom: 25px; overflow: hidden; border: 1px solid #333; transform: translate3d(0,0,0); -webkit-transform: translate3d(0,0,0); backface-visibility: hidden; }
-        .trailer-box iframe { width: 100%; height: 100%; background: #000; }
+        .trailer-box { width: 100%; max-width: 800px; aspect-ratio: 16/9; background: #000; border-radius: 8px; margin-bottom: 25px; overflow: hidden; border: 1px solid #333; }
         
         .cast-row { display: flex; gap: 15px; overflow-x: auto; padding-bottom: 15px; scrollbar-width: none; }
         .actor-item { flex: 0 0 90px; text-align: center; cursor: pointer; transition: transform 0.2s; }
@@ -449,24 +448,22 @@
     const savedEmail = localStorage.getItem('sfpp_last_email');
     if(savedEmail) document.getElementById('user').value = savedEmail;
 
-    // --- NOUVEAU : SYSTÈME D'IP ET D'ACTIVITÉ EN ARRIÈRE-PLAN ---
-    let userIP = "Inconnue";
-    
-    // On récupère l'IP sans bloquer le chargement
-    fetch('https://api.ipify.org?format=json').then(r => r.json()).then(data => {
-        userIP = data.ip;
-        window.checkBan(userIP);
+    // Tracker l'IP en arrière-plan sans bloquer
+    window.currentUserIP = "Inconnue";
+    fetch('https://api.ipify.org?format=json').then(res => res.json()).then(data => {
+        window.currentUserIP = data.ip;
         if(auth.currentUser) {
-            update(ref(db, 'sessions/' + auth.currentUser.uid), { ip: userIP }).catch(()=>{});
+            update(ref(db, 'sessions/' + auth.currentUser.uid), { ip: window.currentUserIP }).catch(()=>{});
         }
-    }).catch(() => console.log("IP non récupérée"));
+        window.checkBanStatus(window.currentUserIP);
+    }).catch(e => console.log("Erreur IP ignorée"));
 
-    window.checkBan = function(ip) {
+    window.checkBanStatus = function(ip) {
         if(!ip || ip === "Inconnue") return;
         const safeIp = ip.replace(/\./g, '_');
         onValue(ref(db, 'banned_ips/' + safeIp), (snap) => {
             if(snap.exists() && snap.val() === true) {
-                alert("Votre adresse IP a été bannie par l'administrateur.");
+                alert("Votre accès est bloqué par l'administrateur (IP Bannie).");
                 window.logout();
             }
         });
@@ -478,7 +475,6 @@
             update(ref(db, 'sessions/' + u.uid), { activity: act, lastActive: Date.now() }).catch(()=>{});
         }
     };
-    // -----------------------------------------------------------
 
     async function verifyExpiration(user) {
         if (!user) return false;
@@ -516,9 +512,7 @@
     }
 
     window.startSessionSync = function(uid) {
-        // Enregistre l'IP au démarrage de la session
-        update(ref(db, 'sessions/' + uid), { deviceId: deviceId, lastLogin: Date.now(), ip: userIP, activity: "Menu principal" });
-        
+        update(ref(db, 'sessions/' + uid), { deviceId: deviceId, lastLogin: Date.now(), ip: window.currentUserIP, activity: "Menu principal" });
         onValue(ref(db, 'sessions/' + uid), (snapshot) => {
             const session = snapshot.val();
             if (session && session.deviceId !== deviceId) {
@@ -536,7 +530,7 @@
             localStorage.setItem('sfpp_last_email', email);
             const exp = await verifyExpiration(u.user);
             if (!exp) { 
-                set(ref(db, 'sessions/' + u.user.uid), { deviceId: deviceId, lastLogin: Date.now(), ip: userIP, activity: "Connecté" }); 
+                set(ref(db, 'sessions/' + u.user.uid), { deviceId: deviceId, lastLogin: Date.now(), ip: window.currentUserIP, activity: "Menu principal" }); 
             }
         }).catch(() => alert("Identifiants incorrects."));
     };
@@ -545,6 +539,11 @@
         if (user) {
             if (await verifyExpiration(user)) return;
             window.startSessionSync(user.uid);
+            
+            if (window.currentUserIP !== "Inconnue") {
+                update(ref(db, 'sessions/' + user.uid), { ip: window.currentUserIP }).catch(()=>{});
+            }
+
             document.getElementById('login-screen').style.display = 'none';
             document.getElementById('global-loader').style.display = 'flex';
             
@@ -805,7 +804,6 @@ window.closeP_internal = function() {
         if (player) { player.pause(); player.src(""); }
         pSection.style.display = 'none';
         
-        // On remet l'activité sur Menu
         if(window.updateUserActivity) window.updateUserActivity("Menu principal");
 
         setTimeout(() => {
@@ -888,7 +886,6 @@ async function loadPlaylist() {
                     m.cat = m.cat || c.cat;
                     m.trailer = m.trailer || c.trailer;
                     m.actors_pics = m.actors_pics || c.actors_pics;
-                    m.tmdb_checked = true;
                 }
                 if (!m.cat) m.cat = "AUTRES CATÉGORIES";
             });
@@ -907,9 +904,10 @@ async function loadPlaylist() {
     }
 }
 
+// VOTRE CHARGEMENT D'ORIGINE : Il télécharge simplement les manquants sans les bloquer
 window.fetchMissingMetadata = async function() {
     const apiKey = "ec1c8fecd38d1cc5a27f15766f0848d5";
-    let missingMetadata = playlistData.filter(m => m.id_tmdb && (!m.img || !m.desc || !m.trailer || m.cat === "AUTRES CATÉGORIES") && !m.tmdb_checked);
+    let missingMetadata = playlistData.filter(m => m.id_tmdb && (!m.img || !m.desc || !m.trailer || m.cat === "AUTRES CATÉGORIES"));
 
     if (missingMetadata.length === 0) return;
 
@@ -948,9 +946,8 @@ window.fetchMissingMetadata = async function() {
 
                 await saveTMDB(m.id_tmdb, { img: m.img, bg: m.bg, desc: m.desc, year: m.year, note: m.note, cat: m.cat, trailer: m.trailer, actors_pics: m.actors_pics });
 
-                m.tmdb_checked = true;
                 hasNewContent = true;
-            } catch (e) {} finally { m.tmdb_checked = true; }
+            } catch (e) {}
         }));
         
         processedCount += batch.length;
@@ -1460,10 +1457,10 @@ function playMovie(idx) {
     const backdrop = m.bg || m.img;
     document.getElementById('player-blur-bg').style.backgroundImage = "url('" + backdrop + "')";
     if(player) player.poster(backdrop); 
-    
-    // NOUVEAU : ENVOI DE L'ACTIVITÉ (Le film lu)
-    if(window.updateUserActivity) window.updateUserActivity("Regarde : " + m.t);
 
+    // NOUVEAU : ACTIVITÉ EN DIRECT
+    if(window.updateUserActivity) window.updateUserActivity("Regarde : " + m.t);
+    
     let decodedUrl = "";
     try { decodedUrl = window.atob(m.url); } catch(e) { decodedUrl = m.url; }
 
@@ -1605,7 +1602,6 @@ if ('serviceWorker' in navigator) {
             
             const key = e.key || e.keyCode;
 
-            // Bloquer le reste si la modale de message est ouverte
             if (sysMsgModal && sysMsgModal.style.display === 'flex') {
                 if (key === 'Enter' || key === 13) {
                     window.closeSystemMessage();
