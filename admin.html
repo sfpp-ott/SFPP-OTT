@@ -39,6 +39,7 @@
         .btn-extend { background: #2ecc71; }
         .btn-suspend { background: #e67e22; }
         .btn-msg { background: #3498db; }
+        .btn-pass { background: #8e44ad; }
         .btn-delete { background: #c0392b; }
         
         .current-msg-banner { background: rgba(229, 9, 20, 0.1); border: 1px solid var(--accent); padding: 10px; border-radius: 4px; margin-bottom: 20px; font-size: 13px; }
@@ -101,7 +102,8 @@
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
     import { getDatabase, ref, set, update, remove, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
-    import { getAuth, onAuthStateChanged, signOut, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+    // Ajout des fonctions signInWithEmailAndPassword et updatePassword
+    import { getAuth, onAuthStateChanged, signOut, createUserWithEmailAndPassword, signInWithEmailAndPassword, updatePassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyDipnvk8nHn_mnj6HObA038DhS2U39kSgU",
@@ -114,6 +116,7 @@
     const auth = getAuth(app);
     const db = getDatabase(app);
     
+    // Application secondaire pour créer ou modifier des comptes sans déconnecter l'Admin
     const adminApp = initializeApp(firebaseConfig, "AdminCreatorApp");
     const adminAuth = getAuth(adminApp);
 
@@ -222,7 +225,7 @@
         });
     }
 
-    // FONCTION DE RENDU SÉCURISÉE (Protégée contre les erreurs de données Firebase)
+    // FONCTION DE RENDU SÉCURISÉE AVEC TRI ET RECHERCHE
     window.renderUsers = function() {
         const container = document.getElementById('users-container');
         if (!container) return;
@@ -237,12 +240,11 @@
         const searchInput = document.getElementById('search-user');
         const searchTerm = searchInput ? searchInput.value.toLowerCase().trim() : "";
 
-        // Transformation sécurisée des données
         let usersArray = Object.keys(allUsersData).map(uid => {
             return { uid: uid, ...allUsersData[uid] };
         });
 
-        // FILTRE SÉCURISÉ (Empêche l'erreur si user.email n'existe pas)
+        // FILTRE SÉCURISÉ
         if (searchTerm !== "") {
             usersArray = usersArray.filter(user => {
                 const emailStr = user.email ? String(user.email).toLowerCase() : "";
@@ -252,7 +254,7 @@
 
         document.getElementById('user-count').innerText = `(${usersArray.length})`;
 
-        // TRI SÉCURISÉ (Empêche l'erreur si user.expire n'existe pas)
+        // TRI SÉCURISÉ
         usersArray.sort((a, b) => {
             const expA = a.expire || "";
             const expB = b.expire || "";
@@ -262,7 +264,7 @@
             
             if (expA < expB) return -1;
             if (expA > expB) return 1;
-            return 0; // Si identiques
+            return 0;
         });
 
         if (usersArray.length === 0) {
@@ -270,7 +272,6 @@
             return;
         }
 
-        // Création du HTML en bloc pour ne pas faire "clignoter" l'interface
         let htmlContent = "";
 
         window.extendUser = (uid, currentExpire) => {
@@ -291,15 +292,50 @@
             }
         };
 
+        // NOUVEAU : Fonction pour modifier le mot de passe du client
+        window.changeUserPassword = async (uid, email, currentPass) => {
+            if (!currentPass) {
+                alert("Impossible de modifier le mot de passe : l'ancien mot de passe est manquant dans la base de données.");
+                return;
+            }
+
+            const newPass = prompt(`Nouveau mot de passe pour ${email} (6 caractères minimum) :`);
+            if (!newPass) return; // Si annulation
+            if (newPass.length < 6) {
+                alert("Erreur : Le mot de passe doit contenir au moins 6 caractères.");
+                return;
+            }
+
+            try {
+                // 1. Connexion en arrière plan
+                const userCred = await signInWithEmailAndPassword(adminAuth, email, currentPass);
+                
+                // 2. Modification dans le système d'authentification
+                await updatePassword(userCred.user, newPass);
+                
+                // 3. Mise à jour du texte dans la base de données
+                await update(ref(db, 'users_data/' + uid), { pass: newPass });
+                
+                // 4. Déconnexion de l'application secondaire
+                await signOut(adminAuth);
+                
+                alert(`✅ Mot de passe de ${email} modifié avec succès !`);
+            } catch (error) {
+                alert("❌ Erreur de modification. Le mot de passe actuel ne correspond peut-être plus : " + error.message);
+                await signOut(adminAuth).catch(()=>{}); // Sécurité
+            }
+        };
+
         usersArray.forEach(user => {
             const uid = user.uid;
-            const exp = user.expire || "1970-01-01"; // Date par défaut si corrompue
-            const emailDisp = user.email || "Email inconnu (Erreur Base de données)";
+            const exp = user.expire || "1970-01-01"; 
+            const emailDisp = user.email || "Email inconnu";
+            const currentPass = user.pass || "";
             const isExpired = exp < today;
             
             const statusClass = isExpired ? 'expired' : '';
             const statusText = isExpired ? '<span style="color:#e50914">🔴 Inactif</span>' : '<span style="color:#2ecc71">🟢 Actif</span>';
-            const passDisplay = user.pass ? `<span class="user-pass">🔑 ${user.pass}</span>` : `<span class="user-pass" style="color:#555">MDP masqué</span>`;
+            const passDisplay = currentPass ? `<span class="user-pass">🔑 ${currentPass}</span>` : `<span class="user-pass" style="color:#555">MDP masqué</span>`;
             
             let privateMsgHtml = "";
             if (allPrivateMessages[uid] && allPrivateMessages[uid].text) {
@@ -326,8 +362,9 @@
                     <div class="action-buttons">
                         <button class="btn-extend" onclick="extendUser('${uid}', '${exp}')">📅 PROLONGER</button>
                         <button class="btn-suspend" onclick="suspendUser('${uid}')">⏸️ SUSPENDRE</button>
-                        <button class="btn-msg" onclick="sendPrivateMsg('${uid}', '${emailDisp}')">✉️ MESSAGE</button>
-                        <button class="btn-delete" onclick="deleteUser('${uid}')">❌</button>
+                        <button class="btn-pass" onclick="changeUserPassword('${uid}', '${emailDisp}', '${currentPass}')">🔑 MDP</button>
+                        <button class="btn-msg" onclick="sendPrivateMsg('${uid}', '${emailDisp}')">✉️ MSG</button>
+                        <button class="btn-delete" onclick="deleteUser('${uid}')">❌ SUPPRIMER</button>
                     </div>
                 </div>
             `;
