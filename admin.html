@@ -40,7 +40,6 @@
         .btn-msg { background: #3498db; }
         .btn-pass { background: #8e44ad; }
         .btn-delete { background: #c0392b; }
-        .btn-ban-ip { background: #8B0000; } /* Rouge très sombre */
         
         .current-msg-banner { background: rgba(229, 9, 20, 0.1); border: 1px solid var(--accent); padding: 10px; border-radius: 4px; margin-bottom: 20px; font-size: 13px; }
         .user-private-msg { margin-top: 5px; padding: 8px; background: rgba(52, 152, 219, 0.1); border: 1px solid #3498db; border-radius: 4px; font-size: 12px; display: flex; justify-content: space-between; align-items: center; }
@@ -191,24 +190,33 @@
 
     window.clearPrivateMsg = (uid) => { set(ref(db, 'messages/users/' + uid), null); };
 
-    // BANNIR UNE IP
+    // GESTION DU BANNISSEMENT / DÉBANNISSEMENT D'IP
     window.banIp = (ip) => {
         if(!ip || ip === "Inconnue") { alert("Aucune IP valide à bannir."); return; }
         if(confirm(`⚠️ BANNIR L'IP : ${ip} ?\nAttention: cela bloque tout appareil utilisant cette connexion.`)) {
-            // Firebase n'accepte pas les "." dans les clés, on les remplace par "_"
             const safeIp = ip.replace(/\./g, '_');
             set(ref(db, 'banned_ips/' + safeIp), true).then(() => alert(`IP ${ip} bannie avec succès !`));
+        }
+    };
+
+    window.unbanIp = (ip) => {
+        if(!ip || ip === "Inconnue") return;
+        if(confirm(`DÉBANNIR L'IP : ${ip} ?\nCela redonnera accès aux appareils sur ce réseau.`)) {
+            const safeIp = ip.replace(/\./g, '_');
+            set(ref(db, 'banned_ips/' + safeIp), null).then(() => alert(`IP ${ip} débannie avec succès !`));
         }
     };
 
     let allUsersData = {};
     let allPrivateMessages = {};
     let allSessions = {};
+    let allBannedIps = {};
 
     function loadUsers() {
         onValue(ref(db, 'users_data'), (snapshot) => { allUsersData = snapshot.val() || {}; window.renderUsers(); });
         onValue(ref(db, 'messages/users'), (snapshot) => { allPrivateMessages = snapshot.val() || {}; window.renderUsers(); });
         onValue(ref(db, 'sessions'), (snapshot) => { allSessions = snapshot.val() || {}; window.renderUsers(); });
+        onValue(ref(db, 'banned_ips'), (snapshot) => { allBannedIps = snapshot.val() || {}; window.renderUsers(); });
     }
 
     window.renderUsers = function() {
@@ -301,6 +309,18 @@
             const ip = session.ip || "Inconnue";
             const actClass = activity.includes("Regarde") ? 'live-activity' : 'idle-activity';
 
+            // Affichage du bouton de Ban/Deban
+            const safeIp = ip !== "Inconnue" ? ip.replace(/\./g, '_') : null;
+            const isBanned = safeIp && allBannedIps[safeIp];
+            let banBtnHtml = "";
+            if (ip !== "Inconnue") {
+                if (isBanned) {
+                    banBtnHtml = `<button style="background:#2ecc71; color:white; border:none; border-radius:4px; font-weight:bold; font-size:11px; padding:8px 12px; cursor:pointer;" onclick="unbanIp('${ip}')">🟢 DÉBANNIR IP</button>`;
+                } else {
+                    banBtnHtml = `<button style="background:#8B0000; color:white; border:none; border-radius:4px; font-weight:bold; font-size:11px; padding:8px 12px; cursor:pointer;" onclick="banIp('${ip}')">🛑 BANNIR IP</button>`;
+                }
+            }
+
             let privateMsgHtml = "";
             if (allPrivateMessages[uid] && allPrivateMessages[uid].text) {
                 privateMsgHtml = `
@@ -330,7 +350,7 @@
                         <button class="btn-suspend" onclick="suspendUser('${uid}')">⏸️ SUSPENDRE</button>
                         <button class="btn-pass" onclick="changeUserPassword('${uid}', '${emailDisp}', '${currentPass}')">🔑 MDP</button>
                         <button class="btn-msg" onclick="sendPrivateMsg('${uid}', '${emailDisp}')">✉️ MSG</button>
-                        <button class="btn-ban-ip" onclick="banIp('${ip}')">🛑 BANNIR IP</button>
+                        ${banBtnHtml}
                         <button class="btn-delete" onclick="deleteUser('${uid}')">❌ SUPPRIMER</button>
                     </div>
                 </div>
