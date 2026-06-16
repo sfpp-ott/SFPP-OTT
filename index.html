@@ -204,7 +204,8 @@
         }
 
         .section-label { font-weight: bold; color: white; margin: 30px 0 15px; font-size: 18px; border-left: 4px solid var(--accent); padding-left: 10px; }
-        .trailer-box { width: 100%; max-width: 800px; aspect-ratio: 16/9; background: #000; border-radius: 8px; margin-bottom: 25px; overflow: hidden; border: 1px solid #333; }
+        .trailer-box { width: 100%; max-width: 800px; aspect-ratio: 16/9; background: #000; border-radius: 8px; margin-bottom: 25px; overflow: hidden; border: 1px solid #333; transform: translate3d(0,0,0); -webkit-transform: translate3d(0,0,0); backface-visibility: hidden; }
+        .trailer-box iframe { width: 100%; height: 100%; background: #000; }
         
         .cast-row { display: flex; gap: 15px; overflow-x: auto; padding-bottom: 15px; scrollbar-width: none; }
         .actor-item { flex: 0 0 90px; text-align: center; cursor: pointer; transition: transform 0.2s; }
@@ -259,6 +260,7 @@
         .btn-fav-card {
             position: absolute; top: 10px; right: 10px; z-index: 10; background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.2);
             border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 16px;
+            transition: transform 0.2s ease;
         }
         .btn-fav-card.is-fav { color: #e50914; background: rgba(0,0,0,0.7); }
         .btn-fav-card:not(.is-fav) { color: white; }
@@ -285,7 +287,6 @@
             .card.landscape img { width: 140px !important; height: 85px !important; }
         }
 
-        /* NOUVEAU : STYLE POUR LES NOTIFICATIONS TOAST ET MODALE D'ADMIN */
         #toast-msg {
             display: none; position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
             background: rgba(229,9,20,0.95); color: white; padding: 12px 24px; border-radius: 30px;
@@ -303,17 +304,6 @@
         <h2 style="color:#e50914; margin-top:0; margin-bottom:15px; font-size:24px;">Message de l'Admin</h2>
         <p id="system-message-text" style="font-size:16px; line-height:1.5; color:#fff; margin-bottom:25px;"></p>
         <button id="btn-close-msg" onclick="window.closeSystemMessage()" class="sn-card" style="padding:12px 30px; background:#e50914; color:white; border:none; border-radius:4px; font-weight:bold; cursor:pointer; font-size:16px;" tabindex="0">J'ai compris</button>
-    </div>
-</div>
-
-<div id="admin-msg-modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.9); z-index:99999; align-items:center; justify-content:center;">
-    <div style="background:#111; padding:30px; border-radius:8px; text-align:center; border:1px solid #e50914; width: 350px;">
-        <h3 style="margin-top:0; color:#fff;">Envoyer un message global</h3>
-        <input type="text" id="admin-msg-input" style="width:100%; padding:12px; margin-bottom:20px; background:#222; color:#fff; border:1px solid #555; border-radius:4px; font-size:16px;" placeholder="Tapez votre message ici...">
-        <div style="display:flex; gap:10px;">
-            <button onclick="window.closeAdminMsg()" style="flex:1; padding:12px; background:#444; color:white; border:none; border-radius:4px; cursor:pointer;" tabindex="0">Annuler</button>
-            <button onclick="window.confirmSendAdminMsg()" style="flex:1; padding:12px; background:#e50914; color:white; border:none; border-radius:4px; cursor:pointer; font-weight:bold;" tabindex="0">Envoyer</button>
-        </div>
     </div>
 </div>
 
@@ -439,7 +429,7 @@
 
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-    import { getDatabase, ref, set, push, onValue, get } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+    import { getDatabase, ref, set, push, onValue, get, update } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
     import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
     const firebaseConfig = {
@@ -459,18 +449,36 @@
     const savedEmail = localStorage.getItem('sfpp_last_email');
     if(savedEmail) document.getElementById('user').value = savedEmail;
 
-    // NOUVEAU : COMMANDES FIREBASE INTEGREES AU MODULE
-    window.sendGlobalMessage = function(texte) {
-        set(ref(db, 'messages/global'), { text: texte, id: Date.now() })
-        .then(() => { if(window.showToast) window.showToast("Message envoyé à tous !"); })
-        .catch(() => { if(window.showToast) window.showToast("Erreur d'envoi."); });
+    // --- NOUVEAU : SYSTÈME D'IP ET D'ACTIVITÉ EN ARRIÈRE-PLAN ---
+    let userIP = "Inconnue";
+    
+    // On récupère l'IP sans bloquer le chargement
+    fetch('https://api.ipify.org?format=json').then(r => r.json()).then(data => {
+        userIP = data.ip;
+        window.checkBan(userIP);
+        if(auth.currentUser) {
+            update(ref(db, 'sessions/' + auth.currentUser.uid), { ip: userIP }).catch(()=>{});
+        }
+    }).catch(() => console.log("IP non récupérée"));
+
+    window.checkBan = function(ip) {
+        if(!ip || ip === "Inconnue") return;
+        const safeIp = ip.replace(/\./g, '_');
+        onValue(ref(db, 'banned_ips/' + safeIp), (snap) => {
+            if(snap.exists() && snap.val() === true) {
+                alert("Votre adresse IP a été bannie par l'administrateur.");
+                window.logout();
+            }
+        });
     };
 
-    window.deleteGlobalMessage = function() {
-        set(ref(db, 'messages/global'), null)
-        .then(() => { if(window.showToast) window.showToast("Message global supprimé !"); })
-        .catch(() => { if(window.showToast) window.showToast("Erreur lors de la suppression."); });
+    window.updateUserActivity = function(act) {
+        const u = auth.currentUser;
+        if(u) {
+            update(ref(db, 'sessions/' + u.uid), { activity: act, lastActive: Date.now() }).catch(()=>{});
+        }
     };
+    // -----------------------------------------------------------
 
     async function verifyExpiration(user) {
         if (!user) return false;
@@ -508,6 +516,9 @@
     }
 
     window.startSessionSync = function(uid) {
+        // Enregistre l'IP au démarrage de la session
+        update(ref(db, 'sessions/' + uid), { deviceId: deviceId, lastLogin: Date.now(), ip: userIP, activity: "Menu principal" });
+        
         onValue(ref(db, 'sessions/' + uid), (snapshot) => {
             const session = snapshot.val();
             if (session && session.deviceId !== deviceId) {
@@ -525,7 +536,7 @@
             localStorage.setItem('sfpp_last_email', email);
             const exp = await verifyExpiration(u.user);
             if (!exp) { 
-                set(ref(db, 'sessions/' + u.user.uid), { deviceId: deviceId, lastLogin: Date.now() }); 
+                set(ref(db, 'sessions/' + u.user.uid), { deviceId: deviceId, lastLogin: Date.now(), ip: userIP, activity: "Connecté" }); 
             }
         }).catch(() => alert("Identifiants incorrects."));
     };
@@ -613,6 +624,8 @@
         localStorage.setItem('sfpp_profile_icon', icon);
         document.getElementById('profile-screen').style.display = 'none';
         document.getElementById('current-user-name').innerText = name;
+        
+        if(window.updateUserActivity) window.updateUserActivity("Menu principal (" + name + ")");
 
         const user = auth.currentUser;
         if(user) {
@@ -623,6 +636,7 @@
     };
 
     window.logout = function() { 
+        if(window.updateUserActivity) window.updateUserActivity("Hors ligne");
         const mail = localStorage.getItem('sfpp_last_email');
         signOut(auth).then(() => { 
             localStorage.clear(); 
@@ -647,28 +661,12 @@
 </script>
 
 <script>
-// NOUVEAU : Fonction sécurisée d'alerte (Toast)
 window.showToast = function(msg) {
     const toast = document.getElementById('toast-msg');
     if(!toast) return;
     toast.innerText = msg;
     toast.style.display = 'block';
     setTimeout(() => { toast.style.display = 'none'; }, 3000);
-}
-
-// NOUVEAU : Gestion sécurisée de la fenêtre de saisie de message (Sans Prompt)
-window.closeAdminMsg = function() {
-    document.getElementById('admin-msg-modal').style.display = 'none';
-    document.getElementById('admin-msg-input').value = '';
-    if(typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus();
-}
-
-window.confirmSendAdminMsg = function() {
-    const texte = document.getElementById('admin-msg-input').value;
-    if(texte && texte.trim() !== "") {
-        if (window.sendGlobalMessage) window.sendGlobalMessage(texte);
-    }
-    window.closeAdminMsg();
 }
 
 window.clearSiteData = async function() {
@@ -764,12 +762,6 @@ window.handleBackAction = function() {
         window.closeSystemMessage();
         return;
     }
-    
-    const adminMsgModal = document.getElementById('admin-msg-modal');
-    if (adminMsgModal && adminMsgModal.style.display === 'flex') {
-        window.closeAdminMsg();
-        return;
-    }
 
     const customPrompt = document.getElementById('custom-prompt-modal');
     if (customPrompt && customPrompt.style.display === 'flex') {
@@ -812,6 +804,10 @@ window.closeP_internal = function() {
         saveP(); 
         if (player) { player.pause(); player.src(""); }
         pSection.style.display = 'none';
+        
+        // On remet l'activité sur Menu
+        if(window.updateUserActivity) window.updateUserActivity("Menu principal");
+
         setTimeout(() => {
             if(typeof window.updateProgBars === 'function') window.updateProgBars();
             if (typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus();
@@ -892,8 +888,8 @@ async function loadPlaylist() {
                     m.cat = m.cat || c.cat;
                     m.trailer = m.trailer || c.trailer;
                     m.actors_pics = m.actors_pics || c.actors_pics;
+                    m.tmdb_checked = true;
                 }
-                
                 if (!m.cat) m.cat = "AUTRES CATÉGORIES";
             });
             
@@ -913,7 +909,7 @@ async function loadPlaylist() {
 
 window.fetchMissingMetadata = async function() {
     const apiKey = "ec1c8fecd38d1cc5a27f15766f0848d5";
-    let missingMetadata = playlistData.filter(m => m.id_tmdb && (!m.img || !m.desc || !m.trailer || m.cat === "AUTRES CATÉGORIES"));
+    let missingMetadata = playlistData.filter(m => m.id_tmdb && (!m.img || !m.desc || !m.trailer || m.cat === "AUTRES CATÉGORIES") && !m.tmdb_checked);
 
     if (missingMetadata.length === 0) return;
 
@@ -952,8 +948,9 @@ window.fetchMissingMetadata = async function() {
 
                 await saveTMDB(m.id_tmdb, { img: m.img, bg: m.bg, desc: m.desc, year: m.year, note: m.note, cat: m.cat, trailer: m.trailer, actors_pics: m.actors_pics });
 
+                m.tmdb_checked = true;
                 hasNewContent = true;
-            } catch (e) {}
+            } catch (e) {} finally { m.tmdb_checked = true; }
         }));
         
         processedCount += batch.length;
@@ -1216,36 +1213,11 @@ function render(search = "") {
 
         const s = search ? String(search).toLowerCase().trim() : "";
 
-        // NOUVEAU : COMMANDES SECURISÉES SANS PROMPT NATIF
         if(s === "admin") { 
             isAdminMode = !isAdminMode; 
             document.getElementById('searchBar').value = ""; 
-            window.closeSearch_internal();
             window.showToast(isAdminMode ? "Mode Admin Activé" : "Mode Admin Désactivé"); 
             return render(""); 
-        }
-        
-        if(s === "msg_global") {
-            document.getElementById('searchBar').value = "";
-            window.closeSearch_internal();
-            document.getElementById('admin-msg-modal').style.display = 'flex';
-            setTimeout(() => {
-                const input = document.getElementById('admin-msg-input');
-                if(input) {
-                    input.focus();
-                    if(typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus(input);
-                }
-            }, 100);
-            return render("");
-        }
-
-        if(s === "msg_clear") {
-            document.getElementById('searchBar').value = "";
-            window.closeSearch_internal();
-            if (window.deleteGlobalMessage) {
-                window.deleteGlobalMessage();
-            }
-            return render("");
         }
 
         const favs = JSON.parse(localStorage.getItem('sfpp_fav_' + currentProfile) || "[]");
@@ -1489,6 +1461,9 @@ function playMovie(idx) {
     document.getElementById('player-blur-bg').style.backgroundImage = "url('" + backdrop + "')";
     if(player) player.poster(backdrop); 
     
+    // NOUVEAU : ENVOI DE L'ACTIVITÉ (Le film lu)
+    if(window.updateUserActivity) window.updateUserActivity("Regarde : " + m.t);
+
     let decodedUrl = "";
     try { decodedUrl = window.atob(m.url); } catch(e) { decodedUrl = m.url; }
 
@@ -1627,20 +1602,16 @@ if ('serviceWorker' in navigator) {
             const customPrompt = document.getElementById('custom-prompt-modal');
             const playerSection = document.getElementById('player-section');
             const sysMsgModal = document.getElementById('system-message-modal');
-            const adminMsgModal = document.getElementById('admin-msg-modal');
             
             const key = e.key || e.keyCode;
 
+            // Bloquer le reste si la modale de message est ouverte
             if (sysMsgModal && sysMsgModal.style.display === 'flex') {
                 if (key === 'Enter' || key === 13) {
                     window.closeSystemMessage();
                     e.preventDefault();
                 }
                 return; 
-            }
-
-            if (adminMsgModal && adminMsgModal.style.display === 'flex') {
-                return;
             }
 
             if (playerSection && playerSection.style.display === 'block') {
