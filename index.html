@@ -448,7 +448,6 @@
     const savedEmail = localStorage.getItem('sfpp_last_email');
     if(savedEmail) document.getElementById('user').value = savedEmail;
 
-    // Tracker l'IP en arrière-plan sans bloquer
     window.currentUserIP = "Inconnue";
     fetch('https://api.ipify.org?format=json').then(res => res.json()).then(data => {
         window.currentUserIP = data.ip;
@@ -904,7 +903,6 @@ async function loadPlaylist() {
     }
 }
 
-// VOTRE CHARGEMENT D'ORIGINE : Il télécharge simplement les manquants sans les bloquer
 window.fetchMissingMetadata = async function() {
     const apiKey = "ec1c8fecd38d1cc5a27f15766f0848d5";
     let missingMetadata = playlistData.filter(m => m.id_tmdb && (!m.img || !m.desc || !m.trailer || m.cat === "AUTRES CATÉGORIES"));
@@ -1213,6 +1211,7 @@ function render(search = "") {
         if(s === "admin") { 
             isAdminMode = !isAdminMode; 
             document.getElementById('searchBar').value = ""; 
+            window.closeSearch_internal();
             window.showToast(isAdminMode ? "Mode Admin Activé" : "Mode Admin Désactivé"); 
             return render(""); 
         }
@@ -1458,7 +1457,7 @@ function playMovie(idx) {
     document.getElementById('player-blur-bg').style.backgroundImage = "url('" + backdrop + "')";
     if(player) player.poster(backdrop); 
 
-    // NOUVEAU : ACTIVITÉ EN DIRECT
+    // ENVOI DE L'ACTIVITÉ (Ne bloque pas le lecteur)
     if(window.updateUserActivity) window.updateUserActivity("Regarde : " + m.t);
     
     let decodedUrl = "";
@@ -1611,6 +1610,27 @@ if ('serviceWorker' in navigator) {
             }
 
             if (playerSection && playerSection.style.display === 'block') {
+                
+                // NOUVEAU : Réveiller le lecteur à chaque appui pour garantir que la barre apparaisse sur TV
+                if (player) player.userActive(true);
+
+                const active = document.activeElement;
+                const inControlBar = active && (active.closest('.vjs-control-bar') || active.classList.contains('vjs-menu-item'));
+
+                const isDown = key === 'ArrowDown' || key === 40;
+                const isUp = key === 'ArrowUp' || key === 38;
+
+                // NOUVEAU : Forcer le focus sur la barre de contrôle avec Haut ou Bas
+                if ((isDown || isUp) && !inControlBar) {
+                    e.preventDefault();
+                    const playBtn = document.querySelector('.vjs-play-control') || document.querySelector('.vjs-button');
+                    if (playBtn) {
+                        playBtn.focus();
+                        if(typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus(playBtn);
+                    }
+                    return;
+                }
+
                 if (key === 'MediaFastForward' || key === 228 || key === 176) {
                     e.preventDefault();
                     if(player) player.currentTime(player.currentTime() + 10);
@@ -1631,17 +1651,27 @@ if ('serviceWorker' in navigator) {
                 }
 
                 if (key === 'Enter' || key === 13) {
-                    const active = document.activeElement;
-                    if (active && (active.closest('.vjs-control-bar') || active.id === 'next-episode-btn' || active.classList.contains('btn-close-player'))) {
+                    // Si on est dans le menu de contrôle (langue etc), on laisse le clic s'opérer
+                    if (active && (active.closest('.vjs-control-bar') || active.id === 'next-episode-btn' || active.classList.contains('btn-close-player') || active.classList.contains('vjs-menu-item'))) {
                         return; 
                     }
+                    
                     const now = new Date().getTime();
+                    // Double Clic : Plein Écran
                     if (now - lastEnterTap < 400 && now - lastEnterTap > 0) {
                         e.preventDefault();
                         if (player && player.isFullscreen()) player.exitFullscreen();
                         else if (player) player.requestFullscreen();
+                    } else {
+                        // Clic Simple Hors Contrôle : Pause / Lecture
+                        e.preventDefault();
+                        if(player) {
+                            if (player.paused()) player.play();
+                            else player.pause();
+                        }
                     }
                     lastEnterTap = now;
+                    return;
                 }
             }
 
