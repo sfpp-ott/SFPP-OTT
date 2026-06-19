@@ -204,7 +204,8 @@
         }
 
         .section-label { font-weight: bold; color: white; margin: 30px 0 15px; font-size: 18px; border-left: 4px solid var(--accent); padding-left: 10px; }
-        .trailer-box { width: 100%; max-width: 800px; aspect-ratio: 16/9; background: #000; border-radius: 8px; margin-bottom: 25px; overflow: hidden; border: 1px solid #333; }
+        .trailer-box { width: 100%; max-width: 800px; aspect-ratio: 16/9; background: #000; border-radius: 8px; margin-bottom: 25px; overflow: hidden; border: 1px solid #333; transform: translate3d(0,0,0); -webkit-transform: translate3d(0,0,0); backface-visibility: hidden; }
+        .trailer-box iframe { width: 100%; height: 100%; background: #000; }
         
         .cast-row { display: flex; gap: 15px; overflow-x: auto; padding-bottom: 15px; scrollbar-width: none; }
         .actor-item { flex: 0 0 90px; text-align: center; cursor: pointer; transition: transform 0.2s; }
@@ -448,7 +449,6 @@
     const savedEmail = localStorage.getItem('sfpp_last_email');
     if(savedEmail) document.getElementById('user').value = savedEmail;
 
-    // --- NOUVEAU: Cloud-Sync Sécurisé (Synchronise avec le Cloud en arrière plan) ---
     window.syncToCloud = function(type, data) {
         const u = auth.currentUser;
         const profileName = localStorage.getItem('sfpp_profile');
@@ -458,6 +458,14 @@
             } else {
                 set(ref(db, 'users_data/' + u.uid + '/profiles/' + profileName + '/' + type), data).catch(()=>{});
             }
+        }
+    };
+
+    // NOUVEAU : Synchronisation des noms de profils vers le Cloud
+    window.syncProfilesToCloud = function(profilesArray) {
+        const u = auth.currentUser;
+        if(u) {
+            set(ref(db, 'users_data/' + u.uid + '/profiles_list'), profilesArray).catch(()=>{});
         }
     };
 
@@ -561,6 +569,12 @@
             
             fetchEPG(); 
             loadPlaylist();
+
+            // NOUVEAU : Téléchargement de la liste des profils depuis le Cloud au démarrage
+            const profilsSnap = await get(ref(db, 'users_data/' + user.uid + '/profiles_list'));
+            if(profilsSnap.exists()) {
+                localStorage.setItem('sfpp_profiles_data', JSON.stringify(profilsSnap.val()));
+            }
             initProfiles();
             
             const snap = await get(ref(db, 'users_data/' + user.uid + '/expire'));
@@ -643,7 +657,6 @@
             const snap = await get(ref(db, 'users_data/' + user.uid + '/expire'));
             document.getElementById('header-logo').innerHTML = 'SFPP | ' + icon + ' <span style="font-size:10px; color:#666;">(' + snap.val() + ')</span>';
             
-            // --- NOUVEAU: TÉLÉCHARGEMENT DES DONNÉES CLOUD (1 SEULE FOIS) ---
             get(ref(db, 'users_data/' + user.uid + '/profiles/' + name)).then((pSnap) => {
                 const pData = pSnap.val();
                 if(pData) {
@@ -652,7 +665,7 @@
                     if(pData.favs) localStorage.setItem('sfpp_fav_' + name, JSON.stringify(pData.favs));
                 }
             }).catch(()=>{}).finally(() => {
-                render(); // Affichage du catalogue avec les données à jour
+                render(); 
             });
         } else {
             render();
@@ -1119,7 +1132,6 @@ function toggleFav(title) {
     else favs.push(title);
     localStorage.setItem(key, JSON.stringify(favs));
 
-    // NOUVEAU : Envoi discret aux favoris Cloud
     if(window.syncToCloud) window.syncToCloud('favs', favs);
     
     updateFavBtnUI(title);
@@ -1201,6 +1213,10 @@ window.saveCustomPrompt = function() {
         if(idx !== -1) { 
             profiles[idx].name = n; 
             localStorage.setItem('sfpp_profiles_data', JSON.stringify(profiles)); 
+            
+            // NOUVEAU : On sauvegarde la modification des noms de profils dans le Cloud
+            if(window.syncProfilesToCloud) window.syncProfilesToCloud(profiles);
+            
             initProfiles(); 
         }
     }
@@ -1217,7 +1233,6 @@ function saveP() {
         prog[currentPlayingTitle] = { t: cur, p: (cur/dur)*100 };
         localStorage.setItem('sfpp_p_'+currentProfile, JSON.stringify(prog));
 
-        // NOUVEAU : Sauvegarde invisible vers le Cloud
         if(window.syncToCloud) window.syncToCloud('progress', { [currentPlayingTitle]: { t: cur, p: (cur/dur)*100 } });
     }
 }
@@ -1473,7 +1488,6 @@ function playMovie(idx) {
         hist.push(m.t); if(hist.length > 15) hist.shift();
         localStorage.setItem(key, JSON.stringify(hist));
         
-        // NOUVEAU : Sauvegarde Historique vers le cloud
         if(window.syncToCloud) window.syncToCloud('history', hist);
     }
     
@@ -1487,7 +1501,6 @@ function playMovie(idx) {
     document.getElementById('player-blur-bg').style.backgroundImage = "url('" + backdrop + "')";
     if(player) player.poster(backdrop); 
 
-    // Activité
     if(window.updateUserActivity) window.updateUserActivity("Regarde : " + m.t);
     
     let decodedUrl = "";
@@ -1640,6 +1653,24 @@ if ('serviceWorker' in navigator) {
             }
 
             if (playerSection && playerSection.style.display === 'block') {
+                if (player) player.userActive(true);
+
+                const active = document.activeElement;
+                const inControlBar = active && (active.closest('.vjs-control-bar') || active.classList.contains('vjs-menu-item'));
+
+                const isDown = key === 'ArrowDown' || key === 40;
+                const isUp = key === 'ArrowUp' || key === 38;
+
+                if ((isDown || isUp) && !inControlBar) {
+                    e.preventDefault();
+                    const playBtn = document.querySelector('.vjs-play-control') || document.querySelector('.vjs-button');
+                    if (playBtn) {
+                        playBtn.focus();
+                        if(typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus(playBtn);
+                    }
+                    return;
+                }
+
                 if (key === 'MediaFastForward' || key === 228 || key === 176) {
                     e.preventDefault();
                     if(player) player.currentTime(player.currentTime() + 10);
@@ -1660,17 +1691,24 @@ if ('serviceWorker' in navigator) {
                 }
 
                 if (key === 'Enter' || key === 13) {
-                    const active = document.activeElement;
-                    if (active && (active.closest('.vjs-control-bar') || active.id === 'next-episode-btn' || active.classList.contains('btn-close-player'))) {
+                    if (active && (active.closest('.vjs-control-bar') || active.id === 'next-episode-btn' || active.classList.contains('btn-close-player') || active.classList.contains('vjs-menu-item'))) {
                         return; 
                     }
+                    
                     const now = new Date().getTime();
                     if (now - lastEnterTap < 400 && now - lastEnterTap > 0) {
                         e.preventDefault();
                         if (player && player.isFullscreen()) player.exitFullscreen();
                         else if (player) player.requestFullscreen();
+                    } else {
+                        e.preventDefault();
+                        if(player) {
+                            if (player.paused()) player.play();
+                            else player.pause();
+                        }
                     }
                     lastEnterTap = now;
+                    return;
                 }
             }
 
