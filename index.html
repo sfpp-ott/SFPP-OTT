@@ -448,6 +448,19 @@
     const savedEmail = localStorage.getItem('sfpp_last_email');
     if(savedEmail) document.getElementById('user').value = savedEmail;
 
+    // --- NOUVEAU: Cloud-Sync Sécurisé (Synchronise avec le Cloud en arrière plan) ---
+    window.syncToCloud = function(type, data) {
+        const u = auth.currentUser;
+        const profileName = localStorage.getItem('sfpp_profile');
+        if(u && profileName) {
+            if (type === 'progress') {
+                update(ref(db, 'users_data/' + u.uid + '/profiles/' + profileName + '/progress'), data).catch(()=>{});
+            } else {
+                set(ref(db, 'users_data/' + u.uid + '/profiles/' + profileName + '/' + type), data).catch(()=>{});
+            }
+        }
+    };
+
     window.currentUserIP = "Inconnue";
     fetch('https://api.ipify.org?format=json').then(res => res.json()).then(data => {
         window.currentUserIP = data.ip;
@@ -529,7 +542,7 @@
             localStorage.setItem('sfpp_last_email', email);
             const exp = await verifyExpiration(u.user);
             if (!exp) { 
-                set(ref(db, 'sessions/' + u.user.uid), { deviceId: deviceId, lastLogin: Date.now(), ip: window.currentUserIP, activity: "Menu principal" }); 
+                set(ref(db, 'sessions/' + u.user.uid), { deviceId: deviceId, lastLogin: Date.now(), ip: window.currentUserIP, activity: "Connecté" }); 
             }
         }).catch(() => alert("Identifiants incorrects."));
     };
@@ -629,8 +642,21 @@
         if(user) {
             const snap = await get(ref(db, 'users_data/' + user.uid + '/expire'));
             document.getElementById('header-logo').innerHTML = 'SFPP | ' + icon + ' <span style="font-size:10px; color:#666;">(' + snap.val() + ')</span>';
+            
+            // --- NOUVEAU: TÉLÉCHARGEMENT DES DONNÉES CLOUD (1 SEULE FOIS) ---
+            get(ref(db, 'users_data/' + user.uid + '/profiles/' + name)).then((pSnap) => {
+                const pData = pSnap.val();
+                if(pData) {
+                    if(pData.progress) localStorage.setItem('sfpp_p_' + name, JSON.stringify(pData.progress));
+                    if(pData.history) localStorage.setItem('sfpp_hist_' + name, JSON.stringify(pData.history));
+                    if(pData.favs) localStorage.setItem('sfpp_fav_' + name, JSON.stringify(pData.favs));
+                }
+            }).catch(()=>{}).finally(() => {
+                render(); // Affichage du catalogue avec les données à jour
+            });
+        } else {
+            render();
         }
-        render();
     };
 
     window.logout = function() { 
@@ -1092,6 +1118,9 @@ function toggleFav(title) {
     if(favs.includes(title)) favs = favs.filter(t => t !== title);
     else favs.push(title);
     localStorage.setItem(key, JSON.stringify(favs));
+
+    // NOUVEAU : Envoi discret aux favoris Cloud
+    if(window.syncToCloud) window.syncToCloud('favs', favs);
     
     updateFavBtnUI(title);
 
@@ -1187,6 +1216,9 @@ function saveP() {
         let prog = JSON.parse(localStorage.getItem('sfpp_p_'+currentProfile) || "{}");
         prog[currentPlayingTitle] = { t: cur, p: (cur/dur)*100 };
         localStorage.setItem('sfpp_p_'+currentProfile, JSON.stringify(prog));
+
+        // NOUVEAU : Sauvegarde invisible vers le Cloud
+        if(window.syncToCloud) window.syncToCloud('progress', { [currentPlayingTitle]: { t: cur, p: (cur/dur)*100 } });
     }
 }
 
@@ -1208,13 +1240,7 @@ function render(search = "") {
 
         const s = search ? String(search).toLowerCase().trim() : "";
 
-        if(s === "admin") { 
-            isAdminMode = !isAdminMode; 
-            document.getElementById('searchBar').value = ""; 
-            window.closeSearch_internal();
-            window.showToast(isAdminMode ? "Mode Admin Activé" : "Mode Admin Désactivé"); 
-            return render(""); 
-        }
+        if(s === "admin") { isAdminMode = !isAdminMode; document.getElementById('searchBar').value = ""; window.showToast(isAdminMode ? "Mode Admin Activé" : "Mode Admin Désactivé"); return render(""); }
 
         const favs = JSON.parse(localStorage.getItem('sfpp_fav_' + currentProfile) || "[]");
         const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
@@ -1446,7 +1472,11 @@ function playMovie(idx) {
         let hist = JSON.parse(localStorage.getItem(key) || "[]").filter(t => t !== m.t);
         hist.push(m.t); if(hist.length > 15) hist.shift();
         localStorage.setItem(key, JSON.stringify(hist));
+        
+        // NOUVEAU : Sauvegarde Historique vers le cloud
+        if(window.syncToCloud) window.syncToCloud('history', hist);
     }
+    
     document.getElementById('details-overlay').style.display = 'none';
     document.getElementById('details-trailer-box').innerHTML = "";
     document.getElementById('series-overlay').style.display = 'none';
@@ -1457,7 +1487,7 @@ function playMovie(idx) {
     document.getElementById('player-blur-bg').style.backgroundImage = "url('" + backdrop + "')";
     if(player) player.poster(backdrop); 
 
-    // ENVOI DE L'ACTIVITÉ (Ne bloque pas le lecteur)
+    // Activité
     if(window.updateUserActivity) window.updateUserActivity("Regarde : " + m.t);
     
     let decodedUrl = "";
@@ -1610,27 +1640,6 @@ if ('serviceWorker' in navigator) {
             }
 
             if (playerSection && playerSection.style.display === 'block') {
-                
-                // NOUVEAU : Réveiller le lecteur à chaque appui pour garantir que la barre apparaisse sur TV
-                if (player) player.userActive(true);
-
-                const active = document.activeElement;
-                const inControlBar = active && (active.closest('.vjs-control-bar') || active.classList.contains('vjs-menu-item'));
-
-                const isDown = key === 'ArrowDown' || key === 40;
-                const isUp = key === 'ArrowUp' || key === 38;
-
-                // NOUVEAU : Forcer le focus sur la barre de contrôle avec Haut ou Bas
-                if ((isDown || isUp) && !inControlBar) {
-                    e.preventDefault();
-                    const playBtn = document.querySelector('.vjs-play-control') || document.querySelector('.vjs-button');
-                    if (playBtn) {
-                        playBtn.focus();
-                        if(typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus(playBtn);
-                    }
-                    return;
-                }
-
                 if (key === 'MediaFastForward' || key === 228 || key === 176) {
                     e.preventDefault();
                     if(player) player.currentTime(player.currentTime() + 10);
@@ -1651,27 +1660,17 @@ if ('serviceWorker' in navigator) {
                 }
 
                 if (key === 'Enter' || key === 13) {
-                    // Si on est dans le menu de contrôle (langue etc), on laisse le clic s'opérer
-                    if (active && (active.closest('.vjs-control-bar') || active.id === 'next-episode-btn' || active.classList.contains('btn-close-player') || active.classList.contains('vjs-menu-item'))) {
+                    const active = document.activeElement;
+                    if (active && (active.closest('.vjs-control-bar') || active.id === 'next-episode-btn' || active.classList.contains('btn-close-player'))) {
                         return; 
                     }
-                    
                     const now = new Date().getTime();
-                    // Double Clic : Plein Écran
                     if (now - lastEnterTap < 400 && now - lastEnterTap > 0) {
                         e.preventDefault();
                         if (player && player.isFullscreen()) player.exitFullscreen();
                         else if (player) player.requestFullscreen();
-                    } else {
-                        // Clic Simple Hors Contrôle : Pause / Lecture
-                        e.preventDefault();
-                        if(player) {
-                            if (player.paused()) player.play();
-                            else player.pause();
-                        }
                     }
                     lastEnterTap = now;
-                    return;
                 }
             }
 
