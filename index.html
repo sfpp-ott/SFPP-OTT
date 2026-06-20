@@ -142,7 +142,8 @@
 
         #expiration-banner { display: none; background: #ffcc00; color: #000; text-align: center; padding: 10px; font-size: 13px; font-weight: bold; position: relative; z-index: 1500; }
         
-        #details-overlay {
+        /* UTILISÉ POUR LES FILMS ET LES SÉRIES */
+        #details-overlay, #series-overlay {
             position: fixed; inset: 0; background: var(--bg);
             z-index: 3500; display: none; flex-direction: column; overflow-y: auto;
         }
@@ -166,7 +167,7 @@
             .trailer-box { max-width: 600px; }
         }
 
-        #details-header-bg {
+        #details-header-bg, #series-header-bg {
             position: absolute; inset: 0;
             background-size: cover; 
             background-position: center 15%; 
@@ -273,12 +274,8 @@
         .epg-info { font-size: 10px; color: #e50914; margin-top: 4px; text-align: center; font-weight: bold; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; width: 100%; }
         .epg-time { font-size: 9px; color: #777; text-align: center; display: block; }
 
-        #series-overlay { position: fixed; inset: 0; background: var(--bg); z-index: 3000; display: none; overflow-y: auto; padding: 80px 5% 40px; }
-        .overlay-header { display: flex; gap: 20px; margin-bottom: 30px; align-items: center; }
-        .overlay-img { width: 120px; border-radius: 8px; border: 1px solid #333; }
         .season-title { color: var(--accent); font-size: 18px; font-weight: bold; margin: 25px 0 10px; border-left: 3px solid var(--accent); padding-left: 10px; }
         .episode-item { background: #111; padding: 15px; border-radius: 6px; margin-bottom: 8px; cursor: pointer; display: flex; align-items: center; gap: 15px; border: 1px solid #222; }
-        .btn-close { background: #333; color: #fff; border: none; padding: 10px 22px; border-radius: 4px; cursor: pointer; }
 
         @media (max-width: 768px) {
             .card { flex: 0 0 130px; width: 130px; }
@@ -397,8 +394,33 @@
 </div>
 
 <div id="series-overlay">
-    <button class="btn-close" onclick="closeSeries_internal()" style="margin-bottom: 20px;" tabindex="0">← Retour</button>
-    <div id="series-detail-content"></div>
+    <div class="details-content">
+        <button class="btn-close-details" onclick="closeSeries_internal()" tabindex="0">✕</button>
+        <div class="details-hero">
+             <div id="series-header-bg"></div>
+        </div>
+        <div class="details-info">
+            <h2 id="series-title">Titre de la série</h2>
+            <div class="meta">
+                <span id="series-meta-year">2024</span>
+                <span id="series-meta-cat">Série</span>
+                <span id="series-stars-display" style="color:var(--gold)"></span>
+            </div>
+            <div class="details-actions">
+                <button id="series-fav-btn" class="btn-fav-details" tabindex="0">+ Ma Liste</button>
+            </div>
+            <p id="series-desc" class="synopsis"></p>
+            
+            <div class="section-label" id="series-trailer-label">Bande-annonce</div>
+            <div id="series-trailer-box" class="trailer-box"></div>
+
+            <div class="section-label" id="series-cast-label">Casting principal</div>
+            <div id="series-meta-cast" class="cast-row"></div>
+
+            <div class="section-label">Épisodes</div>
+            <div id="series-detail-content"></div>
+        </div>
+    </div>
 </div>
 
 <section id="player-section">
@@ -792,7 +814,7 @@ window.handleBackAction = function() {
     if (dOverlay && dOverlay.style.display === 'flex') { closeDetails_internal(); return; }
 
     const sOverlay = document.getElementById('series-overlay');
-    if (sOverlay && sOverlay.style.display === 'block') { closeSeries_internal(); return; }
+    if (sOverlay && sOverlay.style.display === 'flex') { closeSeries_internal(); return; }
 
     const searchOverlay = document.getElementById('search-overlay');
     if (searchOverlay && searchOverlay.style.display === 'flex') { closeSearch_internal(); return; }
@@ -823,8 +845,9 @@ window.closeDetails_internal = function() {
 
 window.closeSeries_internal = function() {
     const sOverlay = document.getElementById('series-overlay');
-    if (sOverlay && sOverlay.style.display === 'block') {
+    if (sOverlay && sOverlay.style.display === 'flex') {
         sOverlay.style.display = 'none'; 
+        document.getElementById('series-trailer-box').innerHTML = "";
         setTimeout(() => { if (typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus(); }, 100);
     }
 };
@@ -1104,6 +1127,10 @@ function updateFavBtnUI(title) {
     let favs = JSON.parse(localStorage.getItem('sfpp_fav_' + currentProfile) || "[]");
     const btn = document.getElementById('details-fav-btn');
     if(btn) { if(favs.includes(title)) btn.innerText = "❤️ Dans Ma Liste"; else btn.innerText = "+ Ma Liste"; }
+    
+    // NOUVEAU: Mettre à jour aussi le bouton dans la fenêtre Série
+    const btnSeries = document.getElementById('series-fav-btn');
+    if(btnSeries) { if(favs.includes(title)) btnSeries.innerText = "❤️ Dans Ma Liste"; else btnSeries.innerText = "+ Ma Liste"; }
 }
 
 function initProfiles() {
@@ -1215,7 +1242,6 @@ function render(search = "") {
             });
         }
 
-        // NOUVEAU : GROUPEMENT DES SÉRIES POUR L'AFFICHAGE
         let displayData = [];
         let processedSeries = new Set();
         data.forEach(m => {
@@ -1262,7 +1288,6 @@ function render(search = "") {
                         const lineInfo = m.num ? m.num : (m.original_index * 7) + 2;
                         const adminBadge = isAdminMode ? `<div style="position:absolute; top:10px; left:10px; z-index:15; background:rgba(229,9,20,0.9); padding:2px 6px; border-radius:4px; font-size:11px; font-weight:bold; border:1px solid white;">L${lineInfo}</div>` : "";
 
-                        // Affiche le nom de base si c'est une série dans l'historique
                         let displayTitle = m.t;
                         if (isSeriesCheck) {
                             let match = String(m.t).match(/(.*?)\s+-\s+S\d{2}/i);
@@ -1374,25 +1399,82 @@ function render(search = "") {
     } catch(err) {}
 }
 
+// NOUVEAU : LA FONCTION OPENSEries QUI CONSTRUIT LA PAGE AVEC LES INFOS TMDB
 function openSeries(name) {
-    const overlay = document.getElementById('series-overlay'); const content = document.getElementById('series-detail-content');
+    const overlay = document.getElementById('series-overlay'); 
+    const content = document.getElementById('series-detail-content');
+    
+    // Recherche tous les épisodes de la série
     const eps = playlistData.filter(m => {
         let isMatch = false;
         if (String(m.t).startsWith(name + " - S")) isMatch = true;
-        // Permet de matcher aussi si le nom tapé correspond exactement
         return isMatch && (m.is_series || (m.cat && m.cat.toUpperCase().includes("SÉRIES")));
     });
     
     if(!eps || eps.length === 0) return;
     
-    overlay.style.display = 'block';
-    let html = '<div class="overlay-header"><img src="' + (eps[0].img || 'https://via.placeholder.com/120x180/222/fff?text=SFPP') + '" class="overlay-img" onerror="handleImageError(this)" loading="lazy"><div><h2>' + name + '</h2></div></div>';
+    const m = eps[0]; // On récupère les données de la série (à partir du premier épisode)
     
-    const seasons = {}; const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
+    // 1. Remplir le haut de page
+    const backdrop = m.bg || m.img;
+    document.getElementById('series-header-bg').style.backgroundImage = "url('" + backdrop + "')";
+    document.getElementById('series-title').innerText = name;
+    document.getElementById('series-desc').innerText = m.desc || "Aucun résumé disponible.";
+    document.getElementById('series-meta-year').innerText = m.year || "";
+    document.getElementById('series-meta-cat').innerText = m.cat || "SÉRIES";
+
+    const note = m.note || 5; 
+    let stars = "";
+    for (let i = 0; i < 5; i++) { stars += (i < note) ? "★" : "☆"; }
+    document.getElementById('series-stars-display').innerText = stars;
+
+    // Favoris Séries
+    document.getElementById('series-fav-btn').onclick = () => { toggleFav(name); };
+    updateFavBtnUI(name);
+
+    // 2. La Bande-Annonce
+    const trailerBox = document.getElementById('series-trailer-box');
+    const trailerLabel = document.getElementById('series-trailer-label');
+    if (m.trailer && m.trailer !== "N/A") {
+        trailerLabel.style.display = 'block';
+        trailerBox.style.display = 'block';
+        trailerBox.innerHTML = '<iframe width="100%" height="100%" src="https://www.youtube.com/embed/' + m.trailer + '?rel=0&modestbranding=1&playsinline=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+    } else {
+        trailerLabel.style.display = 'none';
+        trailerBox.style.display = 'none';
+        trailerBox.innerHTML = "";
+    }
+
+    // 3. Le Casting
+    const castBox = document.getElementById('series-meta-cast');
+    const castLabel = document.getElementById('series-cast-label');
+    if (m.actors_pics && m.actors_pics.length > 0 && m.actors_pics !== "N/A") {
+        castLabel.style.display = 'block';
+        castBox.style.display = 'flex';
+        castBox.innerHTML = m.actors_pics.map(a => `
+            <div class="actor-item sn-card" onclick="searchByActor('${safeStr(a.name)}')" tabindex="0">
+                <img data-src="${a.img || 'https://via.placeholder.com/80x80/222/fff?text=?'}" class="lazy-img" onerror="handleImageError(this)">
+                <div class="actor-name">${a.name}</div>
+            </div>
+        `).join('');
+    } else {
+        castLabel.style.display = 'none';
+        castBox.style.display = 'none';
+        castBox.innerHTML = "";
+    }
+    
+    // 4. Les Épisodes
+    const seasons = {}; 
+    const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
+    
     eps.forEach(ep => {
-        const sMatch = String(ep.t).match(/S(\d{2})/i); const sNum = sMatch ? sMatch[1] : "01";
-        if(!seasons[sNum]) seasons[sNum] = []; seasons[sNum].push(ep);
+        const sMatch = String(ep.t).match(/S(\d{2})/i); 
+        const sNum = sMatch ? sMatch[1] : "01";
+        if(!seasons[sNum]) seasons[sNum] = []; 
+        seasons[sNum].push(ep);
     });
+    
+    let html = '';
     Object.keys(seasons).sort().forEach(s => {
         html += '<div class="season-title">SAISON ' + parseInt(s) + '</div>';
         seasons[s].forEach(ep => {
@@ -1404,6 +1486,13 @@ function openSeries(name) {
         });
     });
     content.innerHTML = html;
+    
+    // On affiche l'overlay avec Flex pour que la mise en page CSS fonctionne correctement
+    overlay.style.display = 'flex';
+    
+    // Charge les images des acteurs
+    document.querySelectorAll('#series-overlay .lazy-img').forEach(img => lazyImgObserver.observe(img));
+
     if (typeof updateSpatialNav === 'function') { setTimeout(updateSpatialNav, 200); }
 }
 
@@ -1417,7 +1506,9 @@ function playMovie(idx) {
         if(window.syncToCloud) window.syncToCloud('history', hist);
     }
     document.getElementById('details-overlay').style.display = 'none'; document.getElementById('details-trailer-box').innerHTML = "";
-    document.getElementById('series-overlay').style.display = 'none'; const pSection = document.getElementById('player-section'); pSection.style.display = 'block';
+    document.getElementById('series-overlay').style.display = 'none'; document.getElementById('series-trailer-box').innerHTML = "";
+    const pSection = document.getElementById('player-section'); pSection.style.display = 'block';
+    
     const backdrop = m.bg || m.img; document.getElementById('player-blur-bg').style.backgroundImage = "url('" + backdrop + "')"; if(player) player.poster(backdrop); 
 
     if(window.updateUserActivity) window.updateUserActivity("Regarde : " + m.t);
