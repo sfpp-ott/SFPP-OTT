@@ -461,12 +461,9 @@
         }
     };
 
-    // NOUVEAU : Synchronisation des noms de profils vers le Cloud
     window.syncProfilesToCloud = function(profilesArray) {
         const u = auth.currentUser;
-        if(u) {
-            set(ref(db, 'users_data/' + u.uid + '/profiles_list'), profilesArray).catch(()=>{});
-        }
+        if(u) { set(ref(db, 'users_data/' + u.uid + '/profiles_list'), profilesArray).catch(()=>{}); }
     };
 
     window.currentUserIP = "Inconnue";
@@ -491,9 +488,7 @@
 
     window.updateUserActivity = function(act) {
         const u = auth.currentUser;
-        if(u) {
-            update(ref(db, 'sessions/' + u.uid), { activity: act, lastActive: Date.now() }).catch(()=>{});
-        }
+        if(u) { update(ref(db, 'sessions/' + u.uid), { activity: act, lastActive: Date.now() }).catch(()=>{}); }
     };
 
     async function verifyExpiration(user) {
@@ -550,7 +545,7 @@
             localStorage.setItem('sfpp_last_email', email);
             const exp = await verifyExpiration(u.user);
             if (!exp) { 
-                set(ref(db, 'sessions/' + u.user.uid), { deviceId: deviceId, lastLogin: Date.now(), ip: window.currentUserIP, activity: "Connecté" }); 
+                set(ref(db, 'sessions/' + u.user.uid), { deviceId: deviceId, lastLogin: Date.now(), ip: window.currentUserIP, activity: "Menu principal" }); 
             }
         }).catch(() => alert("Identifiants incorrects."));
     };
@@ -570,11 +565,8 @@
             fetchEPG(); 
             loadPlaylist();
 
-            // NOUVEAU : Téléchargement de la liste des profils depuis le Cloud au démarrage
             const profilsSnap = await get(ref(db, 'users_data/' + user.uid + '/profiles_list'));
-            if(profilsSnap.exists()) {
-                localStorage.setItem('sfpp_profiles_data', JSON.stringify(profilsSnap.val()));
-            }
+            if(profilsSnap.exists()) { localStorage.setItem('sfpp_profiles_data', JSON.stringify(profilsSnap.val())); }
             initProfiles();
             
             const snap = await get(ref(db, 'users_data/' + user.uid + '/expire'));
@@ -664,12 +656,8 @@
                     if(pData.history) localStorage.setItem('sfpp_hist_' + name, JSON.stringify(pData.history));
                     if(pData.favs) localStorage.setItem('sfpp_fav_' + name, JSON.stringify(pData.favs));
                 }
-            }).catch(()=>{}).finally(() => {
-                render(); 
-            });
-        } else {
-            render();
-        }
+            }).catch(()=>{}).finally(() => { render(); });
+        } else { render(); }
     };
 
     window.logout = function() { 
@@ -688,10 +676,7 @@
             const reportRef = ref(db, 'signalements');
             const newReportRef = push(reportRef);
             set(newReportRef, {
-                film: title,
-                num: lineInfo || "Inconnu",
-                date: new Date().toLocaleString(),
-                signaleur: localStorage.getItem('sfpp_profile') || "Anonyme"
+                film: title, num: lineInfo || "Inconnu", date: new Date().toLocaleString(), signaleur: localStorage.getItem('sfpp_profile') || "Anonyme"
             }).then(() => alert("⚠️ Film signalé ! Merci.")).catch(() => alert("Erreur d'envoi."));
         }
     };
@@ -726,12 +711,8 @@ window.closeSystemMessage = function() {
     modal.style.display = 'none';
     const type = modal.dataset.msgType;
     const id = modal.dataset.msgId;
-    if (type === 'global') {
-        localStorage.setItem('sfpp_seen_global_msg', id);
-    } else if (type === 'private') {
-        const uid = modal.dataset.uid;
-        localStorage.setItem('sfpp_seen_private_msg_' + uid, id);
-    }
+    if (type === 'global') { localStorage.setItem('sfpp_seen_global_msg', id); } 
+    else if (type === 'private') { const uid = modal.dataset.uid; localStorage.setItem('sfpp_seen_private_msg_' + uid, id); }
     if(typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus();
 };
 
@@ -795,44 +776,26 @@ window.addEventListener('popstate', function (event) {
 
 window.handleBackAction = function() {
     const sysMsgModal = document.getElementById('system-message-modal');
-    if (sysMsgModal && sysMsgModal.style.display === 'flex') {
-        window.closeSystemMessage();
-        return;
-    }
+    if (sysMsgModal && sysMsgModal.style.display === 'flex') { window.closeSystemMessage(); return; }
 
     const customPrompt = document.getElementById('custom-prompt-modal');
-    if (customPrompt && customPrompt.style.display === 'flex') {
-        closeCustomPrompt();
-        return;
-    }
+    if (customPrompt && customPrompt.style.display === 'flex') { closeCustomPrompt(); return; }
 
     const pSection = document.getElementById('player-section');
     if (pSection && pSection.style.display === 'block') {
-        if (player && player.isFullscreen()) {
-            player.exitFullscreen();
-        } else {
-            closeP_internal();
-        }
+        if (player && player.isFullscreen()) { player.exitFullscreen(); } 
+        else { closeP_internal(); }
         return;
     }
 
     const dOverlay = document.getElementById('details-overlay');
-    if (dOverlay && dOverlay.style.display === 'flex') {
-        closeDetails_internal();
-        return;
-    }
+    if (dOverlay && dOverlay.style.display === 'flex') { closeDetails_internal(); return; }
 
     const sOverlay = document.getElementById('series-overlay');
-    if (sOverlay && sOverlay.style.display === 'block') {
-        closeSeries_internal();
-        return;
-    }
+    if (sOverlay && sOverlay.style.display === 'block') { closeSeries_internal(); return; }
 
     const searchOverlay = document.getElementById('search-overlay');
-    if (searchOverlay && searchOverlay.style.display === 'flex') {
-        closeSearch_internal();
-        return;
-    }
+    if (searchOverlay && searchOverlay.style.display === 'flex') { closeSearch_internal(); return; }
 };
 
 window.closeP_internal = function() {
@@ -841,9 +804,7 @@ window.closeP_internal = function() {
         saveP(); 
         if (player) { player.pause(); player.src(""); }
         pSection.style.display = 'none';
-        
         if(window.updateUserActivity) window.updateUserActivity("Menu principal");
-
         setTimeout(() => {
             if(typeof window.updateProgBars === 'function') window.updateProgBars();
             if (typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus();
@@ -889,18 +850,30 @@ async function fetchEPG() {
         const response = await fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent('https://iptv-org.github.io/epg/guides/fr/telerama.fr.json'));
         const data = await response.json();
         if (data && data.channels) {
-            data.channels.forEach(ch => {
-                epgData[ch.name.toUpperCase()] = ch.programs || [];
-            });
+            data.channels.forEach(ch => { epgData[ch.name.toUpperCase()] = ch.programs || []; });
             render(); 
         }
     } catch (e) {}
 }
 
+// CORRECTION PRINCIPALE : CHARGEMENT SIMULTANÉ DES DEUX FICHIERS SANS BUG
 async function loadPlaylist() { 
     try { 
-        const response = await fetch('films.json?v=' + Date.now(), { cache: "no-store" }); 
-        playlistData = await response.json(); 
+        const responseFilms = await fetch('films.json?v=' + Date.now(), { cache: "no-store" }); 
+        let filmsData = await responseFilms.json(); 
+        
+        let seriesData = [];
+        try {
+            const responseSeries = await fetch('series.json?v=' + Date.now(), { cache: "no-store" });
+            seriesData = await responseSeries.json();
+            seriesData.forEach(s => {
+                s.is_series = true;
+                if (!s.cat) s.cat = "SÉRIES";
+                else if (!s.cat.toUpperCase().includes("SÉRIES")) s.cat += ", SÉRIES";
+            });
+        } catch(se) { console.log("Pas de fichier series.json détecté pour le moment."); }
+
+        playlistData = [...filmsData, ...seriesData];
         
         const db = await dbPromise;
         const tx = db.transaction('tmdb', 'readonly');
@@ -931,15 +904,10 @@ async function loadPlaylist() {
             render(); 
             
             const loader = document.getElementById('global-loader');
-            if (loader) {
-                loader.style.opacity = '0';
-                setTimeout(() => loader.style.display = 'none', 500);
-            }
+            if (loader) { loader.style.opacity = '0'; setTimeout(() => loader.style.display = 'none', 500); }
             setTimeout(window.fetchMissingMetadata, 1000);
         };
-    } catch (e) {
-        console.error("Erreur playlist", e);
-    }
+    } catch (e) { console.error("Erreur playlist", e); }
 }
 
 window.fetchMissingMetadata = async function() {
@@ -989,15 +957,11 @@ window.fetchMissingMetadata = async function() {
         
         processedCount += batch.length;
         if (dlProgress) dlProgress.innerText = `Mise à jour: ${processedCount}/${missingMetadata.length}`;
-        
         await new Promise(r => setTimeout(r, 300));
     }
     
     if (dlProgress) dlProgress.style.display = 'none';
-
-    if (hasNewContent) {
-        render(document.getElementById('searchBar') ? document.getElementById('searchBar').value : "");
-    }
+    if (hasNewContent) { render(document.getElementById('searchBar') ? document.getElementById('searchBar').value : ""); }
 };
 
 window.updateProgBars = function() {
@@ -1009,10 +973,7 @@ window.updateProgBars = function() {
             if (prog[t] && prog[t].p > 1) {
                 let bg = card.querySelector('.prog-bg');
                 if (!bg) {
-                    bg = document.createElement('div');
-                    bg.className = 'prog-bg';
-                    bg.innerHTML = '<div class="prog-fill"></div>';
-                    card.insertBefore(bg, titleEl);
+                    bg = document.createElement('div'); bg.className = 'prog-bg'; bg.innerHTML = '<div class="prog-fill"></div>'; card.insertBefore(bg, titleEl);
                 }
                 const fill = bg.querySelector('.prog-fill');
                 if (fill) fill.style.width = prog[t].p + '%';
@@ -1089,68 +1050,46 @@ function openDetails(idx) {
     document.getElementById('details-suggestions').innerHTML = suggHtml;
 
     document.querySelectorAll('.lazy-img').forEach(img => lazyImgObserver.observe(img));
-
     document.getElementById('details-overlay').style.display = 'flex';
     document.getElementById('details-play-btn').focus();
-    
-    if (typeof updateSpatialNav === 'function') {
-        setTimeout(updateSpatialNav, 200);
-    }
+    if (typeof updateSpatialNav === 'function') { setTimeout(updateSpatialNav, 200); }
 }
 
 window.openSearch = function() { 
     document.getElementById('search-overlay').style.display = 'flex'; 
     setTimeout(() => {
         const searchInput = document.getElementById('searchBar');
-        if (searchInput) {
-            searchInput.focus(); 
-            if(typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus(searchInput);
-        }
+        if (searchInput) { searchInput.focus(); if(typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus(searchInput); }
     }, 100);
 };
 
 window.searchByActor = function(actorName) {
     window.closeDetails_internal();
-    
     document.getElementById('search-overlay').style.display = 'flex'; 
-    
     const searchBar = document.getElementById('searchBar');
     if (searchBar) {
-        searchBar.value = actorName;
-        filter(); 
-        setTimeout(() => {
-            searchBar.focus(); 
-            if(typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus(searchBar);
-        }, 100);
+        searchBar.value = actorName; filter(); 
+        setTimeout(() => { searchBar.focus(); if(typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus(searchBar); }, 100);
     }
 };
 
 function toggleFav(title) {
     let key = 'sfpp_fav_' + currentProfile;
     let favs = JSON.parse(localStorage.getItem(key) || "[]");
-    if(favs.includes(title)) favs = favs.filter(t => t !== title);
-    else favs.push(title);
+    if(favs.includes(title)) favs = favs.filter(t => t !== title); else favs.push(title);
     localStorage.setItem(key, JSON.stringify(favs));
-
     if(window.syncToCloud) window.syncToCloud('favs', favs);
-    
     updateFavBtnUI(title);
 
-    if (currentView === 'fav') {
-        render(document.getElementById('searchBar').value);
-    } else {
+    if (currentView === 'fav') { render(document.getElementById('searchBar').value); } 
+    else {
         document.querySelectorAll('.sn-card').forEach(card => {
             const nameEl = card.querySelector('.card-name');
             if (nameEl && nameEl.innerText === title) {
                 const heartBtn = card.querySelector('.btn-fav-card');
                 if (heartBtn) {
-                    if (favs.includes(title)) {
-                        heartBtn.classList.add('is-fav');
-                        heartBtn.innerText = '❤️';
-                    } else {
-                        heartBtn.classList.remove('is-fav');
-                        heartBtn.innerText = '♡';
-                    }
+                    if (favs.includes(title)) { heartBtn.classList.add('is-fav'); heartBtn.innerText = '❤️'; } 
+                    else { heartBtn.classList.remove('is-fav'); heartBtn.innerText = '♡'; }
                 }
             }
         });
@@ -1160,18 +1099,13 @@ function toggleFav(title) {
 function updateFavBtnUI(title) {
     let favs = JSON.parse(localStorage.getItem('sfpp_fav_' + currentProfile) || "[]");
     const btn = document.getElementById('details-fav-btn');
-    if(btn) {
-        if(favs.includes(title)) btn.innerText = "❤️ Dans Ma Liste";
-        else btn.innerText = "+ Ma Liste";
-    }
+    if(btn) { if(favs.includes(title)) btn.innerText = "❤️ Dans Ma Liste"; else btn.innerText = "+ Ma Liste"; }
 }
 
 function initProfiles() {
     let profiles = JSON.parse(localStorage.getItem('sfpp_profiles_data')) || [
-        { id: 1, name: "Profil 1", icon: "🟦", color: "#1e90ff" },
-        { id: 2, name: "Profil 2", icon: "🟩", color: "#2ecc71" },
-        { id: 3, name: "Profil 3", icon: "🟧", color: "#e67e22" },
-        { id: 4, name: "Profil 4", icon: "🟪", color: "#9b59b6" }
+        { id: 1, name: "Profil 1", icon: "🟦", color: "#1e90ff" }, { id: 2, name: "Profil 2", icon: "🟩", color: "#2ecc71" },
+        { id: 3, name: "Profil 3", icon: "🟧", color: "#e67e22" }, { id: 4, name: "Profil 4", icon: "🟪", color: "#9b59b6" }
     ];
     const list = document.getElementById('profile-list');
     list.innerHTML = profiles.map(p => `
@@ -1183,40 +1117,26 @@ function initProfiles() {
 }
 
 let editingProfileId = null;
-
 function handleProfileClick(id, name, icon) {
     if(isEditMode) {
-        editingProfileId = id;
-        document.getElementById('custom-prompt-input').value = name;
+        editingProfileId = id; document.getElementById('custom-prompt-input').value = name;
         document.getElementById('custom-prompt-modal').style.display = 'flex';
         setTimeout(() => document.getElementById('custom-prompt-input').focus(), 100);
-    } else {
-        selectProfile(name, icon);
-    }
+    } else { selectProfile(name, icon); }
 }
 
-window.closeCustomPrompt = function() {
-    document.getElementById('custom-prompt-modal').style.display = 'none';
-    editingProfileId = null;
-};
-
+window.closeCustomPrompt = function() { document.getElementById('custom-prompt-modal').style.display = 'none'; editingProfileId = null; };
 window.saveCustomPrompt = function() {
     let n = document.getElementById('custom-prompt-input').value;
     if(n && n.trim() !== "" && editingProfileId !== null) {
         let profiles = JSON.parse(localStorage.getItem('sfpp_profiles_data')) || [
-            { id: 1, name: "Profil 1", icon: "🟦", color: "#1e90ff" },
-            { id: 2, name: "Profil 2", icon: "🟩", color: "#2ecc71" },
-            { id: 3, name: "Profil 3", icon: "🟧", color: "#e67e22" },
-            { id: 4, name: "Profil 4", icon: "🟪", color: "#9b59b6" }
+            { id: 1, name: "Profil 1", icon: "🟦", color: "#1e90ff" }, { id: 2, name: "Profil 2", icon: "🟩", color: "#2ecc71" },
+            { id: 3, name: "Profil 3", icon: "🟧", color: "#e67e22" }, { id: 4, name: "Profil 4", icon: "🟪", color: "#9b59b6" }
         ];
         const idx = profiles.findIndex(p => p.id === editingProfileId);
         if(idx !== -1) { 
-            profiles[idx].name = n; 
-            localStorage.setItem('sfpp_profiles_data', JSON.stringify(profiles)); 
-            
-            // NOUVEAU : On sauvegarde la modification des noms de profils dans le Cloud
+            profiles[idx].name = n; localStorage.setItem('sfpp_profiles_data', JSON.stringify(profiles)); 
             if(window.syncProfilesToCloud) window.syncProfilesToCloud(profiles);
-            
             initProfiles(); 
         }
     }
@@ -1225,14 +1145,11 @@ window.saveCustomPrompt = function() {
 
 function saveP() {
     if(!currentPlayingTitle || !currentProfile) return;
-    const cur = player.currentTime();
-    const dur = player.duration();
-    
+    const cur = player.currentTime(); const dur = player.duration();
     if(dur > 0 && cur > 0) {
         let prog = JSON.parse(localStorage.getItem('sfpp_p_'+currentProfile) || "{}");
         prog[currentPlayingTitle] = { t: cur, p: (cur/dur)*100 };
         localStorage.setItem('sfpp_p_'+currentProfile, JSON.stringify(prog));
-
         if(window.syncToCloud) window.syncToCloud('progress', { [currentPlayingTitle]: { t: cur, p: (cur/dur)*100 } });
     }
 }
@@ -1241,37 +1158,47 @@ window.scrollSide = function(btn, amt) { const car = btn.parentElement.querySele
 
 let searchTimeout;
 window.debounceSearch = function() {
-    clearTimeout(searchTimeout);
-    searchTimeout = setTimeout(() => { filter(); }, 400); 
+    clearTimeout(searchTimeout); searchTimeout = setTimeout(() => { filter(); }, 400); 
 };
 
+// CORRECTION DU FILTRE: SEPARATION HERMÉTIQUE DES FILMS ET DES SÉRIES
 function render(search = "") {
     try {
         const cont = document.getElementById('categories-container');
         const histSec = document.getElementById('history-sec');
         const histCont = document.getElementById('history-container');
-        
         if(!cont) return;
 
         const s = search ? String(search).toLowerCase().trim() : "";
 
-        if(s === "admin") { isAdminMode = !isAdminMode; document.getElementById('searchBar').value = ""; window.showToast(isAdminMode ? "Mode Admin Activé" : "Mode Admin Désactivé"); return render(""); }
+        if(s === "admin") { 
+            isAdminMode = !isAdminMode; document.getElementById('searchBar').value = ""; 
+            window.closeSearch_internal(); window.showToast(isAdminMode ? "Mode Admin Activé" : "Mode Admin Désactivé"); return render(""); 
+        }
+        if(s === "msg_global") {
+            document.getElementById('searchBar').value = ""; window.closeSearch_internal();
+            document.getElementById('admin-msg-modal').style.display = 'flex';
+            setTimeout(() => { const input = document.getElementById('admin-msg-input'); if(input) { input.focus(); if(typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus(input); } }, 100);
+            return render("");
+        }
+        if(s === "msg_clear") { document.getElementById('searchBar').value = ""; window.closeSearch_internal(); if (window.deleteGlobalMessage) { window.deleteGlobalMessage(); } return render(""); }
 
         const favs = JSON.parse(localStorage.getItem('sfpp_fav_' + currentProfile) || "[]");
         const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
         
         let data = playlistData || [];
-        if(currentView === 'movies') data = data.filter(m => m.cat && !m.cat.includes("SÉRIES"));
-        else if(currentView === 'series') data = data.filter(m => m.cat && m.cat.includes("SÉRIES"));
+        
+        // LE COEUR DU FILTRE : Tri strict par onglet
+        if(currentView === 'movies') data = data.filter(m => m.cat && !m.cat.toUpperCase().includes("SÉRIES") && !m.is_series);
+        else if(currentView === 'series') data = data.filter(m => (m.cat && m.cat.toUpperCase().includes("SÉRIES")) || m.is_series);
         else if(currentView === 'fav') data = data.filter(m => m.t && favs.includes(m.t));
+        else if(currentView === 'all') data = data.filter(m => m.cat && !m.cat.toUpperCase().includes("SÉRIES") && !m.is_series); // Bloque l'affichage des séries sur la page d'accueil !
 
         if (s !== "") {
             data = data.filter(m => {
                 if (m.t && String(m.t).toLowerCase().includes(s)) return true;
                 if (m.year && String(m.year).includes(s)) return true;
-                if (m.actors_pics && Array.isArray(m.actors_pics)) {
-                    if (m.actors_pics.some(a => a.name && String(a.name).toLowerCase().includes(s))) return true;
-                }
+                if (m.actors_pics && Array.isArray(m.actors_pics)) { if (m.actors_pics.some(a => a.name && String(a.name).toLowerCase().includes(s))) return true; }
                 return false;
             });
         }
@@ -1286,15 +1213,10 @@ function render(search = "") {
                     if(m) {
                         const isTV = m.cat && (m.cat.toUpperCase().includes("DIRECT") || m.cat.toUpperCase().includes("TV"));
                         const clickAction = isTV ? "playMovie(" + playlistData.indexOf(m) + ")" : "openDetails(" + playlistData.indexOf(m) + ")";
-                        const is_fav = favs.includes(m.t);
-                        const heartClass = is_fav ? 'is-fav' : '';
-                        const heartIcon = is_fav ? '❤️' : '♡';
+                        const is_fav = favs.includes(m.t); const heartClass = is_fav ? 'is-fav' : ''; const heartIcon = is_fav ? '❤️' : '♡';
                         const pct = (prog[m.t] && prog[m.t].p > 1) ? '<div class="prog-bg"><div class="prog-fill" style="width:' + prog[m.t].p + '%"></div></div>' : "";
-
-                        let m_stars = "";
-                        for (let i = 0; i < 5; i++) { m_stars += (i < (m.note || 5)) ? "★" : "☆"; }
+                        let m_stars = ""; for (let i = 0; i < 5; i++) { m_stars += (i < (m.note || 5)) ? "★" : "☆"; }
                         const ratingHtml = !isTV ? '<div class="card-rating">' + m_stars + '</div>' : "";
-
                         const lineInfo = m.num ? m.num : (m.original_index * 7) + 2;
                         const adminBadge = isAdminMode ? `<div style="position:absolute; top:10px; left:10px; z-index:15; background:rgba(229,9,20,0.9); padding:2px 6px; border-radius:4px; font-size:11px; font-weight:bold; border:1px solid white;">L${lineInfo}</div>` : "";
 
@@ -1308,12 +1230,8 @@ function render(search = "") {
                             </div>`;
                     }
                 });
-            } else if (histSec) {
-                histSec.style.display = "none";
-            }
-        } else if (histSec) {
-            histSec.style.display = "none";
-        }
+            } else if (histSec) { histSec.style.display = "none"; }
+        } else if (histSec) { histSec.style.display = "none"; }
         if (histCont) histCont.innerHTML = histHtml;
 
         let finalHTML = "";
@@ -1323,16 +1241,11 @@ function render(search = "") {
                 let htmlTout = '<div class="category-title">RÉSULTATS DE RECHERCHE</div><div class="category-row"><div class="nav-arrow arrow-left" onclick="window.scrollSide(this, -400)">‹</div><div class="carousel">';
                 data.forEach(m => {
                     const isTVCat = m.cat && (m.cat.toUpperCase().includes("DIRECT") || m.cat.toUpperCase().includes("TV"));
-                    const is_fav = favs.includes(m.t);
-                    const heartClass = is_fav ? 'is-fav' : '';
-                    const heartIcon = is_fav ? '❤️' : '♡';
+                    const is_fav = favs.includes(m.t); const heartClass = is_fav ? 'is-fav' : ''; const heartIcon = is_fav ? '❤️' : '♡';
                     const clickAction = isTVCat ? "playMovie(" + playlistData.indexOf(m) + ")" : "openDetails(" + playlistData.indexOf(m) + ")";
                     const pct = (prog[m.t] && prog[m.t].p > 1) ? '<div class="prog-bg"><div class="prog-fill" style="width:' + prog[m.t].p + '%"></div></div>' : "";
-                    
-                    let m_stars = "";
-                    for (let i = 0; i < 5; i++) { m_stars += (i < (m.note || 5)) ? "★" : "☆"; }
+                    let m_stars = ""; for (let i = 0; i < 5; i++) { m_stars += (i < (m.note || 5)) ? "★" : "☆"; }
                     const ratingHtml = !isTVCat ? '<div class="card-rating">' + m_stars + '</div>' : "";
-
                     const lineInfo = m.num ? m.num : (m.original_index * 7) + 2;
                     const adminBadge = isAdminMode ? `<div style="position:absolute; top:10px; left:10px; z-index:15; background:rgba(229,9,20,0.9); padding:2px 6px; border-radius:4px; font-size:11px; font-weight:bold; border:1px solid white;">L${lineInfo}</div>` : "";
 
@@ -1345,27 +1258,19 @@ function render(search = "") {
                             <div class="card-name">${m.t}</div>
                         </div>`;
                 });
-                htmlTout += '</div><div class="nav-arrow arrow-right" onclick="window.scrollSide(this, 400)">›</div></div>';
-                finalHTML += htmlTout;
-            } else {
-                finalHTML = '<div style="text-align:center; margin-top:50px; color:#888;">Aucun résultat trouvé.</div>';
-            }
+                htmlTout += '</div><div class="nav-arrow arrow-right" onclick="window.scrollSide(this, 400)">›</div></div>'; finalHTML += htmlTout;
+            } else { finalHTML = '<div style="text-align:center; margin-top:50px; color:#888;">Aucun résultat trouvé.</div>'; }
         } 
         else {
             if (data.length > 0) {
-                let htmlTout = '<div class="category-title">TOUT</div><div class="category-row"><div class="nav-arrow arrow-left" onclick="window.scrollSide(this, -400)">‹</div><div class="carousel">';
+                let htmlTout = '<div class="category-title">' + (currentView === 'series' ? 'TOUTES LES SÉRIES' : 'TOUT') + '</div><div class="category-row"><div class="nav-arrow arrow-left" onclick="window.scrollSide(this, -400)">‹</div><div class="carousel">';
                 data.forEach(m => {
                     const isTVCat = m.cat && (m.cat.toUpperCase().includes("DIRECT") || m.cat.toUpperCase().includes("TV"));
-                    const is_fav = favs.includes(m.t);
-                    const heartClass = is_fav ? 'is-fav' : '';
-                    const heartIcon = is_fav ? '❤️' : '♡';
+                    const is_fav = favs.includes(m.t); const heartClass = is_fav ? 'is-fav' : ''; const heartIcon = is_fav ? '❤️' : '♡';
                     const clickAction = isTVCat ? "playMovie(" + playlistData.indexOf(m) + ")" : "openDetails(" + playlistData.indexOf(m) + ")";
                     const pct = (prog[m.t] && prog[m.t].p > 1) ? '<div class="prog-bg"><div class="prog-fill" style="width:' + prog[m.t].p + '%"></div></div>' : "";
-                    
-                    let m_stars = "";
-                    for (let i = 0; i < 5; i++) { m_stars += (i < (m.note || 5)) ? "★" : "☆"; }
+                    let m_stars = ""; for (let i = 0; i < 5; i++) { m_stars += (i < (m.note || 5)) ? "★" : "☆"; }
                     const ratingHtml = !isTVCat ? '<div class="card-rating">' + m_stars + '</div>' : "";
-
                     const lineInfo = m.num ? m.num : (m.original_index * 7) + 2;
                     const adminBadge = isAdminMode ? `<div style="position:absolute; top:10px; left:10px; z-index:15; background:rgba(229,9,20,0.9); padding:2px 6px; border-radius:4px; font-size:11px; font-weight:bold; border:1px solid white;">L${lineInfo}</div>` : "";
 
@@ -1378,8 +1283,7 @@ function render(search = "") {
                             <div class="card-name">${m.t}</div>
                         </div>`;
                 });
-                htmlTout += '</div><div class="nav-arrow arrow-right" onclick="window.scrollSide(this, 400)">›</div></div>';
-                finalHTML += htmlTout;
+                htmlTout += '</div><div class="nav-arrow arrow-right" onclick="window.scrollSide(this, 400)">›</div></div>'; finalHTML += htmlTout;
             }
 
             const allGenres = [];
@@ -1391,22 +1295,15 @@ function render(search = "") {
             });
 
             allGenres.sort().forEach(c => {
-                const filtered = data.filter(m => m.cat && m.cat.toUpperCase().includes(c));
-                if (filtered.length === 0) return;
+                const filtered = data.filter(m => m.cat && m.cat.toUpperCase().includes(c)); if (filtered.length === 0) return;
                 const isTVCat = c.includes("DIRECT") || c.includes("TV");
-                
                 let html = '<div class="category-title">' + c + '</div><div class="category-row"><div class="nav-arrow arrow-left" onclick="window.scrollSide(this, -400)">‹</div><div class="carousel">';
                 filtered.forEach(m => {
-                    const is_fav = favs.includes(m.t);
-                    const heartClass = is_fav ? 'is-fav' : '';
-                    const heartIcon = is_fav ? '❤️' : '♡';
+                    const is_fav = favs.includes(m.t); const heartClass = is_fav ? 'is-fav' : ''; const heartIcon = is_fav ? '❤️' : '♡';
                     const clickAction = isTVCat ? "playMovie(" + playlistData.indexOf(m) + ")" : "openDetails(" + playlistData.indexOf(m) + ")";
                     const pct = (prog[m.t] && prog[m.t].p > 1) ? '<div class="prog-bg"><div class="prog-fill" style="width:' + prog[m.t].p + '%"></div></div>' : "";
-                    
-                    let m_stars = "";
-                    for (let i = 0; i < 5; i++) { m_stars += (i < (m.note || 5)) ? "★" : "☆"; }
+                    let m_stars = ""; for (let i = 0; i < 5; i++) { m_stars += (i < (m.note || 5)) ? "★" : "☆"; }
                     const ratingHtml = !isTVCat ? '<div class="card-rating">' + m_stars + '</div>' : "";
-
                     const lineInfo = m.num ? m.num : (m.original_index * 7) + 2;
                     const adminBadge = isAdminMode ? `<div style="position:absolute; top:10px; left:10px; z-index:15; background:rgba(229,9,20,0.9); padding:2px 6px; border-radius:4px; font-size:11px; font-weight:bold; border:1px solid white;">L${lineInfo}</div>` : "";
 
@@ -1419,122 +1316,73 @@ function render(search = "") {
                             <div class="card-name">${m.t}</div>
                         </div>`;
                 });
-                html += '</div><div class="nav-arrow arrow-right" onclick="window.scrollSide(this, 400)">›</div></div>';
-                finalHTML += html;
+                html += '</div><div class="nav-arrow arrow-right" onclick="window.scrollSide(this, 400)">›</div></div>'; finalHTML += html;
             });
         }
-
         cont.innerHTML = finalHTML;
-
         document.querySelectorAll('.lazy-img').forEach(img => lazyImgObserver.observe(img));
-
-        if (typeof updateSpatialNav === 'function') {
-            setTimeout(updateSpatialNav, 200);
-        }
+        if (typeof updateSpatialNav === 'function') { setTimeout(updateSpatialNav, 200); }
     } catch(err) {}
 }
 
 function openSeries(name) {
-    const overlay = document.getElementById('series-overlay');
-    const content = document.getElementById('series-detail-content');
-    const eps = playlistData.filter(m => String(m.t).startsWith(name));
-    if(!eps || eps.length === 0) return;
-    
+    const overlay = document.getElementById('series-overlay'); const content = document.getElementById('series-detail-content');
+    const eps = playlistData.filter(m => String(m.t).startsWith(name)); if(!eps || eps.length === 0) return;
     overlay.style.display = 'block';
     let html = '<div class="overlay-header"><img src="' + (eps[0].img || 'https://via.placeholder.com/120x180/222/fff?text=SFPP') + '" class="overlay-img" onerror="handleImageError(this)" loading="lazy"><div><h2>' + name + '</h2></div></div>';
-    
-    const seasons = {};
-    const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
+    const seasons = {}; const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
     eps.forEach(ep => {
-        const sMatch = String(ep.t).match(/S(\d{2})/);
-        const sNum = sMatch ? sMatch[1] : "01";
-        if(!seasons[sNum]) seasons[sNum] = [];
-        seasons[sNum].push(ep);
+        const sMatch = String(ep.t).match(/S(\d{2})/); const sNum = sMatch ? sMatch[1] : "01";
+        if(!seasons[sNum]) seasons[sNum] = []; seasons[sNum].push(ep);
     });
-    
     Object.keys(seasons).sort().forEach(s => {
         html += '<div class="season-title">SAISON ' + s + '</div>';
         seasons[s].forEach(ep => {
             const epName = String(ep.t).split(' - ')[1] || ep.t;
             const pct = (prog[ep.t] && prog[ep.t].p > 1) ? '<div style="height:3px; background:#444; width:100px; margin-top:5px;"><div style="height:100%; background:var(--accent); width:' + prog[ep.t].p + '%"></div></div>' : "";
             html += `<div class="episode-item sn-card" onclick="playMovie(${playlistData.indexOf(ep)});" tabindex="0">
-                        <div style="flex:1"><b>${epName}</b>${pct}</div>
-                        <div style="color:var(--accent)">LECTURE ▶</div>
+                        <div style="flex:1"><b>${epName}</b>${pct}</div><div style="color:var(--accent)">LECTURE ▶</div>
                      </div>`;
         });
     });
     content.innerHTML = html;
-    
-    if (typeof updateSpatialNav === 'function') {
-        setTimeout(updateSpatialNav, 200);
-    }
+    if (typeof updateSpatialNav === 'function') { setTimeout(updateSpatialNav, 200); }
 }
 
 function playMovie(idx) {
-    const m = playlistData[idx];
-    if(!m) return;
-    currentPlayingTitle = m.t;
-    document.getElementById('next-episode-btn').style.display = 'none';
-
-    if(player) {
-        player.pause();
-        player.src("");
-        player.load();
-    }
-
+    const m = playlistData[idx]; if(!m) return;
+    currentPlayingTitle = m.t; document.getElementById('next-episode-btn').style.display = 'none';
+    if(player) { player.pause(); player.src(""); player.load(); }
     if(currentProfile) {
-        let key = 'sfpp_hist_' + currentProfile;
-        let hist = JSON.parse(localStorage.getItem(key) || "[]").filter(t => t !== m.t);
-        hist.push(m.t); if(hist.length > 15) hist.shift();
-        localStorage.setItem(key, JSON.stringify(hist));
-        
+        let key = 'sfpp_hist_' + currentProfile; let hist = JSON.parse(localStorage.getItem(key) || "[]").filter(t => t !== m.t);
+        hist.push(m.t); if(hist.length > 15) hist.shift(); localStorage.setItem(key, JSON.stringify(hist));
         if(window.syncToCloud) window.syncToCloud('history', hist);
     }
-    
-    document.getElementById('details-overlay').style.display = 'none';
-    document.getElementById('details-trailer-box').innerHTML = "";
-    document.getElementById('series-overlay').style.display = 'none';
-    const pSection = document.getElementById('player-section');
-    pSection.style.display = 'block';
-    
-    const backdrop = m.bg || m.img;
-    document.getElementById('player-blur-bg').style.backgroundImage = "url('" + backdrop + "')";
-    if(player) player.poster(backdrop); 
+    document.getElementById('details-overlay').style.display = 'none'; document.getElementById('details-trailer-box').innerHTML = "";
+    document.getElementById('series-overlay').style.display = 'none'; const pSection = document.getElementById('player-section'); pSection.style.display = 'block';
+    const backdrop = m.bg || m.img; document.getElementById('player-blur-bg').style.backgroundImage = "url('" + backdrop + "')"; if(player) player.poster(backdrop); 
 
     if(window.updateUserActivity) window.updateUserActivity("Regarde : " + m.t);
-    
-    let decodedUrl = "";
-    try { decodedUrl = window.atob(m.url); } catch(e) { decodedUrl = m.url; }
-
+    let decodedUrl = ""; try { decodedUrl = window.atob(m.url); } catch(e) { decodedUrl = m.url; }
     const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
     let type = String(decodedUrl).includes('.m3u8') ? 'application/x-mpegURL' : 'video/mp4';
 
     if(player) {
         player.src({ src: decodedUrl, type: type });
-        player.ready(function() {
-            if(prog[m.t] && prog[m.t].t > 10) {
-                player.currentTime(prog[m.t].t);
-            }
-            player.play();
-        });
+        player.ready(function() { if(prog[m.t] && prog[m.t].t > 10) { player.currentTime(prog[m.t].t); } player.play(); });
     }
 }
 
 function playNextEpisode() {
-    const parts = String(currentPlayingTitle).match(/(.*[SE])(\d+)(.*)/i);
-    if (!parts) return;
+    const parts = String(currentPlayingTitle).match(/(.*[SE])(\d+)(.*)/i); if (!parts) return;
     const nextTitleSearch = (parts[1] + (parseInt(parts[2]) + 1).toString().padStart(2, '0')).toUpperCase();
-    const nextIdx = playlistData.findIndex(m => String(m.t).toUpperCase().includes(nextTitleSearch));
-    if (nextIdx !== -1) playMovie(nextIdx);
+    const nextIdx = playlistData.findIndex(m => String(m.t).toUpperCase().includes(nextTitleSearch)); if (nextIdx !== -1) playMovie(nextIdx);
 }
 
 function changeView(v) { 
-    currentView = v; 
-    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active')); 
-    document.getElementById('btn-'+v).classList.add('active'); 
-    const cont = document.getElementById('categories-container');
-    cont.innerHTML = '<div style="text-align:center; margin-top:50px; color:#888;">Chargement...</div>';
-    setTimeout(render, 50);
+    currentView = v; document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active')); 
+    document.getElementById('btn-'+v).classList.add('active'); const cont = document.getElementById('categories-container');
+    cont.innerHTML = '<div style="text-align:center; margin-top:50px; color:#888;">Chargement...</div>'; setTimeout(render, 50);
 }
 
 function filter() { render(document.getElementById('searchBar').value); }
@@ -1543,73 +1391,33 @@ function switchProfile() { localStorage.removeItem('sfpp_profile'); location.rel
 function requestAccess() { window.location.href = "mailto:sfpp.ott@gmail.com"; }
 
 document.addEventListener('DOMContentLoaded', () => {
-    player = videojs('main-video', { 
-        controls: true, fluid: false,
-        techOrder: ['chromecast', 'html5'], 
-        plugins: { chromecast: { addButtonToControlBar: true, addDisplayOnControlBar: true } }
-    });
-
-    let lastTap = 0;
-    const videoContainer = document.getElementById('video-container');
-
+    player = videojs('main-video', { controls: true, fluid: false, techOrder: ['chromecast', 'html5'], plugins: { chromecast: { addButtonToControlBar: true, addDisplayOnControlBar: true } } });
+    let lastTap = 0; const videoContainer = document.getElementById('video-container');
     videoContainer.addEventListener('touchend', function(e) {
-        const now = new Date().getTime();
-        const timesince = now - lastTap;
-        if ((timesince < 350) && (timesince > 0)) {
-            if (player.isFullscreen()) player.exitFullscreen();
-            else player.requestFullscreen();
-            e.preventDefault();
-        }
-        lastTap = now;
+        const now = new Date().getTime(); const timesince = now - lastTap;
+        if ((timesince < 350) && (timesince > 0)) { if (player.isFullscreen()) player.exitFullscreen(); else player.requestFullscreen(); e.preventDefault(); } lastTap = now;
     });
-
-    player.on('dblclick', function() {
-        if (player.isFullscreen()) player.exitFullscreen();
-        else player.requestFullscreen();
-    });
-
+    player.on('dblclick', function() { if (player.isFullscreen()) player.exitFullscreen(); else player.requestFullscreen(); });
     const Button = videojs.getComponent('Button');
     class Back extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-replay-10'; } handleClick() { player.currentTime(player.currentTime()-10); } }
     class Forward extends Button { buildCSSClass() { return 'vjs-skip-button vjs-icon-forward-10'; } handleClick() { player.currentTime(player.currentTime()+10); } }
     videojs.registerComponent('Back', Back); videojs.registerComponent('Forward', Forward);
     
     player.ready(() => { 
-        player.getChild('controlBar').addChild('Back', {}, 1); 
-        player.getChild('controlBar').addChild('Forward', {}, 2); 
-        
-        player.on('useractive', function() {
-            const btnClose = document.querySelector('.btn-close-player');
-            if(btnClose) btnClose.classList.remove('hidden');
-        });
-        player.on('userinactive', function() {
-            const btnClose = document.querySelector('.btn-close-player');
-            if(btnClose) btnClose.classList.add('hidden');
-        });
-
-        player.on('loadeddata', () => {
-            setTimeout(() => {
-                document.querySelectorAll('.vjs-progress-control, .vjs-slider, .vjs-progress-holder').forEach(el => {
-                    if(el.hasAttribute('tabindex')) el.setAttribute('tabindex', '-1');
-                });
-            }, 500);
-        });
+        player.getChild('controlBar').addChild('Back', {}, 1); player.getChild('controlBar').addChild('Forward', {}, 2); 
+        player.on('useractive', function() { const btnClose = document.querySelector('.btn-close-player'); if(btnClose) btnClose.classList.remove('hidden'); });
+        player.on('userinactive', function() { const btnClose = document.querySelector('.btn-close-player'); if(btnClose) btnClose.classList.add('hidden'); });
+        player.on('loadeddata', () => { setTimeout(() => { document.querySelectorAll('.vjs-progress-control, .vjs-slider, .vjs-progress-holder').forEach(el => { if(el.hasAttribute('tabindex')) el.setAttribute('tabindex', '-1'); }); }, 500); });
     });
-
     player.on('timeupdate', function() {
         const dur = player.duration(), cur = player.currentTime();
-        if (/S\d{2}E\d{2}/i.test(currentPlayingTitle) && dur > 0 && (dur - cur) < 80) {
-            document.getElementById('next-episode-btn').style.display = 'block';
-        } else document.getElementById('next-episode-btn').style.display = 'none';
-        
+        if (/S\d{2}E\d{2}/i.test(currentPlayingTitle) && dur > 0 && (dur - cur) < 80) { document.getElementById('next-episode-btn').style.display = 'block'; } 
+        else document.getElementById('next-episode-btn').style.display = 'none';
         if(Math.floor(cur) % 5 === 0) saveP();
     });
 });
 
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js').catch(err => {});
-    });
-}
+if ('serviceWorker' in navigator) { window.addEventListener('load', () => { navigator.serviceWorker.register('./sw.js').catch(err => {}); }); }
 </script>
 
     <script src="https://cdn.jsdelivr.net/npm/spatial-navigation-js@1.0.1/spatial_navigation.min.js"></script>
@@ -1617,168 +1425,68 @@ if ('serviceWorker' in navigator) {
         function updateSpatialNav() {
             if (typeof SpatialNavigation === 'undefined') return;
             try {
-                SpatialNavigation.clear();
-                SpatialNavigation.init();
-                SpatialNavigation.add({
-                    selector: '.nav-btn, .sn-card, .actor-item, .episode-item, .profile-item, button, input, .vjs-button, .vjs-menu-item',
-                    rememberSource: true
-                });
+                SpatialNavigation.clear(); SpatialNavigation.init();
+                SpatialNavigation.add({ selector: '.nav-btn, .sn-card, .actor-item, .episode-item, .profile-item, button, input, .vjs-button, .vjs-menu-item', rememberSource: true });
                 SpatialNavigation.makeFocusable();
             } catch(e) {}
         }
 
-        window.addEventListener('load', function() {
-            if (typeof SpatialNavigation !== 'undefined') {
-                updateSpatialNav();
-            }
-        });
-
+        window.addEventListener('load', function() { if (typeof SpatialNavigation !== 'undefined') { updateSpatialNav(); } });
         let lastEnterTap = 0;
 
         window.addEventListener('keydown', function(e) {
-            const loginScreen = document.getElementById('login-screen');
-            const profileScreen = document.getElementById('profile-screen');
-            const customPrompt = document.getElementById('custom-prompt-modal');
-            const playerSection = document.getElementById('player-section');
+            const loginScreen = document.getElementById('login-screen'); const profileScreen = document.getElementById('profile-screen');
+            const customPrompt = document.getElementById('custom-prompt-modal'); const playerSection = document.getElementById('player-section');
             const sysMsgModal = document.getElementById('system-message-modal');
-            
             const key = e.key || e.keyCode;
 
-            if (sysMsgModal && sysMsgModal.style.display === 'flex') {
-                if (key === 'Enter' || key === 13) {
-                    window.closeSystemMessage();
-                    e.preventDefault();
-                }
-                return; 
-            }
+            if (sysMsgModal && sysMsgModal.style.display === 'flex') { if (key === 'Enter' || key === 13) { window.closeSystemMessage(); e.preventDefault(); } return; }
 
             if (playerSection && playerSection.style.display === 'block') {
                 if (player) player.userActive(true);
-
-                const active = document.activeElement;
-                const inControlBar = active && (active.closest('.vjs-control-bar') || active.classList.contains('vjs-menu-item'));
-
-                const isDown = key === 'ArrowDown' || key === 40;
-                const isUp = key === 'ArrowUp' || key === 38;
+                const active = document.activeElement; const inControlBar = active && (active.closest('.vjs-control-bar') || active.classList.contains('vjs-menu-item'));
+                const isDown = key === 'ArrowDown' || key === 40; const isUp = key === 'ArrowUp' || key === 38;
 
                 if ((isDown || isUp) && !inControlBar) {
-                    e.preventDefault();
-                    const playBtn = document.querySelector('.vjs-play-control') || document.querySelector('.vjs-button');
-                    if (playBtn) {
-                        playBtn.focus();
-                        if(typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus(playBtn);
-                    }
-                    return;
+                    e.preventDefault(); const playBtn = document.querySelector('.vjs-play-control') || document.querySelector('.vjs-button');
+                    if (playBtn) { playBtn.focus(); if(typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus(playBtn); } return;
                 }
-
-                if (key === 'MediaFastForward' || key === 228 || key === 176) {
-                    e.preventDefault();
-                    if(player) player.currentTime(player.currentTime() + 10);
-                    return;
-                }
-                if (key === 'MediaTrackPrevious' || key === 'MediaRewind' || key === 227 || key === 177) {
-                    e.preventDefault();
-                    if(player) player.currentTime(player.currentTime() - 10);
-                    return;
-                }
-                if (key === 'MediaPlayPause' || key === 179) {
-                    e.preventDefault();
-                    if(player) {
-                        if (player.paused()) player.play();
-                        else player.pause();
-                    }
-                    return;
-                }
+                if (key === 'MediaFastForward' || key === 228 || key === 176) { e.preventDefault(); if(player) player.currentTime(player.currentTime() + 10); return; }
+                if (key === 'MediaTrackPrevious' || key === 'MediaRewind' || key === 227 || key === 177) { e.preventDefault(); if(player) player.currentTime(player.currentTime() - 10); return; }
+                if (key === 'MediaPlayPause' || key === 179) { e.preventDefault(); if(player) { if (player.paused()) player.play(); else player.pause(); } return; }
 
                 if (key === 'Enter' || key === 13) {
-                    if (active && (active.closest('.vjs-control-bar') || active.id === 'next-episode-btn' || active.classList.contains('btn-close-player') || active.classList.contains('vjs-menu-item'))) {
-                        return; 
-                    }
-                    
+                    if (active && (active.closest('.vjs-control-bar') || active.id === 'next-episode-btn' || active.classList.contains('btn-close-player'))) { return; }
                     const now = new Date().getTime();
                     if (now - lastEnterTap < 400 && now - lastEnterTap > 0) {
-                        e.preventDefault();
-                        if (player && player.isFullscreen()) player.exitFullscreen();
-                        else if (player) player.requestFullscreen();
-                    } else {
-                        e.preventDefault();
-                        if(player) {
-                            if (player.paused()) player.play();
-                            else player.pause();
-                        }
-                    }
-                    lastEnterTap = now;
-                    return;
+                        e.preventDefault(); if (player && player.isFullscreen()) player.exitFullscreen(); else if (player) player.requestFullscreen();
+                    } else { e.preventDefault(); if(player) { if (player.paused()) player.play(); else player.pause(); } }
+                    lastEnterTap = now; return;
                 }
             }
 
-            if ((loginScreen && loginScreen.style.display !== 'none') ||
-                (profileScreen && profileScreen.style.display !== 'none') ||
-                (customPrompt && customPrompt.style.display !== 'none')) {
-                return;
-            }
+            if ((loginScreen && loginScreen.style.display !== 'none') || (profileScreen && profileScreen.style.display !== 'none') || (customPrompt && customPrompt.style.display !== 'none')) { return; }
 
             if (key === 'Escape' || key === 27 || key === 'GoBack' || key === 'BrowserBack' || e.keyCode === 10009 || e.keyCode === 4 || e.keyCode === 461) {
-                const isInput = document.activeElement && document.activeElement.tagName === 'INPUT';
-                if ((key === 'Backspace' || key === 8) && isInput) {
-                    return; 
-                }
-
-                e.preventDefault();
-                e.stopPropagation();
-                
-                if (document.activeElement) document.activeElement.blur();
-                
-                if (document.getElementById('player-section').style.display === 'block' && player && player.isFullscreen()) {
-                    player.exitFullscreen();
-                    return;
-                }
-                
-                window.handleBackAction();
-                return;
+                const isInput = document.activeElement && document.activeElement.tagName === 'INPUT'; if ((key === 'Backspace' || key === 8) && isInput) return;
+                e.preventDefault(); e.stopPropagation(); if (document.activeElement) document.activeElement.blur();
+                if (document.getElementById('player-section').style.display === 'block' && player && player.isFullscreen()) { player.exitFullscreen(); return; }
+                window.handleBackAction(); return;
             }
 
-            if (key === 'Backspace' || key === 8) {
-                if (document.activeElement && document.activeElement.tagName === 'INPUT') return; 
-                e.preventDefault();
-                window.handleBackAction();
-                return;
-            }
+            if (key === 'Backspace' || key === 8) { if (document.activeElement && document.activeElement.tagName === 'INPUT') return; e.preventDefault(); window.handleBackAction(); return; }
 
-            const isDown = key === 'ArrowDown' || key === 40;
-            const isUp = key === 'ArrowUp' || key === 38;
-            const isRight = key === 'ArrowRight' || key === 39;
-            const isLeft = key === 'ArrowLeft' || key === 37;
-
+            const isDown = key === 'ArrowDown' || key === 40; const isUp = key === 'ArrowUp' || key === 38;
+            const isRight = key === 'ArrowRight' || key === 39; const isLeft = key === 'ArrowLeft' || key === 37;
             const active = document.activeElement;
-
-            const validRows = Array.from(document.querySelectorAll('.category-row')).filter(row => {
-                return row.offsetParent !== null && row.querySelectorAll('.sn-card').length > 0;
-            });
+            const validRows = Array.from(document.querySelectorAll('.category-row')).filter(row => { return row.offsetParent !== null && row.querySelectorAll('.sn-card').length > 0; });
 
             if (isDown && active && active.closest('header')) {
-                e.preventDefault();
-                e.stopImmediatePropagation();
+                e.preventDefault(); e.stopImmediatePropagation();
                 if (validRows.length > 0) {
-                    const firstRow = validRows[0];
-                    const carousel = firstRow.querySelector('.carousel');
-                    const cards = Array.from(firstRow.querySelectorAll('.sn-card'));
-                    let targetCard = cards[0];
-
-                    if (carousel) {
-                        const scrollLeft = carousel.scrollLeft;
-                        for (let card of cards) {
-                            if (card.offsetLeft + (card.offsetWidth / 2) >= scrollLeft) {
-                                targetCard = card;
-                                break;
-                            }
-                        }
-                    }
-
-                    if (targetCard) {
-                        targetCard.focus();
-                        if (typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus(targetCard);
-                    }
+                    const firstRow = validRows[0]; const carousel = firstRow.querySelector('.carousel'); const cards = Array.from(firstRow.querySelectorAll('.sn-card')); let targetCard = cards[0];
+                    if (carousel) { const scrollLeft = carousel.scrollLeft; for (let card of cards) { if (card.offsetLeft + (card.offsetWidth / 2) >= scrollLeft) { targetCard = card; break; } } }
+                    if (targetCard) { targetCard.focus(); if (typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus(targetCard); }
                 }
                 return;
             }
@@ -1787,50 +1495,20 @@ if ('serviceWorker' in navigator) {
                 const currentRow = active.closest('.category-row');
                 if (currentRow) {
                     const currentIndex = validRows.indexOf(currentRow);
-
                     if (isUp && currentIndex === 0) {
-                        e.preventDefault();
-                        e.stopImmediatePropagation();
-                        const activeNav = document.querySelector('.nav-btn.active') || document.querySelector('.nav-btn');
-                        if (activeNav) {
-                            activeNav.focus();
-                            if(typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus(activeNav);
-                        }
-                        return;
+                        e.preventDefault(); e.stopImmediatePropagation(); const activeNav = document.querySelector('.nav-btn.active') || document.querySelector('.nav-btn');
+                        if (activeNav) { activeNav.focus(); if(typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus(activeNav); } return;
                     }
-
-                    let targetRow = null;
-                    if (isDown && currentIndex !== -1 && currentIndex < validRows.length - 1) {
-                        targetRow = validRows[currentIndex + 1];
-                    } else if (isUp && currentIndex > 0) {
-                        targetRow = validRows[currentIndex - 1];
-                    }
+                    let targetRow = null; if (isDown && currentIndex !== -1 && currentIndex < validRows.length - 1) { targetRow = validRows[currentIndex + 1]; } else if (isUp && currentIndex > 0) { targetRow = validRows[currentIndex - 1]; }
 
                     if (targetRow) {
-                        e.preventDefault();
-                        e.stopImmediatePropagation();
-                        
-                        const carousel = targetRow.querySelector('.carousel');
-                        const cards = Array.from(targetRow.querySelectorAll('.sn-card'));
-                        
+                        e.preventDefault(); e.stopImmediatePropagation(); const carousel = targetRow.querySelector('.carousel'); const cards = Array.from(targetRow.querySelectorAll('.sn-card'));
                         if (cards.length > 0) {
                             let bestCard = cards[0];
-                            if (carousel) {
-                                const scrollLeft = carousel.scrollLeft;
-                                for (let card of cards) {
-                                    if (card.offsetLeft + (card.offsetWidth / 2) >= scrollLeft) {
-                                        bestCard = card;
-                                        break;
-                                    }
-                                }
-                            }
-                            bestCard.focus();
-                            if(typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus(bestCard);
+                            if (carousel) { const scrollLeft = carousel.scrollLeft; for (let card of cards) { if (card.offsetLeft + (card.offsetWidth / 2) >= scrollLeft) { bestCard = card; break; } } }
+                            bestCard.focus(); if(typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus(bestCard);
                         }
-                    } else if (isDown && currentIndex === validRows.length - 1) {
-                        e.preventDefault();
-                        e.stopImmediatePropagation();
-                    }
+                    } else if (isDown && currentIndex === validRows.length - 1) { e.preventDefault(); e.stopImmediatePropagation(); }
                 }
                 return;
             }
@@ -1838,22 +1516,9 @@ if ('serviceWorker' in navigator) {
             if ((isRight || isLeft) && active && active.classList.contains('sn-card')) {
                 const carousel = active.closest('.carousel, .cast-row');
                 if (carousel) {
-                    const cards = Array.from(carousel.querySelectorAll('.sn-card, .actor-item'));
-                    const currentIndex = cards.indexOf(active);
-                    
-                    if (isRight && currentIndex < cards.length - 1) {
-                        e.preventDefault();
-                        e.stopImmediatePropagation();
-                        cards[currentIndex + 1].focus();
-                        if(typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus(cards[currentIndex + 1]);
-                        return;
-                    } else if (isLeft && currentIndex > 0) {
-                        e.preventDefault();
-                        e.stopImmediatePropagation();
-                        cards[currentIndex - 1].focus();
-                        if(typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus(cards[currentIndex - 1]);
-                        return;
-                    }
+                    const cards = Array.from(carousel.querySelectorAll('.sn-card, .actor-item')); const currentIndex = cards.indexOf(active);
+                    if (isRight && currentIndex < cards.length - 1) { e.preventDefault(); e.stopImmediatePropagation(); cards[currentIndex + 1].focus(); if(typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus(cards[currentIndex + 1]); return; } 
+                    else if (isLeft && currentIndex > 0) { e.preventDefault(); e.stopImmediatePropagation(); cards[currentIndex - 1].focus(); if(typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus(cards[currentIndex - 1]); return; }
                 }
             }
         }, { capture: true });
@@ -1861,14 +1526,9 @@ if ('serviceWorker' in navigator) {
         document.addEventListener('focus', function(e) {
             if (e.target && e.target.classList && (e.target.classList.contains('sn-card') || e.target.classList.contains('actor-item'))) {
                 const carousel = e.target.closest('.carousel, .cast-row');
-                if (carousel) {
-                    const offset = e.target.offsetLeft - (carousel.clientWidth / 2) + (e.target.clientWidth / 2);
-                    try { carousel.scrollTo({ left: offset, behavior: 'smooth' }); } 
-                    catch(err) { carousel.scrollLeft = offset; }
-                }
+                if (carousel) { const offset = e.target.offsetLeft - (carousel.clientWidth / 2) + (e.target.clientWidth / 2); try { carousel.scrollTo({ left: offset, behavior: 'smooth' }); } catch(err) { carousel.scrollLeft = offset; } }
             }
         }, true);
     </script>
-
 </body>
 </html>
