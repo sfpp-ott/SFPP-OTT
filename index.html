@@ -856,7 +856,6 @@ async function fetchEPG() {
     } catch (e) {}
 }
 
-// CORRECTION PRINCIPALE : CHARGEMENT SIMULTANÉ DES DEUX FICHIERS SANS BUG
 async function loadPlaylist() { 
     try { 
         const responseFilms = await fetch('films.json?v=' + Date.now(), { cache: "no-store" }); 
@@ -927,15 +926,20 @@ window.fetchMissingMetadata = async function() {
         const batch = missingMetadata.slice(i, i + BATCH_SIZE);
         await Promise.all(batch.map(async (m) => {
             try {
-                const url = "https://api.themoviedb.org/3/movie/" + m.id_tmdb + "?api_key=" + apiKey + "&language=fr-FR&append_to_response=videos,credits&include_video_language=en,fr,null";
+                const isSeries = m.is_series || (m.cat && m.cat.toUpperCase().includes("SÉRIES"));
+                const tmdbType = isSeries ? "tv" : "movie";
+                
+                const url = `https://api.themoviedb.org/3/${tmdbType}/${m.id_tmdb}?api_key=${apiKey}&language=fr-FR&append_to_response=videos,credits`;
                 const res = await fetch(url);
                 if (!res.ok) return;
                 const data = await res.json();
                 
-                m.img = m.img || "https://image.tmdb.org/t/p/w500" + data.poster_path;
-                m.bg = m.bg || "https://image.tmdb.org/t/p/original" + data.backdrop_path;
+                m.img = m.img || (data.poster_path ? "https://image.tmdb.org/t/p/w500" + data.poster_path : null);
+                m.bg = m.bg || (data.backdrop_path ? "https://image.tmdb.org/t/p/original" + data.backdrop_path : null);
                 m.desc = m.desc || data.overview;
-                m.year = m.year || (data.release_date ? data.release_date.split('-')[0] : "2025");
+                
+                let dateStr = data.release_date || data.first_air_date;
+                m.year = m.year || (dateStr ? dateStr.split('-')[0] : "2025");
                 m.note = m.note || Math.round(data.vote_average / 2);
 
                 if (data.genres && data.genres.length > 0) m.cat = data.genres.map(g => g.name.toUpperCase()).join(', ');
@@ -1025,7 +1029,7 @@ function openDetails(idx) {
 
     const primaryCat = m.cat ? m.cat.split(',')[0].trim() : "ACTION";
     const suggs = playlistData
-        .filter(item => item.cat && item.cat.includes(primaryCat) && item.t !== m.t)
+        .filter(item => item.cat && item.cat.includes(primaryCat) && item.t !== m.t && !item.is_series && !item.cat.toUpperCase().includes("SÉRIES"))
         .sort(() => 0.5 - Math.random())
         .slice(0, 6);
     
@@ -1161,7 +1165,6 @@ window.debounceSearch = function() {
     clearTimeout(searchTimeout); searchTimeout = setTimeout(() => { filter(); }, 400); 
 };
 
-// CORRECTION DU FILTRE: SEPARATION HERMÉTIQUE DES FILMS ET DES SÉRIES
 function render(search = "") {
     try {
         const cont = document.getElementById('categories-container');
@@ -1188,11 +1191,20 @@ function render(search = "") {
         
         let data = playlistData || [];
         
-        // LE COEUR DU FILTRE : Tri strict par onglet
         if(currentView === 'movies') data = data.filter(m => m.cat && !m.cat.toUpperCase().includes("SÉRIES") && !m.is_series);
         else if(currentView === 'series') data = data.filter(m => (m.cat && m.cat.toUpperCase().includes("SÉRIES")) || m.is_series);
-        else if(currentView === 'fav') data = data.filter(m => m.t && favs.includes(m.t));
-        else if(currentView === 'all') data = data.filter(m => m.cat && !m.cat.toUpperCase().includes("SÉRIES") && !m.is_series); // Bloque l'affichage des séries sur la page d'accueil !
+        else if(currentView === 'fav') {
+            data = data.filter(m => {
+                const isSeries = m.is_series || (m.cat && m.cat.toUpperCase().includes("SÉRIES"));
+                if (isSeries) {
+                    let match = String(m.t).match(/(.*?)\s+-\s+S\d{2}/i);
+                    let baseName = match ? match[1].trim() : String(m.t).split(' - ')[0].trim();
+                    return favs.includes(baseName) || favs.includes(m.t);
+                }
+                return m.t && favs.includes(m.t);
+            });
+        }
+        else if(currentView === 'all') data = data.filter(m => m.cat && !m.cat.toUpperCase().includes("SÉRIES") && !m.is_series);
 
         if (s !== "") {
             data = data.filter(m => {
@@ -1203,6 +1215,26 @@ function render(search = "") {
             });
         }
 
+        // NOUVEAU : GROUPEMENT DES SÉRIES POUR L'AFFICHAGE
+        let displayData = [];
+        let processedSeries = new Set();
+        data.forEach(m => {
+            const isSeries = m.is_series || (m.cat && m.cat.toUpperCase().includes("SÉRIES"));
+            if (isSeries) {
+                let match = String(m.t).match(/(.*?)\s+-\s+S\d{2}/i);
+                let baseName = match ? match[1].trim() : String(m.t).split(' - ')[0].trim();
+                if (!processedSeries.has(baseName)) {
+                    processedSeries.add(baseName);
+                    let seriesCard = Object.assign({}, m);
+                    seriesCard.t = baseName; 
+                    seriesCard.is_grouped_series = true;
+                    displayData.push(seriesCard);
+                }
+            } else {
+                displayData.push(m);
+            }
+        });
+
         let histHtml = "";
         if(currentProfile && s === "" && currentView === 'all') {
             let history = JSON.parse(localStorage.getItem('sfpp_hist_' + currentProfile) || "[]");
@@ -1212,7 +1244,17 @@ function render(search = "") {
                     const m = playlistData.find(item => item.t === title);
                     if(m) {
                         const isTV = m.cat && (m.cat.toUpperCase().includes("DIRECT") || m.cat.toUpperCase().includes("TV"));
-                        const clickAction = isTV ? "playMovie(" + playlistData.indexOf(m) + ")" : "openDetails(" + playlistData.indexOf(m) + ")";
+                        
+                        let clickAction = "";
+                        const isSeriesCheck = m.is_series || (m.cat && m.cat.toUpperCase().includes("SÉRIES"));
+                        if (isSeriesCheck) {
+                            let match = String(m.t).match(/(.*?)\s+-\s+S\d{2}/i);
+                            let baseName = match ? match[1].trim() : String(m.t).split(' - ')[0].trim();
+                            clickAction = `openSeries('${safeStr(baseName)}')`;
+                        } else {
+                            clickAction = isTV ? `playMovie(${m.original_index})` : `openDetails(${m.original_index})`;
+                        }
+
                         const is_fav = favs.includes(m.t); const heartClass = is_fav ? 'is-fav' : ''; const heartIcon = is_fav ? '❤️' : '♡';
                         const pct = (prog[m.t] && prog[m.t].p > 1) ? '<div class="prog-bg"><div class="prog-fill" style="width:' + prog[m.t].p + '%"></div></div>' : "";
                         let m_stars = ""; for (let i = 0; i < 5; i++) { m_stars += (i < (m.note || 5)) ? "★" : "☆"; }
@@ -1220,13 +1262,20 @@ function render(search = "") {
                         const lineInfo = m.num ? m.num : (m.original_index * 7) + 2;
                         const adminBadge = isAdminMode ? `<div style="position:absolute; top:10px; left:10px; z-index:15; background:rgba(229,9,20,0.9); padding:2px 6px; border-radius:4px; font-size:11px; font-weight:bold; border:1px solid white;">L${lineInfo}</div>` : "";
 
+                        // Affiche le nom de base si c'est une série dans l'historique
+                        let displayTitle = m.t;
+                        if (isSeriesCheck) {
+                            let match = String(m.t).match(/(.*?)\s+-\s+S\d{2}/i);
+                            displayTitle = match ? match[1].trim() : String(m.t).split(' - ')[0].trim();
+                        }
+
                         histHtml += `
                             <div class="card sn-card ${isTV ? "landscape" : ""}" tabindex="0" onclick="${clickAction}">
                                 ${adminBadge}
-                                <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${safeStr(m.t)}');">${heartIcon}</div>
+                                <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${safeStr(displayTitle)}');">${heartIcon}</div>
                                 ${ratingHtml}
                                 <img data-src="${m.img || 'https://via.placeholder.com/150x225/222/fff?text=SFPP'}" class="lazy-img" onerror="handleImageError(this)">${pct}
-                                <div class="card-name">${m.t}</div>
+                                <div class="card-name">${displayTitle}</div>
                             </div>`;
                     }
                 });
@@ -1237,12 +1286,12 @@ function render(search = "") {
         let finalHTML = "";
 
         if (s !== "") {
-            if (data.length > 0) {
+            if (displayData.length > 0) {
                 let htmlTout = '<div class="category-title">RÉSULTATS DE RECHERCHE</div><div class="category-row"><div class="nav-arrow arrow-left" onclick="window.scrollSide(this, -400)">‹</div><div class="carousel">';
-                data.forEach(m => {
+                displayData.forEach(m => {
                     const isTVCat = m.cat && (m.cat.toUpperCase().includes("DIRECT") || m.cat.toUpperCase().includes("TV"));
                     const is_fav = favs.includes(m.t); const heartClass = is_fav ? 'is-fav' : ''; const heartIcon = is_fav ? '❤️' : '♡';
-                    const clickAction = isTVCat ? "playMovie(" + playlistData.indexOf(m) + ")" : "openDetails(" + playlistData.indexOf(m) + ")";
+                    const clickAction = m.is_grouped_series ? `openSeries('${safeStr(m.t)}')` : (isTVCat ? `playMovie(${m.original_index})` : `openDetails(${m.original_index})`);
                     const pct = (prog[m.t] && prog[m.t].p > 1) ? '<div class="prog-bg"><div class="prog-fill" style="width:' + prog[m.t].p + '%"></div></div>' : "";
                     let m_stars = ""; for (let i = 0; i < 5; i++) { m_stars += (i < (m.note || 5)) ? "★" : "☆"; }
                     const ratingHtml = !isTVCat ? '<div class="card-rating">' + m_stars + '</div>' : "";
@@ -1262,12 +1311,12 @@ function render(search = "") {
             } else { finalHTML = '<div style="text-align:center; margin-top:50px; color:#888;">Aucun résultat trouvé.</div>'; }
         } 
         else {
-            if (data.length > 0) {
+            if (displayData.length > 0) {
                 let htmlTout = '<div class="category-title">' + (currentView === 'series' ? 'TOUTES LES SÉRIES' : 'TOUT') + '</div><div class="category-row"><div class="nav-arrow arrow-left" onclick="window.scrollSide(this, -400)">‹</div><div class="carousel">';
-                data.forEach(m => {
+                displayData.forEach(m => {
                     const isTVCat = m.cat && (m.cat.toUpperCase().includes("DIRECT") || m.cat.toUpperCase().includes("TV"));
                     const is_fav = favs.includes(m.t); const heartClass = is_fav ? 'is-fav' : ''; const heartIcon = is_fav ? '❤️' : '♡';
-                    const clickAction = isTVCat ? "playMovie(" + playlistData.indexOf(m) + ")" : "openDetails(" + playlistData.indexOf(m) + ")";
+                    const clickAction = m.is_grouped_series ? `openSeries('${safeStr(m.t)}')` : (isTVCat ? `playMovie(${m.original_index})` : `openDetails(${m.original_index})`);
                     const pct = (prog[m.t] && prog[m.t].p > 1) ? '<div class="prog-bg"><div class="prog-fill" style="width:' + prog[m.t].p + '%"></div></div>' : "";
                     let m_stars = ""; for (let i = 0; i < 5; i++) { m_stars += (i < (m.note || 5)) ? "★" : "☆"; }
                     const ratingHtml = !isTVCat ? '<div class="card-rating">' + m_stars + '</div>' : "";
@@ -1287,7 +1336,7 @@ function render(search = "") {
             }
 
             const allGenres = [];
-            data.forEach(m => { 
+            displayData.forEach(m => { 
                 if(m.cat) { 
                     const genres = String(m.cat).split(',').map(g => g.trim().toUpperCase()); 
                     genres.forEach(g => { if(g && !allGenres.includes(g)) allGenres.push(g); }); 
@@ -1295,12 +1344,12 @@ function render(search = "") {
             });
 
             allGenres.sort().forEach(c => {
-                const filtered = data.filter(m => m.cat && m.cat.toUpperCase().includes(c)); if (filtered.length === 0) return;
+                const filtered = displayData.filter(m => m.cat && m.cat.toUpperCase().includes(c)); if (filtered.length === 0) return;
                 const isTVCat = c.includes("DIRECT") || c.includes("TV");
                 let html = '<div class="category-title">' + c + '</div><div class="category-row"><div class="nav-arrow arrow-left" onclick="window.scrollSide(this, -400)">‹</div><div class="carousel">';
                 filtered.forEach(m => {
                     const is_fav = favs.includes(m.t); const heartClass = is_fav ? 'is-fav' : ''; const heartIcon = is_fav ? '❤️' : '♡';
-                    const clickAction = isTVCat ? "playMovie(" + playlistData.indexOf(m) + ")" : "openDetails(" + playlistData.indexOf(m) + ")";
+                    const clickAction = m.is_grouped_series ? `openSeries('${safeStr(m.t)}')` : (isTVCat ? `playMovie(${m.original_index})` : `openDetails(${m.original_index})`);
                     const pct = (prog[m.t] && prog[m.t].p > 1) ? '<div class="prog-bg"><div class="prog-fill" style="width:' + prog[m.t].p + '%"></div></div>' : "";
                     let m_stars = ""; for (let i = 0; i < 5; i++) { m_stars += (i < (m.note || 5)) ? "★" : "☆"; }
                     const ratingHtml = !isTVCat ? '<div class="card-rating">' + m_stars + '</div>' : "";
@@ -1327,21 +1376,30 @@ function render(search = "") {
 
 function openSeries(name) {
     const overlay = document.getElementById('series-overlay'); const content = document.getElementById('series-detail-content');
-    const eps = playlistData.filter(m => String(m.t).startsWith(name)); if(!eps || eps.length === 0) return;
+    const eps = playlistData.filter(m => {
+        let isMatch = false;
+        if (String(m.t).startsWith(name + " - S")) isMatch = true;
+        // Permet de matcher aussi si le nom tapé correspond exactement
+        return isMatch && (m.is_series || (m.cat && m.cat.toUpperCase().includes("SÉRIES")));
+    });
+    
+    if(!eps || eps.length === 0) return;
+    
     overlay.style.display = 'block';
     let html = '<div class="overlay-header"><img src="' + (eps[0].img || 'https://via.placeholder.com/120x180/222/fff?text=SFPP') + '" class="overlay-img" onerror="handleImageError(this)" loading="lazy"><div><h2>' + name + '</h2></div></div>';
+    
     const seasons = {}; const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
     eps.forEach(ep => {
-        const sMatch = String(ep.t).match(/S(\d{2})/); const sNum = sMatch ? sMatch[1] : "01";
+        const sMatch = String(ep.t).match(/S(\d{2})/i); const sNum = sMatch ? sMatch[1] : "01";
         if(!seasons[sNum]) seasons[sNum] = []; seasons[sNum].push(ep);
     });
     Object.keys(seasons).sort().forEach(s => {
-        html += '<div class="season-title">SAISON ' + s + '</div>';
+        html += '<div class="season-title">SAISON ' + parseInt(s) + '</div>';
         seasons[s].forEach(ep => {
-            const epName = String(ep.t).split(' - ')[1] || ep.t;
+            const epNameDisplay = String(ep.t).split(' - ')[1] || ep.t;
             const pct = (prog[ep.t] && prog[ep.t].p > 1) ? '<div style="height:3px; background:#444; width:100px; margin-top:5px;"><div style="height:100%; background:var(--accent); width:' + prog[ep.t].p + '%"></div></div>' : "";
-            html += `<div class="episode-item sn-card" onclick="playMovie(${playlistData.indexOf(ep)});" tabindex="0">
-                        <div style="flex:1"><b>${epName}</b>${pct}</div><div style="color:var(--accent)">LECTURE ▶</div>
+            html += `<div class="episode-item sn-card" onclick="playMovie(${ep.original_index});" tabindex="0">
+                        <div style="flex:1"><b>${epNameDisplay}</b>${pct}</div><div style="color:var(--accent)">LECTURE ▶</div>
                      </div>`;
         });
     });
