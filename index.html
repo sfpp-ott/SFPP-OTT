@@ -142,7 +142,6 @@
 
         #expiration-banner { display: none; background: #ffcc00; color: #000; text-align: center; padding: 10px; font-size: 13px; font-weight: bold; position: relative; z-index: 1500; }
         
-        /* UTILISÉ POUR LES FILMS ET LES SÉRIES */
         #details-overlay, #series-overlay {
             position: fixed; inset: 0; background: var(--bg);
             z-index: 3500; display: none; flex-direction: column; overflow-y: auto;
@@ -1128,7 +1127,6 @@ function updateFavBtnUI(title) {
     const btn = document.getElementById('details-fav-btn');
     if(btn) { if(favs.includes(title)) btn.innerText = "❤️ Dans Ma Liste"; else btn.innerText = "+ Ma Liste"; }
     
-    // NOUVEAU: Mettre à jour aussi le bouton dans la fenêtre Série
     const btnSeries = document.getElementById('series-fav-btn');
     if(btnSeries) { if(favs.includes(title)) btnSeries.innerText = "❤️ Dans Ma Liste"; else btnSeries.innerText = "+ Ma Liste"; }
 }
@@ -1399,12 +1397,10 @@ function render(search = "") {
     } catch(err) {}
 }
 
-// NOUVEAU : LA FONCTION OPENSEries QUI CONSTRUIT LA PAGE AVEC LES INFOS TMDB
 function openSeries(name) {
     const overlay = document.getElementById('series-overlay'); 
     const content = document.getElementById('series-detail-content');
     
-    // Recherche tous les épisodes de la série
     const eps = playlistData.filter(m => {
         let isMatch = false;
         if (String(m.t).startsWith(name + " - S")) isMatch = true;
@@ -1413,9 +1409,8 @@ function openSeries(name) {
     
     if(!eps || eps.length === 0) return;
     
-    const m = eps[0]; // On récupère les données de la série (à partir du premier épisode)
+    const m = eps[0]; 
     
-    // 1. Remplir le haut de page
     const backdrop = m.bg || m.img;
     document.getElementById('series-header-bg').style.backgroundImage = "url('" + backdrop + "')";
     document.getElementById('series-title').innerText = name;
@@ -1428,11 +1423,9 @@ function openSeries(name) {
     for (let i = 0; i < 5; i++) { stars += (i < note) ? "★" : "☆"; }
     document.getElementById('series-stars-display').innerText = stars;
 
-    // Favoris Séries
     document.getElementById('series-fav-btn').onclick = () => { toggleFav(name); };
     updateFavBtnUI(name);
 
-    // 2. La Bande-Annonce
     const trailerBox = document.getElementById('series-trailer-box');
     const trailerLabel = document.getElementById('series-trailer-label');
     if (m.trailer && m.trailer !== "N/A") {
@@ -1445,7 +1438,6 @@ function openSeries(name) {
         trailerBox.innerHTML = "";
     }
 
-    // 3. Le Casting
     const castBox = document.getElementById('series-meta-cast');
     const castLabel = document.getElementById('series-cast-label');
     if (m.actors_pics && m.actors_pics.length > 0 && m.actors_pics !== "N/A") {
@@ -1463,7 +1455,6 @@ function openSeries(name) {
         castBox.innerHTML = "";
     }
     
-    // 4. Les Épisodes
     const seasons = {}; 
     const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
     
@@ -1487,13 +1478,23 @@ function openSeries(name) {
     });
     content.innerHTML = html;
     
-    // On affiche l'overlay avec Flex pour que la mise en page CSS fonctionne correctement
     overlay.style.display = 'flex';
-    
-    // Charge les images des acteurs
     document.querySelectorAll('#series-overlay .lazy-img').forEach(img => lazyImgObserver.observe(img));
 
-    if (typeof updateSpatialNav === 'function') { setTimeout(updateSpatialNav, 200); }
+    // NOUVEAU : On force le focus sur le premier élément de la page série pour débloquer la télécommande !
+    if (typeof updateSpatialNav === 'function') { 
+        setTimeout(() => {
+            updateSpatialNav();
+            const firstEp = document.querySelector('#series-detail-content .episode-item');
+            if(firstEp) {
+                firstEp.focus();
+                SpatialNavigation.focus(firstEp);
+            } else {
+                const favBtn = document.getElementById('series-fav-btn');
+                if(favBtn) { favBtn.focus(); SpatialNavigation.focus(favBtn); }
+            }
+        }, 200); 
+    }
 }
 
 function playMovie(idx) {
@@ -1583,6 +1584,7 @@ if ('serviceWorker' in navigator) { window.addEventListener('load', () => { navi
         window.addEventListener('load', function() { if (typeof SpatialNavigation !== 'undefined') { updateSpatialNav(); } });
         let lastEnterTap = 0;
 
+        // CORRECTION DE LA TÉLÉCOMMANDE SUR LA PAGE SÉRIE
         window.addEventListener('keydown', function(e) {
             const loginScreen = document.getElementById('login-screen'); const profileScreen = document.getElementById('profile-screen');
             const customPrompt = document.getElementById('custom-prompt-modal'); const playerSection = document.getElementById('player-section');
@@ -1605,7 +1607,7 @@ if ('serviceWorker' in navigator) { window.addEventListener('load', () => { navi
                 if (key === 'MediaPlayPause' || key === 179) { e.preventDefault(); if(player) { if (player.paused()) player.play(); else player.pause(); } return; }
 
                 if (key === 'Enter' || key === 13) {
-                    if (active && (active.closest('.vjs-control-bar') || active.id === 'next-episode-btn' || active.classList.contains('btn-close-player'))) { return; }
+                    if (active && (active.closest('.vjs-control-bar') || active.id === 'next-episode-btn' || active.classList.contains('btn-close-player') || active.classList.contains('vjs-menu-item'))) { return; }
                     const now = new Date().getTime();
                     if (now - lastEnterTap < 400 && now - lastEnterTap > 0) {
                         e.preventDefault(); if (player && player.isFullscreen()) player.exitFullscreen(); else if (player) player.requestFullscreen();
@@ -1642,6 +1644,8 @@ if ('serviceWorker' in navigator) { window.addEventListener('load', () => { navi
 
             if ((isUp || isDown) && active && active.classList.contains('sn-card')) {
                 const currentRow = active.closest('.category-row');
+                
+                // Si on est dans une ligne de l'accueil (carousel)
                 if (currentRow) {
                     const currentIndex = validRows.indexOf(currentRow);
                     if (isUp && currentIndex === 0) {
@@ -1658,8 +1662,10 @@ if ('serviceWorker' in navigator) { window.addEventListener('load', () => { navi
                             bestCard.focus(); if(typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus(bestCard);
                         }
                     } else if (isDown && currentIndex === validRows.length - 1) { e.preventDefault(); e.stopImmediatePropagation(); }
+                    
+                    return; // On a géré le mouvement de l'accueil, on s'arrête là.
                 }
-                return;
+                // Si on n'est PAS sur l'accueil (donc on est dans les séries ou le casting), on laisse la navigation standard faire le travail !
             }
 
             if ((isRight || isLeft) && active && active.classList.contains('sn-card')) {
@@ -1668,6 +1674,7 @@ if ('serviceWorker' in navigator) { window.addEventListener('load', () => { navi
                     const cards = Array.from(carousel.querySelectorAll('.sn-card, .actor-item')); const currentIndex = cards.indexOf(active);
                     if (isRight && currentIndex < cards.length - 1) { e.preventDefault(); e.stopImmediatePropagation(); cards[currentIndex + 1].focus(); if(typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus(cards[currentIndex + 1]); return; } 
                     else if (isLeft && currentIndex > 0) { e.preventDefault(); e.stopImmediatePropagation(); cards[currentIndex - 1].focus(); if(typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus(cards[currentIndex - 1]); return; }
+                    return;
                 }
             }
         }, { capture: true });
