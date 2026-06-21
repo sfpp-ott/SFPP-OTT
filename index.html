@@ -203,6 +203,15 @@
             border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 14px;
         }
 
+        /* NOUVEAU BOUTON SIGNALER EPISODE */
+        .btn-report-ep {
+            background: #222; border: 1px solid #444; color: #bbb; padding: 6px 12px; 
+            border-radius: 4px; cursor: pointer; font-size: 11px; font-weight: bold; transition: 0.2s;
+        }
+        .btn-report-ep:focus, .btn-report-ep.sn-focused {
+            background: #e50914 !important; color: white !important; border-color: white !important; transform: scale(1.1); outline: none;
+        }
+
         .section-label { font-weight: bold; color: white; margin: 30px 0 15px; font-size: 18px; border-left: 4px solid var(--accent); padding-left: 10px; }
         .trailer-box { width: 100%; max-width: 800px; aspect-ratio: 16/9; background: #000; border-radius: 8px; margin-bottom: 25px; overflow: hidden; border: 1px solid #333; transform: translate3d(0,0,0); -webkit-transform: translate3d(0,0,0); backface-visibility: hidden; }
         .trailer-box iframe { width: 100%; height: 100%; background: #000; }
@@ -407,6 +416,7 @@
             </div>
             <div class="details-actions">
                 <button id="series-fav-btn" class="btn-fav-details" tabindex="0">+ Ma Liste</button>
+                <button id="series-report-btn" class="btn-report-hs" tabindex="0">⚠️ Signaler</button>
             </div>
             <p id="series-desc" class="synopsis"></p>
             
@@ -692,9 +702,9 @@
         }); 
     };
 
-    // NOUVEAU : Envoi de l'e-mail du compte avec le signalement
+    // CORRECTION DU MESSAGE D'ALERTE POUR QU'IL SOIT GÉNÉRIQUE (Film/Série)
     window.reportFilm = (title, lineInfo) => {
-        if(confirm("Voulez-vous vraiment signaler ce film comme hors service ?")) {
+        if(confirm("Voulez-vous vraiment signaler '" + title + "' comme hors service ?")) {
             const reportRef = ref(db, 'signalements');
             const newReportRef = push(reportRef);
             const userMail = localStorage.getItem('sfpp_last_email') || "Email inconnu";
@@ -706,7 +716,7 @@
                 date: new Date().toLocaleString(), 
                 signaleur: nomProfil, 
                 email: userMail
-            }).then(() => alert("⚠️ Film signalé ! Merci.")).catch(() => alert("Erreur d'envoi."));
+            }).then(() => alert("⚠️ Contenu signalé ! Merci.")).catch(() => alert("Erreur d'envoi."));
         }
     };
 </script>
@@ -1452,7 +1462,10 @@ function openSeries(name) {
     for (let i = 0; i < 5; i++) { stars += (i < note) ? "★" : "☆"; }
     document.getElementById('series-stars-display').innerText = stars;
 
+    // Favoris et Signalement général de la série
     document.getElementById('series-fav-btn').onclick = () => { toggleFav(name); };
+    const lineInfoSeries = m.num ? m.num : (m.original_index * 7) + 2;
+    document.getElementById('series-report-btn').onclick = () => { window.reportFilm(name, lineInfoSeries); };
     updateFavBtnUI(name);
 
     const trailerBox = document.getElementById('series-trailer-box');
@@ -1500,8 +1513,12 @@ function openSeries(name) {
         seasons[s].forEach(ep => {
             const epNameDisplay = String(ep.t).split(' - ')[1] || ep.t;
             const pct = (prog[ep.t] && prog[ep.t].p > 1) ? '<div style="height:3px; background:#444; width:100px; margin-top:5px;"><div style="height:100%; background:var(--accent); width:' + prog[ep.t].p + '%"></div></div>' : "";
+            const lineInfoEp = ep.num ? ep.num : (ep.original_index * 7) + 2;
+            
             html += `<div class="episode-item sn-card" onclick="playMovie(${ep.original_index});" tabindex="0">
-                        <div style="flex:1"><b>${epNameDisplay}</b>${pct}</div><div style="color:var(--accent)">LECTURE ▶</div>
+                        <div style="flex:1"><b>${epNameDisplay}</b>${pct}</div>
+                        <button class="btn-report-ep" onclick="event.stopPropagation(); window.reportFilm('${safeStr(ep.t)}', ${lineInfoEp});" tabindex="0" title="Signaler cet épisode">⚠️</button>
+                        <div style="color:var(--accent); font-weight:bold; margin-left:15px;">▶</div>
                      </div>`;
         });
     });
@@ -1693,7 +1710,7 @@ if ('serviceWorker' in navigator) { window.addEventListener('load', () => { navi
                 }
             }
 
-            if ((isRight || isLeft) && active && active.classList.contains('sn-card')) {
+            if ((isRight || isLeft) && active && (active.classList.contains('sn-card') || active.classList.contains('btn-report-ep'))) {
                 const carousel = active.closest('.carousel, .cast-row');
                 if (carousel) {
                     const cards = Array.from(carousel.querySelectorAll('.sn-card, .actor-item')); const currentIndex = cards.indexOf(active);
