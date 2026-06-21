@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAINTENANCE SFPP - Robot Automatique</title>
+    <style>
+        body { background: #050505; color: white; font-family: 'Courier New', Courier, monospace; padding: 20px; text-align: center; }
+        h1 { color: #e50914; font-family: Arial, sans-serif; }
+        p { color: #bbb; margin-bottom: 20px; font-family: Arial, sans-serif; }
+        
+        .dashboard { background: #111; border: 1px solid #333; max-width: 600px; margin: 0 auto; padding: 30px; border-radius: 8px; }
+        
+        .stats { display: flex; justify-content: space-around; margin-bottom: 30px; font-size: 24px; font-weight: bold; }
+        .stat-box { display: flex; flex-direction: column; }
+        .stat-label { font-size: 12px; color: #888; text-transform: uppercase; margin-top: 5px; }
+        
+        .progress-bar-container { width: 100%; background: #222; border-radius: 10px; height: 20px; overflow: hidden; margin-bottom: 20px; border: 1px solid #444; }
+        .progress-bar { height: 100%; background: #e50914; width: 0%; transition: width 0.3s ease; }
+        
+        .btn-start { background: #2ecc71; color: #000; border: none; padding: 15px 40px; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 18px; transition: 0.3s; margin-bottom: 20px; }
+        .btn-start:hover { background: #27ae60; transform: scale(1.05); }
+        .btn-start:disabled { background: #555; color: #888; cursor: not-allowed; transform: none; }
+        
+        .log-console { background: #000; color: #0f0; padding: 15px; border-radius: 4px; height: 200px; overflow-y: auto; text-align: left; font-size: 12px; border: 1px solid #333; }
+        .log-error { color: #e50914; }
+        .log-info { color: #3498db; }
+    </style>
+</head>
+<body>
+
+    <h1>🤖 ROBOT DE MAINTENANCE SFPP</h1>
+    <p>Ce script va "toucher" silencieusement tous vos fichiers pour réinitialiser le compteur des 60 jours de Filemoon.<br>
+    <b>Laissez cette page ouverte jusqu'à la fin.</b></p>
+
+    <div class="dashboard">
+        <div class="stats">
+            <div class="stat-box">
+                <span id="total-count">0</span>
+                <span class="stat-label">Liens trouvés</span>
+            </div>
+            <div class="stat-box">
+                <span id="done-count" style="color: #2ecc71;">0</span>
+                <span class="stat-label">Vérifiés</span>
+            </div>
+        </div>
+
+        <div class="progress-bar-container">
+            <div class="progress-bar" id="progress"></div>
+        </div>
+
+        <button class="btn-start" id="btn-start" onclick="demarrerRobot()">DÉMARRER LE SCAN AUTOMATIQUE</button>
+
+        <div class="log-console" id="logs">
+            <div class="log-info">> En attente du démarrage...</div>
+        </div>
+    </div>
+
+    <script>
+        let catalogueTotal = [];
+        let indexEnCours = 0;
+        let isRunning = false;
+
+        // Paramètres du robot (pour ne pas se faire bloquer)
+        const LOT_TAILLE = 3; // Vérifie 3 liens en même temps
+        const PAUSE_MS = 1500; // Pause de 1.5 seconde entre chaque lot
+
+        function log(message, type = "") {
+            const consoleEl = document.getElementById('logs');
+            const div = document.createElement('div');
+            div.innerText = "> " + message;
+            if (type === "error") div.className = "log-error";
+            if (type === "info") div.className = "log-info";
+            consoleEl.appendChild(div);
+            consoleEl.scrollTop = consoleEl.scrollHeight; // Auto-scroll vers le bas
+        }
+
+        async function chargerCatalogue() {
+            log("Chargement de films.json...", "info");
+            try {
+                const resFilms = await fetch('films.json?v=' + Date.now(), { cache: "no-store" });
+                let films = await resFilms.json();
+                catalogueTotal = catalogueTotal.concat(films);
+                log(films.length + " films chargés.", "info");
+            } catch(e) { log("Erreur films.json", "error"); }
+
+            try {
+                log("Chargement de series.json...", "info");
+                const resSeries = await fetch('series.json?v=' + Date.now(), { cache: "no-store" });
+                const series = await resSeries.json();
+                catalogueTotal = catalogueTotal.concat(series);
+                log(series.length + " épisodes chargés.", "info");
+            } catch(e) { log("Pas de series.json ou erreur.", "error"); }
+
+            document.getElementById('total-count').innerText = catalogueTotal.length;
+            
+            if (catalogueTotal.length === 0) {
+                document.getElementById('btn-start').disabled = true;
+                log("Aucun lien à traiter.", "error");
+            } else {
+                log("Prêt. Vous pouvez démarrer le scan.", "info");
+            }
+        }
+
+        // Fonction pour "Pinger" silencieusement un lien sans le télécharger
+        function pingLien(item) {
+            return new Promise(resolve => {
+                let urlDecoded = "";
+                try { urlDecoded = atob(item.url); } catch(e) { urlDecoded = item.url; }
+
+                // Utilisation d'un AbortController pour annuler la requête après 2 secondes.
+                // Cela permet au serveur Filemoon d'enregistrer le "clic", 
+                // mais on coupe la connexion avant de télécharger le fichier complet.
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 2000);
+
+                fetch(urlDecoded, { mode: 'no-cors', signal: controller.signal })
+                    .catch((e) => {
+                        // On ignore les erreurs CORS ou les annulations volontaires
+                    })
+                    .finally(() => {
+                        clearTimeout(timeoutId);
+                        resolve();
+                    });
+            });
+        }
+
+        async function demarrerRobot() {
+            if (isRunning) return;
+            isRunning = true;
+            document.getElementById('btn-start').disabled = true;
+            document.getElementById('btn-start').innerText = "SCAN EN COURS... NE FERMEZ PAS";
+            
+            log("DÉMARRAGE DU ROBOT...", "info");
+
+            while (indexEnCours < catalogueTotal.length) {
+                // On extrait un lot
+                const lot = catalogueTotal.slice(indexEnCours, indexEnCours + LOT_TAILLE);
+                
+                // On ping tous les liens du lot en même temps
+                const promesses = lot.map(item => pingLien(item));
+                await Promise.all(promesses);
+
+                indexEnCours += lot.length;
+
+                // Mise à jour de l'interface
+                document.getElementById('done-count').innerText = indexEnCours;
+                const pourcentage = (indexEnCours / catalogueTotal.length) * 100;
+                document.getElementById('progress').style.width = pourcentage + "%";
+                
+                log(`Vérifié : ${indexEnCours} / ${catalogueTotal.length}`);
+
+                // Pause pour éviter de se faire bloquer (Sauf si on a fini)
+                if (indexEnCours < catalogueTotal.length) {
+                    await new Promise(r => setTimeout(r, PAUSE_MS));
+                }
+            }
+
+            log("✅ TERMINÉ ! Tous vos liens sont sécurisés pour 60 jours.", "info");
+            document.getElementById('btn-start').innerText = "MAINTENANCE TERMINÉE";
+            document.getElementById('btn-start').style.background = "#3498db";
+        }
+
+        // Lance le chargement initial au démarrage de la page
+        chargerCatalogue();
+    </script>
+</body>
+</html>
