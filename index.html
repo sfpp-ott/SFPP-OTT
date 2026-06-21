@@ -692,12 +692,20 @@
         }); 
     };
 
+    // NOUVEAU : Envoi de l'e-mail du compte avec le signalement
     window.reportFilm = (title, lineInfo) => {
         if(confirm("Voulez-vous vraiment signaler ce film comme hors service ?")) {
             const reportRef = ref(db, 'signalements');
             const newReportRef = push(reportRef);
+            const userMail = localStorage.getItem('sfpp_last_email') || "Email inconnu";
+            const nomProfil = localStorage.getItem('sfpp_profile') || "Anonyme";
+            
             set(newReportRef, {
-                film: title, num: lineInfo || "Inconnu", date: new Date().toLocaleString(), signaleur: localStorage.getItem('sfpp_profile') || "Anonyme"
+                film: title, 
+                num: lineInfo || "Inconnu", 
+                date: new Date().toLocaleString(), 
+                signaleur: nomProfil, 
+                email: userMail
             }).then(() => alert("⚠️ Film signalé ! Merci.")).catch(() => alert("Erreur d'envoi."));
         }
     };
@@ -727,7 +735,6 @@ window.clearSiteData = async function() {
     }
 };
 
-// NOUVEAU : Fonction pour effacer l'historique
 window.clearHistory = function() {
     if(confirm("Voulez-vous effacer tout votre historique de lecture ?")) {
         localStorage.setItem('sfpp_hist_' + currentProfile, "[]");
@@ -1276,7 +1283,6 @@ function render(search = "") {
             if(history.length > 0 && histSec && histCont) {
                 histSec.style.display = "block";
                 
-                // NOUVEAU : La carte "Vider l'historique"
                 histHtml += `
                     <div class="card sn-card" tabindex="0" onclick="window.clearHistory()" style="background: #111; border: 2px dashed #333; box-sizing: border-box;">
                         <div style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 2;">
