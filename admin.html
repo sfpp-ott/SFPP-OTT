@@ -44,7 +44,6 @@
         .current-msg-banner { background: rgba(229, 9, 20, 0.1); border: 1px solid var(--accent); padding: 10px; border-radius: 4px; margin-bottom: 20px; font-size: 13px; }
         .user-private-msg { margin-top: 5px; padding: 8px; background: rgba(52, 152, 219, 0.1); border: 1px solid #3498db; border-radius: 4px; font-size: 12px; display: flex; justify-content: space-between; align-items: center; }
 
-        /* Styles Nouveaux pour les Signalements */
         .report-list { max-height: 300px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; text-align: left; }
         .report-item { background: #1a1a1a; border: 1px solid #e50914; padding: 12px; border-radius: 4px; font-size: 13px; display: flex; justify-content: space-between; align-items: center; }
         .report-meta { font-size: 11px; color: #888; margin-top: 4px; }
@@ -136,7 +135,7 @@
             document.getElementById('auth-guard').style.display = 'none';
             loadUsers();
             listenToGlobalMessage();
-            listenToSignalements(); // Active l'écoute des pannes
+            listenToSignalements(); 
         } else {
             window.location.href = "index.html"; 
         }
@@ -156,7 +155,6 @@
         });
     }
 
-    // NOUVEAU : ÉCOUTE ET AFFICHAGE DES LIENS MORTS AVEC NOM D'UTILISATEUR
     function listenToSignalements() {
         onValue(ref(db, 'signalements'), async (snapshot) => {
             const container = document.getElementById('reports-container');
@@ -177,30 +175,19 @@
                 remove(ref(db, 'signalements/' + key));
             };
 
-            // Récupère la liste des mails pour faire correspondre l'UID du signaleur si besoin
-            const usersSnap = await get(ref(db, 'users_data'));
-            const usersData = usersSnap.val() || {};
-
             keys.reverse().forEach(key => {
                 const report = data[key];
                 
-                // Retrouver le mail du compte principal qui a émis le signalement
-                let accountEmail = "Compte inconnu";
-                Object.keys(usersData).forEach(uid => {
-                    if(usersData[uid].email && report.signaleur === usersData[uid].email) {
-                        accountEmail = usersData[uid].email;
-                    }
-                });
-
-                // Si le signaleur contient déjà un nom de profil, on l'affiche proprement
                 const quiARapporte = report.signaleur || "Anonyme";
+                // NOUVEAU : Récupère l'email s'il a été fourni par la TV
+                const mailCompte = report.email || "Email non renseigné";
 
                 container.innerHTML += `
                     <div class="report-item">
                         <div style="flex:1; padding-right:10px;">
                             <b style="color:#fff; font-size:14px;">${report.film}</b> <span style="color:#666; font-size:11px;">[Ligne: ${report.num}]</span>
                             <div class="report-meta">
-                                Par : <span class="report-user">👤 ${quiARapporte}</span><br>
+                                Par : <span class="report-user">👤 ${quiARapporte}</span> <span style="color:#3498db; font-weight:bold;">(✉️ ${mailCompte})</span><br>
                                 Date : 📅 ${report.date || 'Inconnue'}
                             </div>
                         </div>
