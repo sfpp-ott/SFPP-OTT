@@ -1,10 +1,80 @@
 [
   {
-    "num": "1949",
+    "num": "1959",
     "t": "Barbie : Agents Secrets",
     "id_tmdb": "377897",
     "cat": "",
     "url": "https://filemoon.org/download/eyJpdiI6IkNIL3IzQ3dhWkRtQmxtTE54aFF1d2c9PSIsInZhbHVlIjoiWkc4bGlMUU9qSDM5Qng0NzRUVU03MCtiaDlIS285N3FQSVJZRGtQUFBBRT0iLCJtYWMiOiIxYjEwMWJjNGY3ZmM2ODcwYTg4NjczNjRlMmMzOTdlYzEwN2JkNWQ3ZjJlYTI1ODliYjQyMzBlNjU4MjBjZmUxIiwidGFnIjoiIn0=/B960526836.mp4"
+  },
+  {
+    "num": "1958",
+    "t": "Possession",
+    "id_tmdb": "21484",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/25992b20f9cf9ee683b558e161578e1ba80096b7e6b71a5d682d41d1f628d940/master.m3u8"
+  },
+  {
+    "num": "1957",
+    "t": "The Substitute 2",
+    "id_tmdb": "29812",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/1f2025041ba84e3c8132dba317a1e2e9499bb6df733050a5c80b1b11bc73eaf5/master.m3u8"
+  },
+  {
+    "num": "1956",
+    "t": "‎The Substitute 3: Winner Takes All",
+    "id_tmdb": "50820",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/b97274d8e986b5842138985312042ea341544b88ed3a70864ecea9ea1f98ae66/master.m3u8"
+  },
+  {
+    "num": "1955",
+    "t": "The Substitute 4",
+    "id_tmdb": "54782",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/680798421385819bf2eaa020098d08474c51f5c342c579e90264e8ca6e11ad00/master.m3u8"
+  },
+  {
+    "num": "1954",
+    "t": "Le Seigneur des anneaux : La Communauté de l'anneau",
+    "id_tmdb": "120",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/01359edbbc68052735d100faf8a238627307c26e7462f864b10660de4afb946c/master.m3u8"
+  },
+  {
+    "num": "1953",
+    "t": "The Substitute",
+    "id_tmdb": "20762",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/1fd6227d6ba54d032d0fc762df9a72aa892f8b1030d5546510cf7afeb008ac12/master.m3u8"
+  },
+  {
+    "num": "1952",
+    "t": "Bilitis",
+    "id_tmdb": "50435",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/bc551fd5954fe6c0839f42478c045dfd73403d121a5d9cd7c22912dfcb0613df/master.m3u8"
+  },
+  {
+    "num": "1951",
+    "t": "Les Tueurs de l'éclipse",
+    "id_tmdb": "55538",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/1b6615317187b1a554496551a34c38889d62acc68dfe8e53c749c9218bea3ffa/master.m3u8"
+  },
+  {
+    "num": "1950",
+    "t": "Mikey",
+    "id_tmdb": "87321",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/5fd612ef967031c47ef7ad9dbacc828dfc7273d1ed58d4c1d966d5ab052cce95/master.m3u8"
+  },
+  {
+    "num": "1949",
+    "t": "Paranormal Activity : Tokyo Night",
+    "id_tmdb": "59429",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/66877cf785798beb2d4c529969afac9c6b337606afa56a1eec8cbc3fad4fbbd2/master.m3u8"
   },
   {
     "num": "1948",
