@@ -1,5 +1,61 @@
 [
   {
+    "num": "8",
+    "t": "22.11.63 - S01E01",
+    "id_tmdb": "64464",
+    "url": "https://stream01-hls.hulkcrush.org/vod/d4826abc4293f7b095d9ec2c0aaaf698eda435b5ac34f5099c7887532f594338/master.m3u8",
+    "cat": "DRAME, SCIENCE-FICTION, FANTASTIQUE"
+  },
+  {
+    "num": "8",
+    "t": "22.11.63 - S01E02",
+    "id_tmdb": "64464",
+    "url": "https://stream01-hls.hulkcrush.org/vod/b639b87831e6ce4421ac199f477e1a6edc069a965ca8fb3496fd0fc55f317a55/master.m3u8",
+    "cat": "DRAME, SCIENCE-FICTION, FANTASTIQUE"
+  },
+  {
+    "num": "8",
+    "t": "22.11.63 - S01E03",
+    "id_tmdb": "64464",
+    "url": "https://stream01-hls.hulkcrush.org/vod/56ee63aa7ef406cdc370342140e284a12f57a95119a28200706e77ffecfb566a/master.m3u8",
+    "cat": "DRAME, SCIENCE-FICTION, FANTASTIQUE"
+  },
+  {
+    "num": "8",
+    "t": "22.11.63 - S01E04",
+    "id_tmdb": "64464",
+    "url": "https://stream01-hls.hulkcrush.org/vod/dccb720c802d86a2109b1e4e1b4b5b9f3d76121176d2c40d0b7ffed879f005c2/master.m3u8",
+    "cat": "DRAME, SCIENCE-FICTION, FANTASTIQUE"
+  },
+  {
+    "num": "8",
+    "t": "22.11.63 - S01E05",
+    "id_tmdb": "64464",
+    "url": "https://stream01-hls.hulkcrush.org/vod/ad41b5a35559775228c789ea779582886d998fd3a208bfb4f8b0e2e4e3c15c10/master.m3u8",
+    "cat": "DRAME, SCIENCE-FICTION, FANTASTIQUE"
+  },
+  {
+    "num": "8",
+    "t": "22.11.63 - S01E06",
+    "id_tmdb": "64464",
+    "url": "https://stream01-hls.hulkcrush.org/vod/fbad8106fa17bbdd8b0b0d7fa49e1329abb345a6a0394195c9970ca7fd57d104/master.m3u8",
+    "cat": "DRAME, SCIENCE-FICTION, FANTASTIQUE"
+  },
+  {
+    "num": "8",
+    "t": "22.11.63 - S01E07",
+    "id_tmdb": "64464",
+    "url": "https://stream01-hls.hulkcrush.org/vod/2ac4c1f32fd8bbc4e419e4d86af9cb40bbff6088a27b3231a4140cb303213d18/master.m3u8",
+    "cat": "DRAME, SCIENCE-FICTION, FANTASTIQUE"
+  },
+  {
+    "num": "8",
+    "t": "22.11.63 - S01E08",
+    "id_tmdb": "64464",
+    "url": "https://stream01-hls.hulkcrush.org/vod/bb6918108216995feadcbedfb7755bffcdc17407d1c3bb90bf917262760d5e37/master.m3u8",
+    "cat": "DRAME, SCIENCE-FICTION, FANTASTIQUE"
+  },
+  {
     "num": "7",
     "t": "Les Traîtres - S06E01",
     "id_tmdb": "208398",
