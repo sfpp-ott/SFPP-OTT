@@ -1,5 +1,61 @@
 [
   {
+    "num": "10",
+    "t": "56 jours - S01E01",
+    "id_tmdb": "241372",
+    "url": "https://stream01-hls.hulkcrush.org/vod/69677dd4fbf631a87238d8e6ff37467078c8fe71ea696472a90f1484657b79e6/master.m3u8",
+    "cat": "DRAME, CRIME, MYSTERE"
+  },
+  {
+    "num": "10",
+    "t": "56 jours - S01E02",
+    "id_tmdb": "241372",
+    "url": "https://stream01-hls.hulkcrush.org/vod/020f914679e7c97f0b8b01bc51a3d09b436bdd47daf9374a1d6bfcb29cb02295/master.m3u8",
+    "cat": "DRAME, CRIME, MYSTERE"
+  },
+  {
+    "num": "10",
+    "t": "56 jours - S01E03",
+    "id_tmdb": "241372",
+    "url": "https://stream01-hls.hulkcrush.org/vod/a9c6d1b528a2192ea0c3c8c0a6bce29c942deb7d6f61fae6c0ff90019b6ad4e9/master.m3u8",
+    "cat": "DRAME, CRIME, MYSTERE"
+  },
+  {
+    "num": "10",
+    "t": "56 jours - S01E04",
+    "id_tmdb": "241372",
+    "url": "https://stream01-hls.hulkcrush.org/vod/5dce05ebb4bb6362a81d122c6f977fc1b0bbaef1a2de7e78b9ae457448a8fb0b/master.m3u8",
+    "cat": "DRAME, CRIME, MYSTERE"
+  },
+  {
+    "num": "10",
+    "t": "56 jours - S01E05",
+    "id_tmdb": "241372",
+    "url": "https://stream01-hls.hulkcrush.org/vod/9f443505c3f2e37df2636311ca8bb248e72848cd4ef7999100be7dd29c237da8/master.m3u8",
+    "cat": "DRAME, CRIME, MYSTERE"
+  },
+  {
+    "num": "10",
+    "t": "56 jours - S01E06",
+    "id_tmdb": "241372",
+    "url": "https://stream01-hls.hulkcrush.org/vod/d30171f6a7a391120a5e91d99eabdb44f706fa28f79c7e7e777fae47909f4e36/master.m3u8",
+    "cat": "DRAME, CRIME, MYSTERE"
+  },
+  {
+    "num": "10",
+    "t": "56 jours - S01E07",
+    "id_tmdb": "241372",
+    "url": "https://stream01-hls.hulkcrush.org/vod/3aed938087dbca410fd43f648cab1ba8fcf1e1cb1ed6ffe04dc7970a4b20c4c5/master.m3u8",
+    "cat": "DRAME, CRIME, MYSTERE"
+  },
+  {
+    "num": "10",
+    "t": "56 jours - S01E08",
+    "id_tmdb": "241372",
+    "url": "https://stream01-hls.hulkcrush.org/vod/b9dd328e88471152ec564a547c04ae77dbfd2bbc52c03ce017b2d97725f50fe4/master.m3u8",
+    "cat": "DRAME, CRIME, MYSTERE"
+  },
+  {
     "num": "9",
     "t": "24 heures chrono - S09E01",
     "id_tmdb": "1973",
