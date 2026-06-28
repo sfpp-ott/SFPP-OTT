@@ -203,7 +203,6 @@
             border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 14px;
         }
 
-        /* NOUVEAU BOUTON SIGNALER EPISODE */
         .btn-report-ep {
             background: #222; border: 1px solid #444; color: #bbb; padding: 6px 12px; 
             border-radius: 4px; cursor: pointer; font-size: 11px; font-weight: bold; transition: 0.2s;
@@ -702,7 +701,6 @@
         }); 
     };
 
-    // CORRECTION DU MESSAGE D'ALERTE POUR QU'IL SOIT GÉNÉRIQUE (Film/Série)
     window.reportFilm = (title, lineInfo) => {
         if(confirm("Voulez-vous vraiment signaler '" + title + "' comme hors service ?")) {
             const reportRef = ref(db, 'signalements');
@@ -1303,20 +1301,29 @@ function render(search = "") {
                         <div class="card-name" style="color: transparent;">Vider</div>
                     </div>`;
 
+                let displayedHistoryTitles = new Set(); // NOUVEAU: Filtre anti-doublon
+
                 history.slice().reverse().forEach(title => {
                     const m = playlistData.find(item => item.t === title);
                     if(m) {
                         const isTV = m.cat && (m.cat.toUpperCase().includes("DIRECT") || m.cat.toUpperCase().includes("TV"));
                         
                         let clickAction = "";
+                        let displayTitle = m.t;
+                        
                         const isSeriesCheck = m.is_series || (m.cat && m.cat.toUpperCase().includes("SÉRIES"));
                         if (isSeriesCheck) {
                             let match = String(m.t).match(/(.*?)\s+-\s+S\d{2}/i);
                             let baseName = match ? match[1].trim() : String(m.t).split(' - ')[0].trim();
                             clickAction = `openSeries('${safeStr(baseName)}')`;
+                            displayTitle = baseName;
                         } else {
                             clickAction = isTV ? `playMovie(${m.original_index})` : `openDetails(${m.original_index})`;
                         }
+
+                        // NOUVEAU: On empêche la série d'apparaître 5 fois si on a regardé 5 épisodes
+                        if (displayedHistoryTitles.has(displayTitle)) return;
+                        displayedHistoryTitles.add(displayTitle);
 
                         const is_fav = favs.includes(m.t); const heartClass = is_fav ? 'is-fav' : ''; const heartIcon = is_fav ? '❤️' : '♡';
                         const pct = (prog[m.t] && prog[m.t].p > 1) ? '<div class="prog-bg"><div class="prog-fill" style="width:' + prog[m.t].p + '%"></div></div>' : "";
@@ -1324,12 +1331,6 @@ function render(search = "") {
                         const ratingHtml = !isTV ? '<div class="card-rating">' + m_stars + '</div>' : "";
                         const lineInfo = m.num ? m.num : (m.original_index * 7) + 2;
                         const adminBadge = isAdminMode ? `<div style="position:absolute; top:10px; left:10px; z-index:15; background:rgba(229,9,20,0.9); padding:2px 6px; border-radius:4px; font-size:11px; font-weight:bold; border:1px solid white;">L${lineInfo}</div>` : "";
-
-                        let displayTitle = m.t;
-                        if (isSeriesCheck) {
-                            let match = String(m.t).match(/(.*?)\s+-\s+S\d{2}/i);
-                            displayTitle = match ? match[1].trim() : String(m.t).split(' - ')[0].trim();
-                        }
 
                         histHtml += `
                             <div class="card sn-card ${isTV ? "landscape" : ""}" tabindex="0" onclick="${clickAction}">
@@ -1462,7 +1463,6 @@ function openSeries(name) {
     for (let i = 0; i < 5; i++) { stars += (i < note) ? "★" : "☆"; }
     document.getElementById('series-stars-display').innerText = stars;
 
-    // Favoris et Signalement général de la série
     document.getElementById('series-fav-btn').onclick = () => { toggleFav(name); };
     const lineInfoSeries = m.num ? m.num : (m.original_index * 7) + 2;
     document.getElementById('series-report-btn').onclick = () => { window.reportFilm(name, lineInfoSeries); };
@@ -1730,4 +1730,3 @@ if ('serviceWorker' in navigator) { window.addEventListener('load', () => { navi
     </script>
 </body>
 </html>
-
