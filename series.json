@@ -1,5 +1,47 @@
 [
   {
+    "num": "13",
+    "t": "A Knight of the Seven Kingdoms - S01E01",
+    "id_tmdb": "224372",
+    "url": "https://stream01-hls.hulkcrush.org/vod/9deeafc35a19b6eb71438ab7b810e75f22afe8ee98181667a0f7a1be338acf3e/master.m3u8",
+    "cat": "DRAME, SCIENCE-FICTION, FANTASTIQUE, ACTION, AVENTURE"
+  },
+  {
+    "num": "13",
+    "t": "A Knight of the Seven Kingdoms - S01E02",
+    "id_tmdb": "224372",
+    "url": "https://stream01-hls.hulkcrush.org/vod/a6816be46c01316afb5f99637adb98be1644a36d9cd0dba74af7d2ea646ae334/master.m3u8",
+    "cat": "DRAME, SCIENCE-FICTION, FANTASTIQUE, ACTION, AVENTURE"
+  },
+  {
+    "num": "13",
+    "t": "A Knight of the Seven Kingdoms - S01E03",
+    "id_tmdb": "224372",
+    "url": "https://stream01-hls.hulkcrush.org/vod/35be086f84bb7310270efb29356e3823628e84faa2ed040f8c9a7020b0c2bea2/master.m3u8",
+    "cat": "DRAME, SCIENCE-FICTION, FANTASTIQUE, ACTION, AVENTURE"
+  },
+  {
+    "num": "13",
+    "t": "A Knight of the Seven Kingdoms - S01E04",
+    "id_tmdb": "224372",
+    "url": "https://stream01-hls.hulkcrush.org/vod/c31c927064d6ed2e64e30eb6be4a34d6b816518e432b12fdf0fa78c26dad8e1d/master.m3u8",
+    "cat": "DRAME, SCIENCE-FICTION, FANTASTIQUE, ACTION, AVENTURE"
+  },
+  {
+    "num": "13",
+    "t": "A Knight of the Seven Kingdoms - S01E05",
+    "id_tmdb": "224372",
+    "url": "https://stream01-hls.hulkcrush.org/vod/dd3bdaaeff70aac559b4f088330ff85f9a80a1c4047e06e75668fced5ae3454d/master.m3u8",
+    "cat": "DRAME, SCIENCE-FICTION, FANTASTIQUE, ACTION, AVENTURE"
+  },
+  {
+    "num": "13",
+    "t": "A Knight of the Seven Kingdoms - S01E06",
+    "id_tmdb": "224372",
+    "url": "https://stream01-hls.hulkcrush.org/vod/6f3ee2f6b4f42279b41baf0a1ad393ec013cb16645eb7813df17a75405ce6b04/master.m3u8",
+    "cat": "DRAME, SCIENCE-FICTION, FANTASTIQUE, ACTION, AVENTURE"
+  },
+  {
     "num": "12",
     "t": "9-1-1 : Lone Star - S05E01",
     "id_tmdb": "89393",
