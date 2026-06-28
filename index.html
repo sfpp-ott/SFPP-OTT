@@ -1301,7 +1301,7 @@ function render(search = "") {
                         <div class="card-name" style="color: transparent;">Vider</div>
                     </div>`;
 
-                let displayedHistoryTitles = new Set(); // NOUVEAU: Filtre anti-doublon
+                let displayedHistoryTitles = new Set();
 
                 history.slice().reverse().forEach(title => {
                     const m = playlistData.find(item => item.t === title);
@@ -1321,7 +1321,6 @@ function render(search = "") {
                             clickAction = isTV ? `playMovie(${m.original_index})` : `openDetails(${m.original_index})`;
                         }
 
-                        // NOUVEAU: On empêche la série d'apparaître 5 fois si on a regardé 5 épisodes
                         if (displayedHistoryTitles.has(displayTitle)) return;
                         displayedHistoryTitles.add(displayTitle);
 
@@ -1515,7 +1514,7 @@ function openSeries(name) {
             const pct = (prog[ep.t] && prog[ep.t].p > 1) ? '<div style="height:3px; background:#444; width:100px; margin-top:5px;"><div style="height:100%; background:var(--accent); width:' + prog[ep.t].p + '%"></div></div>' : "";
             const lineInfoEp = ep.num ? ep.num : (ep.original_index * 7) + 2;
             
-            html += `<div class="episode-item sn-card" onclick="playMovie(${ep.original_index});" tabindex="0">
+            html += `<div class="episode-item sn-card" id="ep-item-${ep.original_index}" onclick="playMovie(${ep.original_index});" tabindex="0">
                         <div style="flex:1"><b>${epNameDisplay}</b>${pct}</div>
                         <button class="btn-report-ep" onclick="event.stopPropagation(); window.reportFilm('${safeStr(ep.t)}', ${lineInfoEp});" tabindex="0" title="Signaler cet épisode">⚠️</button>
                         <div style="color:var(--accent); font-weight:bold; margin-left:15px;">▶</div>
@@ -1527,13 +1526,49 @@ function openSeries(name) {
     overlay.style.display = 'flex';
     document.querySelectorAll('#series-overlay .lazy-img').forEach(img => lazyImgObserver.observe(img));
 
+    // NOUVEAU LOGICIEL : TROUVER LE DERNIER ÉPISODE REGARDÉ
+    let sortedEps = [];
+    Object.keys(seasons).sort().forEach(s => {
+        seasons[s].forEach(ep => sortedEps.push(ep));
+    });
+
+    let targetIndex = null;
+    let history = JSON.parse(localStorage.getItem('sfpp_hist_' + currentProfile) || "[]");
+    
+    // On cherche dans l'historique du plus récent au plus ancien
+    for (let i = history.length - 1; i >= 0; i--) {
+        let histTitle = history[i];
+        let epIndexInSorted = sortedEps.findIndex(e => e.t === histTitle);
+        
+        if (epIndexInSorted !== -1) {
+            targetIndex = sortedEps[epIndexInSorted].original_index;
+            
+            // Si cet épisode est terminé à plus de 90%, on cible direct le suivant !
+            const pData = prog[histTitle];
+            if (pData && pData.p > 90) {
+                if (epIndexInSorted < sortedEps.length - 1) {
+                    targetIndex = sortedEps[epIndexInSorted + 1].original_index;
+                }
+            }
+            break; // On a trouvé, on arrête de chercher
+        }
+    }
+
     if (typeof updateSpatialNav === 'function') { 
         setTimeout(() => {
             updateSpatialNav();
-            const firstEp = document.querySelector('#series-detail-content .episode-item');
-            if(firstEp) {
-                firstEp.focus();
-                SpatialNavigation.focus(firstEp);
+            
+            let elToFocus = targetIndex !== null ? document.getElementById('ep-item-' + targetIndex) : null;
+            
+            if (!elToFocus) {
+                elToFocus = document.querySelector('#series-detail-content .episode-item');
+            }
+            
+            if(elToFocus) {
+                elToFocus.focus();
+                SpatialNavigation.focus(elToFocus);
+                // La magie : On scrolle automatiquement la page jusqu'à cet épisode !
+                elToFocus.scrollIntoView({ behavior: 'smooth', block: 'center' });
             } else {
                 const favBtn = document.getElementById('series-fav-btn');
                 if(favBtn) { favBtn.focus(); SpatialNavigation.focus(favBtn); }
