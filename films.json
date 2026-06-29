@@ -1,4 +1,11 @@
 [
+    {
+    "num": "2000",
+    "t": "Test VLC Externe",
+    "id_tmdb": "",
+    "cat": "AUTRES CATÉGORIES",
+    "url": "intent://amir11.bounceme.net:8080/live/YZjwcwnLjh/QlXrgJTnED/1644.m3u8#Intent;package=org.videolan.vlc;type=video/*;scheme=http;end"
+  },
   {
    "t": "Tf1 (Direct)",
    "img": "https://stock.wikimini.org/w/images/3/36/Logo_TF1_2013.png",
