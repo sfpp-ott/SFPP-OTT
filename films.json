@@ -1,5 +1,96 @@
 [
   {
+   "t": "Tf1 (Direct)",
+   "img": "https://stock.wikimini.org/w/images/3/36/Logo_TF1_2013.png",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez Tf1 en direct.",
+   "url": "https://tvastuces.com:443/live/46952B8A7AF9F4739F61FBD8FCEDE553/1.m3u8"
+  },
+  {
+   "t": "Canal+ (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/b/b7/Canal%2B2025.png",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez Canal+ en direct.",
+   "url": "https://tvastuces.com:443/live/46952B8A7AF9F4739F61FBD8FCEDE553/16.m3u8"
+  },
+  {
+   "t": "6ter (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/0/07/6ter.png",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez 6ter en direct.",
+   "url": "https://tvastuces.com:443/live/46952B8A7AF9F4739F61FBD8FCEDE553/13.m3u8"
+  },
+  {
+   "t": "Canal+ Cinéma (Direct)",
+   "img": "https://www.premiere.fr/sites/default/files/styles/scale_crop_1280x720/public/2018-04/Mikrocine-Canal-Cinema-fete-la-200eme-le-17-avril.jpg",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez Canal+ Cinéma en direct.",
+   "url": "https://tvastuces.com:443/live/46952B8A7AF9F4739F61FBD8FCEDE553/17.m3u8"
+  },
+  {
+   "t": "Ciné Frisson (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/c/ce/Logo_Cin%C3%A9%2B_Frisson_2011.svg",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez Ciné Frisson en direct.",
+   "url": "https://tvastuces.com:443/live/46952B8A7AF9F4739F61FBD8FCEDE553/25.m3u8"
+  },
+  {
+   "t": "Ciné Émotion (Direct)",
+   "img": "https://www.monpetitforfait.com/comparateur-box-internet/wp-content/uploads/2020/05/regarder-cine-plus-emotion.png",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez Ciné Émotion en direct.",
+   "url": "https://tvastuces.com:443/live/46952B8A7AF9F4739F61FBD8FCEDE553/23.m3u8"
+  },
+  {
+   "t": "Ciné Famiz (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/a/a2/Logo_Cin%C3%A9%2B_Famiz_2011.svg",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez Ciné Famiz en direct.",
+   "url": "https://tvastuces.com:443/live/46952B8A7AF9F4739F61FBD8FCEDE553/26.m3u8"
+  },
+  {
+   "t": "Ciné Festival (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/3/30/Cin%C3%A9%2BFestival2024.svg",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez Ciné Festival en direct.",
+   "url": "https://tvastuces.com:443/live/46952B8A7AF9F4739F61FBD8FCEDE553/24.m3u8"
+  },
+  {
+   "t": "Ciné Classic (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/0/09/Logo_Cin%C3%A9%2B_Classic_2011.svg",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez Ciné Classic en direct.",
+   "url": "https://tvastuces.com:443/live/46952B8A7AF9F4739F61FBD8FCEDE553/27.m3u8"
+  },
+  {
+   "t": "Canal+ Kids (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/3/34/Canal%2B_Kids_Logo_%282021%29.png",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez Canal+ Kids en direct.",
+   "url": "https://tvastuces.com:443/live/46952B8A7AF9F4739F61FBD8FCEDE553/19.m3u8"
+  },
+  {
+   "t": "Canal+ Sport (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/2/2c/C%2B_Sport_%282023%29.png",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez Canal+ Sport en direct.",
+   "url": "https://tvastuces.com:443/live/46952B8A7AF9F4739F61FBD8FCEDE553/21.m3u8"
+  },
+  {
+   "t": "Canal+ Foot (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/3/3b/C%2B_Foot.png",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez Canal+ Foot en direct.",
+   "url": "https://tvastuces.com:443/live/46952B8A7AF9F4739F61FBD8FCEDE553/22.m3u8"
+  },
+  {
+   "t": "Ligue1+ 1 (Direct)",
+   "img": "https://www.lequipe.fr/_medias/img-photo-jpg/ligue-1-quelle-offre-d-abonnement-est-faite-pour-vous/1500000002258913/24:0,1176:768-828-552-75/dc2b0.jpg",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez Ligue1+ 1 en direct.",
+   "url": "https://tvastuces.com:443/live/46952B8A7AF9F4739F61FBD8FCEDE553/365.m3u8"
+  },
+  {
     "num": "2009",
     "t": "Barbie : Agents Secrets",
     "id_tmdb": "377897",
