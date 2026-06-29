@@ -388,7 +388,7 @@
             </div>
             <p id="details-desc" class="synopsis"></p>
             
-            <div class="section-label">Bande-annonce</div>
+            <div class="section-label" id="details-trailer-label">Bande-annonce</div>
             <div id="details-trailer-box" class="trailer-box"></div>
 
             <div class="section-label">Casting principal</div>
@@ -1066,8 +1066,18 @@ function openDetails(idx) {
     }
     document.getElementById('details-meta-cast').innerHTML = castHtml;
 
-    document.getElementById('details-trailer-box').innerHTML = m.trailer ? 
-        '<iframe width="100%" height="100%" src="https://www.youtube.com/embed/' + m.trailer + '?rel=0" frameborder="0" allowfullscreen></iframe>' : "";
+    // NOUVEAU LOGICIEL : Gestion intelligente de la bande-annonce des films
+    const trailerBox = document.getElementById('details-trailer-box');
+    const trailerLabel = document.getElementById('details-trailer-label');
+    if (m.trailer && m.trailer !== "N/A") {
+        trailerLabel.style.display = 'block';
+        trailerBox.style.display = 'block';
+        trailerBox.innerHTML = '<iframe width="100%" height="100%" src="https://www.youtube.com/embed/' + m.trailer + '?rel=0&modestbranding=1&playsinline=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+    } else {
+        trailerLabel.style.display = 'none';
+        trailerBox.style.display = 'none';
+        trailerBox.innerHTML = "";
+    }
     
     document.getElementById('details-play-btn').onclick = () => { playMovie(idx); };
     document.getElementById('details-fav-btn').onclick = () => { toggleFav(m.t); };
@@ -1577,10 +1587,8 @@ function playMovie(idx) {
     const m = playlistData[idx]; if(!m) return;
     currentPlayingTitle = m.t; document.getElementById('next-episode-btn').style.display = 'none';
     
-    // NOUVEAU : Décodage de l'URL pour vérifier si c'est un lien externe (VLC / Intent)
     let decodedUrl = ""; try { decodedUrl = window.atob(m.url); } catch(e) { decodedUrl = m.url; }
 
-    // Si le lien commence par intent:// ou vlc://, on ne lance pas le lecteur du site !
     if (String(decodedUrl).startsWith('intent://') || String(decodedUrl).startsWith('vlc://')) {
         if(currentProfile) {
             let key = 'sfpp_hist_' + currentProfile; let hist = JSON.parse(localStorage.getItem(key) || "[]").filter(t => t !== m.t);
@@ -1588,8 +1596,8 @@ function playMovie(idx) {
             if(window.syncToCloud) window.syncToCloud('history', hist);
         }
         if(window.updateUserActivity) window.updateUserActivity("Regarde (VLC) : " + m.t);
-        window.location.href = decodedUrl; // Ouvre l'application externe
-        return; // Arrête la fonction ici
+        window.location.href = decodedUrl;
+        return; 
     }
 
     if(player) { player.pause(); player.src(""); player.load(); }
