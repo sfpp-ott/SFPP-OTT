@@ -1526,7 +1526,6 @@ function openSeries(name) {
     overlay.style.display = 'flex';
     document.querySelectorAll('#series-overlay .lazy-img').forEach(img => lazyImgObserver.observe(img));
 
-    // NOUVEAU LOGICIEL : TROUVER LE DERNIER ÉPISODE REGARDÉ
     let sortedEps = [];
     Object.keys(seasons).sort().forEach(s => {
         seasons[s].forEach(ep => sortedEps.push(ep));
@@ -1535,7 +1534,6 @@ function openSeries(name) {
     let targetIndex = null;
     let history = JSON.parse(localStorage.getItem('sfpp_hist_' + currentProfile) || "[]");
     
-    // On cherche dans l'historique du plus récent au plus ancien
     for (let i = history.length - 1; i >= 0; i--) {
         let histTitle = history[i];
         let epIndexInSorted = sortedEps.findIndex(e => e.t === histTitle);
@@ -1543,14 +1541,13 @@ function openSeries(name) {
         if (epIndexInSorted !== -1) {
             targetIndex = sortedEps[epIndexInSorted].original_index;
             
-            // Si cet épisode est terminé à plus de 90%, on cible direct le suivant !
             const pData = prog[histTitle];
             if (pData && pData.p > 90) {
                 if (epIndexInSorted < sortedEps.length - 1) {
                     targetIndex = sortedEps[epIndexInSorted + 1].original_index;
                 }
             }
-            break; // On a trouvé, on arrête de chercher
+            break;
         }
     }
 
@@ -1567,7 +1564,6 @@ function openSeries(name) {
             if(elToFocus) {
                 elToFocus.focus();
                 SpatialNavigation.focus(elToFocus);
-                // La magie : On scrolle automatiquement la page jusqu'à cet épisode !
                 elToFocus.scrollIntoView({ behavior: 'smooth', block: 'center' });
             } else {
                 const favBtn = document.getElementById('series-fav-btn');
@@ -1580,6 +1576,22 @@ function openSeries(name) {
 function playMovie(idx) {
     const m = playlistData[idx]; if(!m) return;
     currentPlayingTitle = m.t; document.getElementById('next-episode-btn').style.display = 'none';
+    
+    // NOUVEAU : Décodage de l'URL pour vérifier si c'est un lien externe (VLC / Intent)
+    let decodedUrl = ""; try { decodedUrl = window.atob(m.url); } catch(e) { decodedUrl = m.url; }
+
+    // Si le lien commence par intent:// ou vlc://, on ne lance pas le lecteur du site !
+    if (String(decodedUrl).startsWith('intent://') || String(decodedUrl).startsWith('vlc://')) {
+        if(currentProfile) {
+            let key = 'sfpp_hist_' + currentProfile; let hist = JSON.parse(localStorage.getItem(key) || "[]").filter(t => t !== m.t);
+            hist.push(m.t); if(hist.length > 15) hist.shift(); localStorage.setItem(key, JSON.stringify(hist));
+            if(window.syncToCloud) window.syncToCloud('history', hist);
+        }
+        if(window.updateUserActivity) window.updateUserActivity("Regarde (VLC) : " + m.t);
+        window.location.href = decodedUrl; // Ouvre l'application externe
+        return; // Arrête la fonction ici
+    }
+
     if(player) { player.pause(); player.src(""); player.load(); }
     if(currentProfile) {
         let key = 'sfpp_hist_' + currentProfile; let hist = JSON.parse(localStorage.getItem(key) || "[]").filter(t => t !== m.t);
@@ -1593,7 +1605,6 @@ function playMovie(idx) {
     const backdrop = m.bg || m.img; document.getElementById('player-blur-bg').style.backgroundImage = "url('" + backdrop + "')"; if(player) player.poster(backdrop); 
 
     if(window.updateUserActivity) window.updateUserActivity("Regarde : " + m.t);
-    let decodedUrl = ""; try { decodedUrl = window.atob(m.url); } catch(e) { decodedUrl = m.url; }
     const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
     let type = String(decodedUrl).includes('.m3u8') ? 'application/x-mpegURL' : 'video/mp4';
 
