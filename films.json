@@ -1,5 +1,12 @@
 [
   {
+   "t": "Tf1 (Direct)",
+   "img": "https://stock.wikimini.org/w/images/3/36/Logo_TF1_2013.png",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez Tf1 en direct.",
+   "url": "http://sfpp-elite.duckdns.org:8080/live/YZjwcwnLjh/QlXrgJTnED/1642.ts"
+  },
+  {
     "num": "2049",
     "t": "Barbie : Agents Secrets",
     "id_tmdb": "377897",
