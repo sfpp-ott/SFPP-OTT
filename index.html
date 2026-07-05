@@ -1589,13 +1589,13 @@ function playMovie(idx) {
     
     let decodedUrl = ""; try { decodedUrl = window.atob(m.url); } catch(e) { decodedUrl = m.url; }
 
-    if (String(decodedUrl).startsWith('intent://') || String(decodedUrl).startsWith('vlc://')) {
+    if (String(decodedUrl).startsWith('intent://') || String(decodedUrl).startsWith('vlc://') || String(decodedUrl).includes('filemoon.org')) {
         if(currentProfile) {
             let key = 'sfpp_hist_' + currentProfile; let hist = JSON.parse(localStorage.getItem(key) || "[]").filter(t => t !== m.t);
             hist.push(m.t); if(hist.length > 15) hist.shift(); localStorage.setItem(key, JSON.stringify(hist));
             if(window.syncToCloud) window.syncToCloud('history', hist);
         }
-        if(window.updateUserActivity) window.updateUserActivity("Regarde (VLC) : " + m.t);
+        if(window.updateUserActivity) window.updateUserActivity("Regarde : " + m.t);
         window.location.href = decodedUrl;
         return; 
     }
