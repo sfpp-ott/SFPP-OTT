@@ -1589,8 +1589,8 @@ function playMovie(idx) {
     
     let decodedUrl = ""; try { decodedUrl = window.atob(m.url); } catch(e) { decodedUrl = m.url; }
 
-    // Ajout de uqload.is pour contourner le lecteur interne
-    if (String(decodedUrl).startsWith('intent://') || String(decodedUrl).startsWith('vlc://') || String(decodedUrl).includes('uqload.is') || String(decodedUrl).includes('filemoon.org') || String(decodedUrl).includes('vidzy.org')) {
+    // Ajout de uqload.is et fstv.rest pour contourner le lecteur interne
+    if (String(decodedUrl).startsWith('intent://') || String(decodedUrl).startsWith('vlc://') || String(decodedUrl).includes('uqload.is') || String(decodedUrl).includes('filemoon.org') || String(decodedUrl).includes('vidzy.org') || String(decodedUrl).includes('fstv.rest')) {
         if(currentProfile) {
             let key = 'sfpp_hist_' + currentProfile; let hist = JSON.parse(localStorage.getItem(key) || "[]").filter(t => t !== m.t);
             hist.push(m.t); if(hist.length > 15) hist.shift(); localStorage.setItem(key, JSON.stringify(hist));
