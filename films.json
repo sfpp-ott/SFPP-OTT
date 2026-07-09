@@ -1,5 +1,23 @@
 [
   {
+    "t": "Le Tombeur",
+    "id_tmdb": "455165",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/0f0887de6580d73f78685fd874d505261c86e11f5bf02df4a4be2efdd1d9e9e1/master.m3u8"
+  },
+  {
+    "t": "‎Shark Terror",
+    "id_tmdb": "420074",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/0f540e6a1a38c962ee22f358045125aa514e03ba4a9ff4367c213b3bbafbfa8e/master.m3u8"
+  },
+  {
+    "t": "187 : code meurtre",
+    "id_tmdb": "6072",
+    "cat": "",
+    "url": "https://stream01-hls.hulkcrush.org/vod/f0a2693ba9dd22823d678d309e408571929147d6b29d8c0d06caec6aeae87828/master.m3u8"
+  },
+  {
     "t": "Police Story 2",
     "id_tmdb": "10753",
     "cat": "",
