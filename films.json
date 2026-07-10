@@ -20,6 +20,12 @@
    "desc": "Regardez FRANCE 3 en direct.",
    "url": "https://fstv.rest/index.php?newsid=43"
   },
+  "t": "FRANCE 4 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/8/8a/France_4_logo.png",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez FRANCE 4 en direct.",
+   "url": "https://fstv.rest/index.php?newsid=120"
+  },
   {
     "num": "2055",
     "t": "Horizons lointains",
