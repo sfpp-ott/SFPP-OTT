@@ -6,7 +6,6 @@
    "desc": "Regardez Tf1 en direct.",
    "url": "https://fstv.rest/index.php?newsid=41"
   },
-  
   {
    "t": "Tf1 (Direct)",
    "img": "https://stock.wikimini.org/w/images/3/36/Logo_TF1_2013.png",
@@ -34,6 +33,13 @@
    "cat": "TV EN DIRECT",
    "desc": "Regardez FRANCE 4 en direct.",
    "url": "https://fstv.rest/index.php?newsid=120"
+  },
+  {
+    "num": "2081",
+    "t": "Idiotka",
+    "id_tmdb": "1430968",
+    "cat": "",
+    "url": "https://uqload.is/embed-8pty1xv0biqv.html"
   },
   {
     "num": "2080",
