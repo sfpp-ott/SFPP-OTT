@@ -196,6 +196,55 @@
    "url": "https://fstv.rest/index.php?newsid=94"
   },
   {
+  "t": "WARNER TV (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/c/c2/Warner-azul.png",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez WARNER TV en direct.",
+   "url": "https://fstv.rest/index.php?newsid=62"
+  },
+  {
+  "t": "POLAR+ (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/6/69/Polar%2B_%28Logo%29.png",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez POLAR+ en direct.",
+   "url": "https://fstv.rest/index.php?newsid=114"
+  },
+  {
+  "t": "SERIES CLUB (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/4/4c/Serieclub_%282012%29.svg",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez SERIE CLUB en direct.",
+   "url": "https://fstv.rest/index.php?newsid=106"
+  },
+  {
+  "t": "TV BREIZH (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/a/a2/Tv_Breizh_sept2011.png",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez TV BREIZH en direct.",
+   "url": "https://fstv.rest/index.php?newsid=158"
+  },
+  {
+  "t": "RTL9 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/7/75/RTL9_%282011%29.svg",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez RTL9 en direct.",
+   "url": "https://fstv.rest/index.php?newsid=64"
+  },
+  {
+  "t": "AB1 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/5/51/Logo_AB1_2021.svg",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez AB1 en direct.",
+   "url": "https://fstv.rest/index.php?newsid=101"
+  },
+  {
+  "t": "NOVELAS TV (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/d/d9/Novelas_TV_-_Logo.png",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez NOVELAS TV en direct.",
+   "url": "https://fstv.rest/index.php?newsid=69"
+  },
+  {
   "t": "COMEDIE+ (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/3/3e/Com%C3%A9die%2B_logo_%C3%A0_l%27antenne.png",
    "cat": "TV EN DIRECT",
