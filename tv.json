@@ -112,6 +112,27 @@
    "url": "https://fstv.rest/index.php?newsid=156"
   },
   {
+  "t": "TEVA (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/d/d3/T%C3%A9va.svg",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez TEVA en direct.",
+   "url": "https://fstv.rest/index.php?newsid=157"
+  },
+  {
+  "t": "TV5MONDE (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/c/cc/TV5MONDE.jpg",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez TV5MONDE en direct.",
+   "url": "https://fstv.rest/index.php?newsid=51"
+  },
+  {
+  "t": "KTO (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/5/57/KTO_Logo.png",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez KTO en direct.",
+   "url": "https://fstv.rest/index.php?newsid=176"
+  },
+  {
   "t": "LIGUE1+1 (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/8/8c/Logo_Ligue_1_2024.jpg",
    "cat": "TV EN DIRECT",
