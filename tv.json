@@ -1,5 +1,5 @@
 [
-  {
+ {
    "t": "Tf1 (Direct)",
    "img": "https://stock.wikimini.org/w/images/3/36/Logo_TF1_2013.png",
    "cat": "TV EN DIRECT",
@@ -47,6 +47,69 @@
    "cat": "TV EN DIRECT",
    "desc": "Regardez M6 en direct.",
    "url": "https://fstv.rest/index.php?newsid=45"
+  },
+  {
+  "t": "W9 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/2/2b/W9_2012.png",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez W9 en direct.",
+   "url": "https://fstv.rest/index.php?newsid=47"
+  },
+  {
+  "t": "TMC (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/a/a6/TMC_%282009%29_Boule_Logo.png",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez TMC en direct.",
+   "url": "https://fstv.rest/index.php?newsid=48"
+  },
+  {
+  "t": "TFX (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/e/ef/Logo_TFX_2018.jpg",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez TFX en direct.",
+   "url": "https://fstv.rest/index.php?newsid=93"
+  },
+  {
+  "t": "CSTAR (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/8/82/Cstar-logo.jpg",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez CSTAR en direct.",
+   "url": "https://fstv.rest/index.php?newsid=46"
+  },
+  {
+  "t": "6TER (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/0/07/6ter.png",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez 6TER en direct.",
+   "url": "https://fstv.rest/index.php?newsid=50"
+  },
+  {
+  "t": "RMC STORY (Direct)",
+   "img": "https://fr.wikipedia.org/wiki/Fichier:RMC_Story_2025.png",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez RMC STORY en direct.",
+   "url": "https://fstv.rest/index.php?newsid=155"
+  },
+  {
+  "t": "CHERIE25 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/2/2e/Logo_Ch%C3%A9rie_25.svg",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez CHERIE25 en direct.",
+   "url": "https://fstv.rest/index.php?newsid=154"
+  },
+  {
+  "t": "COMEDIE+ (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/3/3e/Com%C3%A9die%2B_logo_%C3%A0_l%27antenne.png",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez COMEDIE+ en direct.",
+   "url": "https://fstv.rest/index.php?newsid=159"
+  },
+  {
+  "t": "PARIS PREMIERE (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/d/d1/Paris_Premi%C3%A8re_2011.svg",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez PARIS PREMIERE en direct.",
+   "url": "https://fstv.rest/index.php?newsid=156"
   },
   {
   "t": "LIGUE1+1 (Direct)",
