@@ -35,6 +35,13 @@
    "url": "https://fstv.rest/index.php?newsid=120"
   },
   {
+  "t": "FRANCE 5 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/2/26/Logo_France_5.svg",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez FRANCE 5 en direct.",
+   "url": "https://fstv.rest/index.php?newsid=121"
+  },
+  {
   "t": "LIGUE1+1 (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/8/8c/Logo_Ligue_1_2024.jpg",
    "cat": "TV EN DIRECT",
