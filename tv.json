@@ -98,6 +98,41 @@
    "url": "https://fstv.rest/index.php?newsid=154"
   },
   {
+  "t": "CANAL+ (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/c/c6/CanalPlus.svg",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez CANAL+ en direct.",
+   "url": "https://fstv.rest/index.php?newsid=44"
+  },
+  {
+  "t": "CANAL+ BOX OFFICE (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/5/55/C%2B_Box_Office.png",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez CANAL+ BOX OFFICE en direct.",
+   "url": "https://fstv.rest/index.php?newsid=123"
+  },
+  {
+  "t": "CANAL+ GRAND ECRAN (Direct)",
+   "img": "https://fr.wikipedia.org/wiki/Fichier:C+_Grand_%C3%89cran.png",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez CANAL+ GRAN ECRAN en direct.",
+   "url": "https://fstv.rest/index.php?newsid=115"
+  },
+  {
+  "t": "CANAL+ CINEMA (Direct)",
+   "img": "https://fr.wikipedia.org/wiki/Fichier:C+_Cin%C3%A9ma(s).png",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez CANAL+ CINEMA en direct.",
+   "url": "https://fstv.rest/index.php?newsid=76"
+  },
+  {
+  "t": "CINE+ PREMIER (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/7/73/Canalplus_fr_cine_plus_premier_hd.png",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez CINE+ PREMIER en direct.",
+   "url": "https://fstv.rest/index.php?newsid=112"
+  },
+  {
   "t": "COMEDIE+ (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/3/3e/Com%C3%A9die%2B_logo_%C3%A0_l%27antenne.png",
    "cat": "TV EN DIRECT",
