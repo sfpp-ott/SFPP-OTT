@@ -35,6 +35,13 @@
    "url": "https://fstv.rest/index.php?newsid=120"
   },
   {
+  "t": "LIGUE1+1 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/8/8c/Logo_Ligue_1_2024.jpg",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez LIGUE1+1 en direct.",
+   "url": "https://fstv.rest/index.php?newsid=107"
+  },
+  {
     "num": "2081",
     "t": "Idiotka",
     "id_tmdb": "1430968",
