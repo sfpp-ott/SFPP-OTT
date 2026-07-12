@@ -354,6 +354,7 @@
         <button class="nav-btn active" id="btn-all" onclick="changeView('all')" tabindex="0">Accueil</button>
         <button class="nav-btn" id="btn-movies" onclick="changeView('movies')" tabindex="0">Films</button>
         <button class="nav-btn" id="btn-series" onclick="changeView('series')" tabindex="0">Séries</button>
+        <button class="nav-btn" id="btn-tv" onclick="changeView('tv')" tabindex="0">Direct TV</button>
         <button class="nav-btn" id="btn-fav" onclick="changeView('fav')" tabindex="0">Ma Liste ❤️</button>
         <button class="nav-btn" onclick="location.reload()" tabindex="0">Rafraîchir</button>
         <div id="dl-progress"></div>
@@ -920,7 +921,17 @@ async function loadPlaylist() {
             });
         } catch(se) { console.log("Pas de fichier series.json détecté pour le moment."); }
 
-        playlistData = [...filmsData, ...seriesData];
+        let tvData = [];
+        try {
+            const responseTV = await fetch('tv.json?v=' + Date.now(), { cache: "no-store" });
+            tvData = await responseTV.json();
+            tvData.forEach(t => {
+                t.is_tv = true;
+                if (!t.cat) t.cat = "DIRECT TV";
+            });
+        } catch(te) { console.log("Pas de fichier tv.json détecté."); }
+
+        playlistData = [...filmsData, ...seriesData, ...tvData];
         
         const db = await dbPromise;
         const tx = db.transaction('tmdb', 'readonly');
@@ -1210,6 +1221,11 @@ window.saveCustomPrompt = function() {
 
 function saveP() {
     if(!currentPlayingTitle || !currentProfile) return;
+    
+    // NOUVEAU : On bloque la sauvegarde si c'est une chaîne TV
+    const m = playlistData.find(item => item.t === currentPlayingTitle);
+    if (m && (m.is_tv || (m.cat && (m.cat.toUpperCase().includes("DIRECT") || m.cat.toUpperCase().includes("TV"))))) return;
+
     const cur = player.currentTime(); const dur = player.duration();
     if(dur > 0 && cur > 0) {
         let prog = JSON.parse(localStorage.getItem('sfpp_p_'+currentProfile) || "{}");
@@ -1252,8 +1268,9 @@ function render(search = "") {
         
         let data = playlistData || [];
         
-        if(currentView === 'movies') data = data.filter(m => m.cat && !m.cat.toUpperCase().includes("SÉRIES") && !m.is_series);
-        else if(currentView === 'series') data = data.filter(m => (m.cat && m.cat.toUpperCase().includes("SÉRIES")) || m.is_series);
+        if(currentView === 'movies') data = data.filter(m => !m.is_tv && (!m.cat || !m.cat.toUpperCase().includes("SÉRIES")) && !m.is_series);
+        else if(currentView === 'series') data = data.filter(m => m.is_series || (m.cat && m.cat.toUpperCase().includes("SÉRIES")));
+        else if(currentView === 'tv') data = data.filter(m => m.is_tv || (m.cat && (m.cat.toUpperCase().includes("DIRECT") || m.cat.toUpperCase().includes("TV"))));
         else if(currentView === 'fav') {
             data = data.filter(m => {
                 const isSeries = m.is_series || (m.cat && m.cat.toUpperCase().includes("SÉRIES"));
@@ -1265,7 +1282,7 @@ function render(search = "") {
                 return m.t && favs.includes(m.t);
             });
         }
-        else if(currentView === 'all') data = data.filter(m => m.cat && !m.cat.toUpperCase().includes("SÉRIES") && !m.is_series);
+        else if(currentView === 'all') data = data.filter(m => !m.is_tv && (!m.cat || !m.cat.toUpperCase().includes("SÉRIES")) && !m.is_series);
 
         if (s !== "") {
             data = data.filter(m => {
@@ -1384,7 +1401,10 @@ function render(search = "") {
         } 
         else {
             if (displayData.length > 0) {
-                let htmlTout = '<div class="category-title">' + (currentView === 'series' ? 'TOUTES LES SÉRIES' : 'TOUT') + '</div><div class="category-row"><div class="nav-arrow arrow-left" onclick="window.scrollSide(this, -400)">‹</div><div class="carousel">';
+                let titleText = 'TOUT';
+                if(currentView === 'series') titleText = 'TOUTES LES SÉRIES';
+                else if(currentView === 'tv') titleText = 'CHAÎNES EN DIRECT';
+                let htmlTout = '<div class="category-title">' + titleText + '</div><div class="category-row"><div class="nav-arrow arrow-left" onclick="window.scrollSide(this, -400)">‹</div><div class="carousel">';
                 displayData.forEach(m => {
                     const isTVCat = m.cat && (m.cat.toUpperCase().includes("DIRECT") || m.cat.toUpperCase().includes("TV"));
                     const is_fav = favs.includes(m.t); const heartClass = is_fav ? 'is-fav' : ''; const heartIcon = is_fav ? '❤️' : '♡';
@@ -1587,11 +1607,14 @@ function playMovie(idx) {
     const m = playlistData[idx]; if(!m) return;
     currentPlayingTitle = m.t; document.getElementById('next-episode-btn').style.display = 'none';
     
+    // NOUVEAU : Identification TV pour bloquer l'historique
+    const isTVChannel = m.is_tv || (m.cat && (m.cat.toUpperCase().includes("DIRECT") || m.cat.toUpperCase().includes("TV")));
+    
     let decodedUrl = ""; try { decodedUrl = window.atob(m.url); } catch(e) { decodedUrl = m.url; }
 
     // Ajout de uqload.is et fstv.rest pour contourner le lecteur interne
     if (String(decodedUrl).startsWith('intent://') || String(decodedUrl).startsWith('vlc://') || String(decodedUrl).includes('uqload.is') || String(decodedUrl).includes('filemoon.org') || String(decodedUrl).includes('vidzy.org') || String(decodedUrl).includes('fstv.rest')) {
-        if(currentProfile) {
+        if(currentProfile && !isTVChannel) {
             let key = 'sfpp_hist_' + currentProfile; let hist = JSON.parse(localStorage.getItem(key) || "[]").filter(t => t !== m.t);
             hist.push(m.t); if(hist.length > 15) hist.shift(); localStorage.setItem(key, JSON.stringify(hist));
             if(window.syncToCloud) window.syncToCloud('history', hist);
@@ -1602,7 +1625,7 @@ function playMovie(idx) {
     }
 
     if(player) { player.pause(); player.src(""); player.load(); }
-    if(currentProfile) {
+    if(currentProfile && !isTVChannel) {
         let key = 'sfpp_hist_' + currentProfile; let hist = JSON.parse(localStorage.getItem(key) || "[]").filter(t => t !== m.t);
         hist.push(m.t); if(hist.length > 15) hist.shift(); localStorage.setItem(key, JSON.stringify(hist));
         if(window.syncToCloud) window.syncToCloud('history', hist);
