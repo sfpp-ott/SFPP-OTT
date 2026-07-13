@@ -616,6 +616,76 @@
    "url": "https://fstv.rest/index.php?newsid=172"
   },
   {
+  "t": "CANAL+ FOOT (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/e/eb/Canal%2BFoot.png",
+   "cat": "TV EN DIRECT, 3.SPORTS",
+   "desc": "Regardez CANAL+ FOOT en direct.",
+   "url": "https://fstv.rest/index.php?newsid=7"
+  },
+  {
+  "t": "CANAL+ SPORT (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/0/05/Canal%2B_Sport_HD.png",
+   "cat": "TV EN DIRECT, 3.SPORTS",
+   "desc": "Regardez CANAL+ SPORT en direct.",
+   "url": "https://fstv.rest/index.php?newsid=15"
+  },
+  {
+  "t": "CANAL+ SPORT 2 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/c/c9/Canal%2B_Sport_2_2009.png",
+   "cat": "TV EN DIRECT, 3.SPORTS",
+   "desc": "Regardez CANAL+ SPORT 2 en direct.",
+   "url": "https://fstv.rest/index.php?newsid=23"
+  },
+  {
+  "t": "CANAL+ SPORT 3 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/b/bc/Canal%2B_Sport_3_PL.svg",
+   "cat": "TV EN DIRECT, 3.SPORTS",
+   "desc": "Regardez CANAL+ SPORT 3 en direct.",
+   "url": "https://fstv.rest/index.php?newsid=24"
+  },
+  {
+  "t": "CANAL+ SPORT 4 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/a/a7/Canal%2B_Sport_4_PL.png",
+   "cat": "TV EN DIRECT, 3.SPORTS",
+   "desc": "Regardez CANAL+ SPORT 4 en direct.",
+   "url": "https://fstv.rest/index.php?newsid=25"
+  },
+  {
+  "t": "CANAL+ SPORT 5 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/e/ef/CANAL%2B_Sport_5.png",
+   "cat": "TV EN DIRECT, 3.SPORTS",
+   "desc": "Regardez CANAL+ SPORT 5 en direct.",
+   "url": "https://fstv.rest/index.php?newsid=26"
+  },
+  {
+  "t": "CANAL+ SPORT 360 (Direct)",
+   "img": "https://fr.wikipedia.org/wiki/Fichier:C+_Sport_360.png",
+   "cat": "TV EN DIRECT, 3.SPORTS",
+   "desc": "Regardez CANAL+ SPORT 360 en direct.",
+   "url": "https://fstv.rest/index.php?newsid=12"
+  },
+  {
+  "t": "BEIN SPORTS 1 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/2/2f/BeIN_Sports_1_%282014%29.png",
+   "cat": "TV EN DIRECT, 3.SPORTS",
+   "desc": "Regardez BEIN SPORTS 1 en direct.",
+   "url": "https://fstv.rest/index.php?newsid=4"
+  },
+  {
+  "t": "BEIN SPORTS 2 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/5/55/BeIN_Sports_2_%282014%29.png",
+   "cat": "TV EN DIRECT, 3.SPORTS",
+   "desc": "Regardez BEIN SPORTS 2 en direct.",
+   "url": "https://fstv.rest/index.php?newsid=89"
+  },
+  {
+  "t": "BEIN SPORTS 3 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/e/e9/BeIN_Sports_3_HD.png",
+   "cat": "TV EN DIRECT, 3.SPORTS",
+   "desc": "Regardez BEIN SPORTS 3 en direct.",
+   "url": "https://fstv.rest/index.php?newsid=90"
+  },
+  {
   "t": "LIGUE1+1 (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/8/8c/Logo_Ligue_1_2024.jpg",
    "cat": "TV EN DIRECT, 3.SPORTS",
