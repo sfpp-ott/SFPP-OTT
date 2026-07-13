@@ -686,6 +686,76 @@
    "url": "https://fstv.rest/index.php?newsid=90"
   },
   {
+  "t": "RMC SPORT 1 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/3/3b/Logo_RMC_Sport_1_2018.svg",
+   "cat": "TV EN DIRECT, 3.SPORTS",
+   "desc": "Regardez RMC SPORT 1 en direct.",
+   "url": "https://fstv.rest/index.php?newsid=9"
+  },
+  {
+  "t": "RMC SPORT 2 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/3/3a/Logo_RMC_Sport_2_2018.svg",
+   "cat": "TV EN DIRECT, 3.SPORTS",
+   "desc": "Regardez RMC SPORT 2 en direct.",
+   "url": "https://fstv.rest/index.php?newsid=10"
+  },
+  {
+  "t": "RMC SPORT 3 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/7/71/Logo_RMC_Sport_3_2018.svg",
+   "cat": "TV EN DIRECT, 3.SPORTS",
+   "desc": "Regardez RMC SPORT 3 en direct.",
+   "url": "https://fstv.rest/index.php?newsid=11"
+  },
+  {
+  "t": "INFOSPORT+ (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/2/24/InfosportPlus.svg",
+   "cat": "TV EN DIRECT, 3.SPORTS",
+   "desc": "Regardez INFOSPORT+ en direct.",
+   "url": "https://fstv.rest/index.php?newsid=119"
+  },
+  {
+  "t": "L'EQUIPE (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/e/e9/L_Equipe_Logo.svg",
+   "cat": "TV EN DIRECT, 3.SPORTS",
+   "desc": "Regardez L'EQUIPE en direct.",
+   "url": "https://fstv.rest/index.php?newsid=27"
+  },
+  {
+  "t": "EUROSPORT 1 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/e/e6/Eurosport_1_Logo_2015.png",
+   "cat": "TV EN DIRECT, 3.SPORTS",
+   "desc": "Regardez EUROSPORT 1 en direct.",
+   "url": "https://fstv.rest/index.php?newsid=18"
+  },
+  {
+  "t": "EUROSPORT 2 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/d/d8/Eurosport_2_Logo_2015.svg",
+   "cat": "TV EN DIRECT, 3.SPORTS",
+   "desc": "Regardez EUROSPORT 2 en direct.",
+   "url": "https://fstv.rest/index.php?newsid=18"
+  },
+  {
+  "t": "GOLF+ (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/c/c2/Golf%2B.svg",
+   "cat": "TV EN DIRECT, 3.SPORTS",
+   "desc": "Regardez GOLF+ en direct.",
+   "url": "https://fstv.rest/index.php?newsid=145"
+  },
+  {
+  "t": "AUTOMOTO (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/3/34/Automoto_La_cha%C3%AEne_%282018%29.png",
+   "cat": "TV EN DIRECT, 3.SPORTS",
+   "desc": "Regardez AUTOMOTO en direct.",
+   "url": "https://fstv.rest/index.php?newsid=16"
+  },
+  {
+  "t": "EQUIDIA (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/2/28/Equidia_logo_2018.svg",
+   "cat": "TV EN DIRECT, 3.SPORTS",
+   "desc": "Regardez EQUIDIA en direct.",
+   "url": "https://fstv.rest/index.php?newsid=144"
+  },
+  {
   "t": "LIGUE1+1 (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/8/8c/Logo_Ligue_1_2024.jpg",
    "cat": "TV EN DIRECT, 3.SPORTS",
