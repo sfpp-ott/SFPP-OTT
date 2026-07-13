@@ -2,112 +2,112 @@
  {
    "t": "Tf1 (Direct)",
    "img": "https://stock.wikimini.org/w/images/3/36/Logo_TF1_2013.png",
-   "cat": "TV EN DIRECT, GENERALISTE",
+   "cat": "TV EN DIRECT, 1.GENERAL",
    "desc": "Regardez Tf1 en direct.",
    "url": "https://fstv.rest/index.php?newsid=41"
   },
   {
    "t": "Tf1 (Direct)",
    "img": "https://stock.wikimini.org/w/images/3/36/Logo_TF1_2013.png",
-   "cat": "TV EN DIRECT, GENERALISTE",
+   "cat": "TV EN DIRECT, 1.GENERAL",
    "desc": "Regardez Tf1 en direct.",
    "url": "https://tvastuces.com:443/live/46952B8A7AF9F4739F61FBD8FCEDE553/1.m3u8"
   },
   {
    "t": "FRANCE 2 (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/5/59/France_2_%281992-2002%29.svg",
-   "cat": "TV EN DIRECT, GENERALISTE",
+   "cat": "TV EN DIRECT, 1.GENERAL",
    "desc": "Regardez FRANCE 2 en direct.",
    "url": "https://fstv.rest/index.php?newsid=42"
   },
   {
    "t": "FRANCE 3 (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/8/8a/France_3_logo.png",
-   "cat": "TV EN DIRECT, GENERALISTE",
+   "cat": "TV EN DIRECT, 1.GENERAL",
    "desc": "Regardez FRANCE 3 en direct.",
    "url": "https://fstv.rest/index.php?newsid=43"
   },
   {
   "t": "FRANCE 4 (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/7/73/France_4_logo.png",
-   "cat": "TV EN DIRECT, GENERALISTE",
+   "cat": "TV EN DIRECT, 1.GENERAL",
    "desc": "Regardez FRANCE 4 en direct.",
    "url": "https://fstv.rest/index.php?newsid=120"
   },
   {
   "t": "FRANCE 5 (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/2/26/Logo_France_5.svg",
-   "cat": "TV EN DIRECT, GENERALISTE",
+   "cat": "TV EN DIRECT, 1.GENERAL",
    "desc": "Regardez FRANCE 5 en direct.",
    "url": "https://fstv.rest/index.php?newsid=121"
   },
   {
   "t": "M6 (Direct)",
    "img": "https://stock.wikimini.org/w/images/d/db/Logo_M6.png",
-   "cat": "TV EN DIRECT, GENERALISTE",
+   "cat": "TV EN DIRECT, 1.GENERAL",
    "desc": "Regardez M6 en direct.",
    "url": "https://fstv.rest/index.php?newsid=45"
   },
   {
   "t": "ARTE (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/8/8c/Logo_ARTE.TV_2020.svg",
-   "cat": "TV EN DIRECT, GENERALISTE",
+   "cat": "TV EN DIRECT, 1.GENERAL",
    "desc": "Regardez ARTE en direct.",
    "url": "https://fstv.rest/index.php?newsid=54"
   },
   {
   "t": "W9 (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/2/2b/W9_2012.png",
-   "cat": "TV EN DIRECT, GENERALISTE",
+   "cat": "TV EN DIRECT, 1.GENERAL",
    "desc": "Regardez W9 en direct.",
    "url": "https://fstv.rest/index.php?newsid=47"
   },
   {
   "t": "TMC (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/a/a6/TMC_%282009%29_Boule_Logo.png",
-   "cat": "TV EN DIRECT, GENERALISTE",
+   "cat": "TV EN DIRECT, 1.GENERAL",
    "desc": "Regardez TMC en direct.",
    "url": "https://fstv.rest/index.php?newsid=48"
   },
   {
   "t": "TFX (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/e/ef/Logo_TFX_2018.jpg",
-   "cat": "TV EN DIRECT, GENERALISTE",
+   "cat": "TV EN DIRECT, 1.GENERAL",
    "desc": "Regardez TFX en direct.",
    "url": "https://fstv.rest/index.php?newsid=93"
   },
   {
   "t": "CSTAR (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/8/82/Cstar-logo.jpg",
-   "cat": "TV EN DIRECT, GENERALISTE",
+   "cat": "TV EN DIRECT, 1.GENERAL",
    "desc": "Regardez CSTAR en direct.",
    "url": "https://fstv.rest/index.php?newsid=46"
   },
   {
   "t": "6TER (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/0/07/6ter.png",
-   "cat": "TV EN DIRECT, GENERALISTE",
+   "cat": "TV EN DIRECT, 1.GENERAL",
    "desc": "Regardez 6TER en direct.",
    "url": "https://fstv.rest/index.php?newsid=50"
   },
   {
   "t": "RMC STORY (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/3/3e/RMC_Story_logo_2018.svg",
-   "cat": "TV EN DIRECT, GENERALISTE",
+   "cat": "TV EN DIRECT, 1.GENERAL",
    "desc": "Regardez RMC STORY en direct.",
    "url": "https://fstv.rest/index.php?newsid=155"
   },
   {
   "t": "RMC LIFE (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/3/36/RMC_Life.png",
-   "cat": "TV EN DIRECT, GENERALISTE",
+   "cat": "TV EN DIRECT, 1.GENERAL",
    "desc": "Regardez RMC LIFE en direct.",
    "url": "https://fstv.rest/index.php?newsid=154"
   },
   {
   "t": "CANAL+ (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/c/c6/CanalPlus.svg",
-   "cat": "TV EN DIRECT, GENERAL, CINEMA, SPORTS",
+   "cat": "TV EN DIRECT, 1.GENERAL, CINEMA, SPORTS",
    "desc": "Regardez CANAL+ en direct.",
    "url": "https://fstv.rest/index.php?newsid=44"
   },
@@ -233,21 +233,21 @@
   {
   "t": "AB1 (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/5/51/Logo_AB1_2021.svg",
-   "cat": "TV EN DIRECT, GENERALISTE",
+   "cat": "TV EN DIRECT, 1.GENERAL",
    "desc": "Regardez AB1 en direct.",
    "url": "https://fstv.rest/index.php?newsid=101"
   },
   {
   "t": "NOVELAS TV (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/d/d9/Novelas_TV_-_Logo.png",
-   "cat": "TV EN DIRECT, GENERALISTE",
+   "cat": "TV EN DIRECT, 1.GENERAL",
    "desc": "Regardez NOVELAS TV en direct.",
    "url": "https://fstv.rest/index.php?newsid=69"
   },
   {
   "t": "COMEDIE+ (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/3/3e/Com%C3%A9die%2B_logo_%C3%A0_l%27antenne.png",
-   "cat": "TV EN DIRECT, GENERALISTE",
+   "cat": "TV EN DIRECT, 1.GENERAL",
    "desc": "Regardez COMEDIE+ en direct.",
    "url": "https://fstv.rest/index.php?newsid=159"
   },
@@ -261,14 +261,14 @@
   {
   "t": "TEVA (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/d/d3/T%C3%A9va.svg",
-   "cat": "TV EN DIRECT, GENERALISTE",
+   "cat": "TV EN DIRECT, 1.GENERAL",
    "desc": "Regardez TEVA en direct.",
    "url": "https://fstv.rest/index.php?newsid=157"
   },
   {
   "t": "TV5MONDE (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/c/cc/TV5MONDE.jpg",
-   "cat": "TV EN DIRECT, GENERALISTE",
+   "cat": "TV EN DIRECT, 1.GENERAL",
    "desc": "Regardez TV5MONDE en direct.",
    "url": "https://fstv.rest/index.php?newsid=51"
   },
