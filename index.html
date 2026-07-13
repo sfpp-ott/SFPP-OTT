@@ -1333,7 +1333,7 @@ function render(search = "") {
                 history.slice().reverse().forEach(title => {
                     const m = playlistData.find(item => item.t === title);
                     if(m) {
-                        const isTV = m.cat && (m.cat.toUpperCase().includes("DIRECT") || m.cat.toUpperCase().includes("TV"));
+                        const itemIsTV = m.is_tv || (m.cat && (m.cat.toUpperCase().includes("DIRECT") || m.cat.toUpperCase().includes("TV")));
                         
                         let clickAction = "";
                         let displayTitle = m.t;
@@ -1345,7 +1345,7 @@ function render(search = "") {
                             clickAction = `openSeries('${safeStr(baseName)}')`;
                             displayTitle = baseName;
                         } else {
-                            clickAction = isTV ? `playMovie(${m.original_index})` : `openDetails(${m.original_index})`;
+                            clickAction = itemIsTV ? `playMovie(${m.original_index})` : `openDetails(${m.original_index})`;
                         }
 
                         if (displayedHistoryTitles.has(displayTitle)) return;
@@ -1354,12 +1354,12 @@ function render(search = "") {
                         const is_fav = favs.includes(m.t); const heartClass = is_fav ? 'is-fav' : ''; const heartIcon = is_fav ? '❤️' : '♡';
                         const pct = (prog[m.t] && prog[m.t].p > 1) ? '<div class="prog-bg"><div class="prog-fill" style="width:' + prog[m.t].p + '%"></div></div>' : "";
                         let m_stars = ""; for (let i = 0; i < 5; i++) { m_stars += (i < (m.note || 5)) ? "★" : "☆"; }
-                        const ratingHtml = !isTV ? '<div class="card-rating">' + m_stars + '</div>' : "";
+                        const ratingHtml = !itemIsTV ? '<div class="card-rating">' + m_stars + '</div>' : "";
                         const lineInfo = m.num ? m.num : (m.original_index * 7) + 2;
                         const adminBadge = isAdminMode ? `<div style="position:absolute; top:10px; left:10px; z-index:15; background:rgba(229,9,20,0.9); padding:2px 6px; border-radius:4px; font-size:11px; font-weight:bold; border:1px solid white;">L${lineInfo}</div>` : "";
 
                         histHtml += `
-                            <div class="card sn-card ${isTV ? "landscape" : ""}" tabindex="0" onclick="${clickAction}">
+                            <div class="card sn-card ${itemIsTV ? "landscape" : ""}" tabindex="0" onclick="${clickAction}">
                                 ${adminBadge}
                                 <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${safeStr(displayTitle)}');">${heartIcon}</div>
                                 ${ratingHtml}
@@ -1378,17 +1378,17 @@ function render(search = "") {
             if (displayData.length > 0) {
                 let htmlTout = '<div class="category-title">RÉSULTATS DE RECHERCHE</div><div class="category-row"><div class="nav-arrow arrow-left" onclick="window.scrollSide(this, -400)">‹</div><div class="carousel">';
                 displayData.forEach(m => {
-                    const isTVCat = m.cat && (m.cat.toUpperCase().includes("DIRECT") || m.cat.toUpperCase().includes("TV"));
+                    const itemIsTV = m.is_tv || (m.cat && (m.cat.toUpperCase().includes("DIRECT") || m.cat.toUpperCase().includes("TV")));
                     const is_fav = favs.includes(m.t); const heartClass = is_fav ? 'is-fav' : ''; const heartIcon = is_fav ? '❤️' : '♡';
-                    const clickAction = m.is_grouped_series ? `openSeries('${safeStr(m.t)}')` : (isTVCat ? `playMovie(${m.original_index})` : `openDetails(${m.original_index})`);
+                    const clickAction = m.is_grouped_series ? `openSeries('${safeStr(m.t)}')` : (itemIsTV ? `playMovie(${m.original_index})` : `openDetails(${m.original_index})`);
                     const pct = (prog[m.t] && prog[m.t].p > 1) ? '<div class="prog-bg"><div class="prog-fill" style="width:' + prog[m.t].p + '%"></div></div>' : "";
                     let m_stars = ""; for (let i = 0; i < 5; i++) { m_stars += (i < (m.note || 5)) ? "★" : "☆"; }
-                    const ratingHtml = !isTVCat ? '<div class="card-rating">' + m_stars + '</div>' : "";
+                    const ratingHtml = !itemIsTV ? '<div class="card-rating">' + m_stars + '</div>' : "";
                     const lineInfo = m.num ? m.num : (m.original_index * 7) + 2;
                     const adminBadge = isAdminMode ? `<div style="position:absolute; top:10px; left:10px; z-index:15; background:rgba(229,9,20,0.9); padding:2px 6px; border-radius:4px; font-size:11px; font-weight:bold; border:1px solid white;">L${lineInfo}</div>` : "";
 
                     htmlTout += `
-                        <div class="card sn-card ${isTVCat ? 'landscape' : ''}" tabindex="0" onclick="${clickAction}">
+                        <div class="card sn-card ${itemIsTV ? 'landscape' : ''}" tabindex="0" onclick="${clickAction}">
                             ${adminBadge}
                             <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${safeStr(m.t)}');">${heartIcon}</div>
                             ${ratingHtml}
@@ -1406,17 +1406,17 @@ function render(search = "") {
                 else if(currentView === 'tv') titleText = 'CHAÎNES EN DIRECT';
                 let htmlTout = '<div class="category-title">' + titleText + '</div><div class="category-row"><div class="nav-arrow arrow-left" onclick="window.scrollSide(this, -400)">‹</div><div class="carousel">';
                 displayData.forEach(m => {
-                    const isTVCat = m.cat && (m.cat.toUpperCase().includes("DIRECT") || m.cat.toUpperCase().includes("TV"));
+                    const itemIsTV = m.is_tv || (m.cat && (m.cat.toUpperCase().includes("DIRECT") || m.cat.toUpperCase().includes("TV")));
                     const is_fav = favs.includes(m.t); const heartClass = is_fav ? 'is-fav' : ''; const heartIcon = is_fav ? '❤️' : '♡';
-                    const clickAction = m.is_grouped_series ? `openSeries('${safeStr(m.t)}')` : (isTVCat ? `playMovie(${m.original_index})` : `openDetails(${m.original_index})`);
+                    const clickAction = m.is_grouped_series ? `openSeries('${safeStr(m.t)}')` : (itemIsTV ? `playMovie(${m.original_index})` : `openDetails(${m.original_index})`);
                     const pct = (prog[m.t] && prog[m.t].p > 1) ? '<div class="prog-bg"><div class="prog-fill" style="width:' + prog[m.t].p + '%"></div></div>' : "";
                     let m_stars = ""; for (let i = 0; i < 5; i++) { m_stars += (i < (m.note || 5)) ? "★" : "☆"; }
-                    const ratingHtml = !isTVCat ? '<div class="card-rating">' + m_stars + '</div>' : "";
+                    const ratingHtml = !itemIsTV ? '<div class="card-rating">' + m_stars + '</div>' : "";
                     const lineInfo = m.num ? m.num : (m.original_index * 7) + 2;
                     const adminBadge = isAdminMode ? `<div style="position:absolute; top:10px; left:10px; z-index:15; background:rgba(229,9,20,0.9); padding:2px 6px; border-radius:4px; font-size:11px; font-weight:bold; border:1px solid white;">L${lineInfo}</div>` : "";
 
                     htmlTout += `
-                        <div class="card sn-card ${isTVCat ? 'landscape' : ''}" tabindex="0" onclick="${clickAction}">
+                        <div class="card sn-card ${itemIsTV ? 'landscape' : ''}" tabindex="0" onclick="${clickAction}">
                             ${adminBadge}
                             <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${safeStr(m.t)}');">${heartIcon}</div>
                             ${ratingHtml}
@@ -1437,19 +1437,19 @@ function render(search = "") {
 
             allGenres.sort().forEach(c => {
                 const filtered = displayData.filter(m => m.cat && m.cat.toUpperCase().includes(c)); if (filtered.length === 0) return;
-                const isTVCat = c.includes("DIRECT") || c.includes("TV");
                 let html = '<div class="category-title">' + c + '</div><div class="category-row"><div class="nav-arrow arrow-left" onclick="window.scrollSide(this, -400)">‹</div><div class="carousel">';
                 filtered.forEach(m => {
+                    const itemIsTV = m.is_tv || (m.cat && (m.cat.toUpperCase().includes("DIRECT") || m.cat.toUpperCase().includes("TV")));
                     const is_fav = favs.includes(m.t); const heartClass = is_fav ? 'is-fav' : ''; const heartIcon = is_fav ? '❤️' : '♡';
-                    const clickAction = m.is_grouped_series ? `openSeries('${safeStr(m.t)}')` : (isTVCat ? `playMovie(${m.original_index})` : `openDetails(${m.original_index})`);
+                    const clickAction = m.is_grouped_series ? `openSeries('${safeStr(m.t)}')` : (itemIsTV ? `playMovie(${m.original_index})` : `openDetails(${m.original_index})`);
                     const pct = (prog[m.t] && prog[m.t].p > 1) ? '<div class="prog-bg"><div class="prog-fill" style="width:' + prog[m.t].p + '%"></div></div>' : "";
                     let m_stars = ""; for (let i = 0; i < 5; i++) { m_stars += (i < (m.note || 5)) ? "★" : "☆"; }
-                    const ratingHtml = !isTVCat ? '<div class="card-rating">' + m_stars + '</div>' : "";
+                    const ratingHtml = !itemIsTV ? '<div class="card-rating">' + m_stars + '</div>' : "";
                     const lineInfo = m.num ? m.num : (m.original_index * 7) + 2;
                     const adminBadge = isAdminMode ? `<div style="position:absolute; top:10px; left:10px; z-index:15; background:rgba(229,9,20,0.9); padding:2px 6px; border-radius:4px; font-size:11px; font-weight:bold; border:1px solid white;">L${lineInfo}</div>` : "";
 
                     html += `
-                        <div class="card sn-card ${isTVCat ? 'landscape' : ''}" tabindex="0" onclick="${clickAction}">
+                        <div class="card sn-card ${itemIsTV ? 'landscape' : ''}" tabindex="0" onclick="${clickAction}">
                             ${adminBadge}
                             <div class="btn-fav-card ${heartClass}" onclick="event.stopPropagation(); toggleFav('${safeStr(m.t)}');">${heartIcon}</div>
                             ${ratingHtml}
