@@ -275,343 +275,343 @@
   {
   "t": "CANAL+ DOCS (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/2/27/Canal%2B_Docs.png",
-   "cat": "TV EN DIRECT",
+   "cat": "TV EN DIRECT, DOCUMENTAIRE",
    "desc": "Regardez CANAL+ DOCS en direct.",
    "url": "https://fstv.rest/index.php?newsid=124"
   },
   {
   "t": "PLANETE+ (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/4/41/Planete_plus_hd.png",
-   "cat": "TV EN DIRECT",
+   "cat": "TV EN DIRECT, DOCUMENTAIRE",
    "desc": "Regardez PLANETE+ en direct.",
    "url": "https://fstv.rest/index.php?newsid=162"
   },
   {
   "t": "PLANETE+ AVENTURE (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/f/f6/Planeteplusaventure.png",
-   "cat": "TV EN DIRECT",
+   "cat": "TV EN DIRECT, DOCUMENTAIRE",
    "desc": "Regardez PLANETE+ AVENTURE en direct.",
    "url": "https://fstv.rest/index.php?newsid=92"
   },
   {
   "t": "NATIONAL GEOGRAPHIC (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/f/fc/Natgeologo.svg",
-   "cat": "TV EN DIRECT",
+   "cat": "TV EN DIRECT, DOCUMENTAIRE",
    "desc": "Regardez NATIONAL GEOGRAPHIC en direct.",
    "url": "https://fstv.rest/index.php?newsid=57"
   },
   {
   "t": "NATIONAL GEOGRAPHIC WILD (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/a/ab/National_Geographic_Wild_Logo_2019.svg",
-   "cat": "TV EN DIRECT",
+   "cat": "TV EN DIRECT, DOCUMENTAIRE",
    "desc": "Regardez NATIONAL GEOGRAPHIC WILD en direct.",
    "url": "https://fstv.rest/index.php?newsid=58"
   },
   {
   "t": "DISCOVERY CHANNEL (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/8/89/Discovery_Channel_logo_2000.svg",
-   "cat": "TV EN DIRECT",
+   "cat": "TV EN DIRECT, DOCUMENTAIRE",
    "desc": "Regardez DISCOVERY CHANNEL en direct.",
    "url": "https://fstv.rest/index.php?newsid=55"
   },
   {
   "t": "DISCOVERY INVESTIGATION (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/1/18/Logo_id.png",
-   "cat": "TV EN DIRECT",
+   "cat": "TV EN DIRECT, DOCUMENTAIRE",
    "desc": "Regardez DISCOVERY INVESTIGATION en direct.",
    "url": "https://fstv.rest/index.php?newsid=167"
   },
   {
   "t": "RMC DÉCOUVERTE (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/7/73/Logo_RMC_D%C3%A9couverte_2012.png",
-   "cat": "TV EN DIRECT",
+   "cat": "TV EN DIRECT, DOCUMENTAIRE",
    "desc": "Regardez RMC DÉCOUVERTE en direct.",
    "url": "https://fstv.rest/index.php?newsid=59"
   },
   {
   "t": "BRAVO (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/d/d0/Bravo_Logo_Rouille.png",
-   "cat": "TV EN DIRECT",
+   "cat": "TV EN DIRECT, DOCUMENTAIRE",
    "desc": "Regardez BRAVO en direct.",
    "url": "https://fstv.rest/index.php?newsid=161"
   },
   {
   "t": "HISTOIRE TV (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/5/5c/Histoire_TV_logo_2019.svg",
-   "cat": "TV EN DIRECT",
+   "cat": "TV EN DIRECT, DOCUMENTAIRE",
    "desc": "Regardez HISTOIRE TV en direct.",
    "url": "https://fstv.rest/index.php?newsid=163"
   },
   {
   "t": "TOUTE L'HISTOIRE (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/5/53/Toute_L%27Histoire.svg",
-   "cat": "TV EN DIRECT",
+   "cat": "TV EN DIRECT, DOCUMENTAIRE",
    "desc": "Regardez TOUTE L'HISTOIRE en direct.",
    "url": "https://fstv.rest/index.php?newsid=95"
   },
   {
   "t": "CHASSE & PECHE (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/1/11/Chasse_%26_P%C3%AAche.svg",
-   "cat": "TV EN DIRECT",
+   "cat": "TV EN DIRECT, DOCUMENTAIRE",
    "desc": "Regardez CHASSE & PECHE en direct.",
    "url": "https://fstv.rest/index.php?newsid=166"
   },
   {
   "t": "TLC (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/6/64/TLC_logo_2010.png",
-   "cat": "TV EN DIRECT",
+   "cat": "TV EN DIRECT, DOCUMENTAIRE",
    "desc": "Regardez TLC en direct.",
    "url": "https://fstv.rest/index.php?newsid=56"
   },
   {
   "t": "MUSEUMTV (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/a/a5/Museum_TV_Paris_logo.jpg",
-   "cat": "TV EN DIRECT",
+   "cat": "TV EN DIRECT, DOCUMENTAIRE",
    "desc": "Regardez MUSEUMTV en direct.",
    "url": "https://fstv.rest/index.php?newsid=165"
   },
   {
   "t": "CRIME DISTRICT (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/c/c5/Crime_District_logo_2016.svg",
-   "cat": "TV EN DIRECT",
+   "cat": "TV EN DIRECT, DOCUMENTAIRE",
    "desc": "Regardez CRIME DISTRICT en direct.",
    "url": "https://fstv.rest/index.php?newsid=103"
   },
   {
   "t": "TREK (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/f/f8/Trek_logo_2015.svg",
-   "cat": "TV EN DIRECT",
+   "cat": "TV EN DIRECT, DOCUMENTAIRE",
    "desc": "Regardez TREK en direct.",
    "url": "https://fstv.rest/index.php?newsid=164"
   },
   {
   "t": "CANAL+ KIDS (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/0/0c/Canal%2B_Kids.png",
-   "cat": "TV EN DIRECT",
+   "cat": "TV EN DIRECT, JEUNESSE",
    "desc": "Regardez CANAL+ KIDS en direct.",
    "url": "https://fstv.rest/index.php?newsid=116"
   },
   {
   "t": "PIWI+ (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/6/6e/Piwi%2B_logo_2011.png",
-   "cat": "TV EN DIRECT",
+   "cat": "TV EN DIRECT, JEUNESSE",
    "desc": "Regardez PIWI+ en direct.",
    "url": "https://fstv.rest/index.php?newsid=117"
   },
   {
   "t": "PIWI+ (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/6/6e/Piwi%2B_logo_2011.png",
-   "cat": "TV EN DIRECT",
+   "cat": "TV EN DIRECT, JEUNESSE",
    "desc": "Regardez PIWI+ en direct.",
    "url": "https://fstv.rest/index.php?newsid=132"
   },
   {
   "t": "DISNEY JUNIOR (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/f/fe/2017_Disney_Junior_logo.png",
-   "cat": "TV EN DIRECT",
+   "cat": "TV EN DIRECT, JEUNESSE",
    "desc": "Regardez DISNEY JUNIOR en direct.",
    "url": "https://fstv.rest/index.php?newsid=34"
   },
   {
   "t": "NICKELODEON JUNIOR (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/9/99/Nickelodeon_Junior.png",
-   "cat": "TV EN DIRECT",
+   "cat": "TV EN DIRECT, JEUNESSE",
    "desc": "Regardez NICKELODEON JUNIOR en direct.",
    "url": "https://fstv.rest/index.php?newsid=128"
   },
   {
   "t": "BOOMERANG (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/9/9d/Boomerang-Logo.svg",
-   "cat": "TV EN DIRECT",
+   "cat": "TV EN DIRECT, JEUNESSE",
    "desc": "Regardez BOOMERANG en direct.",
    "url": "https://fstv.rest/index.php?newsid=31"
   },
   {
   "t": "CATOONITO (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/4/42/Cartoonito_logo.svg",
-   "cat": "TV EN DIRECT",
+   "cat": "TV EN DIRECT, JEUNESSE",
    "desc": "Regardez CATOONITO en direct.",
    "url": "https://fstv.rest/index.php?newsid=30"
   },
   {
   "t": "TIJI (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/a/a3/TiJi_logo_2012.png",
-   "cat": "TV EN DIRECT",
+   "cat": "TV EN DIRECT, JEUNESSE",
    "desc": "Regardez TIJI en direct.",
    "url": "https://fstv.rest/index.php?newsid=40"
   },
   {
   "t": "NICKELODEON (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/7/71/Nickelodeon_2023_logo.svg",
-   "cat": "TV EN DIRECT",
+   "cat": "TV EN DIRECT, JEUNESSE",
    "desc": "Regardez NICKELODEON en direct.",
    "url": "https://fstv.rest/index.php?newsid=38"
   },
   {
   "t": "TELETOON+ (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/a/ab/T%C3%A9l%C3%A9toon%2B_Logo.png",
-   "cat": "TV EN DIRECT",
+   "cat": "TV EN DIRECT, JEUNESSE",
    "desc": "Regardez TELETOON+ en direct.",
    "url": "https://fstv.rest/index.php?newsid=39"
   },
   {
   "t": "CANAL J (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/5/5a/Canal_J_logo_2009.png",
-   "cat": "TV EN DIRECT",
+   "cat": "TV EN DIRECT, JEUNESSE",
    "desc": "Regardez CANAL J en direct.",
    "url": "https://fstv.rest/index.php?newsid=52"
   },
   {
   "t": "GULLI (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/8/88/Logo-Gulli.svg",
-   "cat": "TV EN DIRECT",
+   "cat": "TV EN DIRECT, JEUNESSE",
    "desc": "Regardez GULLI en direct.",
    "url": "https://fstv.rest/index.php?newsid=36"
   },
   {
   "t": "BABY TV (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/e/ee/Babytvv.png",
-   "cat": "TV EN DIRECT",
+   "cat": "TV EN DIRECT, JEUNESSE",
    "desc": "Regardez BABY TV en direct.",
    "url": "https://fstv.rest/index.php?newsid=130"
   },
   {
   "t": "GONG MAX (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/d/d7/GONG.png",
-   "cat": "TV EN DIRECT",
+   "cat": "TV EN DIRECT, JEUNESSE",
    "desc": "Regardez GONG MAX en direct.",
    "url": "https://fstv.rest/index.php?newsid=129"
   },
   {
   "t": "WARNER TV NEXT(Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/2/29/Warner_TV_Next_logo.png",
-   "cat": "TV EN DIRECT",
+   "cat": "TV EN DIRECT, JEUNESSE",
    "desc": "Regardez WARNER TV NEXT en direct.",
    "url": "https://fstv.rest/index.php?newsid=126"
   },
   {
   "t": "MANGAS (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/8/82/Mangas_%282009%29.png",
-   "cat": "TV EN DIRECT",
+   "cat": "TV EN DIRECT, JEUNESSE",
    "desc": "Regardez MANGAS en direct.",
    "url": "https://fstv.rest/index.php?newsid=6"
   },
   {
   "t": "CNEWS (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/9/91/Canal_News_logo.png",
-   "cat": "TV EN DIRECT",
+   "cat": "TV EN DIRECT, INFORMATION",
    "desc": "Regardez CNEWS en direct.",
    "url": "https://fstv.rest/index.php?newsid=80"
   },
   {
   "t": "BFMTV (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/f/f8/BFM_TV.svg",
-   "cat": "TV EN DIRECT",
+   "cat": "TV EN DIRECT, INFORMATION",
    "desc": "Regardez BFMTV en direct.",
    "url": "https://fstv.rest/index.php?newsid=79"
   },
   {
   "t": "LCI (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/8/85/LCI.png",
-   "cat": "TV EN DIRECT",
+   "cat": "TV EN DIRECT, INFORMATION",
    "desc": "Regardez LCI en direct.",
    "url": "https://fstv.rest/index.php?newsid=82"
   },
   {
   "t": "FRANCE INFO (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/a/a3/France_info.jpg",
-   "cat": "TV EN DIRECT",
+   "cat": "TV EN DIRECT, INFORMATION",
    "desc": "Regardez FRANCE INFO en direct.",
    "url": "https://fstv.rest/index.php?newsid=122"
   },
   {
   "t": "LCP (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/9/9c/LCP_Logo.svg",
-   "cat": "TV EN DIRECT",
+   "cat": "TV EN DIRECT, INFORMATION",
    "desc": "Regardez LCP en direct.",
    "url": "https://fstv.rest/index.php?newsid=109"
   },
   {
   "t": "FRANCE 24 (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/8/8a/France24.png",
-   "cat": "TV EN DIRECT",
+   "cat": "TV EN DIRECT, INFORMATION",
    "desc": "Regardez FRANCE 24 en direct.",
    "url": "https://fstv.rest/index.php?newsid=83"
   },
   {
   "t": "EURONEWS (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/7/7e/Euronews._2016_logo.png",
-   "cat": "TV EN DIRECT",
+   "cat": "TV EN DIRECT, INFORMATION",
    "desc": "Regardez EURONEWS en direct.",
    "url": "https://fstv.rest/index.php?newsid=81"
   },
   {
   "t": "BFM BUSINESS (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/2/22/Logo_BFM_Business.svg",
-   "cat": "TV EN DIRECT",
+   "cat": "TV EN DIRECT, INFORMATION",
    "desc": "Regardez BFM BUSINESS en direct.",
    "url": "https://fstv.rest/index.php?newsid=173"
   },
   {
   "t": "I24NEWS (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/7/79/LOGO_i24NEWS.png",
-   "cat": "TV EN DIRECT",
+   "cat": "TV EN DIRECT, INFORMATION",
    "desc": "Regardez I24NEWS en direct.",
    "url": "https://fstv.rest/index.php?newsid=174"
   },
   {
   "t": "KTO (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/5/57/KTO_Logo.png",
-   "cat": "TV EN DIRECT",
+   "cat": "TV EN DIRECT, INFORMATION",
    "desc": "Regardez KTO en direct.",
    "url": "https://fstv.rest/index.php?newsid=176"
   },
   {
   "t": "M6 MUSIC (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/1/1d/M6_Music_2012.png",
-   "cat": "TV EN DIRECT",
+   "cat": "TV EN DIRECT, MUSIQUE",
    "desc": "Regardez M6 MUSIC en direct.",
    "url": "https://fstv.rest/index.php?newsid=87"
   },
   {
   "t": "NRJ HITS (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/d/d7/NRJ_HITES_2017_logo.png",
-   "cat": "TV EN DIRECT",
+   "cat": "TV EN DIRECT, MUSIQUE",
    "desc": "Regardez NRJ HITS en direct.",
    "url": "https://fstv.rest/index.php?newsid=84"
   },
   {
   "t": "MCM TOP (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/4/4b/MCM_Top_Logo.svg",
-   "cat": "TV EN DIRECT",
+   "cat": "TV EN DIRECT, MUSIQUE",
    "desc": "Regardez MCM TOP en direct.",
    "url": "https://fstv.rest/index.php?newsid=170"
   },
   {
   "t": "RFM TV (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/9/96/RFMTV-flat.svg",
-   "cat": "TV EN DIRECT",
+   "cat": "TV EN DIRECT, MUSIQUE",
    "desc": "Regardez RFM TV en direct.",
    "url": "https://fstv.rest/index.php?newsid=169"
   },
   {
   "t": "MELODIE (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/4/4f/Melody_logo_2013.png",
-   "cat": "TV EN DIRECT",
+   "cat": "TV EN DIRECT, MUSIQUE",
    "desc": "Regardez MELODIE en direct.",
    "url": "https://fstv.rest/index.php?newsid=171"
   },
   {
   "t": "TRACE URBAN (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/5/5c/Trace_Urban_logo_2010.svg",
-   "cat": "TV EN DIRECT",
+   "cat": "TV EN DIRECT, MUSIQUE",
    "desc": "Regardez TRACE URBAN en direct.",
    "url": "https://fstv.rest/index.php?newsid=168"
   },
   {
   "t": "MEZZO (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/a/a8/Mezzo_Logo.svg",
-   "cat": "TV EN DIRECT",
+   "cat": "TV EN DIRECT, MUSIQUE",
    "desc": "Regardez MEZZO en direct.",
    "url": "https://fstv.rest/index.php?newsid=172"
   },
