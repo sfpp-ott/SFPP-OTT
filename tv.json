@@ -203,6 +203,13 @@
    "url": "https://fstv.rest/index.php?newsid=104"
   },
   {
+  "t": "ACTION (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/2/2f/Action_%282014%29.svg",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez ACTION en direct.",
+   "url": "https://fstv.rest/index.php?newsid=77"
+  },
+  {
   "t": "TCM CINEMA (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/8/83/TCM_logo.svg",
    "cat": "TV EN DIRECT, 2.CINEMA",
