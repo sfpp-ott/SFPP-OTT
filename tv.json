@@ -378,6 +378,118 @@
    "url": "https://fstv.rest/index.php?newsid=164"
   },
   {
+  "t": "CANAL+ KIDS (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/0/0c/Canal%2B_Kids.png",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez CANAL+ KIDS en direct.",
+   "url": "https://fstv.rest/index.php?newsid=116"
+  },
+  {
+  "t": "PIWI+ (Direct)",
+   "img": "https://fr.wikipedia.org/wiki/Fichier:Piwi+_logo_2011.png",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez PIWI+ en direct.",
+   "url": "https://fstv.rest/index.php?newsid=117"
+  },
+  {
+  "t": "PIWI+ (Direct)",
+   "img": "https://fr.wikipedia.org/wiki/Fichier:Piwi+_logo_2011.png",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez PIWI+ en direct.",
+   "url": "https://fstv.rest/index.php?newsid=132"
+  },
+  {
+  "t": "DISNEY JUNIOR (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/f/fe/2017_Disney_Junior_logo.png",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez DISNEY JUNIOR en direct.",
+   "url": "https://fstv.rest/index.php?newsid=34"
+  },
+  {
+  "t": "NICKELODEON JUNIOR (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/9/99/Nickelodeon_Junior.png",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez NICKELODEON JUNIOR en direct.",
+   "url": "https://fstv.rest/index.php?newsid=128"
+  },
+  {
+  "t": "BOOMERANG (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/9/9d/Boomerang-Logo.svg",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez BOOMERANG en direct.",
+   "url": "https://fstv.rest/index.php?newsid=31"
+  },
+  {
+  "t": "CATOONITO (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/4/42/Cartoonito_logo.svg",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez CATOONITO en direct.",
+   "url": "https://fstv.rest/index.php?newsid=30"
+  },
+  {
+  "t": "TIJI (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/a/a3/TiJi_logo_2012.png",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez TIJI en direct.",
+   "url": "https://fstv.rest/index.php?newsid=40"
+  },
+  {
+  "t": "NICKELODEON (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/7/71/Nickelodeon_2023_logo.svg",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez NICKELODEON en direct.",
+   "url": "https://fstv.rest/index.php?newsid=38"
+  },
+  {
+  "t": "TELETOON+ (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/a/ab/T%C3%A9l%C3%A9toon%2B_Logo.png",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez TELETOON+ en direct.",
+   "url": "https://fstv.rest/index.php?newsid=39"
+  },
+  {
+  "t": "CANAL J (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/5/5a/Canal_J_logo_2009.png",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez CANAL J en direct.",
+   "url": "https://fstv.rest/index.php?newsid=52"
+  },
+  {
+  "t": "GULLI (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/8/88/Logo-Gulli.svg",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez GULLI en direct.",
+   "url": "https://fstv.rest/index.php?newsid=36"
+  },
+  {
+  "t": "BABY TV (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/e/ee/Babytvv.png",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez BABY TV en direct.",
+   "url": "https://fstv.rest/index.php?newsid=130"
+  },
+  {
+  "t": "GONG MAX (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/d/d7/GONG.png",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez GONG MAX en direct.",
+   "url": "https://fstv.rest/index.php?newsid=129"
+  },
+  {
+  "t": "WARNER TV NEXT(Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/2/29/Warner_TV_Next_logo.png",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez WARNER TV NEXT en direct.",
+   "url": "https://fstv.rest/index.php?newsid=126"
+  },
+  {
+  "t": "MANGAS (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/8/82/Mangas_%282009%29.png",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez MANGAS en direct.",
+   "url": "https://fstv.rest/index.php?newsid=6"
+  },
+  {
   "t": "KTO (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/5/57/KTO_Logo.png",
    "cat": "TV EN DIRECT",
