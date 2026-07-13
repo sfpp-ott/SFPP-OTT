@@ -329,6 +329,13 @@
    "url": "https://fstv.rest/index.php?newsid=59"
   },
   {
+  "t": "BRAVO (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/d/d0/Bravo_Logo_Rouille.png",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez BRAVO en direct.",
+   "url": "https://fstv.rest/index.php?newsid=161"
+  },
+  {
   "t": "HISTOIRE TV (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/5/5c/Histoire_TV_logo_2019.svg",
    "cat": "TV EN DIRECT",
