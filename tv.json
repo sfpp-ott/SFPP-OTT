@@ -107,126 +107,126 @@
   {
   "t": "CANAL+ (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/c/c6/CanalPlus.svg",
-   "cat": "TV EN DIRECT, 1.GENERAL, CINEMA, SPORTS",
+   "cat": "TV EN DIRECT, 1.GENERAL, 2.CINEMA, 3.SPORTS",
    "desc": "Regardez CANAL+ en direct.",
    "url": "https://fstv.rest/index.php?newsid=44"
   },
   {
   "t": "CANAL+ BOX OFFICE (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/5/55/C%2B_Box_Office.png",
-   "cat": "TV EN DIRECT, CINEMA",
+   "cat": "TV EN DIRECT, 2.CINEMA",
    "desc": "Regardez CANAL+ BOX OFFICE en direct.",
    "url": "https://fstv.rest/index.php?newsid=123"
   },
   {
   "t": "CANAL+ GRAND ECRAN (Direct)",
    "img": "https://i0.wp.com/www.planetecsat.com/wp-content/uploads/2022/01/CANALP_GRAND_ECRAN_1lignes_RVB_2021_06_07-07-01-22.png?resize=509%2C160&ssl=1",
-   "cat": "TV EN DIRECT, CINEMA",
+   "cat": "TV EN DIRECT, 2.CINEMA",
    "desc": "Regardez CANAL+ GRAN ECRAN en direct.",
    "url": "https://fstv.rest/index.php?newsid=115"
   },
   {
   "t": "CANAL+ CINEMA (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/1/1f/Logo_Canal%2B_Cin%C3%A9ma_2009.svg",
-   "cat": "TV EN DIRECT, CINEMA",
+   "cat": "TV EN DIRECT, 2.CINEMA",
    "desc": "Regardez CANAL+ CINEMA en direct.",
    "url": "https://fstv.rest/index.php?newsid=76"
   },
   {
   "t": "CINE+ PREMIER (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/7/73/Canalplus_fr_cine_plus_premier_hd.png",
-   "cat": "TV EN DIRECT, CINEMA",
+   "cat": "TV EN DIRECT, 2.CINEMA",
    "desc": "Regardez CINE+ PREMIER en direct.",
    "url": "https://fstv.rest/index.php?newsid=112"
   },
   {
   "t": "CINE+ FRISSON (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/c/ce/Logo_Cin%C3%A9%2B_Frisson_2011.svg",
-   "cat": "TV EN DIRECT, CINEMA",
+   "cat": "TV EN DIRECT, 2.CINEMA",
    "desc": "Regardez CINE+ FRISSON en direct.",
    "url": "https://fstv.rest/index.php?newsid=73"
   },
   {
   "t": "CINE+ EMOTION (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/7/71/Logo_Cin%C3%A9%2B_Emotion_2011.svg",
-   "cat": "TV EN DIRECT, CINEMA",
+   "cat": "TV EN DIRECT, 2.CINEMA",
    "desc": "Regardez CINE+ EMOTION en direct.",
    "url": "https://fstv.rest/index.php?newsid=71"
   },
   {
   "t": "CINE+ FAMILY (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/b/b9/Cin%C3%A9%2BFamily2024.svg",
-   "cat": "TV EN DIRECT, CINEMA",
+   "cat": "TV EN DIRECT, 2.CINEMA",
    "desc": "Regardez CINE+ FAMILY en direct.",
    "url": "https://fstv.rest/index.php?newsid=72"
   },
   {
   "t": "CINE+ CLASSIC (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/2/2e/Cin%C3%A9%2BClassic2024.svg",
-   "cat": "TV EN DIRECT, CINEMA",
+   "cat": "TV EN DIRECT, 2.CINEMA",
    "desc": "Regardez CINE+ CLASSIC en direct.",
    "url": "https://fstv.rest/index.php?newsid=74"
   },
   {
   "t": "CINE+ CLUB (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/5/55/Logo_Cin%C3%A9%2B_Club_2011.svg",
-   "cat": "TV EN DIRECT, CINEMA",
+   "cat": "TV EN DIRECT, 2.CINEMA",
    "desc": "Regardez CINE+ CLUB en direct.",
    "url": "https://fstv.rest/index.php?newsid=113"
   },
   {
   "t": "ACTION (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/2/2f/Action_%282014%29.svg",
-   "cat": "TV EN DIRECT, CINEMA",
+   "cat": "TV EN DIRECT, 2.CINEMA",
    "desc": "Regardez ACTION en direct.",
    "url": "https://fstv.rest/index.php?newsid=104"
   },
   {
   "t": "TCM CINEMA (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/8/83/TCM_logo.svg",
-   "cat": "TV EN DIRECT, CINEMA",
+   "cat": "TV EN DIRECT, 2.CINEMA",
    "desc": "Regardez TCM CINEMA en direct.",
    "url": "https://fstv.rest/index.php?newsid=63"
   },
   {
   "t": "SYFY (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/3/37/Syfy_france.svg",
-   "cat": "TV EN DIRECT, CINEMA",
+   "cat": "TV EN DIRECT, 2.CINEMA",
    "desc": "Regardez SYFY en direct.",
    "url": "https://fstv.rest/index.php?newsid=94"
   },
   {
   "t": "WARNER TV (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/c/c2/Warner-azul.png",
-   "cat": "TV EN DIRECT, CINEMA",
+   "cat": "TV EN DIRECT, 2.CINEMA",
    "desc": "Regardez WARNER TV en direct.",
    "url": "https://fstv.rest/index.php?newsid=62"
   },
   {
   "t": "POLAR+ (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/6/69/Polar%2B_%28Logo%29.png",
-   "cat": "TV EN DIRECT, CINEMA",
+   "cat": "TV EN DIRECT, 2.CINEMA",
    "desc": "Regardez POLAR+ en direct.",
    "url": "https://fstv.rest/index.php?newsid=114"
   },
   {
   "t": "SERIES CLUB (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/4/4c/Serieclub_%282012%29.svg",
-   "cat": "TV EN DIRECT, CINEMA",
+   "cat": "TV EN DIRECT, 2.CINEMA",
    "desc": "Regardez SERIE CLUB en direct.",
    "url": "https://fstv.rest/index.php?newsid=106"
   },
   {
   "t": "TV BREIZH (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/a/a2/Tv_Breizh_sept2011.png",
-   "cat": "TV EN DIRECT, CINEMA",
+   "cat": "TV EN DIRECT, 2.CINEMA",
    "desc": "Regardez TV BREIZH en direct.",
    "url": "https://fstv.rest/index.php?newsid=158"
   },
   {
   "t": "RTL9 (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/7/75/RTL9_%282011%29.svg",
-   "cat": "TV EN DIRECT, CINEMA",
+   "cat": "TV EN DIRECT, 2.CINEMA",
    "desc": "Regardez RTL9 en direct.",
    "url": "https://fstv.rest/index.php?newsid=64"
   },
@@ -254,7 +254,7 @@
   {
   "t": "PARIS PREMIERE (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/d/d1/Paris_Premi%C3%A8re_2011.svg",
-   "cat": "TV EN DIRECT, CINEMA",
+   "cat": "TV EN DIRECT, 2.CINEMA",
    "desc": "Regardez PARIS PREMIERE en direct.",
    "url": "https://fstv.rest/index.php?newsid=156"
   },
@@ -618,7 +618,7 @@
   {
   "t": "LIGUE1+1 (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/8/8c/Logo_Ligue_1_2024.jpg",
-   "cat": "TV EN DIRECT, SPORTS",
+   "cat": "TV EN DIRECT, 3.SPORTS",
    "desc": "Regardez LIGUE1+1 en direct.",
    "url": "https://fstv.rest/index.php?newsid=107"
   }
