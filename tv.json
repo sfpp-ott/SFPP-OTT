@@ -833,6 +833,27 @@
    "url": "https://fstv.rest/index.php?newsid=144"
   },
   {
+  "t": "DAZN 1 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/e/e3/Tv-channel-%E2%94%82-dazn-1.png",
+   "cat": "TV EN DIRECT, 3.SPORTS",
+   "desc": "Regardez DAZN 1 en direct.",
+   "url": "https://fstv.rest/index.php?newsid=13"
+  },
+  {
+  "t": "DAZN 2 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/f/f4/Tv-channel-%E2%94%82-dazn-2.png",
+   "cat": "TV EN DIRECT, 3.SPORTS",
+   "desc": "Regardez DAZN 2 en direct.",
+   "url": "https://fstv.rest/index.php?newsid=14"
+  },
+  {
+  "t": "DAZN 3 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/b/ba/DAZN_3.svg",
+   "cat": "TV EN DIRECT, 3.SPORTS",
+   "desc": "Regardez DAZN 3 en direct.",
+   "url": "https://fstv.rest/index.php?newsid=19"
+  },
+  {
   "t": "LIGUE1+1 (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/8/8c/Logo_Ligue_1_2024.jpg",
    "cat": "TV EN DIRECT, 3.SPORTS",
