@@ -490,11 +490,123 @@
    "url": "https://fstv.rest/index.php?newsid=6"
   },
   {
+  "t": "CNEWS (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/9/91/Canal_News_logo.png",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez CNEWS en direct.",
+   "url": "https://fstv.rest/index.php?newsid=80"
+  },
+  {
+  "t":t"BFMTV (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/f/f8/BFM_TV.svg",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez BFMTV en direct.",
+   "url": "https://fstv.rest/index.php?newsid=79"
+  },
+  {
+  "t":t"LCI (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/8/85/LCI.png",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez LCI en direct.",
+   "url": "https://fstv.rest/index.php?newsid=82"
+  },
+  {
+  "t":t"FRANCE INFO (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/a/a3/France_info.jpg",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez FRANCE INFO en direct.",
+   "url": "https://fstv.rest/index.php?newsid=122"
+  },
+  {
+  "t":t"LCP (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/9/9c/LCP_Logo.svg",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez LCP en direct.",
+   "url": "https://fstv.rest/index.php?newsid=109"
+  },
+  {
+  "t":t"FRANCE 24 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/8/8a/France24.png",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez FRANCE 24 en direct.",
+   "url": "https://fstv.rest/index.php?newsid=83"
+  },
+  {
+  "t":t"EURONEWS (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/7/7e/Euronews._2016_logo.png",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez EURONEWS en direct.",
+   "url": "https://fstv.rest/index.php?newsid=81"
+  },
+  {
+  "t":t"BFM BUSINESS (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/2/22/Logo_BFM_Business.svg",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez BFM BUSINESS en direct.",
+   "url": "https://fstv.rest/index.php?newsid=173"
+  },
+  {
+  "t":t"I24NEWS (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/7/79/LOGO_i24NEWS.png",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez I24NEWS en direct.",
+   "url": "https://fstv.rest/index.php?newsid=174"
+  },
+  {
   "t": "KTO (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/5/57/KTO_Logo.png",
    "cat": "TV EN DIRECT",
    "desc": "Regardez KTO en direct.",
    "url": "https://fstv.rest/index.php?newsid=176"
+  },
+  {
+  "t": "M6 MUSIC (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/1/1d/M6_Music_2012.png",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez M6 MUSIC en direct.",
+   "url": "https://fstv.rest/index.php?newsid=87"
+  },
+  {
+  "t": "NRJ HITS (Direct)",
+   "img": "https://fr.wikipedia.org/wiki/Fichier:NRJ_Hits_2017.svg?lang=fr",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez NRJ HITS en direct.",
+   "url": "https://fstv.rest/index.php?newsid=84"
+  },
+  {
+  "t": "MCM TOP (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/4/4b/MCM_Top_Logo.svg",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez MCM TOP en direct.",
+   "url": "https://fstv.rest/index.php?newsid=170"
+  },
+  {
+  "t": "RFM TV (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/9/96/RFMTV-flat.svg",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez RFM TV en direct.",
+   "url": "https://fstv.rest/index.php?newsid=169"
+  },
+  {
+  "t": "MELODIE (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/4/4f/Melody_logo_2013.png",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez MELODIE en direct.",
+   "url": "https://fstv.rest/index.php?newsid=171"
+  },
+  {
+  "t": "TRACE URBAN (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/5/5c/Trace_Urban_logo_2010.svg",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez TRACE URBAN en direct.",
+   "url": "https://fstv.rest/index.php?newsid=168"
+  },
+  {
+  "t": "MEZZO (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/a/a8/Mezzo_Logo.svg",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez MEZZO en direct.",
+   "url": "https://fstv.rest/index.php?newsid=172"
   },
   {
   "t": "LIGUE1+1 (Direct)",
