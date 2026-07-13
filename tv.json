@@ -140,6 +140,13 @@
    "url": "https://fstv.rest/index.php?newsid=76"
   },
   {
+  "t": "CANAL+ SERIES (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/e/e3/C%2B_S%C3%A9ries.png",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez CANAL+ SERIES en direct.",
+   "url": "https://fstv.rest/index.php?newsid=75"
+  },
+  {
   "t": "CINE+ PREMIER (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/7/73/Canalplus_fr_cine_plus_premier_hd.png",
    "cat": "TV EN DIRECT, 2.CINEMA",
