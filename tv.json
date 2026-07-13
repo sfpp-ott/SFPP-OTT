@@ -294,6 +294,13 @@
    "url": "https://fstv.rest/index.php?newsid=101"
   },
   {
+  "t": "AB3 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/0/0e/Logo_AB3.svg",
+   "cat": "TV EN DIRECT, 1.GENERAL",
+   "desc": "Regardez AB3 en direct.",
+   "url": "https://fstv.rest/index.php?newsid=108"
+  },
+  {
   "t": "NOVELAS TV (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/d/d9/Novelas_TV_-_Logo.png",
    "cat": "TV EN DIRECT, 1.GENERAL",
