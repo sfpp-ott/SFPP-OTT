@@ -273,6 +273,111 @@
    "url": "https://fstv.rest/index.php?newsid=51"
   },
   {
+  "t": "CANAL+ DOCS (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/2/27/Canal%2B_Docs.png",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez CANAL+ DOCS en direct.",
+   "url": "https://fstv.rest/index.php?newsid=124"
+  },
+  {
+  "t": "PLANETE+ (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/4/41/Planete_plus_hd.png",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez PLANETE+ en direct.",
+   "url": "https://fstv.rest/index.php?newsid=162"
+  },
+  {
+  "t": "PLANETE+ AVENTURE (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/f/f6/Planeteplusaventure.png",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez PLANETE+ AVENTURE en direct.",
+   "url": "https://fstv.rest/index.php?newsid=92"
+  },
+  {
+  "t": "NATIONAL GEOGRAPHIC (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/f/fc/Natgeologo.svg",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez NATIONAL GEOGRAPHIC en direct.",
+   "url": "https://fstv.rest/index.php?newsid=57"
+  },
+  {
+  "t": "NATIONAL GEOGRAPHIC WILD (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/a/ab/National_Geographic_Wild_Logo_2019.svg",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez NATIONAL GEOGRAPHIC WILD en direct.",
+   "url": "https://fstv.rest/index.php?newsid=58"
+  },
+  {
+  "t": "DISCOVERY CHANNEL (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/8/89/Discovery_Channel_logo_2000.svg",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez DISCOVERY CHANNEL en direct.",
+   "url": "https://fstv.rest/index.php?newsid=55"
+  },
+  {
+  "t": "DISCOVERY INVESTIGATION (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/1/18/Logo_id.png",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez DISCOVERY INVESTIGATION en direct.",
+   "url": "https://fstv.rest/index.php?newsid=167"
+  },
+  {
+  "t": "RMC DÉCOUVERTE (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/7/73/Logo_RMC_D%C3%A9couverte_2012.png",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez RMC DÉCOUVERTE en direct.",
+   "url": "https://fstv.rest/index.php?newsid=59"
+  },
+  {
+  "t": "HISTOIRE TV (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/5/5c/Histoire_TV_logo_2019.svg",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez HISTOIRE TV en direct.",
+   "url": "https://fstv.rest/index.php?newsid=163"
+  },
+  {
+  "t": "TOUTE L'HISTOIRE (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/5/53/Toute_L%27Histoire.svg",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez TOUTE L'HISTOIRE en direct.",
+   "url": "https://fstv.rest/index.php?newsid=95"
+  },
+  {
+  "t": "CHASSE & PECHE (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/1/11/Chasse_%26_P%C3%AAche.svg",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez CHASSE & PECHE en direct.",
+   "url": "https://fstv.rest/index.php?newsid=166"
+  },
+  {
+  "t": "TLC (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/6/64/TLC_logo_2010.png",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez TLC en direct.",
+   "url": "https://fstv.rest/index.php?newsid=56"
+  },
+  {
+  "t": "MUSEUMTV (Direct)",
+   "img": "https://fr.wikipedia.org/wiki/Fichier:Logomuseumtv.png",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez MUSEUMTV en direct.",
+   "url": "https://fstv.rest/index.php?newsid=165"
+  },
+  {
+  "t": "CRIME DISTRICT (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/c/c5/Crime_District_logo_2016.svg",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez CRIME DISTRICT en direct.",
+   "url": "https://fstv.rest/index.php?newsid=103"
+  },
+  {
+  "t": "TREK (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/f/f8/Trek_logo_2015.svg",
+   "cat": "TV EN DIRECT",
+   "desc": "Regardez TREK en direct.",
+   "url": "https://fstv.rest/index.php?newsid=164"
+  },
+  {
   "t": "KTO (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/5/57/KTO_Logo.png",
    "cat": "TV EN DIRECT",
