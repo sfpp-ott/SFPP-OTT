@@ -1090,7 +1090,6 @@ function openDetails(idx) {
         trailerBox.innerHTML = "";
     }
     
-    // NOUVEAU LOGICIEL : Gestion intelligente des boutons VF et VO
     const playBtn = document.getElementById('details-play-btn');
     playBtn.innerText = "▶ Lancer en VF";
     playBtn.onclick = () => { playMovie(idx, 'VF'); };
@@ -1555,7 +1554,7 @@ function openSeries(name) {
             const pct = (prog[ep.t] && prog[ep.t].p > 1) ? '<div style="height:3px; background:#444; width:100px; margin-top:5px;"><div style="height:100%; background:var(--accent); width:' + prog[ep.t].p + '%"></div></div>' : "";
             const lineInfoEp = ep.num ? ep.num : (ep.original_index * 7) + 2;
             
-            // NOUVEAU LOGICIEL : Bouton VO pour les épisodes
+            // Correction de vidsrc.net vers vidsrc.me pour les boutons séries
             let voBtnHtml = ep.id_tmdb ? `<button class="btn-report-ep" style="background:#333; border-color:#555; margin-right:5px; padding: 6px 15px;" onclick="event.stopPropagation(); playMovie(${ep.original_index}, 'VO');" tabindex="0" title="Regarder en VO">🎬 VO</button>` : '';
 
             html += `<div class="episode-item sn-card" id="ep-item-${ep.original_index}" onclick="playMovie(${ep.original_index}, 'VF');" tabindex="0">
@@ -1624,25 +1623,24 @@ function playMovie(idx, lang = 'VF') {
     
     const isTVChannel = m.is_tv || (m.cat && (m.cat.toUpperCase().includes("DIRECT") || m.cat.toUpperCase().includes("TV")));
     
-    // NOUVEAU LOGICIEL : Génération de l'URL VO via VidSrc si demandé
+    // Correction finale vers le domaine fonctionnel vidsrc.me
     let decodedUrl = ""; 
     if (lang === 'VO' && m.id_tmdb) {
         const isSeries = m.is_series || (m.cat && m.cat.toUpperCase().includes("SÉRIES"));
         if (isSeries) {
             const match = String(m.t).match(/S(\d+).*?E(\d+)/i);
             if (match) {
-                decodedUrl = `https://vidsrc.net/embed/tv?tmdb=${m.id_tmdb}&season=${parseInt(match[1])}&episode=${parseInt(match[2])}`;
+                decodedUrl = `https://vidsrc.me/embed/tv?tmdb=${m.id_tmdb}&season=${parseInt(match[1])}&episode=${parseInt(match[2])}`;
             } else {
-                decodedUrl = `https://vidsrc.net/embed/tv?tmdb=${m.id_tmdb}`;
+                decodedUrl = `https://vidsrc.me/embed/tv?tmdb=${m.id_tmdb}`;
             }
         } else {
-            decodedUrl = `https://vidsrc.net/embed/movie?tmdb=${m.id_tmdb}`;
+            decodedUrl = `https://vidsrc.me/embed/movie?tmdb=${m.id_tmdb}`;
         }
     } else {
         try { decodedUrl = window.atob(m.url); } catch(e) { decodedUrl = m.url; }
     }
 
-    // Ajout de VidSrc dans la boucle de détection
     if (lang === 'VO' || String(decodedUrl).startsWith('intent://') || String(decodedUrl).startsWith('vlc://') || String(decodedUrl).includes('uqload') || String(decodedUrl).includes('filemoon') || String(decodedUrl).includes('vidzy') || String(decodedUrl).includes('fstv.rest') || String(decodedUrl).includes('vidsrc')) {
         if(currentProfile && !isTVChannel) {
             let key = 'sfpp_hist_' + currentProfile; let hist = JSON.parse(localStorage.getItem(key) || "[]").filter(t => t !== m.t);
