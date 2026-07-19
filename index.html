@@ -1644,8 +1644,8 @@ function playMovie(idx, lang = 'VF') {
         try { decodedUrl = window.atob(m.url); } catch(e) { decodedUrl = m.url; }
     }
 
-    // AJOUT DE VK.COM ET VKVIDEO ICI
-    if (lang === 'VO' || String(decodedUrl).startsWith('intent://') || String(decodedUrl).startsWith('vlc://') || String(decodedUrl).includes('uqload') || String(decodedUrl).includes('filemoon') || String(decodedUrl).includes('vidzy') || String(decodedUrl).includes('fstv.rest') || String(decodedUrl).includes('vidsrc') || String(decodedUrl).includes('ok.ru') || String(decodedUrl).includes('vk.com') || String(decodedUrl).includes('vkvideo')) {
+    // AJOUT DE OK.RU ICI
+    if (lang === 'VO' || String(decodedUrl).startsWith('intent://') || String(decodedUrl).startsWith('vlc://') || String(decodedUrl).includes('uqload') || String(decodedUrl).includes('filemoon') || String(decodedUrl).includes('vidzy') || String(decodedUrl).includes('fstv.rest') || String(decodedUrl).includes('vidsrc') || String(decodedUrl).includes('ok.ru')) {
         if(currentProfile && !isTVChannel) {
             let key = 'sfpp_hist_' + currentProfile; let hist = JSON.parse(localStorage.getItem(key) || "[]").filter(t => t !== m.t);
             hist.push(m.t); if(hist.length > 15) hist.shift(); localStorage.setItem(key, JSON.stringify(hist));
