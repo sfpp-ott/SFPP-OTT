@@ -1633,12 +1633,12 @@ function playMovie(idx, lang = 'VF') {
         if (isSeries) {
             const match = String(m.t).match(/S(\d+).*?E(\d+)/i);
             if (match) {
-                decodedUrl = `https://vidsrc.me/embed/tv?tmdb=${m.id_tmdb}&season=${parseInt(match[1])}&episode=${parseInt(match[2])}`;
+                decodedUrl = `https://vidsrcme.ru/embed/tv?tmdb=${m.id_tmdb}&season=${parseInt(match[1])}&episode=${parseInt(match[2])}`;
             } else {
-                decodedUrl = `https://vidsrc.me/embed/tv?tmdb=${m.id_tmdb}`;
+                decodedUrl = `https://vidsrcme.ru/embed/tv?tmdb=${m.id_tmdb}`;
             }
         } else {
-            decodedUrl = `https://vidsrc.me/embed/movie?tmdb=${m.id_tmdb}`;
+            decodedUrl = `https://vidsrcme.ru/embed/movie?tmdb=${m.id_tmdb}`;
         }
     } else {
         try { decodedUrl = window.atob(m.url); } catch(e) { decodedUrl = m.url; }
