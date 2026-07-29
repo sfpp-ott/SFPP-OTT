@@ -386,8 +386,7 @@
                 <span id="details-meta-cat">Film</span>
                 <span id="details-stars-display" style="color:var(--gold)"></span> </div>
             <div class="details-actions">
-                <button id="details-play-btn" class="btn-play-main" tabindex="0">▶ Lancer en VF</button>
-                <button id="details-play-vo-btn" class="btn-fav-details" style="display:none; background:#222; border-color:#555;" tabindex="0">🎬 Lancer en VO</button>
+                <button id="details-play-btn" class="btn-play-main" tabindex="0">▶ Lancer la vidéo</button>
                 <button id="details-fav-btn" class="btn-fav-details" tabindex="0">+ Ma Liste</button>
                 <button id="details-report-btn" class="btn-report-hs" tabindex="0">⚠️ Signaler</button>
             </div>
@@ -1094,16 +1093,8 @@ function openDetails(idx) {
     }
     
     const playBtn = document.getElementById('details-play-btn');
-    playBtn.innerText = "▶ Lancer en VF";
-    playBtn.onclick = () => { playMovie(idx, 'VF'); };
-    
-    const voBtn = document.getElementById('details-play-vo-btn');
-    if (m.id_tmdb) {
-        voBtn.style.display = 'inline-block';
-        voBtn.onclick = () => { playMovie(idx, 'VO'); };
-    } else {
-        voBtn.style.display = 'none';
-    }
+    playBtn.innerText = "▶ Lancer la vidéo";
+    playBtn.onclick = () => { playMovie(idx); };
 
     document.getElementById('details-fav-btn').onclick = () => { toggleFav(m.t); };
     document.getElementById('details-report-btn').onclick = () => window.reportFilm(m.t, lineInfo);
@@ -1358,7 +1349,7 @@ function render(search = "") {
                             clickAction = `openSeries('${safeStr(baseName)}')`;
                             displayTitle = baseName;
                         } else {
-                            clickAction = itemIsTV ? `playMovie(${m.original_index}, 'VF')` : `openDetails(${m.original_index})`;
+                            clickAction = itemIsTV ? `playMovie(${m.original_index})` : `openDetails(${m.original_index})`;
                         }
 
                         if (displayedHistoryTitles.has(displayTitle)) return;
@@ -1393,7 +1384,7 @@ function render(search = "") {
                 displayData.forEach(m => {
                     const itemIsTV = m.is_tv || (m.cat && (m.cat.toUpperCase().includes("DIRECT") || m.cat.toUpperCase().includes("TV")));
                     const is_fav = favs.includes(m.t); const heartClass = is_fav ? 'is-fav' : ''; const heartIcon = is_fav ? '❤️' : '♡';
-                    const clickAction = m.is_grouped_series ? `openSeries('${safeStr(m.t)}')` : (itemIsTV ? `playMovie(${m.original_index}, 'VF')` : `openDetails(${m.original_index})`);
+                    const clickAction = m.is_grouped_series ? `openSeries('${safeStr(m.t)}')` : (itemIsTV ? `playMovie(${m.original_index})` : `openDetails(${m.original_index})`);
                     const pct = (prog[m.t] && prog[m.t].p > 1) ? '<div class="prog-bg"><div class="prog-fill" style="width:' + prog[m.t].p + '%"></div></div>' : "";
                     let m_stars = ""; for (let i = 0; i < 5; i++) { m_stars += (i < (m.note || 5)) ? "★" : "☆"; }
                     const ratingHtml = !itemIsTV ? '<div class="card-rating">' + m_stars + '</div>' : "";
@@ -1421,7 +1412,7 @@ function render(search = "") {
                 displayData.forEach(m => {
                     const itemIsTV = m.is_tv || (m.cat && (m.cat.toUpperCase().includes("DIRECT") || m.cat.toUpperCase().includes("TV")));
                     const is_fav = favs.includes(m.t); const heartClass = is_fav ? 'is-fav' : ''; const heartIcon = is_fav ? '❤️' : '♡';
-                    const clickAction = m.is_grouped_series ? `openSeries('${safeStr(m.t)}')` : (itemIsTV ? `playMovie(${m.original_index}, 'VF')` : `openDetails(${m.original_index})`);
+                    const clickAction = m.is_grouped_series ? `openSeries('${safeStr(m.t)}')` : (itemIsTV ? `playMovie(${m.original_index})` : `openDetails(${m.original_index})`);
                     const pct = (prog[m.t] && prog[m.t].p > 1) ? '<div class="prog-bg"><div class="prog-fill" style="width:' + prog[m.t].p + '%"></div></div>' : "";
                     let m_stars = ""; for (let i = 0; i < 5; i++) { m_stars += (i < (m.note || 5)) ? "★" : "☆"; }
                     const ratingHtml = !itemIsTV ? '<div class="card-rating">' + m_stars + '</div>' : "";
@@ -1454,7 +1445,7 @@ function render(search = "") {
                 filtered.forEach(m => {
                     const itemIsTV = m.is_tv || (m.cat && (m.cat.toUpperCase().includes("DIRECT") || m.cat.toUpperCase().includes("TV")));
                     const is_fav = favs.includes(m.t); const heartClass = is_fav ? 'is-fav' : ''; const heartIcon = is_fav ? '❤️' : '♡';
-                    const clickAction = m.is_grouped_series ? `openSeries('${safeStr(m.t)}')` : (itemIsTV ? `playMovie(${m.original_index}, 'VF')` : `openDetails(${m.original_index})`);
+                    const clickAction = m.is_grouped_series ? `openSeries('${safeStr(m.t)}')` : (itemIsTV ? `playMovie(${m.original_index})` : `openDetails(${m.original_index})`);
                     const pct = (prog[m.t] && prog[m.t].p > 1) ? '<div class="prog-bg"><div class="prog-fill" style="width:' + prog[m.t].p + '%"></div></div>' : "";
                     let m_stars = ""; for (let i = 0; i < 5; i++) { m_stars += (i < (m.note || 5)) ? "★" : "☆"; }
                     const ratingHtml = !itemIsTV ? '<div class="card-rating">' + m_stars + '</div>' : "";
@@ -1557,12 +1548,8 @@ function openSeries(name) {
             const pct = (prog[ep.t] && prog[ep.t].p > 1) ? '<div style="height:3px; background:#444; width:100px; margin-top:5px;"><div style="height:100%; background:var(--accent); width:' + prog[ep.t].p + '%"></div></div>' : "";
             const lineInfoEp = ep.num ? ep.num : (ep.original_index * 7) + 2;
             
-            // Correction de vidsrc.net vers vidsrc.me pour les boutons séries
-            let voBtnHtml = ep.id_tmdb ? `<button class="btn-report-ep" style="background:#333; border-color:#555; margin-right:5px; padding: 6px 15px;" onclick="event.stopPropagation(); playMovie(${ep.original_index}, 'VO');" tabindex="0" title="Regarder en VO">🎬 VO</button>` : '';
-
-            html += `<div class="episode-item sn-card" id="ep-item-${ep.original_index}" onclick="playMovie(${ep.original_index}, 'VF');" tabindex="0">
+            html += `<div class="episode-item sn-card" id="ep-item-${ep.original_index}" onclick="playMovie(${ep.original_index});" tabindex="0">
                         <div style="flex:1"><b>${epNameDisplay}</b>${pct}</div>
-                        ${voBtnHtml}
                         <button class="btn-report-ep" onclick="event.stopPropagation(); window.reportFilm('${safeStr(ep.t)}', ${lineInfoEp});" tabindex="0" title="Signaler cet épisode">⚠️</button>
                         <div style="color:var(--accent); font-weight:bold; margin-left:15px;">▶</div>
                      </div>`;
@@ -1620,31 +1607,16 @@ function openSeries(name) {
     }
 }
 
-function playMovie(idx, lang = 'VF') {
+function playMovie(idx) {
     const m = playlistData[idx]; if(!m) return;
     currentPlayingTitle = m.t; document.getElementById('next-episode-btn').style.display = 'none';
     
     const isTVChannel = m.is_tv || (m.cat && (m.cat.toUpperCase().includes("DIRECT") || m.cat.toUpperCase().includes("TV")));
     
-    // Correction finale vers le domaine fonctionnel vidsrc.me
     let decodedUrl = ""; 
-    if (lang === 'VO' && m.id_tmdb) {
-        const isSeries = m.is_series || (m.cat && m.cat.toUpperCase().includes("SÉRIES"));
-        if (isSeries) {
-            const match = String(m.t).match(/S(\d+).*?E(\d+)/i);
-            if (match) {
-                decodedUrl = `https://vidsrcme.ru/embed/tv?tmdb=${m.id_tmdb}&season=${parseInt(match[1])}&episode=${parseInt(match[2])}`;
-            } else {
-                decodedUrl = `https://vidsrcme.ru/embed/tv?tmdb=${m.id_tmdb}`;
-            }
-        } else {
-            decodedUrl = `https://vidsrcme.ru/embed/movie?tmdb=${m.id_tmdb}`;
-        }
-    } else {
-        try { decodedUrl = window.atob(m.url); } catch(e) { decodedUrl = m.url; }
-    }
+    try { decodedUrl = window.atob(m.url); } catch(e) { decodedUrl = m.url; }
 
-    if (lang === 'VO' || String(decodedUrl).startsWith('intent://') || String(decodedUrl).startsWith('vlc://') || String(decodedUrl).includes('uqload') || String(decodedUrl).includes('filemoon') || String(decodedUrl).includes('vidzy') || String(decodedUrl).includes('fstv.rest') || String(decodedUrl).includes('vidsrc') || String(decodedUrl).includes('ok.ru') || String(decodedUrl).includes('vk.com') || String(decodedUrl).includes('vkvideo')) {
+    if (String(decodedUrl).startsWith('intent://') || String(decodedUrl).startsWith('vlc://') || String(decodedUrl).includes('uqload') || String(decodedUrl).includes('filemoon') || String(decodedUrl).includes('vidzy') || String(decodedUrl).includes('fstv.rest') || String(decodedUrl).includes('vidsrc') || String(decodedUrl).includes('ok.ru') || String(decodedUrl).includes('vk.com') || String(decodedUrl).includes('vkvideo')) {
         if(currentProfile && !isTVChannel) {
             let key = 'sfpp_hist_' + currentProfile; let hist = JSON.parse(localStorage.getItem(key) || "[]").filter(t => t !== m.t);
             hist.push(m.t); if(hist.length > 15) hist.shift(); localStorage.setItem(key, JSON.stringify(hist));
