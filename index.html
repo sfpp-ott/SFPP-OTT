@@ -1,6 +1,3 @@
-
-
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -1628,54 +1625,6 @@ function playMovie(idx) {
     // On lance le lecteur natif SEULEMENT si c'est de la TV ET que ce n'est PAS un lien web (FSTV)
     if (isTVChannel && !isWebPlayerUrl) {
         if (typeof window.SfppIptv !== 'undefined') {
-            if(currentProfile) {
-                let key = 'sfpp_hist_' + currentProfile; let hist = JSON.parse(localStorage.getItem(key) || "[]").filter(t => t !== m.t);
-                hist.push(m.t); if(hist.length > 15) hist.shift(); localStorage.setItem(key, JSON.stringify(hist));
-                if(window.syncToCloud) window.syncToCloud('history', hist);
-            }
-            if(window.updateUserActivity) window.updateUserActivity("Regarde (App) : " + m.t);
-            
-            window.SfppIptv.playIptv(decodedUrl);
-            return; 
-        } else {
-            if (decodedUrl.startsWith('http://') && window.location.protocol === 'https:') {
-                window.showToast("Erreur : Ce flux HTTP nécessite l'application SFPP ELITE.");
-                return;
-            }
-        }
-    }
-    // ========================================================
-
-    // Si c'est un lien web classique (FSTV, Uqload...), on l'envoie à la WebView de Sketchware comme avant !
-    if (isWebPlayerUrl) {
-        if(currentProfile && !isTVChannel) {
-            let key = 'sfpp_hist_' + currentProfile; let hist = JSON.parse(localStorage.getItem(key) || "[]").filter(t => t !== m.t);
-            hist.push(m.t); if(hist.length > 15) hist.shift(); localStorage.setItem(key, JSON.stringify(hist));
-            if(window.syncToCloud) window.syncToCloud('history', hist);
-        }
-        if(window.updateUserActivity) window.updateUserActivity("Regarde : " + m.t);
-        window.location.href = decodedUrl;
-        return; 
-    }
-
-function playMovie(idx) {
-    const m = playlistData[idx]; if(!m) return;
-    currentPlayingTitle = m.t; document.getElementById('next-episode-btn').style.display = 'none';
-    
-    const isTVChannel = m.is_tv || (m.cat && (m.cat.toUpperCase().includes("DIRECT") || m.cat.toUpperCase().includes("TV")));
-    
-    let decodedUrl = ""; 
-    try { decodedUrl = window.atob(m.url); } catch(e) { decodedUrl = m.url; }
-
-    // On liste les liens qui sont des pages web (dont FSTV)
-    const isWebPlayerUrl = String(decodedUrl).startsWith('intent://') || String(decodedUrl).startsWith('vlc://') || String(decodedUrl).includes('uqload') || String(decodedUrl).includes('filemoon') || String(decodedUrl).includes('vidzy') || String(decodedUrl).includes('fstv.rest') || String(decodedUrl).includes('vidsrc') || String(decodedUrl).includes('ok.ru') || String(decodedUrl).includes('vk.com') || String(decodedUrl).includes('vkvideo');
-
-    // ========================================================
-    // INTERCEPTION DE L'IPTV POUR L'APPLICATION ANDROID
-    // ========================================================
-    // On lance le lecteur natif SEULEMENT si c'est de la TV ET que ce n'est PAS un lien web (FSTV)
-    if (isTVChannel && !isWebPlayerUrl) {
-        if (typeof window.SfppIptv !== 'undefined') {
             
             // ---> ON NE SAUVEGARDE PLUS DANS L'HISTORIQUE ICI <---
             
@@ -1726,8 +1675,6 @@ function playMovie(idx) {
         player.ready(function() { if(prog[m.t] && prog[m.t].t > 10) { player.currentTime(prog[m.t].t); } player.play(); });
     }
 }
-
-
 
 function playNextEpisode() {
     const parts = String(currentPlayingTitle).match(/(.*[SE])(\d+)(.*)/i); if (!parts) return;
@@ -1891,4 +1838,3 @@ if ('serviceWorker' in navigator) { window.addEventListener('load', () => { navi
     </script>
 </body>
 </html>
-
