@@ -1616,6 +1616,34 @@ function playMovie(idx) {
     let decodedUrl = ""; 
     try { decodedUrl = window.atob(m.url); } catch(e) { decodedUrl = m.url; }
 
+    // ========================================================
+    // NOUVEAU : INTERCEPTION DE L'IPTV POUR L'APPLICATION ANDROID
+    // ========================================================
+    if (isTVChannel) {
+        // On vérifie si on est bien dans l'appli Android (qui possède l'interface SfppIptv)
+        if (typeof window.SfppIptv !== 'undefined') {
+            
+            // On enregistre dans l'historique 
+            if(currentProfile) {
+                let key = 'sfpp_hist_' + currentProfile; let hist = JSON.parse(localStorage.getItem(key) || "[]").filter(t => t !== m.t);
+                hist.push(m.t); if(hist.length > 15) hist.shift(); localStorage.setItem(key, JSON.stringify(hist));
+                if(window.syncToCloud) window.syncToCloud('history', hist);
+            }
+            if(window.updateUserActivity) window.updateUserActivity("Regarde (App) : " + m.t);
+            
+            // ON DEMANDE A L'APK DE LANCER LE LECTEUR IPTV
+            window.SfppIptv.playIptv(decodedUrl);
+            return; // On arrête là, on n'ouvre pas le lecteur web
+        } else {
+            // Sécurité : si l'utilisateur est sur un PC classique (pas dans l'APK)
+            if (decodedUrl.startsWith('http://') && window.location.protocol === 'https:') {
+                window.showToast("Erreur : Ce flux HTTP nécessite l'application SFPP ELITE.");
+                return;
+            }
+        }
+    }
+    // ========================================================
+
     if (String(decodedUrl).startsWith('intent://') || String(decodedUrl).startsWith('vlc://') || String(decodedUrl).includes('uqload') || String(decodedUrl).includes('filemoon') || String(decodedUrl).includes('vidzy') || String(decodedUrl).includes('fstv.rest') || String(decodedUrl).includes('vidsrc') || String(decodedUrl).includes('ok.ru') || String(decodedUrl).includes('vk.com') || String(decodedUrl).includes('vkvideo')) {
         if(currentProfile && !isTVChannel) {
             let key = 'sfpp_hist_' + currentProfile; let hist = JSON.parse(localStorage.getItem(key) || "[]").filter(t => t !== m.t);
@@ -1648,6 +1676,7 @@ function playMovie(idx) {
         player.ready(function() { if(prog[m.t] && prog[m.t].t > 10) { player.currentTime(prog[m.t].t); } player.play(); });
     }
 }
+
 
 function playNextEpisode() {
     const parts = String(currentPlayingTitle).match(/(.*[SE])(\d+)(.*)/i); if (!parts) return;
