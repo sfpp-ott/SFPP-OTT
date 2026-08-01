@@ -1611,11 +1611,32 @@ function playMovie(idx) {
     const m = playlistData[idx]; if(!m) return;
     currentPlayingTitle = m.t; document.getElementById('next-episode-btn').style.display = 'none';
     
+    // Détecte si c'est la TV
+    const isTVChannel = m.is_tv || (m.cat && (m.cat.toUpperCase().includes("DIRECT") || m.cat.toUpperCase().includes("TV")));
+    
     let decodedUrl = ""; 
     try { decodedUrl = window.atob(m.url); } catch(e) { decodedUrl = m.url; }
 
-    if (String(decodedUrl).startsWith('intent://') || String(decodedUrl).startsWith('vlc://') || String(decodedUrl).includes('uqload') || String(decodedUrl).includes('filemoon') || String(decodedUrl).includes('vidzy') || String(decodedUrl).includes('fstv.rest') || String(decodedUrl).includes('vidsrc') || String(decodedUrl).includes('ok.ru') || String(decodedUrl).includes('vk.com') || String(decodedUrl).includes('vkvideo')) {
-        if(currentProfile) {
+    const isWebPlayerUrl = String(decodedUrl).startsWith('intent://') || String(decodedUrl).startsWith('vlc://') || String(decodedUrl).includes('uqload') || String(decodedUrl).includes('filemoon') || String(decodedUrl).includes('vidzy') || String(decodedUrl).includes('fstv.rest') || String(decodedUrl).includes('vidsrc') || String(decodedUrl).includes('ok.ru') || String(decodedUrl).includes('vk.com') || String(decodedUrl).includes('vkvideo');
+
+    // 1. IPTV NATIVE ANDROID (.m3u8) -> C'est ça qui fait le lien avec Sketchware
+    if (isTVChannel && !isWebPlayerUrl) {
+        if (typeof window.SfppIptv !== 'undefined') {
+            // ON NE SAUVEGARDE PAS DANS L'HISTORIQUE ICI
+            if(window.updateUserActivity) window.updateUserActivity("Regarde (App) : " + m.t);
+            window.SfppIptv.playIptv(decodedUrl);
+            return; 
+        } else {
+            if (decodedUrl.startsWith('http://') && window.location.protocol === 'https:') {
+                window.showToast("Erreur : Ce flux HTTP nécessite l'application SFPP ELITE.");
+                return;
+            }
+        }
+    }
+
+    // 2. LIENS WEB ET FSTV
+    if (isWebPlayerUrl) {
+        if(currentProfile && !isTVChannel) {
             let key = 'sfpp_hist_' + currentProfile; let hist = JSON.parse(localStorage.getItem(key) || "[]").filter(t => t !== m.t);
             hist.push(m.t); if(hist.length > 15) hist.shift(); localStorage.setItem(key, JSON.stringify(hist));
             if(window.syncToCloud) window.syncToCloud('history', hist);
@@ -1625,12 +1646,14 @@ function playMovie(idx) {
         return; 
     }
 
+    // 3. LECTEUR DU SITE (Pour les mp4 de films/séries)
     if(player) { player.pause(); player.src(""); player.load(); }
-    if(currentProfile) {
+    if(currentProfile && !isTVChannel) {
         let key = 'sfpp_hist_' + currentProfile; let hist = JSON.parse(localStorage.getItem(key) || "[]").filter(t => t !== m.t);
         hist.push(m.t); if(hist.length > 15) hist.shift(); localStorage.setItem(key, JSON.stringify(hist));
         if(window.syncToCloud) window.syncToCloud('history', hist);
     }
+    
     document.getElementById('details-overlay').style.display = 'none'; document.getElementById('details-trailer-box').innerHTML = "";
     document.getElementById('series-overlay').style.display = 'none'; document.getElementById('series-trailer-box').innerHTML = "";
     const pSection = document.getElementById('player-section'); pSection.style.display = 'block';
@@ -1646,6 +1669,7 @@ function playMovie(idx) {
         player.ready(function() { if(prog[m.t] && prog[m.t].t > 10) { player.currentTime(prog[m.t].t); } player.play(); });
     }
 }
+
 
 function playNextEpisode() {
     const parts = String(currentPlayingTitle).match(/(.*[SE])(\d+)(.*)/i); if (!parts) return;
