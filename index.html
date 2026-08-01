@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -1625,11 +1627,7 @@ function playMovie(idx) {
     // On lance le lecteur natif SEULEMENT si c'est de la TV ET que ce n'est PAS un lien web (FSTV)
     if (isTVChannel && !isWebPlayerUrl) {
         if (typeof window.SfppIptv !== 'undefined') {
-            
-            // ---> ON NE SAUVEGARDE PLUS DANS L'HISTORIQUE ICI <---
-            
             if(window.updateUserActivity) window.updateUserActivity("Regarde (App) : " + m.t);
-            
             window.SfppIptv.playIptv(decodedUrl);
             return; 
         } else {
@@ -1675,6 +1673,7 @@ function playMovie(idx) {
         player.ready(function() { if(prog[m.t] && prog[m.t].t > 10) { player.currentTime(prog[m.t].t); } player.play(); });
     }
 }
+
 
 function playNextEpisode() {
     const parts = String(currentPlayingTitle).match(/(.*[SE])(\d+)(.*)/i); if (!parts) return;
