@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -1626,11 +1625,9 @@ function playMovie(idx) {
     // On lance le lecteur natif SEULEMENT si c'est de la TV ET que ce n'est PAS un lien web (FSTV)
     if (isTVChannel && !isWebPlayerUrl) {
         if (typeof window.SfppIptv !== 'undefined') {
-            if(currentProfile) {
-                let key = 'sfpp_hist_' + currentProfile; let hist = JSON.parse(localStorage.getItem(key) || "[]").filter(t => t !== m.t);
-                hist.push(m.t); if(hist.length > 15) hist.shift(); localStorage.setItem(key, JSON.stringify(hist));
-                if(window.syncToCloud) window.syncToCloud('history', hist);
-            }
+            
+            // ---> ON NE SAUVEGARDE PLUS DANS L'HISTORIQUE ICI <---
+            
             if(window.updateUserActivity) window.updateUserActivity("Regarde (App) : " + m.t);
             
             window.SfppIptv.playIptv(decodedUrl);
@@ -1656,7 +1653,7 @@ function playMovie(idx) {
         return; 
     }
 
-    // Le lecteur natif du site (pour les mp4)
+    // Le lecteur natif du site (pour les mp4 et web)
     if(player) { player.pause(); player.src(""); player.load(); }
     if(currentProfile && !isTVChannel) {
         let key = 'sfpp_hist_' + currentProfile; let hist = JSON.parse(localStorage.getItem(key) || "[]").filter(t => t !== m.t);
@@ -1678,7 +1675,6 @@ function playMovie(idx) {
         player.ready(function() { if(prog[m.t] && prog[m.t].t > 10) { player.currentTime(prog[m.t].t); } player.play(); });
     }
 }
-
 
 function playNextEpisode() {
     const parts = String(currentPlayingTitle).match(/(.*[SE])(\d+)(.*)/i); if (!parts) return;
