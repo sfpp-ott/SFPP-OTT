@@ -1,3 +1,7 @@
+Maintenant que ton code est installée sur l apk.
+
+Voici mon code de mon site.  Pour intégrer le bouton. Peut être le mettre avec direct tv qui est déjà intégré. 
+Et savoir ou je dois mettre ma liste iptv.  En sachant que mes chaînes actuelles sont placé dans tv.json
 
 
 <!DOCTYPE html>
@@ -1627,7 +1631,13 @@ function playMovie(idx) {
     // On lance le lecteur natif SEULEMENT si c'est de la TV ET que ce n'est PAS un lien web (FSTV)
     if (isTVChannel && !isWebPlayerUrl) {
         if (typeof window.SfppIptv !== 'undefined') {
+            if(currentProfile) {
+                let key = 'sfpp_hist_' + currentProfile; let hist = JSON.parse(localStorage.getItem(key) || "[]").filter(t => t !== m.t);
+                hist.push(m.t); if(hist.length > 15) hist.shift(); localStorage.setItem(key, JSON.stringify(hist));
+                if(window.syncToCloud) window.syncToCloud('history', hist);
+            }
             if(window.updateUserActivity) window.updateUserActivity("Regarde (App) : " + m.t);
+            
             window.SfppIptv.playIptv(decodedUrl);
             return; 
         } else {
@@ -1651,7 +1661,7 @@ function playMovie(idx) {
         return; 
     }
 
-    // Le lecteur natif du site (pour les mp4 et web)
+    // Le lecteur natif du site (pour les mp4)
     if(player) { player.pause(); player.src(""); player.load(); }
     if(currentProfile && !isTVChannel) {
         let key = 'sfpp_hist_' + currentProfile; let hist = JSON.parse(localStorage.getItem(key) || "[]").filter(t => t !== m.t);
