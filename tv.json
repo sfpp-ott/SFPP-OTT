@@ -50,6 +50,13 @@
    "url": "https://fstv.rest/index.php?newsid=120"
   },
   {
+  "t": "FRANCE 4 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/7/73/France_4_logo.png",
+   "cat": "TV EN DIRECT, 1.GENERAL",
+   "desc": "Regardez FRANCE 4 en direct.",
+   "url": "http://sfpp-elite.duckdns.org:8080/live/aOxrjeE7r1/MynTCnfUDD/571.m3u8"
+  },
+  {
   "t": "FRANCE 5 (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/2/26/Logo_France_5.svg",
    "cat": "TV EN DIRECT, 1.GENERAL",
