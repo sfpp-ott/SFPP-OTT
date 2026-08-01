@@ -1608,6 +1608,7 @@ function openSeries(name) {
 }
 
 function playMovie(idx) {
+function playMovie(idx) {
     const m = playlistData[idx]; if(!m) return;
     currentPlayingTitle = m.t; document.getElementById('next-episode-btn').style.display = 'none';
     
@@ -1616,14 +1617,15 @@ function playMovie(idx) {
     let decodedUrl = ""; 
     try { decodedUrl = window.atob(m.url); } catch(e) { decodedUrl = m.url; }
 
+    // On liste les liens qui sont des pages web (dont FSTV)
+    const isWebPlayerUrl = String(decodedUrl).startsWith('intent://') || String(decodedUrl).startsWith('vlc://') || String(decodedUrl).includes('uqload') || String(decodedUrl).includes('filemoon') || String(decodedUrl).includes('vidzy') || String(decodedUrl).includes('fstv.rest') || String(decodedUrl).includes('vidsrc') || String(decodedUrl).includes('ok.ru') || String(decodedUrl).includes('vk.com') || String(decodedUrl).includes('vkvideo');
+
     // ========================================================
-    // NOUVEAU : INTERCEPTION DE L'IPTV POUR L'APPLICATION ANDROID
+    // INTERCEPTION DE L'IPTV POUR L'APPLICATION ANDROID
     // ========================================================
-    if (isTVChannel) {
-        // On vérifie si on est bien dans l'appli Android (qui possède l'interface SfppIptv)
+    // On lance le lecteur natif SEULEMENT si c'est de la TV ET que ce n'est PAS un lien web (FSTV)
+    if (isTVChannel && !isWebPlayerUrl) {
         if (typeof window.SfppIptv !== 'undefined') {
-            
-            // On enregistre dans l'historique 
             if(currentProfile) {
                 let key = 'sfpp_hist_' + currentProfile; let hist = JSON.parse(localStorage.getItem(key) || "[]").filter(t => t !== m.t);
                 hist.push(m.t); if(hist.length > 15) hist.shift(); localStorage.setItem(key, JSON.stringify(hist));
@@ -1631,11 +1633,9 @@ function playMovie(idx) {
             }
             if(window.updateUserActivity) window.updateUserActivity("Regarde (App) : " + m.t);
             
-            // ON DEMANDE A L'APK DE LANCER LE LECTEUR IPTV
             window.SfppIptv.playIptv(decodedUrl);
-            return; // On arrête là, on n'ouvre pas le lecteur web
+            return; 
         } else {
-            // Sécurité : si l'utilisateur est sur un PC classique (pas dans l'APK)
             if (decodedUrl.startsWith('http://') && window.location.protocol === 'https:') {
                 window.showToast("Erreur : Ce flux HTTP nécessite l'application SFPP ELITE.");
                 return;
@@ -1644,7 +1644,8 @@ function playMovie(idx) {
     }
     // ========================================================
 
-    if (String(decodedUrl).startsWith('intent://') || String(decodedUrl).startsWith('vlc://') || String(decodedUrl).includes('uqload') || String(decodedUrl).includes('filemoon') || String(decodedUrl).includes('vidzy') || String(decodedUrl).includes('fstv.rest') || String(decodedUrl).includes('vidsrc') || String(decodedUrl).includes('ok.ru') || String(decodedUrl).includes('vk.com') || String(decodedUrl).includes('vkvideo')) {
+    // Si c'est un lien web classique (FSTV, Uqload...), on l'envoie à la WebView de Sketchware comme avant !
+    if (isWebPlayerUrl) {
         if(currentProfile && !isTVChannel) {
             let key = 'sfpp_hist_' + currentProfile; let hist = JSON.parse(localStorage.getItem(key) || "[]").filter(t => t !== m.t);
             hist.push(m.t); if(hist.length > 15) hist.shift(); localStorage.setItem(key, JSON.stringify(hist));
@@ -1655,6 +1656,7 @@ function playMovie(idx) {
         return; 
     }
 
+    // Le lecteur natif du site (pour les mp4)
     if(player) { player.pause(); player.src(""); player.load(); }
     if(currentProfile && !isTVChannel) {
         let key = 'sfpp_hist_' + currentProfile; let hist = JSON.parse(localStorage.getItem(key) || "[]").filter(t => t !== m.t);
@@ -1676,6 +1678,7 @@ function playMovie(idx) {
         player.ready(function() { if(prog[m.t] && prog[m.t].t > 10) { player.currentTime(prog[m.t].t); } player.play(); });
     }
 }
+
 
 
 function playNextEpisode() {
