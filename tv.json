@@ -63,6 +63,14 @@
    "desc": "Regardez FRANCE 5 en direct.",
    "url": "https://fstv.rest/index.php?newsid=121"
   },
+  
+  {
+  "t": "FRANCE 5 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/2/26/Logo_France_5.svg",
+   "cat": "TV EN DIRECT, 1.GENERAL",
+   "desc": "Regardez FRANCE 5 en direct.",
+   "url": "http://sfpp-elite.duckdns.org:8080/live/aOxrjeE7r1/MynTCnfUDD/573.m3u8"
+  },
   {
   "t": "M6 (Direct)",
    "img": "https://stock.wikimini.org/w/images/d/db/Logo_M6.png",
