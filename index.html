@@ -358,6 +358,7 @@
         <button class="nav-btn" id="btn-fav" onclick="changeView('fav')" tabindex="0">Ma Liste ❤️</button>
         
         <button class="nav-btn" onclick="window.location.href='https://music.youtube.com/'" style="color: #ffcc00; font-weight: bold;" tabindex="0">🎵 YT Music</button>
+        <button class="nav-btn" id="btn-vpn" onclick="ouvrirMenuVPN()" style="color: #00c6ff; font-weight: bold;" tabindex="0">🛡️ VPN</button>
 
         <button class="nav-btn" onclick="location.reload()" tabindex="0">Rafraîchir</button>
         <div id="dl-progress"></div>
@@ -1830,6 +1831,94 @@ if ('serviceWorker' in navigator) { window.addEventListener('load', () => { navi
                 if (carousel) { const offset = e.target.offsetLeft - (carousel.clientWidth / 2) + (e.target.clientWidth / 2); try { carousel.scrollTo({ left: offset, behavior: 'smooth' }); } catch(err) { carousel.scrollLeft = offset; } }
             }
         }, true);
+    </script>
+    
+    <!-- FENÊTRE MODALE VPN -->
+    <div id="vpn-modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.9); z-index:99999; align-items:center; justify-content:center; flex-direction:column;">
+        <div style="background:#111; padding:30px; border-radius:12px; text-align:center; border:1px solid #00c6ff; max-width:400px; width:80%; box-shadow: 0 10px 30px rgba(0, 198, 255, 0.2);">
+            <h2 style="color:#00c6ff; margin-top:0; margin-bottom:15px; font-size:24px;">🛡️ Connexion VPN</h2>
+            <p style="font-size:14px; color:#aaa; margin-bottom:25px;">Pour garantir votre sécurité et débloquer certains flux, activez un tunnel sécurisé. (Nécessite l'application WireGuard).</p>
+            
+            <div style="display:flex; flex-direction:column; gap:15px;">
+                <button onclick="installerVPN('France', configVPN_FR)" class="sn-card" style="padding:15px; background:linear-gradient(135deg, #0072ff 0%, #00c6ff 100%); color:white; border:none; border-radius:8px; font-weight:bold; cursor:pointer; font-size:16px; display:flex; align-items:center; justify-content:center; gap:10px;" tabindex="0">
+                    🇫🇷 Serveur France
+                </button>
+                
+                <button onclick="installerVPN('Suisse', configVPN_CH)" class="sn-card" style="padding:15px; background:linear-gradient(135deg, #e52d27 0%, #b31217 100%); color:white; border:none; border-radius:8px; font-weight:bold; cursor:pointer; font-size:16px; display:flex; align-items:center; justify-content:center; gap:10px;" tabindex="0">
+                    🇨🇭 Serveur Suisse
+                </button>
+            </div>
+
+            <button onclick="fermerMenuVPN()" class="sn-card" style="margin-top:25px; padding:10px 20px; background:transparent; color:#888; border:1px solid #444; border-radius:4px; font-weight:bold; cursor:pointer; font-size:14px;" tabindex="0">Fermer</button>
+        </div>
+    </div>
+
+    <!-- SCRIPT VPN -->
+    <script>
+        // --- Configurations brutes (Remplir avec les vraies infos) ---
+        const configVPN_FR = `[Interface]
+PrivateKey = TA_CLE_PRIVEE_FRANCE
+Address = 10.0.0.2/32
+DNS = 1.1.1.1
+
+[Peer]
+PublicKey = TA_CLE_PUBLIQUE_FRANCE
+Endpoint = 198.51.100.1:51820
+AllowedIPs = 0.0.0.0/0
+PersistentKeepalive = 25`;
+
+        const configVPN_CH = `[Interface]
+PrivateKey = TA_CLE_PRIVEE_SUISSE
+Address = 10.0.0.3/32
+DNS = 1.1.1.1
+
+[Peer]
+PublicKey = TA_CLE_PUBLIQUE_SUISSE
+Endpoint = 203.0.113.5:51820
+AllowedIPs = 0.0.0.0/0
+PersistentKeepalive = 25`;
+
+        window.ouvrirMenuVPN = function() {
+            const modal = document.getElementById('vpn-modal');
+            modal.style.display = 'flex';
+            setTimeout(() => {
+                const premierBouton = modal.querySelector('button');
+                if(premierBouton) {
+                    premierBouton.focus();
+                    if(typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus(premierBouton);
+                }
+            }, 100);
+        };
+
+        window.fermerMenuVPN = function() {
+            document.getElementById('vpn-modal').style.display = 'none';
+            if(typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus();
+        };
+
+        window.installerVPN = function(pays, configTexte) {
+            fermerMenuVPN();
+            
+            if (window.SfppVPN && typeof window.SfppVPN.importerVPN === 'function') {
+                if (window.showToast) window.showToast("Préparation du tunnel " + pays + "...");
+                window.SfppVPN.importerVPN("SFPP_VPN_" + pays, configTexte);
+            } else {
+                if (window.showToast) window.showToast("⚠️ VPN indisponible sur le web. Utilisez l'application Android.");
+                else alert("⚠️ VPN indisponible sur le web. Utilisez l'application Android.");
+            }
+        };
+        
+        // Sécurité pour la touche retour (Back)
+        const oldHandleBack = window.handleBackAction;
+        window.handleBackAction = function() {
+            const vpnModal = document.getElementById('vpn-modal');
+            if (vpnModal && vpnModal.style.display === 'flex') {
+                fermerMenuVPN();
+                return; 
+            }
+            if (typeof oldHandleBack === 'function') {
+                oldHandleBack();
+            }
+        };
     </script>
 </body>
 </html>
