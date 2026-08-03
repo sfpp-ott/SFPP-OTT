@@ -83,7 +83,7 @@
    "img": "https://stock.wikimini.org/w/images/d/db/Logo_M6.png",
    "cat": "TV EN DIRECT, 1.GENERAL",
    "desc": "Regardez M6 en direct.",
-   "url": "http://151.80.18.177:86/M6_HD/index.m3u8"
+   "url": "http://666-672.duckdns.org:86/M6_HD/index.m3u8"
   },
   {
   "t": "ARTE (Direct)",
