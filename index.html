@@ -1868,14 +1868,14 @@ AllowedIPs = 0.0.0.0/0
 PersistentKeepalive = 25`;
 
         const configVPN_CH = `[Interface]
-PrivateKey = TA_CLE_PRIVEE_SUISSE
-Address = 10.0.0.3/32
-DNS = 1.1.1.1
+PrivateKey = EDFwjwfdRGNDPztLXgjW2XBAb1RbtfEa9m+5CAYkdGQ=
+Address = 10.2.0.2/32, 2a07:b944::2:2/128
+DNS = 9.9.9.9
 
 [Peer]
-PublicKey = TA_CLE_PUBLIQUE_SUISSE
-Endpoint = 203.0.113.5:51820
-AllowedIPs = 0.0.0.0/0
+PublicKey = 2w/1u8pEChF2DeRhJmLDyfbhbkmAidAq0RSNZe+cDTo=
+Endpoint = 149.88.27.236:51820
+AllowedIPs = 0.0.0.0/0, ::/0
 PersistentKeepalive = 25`;
 
         window.ouvrirMenuVPN = function() {
