@@ -111,7 +111,7 @@
    "img": "https://upload.wikimedia.org/wikipedia/fr/2/2b/W9_2012.png",
    "cat": "TV EN DIRECT, 1.GENERAL",
    "desc": "Regardez W9 en direct.",
-   "url": "http://666-672.duckdns.org:86/W9_HD/index.m3u8"
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/562"
   },
   {
   "t": "TMC (Direct)",
@@ -179,11 +179,25 @@
    "url": "https://fstv.rest/index.php?newsid=49"
   },
   {
+  "t": "NOVO19 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/b/b0/Logo_NOVO19_-_2025.svg",
+   "cat": "TV EN DIRECT, 1.GENERAL",
+   "desc": "Regardez NOVO19 en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/639"
+  },
+  {
   "t": "6TER (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/0/07/6ter.png",
    "cat": "TV EN DIRECT, 1.GENERAL",
    "desc": "Regardez 6TER en direct.",
    "url": "https://fstv.rest/index.php?newsid=50"
+  },
+  {
+  "t": "6TER (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/0/07/6ter.png",
+   "cat": "TV EN DIRECT, 1.GENERAL",
+   "desc": "Regardez 6TER en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/641"
   },
   {
   "t": "RMC STORY (Direct)",
@@ -193,11 +207,25 @@
    "url": "https://fstv.rest/index.php?newsid=155"
   },
   {
+  "t": "RMC STORY (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/3/3e/RMC_Story_logo_2018.svg",
+   "cat": "TV EN DIRECT, 1.GENERAL",
+   "desc": "Regardez RMC STORY en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/564"
+  },
+  {
   "t": "RMC LIFE (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/3/36/RMC_Life.png",
    "cat": "TV EN DIRECT, 1.GENERAL",
    "desc": "Regardez RMC LIFE en direct.",
    "url": "https://fstv.rest/index.php?newsid=154"
+  },
+  {
+  "t": "RMC LIFE (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/3/36/RMC_Life.png",
+   "cat": "TV EN DIRECT, 1.GENERAL",
+   "desc": "Regardez RMC LIFE en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/638"
   },
   {
   "t": "CANAL+ (Direct)",
@@ -228,11 +256,25 @@
    "url": "https://fstv.rest/index.php?newsid=115"
   },
   {
+  "t": "CANAL+ GRAND ECRAN (Direct)",
+   "img": "https://i0.wp.com/www.planetecsat.com/wp-content/uploads/2022/01/CANALP_GRAND_ECRAN_1lignes_RVB_2021_06_07-07-01-22.png?resize=509%2C160&ssl=1",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez CANAL+ GRAN ECRAN en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/608"
+  },
+  {
   "t": "CANAL+ CINEMA (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/1/1f/Logo_Canal%2B_Cin%C3%A9ma_2009.svg",
    "cat": "TV EN DIRECT, 2.CINEMA",
    "desc": "Regardez CANAL+ CINEMA en direct.",
    "url": "https://fstv.rest/index.php?newsid=76"
+  },
+  {
+  "t": "CANAL+ CINEMA (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/1/1f/Logo_Canal%2B_Cin%C3%A9ma_2009.svg",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez CANAL+ CINEMA en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/602"
   },
   {
   "t": "CANAL+ SERIES (Direct)",
@@ -242,6 +284,13 @@
    "url": "https://fstv.rest/index.php?newsid=75"
   },
   {
+  "t": "CANAL+ SERIES (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/e/e3/C%2B_S%C3%A9ries.png",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez CANAL+ SERIES en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/605"
+  },
+  {
   "t": "CANAL+ FAMILY (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/7/73/Logo_Canal%2B_Family_2013.svg",
    "cat": "TV EN DIRECT, 2.CINEMA",
@@ -249,11 +298,25 @@
    "url": "https://fstv.rest/index.php?newsid=78"
   },
   {
+  "t": "CANAL+ FAMILY (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/7/73/Logo_Canal%2B_Family_2013.svg",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez CANAL+ FAMILY en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/554"
+  },
+  {
   "t": "CINE+ PREMIER (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/7/73/Canalplus_fr_cine_plus_premier_hd.png",
    "cat": "TV EN DIRECT, 2.CINEMA",
    "desc": "Regardez CINE+ PREMIER en direct.",
    "url": "https://fstv.rest/index.php?newsid=112"
+  },
+  {
+  "t": "CINE+ PREMIER (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/7/73/Canalplus_fr_cine_plus_premier_hd.png",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez CINE+ PREMIER en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/615"
   },
   {
   "t": "CINE+ FRISSON (Direct)",
@@ -270,11 +333,25 @@
    "url": "https://fstv.rest/index.php?newsid=71"
   },
   {
+  "t": "CINE+ EMOTION (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/7/71/Logo_Cin%C3%A9%2B_Emotion_2011.svg",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez CINE+ EMOTION en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/557"
+  },
+  {
   "t": "CINE+ FAMILY (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/b/b9/Cin%C3%A9%2BFamily2024.svg",
    "cat": "TV EN DIRECT, 2.CINEMA",
    "desc": "Regardez CINE+ FAMILY en direct.",
    "url": "https://fstv.rest/index.php?newsid=72"
+  },
+  {
+  "t": "CINE+ FAMILY (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/b/b9/Cin%C3%A9%2BFamily2024.svg",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez CINE+ FAMILY en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/558"
   },
   {
   "t": "CINE+ CLASSIC (Direct)",
@@ -288,7 +365,7 @@
    "img": "https://upload.wikimedia.org/wikipedia/commons/2/2e/Cin%C3%A9%2BClassic2024.svg",
    "cat": "TV EN DIRECT, 2.CINEMA",
    "desc": "Regardez CINE+ CLASSIC en direct.",
-   "url": "https://fstv.rest/index.php?newsid=70"
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/618"
   },
   {
   "t": "CINE+ CLUB (Direct)",
@@ -305,6 +382,13 @@
    "url": "https://fstv.rest/index.php?newsid=97"
   },
   {
+  "t": "SERIES CLUB (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/4/4c/Serieclub_%282012%29.svg",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez SERIE CLUB en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/556"
+  },
+  {
   "t": "ACTION (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/2/2f/Action_%282014%29.svg",
    "cat": "TV EN DIRECT, 2.CINEMA",
@@ -316,7 +400,7 @@
    "img": "https://upload.wikimedia.org/wikipedia/fr/2/2f/Action_%282014%29.svg",
    "cat": "TV EN DIRECT, 2.CINEMA",
    "desc": "Regardez ACTION en direct.",
-   "url": "https://fstv.rest/index.php?newsid=77"
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/622"
   },
   {
   "t": "TCM CINEMA (Direct)",
@@ -326,6 +410,13 @@
    "url": "https://fstv.rest/index.php?newsid=63"
   },
   {
+  "t": "TCM CINEMA (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/8/83/TCM_logo.svg",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez TCM CINEMA en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/621"
+  },
+  {
   "t": "SYFY (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/3/37/Syfy_france.svg",
    "cat": "TV EN DIRECT, 2.CINEMA",
@@ -333,11 +424,25 @@
    "url": "https://fstv.rest/index.php?newsid=94"
   },
   {
+  "t": "SYFY (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/3/37/Syfy_france.svg",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez SYFY en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/627"
+  },
+  {
   "t": "13EME RUE (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/0/0c/Logo_of_13e_Rue.png",
    "cat": "TV EN DIRECT, 2.CINEMA",
    "desc": "Regardez 13EME RUE en direct.",
    "url": "https://fstv.rest/index.php?newsid=105"
+  },
+  {
+  "t": "13EME RUE (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/0/0c/Logo_of_13e_Rue.png",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez 13EME RUE en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/633"
   },
   {
   "t": "WARNER TV (Direct)",
@@ -354,11 +459,25 @@
    "url": "https://fstv.rest/index.php?newsid=114"
   },
   {
+  "t": "POLAR+ (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/6/69/Polar%2B_%28Logo%29.png",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez POLAR+ en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/559"
+  },
+  {
   "t": "SERIES CLUB (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/4/4c/Serieclub_%282012%29.svg",
    "cat": "TV EN DIRECT, 2.CINEMA",
    "desc": "Regardez SERIE CLUB en direct.",
    "url": "https://fstv.rest/index.php?newsid=106"
+  },
+  {
+  "t": "SERIES CLUB (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/4/4c/Serieclub_%282012%29.svg",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez SERIE CLUB en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/632"
   },
   {
   "t": "TV BREIZH (Direct)",
@@ -368,11 +487,25 @@
    "url": "https://fstv.rest/index.php?newsid=158"
   },
   {
+  "t": "TV BREIZH (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/a/a2/Tv_Breizh_sept2011.png",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez TV BREIZH en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/629"
+  },
+  {
   "t": "RTL9 (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/7/75/RTL9_%282011%29.svg",
    "cat": "TV EN DIRECT, 2.CINEMA",
    "desc": "Regardez RTL9 en direct.",
    "url": "https://fstv.rest/index.php?newsid=64"
+  },
+  {
+  "t": "RTL9 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/7/75/RTL9_%282011%29.svg",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez RTL9 en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/630"
   },
   {
   "t": "AB1 (Direct)",
@@ -382,11 +515,25 @@
    "url": "https://fstv.rest/index.php?newsid=101"
   },
   {
+  "t": "AB1 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/5/51/Logo_AB1_2021.svg",
+   "cat": "TV EN DIRECT, 1.GENERAL",
+   "desc": "Regardez AB1 en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/634"
+  },
+  {
   "t": "AB3 (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/0/0e/Logo_AB3.svg",
    "cat": "TV EN DIRECT, 1.GENERAL",
    "desc": "Regardez AB3 en direct.",
    "url": "https://fstv.rest/index.php?newsid=108"
+  },
+  {
+  "t": "AB3 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/0/0e/Logo_AB3.svg",
+   "cat": "TV EN DIRECT, 1.GENERAL",
+   "desc": "Regardez AB3 en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/635"
   },
   {
   "t": "NOVELAS TV (Direct)",
@@ -417,6 +564,13 @@
    "url": "https://fstv.rest/index.php?newsid=156"
   },
   {
+  "t": "PARIS PREMIERE (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/d/d1/Paris_Premi%C3%A8re_2011.svg",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez PARIS PREMIERE en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/628"
+  },
+  {
   "t": "TEVA (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/d/d3/T%C3%A9va.svg",
    "cat": "TV EN DIRECT, 1.GENERAL",
@@ -424,11 +578,25 @@
    "url": "https://fstv.rest/index.php?newsid=157"
   },
   {
+  "t": "TEVA (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/d/d3/T%C3%A9va.svg",
+   "cat": "TV EN DIRECT, 1.GENERAL",
+   "desc": "Regardez TEVA en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/631"
+  },
+  {
   "t": "TV5MONDE (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/c/cc/TV5MONDE.jpg",
    "cat": "TV EN DIRECT, 1.GENERAL",
    "desc": "Regardez TV5MONDE en direct.",
    "url": "https://fstv.rest/index.php?newsid=51"
+  },
+  {
+  "t": "TV5MONDE (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/c/cc/TV5MONDE.jpg",
+   "cat": "TV EN DIRECT, 1.GENERAL",
+   "desc": "Regardez TV5MONDE en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/578"
   },
   {
   "t": "CANAL+ DOCS (Direct)",
@@ -487,6 +655,13 @@
    "url": "https://fstv.rest/index.php?newsid=167"
   },
   {
+  "t": "DISCOVERY INVESTIGATION (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/1/18/Logo_id.png",
+   "cat": "TV EN DIRECT, 5.DOCUMENTAIRE",
+   "desc": "Regardez DISCOVERY INVESTIGATION en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/666"
+  },
+  {
   "t": "RMC DÉCOUVERTE (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/7/73/Logo_RMC_D%C3%A9couverte_2012.png",
    "cat": "TV EN DIRECT, 5.DOCUMENTAIRE",
@@ -499,6 +674,13 @@
    "cat": "TV EN DIRECT, 5.DOCUMENTAIRE",
    "desc": "Regardez BRAVO en direct.",
    "url": "https://fstv.rest/index.php?newsid=161"
+  },
+  {
+  "t": "BRAVO (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/d/d0/Bravo_Logo_Rouille.png",
+   "cat": "TV EN DIRECT, 5.DOCUMENTAIRE",
+   "desc": "Regardez BRAVO en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/623"
   },
   {
   "t": "HISTOIRE TV (Direct)",
@@ -543,6 +725,13 @@
    "url": "https://fstv.rest/index.php?newsid=103"
   },
   {
+  "t": "CRIME DISTRICT (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/c/c5/Crime_District_logo_2016.svg",
+   "cat": "TV EN DIRECT, 5.DOCUMENTAIRE",
+   "desc": "Regardez CRIME DISTRICT en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/596"
+  },
+  {
   "t": "TREK (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/f/f8/Trek_logo_2015.svg",
    "cat": "TV EN DIRECT, 5.DOCUMENTAIRE",
@@ -582,7 +771,7 @@
    "img": "https://upload.wikimedia.org/wikipedia/fr/6/6e/Piwi%2B_logo_2011.png",
    "cat": "TV EN DIRECT, 4.JEUNESSE",
    "desc": "Regardez PIWI+ en direct.",
-   "url": "https://fstv.rest/index.php?newsid=132"
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/654"
   },
   {
   "t": "DISNEY JUNIOR (Direct)",
@@ -592,11 +781,25 @@
    "url": "https://fstv.rest/index.php?newsid=34"
   },
   {
+  "t": "DISNEY JUNIOR (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/f/fe/2017_Disney_Junior_logo.png",
+   "cat": "TV EN DIRECT, 4.JEUNESSE",
+   "desc": "Regardez DISNEY JUNIOR en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/660"
+  },
+  {
   "t": "NICKELODEON JUNIOR (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/9/99/Nickelodeon_Junior.png",
    "cat": "TV EN DIRECT, 4.JEUNESSE",
    "desc": "Regardez NICKELODEON JUNIOR en direct.",
    "url": "https://fstv.rest/index.php?newsid=128"
+  },
+  {
+  "t": "NICKELODEON JUNIOR (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/9/99/Nickelodeon_Junior.png",
+   "cat": "TV EN DIRECT, 4.JEUNESSE",
+   "desc": "Regardez NICKELODEON JUNIOR en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/649"
   },
   {
   "t": "BOOMERANG (Direct)",
@@ -606,11 +809,25 @@
    "url": "https://fstv.rest/index.php?newsid=31"
   },
   {
+  "t": "BOOMERANG (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/9/9d/Boomerang-Logo.svg",
+   "cat": "TV EN DIRECT, 4.JEUNESSE",
+   "desc": "Regardez BOOMERANG en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/656"
+  },
+  {
   "t": "CATOONITO (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/4/42/Cartoonito_logo.svg",
    "cat": "TV EN DIRECT, 4.JEUNESSE",
    "desc": "Regardez CATOONITO en direct.",
    "url": "https://fstv.rest/index.php?newsid=30"
+  },
+  {
+  "t": "CATOONITO (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/4/42/Cartoonito_logo.svg",
+   "cat": "TV EN DIRECT, 4.JEUNESSE",
+   "desc": "Regardez CATOONITO en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/657"
   },
   {
   "t": "TIJI (Direct)",
@@ -620,11 +837,25 @@
    "url": "https://fstv.rest/index.php?newsid=40"
   },
   {
+  "t": "TIJI (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/a/a3/TiJi_logo_2012.png",
+   "cat": "TV EN DIRECT, 4.JEUNESSE",
+   "desc": "Regardez TIJI en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/661"
+  },
+  {
   "t": "NICKELODEON (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/7/71/Nickelodeon_2023_logo.svg",
    "cat": "TV EN DIRECT, 4.JEUNESSE",
    "desc": "Regardez NICKELODEON en direct.",
    "url": "https://fstv.rest/index.php?newsid=38"
+  },
+  {
+  "t": "NICKELODEON (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/7/71/Nickelodeon_2023_logo.svg",
+   "cat": "TV EN DIRECT, 4.JEUNESSE",
+   "desc": "Regardez NICKELODEON en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/650"
   },
   {
   "t": "TELETOON+ (Direct)",
@@ -641,11 +872,25 @@
    "url": "https://fstv.rest/index.php?newsid=52"
   },
   {
+  "t": "CANAL J (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/5/5a/Canal_J_logo_2009.png",
+   "cat": "TV EN DIRECT, 4.JEUNESSE",
+   "desc": "Regardez CANAL J en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/655"
+  },
+  {
   "t": "GULLI (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/8/88/Logo-Gulli.svg",
    "cat": "TV EN DIRECT, 4.JEUNESSE",
    "desc": "Regardez GULLI en direct.",
    "url": "https://fstv.rest/index.php?newsid=36"
+  },
+  {
+  "t": "GULLI (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/8/88/Logo-Gulli.svg",
+   "cat": "TV EN DIRECT, 4.JEUNESSE",
+   "desc": "Regardez GULLI en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/662"
   },
   {
   "t": "BABY TV (Direct)",
@@ -662,11 +907,25 @@
    "url": "https://fstv.rest/index.php?newsid=129"
   },
   {
+  "t": "GONG MAX (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/d/d7/GONG.png",
+   "cat": "TV EN DIRECT, 4.JEUNESSE",
+   "desc": "Regardez GONG MAX en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/645"
+  },
+  {
   "t": "WARNER TV NEXT(Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/2/29/Warner_TV_Next_logo.png",
    "cat": "TV EN DIRECT, 4.JEUNESSE",
    "desc": "Regardez WARNER TV NEXT en direct.",
    "url": "https://fstv.rest/index.php?newsid=126"
+  },
+  {
+  "t": "WARNER TV NEXT(Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/2/29/Warner_TV_Next_logo.png",
+   "cat": "TV EN DIRECT, 4.JEUNESSE",
+   "desc": "Regardez WARNER TV NEXT en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/644"
   },
   {
   "t": "WARNER TV (Direct)",
@@ -683,11 +942,25 @@
    "url": "https://fstv.rest/index.php?newsid=6"
   },
   {
+  "t": "MANGAS (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/8/82/Mangas_%282009%29.png",
+   "cat": "TV EN DIRECT, 4.JEUNESSE",
+   "desc": "Regardez MANGAS en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/658"
+  },
+  {
   "t": "CNEWS (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/9/91/Canal_News_logo.png",
    "cat": "TV EN DIRECT, 6.INFORMATION",
    "desc": "Regardez CNEWS en direct.",
    "url": "https://fstv.rest/index.php?newsid=80"
+  },
+  {
+  "t": "CNEWS (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/9/91/Canal_News_logo.png",
+   "cat": "TV EN DIRECT, 6.INFORMATION",
+   "desc": "Regardez CNEWS en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/575"
   },
   {
   "t": "BFMTV (Direct)",
@@ -723,6 +996,13 @@
    "cat": "TV EN DIRECT, 6.INFORMATION",
    "desc": "Regardez FRANCE 24 en direct.",
    "url": "https://fstv.rest/index.php?newsid=83"
+  },
+  {
+  "t": "FRANCE 24 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/8/8a/France24.png",
+   "cat": "TV EN DIRECT, 6.INFORMATION",
+   "desc": "Regardez FRANCE 24 en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/577"
   },
   {
   "t": "EURONEWS (Direct)",
@@ -774,6 +1054,13 @@
    "url": "https://fstv.rest/index.php?newsid=170"
   },
   {
+  "t": "MCM TOP (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/4/4b/MCM_Top_Logo.svg",
+   "cat": "TV EN DIRECT, 7.MUSIQUE",
+   "desc": "Regardez MCM TOP en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/626"
+  },
+  {
   "t": "RFM TV (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/9/96/RFMTV-flat.svg",
    "cat": "TV EN DIRECT, 7.MUSIQUE",
@@ -809,11 +1096,25 @@
    "url": "https://fstv.rest/index.php?newsid=7"
   },
   {
+  "t": "CANAL+ FOOT (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/e/eb/Canal%2BFoot.png",
+   "cat": "TV EN DIRECT, 3.SPORTS",
+   "desc": "Regardez CANAL+ FOOT en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/593"
+  },
+  {
   "t": "CANAL+ SPORT (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/0/05/Canal%2B_Sport_HD.png",
    "cat": "TV EN DIRECT, 3.SPORTS",
    "desc": "Regardez CANAL+ SPORT en direct.",
    "url": "https://fstv.rest/index.php?newsid=15"
+  },
+  {
+  "t": "CANAL+ SPORT (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/0/05/Canal%2B_Sport_HD.png",
+   "cat": "TV EN DIRECT, 3.SPORTS",
+   "desc": "Regardez CANAL+ SPORT en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/555"
   },
   {
   "t": "CANAL+ SPORT 2 (Direct)",
@@ -851,11 +1152,25 @@
    "url": "https://fstv.rest/index.php?newsid=12"
   },
   {
+  "t": "CANAL+ SPORT 360 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/6/64/Canal%2BSport_360.png",
+   "cat": "TV EN DIRECT, 3.SPORTS",
+   "desc": "Regardez CANAL+ SPORT 360 en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/611"
+  },
+  {
   "t": "BEIN SPORTS 1 (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/2/2f/BeIN_Sports_1_%282014%29.png",
    "cat": "TV EN DIRECT, 3.SPORTS",
    "desc": "Regardez BEIN SPORTS 1 en direct.",
    "url": "https://fstv.rest/index.php?newsid=4"
+  },
+  {
+  "t": "BEIN SPORTS 1 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/2/2f/BeIN_Sports_1_%282014%29.png",
+   "cat": "TV EN DIRECT, 3.SPORTS",
+   "desc": "Regardez BEIN SPORTS 1 en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/583"
   },
   {
   "t": "BEIN SPORTS 2 (Direct)",
@@ -865,11 +1180,25 @@
    "url": "https://fstv.rest/index.php?newsid=89"
   },
   {
+  "t": "BEIN SPORTS 2 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/5/55/BeIN_Sports_2_%282014%29.png",
+   "cat": "TV EN DIRECT, 3.SPORTS",
+   "desc": "Regardez BEIN SPORTS 2 en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/584"
+  },
+  {
   "t": "BEIN SPORTS 3 (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/e/e9/BeIN_Sports_3_HD.png",
    "cat": "TV EN DIRECT, 3.SPORTS",
    "desc": "Regardez BEIN SPORTS 3 en direct.",
    "url": "https://fstv.rest/index.php?newsid=90"
+  },
+  {
+  "t": "BEIN SPORTS 3 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/e/e9/BeIN_Sports_3_HD.png",
+   "cat": "TV EN DIRECT, 3.SPORTS",
+   "desc": "Regardez BEIN SPORTS 3 en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/585"
   },
   {
   "t": "RMC SPORT 1 (Direct)",
@@ -879,11 +1208,25 @@
    "url": "https://fstv.rest/index.php?newsid=9"
   },
   {
+  "t": "RMC SPORT 1 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/3/3b/Logo_RMC_Sport_1_2018.svg",
+   "cat": "TV EN DIRECT, 3.SPORTS",
+   "desc": "Regardez RMC SPORT 1 en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/579"
+  },
+  {
   "t": "RMC SPORT 2 (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/3/3a/Logo_RMC_Sport_2_2018.svg",
    "cat": "TV EN DIRECT, 3.SPORTS",
    "desc": "Regardez RMC SPORT 2 en direct.",
    "url": "https://fstv.rest/index.php?newsid=10"
+  },
+  {
+  "t": "RMC SPORT 2 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/3/3a/Logo_RMC_Sport_2_2018.svg",
+   "cat": "TV EN DIRECT, 3.SPORTS",
+   "desc": "Regardez RMC SPORT 2 en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/580"
   },
   {
   "t": "RMC SPORT 3 (Direct)",
@@ -893,6 +1236,13 @@
    "url": "https://fstv.rest/index.php?newsid=11"
   },
   {
+  "t": "RMC SPORT 3 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/7/71/Logo_RMC_Sport_3_2018.svg",
+   "cat": "TV EN DIRECT, 3.SPORTS",
+   "desc": "Regardez RMC SPORT 3 en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/581"
+  },
+  {
   "t": "INFOSPORT+ (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/2/24/InfosportPlus.svg",
    "cat": "TV EN DIRECT, 3.SPORTS",
@@ -900,11 +1250,25 @@
    "url": "https://fstv.rest/index.php?newsid=119"
   },
   {
+  "t": "INFOSPORT+ (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/2/24/InfosportPlus.svg",
+   "cat": "TV EN DIRECT, 3.SPORTS",
+   "desc": "Regardez INFOSPORT+ en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/597"
+  },
+  {
   "t": "L'EQUIPE (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/e/e9/L_Equipe_Logo.svg",
    "cat": "TV EN DIRECT, 3.SPORTS",
    "desc": "Regardez L'EQUIPE en direct.",
    "url": "https://fstv.rest/index.php?newsid=27"
+  },
+  {
+  "t": "L'EQUIPE (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/e/e9/L_Equipe_Logo.svg",
+   "cat": "TV EN DIRECT, 3.SPORTS",
+   "desc": "Regardez L'EQUIPE en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/594"
   },
   {
   "t": "EUROSPORT 1 (Direct)",
@@ -928,6 +1292,13 @@
    "url": "https://fstv.rest/index.php?newsid=145"
   },
   {
+  "t": "GOLF+ (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/c/c2/Golf%2B.svg",
+   "cat": "TV EN DIRECT, 3.SPORTS",
+   "desc": "Regardez GOLF+ en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/595"
+  },
+  {
   "t": "AUTOMOTO (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/3/34/Automoto_La_cha%C3%AEne_%282018%29.png",
    "cat": "TV EN DIRECT, 3.SPORTS",
@@ -935,11 +1306,25 @@
    "url": "https://fstv.rest/index.php?newsid=16"
   },
   {
+  "t": "AUTOMOTO (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/3/34/Automoto_La_cha%C3%AEne_%282018%29.png",
+   "cat": "TV EN DIRECT, 3.SPORTS",
+   "desc": "Regardez AUTOMOTO en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/600"
+  },
+  {
   "t": "EQUIDIA (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/2/28/Equidia_logo_2018.svg",
    "cat": "TV EN DIRECT, 3.SPORTS",
    "desc": "Regardez EQUIDIA en direct.",
    "url": "https://fstv.rest/index.php?newsid=144"
+  },
+  {
+  "t": "EQUIDIA (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/2/28/Equidia_logo_2018.svg",
+   "cat": "TV EN DIRECT, 3.SPORTS",
+   "desc": "Regardez EQUIDIA en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/599"
   },
   {
   "t": "DAZN 1 (Direct)",
