@@ -359,6 +359,13 @@
    "url": "https://fstv.rest/index.php?newsid=159"
   },
   {
+  "t": "COMEDIE+ (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/3/3e/Com%C3%A9die%2B_logo_%C3%A0_l%27antenne.png",
+   "cat": "TV EN DIRECT, 1.GENERAL",
+   "desc": "Regardez COMEDIE+ en direct.",
+   "url": "http://666-672.duckdns.org:86/Comedie+_HD/index.m3u8"
+  },
+  {
   "t": "PARIS PREMIERE (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/d/d1/Paris_Premi%C3%A8re_2011.svg",
    "cat": "TV EN DIRECT, 2.CINEMA",
