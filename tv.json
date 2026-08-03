@@ -93,6 +93,13 @@
    "url": "https://fstv.rest/index.php?newsid=54"
   },
   {
+  "t": "ARTE (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/8/8c/Logo_ARTE.TV_2020.svg",
+   "cat": "TV EN DIRECT, 1.GENERAL",
+   "desc": "Regardez ARTE en direct.",
+   "url": "http://666-672.duckdns.org:86/ARTE_HD/index.m3u8"
+  },
+  {
   "t": "W9 (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/2/2b/W9_2012.png",
    "cat": "TV EN DIRECT, 1.GENERAL",
