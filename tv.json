@@ -613,11 +613,32 @@
    "url": "https://fstv.rest/index.php?newsid=162"
   },
   {
+  "t": "PLANETE+ (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/4/41/Planete_plus_hd.png",
+   "cat": "TV EN DIRECT, 5.DOCUMENTAIRE",
+   "desc": "Regardez PLANETE+ en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/681"
+  },
+  {
+  "t": "PLANETE+ CI(Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/4/49/Planete_Plus_CI_2017.png?utm_source=fr.wikipedia.org&utm_campaign=index&utm_content=original",
+   "cat": "TV EN DIRECT, 5.DOCUMENTAIRE",
+   "desc": "Regardez PLANETE+ CI en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/680"
+  },
+  {
   "t": "PLANETE+ AVENTURE (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/f/f6/Planeteplusaventure.png",
    "cat": "TV EN DIRECT, 5.DOCUMENTAIRE",
    "desc": "Regardez PLANETE+ AVENTURE en direct.",
    "url": "https://fstv.rest/index.php?newsid=92"
+  },
+  {
+  "t": "PLANETE+ AVENTURE (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/f/f6/Planeteplusaventure.png",
+   "cat": "TV EN DIRECT, 5.DOCUMENTAIRE",
+   "desc": "Regardez PLANETE+ AVENTURE en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/679"
   },
   {
   "t": "NATIONAL GEOGRAPHIC (Direct)",
@@ -634,6 +655,13 @@
    "url": "https://fstv.rest/index.php?newsid=8"
   },
   {
+  "t": "NATIONAL GEOGRAPHIC (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/f/fc/Natgeologo.svg",
+   "cat": "TV EN DIRECT, 5.DOCUMENTAIRE",
+   "desc": "Regardez NATIONAL GEOGRAPHIC en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/670"
+  },
+  {
   "t": "NATIONAL GEOGRAPHIC WILD (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/a/ab/National_Geographic_Wild_Logo_2019.svg",
    "cat": "TV EN DIRECT, 5.DOCUMENTAIRE",
@@ -641,11 +669,25 @@
    "url": "https://fstv.rest/index.php?newsid=58"
   },
   {
+  "t": "NATIONAL GEOGRAPHIC WILD (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/a/ab/National_Geographic_Wild_Logo_2019.svg",
+   "cat": "TV EN DIRECT, 5.DOCUMENTAIRE",
+   "desc": "Regardez NATIONAL GEOGRAPHIC WILD en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/671"
+  },
+  {
   "t": "DISCOVERY CHANNEL (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/8/89/Discovery_Channel_logo_2000.svg",
    "cat": "TV EN DIRECT, 5.DOCUMENTAIRE",
    "desc": "Regardez DISCOVERY CHANNEL en direct.",
    "url": "https://fstv.rest/index.php?newsid=55"
+  },
+  {
+  "t": "DISCOVERY CHANNEL (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/8/89/Discovery_Channel_logo_2000.svg",
+   "cat": "TV EN DIRECT, 5.DOCUMENTAIRE",
+   "desc": "Regardez DISCOVERY CHANNEL en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/664"
   },
   {
   "t": "DISCOVERY INVESTIGATION (Direct)",
@@ -669,6 +711,13 @@
    "url": "https://fstv.rest/index.php?newsid=59"
   },
   {
+  "t": "RMC DÉCOUVERTE (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/7/73/Logo_RMC_D%C3%A9couverte_2012.png",
+   "cat": "TV EN DIRECT, 5.DOCUMENTAIRE",
+   "desc": "Regardez RMC DÉCOUVERTE en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/682"
+  },
+  {
   "t": "BRAVO (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/d/d0/Bravo_Logo_Rouille.png",
    "cat": "TV EN DIRECT, 5.DOCUMENTAIRE",
@@ -690,11 +739,25 @@
    "url": "https://fstv.rest/index.php?newsid=163"
   },
   {
+  "t": "HISTOIRE TV (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/5/5c/Histoire_TV_logo_2019.svg",
+   "cat": "TV EN DIRECT, 5.DOCUMENTAIRE",
+   "desc": "Regardez HISTOIRE TV en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/677"
+  },
+  {
   "t": "TOUTE L'HISTOIRE (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/5/53/Toute_L%27Histoire.svg",
    "cat": "TV EN DIRECT, 5.DOCUMENTAIRE",
    "desc": "Regardez TOUTE L'HISTOIRE en direct.",
    "url": "https://fstv.rest/index.php?newsid=95"
+  },
+  {
+  "t": "TOUTE L'HISTOIRE (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/5/53/Toute_L%27Histoire.svg",
+   "cat": "TV EN DIRECT, 5.DOCUMENTAIRE",
+   "desc": "Regardez TOUTE L'HISTOIRE en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/676"
   },
   {
   "t": "CHASSE & PECHE (Direct)",
@@ -704,11 +767,25 @@
    "url": "https://fstv.rest/index.php?newsid=166"
   },
   {
+  "t": "CHASSE & PECHE (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/1/11/Chasse_%26_P%C3%AAche.svg",
+   "cat": "TV EN DIRECT, 5.DOCUMENTAIRE",
+   "desc": "Regardez CHASSE & PECHE en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/673"
+  },
+  {
   "t": "TLC (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/6/64/TLC_logo_2010.png",
    "cat": "TV EN DIRECT, 5.DOCUMENTAIRE",
    "desc": "Regardez TLC en direct.",
    "url": "https://fstv.rest/index.php?newsid=56"
+  },
+  {
+  "t": "TLC (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/6/64/TLC_logo_2010.png",
+   "cat": "TV EN DIRECT, 5.DOCUMENTAIRE",
+   "desc": "Regardez TLC en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/668"
   },
   {
   "t": "MUSEUMTV (Direct)",
@@ -739,6 +816,13 @@
    "url": "https://fstv.rest/index.php?newsid=164"
   },
   {
+  "t": "TREK (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/f/f8/Trek_logo_2015.svg",
+   "cat": "TV EN DIRECT, 5.DOCUMENTAIRE",
+   "desc": "Regardez TREK en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/683"
+  },
+  {
   "t": "ANIMAUX (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/a/a2/Logo-Animaux-2017.svg",
    "cat": "TV EN DIRECT, DOCUMENTAIRE",
@@ -746,11 +830,25 @@
    "url": "https://fstv.rest/index.php?newsid=53"
   },
   {
+  "t": "ANIMAUX (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/a/a2/Logo-Animaux-2017.svg",
+   "cat": "TV EN DIRECT, DOCUMENTAIRE",
+   "desc": "Regardez ANIMAUX en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/672"
+  },
+  {
   "t": "USHUAIA TV (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/c/ce/Ushuaia_tv_logo_V2-RVB.jpg",
    "cat": "TV EN DIRECT, DOCUMENTAIRE",
    "desc": "Regardez USHUAIA TV en direct.",
    "url": "https://fstv.rest/index.php?newsid=61"
+  },
+  {
+  "t": "USHUAIA TV (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/c/ce/Ushuaia_tv_logo_V2-RVB.jpg",
+   "cat": "TV EN DIRECT, DOCUMENTAIRE",
+   "desc": "Regardez USHUAIA TV en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/678"
   },
   {
   "t": "CANAL+ KIDS (Direct)",
