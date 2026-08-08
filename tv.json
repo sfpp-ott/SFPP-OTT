@@ -1296,7 +1296,7 @@
    "img": "https://upload.wikimedia.org/wikipedia/fr/2/2f/BeIN_Sports_1_%282014%29.png",
    "cat": "TV EN DIRECT, 3.SPORTS",
    "desc": "Regardez BEIN SPORTS 1 en direct.",
-   "url": "https://northlive.lol/api/v1/index.php?route=tv/bein-sports-1-fhd-c/player&api_key="
+   "url": "https://northlive.lol/api/v1/tv/bein-sports-1-fhd-b/player?api_key="
   },
   {
   "t": "BEIN SPORTS 2 (Direct)",
