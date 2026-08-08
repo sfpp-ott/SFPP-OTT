@@ -1229,6 +1229,13 @@
    "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/555"
   },
   {
+  "t": "CANAL+ SPORT (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/0/05/Canal%2B_Sport_HD.png",
+   "cat": "TV EN DIRECT, 3.SPORTS",
+   "desc": "Regardez CANAL+ SPORT en direct.",
+   "url": "https://northlive.lol/api/v1/tv/canal-sport-fhd-b/player?api_key=ff_5ae9661d6220e612a00645cb2889d6da5231504cbb68cc32214030b1a783e8e3"
+  },
+  {
   "t": "CANAL+ SPORT 2 (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/c/c9/Canal%2B_Sport_2_2009.png",
    "cat": "TV EN DIRECT, 3.SPORTS",
