@@ -641,6 +641,13 @@
    "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/680"
   },
   {
+  "t": "PLANETE+ CI(Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/4/49/Planete_Plus_CI_2017.png?utm_source=fr.wikipedia.org&utm_campaign=index&utm_content=original",
+   "cat": "TV EN DIRECT, 5.DOCUMENTAIRE",
+   "desc": "Regardez PLANETE+ CI en direct.",
+   "url": "https://northlive.lol/api/v1/tv/planete-ci-b/player?api_key="
+  },
+  {
   "t": "PLANETE+ AVENTURE (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/f/f6/Planeteplusaventure.png",
    "cat": "TV EN DIRECT, 5.DOCUMENTAIRE",
