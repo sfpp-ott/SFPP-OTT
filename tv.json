@@ -347,6 +347,13 @@
    "url": "https://fstv.rest/index.php?newsid=73"
   },
   {
+  "t": "CINE+ FRISSON (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/c/ce/Logo_Cin%C3%A9%2B_Frisson_2011.svg",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez CINE+ FRISSON en direct.",
+   "url": "https://northlive.lol/api/v1/tv/cine-frisson-fhd-b/player?api_key="
+  },
+  {
   "t": "CINE+ EMOTION (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/7/71/Logo_Cin%C3%A9%2B_Emotion_2011.svg",
    "cat": "TV EN DIRECT, 2.CINEMA",
