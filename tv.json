@@ -1247,7 +1247,7 @@
    "img": "https://upload.wikimedia.org/wikipedia/commons/0/05/Canal%2B_Sport_HD.png",
    "cat": "TV EN DIRECT, 3.SPORTS",
    "desc": "Regardez CANAL+ SPORT en direct.",
-   "url": "https://northlive.lol/api/v1/tv/canal-sport-fhd-b/player?api_key=ff_5ae9661d6220e612a00645cb2889d6da5231504cbb68cc32214030b1a783e8e3"
+   "url": "https://northlive.lol/api/v1/tv/canal-sport-fhd-b/player?api_key="
   },
   {
   "t": "CANAL+ SPORT 2 (Direct)",
