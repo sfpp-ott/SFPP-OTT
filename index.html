@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -515,6 +514,7 @@
         const safeIp = ip.replace(/\./g, '_');
         onValue(ref(db, 'banned_ips/' + safeIp), (snap) => {
             if(snap.exists() && snap.val() === true) {
+                if(typeof window.SfppSync !== 'undefined' && window.SfppSync.closePlayer) window.SfppSync.closePlayer();
                 alert("Votre accès est bloqué par l'administrateur (IP Bannie).");
                 window.logout();
             }
@@ -532,6 +532,7 @@
         const expireValue = snapshot.val();
         
         if (!expireValue) {
+            if(typeof window.SfppSync !== 'undefined' && window.SfppSync.closePlayer) window.SfppSync.closePlayer();
             alert("Ce compte a été supprimé ou n'est pas autorisé.");
             await signOut(auth);
             const mail = localStorage.getItem('sfpp_last_email');
@@ -549,6 +550,7 @@
         const todayStr = y + '-' + m + '-' + d;
         
         if (todayStr >= expireValue) {
+            if(typeof window.SfppSync !== 'undefined' && window.SfppSync.closePlayer) window.SfppSync.closePlayer();
             alert("Accès expiré le " + expireValue);
             await signOut(auth);
             const mail = localStorage.getItem('sfpp_last_email');
@@ -566,6 +568,9 @@
         onValue(ref(db, 'sessions/' + uid), (snapshot) => {
             const session = snapshot.val();
             if (session && session.deviceId !== deviceId) {
+                if(typeof window.SfppSync !== 'undefined' && window.SfppSync.closePlayer) {
+                    window.SfppSync.closePlayer();
+                }
                 alert("⚠️ Ce compte est utilisé sur un autre appareil.");
                 localStorage.removeItem('sfpp_profile'); 
                 signOut(auth).then(() => location.reload());
