@@ -1,4 +1,11 @@
 [
+  {
+   "t": "Rafraîchir TV",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/f/fc/View-refresh.svg?utm_source=fr.wikipedia.org&utm_campaign=index&utm_content=original",
+   "cat": "TV EN DIRECT",
+   "desc": "",
+   "url": "https://movix.chat/live-tv"
+  },
  {
    "t": "Tf1 (Direct)",
    "img": "https://stock.wikimini.org/w/images/3/36/Logo_TF1_2013.png",
