@@ -27,7 +27,6 @@
    "desc": "Regardez FRANCE 2 en direct.",
    "url": "https://northlive.lol/api/v1/tv/france-2-hd-b/player?api_key="
   },
-  
   {
    "t": "FRANCE 3 (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/8/8a/France_3_logo.png",
@@ -35,7 +34,6 @@
    "desc": "Regardez FRANCE 3 en direct.",
    "url": "https://northlive.lol/api/v1/tv/france-3-hd-b/player?api_key="
   },
-  
   {
    "t": "FRANCE 3 (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/8/8a/France_3_logo.png",
