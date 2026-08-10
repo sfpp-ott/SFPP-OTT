@@ -34,6 +34,14 @@
    "desc": "Regardez FRANCE 2 en direct.",
    "url": "https://northlive.lol/api/v1/tv/france-2-hd-b/player?api_key="
   },
+  
+  {
+   "t": "FRANCE 2 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/5/59/France_2_%281992-2002%29.svg",
+   "cat": "TV EN DIRECT, 1.GENERAL",
+   "desc": "Regardez FRANCE 2 en direct.",
+   "url": "https://huhu.to/watch?live=3118025835d9c77b887e78"
+  },
   {
    "t": "FRANCE 3 (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/8/8a/France_3_logo.png",
