@@ -358,6 +358,8 @@
         <button class="nav-btn" id="btn-fav" onclick="changeView('fav')" tabindex="0">Ma Liste ❤️</button>
         
         <button class="nav-btn" onclick="window.location.href='https://music.youtube.com/'" style="color: #ffcc00; font-weight: bold;" tabindex="0">🎵 YT Music</button>
+        
+        <button class="nav-btn" onclick="activerMonVpn()" style="color: #2ecc71; font-weight: bold;" tabindex="0">🛡️ Activer VPN</button>
 
         <button class="nav-btn" onclick="location.reload()" tabindex="0">Rafraîchir</button>
         <div id="dl-progress"></div>
@@ -737,6 +739,14 @@ window.showToast = function(msg) {
     toast.style.display = 'block';
     setTimeout(() => { toast.style.display = 'none'; }, 3000);
 }
+
+window.activerMonVpn = function() {
+    if (typeof window.SfppVpn !== 'undefined') {
+        window.SfppVpn.startVpn("https://ton-serveur.com/fichiers/sfpp_elite.conf");
+    } else {
+        window.showToast("🛡️ Le VPN nécessite l'application Android SFPP ELITE.");
+    }
+};
 
 window.clearSiteData = async function() {
     if(confirm("Voulez-vous vraiment effacer toutes les données de l'application (cache, favoris, profils) ? Vous devrez vous reconnecter.")) {
