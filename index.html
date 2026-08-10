@@ -742,11 +742,12 @@ window.showToast = function(msg) {
 
 window.activerMonVpn = function() {
     if (typeof window.SfppVpn !== 'undefined') {
-        window.SfppVpn.startVpn("https://sfpp-ott.github.io/SFPP-OTT/vpn.conf");
+        window.SfppVpn.startVpn(""); // Plus besoin d'URL, on lance ProtonVPN direct !
     } else {
         window.showToast("🛡️ Le VPN nécessite l'application Android SFPP ELITE.");
     }
 };
+
 
 window.clearSiteData = async function() {
     if(confirm("Voulez-vous vraiment effacer toutes les données de l'application (cache, favoris, profils) ? Vous devrez vous reconnecter.")) {
