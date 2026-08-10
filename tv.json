@@ -70,6 +70,13 @@
    "url": "https://northlive.lol/api/v1/tv/france-4-c/player?api_key="
   },
   {
+  "t": "FRANCE 4 (VPN)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/7/73/France_4_logo.png",
+   "cat": "TV EN DIRECT, 1.GENERAL",
+   "desc": "Regardez FRANCE 4 en direct.",
+   "url": "https://huhu.to/watch?live=3145317850360b93736a9c"
+  },
+  {
   "t": "FRANCE 5 (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/2/26/Logo_France_5.svg",
    "cat": "TV EN DIRECT, 1.GENERAL",
