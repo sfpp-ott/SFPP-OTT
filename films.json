@@ -1,5 +1,136 @@
 [
   {
+    "num": "2520",
+    "t": "‎Bad Romance: The Vicky White Story",
+    "id_tmdb": "1189796",
+    "cat": "CRIME, DRAME, THRILLER, ROMANCE, TÉLÉFILM",
+    "url": "https://vidzy.org/d/a28r8eo3e5am_n",
+    "img": "https://image.tmdb.org/t/p/w500/m6s4UIeGYWDuD23iNTPiUmXfrpK.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/xCP0KNcG4KYbkErsIZRYCeMdzgl.jpg",
+    "desc": "Lorsque Casey, un nouveau détenu, est transféré dans l'établissement pénitentiaire dirigé par l'agent pénitentiaire Vicky White, une attirance secrète naît entre eux.",
+    "year": "2023",
+    "note": 3,
+    "actors_pics": [
+      {
+        "name": "Wendi McLendon-Covey",
+        "img": "https://image.tmdb.org/t/p/w185/d8VKC8Ms3u9XiW4e4jsy2grP02d.jpg"
+      },
+      {
+        "name": "Rossif Sutherland",
+        "img": "https://image.tmdb.org/t/p/w185/3ZBXM6CqZutyWWR6vbGvLcm8HDk.jpg"
+      },
+      {
+        "name": "Stephanie Sy",
+        "img": "https://image.tmdb.org/t/p/w185/o2LxSIY7kbSh8WNpnM0FOPP6CVK.jpg"
+      },
+      {
+        "name": "David Tomlinson",
+        "img": "https://image.tmdb.org/t/p/w185/akWyL8TVWydGGLuQLpjARkkfVM4.jpg"
+      },
+      {
+        "name": "Sharon Bajer",
+        "img": "https://image.tmdb.org/t/p/w185/oQkahOuFsSSrmdSb7wNWk75sGzX.jpg"
+      },
+      {
+        "name": "John B. Lowe",
+        "img": "https://image.tmdb.org/t/p/w185/j2Ra0REYuP9Ipdx6nG7tkukyycG.jpg"
+      },
+      {
+        "name": "Marina Stephenson Kerr",
+        "img": "https://image.tmdb.org/t/p/w185/sLEOfwtdFCzpemIhOmpB1xpz6p0.jpg"
+      },
+      {
+        "name": "Jason Salamandyk",
+        "img": "https://image.tmdb.org/t/p/w185/A38JwISIV8spQIiH59GQcBTeBYy.jpg"
+      },
+      {
+        "name": "Bradley Sawatzky",
+        "img": "https://image.tmdb.org/t/p/w185/vXgqU1DWOLteOXhAwZW8TJglEeG.jpg"
+      },
+      {
+        "name": "Jeff Strome",
+        "img": "https://image.tmdb.org/t/p/w185/kU33R3zq69lITBIun1ZvpBQgMLz.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2519",
+    "t": "‎‎Sainte-Marie-aux-Mines",
+    "id_tmdb": "1273296",
+    "cat": "COMÉDIE, CRIME",
+    "url": "https://vidzy.org/d/1oyln5qtjh5q_n",
+    "img": "https://image.tmdb.org/t/p/w500/8thenzEeFqv5O02iwmPdVaK0nVo.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/1uAYYlpOqzM61Ml4tURU12tqNQl.jpg",
+    "desc": "Mutés à titre disciplinaire à Sainte-Marie-aux-Mines, en Alsace, les inspecteurs Crab et Conrad se voient confier une enquête apparemment sans difficulté : la disparition d’une bague. Mais ce qui devait être une simple formalité se transforme rapidement en affaire complexe, bouleversant la tranquille routine de ce duo de célibataires endurcis.",
+    "year": "2026",
+    "note": 0,
+    "trailer": "eV8-CNYFUP8",
+    "actors_pics": [
+      {
+        "name": "Francis Soetens",
+        "img": "https://image.tmdb.org/t/p/w185/p29KVjaKwhuHAkqHdvep3Aih8FG.jpg"
+      },
+      {
+        "name": "Rodolphe Burger",
+        "img": "https://image.tmdb.org/t/p/w185/wmZRnRVTfVt9Qmaef1KV6uOMWqg.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2518",
+    "t": "Montréal, ma belle",
+    "id_tmdb": "1178620",
+    "cat": "DRAME, ROMANCE",
+    "url": "https://vidzy.org/d/pgzh5t0sgb1w_n",
+    "img": "https://image.tmdb.org/t/p/w500/xgJqnAfbI7IlSre1zEdMFxrkRD5.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/tyPl9khvcjJl5RNT7EEuYkuwiu.jpg",
+    "desc": "Feng Xia, immigrante chinoise de 53 ans et mère de famille vivant à Montréal, a passé sa vie dans une obéissance silencieuse - envers sa famille, sa culture, et un mariage fondé sur le non-dit. Mais lorsqu’elle rencontre Camille, une jeune Québécoise libre et insouciante, un désir longtemps réprimé refait surface. Sous la chaleur étouffante de l’été montréalais, Feng Xia ose, pour la première fois, se choisir.",
+    "year": "2026",
+    "note": 3,
+    "actors_pics": [
+      {
+        "name": "Joan Chen",
+        "img": "https://image.tmdb.org/t/p/w185/jTu4mVKj8sQpgYnuaKchslor585.jpg"
+      },
+      {
+        "name": "Charlotte Aubin",
+        "img": "https://image.tmdb.org/t/p/w185/vFsOO1PTDx9I2RjUrsY88xbSvHY.jpg"
+      },
+      {
+        "name": "John Xu",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Pei Yao Xu",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Anzhe Angelo Zhang",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Jean-Guy Bouchard",
+        "img": "https://image.tmdb.org/t/p/w185/mOlgYf42fMNVgZF6nWl8d6lIgOg.jpg"
+      },
+      {
+        "name": "Isabelle Miquelon",
+        "img": "https://image.tmdb.org/t/p/w185/7e28pGv3iGgIs75RC8AhbX6NJ9o.jpg"
+      },
+      {
+        "name": "Zion-Luna Valdes",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Annette Garant",
+        "img": "https://image.tmdb.org/t/p/w185/9ZSyWNV1iPZGFyF5iUkp9BtHS4m.jpg"
+      },
+      {
+        "name": "Eloi Archambaudoin",
+        "img": "https://image.tmdb.org/t/p/w185/n180Tr9HyF1ikIlUYT5LcYHjR7I.jpg"
+      }
+    ]
+  },
+  {
     "num": "2517",
     "t": "‎Les Nerfs à vif",
     "id_tmdb": "1598",
