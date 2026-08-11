@@ -1,5 +1,161 @@
 [
   {
+    "num": "2513",
+    "t": "‎Des Minions et des monstres",
+    "id_tmdb": "1315772",
+    "cat": "AVENTURE, ANIMATION, COMÉDIE, FAMILIAL, FANTASTIQUE",
+    "url": "https://vidzy.org/d/zur292okamx6_n",
+    "img": "https://image.tmdb.org/t/p/w500/vuxZITXEqsBHBUhc1TKEU8mxvc.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/kkcwhgSFd81QDlXo8ytrpHPQjhy.jpg",
+    "desc": "L’histoire turbulente, absurde et évidemment vraie des Minions et la manière dont ils ont conquis Hollywood, sont devenus de véritables stars de cinéma, ont tout perdu, ont libéré des monstres dans notre monde, puis ont tenté de sauver la planète du chaos qu’ils avaient créé.",
+    "year": "2026",
+    "note": 3,
+    "trailer": "EzC23PVMJ_I",
+    "actors_pics": [
+      {
+        "name": "Pierre Coffin",
+        "img": "https://image.tmdb.org/t/p/w185/eAA9uWRqHlm1LT3nZfXb7UuPfVb.jpg"
+      },
+      {
+        "name": "Trey Parker",
+        "img": "https://image.tmdb.org/t/p/w185/3tJe8t90lrcQzXj9cRcpW9wmj2c.jpg"
+      },
+      {
+        "name": "Christoph Waltz",
+        "img": "https://image.tmdb.org/t/p/w185/jMvLGCVXLaBqjRLf5olyvEucZob.jpg"
+      },
+      {
+        "name": "Allison Janney",
+        "img": "https://image.tmdb.org/t/p/w185/kSaSnQ9xU8eVNL0mTppab95dZA8.jpg"
+      },
+      {
+        "name": "Jesse Eisenberg",
+        "img": "https://image.tmdb.org/t/p/w185/yYhwWRcxDHTn63gSEF1vnDAD7cD.jpg"
+      },
+      {
+        "name": "Jeff Bridges",
+        "img": "https://image.tmdb.org/t/p/w185/xms1RAY6q7Lzp7wNeRCB0kzhucn.jpg"
+      },
+      {
+        "name": "Zoey Deutch",
+        "img": "https://image.tmdb.org/t/p/w185/tn6ErnytTct7HNAFG2dW17QcBk5.jpg"
+      },
+      {
+        "name": "Bobby Moynihan",
+        "img": "https://image.tmdb.org/t/p/w185/gOvwNz5joi5yWJ7dAhuF8WA2aas.jpg"
+      },
+      {
+        "name": "Phil LaMarr",
+        "img": "https://image.tmdb.org/t/p/w185/xP2kNlsmXtzXq0geutflO4K9mSE.jpg"
+      },
+      {
+        "name": "George Lucas",
+        "img": "https://image.tmdb.org/t/p/w185/mDLDvsx8PaZoEThkBdyaG1JxPdf.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2512",
+    "t": "‎‎L'Invitation",
+    "id_tmdb": "950028",
+    "cat": "DRAME, COMÉDIE, ROMANCE",
+    "url": "https://vidzy.org/d/kt80eo7vq5mm_n",
+    "img": "https://image.tmdb.org/t/p/w500/vpMsWT25ITYeYLiUb2HFU9rfzy4.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/kLA1GqiOEyVgXxgNqLoCr7bYcqu.jpg",
+    "desc": "Deux couples au bord de l'implosion, le temps d'un dîner qui dérape.",
+    "year": "2026",
+    "note": 4,
+    "trailer": "2zJGY8UW8gI",
+    "actors_pics": [
+      {
+        "name": "Seth Rogen",
+        "img": "https://image.tmdb.org/t/p/w185/nYl9bvQzaPQLzlf0wf75clLN6Hi.jpg"
+      },
+      {
+        "name": "Olivia Wilde",
+        "img": "https://image.tmdb.org/t/p/w185/eODi1QKamyVa41eSK2SjU20VAZS.jpg"
+      },
+      {
+        "name": "Penélope Cruz",
+        "img": "https://image.tmdb.org/t/p/w185/n5SFgmvJSENQt8poE4qYacUnKOi.jpg"
+      },
+      {
+        "name": "Edward Norton",
+        "img": "https://image.tmdb.org/t/p/w185/8nytsqL59SFJTVYVrN72k6qkGgJ.jpg"
+      },
+      {
+        "name": "Skip Howland",
+        "img": "https://image.tmdb.org/t/p/w185/mXgzTq5QFTcWDi5eJe2vFQnaZ47.jpg"
+      },
+      {
+        "name": "Mel Powell",
+        "img": "https://image.tmdb.org/t/p/w185/qu7T2uxliIK6TbCp1JAVY5rWPLl.jpg"
+      },
+      {
+        "name": "Rachel Thurow",
+        "img": "https://image.tmdb.org/t/p/w185/cmc9sL0MfauEeeyRPmMFvNDePhK.jpg"
+      },
+      {
+        "name": "Mario Valdez",
+        "img": "https://image.tmdb.org/t/p/w185/4CShBxkTX3OLYtHjuAkMbzgKI5y.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2511",
+    "t": "Blücher",
+    "id_tmdb": "1272586",
+    "cat": "GUERRE, ACTION, HISTOIRE",
+    "url": "https://vidzy.org/d/d5hm2hc625oh_n",
+    "img": "https://image.tmdb.org/t/p/w500/lHyKx8MlxjIGbkgfgeriJM8VPnC.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/9DWvNSqPqeFC1tVjfeYK3SnNQIS.jpg",
+    "desc": "Le 9 avril 1940, le colonel Birger Eriksen, âgé de 64 ans, commande la forteresse d'Oscarsborg, un point de contrôle clé que tous les navires doivent franchir en direction d'Oslo.",
+    "year": "2025",
+    "note": 3,
+    "actors_pics": [
+      {
+        "name": "Bjørn Sundquist",
+        "img": "https://image.tmdb.org/t/p/w185/c4BQFatz6Tm84iGAEwibm53b3Gk.jpg"
+      },
+      {
+        "name": "Andrea Berntzen",
+        "img": "https://image.tmdb.org/t/p/w185/wex1cSFLVPgZO86M4eiupXIjC1h.jpg"
+      },
+      {
+        "name": "Fridtjov Såheim",
+        "img": "https://image.tmdb.org/t/p/w185/clOaTXrlYeWP6BGtBu5R7EKby4G.jpg"
+      },
+      {
+        "name": "Eldar Skar",
+        "img": "https://image.tmdb.org/t/p/w185/ofDdXn7Y4uo2otPeoCexFA58gTQ.jpg"
+      },
+      {
+        "name": "Håvard Bakke",
+        "img": "https://image.tmdb.org/t/p/w185/aEUKJpA2hQHmpWRrQVWDYyMdLfj.jpg"
+      },
+      {
+        "name": "Elias Holmen Sørensen",
+        "img": "https://image.tmdb.org/t/p/w185/kT7G4JIi9cIOl154A24sPzuOaH.jpg"
+      },
+      {
+        "name": "Jon Øigarden",
+        "img": "https://image.tmdb.org/t/p/w185/kUkQP35OdAUtAr7lw7O9RNfFRL4.jpg"
+      },
+      {
+        "name": "Terje Strømdahl",
+        "img": "https://image.tmdb.org/t/p/w185/a1u5wYlnGXq4LhBCvgJt61wMMhP.jpg"
+      },
+      {
+        "name": "Øystein Røger",
+        "img": "https://image.tmdb.org/t/p/w185/eT5vB7tFecsem4JZLRmrvHtZkGu.jpg"
+      },
+      {
+        "name": "Axel Bøyum",
+        "img": "https://image.tmdb.org/t/p/w185/8wZjfBTECDYtWfHoYkGqCIezP2h.jpg"
+      }
+    ]
+  },
+  {
     "num": "2510",
     "t": "‎Jackass: Best and Last",
     "id_tmdb": "1612018",
@@ -42203,7 +42359,7 @@
     "num": "1695",
     "t": "Avatar : De feu et de cendres",
     "id_tmdb": "83533",
-    "cat": "SCIENCE-FICTION, AVENTURE, FANTASTIQUE",
+    "cat": "AVENTURE",
     "url": "https://stream01-hls.hulkcrush.org/vod/73e15c87852150f40c9efa8277bd515556653033cbe1229ade5b74c956e7ae5e/master.m3u8",
     "img": "https://image.tmdb.org/t/p/w500/kG3N8oQ10qiw2MsnSHFGJpQNyEy.jpg",
     "bg": "https://image.tmdb.org/t/p/original/sdZSjtGUTSN8B3al5o0f2WoQfQQ.jpg",
@@ -99059,7 +99215,7 @@
     "num": "636",
     "t": "‎Cash Out 2 : High Rollers",
     "id_tmdb": "1149167",
-    "cat": "ACTION, CRIME, THRILLER",
+    "cat": "ACTION",
     "url": "https://stream01-hls.hulkcrush.org/vod/beb6830a55a4cc7d44742926a79fafb7e9b3bff0775432c571ff04cc7ce8dd28/master.m3u8",
     "img": "https://image.tmdb.org/t/p/w500/AwFpie51ZWRN7y8e7KReKFMxnT9.jpg",
     "bg": "https://image.tmdb.org/t/p/original/tsRtpoXBKWVe8B3qh3nqEjdq2Zj.jpg",
