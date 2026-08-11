@@ -1,5 +1,536 @@
 [
   {
+    "num": "2530",
+    "t": "‎Love Me Tender",
+    "id_tmdb": "1290450",
+    "cat": "DRAME",
+    "url": "https://vidzy.org/d/cnj5orkjyjbv_n",
+    "img": "https://image.tmdb.org/t/p/w500/4F3lAOngHzNZtXiJ4zSB0CqXOZ.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/wNpEnHxNQXSv2fc3bW0QNuswKs6.jpg",
+    "desc": "Une fin d’été, Clémence annonce à son ex-mari qu’elle a des histoires d’amour avec des femmes. Sa vie bascule lorsqu'il lui retire la garde de son fils. Clémence va devoir lutter pour rester mère, femme, libre.",
+    "year": "2025",
+    "note": 3,
+    "trailer": "XMtxCqUTdyo",
+    "actors_pics": [
+      {
+        "name": "Vicky Krieps",
+        "img": "https://image.tmdb.org/t/p/w185/9laK3w40qBnE5UY41wJfnUAYMmC.jpg"
+      },
+      {
+        "name": "Antoine Reinartz",
+        "img": "https://image.tmdb.org/t/p/w185/OHGtRqIim2cEHOYKPlbgNOV6Cb.jpg"
+      },
+      {
+        "name": "Monia Chokri",
+        "img": "https://image.tmdb.org/t/p/w185/p8h6wof0vfYoNWWhLbuyy8ZCs2j.jpg"
+      },
+      {
+        "name": "Viggo Ferreira Redier",
+        "img": "https://image.tmdb.org/t/p/w185/iFB9ObjOIklo9hgXwscleGMIrCg.jpg"
+      },
+      {
+        "name": "Aurélia Petit",
+        "img": "https://image.tmdb.org/t/p/w185/s42zuQHecWuexXyO4GwbenumMxF.jpg"
+      },
+      {
+        "name": "Park Ji-Min",
+        "img": "https://image.tmdb.org/t/p/w185/1gpAlvvsfpjX3TuAjvn35xbpYA1.jpg"
+      },
+      {
+        "name": "Salif Cissé",
+        "img": "https://image.tmdb.org/t/p/w185/h0EzP4ZCdNK6ouMjQBSYDsSLPb7.jpg"
+      },
+      {
+        "name": "Julien de Saint Jean",
+        "img": "https://image.tmdb.org/t/p/w185/7LgzmUUyAPSRhAT5a5v7l6aGviH.jpg"
+      },
+      {
+        "name": "Malou Khebizi",
+        "img": "https://image.tmdb.org/t/p/w185/u7dub7ED4vJ35ZZj84HFoS8Cwk5.jpg"
+      },
+      {
+        "name": "Tallulah Cassavetti",
+        "img": "https://image.tmdb.org/t/p/w185/4F2OcwpmRfqb60E7btLBobV9u1D.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2529",
+    "t": "‎‎BTS : Le Retour",
+    "id_tmdb": "1628116",
+    "cat": "DOCUMENTAIRE, MUSIQUE",
+    "url": "https://vidzy.org/d/d3a9pkxre02t_n",
+    "img": "https://image.tmdb.org/t/p/w500/kEAoi6WiFG1eH8q8l8mADgxuxKf.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/w4jOh7ok6JvsYu6WbuSDW97D7D6.jpg",
+    "desc": "Les BTS sont de retour et à l'aube d'une nouvelle ère ! Ce documentaire offre un accès inédit au groupe, réuni à Los Angeles pour enregistrer l'album « Arirang ».",
+    "year": "2026",
+    "note": 4,
+    "trailer": "4fqwAdXO5fY",
+    "actors_pics": [
+      {
+        "name": "RM",
+        "img": "https://image.tmdb.org/t/p/w185/xotRaOk5UqdLIOoaJ2SKe3ffRGe.jpg"
+      },
+      {
+        "name": "Jin",
+        "img": "https://image.tmdb.org/t/p/w185/cothCnRmZXC63olRZ816lZoGMDc.jpg"
+      },
+      {
+        "name": "SUGA",
+        "img": "https://image.tmdb.org/t/p/w185/83xf9EkLK3k7CJSaXe3iVgBC6S3.jpg"
+      },
+      {
+        "name": "j-hope",
+        "img": "https://image.tmdb.org/t/p/w185/2xZu36Z6JFT95AIzazyRHW51dC1.jpg"
+      },
+      {
+        "name": "Jimin",
+        "img": "https://image.tmdb.org/t/p/w185/h6qR6lr5FwqL4clalejFy9971nP.jpg"
+      },
+      {
+        "name": "V",
+        "img": "https://image.tmdb.org/t/p/w185/jPCklfz8cAXfvRptmeNeYBa9Myf.jpg"
+      },
+      {
+        "name": "Jung Kook",
+        "img": "https://image.tmdb.org/t/p/w185/2O7wrPFZtdfNJ5w6LGlIri3Xd0.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2528",
+    "t": "Peau à peau",
+    "id_tmdb": "912511",
+    "cat": "DRAME, THRILLER, HORREUR, MYSTÈRE",
+    "url": "https://vidzy.org/d/oxxqj12quujq_n",
+    "img": "https://image.tmdb.org/t/p/w500/jJqE6JMOWWcFqpqLfc77ZzyYcdh.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/ychhKi2RbcuvjsiAR2eXSU7vCxC.jpg",
+    "desc": "Pénélope a bien failli ne pas survivre à l'accouchement prématuré de Lou, son premier enfant. Les premiers jours à la maison sont tout aussi éprouvants pour cette danseuse contemporaine, qui allaite péniblement et ne peut compter sur le soutien de son conjoint Gaspard, un musicien immature. Un soir où, en proie à l'insomnie, elle sort promener Lou, Pénélope est témoin du braquage du dépanneur dans lequel elle est entrée. Cet incident violent fait remonter à sa mémoire un traumatisme, qui provoque chez elle une dissociation progressive avec la réalité.",
+    "year": "2025",
+    "note": 0,
+    "actors_pics": [
+      {
+        "name": "Rose-Marie Perreault",
+        "img": "https://image.tmdb.org/t/p/w185/baMB46HD8tMwhNoLllve8w1fcN1.jpg"
+      },
+      {
+        "name": "Simon Landry-Désy",
+        "img": "https://image.tmdb.org/t/p/w185/AvRR2eazRIICYlK8QQrM0lnd1qc.jpg"
+      },
+      {
+        "name": "Saladin Dellers",
+        "img": "https://image.tmdb.org/t/p/w185/dYvGd9E7qJxpCbStkmeHuor1cm3.jpg"
+      },
+      {
+        "name": "Bastien Picard",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Robin Picard",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Marie Bélanger",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Pascale Desrochers",
+        "img": "https://image.tmdb.org/t/p/w185/nNVG4rc2rBVAnDhG35FvOEd6ZSx.jpg"
+      },
+      {
+        "name": "Louise Cardinal",
+        "img": "https://image.tmdb.org/t/p/w185/30OXVO0wk1YN7mSsNV3eAZcTyqF.jpg"
+      },
+      {
+        "name": "Francesca Barcenas",
+        "img": "https://image.tmdb.org/t/p/w185/oOZrpywwT5PciR0T4XuONYbPxK6.jpg"
+      },
+      {
+        "name": "Aline Winant",
+        "img": "https://image.tmdb.org/t/p/w185/u5g6OKah6vGNQbNjVY8pXngaJUJ.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2527",
+    "t": "L'ombre, la femme et le couteau",
+    "id_tmdb": "1247002",
+    "cat": "ACTION, MYSTÈRE, DRAME",
+    "url": "https://vidzy.org/d/hjs6mo3fkhz9_n",
+    "img": "https://image.tmdb.org/t/p/w500/4AZVZJojg1w6EPMHRzMUddtmCJq.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/fepnF3W4VP3s8ui8nDtrlsFVYwO.jpg",
+    "desc": "Hornclaw est une tueuse légendaire âgée d'une soixantaine d'années, spécialisée dans le contrôle des maladies, c'est à dire l'élimination des parasites humains, depuis plus de quarante ans. Peut-être parce qu'elle vieillit, elle éprouve une étrange compassion pour le médecin qui l'a soignée. Un jour, un jeune tueur nommé Bullfight se présente à elle. Une étrange relation se noue entre eux...",
+    "year": "2025",
+    "note": 3,
+    "actors_pics": [
+      {
+        "name": "Lee Hey-young",
+        "img": "https://image.tmdb.org/t/p/w185/v1Qy0fyn2Iipk51dkRAI4COhwjz.jpg"
+      },
+      {
+        "name": "Kim Sung-cheol",
+        "img": "https://image.tmdb.org/t/p/w185/nR9r7iBvuLJJYvIxqbyzpWtsO6q.jpg"
+      },
+      {
+        "name": "Yeon Woo-jin",
+        "img": "https://image.tmdb.org/t/p/w185/oGOpjHfwifYd3hVohVFbxmA7Aoe.jpg"
+      },
+      {
+        "name": "옥자연",
+        "img": "https://image.tmdb.org/t/p/w185/kEAetv6yd34vrDJxYHCJ6Dw7OTk.jpg"
+      },
+      {
+        "name": "Kim Moo-yul",
+        "img": "https://image.tmdb.org/t/p/w185/wLuVca9icDLjUkOG84IlEmfP52b.jpg"
+      },
+      {
+        "name": "신시아",
+        "img": "https://image.tmdb.org/t/p/w185/qTYx9jnIhUtNJedYK4t6pkQBds5.jpg"
+      },
+      {
+        "name": "이현걸",
+        "img": "https://image.tmdb.org/t/p/w185/lL7r8bKBBfEYdF2x4rJ70BIYbw2.jpg"
+      },
+      {
+        "name": "Hyun Bong-sik",
+        "img": "https://image.tmdb.org/t/p/w185/aawP5E8gMwxs88qlvXux0vBBLYp.jpg"
+      },
+      {
+        "name": "Jung Hyeon-jun",
+        "img": "https://image.tmdb.org/t/p/w185/vZadA6ip6V2kh0VZW9RwnLcYFgW.jpg"
+      },
+      {
+        "name": "윤채나",
+        "img": "https://image.tmdb.org/t/p/w185/tPEOimh1TC7OICtGix6DP8xciDu.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2526",
+    "t": "Duchess",
+    "id_tmdb": "1005076",
+    "cat": "ACTION, CRIME, THRILLER",
+    "url": "https://vidzy.org/d/jrmdxl04juh4_n",
+    "img": "https://image.tmdb.org/t/p/w500/5TR7JlJbKucNSq84rkbnjLd1JB5.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/A6MQBEobDU0neBuKPqxkEYwD35K.jpg",
+    "desc": "Scarlett, une voleuse de bas étage, fait la rencontre du charismatique Rob, impliqué dans un trafic de diamants international. Sous son aile, elle découvre un monde dangereux où trahisons et manipulations sont quotidiennes. Quand un deal tourne mal, Scarlett décide de ne plus subir : elle se transforme en Duchess et se lance dans une quête de vengeance sans merci.",
+    "year": "2024",
+    "note": 3,
+    "trailer": "ET1Pp72vgOk",
+    "actors_pics": [
+      {
+        "name": "Charlotte Kirk",
+        "img": "https://image.tmdb.org/t/p/w185/tAsWBIetFUWNYw3Z1fHQlCdWvNI.jpg"
+      },
+      {
+        "name": "Philip Winchester",
+        "img": "https://image.tmdb.org/t/p/w185/oc7lc2d98lM393blvmFfAGnXSMf.jpg"
+      },
+      {
+        "name": "Colm Meaney",
+        "img": "https://image.tmdb.org/t/p/w185/guL6RJdlRMtOJN3LoaY3G8hG4Rd.jpg"
+      },
+      {
+        "name": "Hoji Fortuna",
+        "img": "https://image.tmdb.org/t/p/w185/hfsnAuwMM9sP4l0Uh0Is01pRMj2.jpg"
+      },
+      {
+        "name": "Stephanie Beacham",
+        "img": "https://image.tmdb.org/t/p/w185/naba1Fi7XDK43A3lQTXpjcjbHcg.jpg"
+      },
+      {
+        "name": "Sean Pertwee",
+        "img": "https://image.tmdb.org/t/p/w185/j4pAEMhKL5vA61ADrkxxLFtcI4c.jpg"
+      },
+      {
+        "name": "Colin Egglesfield",
+        "img": "https://image.tmdb.org/t/p/w185/cOHljae12aarbS5HZsoasMPf3J0.jpg"
+      },
+      {
+        "name": "Pau Poch",
+        "img": "https://image.tmdb.org/t/p/w185/kgWSSCzdgE7eWAl2iSD043VJzE9.jpg"
+      },
+      {
+        "name": "Yan Tual",
+        "img": "https://image.tmdb.org/t/p/w185/znQALzXKje5aRUiZXEYfAaW8jKP.jpg"
+      },
+      {
+        "name": "Harvey Dean",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      }
+    ]
+  },
+  {
+    "num": "2525",
+    "t": "Heretics",
+    "id_tmdb": "1399208",
+    "cat": "HORREUR",
+    "url": "https://vidzy.org/d/cfugss9zmeet_n",
+    "img": "https://image.tmdb.org/t/p/w500/gqR8sVmCc19SiTsaRR7m3ynunkV.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/wur5JOdDuhJXzTFlztAJ2fgxLpY.jpg",
+    "desc": "Des images retrouvées témoignent de l'horreur vécue par un groupe d'adolescents qui s'introduisent dans la maison abandonnée des Simmons. Ce qui commence comme une aventure en quête de sensations fortes se transforme en cauchemar lorsqu'ils découvrent une secte sinistre déterminée à les sacrifier un par un.",
+    "year": "2024",
+    "note": 2,
+    "actors_pics": [
+      {
+        "name": "Eric Roberts",
+        "img": "https://image.tmdb.org/t/p/w185/NiWg1TaUcal7xn1ZQeyA2dLd5F.jpg"
+      },
+      {
+        "name": "Maria Pinsent",
+        "img": "https://image.tmdb.org/t/p/w185/jJ2YIU3tMFLtjGLpv8gmWRPK21w.jpg"
+      },
+      {
+        "name": "Neeley Dayan",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Sara Kamine",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Shelby Wright",
+        "img": "https://image.tmdb.org/t/p/w185/k4TLapkytwj9v5WkpQoyZZ5t1kQ.jpg"
+      },
+      {
+        "name": "Anna DeRusso",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Scott Mazzapica",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "JJ Fech",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Teryn Macallan",
+        "img": "https://image.tmdb.org/t/p/w185/fAoKuJm6xxxjgEjhSErDpITN4eQ.jpg"
+      },
+      {
+        "name": "Ryan Barrier",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      }
+    ]
+  },
+  {
+    "num": "2524",
+    "t": "Pirouette fatale",
+    "id_tmdb": "1084187",
+    "cat": "ACTION, THRILLER, HORREUR",
+    "url": "https://vidzy.org/d/jp7ko6yl49hl_n",
+    "img": "https://image.tmdb.org/t/p/w500/xnh0rBBPKB6DyLiqek8dX1X7F7t.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/z3bzhmC0CPikWeerUkLO73YvGrC.jpg",
+    "desc": "Un thriller effréné où cinq ballerines, bloquées dans une forêt isolée en chemin vers un concours de danse, se réfugient dans une sinistre auberge routière tenue par Devora Kasimer et doivent transformer leur formation d'élite pour survivre.",
+    "year": "2026",
+    "note": 3,
+    "actors_pics": [
+      {
+        "name": "Maddie Ziegler",
+        "img": "https://image.tmdb.org/t/p/w185/hDzdA0IvoPpx5nmwL5Uu75rdfYh.jpg"
+      },
+      {
+        "name": "Lana Condor",
+        "img": "https://image.tmdb.org/t/p/w185/vWn27Fk2GLwH7o9fBG9hBWZI6OR.jpg"
+      },
+      {
+        "name": "Iris Apatow",
+        "img": "https://image.tmdb.org/t/p/w185/5RgL4nUBPkAk8jcJqu6R42ixE0j.jpg"
+      },
+      {
+        "name": "Millicent Simmonds",
+        "img": "https://image.tmdb.org/t/p/w185/clNmG7JlsI5qZTVjYoXiGZ3Pvbq.jpg"
+      },
+      {
+        "name": "Avantika",
+        "img": "https://image.tmdb.org/t/p/w185/4kASmotHYtrwkIMGmyArKLvaQOz.jpg"
+      },
+      {
+        "name": "Michael Culkin",
+        "img": "https://image.tmdb.org/t/p/w185/eUTAyHEEKE3ZVVqKuEiPG8APU14.jpg"
+      },
+      {
+        "name": "Lydia Leonard",
+        "img": "https://image.tmdb.org/t/p/w185/hZyocFIvGrZxJD3sDxAtWvMjDyJ.jpg"
+      },
+      {
+        "name": "Uma Thurman",
+        "img": "https://image.tmdb.org/t/p/w185/hlYG0MC6im0MHNq1xixxVilfwyR.jpg"
+      },
+      {
+        "name": "Tamás Hagyó",
+        "img": "https://image.tmdb.org/t/p/w185/dHFdRHgEIomRk95rX44MBKjObZ3.jpg"
+      },
+      {
+        "name": "Julian Krenn",
+        "img": "https://image.tmdb.org/t/p/w185/zLARA7blzks4bo43Pkla3rCOFkO.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2523",
+    "t": "Worldbreaker",
+    "id_tmdb": "1196067",
+    "cat": "ACTION, HORREUR, SCIENCE-FICTION",
+    "url": "https://vidzy.org/d/yhfwmz0lkr51_n",
+    "img": "https://image.tmdb.org/t/p/w500/ahj1JU8r0uJv7QII5Uj7tKzbEsC.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/gMItMzDOyrfQGZsMWRM9tdxq5cV.jpg",
+    "desc": "Un père cache sa fille sur une île pour la protéger, tout en la préparant à survivre et à affronter les combats qui l'attendent et qui détermineront l'avenir de l'Humanité.",
+    "year": "2025",
+    "note": 3,
+    "actors_pics": [
+      {
+        "name": "Billie Boullet",
+        "img": "https://image.tmdb.org/t/p/w185/2T18NEAVoU8cWWpAtaI6fTrdolX.jpg"
+      },
+      {
+        "name": "Luke Evans",
+        "img": "https://image.tmdb.org/t/p/w185/qUkYJcrDc4M0LHNYASs30luFvw0.jpg"
+      },
+      {
+        "name": "Milla Jovovich",
+        "img": "https://image.tmdb.org/t/p/w185/usWnHCzbADijULREZYSJ0qfM00y.jpg"
+      },
+      {
+        "name": "Mila Harris",
+        "img": "https://image.tmdb.org/t/p/w185/10BSVhLPqosSBsOgp0L7qaU0Uhi.jpg"
+      },
+      {
+        "name": "Kevin Glynn",
+        "img": "https://image.tmdb.org/t/p/w185/jIQk6lFQ0FOg5piKabufRHfSxNc.jpg"
+      },
+      {
+        "name": "Steven Calvert",
+        "img": "https://image.tmdb.org/t/p/w185/khzZaa3fZtWIgPe2kjpYiK0e97d.jpg"
+      },
+      {
+        "name": "Meadow Williams",
+        "img": "https://image.tmdb.org/t/p/w185/iECIpEM4BWt94kvOMKFJqv5uJEU.jpg"
+      },
+      {
+        "name": "Nadia Violet-Johnson",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Brian Devlin",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Chris Finlayson",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      }
+    ]
+  },
+  {
+    "num": "2522",
+    "t": "Follement(e)",
+    "id_tmdb": "1312157",
+    "cat": "ROMANCE, COMÉDIE",
+    "url": "https://vidzy.org/d/9ile6f4npfa0_n",
+    "img": "https://image.tmdb.org/t/p/w500/y6wKOjiRTg66tHfqdBP11TK6HNT.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/tOwffsVVkPWaQGmWDoZxKhGmrNi.jpg",
+    "desc": "Pour leur premier rendez-vous, Lara invite Piero dans son appartement à Rome. Mais ils ne sont pas tout à fait seuls. Dans leurs pensées, une galerie de personnages bien encombrants interprète leurs émotions en commentant, sabotant ou encourageant chaque geste, chaque mot, chaque silence. Quiproquos, confidences inattendues et conflits intérieurs se succèdent et influencent les choix de Lara et Piero pour cette soirée unique. Une soirée. Deux inconnus. Et une chance de tomber amoureux… Follement(e).",
+    "year": "2025",
+    "note": 4,
+    "actors_pics": [
+      {
+        "name": "Edoardo Leo",
+        "img": "https://image.tmdb.org/t/p/w185/coKBvQI0zhAHz0DwiLEmgpaCvn4.jpg"
+      },
+      {
+        "name": "Pilar Fogliati",
+        "img": "https://image.tmdb.org/t/p/w185/yO3HJiRbySpZxOIbnzhHEHNvw6K.jpg"
+      },
+      {
+        "name": "Emanuela Fanelli",
+        "img": "https://image.tmdb.org/t/p/w185/iBnInh4sJq0VQKITiHPp4R5gJWc.jpg"
+      },
+      {
+        "name": "Maria Chiara Giannetta",
+        "img": "https://image.tmdb.org/t/p/w185/hej1rYJi1qZ5LuIylFh0gMZqOHF.jpg"
+      },
+      {
+        "name": "Claudia Pandolfi",
+        "img": "https://image.tmdb.org/t/p/w185/lAxrx6HhqEZQcJwHvP4f9iRZaxs.jpg"
+      },
+      {
+        "name": "Vittoria Puccini",
+        "img": "https://image.tmdb.org/t/p/w185/hLqob2uBRLwA615Jx3QStD1dqzz.jpg"
+      },
+      {
+        "name": "Marco Giallini",
+        "img": "https://image.tmdb.org/t/p/w185/pa8134Q5oVRuC1xBMsQ73mpXN1v.jpg"
+      },
+      {
+        "name": "Maurizio Lastrico",
+        "img": "https://image.tmdb.org/t/p/w185/6aulhCiLAo440asTSWQm7oHsc40.jpg"
+      },
+      {
+        "name": "Rocco Papaleo",
+        "img": "https://image.tmdb.org/t/p/w185/6JjYDmBgn5T0Uw87l1zAwTr5o88.jpg"
+      },
+      {
+        "name": "Claudio Santamaria",
+        "img": "https://image.tmdb.org/t/p/w185/5dTilyM0dEMAV9a8kQbD2X4ehQU.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2521",
+    "t": "The Rise of the Red Hot Chili Peppers: Our Brother, Hillel",
+    "id_tmdb": "1482168",
+    "cat": "DOCUMENTAIRE, MUSIQUE",
+    "url": "https://vidzy.org/d/s3zhui84j4el_n",
+    "img": "https://image.tmdb.org/t/p/w500/y9hHoO3eB7l3ZjYUZoJUJpZW22V.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/eUDjpW2wQg2fvSFDohhkIZkjnFw.jpg",
+    "desc": "Explorez les années de formation des Red Hot Chili Peppers et l'influence profonde d'Hillel Slovak, membre fondateur du groupe.",
+    "year": "2026",
+    "note": 4,
+    "actors_pics": [
+      {
+        "name": "Hillel Slovak",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Anthony Kiedis",
+        "img": "https://image.tmdb.org/t/p/w185/5tsTeYpixbIDtBljiFgPgWt9KQP.jpg"
+      },
+      {
+        "name": "Flea",
+        "img": "https://image.tmdb.org/t/p/w185/nGQE7xf4YJeqO0a4lpFebhwI7R9.jpg"
+      },
+      {
+        "name": "Alain Johannes",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Jack Irons",
+        "img": "https://image.tmdb.org/t/p/w185/e57vASpj5yh8aj4yuof5bPPpjRm.jpg"
+      },
+      {
+        "name": "James Slovak",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Gary Allen",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Addie Brik",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "George Clinton",
+        "img": "https://image.tmdb.org/t/p/w185/wLRc7AUiuHS9e0nAXpXbWZO2h8O.jpg"
+      },
+      {
+        "name": "Michael Beinhorn",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      }
+    ]
+  },
+  {
     "num": "2520",
     "t": "‎Bad Romance: The Vicky White Story",
     "id_tmdb": "1189796",
