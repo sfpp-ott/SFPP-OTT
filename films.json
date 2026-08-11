@@ -1,5 +1,459 @@
 [
   {
+    "num": "2541",
+    "t": "‎R.L. Stine's Pumpkinhead",
+    "id_tmdb": "1551003",
+    "cat": "HORREUR, FANTASTIQUE",
+    "url": "https://vidzy.org/d/i7xt8kfdb60y_n",
+    "img": "https://image.tmdb.org/t/p/w500/gRJFFA9lK9pLikEIMcetgkmOGTj.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/lplhIdFpgi0KQJszI9pRgnj1feO.jpg",
+    "desc": "Lorsque son frère disparaît et que tout le monde oublie qu'il a jamais existé, Sam doit élucider ce mystère avant que Finn ne disparaisse à jamais.",
+    "year": "2025",
+    "note": 3,
+    "actors_pics": [
+      {
+        "name": "Bean Reid",
+        "img": "https://image.tmdb.org/t/p/w185/1jYS1uTMVd9CbhxYwjqgJlQ0j1r.jpg"
+      },
+      {
+        "name": "Adeline Lo",
+        "img": "https://image.tmdb.org/t/p/w185/7qdnYQqZzJP4yYHBxvFhn9H78ek.jpg"
+      },
+      {
+        "name": "Seth Isaac Johnson",
+        "img": "https://image.tmdb.org/t/p/w185/8L1vXNiNYx1jOHCuWhU8W1yghmy.jpg"
+      },
+      {
+        "name": "Kevin McNulty",
+        "img": "https://image.tmdb.org/t/p/w185/jaXuLA5zYPVzfG8wLtnD2O4aveA.jpg"
+      },
+      {
+        "name": "Bob Frazer",
+        "img": "https://image.tmdb.org/t/p/w185/alDdLXo3D0C0b17o85QnZJeFWfn.jpg"
+      },
+      {
+        "name": "Matty Finochio",
+        "img": "https://image.tmdb.org/t/p/w185/7I2iawz7YHZDbH15V4Om0Tdep9c.jpg"
+      },
+      {
+        "name": "Kendra Anderson",
+        "img": "https://image.tmdb.org/t/p/w185/eUpDAS5owssdULkD6kT2AaF9pUf.jpg"
+      },
+      {
+        "name": "Troy James",
+        "img": "https://image.tmdb.org/t/p/w185/oDu8ESqlD6nNdPdntWmhoJOnU5X.jpg"
+      },
+      {
+        "name": "Dominic Mariche",
+        "img": "https://image.tmdb.org/t/p/w185/tM2OBfuLpDUKfLOPFrPckZdylia.jpg"
+      },
+      {
+        "name": "Chase Petriw",
+        "img": "https://image.tmdb.org/t/p/w185/52D5hTQnLSy8Me4rEXauXZIrWzA.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2540",
+    "t": "‎‎Agent Zeta",
+    "id_tmdb": "1314786",
+    "cat": "DRAME, THRILLER",
+    "url": "https://vidzy.org/d/gvr9gl78i4in_n",
+    "img": "https://image.tmdb.org/t/p/w500/wDVwJj0KMdFgV1nR4CLNU3yhOxH.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/ptcyGmBonW6mDQmrPhXbt6Rjrlp.jpg",
+    "desc": "Quatre anciens espions espagnols sont assassinés simultanément dans différents pays. Le CNI découvre qu'ils ont tous participé à l'Opération Ciénaga il y a 35 ans en Colombie. Zeta, agent du CNI, doit trouver et protéger le seul survivant au cours de la mission la plus dangereuse de sa carrière. Alfa, un agent colombien, se joint à Zeta. Il semble en savoir bien plus que lui sur \"Ciénaga\"...",
+    "year": "2026",
+    "note": 3,
+    "trailer": "P5l7A0W97Zg",
+    "actors_pics": [
+      {
+        "name": "Mario Casas",
+        "img": "https://image.tmdb.org/t/p/w185/y0H8jDiOZqYKZkamv2z4cV9FLsl.jpg"
+      },
+      {
+        "name": "Mariela Garriga",
+        "img": "https://image.tmdb.org/t/p/w185/hQhh8h3q6fmsm5GW1vlAgLhqHgQ.jpg"
+      },
+      {
+        "name": "Luis Zahera",
+        "img": "https://image.tmdb.org/t/p/w185/4WEGXd6pOWHkAUcffJrg42BFPI3.jpg"
+      },
+      {
+        "name": "Nora Navas",
+        "img": "https://image.tmdb.org/t/p/w185/kTvfxyKoWUoxgsTSIRHs8dgdD3A.jpg"
+      },
+      {
+        "name": "Christian Tappan",
+        "img": "https://image.tmdb.org/t/p/w185/AsgxuVkpzSE4uC4iQCS4WNMQhEC.jpg"
+      },
+      {
+        "name": "Cristina Umaña",
+        "img": "https://image.tmdb.org/t/p/w185/mQuo0DZsJJ55ZcStNtDDajf5J3x.jpg"
+      },
+      {
+        "name": "Ricardo de Barreiro",
+        "img": "https://image.tmdb.org/t/p/w185/esgA5wsnrE889n0mGuKwXRfFP4v.jpg"
+      },
+      {
+        "name": "Luisa Vides Galiano",
+        "img": "https://image.tmdb.org/t/p/w185/cTwOriIXGnmXZKhHSZ96nMrszz.jpg"
+      },
+      {
+        "name": "David Villamil",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Amanda Goldsmith",
+        "img": "https://image.tmdb.org/t/p/w185/oINTksi2Ytmr18gcuHRDEorIJYc.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2539",
+    "t": "Toy Story 5",
+    "id_tmdb": "1084244",
+    "cat": "ANIMATION, FAMILIAL, COMÉDIE, AVENTURE",
+    "url": "https://vidzy.org/d/vcklx3t5eove_n",
+    "img": "https://image.tmdb.org/t/p/w500/bxFstXYF4wf6brpm9oZsarxI6AT.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/8sSKdEmlmqF4kJUd28SqthXC4yZ.jpg",
+    "desc": "Buzz, Woody, Jessie et le reste de la bande verront leur travail remis en question lorsqu'ils découvriront que ce qui obsède les enfants d'aujourd'hui s’appelle… l'électronique !",
+    "year": "2026",
+    "note": 4,
+    "trailer": "MyDnut4pLQI",
+    "actors_pics": [
+      {
+        "name": "Tom Hanks",
+        "img": "https://image.tmdb.org/t/p/w185/oFvZoKI6lvU03n4YoNGAll9rkas.jpg"
+      },
+      {
+        "name": "Tim Allen",
+        "img": "https://image.tmdb.org/t/p/w185/woWhZzFILVhYMAvsPL171HjMY0y.jpg"
+      },
+      {
+        "name": "Joan Cusack",
+        "img": "https://image.tmdb.org/t/p/w185/59UIeHZFYrKyP20lXqijtfTXglO.jpg"
+      },
+      {
+        "name": "Greta Lee",
+        "img": "https://image.tmdb.org/t/p/w185/6SydTis4XUcovlwIGskT59JowLX.jpg"
+      },
+      {
+        "name": "Conan O'Brien",
+        "img": "https://image.tmdb.org/t/p/w185/deRbViPut0t80miscBpP2DhBJU5.jpg"
+      },
+      {
+        "name": "Craig Robinson",
+        "img": "https://image.tmdb.org/t/p/w185/mTyTrOWUSOBJMOlDpnd4OYx7FlJ.jpg"
+      },
+      {
+        "name": "Shelby Rabara",
+        "img": "https://image.tmdb.org/t/p/w185/ouMiEKlhCj2LFKEQtI6fGRMDemF.jpg"
+      },
+      {
+        "name": "Tony Hale",
+        "img": "https://image.tmdb.org/t/p/w185/ar4uapp4w5wMkThZcqWUNMSTO8z.jpg"
+      },
+      {
+        "name": "Scarlett Spears",
+        "img": "https://image.tmdb.org/t/p/w185/h0loJ4v3wbUfUA6dxUYv7B6fET1.jpg"
+      },
+      {
+        "name": "Jay Hernandez",
+        "img": "https://image.tmdb.org/t/p/w185/rh4pzTAJvy0i84HYV4xZxCXuXgV.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2538",
+    "t": "Les Simpson : Extreme Makeover : Homer Edition",
+    "id_tmdb": "1716513",
+    "cat": "ANIMATION, COMÉDIE, FAMILIAL",
+    "url": "https://vidzy.org/d/2c40y25cq9c3_n",
+    "img": "https://image.tmdb.org/t/p/w500/vim76mMXig00YRxN2iGYJASoGkP.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/4bW2662ZiJhJmK4IseCReVzgZ3C.jpg",
+    "desc": "La soirée en amoureux d'Homer et Marge tourne au cauchemar lorsque Marge apprend qu'Homer a laissé les enfants sans surveillance, avec pour seule « baby-sitter » la caméra de la sonnette. Frustrée par son mari imparfait, Marge, un peu éméchée, se met à imaginer une trilogie de fantasmes mettant en scène un Homer bien différent.",
+    "year": "2026",
+    "note": 4,
+    "actors_pics": [
+      {
+        "name": "Dan Castellaneta",
+        "img": "https://image.tmdb.org/t/p/w185/AmeqWhP4A46AWkM4kVphg6jOTQX.jpg"
+      },
+      {
+        "name": "Julie Kavner",
+        "img": "https://image.tmdb.org/t/p/w185/87kSPYlWcHvqOVEkhdqxysiAf6w.jpg"
+      },
+      {
+        "name": "Nancy Cartwright",
+        "img": "https://image.tmdb.org/t/p/w185/kJQEz3NAwHGdb2sQzAnBf1RmMV4.jpg"
+      },
+      {
+        "name": "Yeardley Smith",
+        "img": "https://image.tmdb.org/t/p/w185/9AjPwbb3uz4GfgOPBYsy2ILvwkB.jpg"
+      },
+      {
+        "name": "Harry Shearer",
+        "img": "https://image.tmdb.org/t/p/w185/7PnGZGVKJNDTUv3DkbaMEnCseT0.jpg"
+      },
+      {
+        "name": "Hank Azaria",
+        "img": "https://image.tmdb.org/t/p/w185/uON3TWSySIy8wbDhkSzmFTDM6XO.jpg"
+      },
+      {
+        "name": "Betty Gilpin",
+        "img": "https://image.tmdb.org/t/p/w185/6GvlDnnKM0WxBt0jUipBJw5VgD5.jpg"
+      },
+      {
+        "name": "Jon Hamm",
+        "img": "https://image.tmdb.org/t/p/w185/mrXE5fZbEDPc7BEE5G21J6qrwzi.jpg"
+      },
+      {
+        "name": "Laufey",
+        "img": "https://image.tmdb.org/t/p/w185/lHZWemm9RFNPVRim3VpoFvX2C08.jpg"
+      },
+      {
+        "name": "Tegan Quin",
+        "img": "https://image.tmdb.org/t/p/w185/1DTfYo8PYb5eKemHgnnGANvC918.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2537",
+    "t": "Land looters",
+    "id_tmdb": "1603750",
+    "cat": "DOCUMENTAIRE",
+    "url": "https://vidzy.org/d/frv58dxocvh7_n",
+    "img": "https://image.tmdb.org/t/p/w500/w2EXW6CCz54yBW3qdAupsZCe177.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/dURBefv0HkUMVeBb8gRIYVXFDTU.jpg",
+    "desc": "Au Cambodge, les Bunong se battent pour préserver leurs forêts sacrées, tandis qu'au Cameroun, des villages résistent aux plantations de palmiers à huile. À mi-chemin entre le récit de voyage et l'enquête sensible, le film raconte l'histoire universelle de personnes qui refusent d'être effacées.",
+    "year": "2026",
+    "note": 4,
+    "trailer": "qv8In44ITfA",
+    "actors_pics": [
+      {
+        "name": "Fanny Paloma",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Fiodor Rilov",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Bel Bérangère Nankara",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Samin Ngach",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Sorng Prou",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Neth Prak",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Samuel Nguiﬀo",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Emmanuel Elong",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      }
+    ]
+  },
+  {
+    "num": "2536",
+    "t": "Oreka, au-delà du possible",
+    "id_tmdb": "1649993",
+    "cat": "DOCUMENTAIRE, AVENTURE",
+    "url": "https://vidzy.org/d/3pzgifl3nqxj_n",
+    "img": "https://image.tmdb.org/t/p/w500/oOxad3oZFTE84SCz59E6U3mrVjq.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/j6zWFuUNr5ocmgmLhwWgA6nEl3s.jpg",
+    "desc": "Depuis son accident jusqu’aux podiums de grandes compétitions handisportives, Michel García a suivi pendant plus de dix ans l’ascension de l’athlète Maxime Cabanne. Une histoire d’amitié, de sport et de résilience couronnée par un défi : une expédition polaire dans le grand nord.",
+    "year": "2026",
+    "note": 0,
+    "trailer": "RYpv_Filo7A",
+    "actors_pics": [
+      {
+        "name": "Maxime Cabanne",
+        "img": "https://image.tmdb.org/t/p/w185/h0cOJBAsnxZGfnZ03eSQ2SziCLH.jpg"
+      },
+      {
+        "name": "Michel García",
+        "img": "https://image.tmdb.org/t/p/w185/scRkOsyQPLRVRxxVFWQHe2pWiOA.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2535",
+    "t": "Le Fantôme des rocheuses",
+    "id_tmdb": "1647231",
+    "cat": "DOCUMENTAIRE",
+    "url": "https://vidzy.org/d/uduqgey57gy7_n",
+    "img": "https://image.tmdb.org/t/p/w500/5E73AJxiVI9LhLYMcyIqavUS1CT.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/mtDkzDRns8RF6DYI5dMSXj4dqs7.jpg",
+    "desc": "Une aventure fascinante au cœur des Rocheuses d'Amérique du Nord, à la rencontre du puma. En compagnie du GRAND JD et de Neil Villard. Julien Donzé, connu sur Youtube sous le nom du GRAND JD suit dans ce projet un photographe animalier suisse, Neil Villard. Le duo se rend dans les Rocheuses pour observer le puma, un félin très discret même fantomatique qu’on ne connaît pas bien. Après 15 ans à observer le lynx boréal et le tigre de Sibérie, Neil emmène LE GRAND JD dans sa quête du mystérieux puma. Son approche mêle patience, lecture des traces et immersion totale dans le rythme de la faune sauvage. Ensemble, ils nous offrent un voyage au cœur du vivant, alliant passion, amitié et transmission.",
+    "year": "2026",
+    "note": 4,
+    "actors_pics": [
+      {
+        "name": "Julien Donzé",
+        "img": "https://image.tmdb.org/t/p/w185/zpuLaYEYOYCHbkE9cO8pDcUFlns.jpg"
+      },
+      {
+        "name": "Neil Villard",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      }
+    ]
+  },
+  {
+    "num": "2534",
+    "t": "En attendant la cérémonie",
+    "id_tmdb": "1653602",
+    "cat": "COMÉDIE",
+    "url": "https://vidzy.org/d/ufxvn5hvjgfl_n",
+    "img": "https://image.tmdb.org/t/p/w500/2G9YFrj7VHwgZr9mE5eoHL7jDBi.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/uAi9SMxXbM2FzxBRg2IMnuV6QVp.jpg",
+    "desc": "En attendant les Oscars®, Kyan a décidé d’organiser sa propre cérémonie. Un tapis rouge, des invités, des discours et plein de jeux sur le thème du cinéma. Mais, honnêtement, on pense que c’était juste une excuse pour se marrer avec ses potes.",
+    "year": "2026",
+    "note": 0,
+    "trailer": "PXqiabGFJro",
+    "actors_pics": [
+      {
+        "name": "Kyan Khojandi",
+        "img": "https://image.tmdb.org/t/p/w185/e2XcdnMz6hCVz4skEZXjsEr9A72.jpg"
+      },
+      {
+        "name": "Éric Judor",
+        "img": "https://image.tmdb.org/t/p/w185/iWVPgew1yPFawRTRBz7DcYI3aKt.jpg"
+      },
+      {
+        "name": "Blandine Lehout",
+        "img": "https://image.tmdb.org/t/p/w185/8yximu1Fd0mNxmNPGkO08WyeAnk.jpg"
+      },
+      {
+        "name": "Alice David",
+        "img": "https://image.tmdb.org/t/p/w185/oKYn16jBsj9glgT9xy1Xz3TZzYd.jpg"
+      },
+      {
+        "name": "Kheiron",
+        "img": "https://image.tmdb.org/t/p/w185/6tThae2pd99R6sLN2H6A7ugOY7P.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2533",
+    "t": "Crimes à Cluny",
+    "id_tmdb": "1653408",
+    "cat": "TÉLÉFILM, CRIME",
+    "url": "https://vidzy.org/d/x2352neanodc_n",
+    "img": "https://image.tmdb.org/t/p/w500/hYlQYQwsxoa8MGHSOqeggCNqjSP.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/isjaEo7lGkUMqhnBUTTMrBZ8Vgm.jpg",
+    "desc": "Cluny est en fête. La nouvelle promotion de l'école des Arts et Métiers célèbre son intégration. Elle défile dans les rues avec les anciens élèves. Mais un meurtre met brutalement fin aux festivités. Un homme a été assassiné dans la célèbre abbaye, qui sert d'enceinte à l'école. Capitaine de gendarmerie, Karine Roy, pense qu'on va lui attribuer l'enquête. Mais la sensibilité du dossier pousse les autorités à la confier au SRPJ de Lyon et sa jeune capitaine, Louise Vaillant, qui n'est autre que la fille de la gendarme. Un lourd secret les oppose. Louise vient de découvrir que celui qui l'a élevée n'est pas son père biologique. Alors que le tueur semble régler des comptes avec d'anciens élèves de l'école, tout semble lié à la disparition d'un bébé survenue il y a vingt ans...",
+    "year": "2026",
+    "note": 3,
+    "trailer": "ghzu441THhE",
+    "actors_pics": [
+      {
+        "name": "Sonia Rolland",
+        "img": "https://image.tmdb.org/t/p/w185/xY3K1U5mykidF67Nv3FFatPQaKh.jpg"
+      },
+      {
+        "name": "Marie Fèvre-Scheuermann",
+        "img": "https://image.tmdb.org/t/p/w185/9iscRcJ5DRjV0yhT832tJ0lV0xC.jpg"
+      },
+      {
+        "name": "Nicolas Van Beveren",
+        "img": "https://image.tmdb.org/t/p/w185/wpwwOOb5Yug13CtMLr73Z5RVz90.jpg"
+      },
+      {
+        "name": "Pascal Casanova",
+        "img": "https://image.tmdb.org/t/p/w185/4zwM07CCAy6Uw4gws83SaQSDvqp.jpg"
+      },
+      {
+        "name": "Myriam Bourguignon",
+        "img": "https://image.tmdb.org/t/p/w185/acgzLBx6WgKLt2rPytEy2eSupXK.jpg"
+      },
+      {
+        "name": "Benjamin Hauser",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Sandra Dorset",
+        "img": "https://image.tmdb.org/t/p/w185/ykrdx6Eo0N956zdo42UrCOoTDoA.jpg"
+      },
+      {
+        "name": "Max Geller",
+        "img": "https://image.tmdb.org/t/p/w185/4sYro3IS0MMeRe3NlPPbvxj7gNL.jpg"
+      },
+      {
+        "name": "Antonia de Rendinger",
+        "img": "https://image.tmdb.org/t/p/w185/szQ4VlFPNDXWWgAagksw72D1Due.jpg"
+      },
+      {
+        "name": "Benoît Chauvin",
+        "img": "https://image.tmdb.org/t/p/w185/3xWSxWczG035Ylirv6bVmSL2EUf.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2532",
+    "t": "Preschool",
+    "id_tmdb": "1440049",
+    "cat": "COMÉDIE",
+    "url": "https://vidzy.org/d/os9ydx7ckrj0_n",
+    "img": "https://image.tmdb.org/t/p/w500/h1AnSexl74n0QSJ4crCfKgLP81E.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/vXnfEEJey9hKcB6FPaTnmrv4dp9.jpg",
+    "desc": "A Londres, deux pères jettent leur dévolu sur la dernière place d'une école maternelle ultrachic. Ce qui débute comme une simple inscription se mue en une rivalité exacerbée truffée de fous rires, de surenchère sans limites, avec des conséquences surprenantes. Alors que les choses partent en vrille et que les familles disjonctent, les deux pères découvrent ce qu'ils sont prêts à faire pour leurs enfants, et ce qu'être parent signifie.",
+    "year": "2026",
+    "note": 3,
+    "actors_pics": [
+      {
+        "name": "Josh Duhamel",
+        "img": "https://image.tmdb.org/t/p/w185/5Rp9aeWdN2S623KCjwfii9MhDK1.jpg"
+      },
+      {
+        "name": "Michael Socha",
+        "img": "https://image.tmdb.org/t/p/w185/qjqXqf72GIwXgDYdQW75xojayVL.jpg"
+      },
+      {
+        "name": "Antonia Thomas",
+        "img": "https://image.tmdb.org/t/p/w185/ybmnPYUzcr3RMdaXnZIw2jEw9ju.jpg"
+      },
+      {
+        "name": "Charity Wakefield",
+        "img": "https://image.tmdb.org/t/p/w185/MMphz9vtZuHcgMh7YrP4vngpnz.jpg"
+      },
+      {
+        "name": "Fenella Woolgar",
+        "img": "https://image.tmdb.org/t/p/w185/hD9Z0A5nPQzp2YkfEKlvRNm9ytP.jpg"
+      },
+      {
+        "name": "James Cosmo",
+        "img": "https://image.tmdb.org/t/p/w185/4QZnZ3wyGALVuwZ70HdXZk4O14W.jpg"
+      },
+      {
+        "name": "Colin Michael Carmichael",
+        "img": "https://image.tmdb.org/t/p/w185/3k4K1t5JcZMy8nCL0roJxVnmpDG.jpg"
+      },
+      {
+        "name": "Arris Crooke",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Eadie Johnson",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Aondo-Kuma Feese",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      }
+    ]
+  },
+  {
     "num": "2531",
     "t": "‎Bagarre",
     "id_tmdb": "1418709",
