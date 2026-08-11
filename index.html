@@ -16,7 +16,7 @@
     <link href="https://unpkg.com/@videojs/themes@1.0.1/dist/fantasy/index.css" rel="stylesheet">
     <link href="https://unpkg.com/@silvermine/videojs-chromecast@1.5.0/dist/silvermine-videojs-chromecast.css" rel="stylesheet">
 
-    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest" defer></script>
 
     <style>
         :root { --accent: #e50914; --gold: #ffcc00; --bg: #050505; }
@@ -112,10 +112,11 @@
         #player-section { display: none; position: fixed; inset: 0; background: #000; z-index: 4500; overflow: hidden; }
         .video-container { position: relative; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: #000; }
         
+        /* Correction performance : Remplacement du filtre blur par un fond noir transparent */
         .vjs-blur-bg {
             position: absolute; inset: 0; z-index: 0;
             background-size: cover; background-position: center;
-            filter: blur(40px) brightness(0.3); transform: scale(1.1); 
+            background-color: #000; opacity: 0.8;
         }
         
         .video-js { z-index: 1 !important; width: 100% !important; height: 100% !important; }
@@ -459,9 +460,9 @@
     <div id="categories-container"></div>
 </div>
 
-<script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
-<script src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1"></script>
-<script src="https://unpkg.com/@silvermine/videojs-chromecast@1.5.0/dist/silvermine-videojs-chromecast.min.js"></script>
+<script src="https://vjs.zencdn.net/8.10.0/video.min.js" defer></script>
+<script src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1" defer></script>
+<script src="https://unpkg.com/@silvermine/videojs-chromecast@1.5.0/dist/silvermine-videojs-chromecast.min.js" defer></script>
 
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
@@ -742,12 +743,11 @@ window.showToast = function(msg) {
 
 window.activerMonVpn = function() {
     if (typeof window.SfppVpn !== 'undefined') {
-        window.SfppVpn.startVpn(""); // Plus besoin d'URL, on lance ProtonVPN direct !
+        window.SfppVpn.startVpn(""); 
     } else {
         window.showToast("🛡️ Le VPN nécessite l'application Android SFPP ELITE.");
     }
 };
-
 
 window.clearSiteData = async function() {
     if(confirm("Voulez-vous vraiment effacer toutes les données de l'application (cache, favoris, profils) ? Vous devrez vous reconnecter.")) {
@@ -927,12 +927,13 @@ async function fetchEPG() {
 
 async function loadPlaylist() { 
     try { 
-        const responseFilms = await fetch('films.json?v=' + Date.now(), { cache: "no-store" }); 
+        // SUPPRESSION DE LA DÉSACTIVATION DU CACHE
+        const responseFilms = await fetch('films.json'); 
         let filmsData = await responseFilms.json(); 
         
         let seriesData = [];
         try {
-            const responseSeries = await fetch('series.json?v=' + Date.now(), { cache: "no-store" });
+            const responseSeries = await fetch('series.json');
             seriesData = await responseSeries.json();
             seriesData.forEach(s => {
                 s.is_series = true;
@@ -943,7 +944,7 @@ async function loadPlaylist() {
 
         let tvData = [];
         try {
-            const responseTV = await fetch('tv.json?v=' + Date.now(), { cache: "no-store" });
+            const responseTV = await fetch('tv.json');
             tvData = await responseTV.json();
             tvData.forEach(t => {
                 t.is_tv = true;
@@ -983,69 +984,9 @@ async function loadPlaylist() {
             
             const loader = document.getElementById('global-loader');
             if (loader) { loader.style.opacity = '0'; setTimeout(() => loader.style.display = 'none', 500); }
-            setTimeout(window.fetchMissingMetadata, 1000);
         };
     } catch (e) { console.error("Erreur playlist", e); }
 }
-
-window.fetchMissingMetadata = async function() {
-    const apiKey = "ec1c8fecd38d1cc5a27f15766f0848d5";
-    let missingMetadata = playlistData.filter(m => m.id_tmdb && (!m.img || !m.desc || !m.trailer || m.cat === "AUTRES CATÉGORIES"));
-
-    if (missingMetadata.length === 0) return;
-
-    const dlProgress = document.getElementById('dl-progress');
-    if (dlProgress) dlProgress.style.display = 'block';
-
-    let hasNewContent = false;
-    let processedCount = 0;
-    
-    const BATCH_SIZE = 20; 
-    for (let i = 0; i < missingMetadata.length; i += BATCH_SIZE) {
-        const batch = missingMetadata.slice(i, i + BATCH_SIZE);
-        await Promise.all(batch.map(async (m) => {
-            try {
-                const isSeries = m.is_series || (m.cat && m.cat.toUpperCase().includes("SÉRIES"));
-                const tmdbType = isSeries ? "tv" : "movie";
-                
-                const url = `https://api.themoviedb.org/3/${tmdbType}/${m.id_tmdb}?api_key=${apiKey}&language=fr-FR&append_to_response=videos,credits`;
-                const res = await fetch(url);
-                if (!res.ok) return;
-                const data = await res.json();
-                
-                m.img = m.img || (data.poster_path ? "https://image.tmdb.org/t/p/w500" + data.poster_path : null);
-                m.bg = m.bg || (data.backdrop_path ? "https://image.tmdb.org/t/p/original" + data.backdrop_path : null);
-                m.desc = m.desc || data.overview;
-                
-                let dateStr = data.release_date || data.first_air_date;
-                m.year = m.year || (dateStr ? dateStr.split('-')[0] : "2025");
-                m.note = m.note || Math.round(data.vote_average / 2);
-
-                if (data.genres && data.genres.length > 0) m.cat = data.genres.map(g => g.name.toUpperCase()).join(', ');
-
-                if (!m.trailer && data.videos && data.videos.results && data.videos.results.length > 0) {
-                    const video = data.videos.results.find(v => (v.type === "Trailer" || v.type === "Teaser") && v.site === "YouTube") || data.videos.results[0];
-                    if (video) m.trailer = video.key;
-                }
-
-                if (!m.actors_pics && data.credits && data.credits.cast) {
-                    m.actors_pics = data.credits.cast.slice(0, 10).map(a => ({ name: a.name, img: "https://image.tmdb.org/t/p/w185" + a.profile_path }));
-                }
-
-                await saveTMDB(m.id_tmdb, { img: m.img, bg: m.bg, desc: m.desc, year: m.year, note: m.note, cat: m.cat, trailer: m.trailer, actors_pics: m.actors_pics });
-
-                hasNewContent = true;
-            } catch (e) {}
-        }));
-        
-        processedCount += batch.length;
-        if (dlProgress) dlProgress.innerText = `Mise à jour: ${processedCount}/${missingMetadata.length}`;
-        await new Promise(r => setTimeout(r, 300));
-    }
-    
-    if (dlProgress) dlProgress.style.display = 'none';
-    if (hasNewContent) { render(document.getElementById('searchBar') ? document.getElementById('searchBar').value : ""); }
-};
 
 window.updateProgBars = function() {
     const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
