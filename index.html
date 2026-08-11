@@ -362,7 +362,7 @@
         
         <button class="nav-btn" onclick="activerMonVpn()" style="color: #2ecc71; font-weight: bold;" tabindex="0">🛡️ Activer VPN</button>
 
-        <button class="nav-btn" onclick="location.reload()" tabindex="0">Rafraîchir</button>
+        <button class="nav-btn" onclick="rafraichirCatalogue()" tabindex="0">Rafraîchir</button>
         <div id="dl-progress"></div>
     </div>
     <div class="header-actions">
@@ -748,6 +748,40 @@ window.activerMonVpn = function() {
         window.showToast("🛡️ Le VPN nécessite l'application Android SFPP ELITE.");
     }
 };
+
+window.rafraichirCatalogue = async function() {
+    window.showToast("Mise à jour du catalogue en cours...");
+    
+    // 1. Vider le cache du navigateur (les fichiers JSON des films, séries, tv)
+    if ('caches' in window) { 
+        try { 
+            const keys = await caches.keys(); 
+            await Promise.all(keys.map(k => caches.delete(k))); 
+        } catch(e) {} 
+    }
+
+    // 2. Vider le cache local des jaquettes et résumés (IndexedDB)
+    // (On ne touche qu'à "SFPP_Cache", on laisse tranquille la base de données Firebase qui gère ton mot de passe)
+    try { 
+        indexedDB.deleteDatabase('SFPP_Cache'); 
+    } catch(e) {}
+
+    // 3. Demander au service worker (le gestionnaire de fond) de se mettre à jour
+    if ('serviceWorker' in navigator) { 
+        try { 
+            const regs = await navigator.serviceWorker.getRegistrations(); 
+            for (let reg of regs) { 
+                await reg.update(); 
+            } 
+        } catch(e) {} 
+    }
+    
+    // 4. On laisse 1.5 seconde pour que le nettoyage se fasse bien, puis on recharge la page de force
+    setTimeout(() => {
+        window.location.reload(true);
+    }, 1500);
+};
+
 
 window.clearSiteData = async function() {
     if(confirm("Voulez-vous vraiment effacer toutes les données de l'application (cache, favoris, profils) ? Vous devrez vous reconnecter.")) {
