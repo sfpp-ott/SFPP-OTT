@@ -1,0 +1,33 @@
+name: Mettre à jour TMDB
+
+on:
+  push:
+    paths:
+      - 'films_base.json'
+      - 'series_base.json'
+  workflow_dispatch:
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Récupérer le code
+        uses: actions/checkout@v4
+
+      - name: Installer Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Lancer le script TMDB
+        run: node update_tmdb.js
+
+      - name: Sauvegarder et envoyer sur GitHub
+        run: |
+          git config --global user.name "GitHub Action Bot"
+          git config --global user.email "action@github.com"
+          git add films.json series.json
+          git commit -m "Auto-update: Ajout des métadonnées TMDB" || exit 0
+          git push
