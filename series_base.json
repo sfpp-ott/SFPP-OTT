@@ -1,0 +1,4281 @@
+[
+  {
+    "num": "15",
+    "t": "Le Jeu De La Dame - S01E01",
+    "id_tmdb": "87739",
+    "url": "https://vidzy.org/d/wio8mks2ut8e_n",
+    "cat": "DRAME"
+  },
+  {
+    "num": "15",
+    "t": "Le Jeu De La Dame - S01E02",
+    "id_tmdb": "87739",
+    "url": "https://vidzy.org/d/lqbdetbeihm5_n",
+    "cat": "DRAME"
+  },
+  {
+    "num": "15",
+    "t": "Le Jeu De La Dame - S01E03",
+    "id_tmdb": "87739",
+    "url": "https://vidzy.org/d/4n5pw0ox4h02_n",
+    "cat": "DRAME"
+  },
+  {
+    "num": "15",
+    "t": "Le Jeu De La Dame - S01E04",
+    "id_tmdb": "87739",
+    "url": "https://vidzy.org/d/12354judxy71_n",
+    "cat": "DRAME"
+  },
+  {
+    "num": "15",
+    "t": "Le Jeu De La Dame - S01E05",
+    "id_tmdb": "87739",
+    "url": "https://vidzy.org/d/uqw4i2fjywyc_n",
+    "cat": "DRAME"
+  },
+  {
+    "num": "15",
+    "t": "Le Jeu De La Dame - S01E06",
+    "id_tmdb": "87739",
+    "url": "https://vidzy.org/d/jyqrfp09kk0p_n",
+    "cat": "DRAME"
+  },
+  {
+    "num": "15",
+    "t": "Le Jeu De La Dame - S01E07",
+    "id_tmdb": "87739",
+    "url": "https://vidzy.org/d/bguhtwv4e4zz_n",
+    "cat": "DRAME"
+  },
+  {
+    "num": "14",
+    "t": "Double piège - S01E01",
+    "id_tmdb": "220801",
+    "url": "https://vidzy.org/d/xx0xdcq5wrua_n",
+    "cat": "DRAME, CRIME, MYSTERE"
+  },
+  {
+    "num": "14",
+    "t": "Double piège - S01E02",
+    "id_tmdb": "220801",
+    "url": "https://vidzy.org/d/n32ajmdb1xqa_n",
+    "cat": "DRAME, CRIME, MYSTERE"
+  },
+  {
+    "num": "14",
+    "t": "Double piège - S01E03",
+    "id_tmdb": "220801",
+    "url": "https://vidzy.org/d/ocfl19qdxhxq_n",
+    "cat": "DRAME, CRIME, MYSTERE"
+  },
+  {
+    "num": "14",
+    "t": "Double piège - S01E04",
+    "id_tmdb": "220801",
+    "url": "https://vidzy.org/d/xcboc88w6thl_n",
+    "cat": "DRAME, CRIME, MYSTERE"
+  },
+  {
+    "num": "14",
+    "t": "Double piège - S01E05",
+    "id_tmdb": "220801",
+    "url": "https://vidzy.org/d/aksxql70mgzd_n",
+    "cat": "DRAME, CRIME, MYSTERE"
+  },
+  {
+    "num": "14",
+    "t": "Double piège - S01E06",
+    "id_tmdb": "220801",
+    "url": "https://vidzy.org/d/me46mqci8ci8_n",
+    "cat": "DRAME, CRIME, MYSTERE"
+  },
+  {
+    "num": "14",
+    "t": "Double piège - S01E07",
+    "id_tmdb": "220801",
+    "url": "https://vidzy.org/d/6ls05jh9c9ke_n",
+    "cat": "DRAME, CRIME, MYSTERE"
+  },
+  {
+    "num": "14",
+    "t": "Double piège - S01E08",
+    "id_tmdb": "220801",
+    "url": "https://vidzy.org/d/b4juw8qxqb1t_n",
+    "cat": "DRAME, CRIME, MYSTERE"
+  },
+  {
+    "num": "13",
+    "t": "A Knight of the Seven Kingdoms - S01E01",
+    "id_tmdb": "224372",
+    "url": "https://stream01-hls.hulkcrush.org/vod/9deeafc35a19b6eb71438ab7b810e75f22afe8ee98181667a0f7a1be338acf3e/master.m3u8",
+    "cat": "DRAME, SCIENCE-FICTION, FANTASTIQUE, ACTION, AVENTURE"
+  },
+  {
+    "num": "13",
+    "t": "A Knight of the Seven Kingdoms - S01E02",
+    "id_tmdb": "224372",
+    "url": "https://stream01-hls.hulkcrush.org/vod/a6816be46c01316afb5f99637adb98be1644a36d9cd0dba74af7d2ea646ae334/master.m3u8",
+    "cat": "DRAME, SCIENCE-FICTION, FANTASTIQUE, ACTION, AVENTURE"
+  },
+  {
+    "num": "13",
+    "t": "A Knight of the Seven Kingdoms - S01E03",
+    "id_tmdb": "224372",
+    "url": "https://stream01-hls.hulkcrush.org/vod/35be086f84bb7310270efb29356e3823628e84faa2ed040f8c9a7020b0c2bea2/master.m3u8",
+    "cat": "DRAME, SCIENCE-FICTION, FANTASTIQUE, ACTION, AVENTURE"
+  },
+  {
+    "num": "13",
+    "t": "A Knight of the Seven Kingdoms - S01E04",
+    "id_tmdb": "224372",
+    "url": "https://stream01-hls.hulkcrush.org/vod/c31c927064d6ed2e64e30eb6be4a34d6b816518e432b12fdf0fa78c26dad8e1d/master.m3u8",
+    "cat": "DRAME, SCIENCE-FICTION, FANTASTIQUE, ACTION, AVENTURE"
+  },
+  {
+    "num": "13",
+    "t": "A Knight of the Seven Kingdoms - S01E05",
+    "id_tmdb": "224372",
+    "url": "https://stream01-hls.hulkcrush.org/vod/dd3bdaaeff70aac559b4f088330ff85f9a80a1c4047e06e75668fced5ae3454d/master.m3u8",
+    "cat": "DRAME, SCIENCE-FICTION, FANTASTIQUE, ACTION, AVENTURE"
+  },
+  {
+    "num": "13",
+    "t": "A Knight of the Seven Kingdoms - S01E06",
+    "id_tmdb": "224372",
+    "url": "https://stream01-hls.hulkcrush.org/vod/6f3ee2f6b4f42279b41baf0a1ad393ec013cb16645eb7813df17a75405ce6b04/master.m3u8",
+    "cat": "DRAME, SCIENCE-FICTION, FANTASTIQUE, ACTION, AVENTURE"
+  },
+  {
+    "num": "12",
+    "t": "9-1-1 : Lone Star - S05E01",
+    "id_tmdb": "89393",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/394496b76a84f5bd19e02d62ffe63cc74a99ca1f3dfd1812052973d1d27b46eb.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "12",
+    "t": "9-1-1 : Lone Star - S05E02",
+    "id_tmdb": "89393",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/337b3e905117465b44e7ebb926980a5a13a636a717083b4cc92207ccdc9bcb83.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "12",
+    "t": "9-1-1 : Lone Star - S05E03",
+    "id_tmdb": "89393",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/c219c001938af9a0ec70d9e80ec182b726cdb4e82ee6a6afe49e69c2fc6f140c.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "12",
+    "t": "9-1-1 : Lone Star - S05E04",
+    "id_tmdb": "89393",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/c7e47b80ffd602227d36dcf138548fed6cd83aee673fbb0b81d0e87347944040.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "12",
+    "t": "9-1-1 : Lone Star - S05E05",
+    "id_tmdb": "89393",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/62d2e1db6eb0fa92d741255019a580e6994312353b5b78aae1513c3ae5caf3df.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "12",
+    "t": "9-1-1 : Lone Star - S05E06",
+    "id_tmdb": "89393",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/d24b6dcef35d5d59427ced711368c4e20cb03a28f18118b2da80c71139b65348.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "12",
+    "t": "9-1-1 : Lone Star - S05E07",
+    "id_tmdb": "89393",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/bc0074fad30ad7d113f47e7b5cac138c561a9b6cc374970b58fc2506bbcbe3d6.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "12",
+    "t": "9-1-1 : Lone Star - S05E08",
+    "id_tmdb": "89393",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/bfd8976d31fabee6a7e8adfd98d0d8cbc72b4fae07b94d8e276ebce08ed29f00.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "12",
+    "t": "9-1-1 : Lone Star - S05E09",
+    "id_tmdb": "89393",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/9cd97b593b055c1b20ced96bdf40dae76a21dec352dc5c5f7cd0eaba8fcb43f3.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "12",
+    "t": "9-1-1 : Lone Star - S05E10",
+    "id_tmdb": "89393",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/82dd3dbf4933fab76a12f6894eaaf2cdd0a76680b2f8314c3e678a61601a85e5.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "12",
+    "t": "9-1-1 : Lone Star - S05E11",
+    "id_tmdb": "75219",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/e24b590fd05749da8d5cf4a0983760178692e9b1b05e1e15893a2abca0d06fce.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "12",
+    "t": "9-1-1 : Lone Star - S05E12",
+    "id_tmdb": "75219",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/815fac9a7a57d1786d68ef560b54b37a451ebe85b0f872eb193ab2145b5fc1c9.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "12",
+    "t": "9-1-1 : Lone Star - S04E01",
+    "id_tmdb": "89393",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/c8110d43938cb40d635af1a8aedd29e8cccab1db04efd57b818c1b8bb95f8b10.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "12",
+    "t": "9-1-1 : Lone Star - S04E02",
+    "id_tmdb": "89393",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/489444ccdb9531e6fdc6c0f2086984209789aebaab2c7ef5a92fd44c01416b95.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "12",
+    "t": "9-1-1 : Lone Star - S04E03",
+    "id_tmdb": "89393",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/eab01fe3f88230d1ba8e8687b86f60d2a130fb62dc511ca31f81dcdf713c1824.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "12",
+    "t": "9-1-1 : Lone Star - S04E04",
+    "id_tmdb": "89393",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/e5b8213c5008cf1797cce4d4077b8906d2349fa5eeede2b68460bbf0d9a22e0d.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "12",
+    "t": "9-1-1 : Lone Star - S04E05",
+    "id_tmdb": "89393",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/bedb95b8c2c6ea933a1e8919ba5c3e73000774161f952c23565a64b74568c1ff.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "12",
+    "t": "9-1-1 : Lone Star - S04E06",
+    "id_tmdb": "89393",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/da4e65b92a11378a39cb388b893cc844f51616dc83b5358ac48a5a1cedcd8e3d.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "12",
+    "t": "9-1-1 : Lone Star - S04E07",
+    "id_tmdb": "89393",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/549592a5a341ecf1630b70454dfd19f77f6b988e48773ad3915592b0b18f2e0d.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "12",
+    "t": "9-1-1 : Lone Star - S04E08",
+    "id_tmdb": "89393",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/a9d59c7cce911695b86e69c68589f7a8a5d7f74afa2e4cd4dd7bcb13e0f7b844.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "12",
+    "t": "9-1-1 : Lone Star - S04E09",
+    "id_tmdb": "89393",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/4f0001fb76bdd7eaeca61eb9f395d1649ca5d4ca34cbe5401482964306e2eefa.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "12",
+    "t": "9-1-1 : Lone Star - S04E10",
+    "id_tmdb": "89393",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/d892284df551a9382e556e1747ed7aee4c18c5113012a0c41563b401ac8754c3.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "12",
+    "t": "9-1-1 : Lone Star - S04E11",
+    "id_tmdb": "75219",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/74ebcacdf27198cdd37b6615eb023aed51c7214ea69700531ffe43766beb25d6.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "12",
+    "t": "9-1-1 : Lone Star - S04E12",
+    "id_tmdb": "75219",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/cbe34d5848e5f3a5889bb634829d6208356089e2ecf7c1ebbdddd9dd7f5365ff.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "12",
+    "t": "9-1-1 : Lone Star - S04E13",
+    "id_tmdb": "75219",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/0dfe9110c25fa29d0365c5f0f3edc2a0d4ece146a3d2fa6b12b2430fd5e50d26.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "12",
+    "t": "9-1-1 : Lone Star - S04E14",
+    "id_tmdb": "75219",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/30bd11985c94a27fe83161cd27d92b472debb6a8e7c0efb4414a58dbd1be7be7.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "12",
+    "t": "9-1-1 : Lone Star - S04E15",
+    "id_tmdb": "75219",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/393ca93b367de1b66eaa81927b75063a65f3e3c84a7977e6a605d6438f5b87d0.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "12",
+    "t": "9-1-1 : Lone Star - S04E16",
+    "id_tmdb": "75219",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/5f640605efe7cc9007099174ec1ac2c08cc97343173c527dbb65f0f198aaacb2.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "12",
+    "t": "9-1-1 : Lone Star - S04E17",
+    "id_tmdb": "75219",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/a41c2fae21ea58ccef2181e4e4ffd194c177a308afe9b0e2448b927c2cd76d72.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "12",
+    "t": "9-1-1 : Lone Star - S04E18",
+    "id_tmdb": "75219",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/7ed4ed6ec5b6afe8822072894f6157c9a15289302caa9c25b09d587fed1d5d36.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "12",
+    "t": "9-1-1 : Lone Star - S03E01",
+    "id_tmdb": "89393",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/bceb9c41db3baf1be37c3f4af3d9c4a00cc234ee2a9d1401fd4056a3e3ff5e1e.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "12",
+    "t": "9-1-1 : Lone Star - S03E02",
+    "id_tmdb": "89393",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/efe57f199b1b924d2cf59cd53d8a2dcb556ba31541677ba0c56760767cc4eab3.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "12",
+    "t": "9-1-1 : Lone Star - S03E03",
+    "id_tmdb": "89393",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/743d2fe3bc4a943f3d0256866e64baa2f724ffe4edf9c708f7feeec0cd7cf8e4.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "12",
+    "t": "9-1-1 : Lone Star - S03E04",
+    "id_tmdb": "89393",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/d369442e02b5179e6b9a380833e113d2f14affa4a7889d767afe59a240b5ff68.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "12",
+    "t": "9-1-1 : Lone Star - S03E05",
+    "id_tmdb": "89393",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/cd08ab1d618817dfaf50b24446b5af7d439e4cff875fe96f446368d3e5170e18.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "12",
+    "t": "9-1-1 : Lone Star - S03E06",
+    "id_tmdb": "89393",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/5d05b09c65ff0c70698f1d7128c4ddfd61c93ff5784d4742e995ba55536c5074.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "12",
+    "t": "9-1-1 : Lone Star - S03E07",
+    "id_tmdb": "89393",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/032ea89c5ea704db745b2ded020559e827b009c28712efcbd6d999e8786a9e77.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "12",
+    "t": "9-1-1 : Lone Star - S03E08",
+    "id_tmdb": "89393",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/ca34d90eb3cf834df4b6ab2da01b4b66653e8a07660889b521d8d2876e2ee819.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "12",
+    "t": "9-1-1 : Lone Star - S03E09",
+    "id_tmdb": "89393",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/c4e521d3a0ad0c1bbf99c21597f2cb9047900c9bc282f3dafa7ff7899732a908.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "12",
+    "t": "9-1-1 : Lone Star - S03E10",
+    "id_tmdb": "89393",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/02a74d8d74f12373ead337cc030f04190c70aa816c41e6513a6246ba3d3471ae.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "12",
+    "t": "9-1-1 : Lone Star - S03E11",
+    "id_tmdb": "75219",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/94c7dae98f38c9a214e7a35d576983db820613d644cc18ac4dbd5ab0f98b0f64.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "12",
+    "t": "9-1-1 : Lone Star - S03E12",
+    "id_tmdb": "75219",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/711532845c7f17f7a77fb41a5582113befc5a5d5fde5204380dfd0bf015689a6.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "12",
+    "t": "9-1-1 : Lone Star - S03E13",
+    "id_tmdb": "75219",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/ed5954c8a87114c95497afeb10e948c94211ab780105cff47e1a67ae579840e7.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "12",
+    "t": "9-1-1 : Lone Star - S03E14",
+    "id_tmdb": "75219",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/42536537a7caff2fe34a3dd6aa7deb4f6d2800e76f8db7ff845c3e6130f7f8a4.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "12",
+    "t": "9-1-1 : Lone Star - S03E15",
+    "id_tmdb": "75219",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/8f031ebdbb2bc1e853c8abaaacf5ac079ffdc85840922258e2cad870dff35a7f.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "12",
+    "t": "9-1-1 : Lone Star - S03E16",
+    "id_tmdb": "75219",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/59888020308092df6243bd929af5a1d88b2d918eb1b59a17a5038bd54869a2df.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "12",
+    "t": "9-1-1 : Lone Star - S03E17",
+    "id_tmdb": "75219",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/e1a571575311111f492f9f7a047667887e0a6bc0affae5f2f555e5fc19419076.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "12",
+    "t": "9-1-1 : Lone Star - S03E18",
+    "id_tmdb": "75219",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/0f5f4e607dbc8dca06f65353cc6482be702a1caa99f97bd1988ebffdde5349a8.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "12",
+    "t": "9-1-1 : Lone Star - S02E01",
+    "id_tmdb": "89393",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/eaffd48482c452eee56078d9fb98d072ec7858da8a9632f2c394f76d733dfe33.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "12",
+    "t": "9-1-1 : Lone Star - S02E02",
+    "id_tmdb": "89393",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/9101e572780cdca9ba0776e61d9168ff4f6d13cd6f1a766fcbc5a174a9db2553.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "12",
+    "t": "9-1-1 : Lone Star - S02E03",
+    "id_tmdb": "89393",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/76563837ed67b0996b862b7637286dd50f2600f40ebcdd1c70827405d701635b.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "12",
+    "t": "9-1-1 : Lone Star - S02E04",
+    "id_tmdb": "89393",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/c8d0f54931bbcb9db4d8b92bf4d0927abc34015e334af553b7b1a7a623f199c0.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "12",
+    "t": "9-1-1 : Lone Star - S02E05",
+    "id_tmdb": "89393",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/56e30a364d786db928b189ebc127b1742404ebe1fe63656c05cfd3fe2f517658.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "12",
+    "t": "9-1-1 : Lone Star - S02E06",
+    "id_tmdb": "89393",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/da2bfa01b6c550366328ea9c6fac105ae211c38add0d017a52441d2230fb8884.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "12",
+    "t": "9-1-1 : Lone Star - S02E07",
+    "id_tmdb": "89393",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/3fc0625c252db41c5ebcbf83f99789e6b7bc9b5bf8cc3320b2ee619e962d8e3e.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "12",
+    "t": "9-1-1 : Lone Star - S02E08",
+    "id_tmdb": "89393",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/34426ffb8185480640222a5b915ca995af1f4a53a52e85c89bac412e66dae286.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "12",
+    "t": "9-1-1 : Lone Star - S02E09",
+    "id_tmdb": "89393",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/8f32fbbad70d758b7859e87b62685fe41b7e9da16f3f42e47964f8a8afdc14fb.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "12",
+    "t": "9-1-1 : Lone Star - S02E10",
+    "id_tmdb": "89393",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/f9433978b03c3e4e35325287f20f92e076ab3481974a6f5af333e06fd442845c.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "12",
+    "t": "9-1-1 : Lone Star - S02E11",
+    "id_tmdb": "75219",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/d0c24f504f50e86bb642a18256aa5d1c93f58dff0406c35f60654e76f8c29d42.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "12",
+    "t": "9-1-1 : Lone Star - S02E12",
+    "id_tmdb": "75219",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/b4aca2d32ddbedee76d687144971b1162de40183f91a0f4a161a376fc6ce8db6.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "12",
+    "t": "9-1-1 : Lone Star - S02E13",
+    "id_tmdb": "75219",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/be20e84bc9ac66959dc5d4f420c23b2f8bdd3792ec777dad2a44d3174a28f3c4.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "12",
+    "t": "9-1-1 : Lone Star - S02E14",
+    "id_tmdb": "75219",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/cd00639852ddbb12fbc97e5909b62ef0241a4fe2e12337862e2a08270b049f53.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "12",
+    "t": "9-1-1 : Lone Star - S01E01",
+    "id_tmdb": "89393",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/8bc3a56f7465f4f6a77559f48ca5c3bc3614825f64799b35fb2873c2e04dd8d6.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "12",
+    "t": "9-1-1 : Lone Star - S01E02",
+    "id_tmdb": "89393",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/5374f3d9700c1207d91fab9c099100ec27452d575f3bbc62b46305cd6d633f28.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "12",
+    "t": "9-1-1 : Lone Star - S01E03",
+    "id_tmdb": "89393",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/f8f6cc6389f866d9ff4b05b2823bf534f78536a2dd4628e96334e62fda27c39e.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "12",
+    "t": "9-1-1 : Lone Star - S01E04",
+    "id_tmdb": "89393",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/bc536ae43247a674bb829eb0164f49e960506b0b157ff1ee087a9cdfaaa88854.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "12",
+    "t": "9-1-1 : Lone Star - S01E05",
+    "id_tmdb": "89393",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/82d4f1e6164998d9a88742bcdf71d857f6100bc4feb103ee0b1039f19d4ae0d1.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "12",
+    "t": "9-1-1 : Lone Star - S01E06",
+    "id_tmdb": "89393",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/17de7837e5825bd68896299b1e01e81eb89aa3a224443db5428e0a088ff64dab.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "12",
+    "t": "9-1-1 : Lone Star - S01E07",
+    "id_tmdb": "89393",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/b2cd1f7218b34745d67c32df6f6d4bc37e7f0d4d1acedbc841156af6e117e00d.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "12",
+    "t": "9-1-1 : Lone Star - S01E08",
+    "id_tmdb": "89393",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/6387ff8768b69827b7e5fc7e50a87e76efaae5b40419615b1a29aac95d7b338e.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "12",
+    "t": "9-1-1 : Lone Star - S01E09",
+    "id_tmdb": "89393",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/a549c510c6e3558c5cd01d60b355b00d93ae9fbea79262410172e9fb824d2995.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "12",
+    "t": "9-1-1 : Lone Star - S01E10",
+    "id_tmdb": "89393",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/63c0b51fb692b4c696635421ccba2706a1b5e0b1cc4ce17f0f5c1e14ec94a9f4.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S09E01",
+    "id_tmdb": "75219",
+    "url": "https://vidzy.org/d/jkhtgonfp8bc_n",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S09E02",
+    "id_tmdb": "75219",
+    "url": "https://vidzy.org/d/l9lbkhtarn68_n",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S09E03",
+    "id_tmdb": "75219",
+    "url": "https://vidzy.org/d/ad1x9hugfeaw_n",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S09E04",
+    "id_tmdb": "75219",
+    "url": "https://vidzy.org/d/4hu2gli083m7_n",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S09E05",
+    "id_tmdb": "75219",
+    "url": "https://vidzy.org/d/hx30kix6vewj_n",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S09E06",
+    "id_tmdb": "75219",
+    "url": "https://vidzy.org/d/m1fqdc8ll2bl_n",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S09E07",
+    "id_tmdb": "75219",
+    "url": "https://vidzy.org/d/ozjmat5800bd_n",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S09E08",
+    "id_tmdb": "75219",
+    "url": "https://vidzy.org/d/ogy5nebrjsqd_n",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S09E09",
+    "id_tmdb": "75219",
+    "url": "https://vidzy.org/d/ywdf8dax4nxo_n",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S09E10",
+    "id_tmdb": "75219",
+    "url": "https://vidzy.org/d/meslma1wfity_n",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S09E11",
+    "id_tmdb": "75219",
+    "url": "https://vidzy.org/d/b0ijpcwz5d6i_n",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S09E12",
+    "id_tmdb": "75219",
+    "url": "https://vidzy.cc/d/x8x0p6ncbcoy_n",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S09E13",
+    "id_tmdb": "75219",
+    "url": "https://vidzy.org/d/j8fd7ofsb1fb_n",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S09E14",
+    "id_tmdb": "75219",
+    "url": "https://vidzy.org/d/wkbezkgrml80_n",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S09E15",
+    "id_tmdb": "75219",
+    "url": "https://vidzy.cc/d/nz04s44apr03_n",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S09E16",
+    "id_tmdb": "75219",
+    "url": "https://vidzy.cc/d/ws8ichjrrg6m_n",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S09E17",
+    "id_tmdb": "75219",
+    "url": "https://vidzy.cc/d/3wjhy5n0c9po_n",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S09E18",
+    "id_tmdb": "75219",
+    "url": "https://vidzy.cc/d/rgsw8amq00i6_n",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S08E01",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S08e01.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S08E02",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S08e02.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S08E03",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S08e03.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S08E04",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S08e04.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S08E05",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S08e05.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S08E06",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S08e06.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S08E07",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S08e07.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S08E08",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S08e08.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S08E09",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S08e09.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S08E10",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S08e10.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S08E11",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S08e11.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S08E12",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S08e12.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S08E13",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S08e13.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S08E14",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S08e14.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S08E15",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S08e15.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S08E16",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S08e16.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S08E17",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S08e17.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S08E18",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S08e18.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S07E01",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S07e01.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S07E02",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S07e02.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S07E03",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S07e03.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S07E04",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S07e04.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S07E05",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S07e05.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S07E06",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S07e06.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S07E07",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S07e07.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S07E08",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S07e08.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S07E09",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S07e09.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S07E10",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S07e10.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S06E01",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S06e01.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S06E02",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S06e02.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S06E03",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S06e03.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S06E04",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S06e04.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S06E05",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S06e05.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S06E06",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S06e06.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S06E07",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S06e07.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S06E08",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S06e08.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S06E09",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S06e09.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S06E10",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S06e10.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S06E11",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S06e11.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S06E12",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S06e12.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S06E13",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S06e13.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S06E14",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S06e14.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S06E15",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S06e15.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S06E16",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S06e16.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S06E17",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S06e17.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S06E18",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S06e18.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S05E01",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S05e01.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S05E02",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S05e02.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S05E03",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S05e03.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S05E04",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S05e04.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S05E05",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S05e05.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S05E06",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S05e06.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S05E07",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S05e07.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S05E08",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S05e08.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S05E09",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S05e09.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S05E10",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S05e10.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S05E11",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S05e11.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S05E12",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S05e12.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S05E13",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S05e13.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S05E14",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S05e14.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S05E15",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S05e15.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S05E16",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S05e16.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S05E17",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S05e17.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S05E18",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S05e18.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S04E01",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S04e01.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S04E02",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S04e02.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S04E03",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S04e03.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S04E04",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S04e04.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S04E05",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S04e05.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S04E06",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S04e06.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S04E07",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S04e07.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S04E08",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S04e08.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S04E09",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S04e09.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S04E10",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S04e10.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S04E11",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S04e11.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S04E12",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S04e12.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S04E13",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S04e13.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S04E14",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S04e14.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S03E01",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S03e01.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S03E02",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S03e02.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S03E03",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S03e03.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S03E04",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S03e04.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S03E05",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S03e05.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S03E06",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S03e06.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S03E07",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S03e07.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S03E08",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S03e08.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S03E09",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S03e09.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S03E10",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S03e10.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S03E11",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S03e11.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S03E12",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S03e12.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S03E13",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S03e13.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S03E14",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S03e14.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S03E15",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S03e15.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S03E16",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S03e16.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S03E17",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S03e17.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S03E18",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S03e18.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S02E01",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S02e01.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S02E02",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S02e02.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S02E03",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S02e03.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S02E04",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S02e04.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S02E05",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S02e05.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S02E06",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S02e06.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S02E07",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S02e07.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S02E08",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S02e08.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S02E09",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S02e09.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S02E10",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S02e10.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S02E11",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S02e11.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S02E12",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S02e12.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S02E13",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S02e13.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S02E14",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S02e14.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S02E15",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S02e15.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S02E16",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S02e16.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S02E17",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S02e17.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S02E18",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S02e18.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S01E01",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S01e01.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S01E02",
+    "id_tmdb": "75219",
+    "url": "https://vidzy.org/d/5q5pl13usk94_n",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S01E03",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S01e03.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S01E04",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S01e04.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S01E05",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S01e05.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S01E06",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S01e06.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S01E07",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S01e07.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S01E08",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S01e08.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S01E09",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S01e09.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "11",
+    "t": "9-1-1 - S01E10",
+    "id_tmdb": "75219",
+    "url": "https://cdn.cinemama.xyz/series/9-1-1-S01e10.mp4",
+    "cat": "DRAME, CRIME, ACTION,  AVENTURE"
+  },
+  {
+    "num": "10",
+    "t": "56 jours - S01E01",
+    "id_tmdb": "241372",
+    "url": "https://stream01-hls.hulkcrush.org/vod/69677dd4fbf631a87238d8e6ff37467078c8fe71ea696472a90f1484657b79e6/master.m3u8",
+    "cat": "DRAME, CRIME, MYSTERE"
+  },
+  {
+    "num": "10",
+    "t": "56 jours - S01E02",
+    "id_tmdb": "241372",
+    "url": "https://stream01-hls.hulkcrush.org/vod/020f914679e7c97f0b8b01bc51a3d09b436bdd47daf9374a1d6bfcb29cb02295/master.m3u8",
+    "cat": "DRAME, CRIME, MYSTERE"
+  },
+  {
+    "num": "10",
+    "t": "56 jours - S01E03",
+    "id_tmdb": "241372",
+    "url": "https://stream01-hls.hulkcrush.org/vod/a9c6d1b528a2192ea0c3c8c0a6bce29c942deb7d6f61fae6c0ff90019b6ad4e9/master.m3u8",
+    "cat": "DRAME, CRIME, MYSTERE"
+  },
+  {
+    "num": "10",
+    "t": "56 jours - S01E04",
+    "id_tmdb": "241372",
+    "url": "https://stream01-hls.hulkcrush.org/vod/5dce05ebb4bb6362a81d122c6f977fc1b0bbaef1a2de7e78b9ae457448a8fb0b/master.m3u8",
+    "cat": "DRAME, CRIME, MYSTERE"
+  },
+  {
+    "num": "10",
+    "t": "56 jours - S01E05",
+    "id_tmdb": "241372",
+    "url": "https://stream01-hls.hulkcrush.org/vod/9f443505c3f2e37df2636311ca8bb248e72848cd4ef7999100be7dd29c237da8/master.m3u8",
+    "cat": "DRAME, CRIME, MYSTERE"
+  },
+  {
+    "num": "10",
+    "t": "56 jours - S01E06",
+    "id_tmdb": "241372",
+    "url": "https://stream01-hls.hulkcrush.org/vod/d30171f6a7a391120a5e91d99eabdb44f706fa28f79c7e7e777fae47909f4e36/master.m3u8",
+    "cat": "DRAME, CRIME, MYSTERE"
+  },
+  {
+    "num": "10",
+    "t": "56 jours - S01E07",
+    "id_tmdb": "241372",
+    "url": "https://stream01-hls.hulkcrush.org/vod/3aed938087dbca410fd43f648cab1ba8fcf1e1cb1ed6ffe04dc7970a4b20c4c5/master.m3u8",
+    "cat": "DRAME, CRIME, MYSTERE"
+  },
+  {
+    "num": "10",
+    "t": "56 jours - S01E08",
+    "id_tmdb": "241372",
+    "url": "https://stream01-hls.hulkcrush.org/vod/b9dd328e88471152ec564a547c04ae77dbfd2bbc52c03ce017b2d97725f50fe4/master.m3u8",
+    "cat": "DRAME, CRIME, MYSTERE"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S09E01",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s09e01.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S09E02",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s09e02.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S09E03",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s09e03.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S09E04",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s09e04.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S09E05",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s09e05.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S09E06",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s09e06.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S09E07",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s09e07.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S09E08",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s09e08.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S09E09",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s09e09.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S09E10",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s09e10.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S09E11",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s09e11.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S09E12",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s09e12.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S08E01",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s08e01.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S08E02",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s08e02.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S08E03",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s08e03.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S08E04",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s08e04.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S08E05",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s08e05.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S08E06",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s08e06.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S08E07",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s08e07.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S08E08",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s08e08.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S08E09",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s08e09.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S08E10",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s08e10.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S08E11",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s08e11.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S08E12",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s08e12.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S08E13",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s08e13.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S08E14",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s08e14.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S08E15",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s08e15.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S08E16",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s08e16.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S08E17",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s08e17.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S08E18",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s08e18.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S08E19",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s08e19.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S08E20",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s08e20.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S08E21",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s08e21.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S08E22",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s08e22.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S08E23",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s08e23.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S08E24",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s08e24.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S07E01",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s07e01.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S07E02",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s07e02.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S07E03",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s07e03.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S07E04",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s07e04.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S07E05",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s07e05.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S07E06",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s07e06.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S07E07",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s07e07.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S07E08",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s07e08.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S07E09",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s07e09.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S07E10",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s07e10.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S07E11",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s07e11.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S07E12",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s07e12.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S07E13",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s07e13.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S07E14",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s07e14.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S07E15",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s07e15.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S07E16",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s07e16.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S07E17",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s07e17.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S07E18",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s07e18.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S07E19",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s07e19.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S07E20",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s07e20.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S07E21",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s07e21.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S07E22",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s07e22.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S07E23",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s07e23.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S07E24",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s07e24.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S06E01",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s06e01.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S06E02",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s06e02.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S06E03",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s06e03.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S06E04",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s06e04.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S06E05",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s06e05.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S06E06",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s06e06.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S06E07",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s06e07.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S06E08",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s06e08.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S06E09",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s06e09.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S06E10",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s06e10.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S06E11",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s06e11.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S06E12",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s06e12.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S06E13",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s06e13.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S06E14",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s06e14.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S06E15",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s06e15.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S06E16",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s06e16.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S06E17",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s06e17.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S06E18",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s06e18.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S06E19",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s06e19.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S06E20",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s06e20.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S06E21",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s06e21.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S06E22",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s06e22.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S06E23",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s06e23.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S06E24",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s06e24.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S05E01",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s05e01.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S05E02",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s05e02.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S05E03",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s05e03.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S05E04",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s05e04.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S05E05",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s05e05.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S05E06",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s05e06.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S05E07",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s05e07.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S05E08",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s05e08.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S05E09",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s05e09.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S05E10",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s05e10.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S05E11",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s05e11.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S05E12",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s05e12.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S05E13",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s05e13.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S05E14",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s05e14.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S05E15",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s05e15.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S05E16",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s05e16.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S05E17",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s05e17.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S05E18",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s05e18.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S05E19",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s05e19.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S05E20",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s05e20.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S05E21",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s05e21.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S05E22",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s05e22.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S05E23",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s05e23.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S05E24",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s05e24.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S04E01",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s04e01.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S04E02",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s04e02.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S04E03",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s04e03.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S04E04",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s04e04.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S04E05",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s04e05.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S04E06",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s04e06.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S04E07",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s04e07.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S04E08",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s04e08.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S04E09",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s04e09.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S04E10",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s04e10.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S04E11",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s04e11.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S04E12",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s04e12.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S04E13",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s04e13.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S04E14",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s04e14.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S04E15",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s04e15.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S04E16",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s04e16.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S04E17",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s04e17.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S04E18",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s04e18.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S04E19",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s04e19.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S04E20",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s04e20.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S04E21",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s04e21.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S04E22",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s04e22.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S04E23",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s04e23.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S04E24",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s04e24.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S03E01",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s03e01.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S03E02",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s03e02.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S03E03",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s03e03.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S03E04",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s03e04.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S03E05",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s03e05.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S03E06",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s03e06.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S03E07",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s03e07.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S03E08",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s03e08.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S03E09",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s03e09.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S03E10",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s03e10.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S03E11",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s03e11.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S03E12",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s03e12.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S03E13",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s03e13.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S03E14",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s03e14.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S03E15",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s03e15.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S03E16",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s03e16.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S03E17",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s03e17.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S03E18",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s03e18.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S03E19",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s03e19.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S03E20",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s03e20.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S03E21",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s03e21.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S03E22",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s03e22.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S03E23",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s03e23.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S03E24",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s03e24.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S02E01",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s02e01.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S02E02",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s02e02.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S02E03",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s02e03.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S02E04",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s02e04.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S02E05",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s02e05.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S02E06",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s02e06.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S02E07",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s02e07.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S02E08",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s02e08.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S02E09",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s02e09.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S02E10",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s02e10.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S02E11",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s02e11.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S02E12",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s02e12.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S02E13",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s02e13.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S02E14",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s02e14.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S02E15",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s02e15.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S02E16",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s02e16.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S02E17",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s02e17.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S02E18",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s02e18.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S02E19",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s02e19.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S02E20",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s02e20.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S02E21",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s02e21.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S02E22",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s02e22.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S02E23",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s02e23.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S02E24",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s02e24.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S01E01",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s01e01.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S01E02",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s01e02.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S01E03",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s01e03.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S01E04",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s01e04.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S01E05",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s01e05.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S01E06",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s01e06.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S01E07",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s01e07.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S01E08",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s01e08.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S01E09",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s01e09.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S01E10",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s01e10.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S01E11",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s01e11.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S01E12",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s01e12.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S01E13",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s01e13.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S01E14",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s01e14.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S01E15",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s01e15.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S01E16",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s01e16.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S01E17",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s01e17.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S01E18",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s01e18.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S01E19",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s01e19.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S01E20",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s01e20.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S01E21",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s01e21.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S01E22",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s01e22.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S01E23",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s01e23.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "9",
+    "t": "24 heures chrono - S01E24",
+    "id_tmdb": "1973",
+    "url": "https://cdn.cinemama.xyz/series/24-s01e24.mp4",
+    "cat": "ACTION, AVENTURE, DRAME, CRIME"
+  },
+  {
+    "num": "8",
+    "t": "22.11.63 - S01E01",
+    "id_tmdb": "64464",
+    "url": "https://stream01-hls.hulkcrush.org/vod/d4826abc4293f7b095d9ec2c0aaaf698eda435b5ac34f5099c7887532f594338/master.m3u8",
+    "cat": "DRAME, SCIENCE-FICTION, FANTASTIQUE"
+  },
+  {
+    "num": "8",
+    "t": "22.11.63 - S01E02",
+    "id_tmdb": "64464",
+    "url": "https://stream01-hls.hulkcrush.org/vod/b639b87831e6ce4421ac199f477e1a6edc069a965ca8fb3496fd0fc55f317a55/master.m3u8",
+    "cat": "DRAME, SCIENCE-FICTION, FANTASTIQUE"
+  },
+  {
+    "num": "8",
+    "t": "22.11.63 - S01E03",
+    "id_tmdb": "64464",
+    "url": "https://stream01-hls.hulkcrush.org/vod/56ee63aa7ef406cdc370342140e284a12f57a95119a28200706e77ffecfb566a/master.m3u8",
+    "cat": "DRAME, SCIENCE-FICTION, FANTASTIQUE"
+  },
+  {
+    "num": "8",
+    "t": "22.11.63 - S01E04",
+    "id_tmdb": "64464",
+    "url": "https://stream01-hls.hulkcrush.org/vod/dccb720c802d86a2109b1e4e1b4b5b9f3d76121176d2c40d0b7ffed879f005c2/master.m3u8",
+    "cat": "DRAME, SCIENCE-FICTION, FANTASTIQUE"
+  },
+  {
+    "num": "8",
+    "t": "22.11.63 - S01E05",
+    "id_tmdb": "64464",
+    "url": "https://stream01-hls.hulkcrush.org/vod/ad41b5a35559775228c789ea779582886d998fd3a208bfb4f8b0e2e4e3c15c10/master.m3u8",
+    "cat": "DRAME, SCIENCE-FICTION, FANTASTIQUE"
+  },
+  {
+    "num": "8",
+    "t": "22.11.63 - S01E06",
+    "id_tmdb": "64464",
+    "url": "https://stream01-hls.hulkcrush.org/vod/fbad8106fa17bbdd8b0b0d7fa49e1329abb345a6a0394195c9970ca7fd57d104/master.m3u8",
+    "cat": "DRAME, SCIENCE-FICTION, FANTASTIQUE"
+  },
+  {
+    "num": "8",
+    "t": "22.11.63 - S01E07",
+    "id_tmdb": "64464",
+    "url": "https://stream01-hls.hulkcrush.org/vod/2ac4c1f32fd8bbc4e419e4d86af9cb40bbff6088a27b3231a4140cb303213d18/master.m3u8",
+    "cat": "DRAME, SCIENCE-FICTION, FANTASTIQUE"
+  },
+  {
+    "num": "8",
+    "t": "22.11.63 - S01E08",
+    "id_tmdb": "64464",
+    "url": "https://stream01-hls.hulkcrush.org/vod/bb6918108216995feadcbedfb7755bffcdc17407d1c3bb90bf917262760d5e37/master.m3u8",
+    "cat": "DRAME, SCIENCE-FICTION, FANTASTIQUE"
+  },
+  {
+    "num": "7",
+    "t": "Les Traîtres - S06E01",
+    "id_tmdb": "208398",
+    "url": "https://vidzy.org/d/l3ybikms2mwy_n",
+    "cat": "SÉRIES, REALITY"
+  },
+  {
+    "num": "7",
+    "t": "Les Traîtres - S06E02",
+    "id_tmdb": "208398",
+    "url": "https://vidzy.org/d/xbhe2424z7ux_n",
+    "cat": "SÉRIES, REALITY"
+  },
+  {
+    "num": "7",
+    "t": "Les Traîtres - S06E03",
+    "id_tmdb": "208398",
+    "url": "https://vidzy.org/d/c41j2j8865rb_n",
+    "cat": "SÉRIES, REALITY"
+  },
+  {
+    "num": "7",
+    "t": "Les Traîtres - S06E04",
+    "id_tmdb": "208398",
+    "url": "https://vidzy.org/d/s4pqon6qymfn_n",
+    "cat": "SÉRIES, REALITY"
+  },
+  {
+    "num": "7",
+    "t": "Les Traîtres - S06E05",
+    "id_tmdb": "208398",
+    "url": "https://vidzy.org/d/rjvh5reo68ba_n",
+    "cat": "SÉRIES, REALITY"
+  },
+  {
+    "num": "7",
+    "t": "Les Traîtres - S06E06",
+    "id_tmdb": "208398",
+    "url": "https://vidzy.org/d/0m8671q1d7h4_n",
+    "cat": "SÉRIES, REALITY"
+  },
+  {
+    "num": "7",
+    "t": "Les Traîtres - S06E07",
+    "id_tmdb": "208398",
+    "url": "https://vidzy.org/d/ibs8ydp3664u_n",
+    "cat": "SÉRIES, REALITY"
+  },
+  {
+    "num": "7",
+    "t": "Les Traîtres - S06E08",
+    "id_tmdb": "208398",
+    "url": "https://vidzy.org/d/pm60zk35jraq_n",
+    "cat": "SÉRIES, REALITY"
+  },
+  {
+    "num": "7",
+    "t": "Les Traîtres - S05E01",
+    "id_tmdb": "208398",
+    "url": "https://vidzy.org/d/8yhqndfpbru6_n",
+    "cat": "SÉRIES, REALITY"
+  },
+  {
+    "num": "7",
+    "t": "Les Traîtres - S05E02",
+    "id_tmdb": "208398",
+    "url": "https://vidzy.org/d/y1g0zq1yc481_n",
+    "cat": "SÉRIES, REALITY"
+  },
+  {
+    "num": "7",
+    "t": "Les Traîtres - S05E03",
+    "id_tmdb": "208398",
+    "url": "https://vidzy.org/d/n28yj5ayf44l_n",
+    "cat": "SÉRIES, REALITY"
+  },
+  {
+    "num": "7",
+    "t": "Les Traîtres - S05E04",
+    "id_tmdb": "208398",
+    "url": "https://vidzy.org/d/fb8ovyvy0wd9_n",
+    "cat": "SÉRIES, REALITY"
+  },
+  {
+    "num": "7",
+    "t": "Les Traîtres - S05E05",
+    "id_tmdb": "208398",
+    "url": "https://vidzy.org/d/9t4a0zuwqd64_n",
+    "cat": "SÉRIES, REALITY"
+  },
+  {
+    "num": "7",
+    "t": "Les Traîtres - S05E06",
+    "id_tmdb": "208398",
+    "url": "https://vidzy.org/d/siwz55rded1l_n",
+    "cat": "SÉRIES, REALITY"
+  },
+  {
+    "num": "7",
+    "t": "Les Traîtres - S05E07",
+    "id_tmdb": "208398",
+    "url": "https://vidzy.org/d/i4a0tv7h5v5t_n",
+    "cat": "SÉRIES, REALITY"
+  },
+  {
+    "num": "7",
+    "t": "Les Traîtres - S05E08",
+    "id_tmdb": "208398",
+    "url": "https://vidzy.org/d/z57zese63v2l_n",
+    "cat": "SÉRIES, REALITY"
+  },
+  {
+    "num": "7",
+    "t": "Les Traîtres - S04E01",
+    "id_tmdb": "208398",
+    "url": "https://vidzy.org/d/7ahwpbuz3928_n",
+    "cat": "SÉRIES, REALITY"
+  },
+  {
+    "num": "7",
+    "t": "Les Traîtres - S04E02",
+    "id_tmdb": "208398",
+    "url": "https://vidzy.org/d/65ed0cuyr1wx_n",
+    "cat": "SÉRIES, REALITY"
+  },
+  {
+    "num": "7",
+    "t": "Les Traîtres - S04E03",
+    "id_tmdb": "208398",
+    "url": "https://vidzy.org/d/kf0po6zbjoyj_n",
+    "cat": "SÉRIES, REALITY"
+  },
+  {
+    "num": "7",
+    "t": "Les Traîtres - S04E04",
+    "id_tmdb": "208398",
+    "url": "https://vidzy.org/d/jopvm3yjy7ch_n",
+    "cat": "SÉRIES, REALITY"
+  },
+  {
+    "num": "7",
+    "t": "Les Traîtres - S04E05",
+    "id_tmdb": "208398",
+    "url": "https://vidzy.org/d/hka0bhnfidr9_n",
+    "cat": "SÉRIES, REALITY"
+  },
+  {
+    "num": "7",
+    "t": "Les Traîtres - S04E06",
+    "id_tmdb": "208398",
+    "url": "https://vidzy.org/d/tf8z99u987yj_n",
+    "cat": "SÉRIES, REALITY"
+  },
+  {
+    "num": "7",
+    "t": "Les Traîtres - S04E07",
+    "id_tmdb": "208398",
+    "url": "https://vidzy.org/d/t43l75ke5xje_n",
+    "cat": "SÉRIES, REALITY"
+  },
+  {
+    "num": "7",
+    "t": "Les Traîtres - S03E01",
+    "id_tmdb": "208398",
+    "url": "https://vidzy.org/d/t906oinkl97s_n",
+    "cat": "SÉRIES, REALITY"
+  },
+  {
+    "num": "7",
+    "t": "Les Traîtres - S03E02",
+    "id_tmdb": "208398",
+    "url": "https://vidzy.org/d/q72quc038ksl_n",
+    "cat": "SÉRIES, REALITY"
+  },
+  {
+    "num": "7",
+    "t": "Les Traîtres - S03E03",
+    "id_tmdb": "208398",
+    "url": "https://vidzy.org/d/4ujs9bpu97zo_n",
+    "cat": "SÉRIES, REALITY"
+  },
+  {
+    "num": "7",
+    "t": "Les Traîtres - S03E04",
+    "id_tmdb": "208398",
+    "url": "https://vidzy.org/d/tfi8rbjwwe16_n",
+    "cat": "SÉRIES, REALITY"
+  },
+  {
+    "num": "7",
+    "t": "Les Traîtres - S03E05",
+    "id_tmdb": "208398",
+    "url": "https://vidzy.org/d/dyf72ayn50m3_n",
+    "cat": "SÉRIES, REALITY"
+  },
+  {
+    "num": "7",
+    "t": "Les Traîtres - S03E06",
+    "id_tmdb": "208398",
+    "url": "https://vidzy.org/d/bt8xw1cr1plo_n",
+    "cat": "SÉRIES, REALITY"
+  },
+  {
+    "num": "7",
+    "t": "Les Traîtres - S03E07",
+    "id_tmdb": "208398",
+    "url": "https://vidzy.org/d/9z0d4kfjszb6_n",
+    "cat": "SÉRIES, REALITY"
+  },
+  {
+    "num": "7",
+    "t": "Les Traîtres - S02E01",
+    "id_tmdb": "208398",
+    "url": "https://vidzy.org/d/8c6bw5j5z8v9_n",
+    "cat": "SÉRIES, REALITY"
+  },
+  {
+    "num": "7",
+    "t": "Les Traîtres - S02E02",
+    "id_tmdb": "208398",
+    "url": "https://vidzy.org/d/3h7tu189ik34_n",
+    "cat": "SÉRIES, REALITY"
+  },
+  {
+    "num": "7",
+    "t": "Les Traîtres - S02E03",
+    "id_tmdb": "208398",
+    "url": "https://vidzy.org/d/3h7tu189ik34_n",
+    "cat": "SÉRIES, REALITY"
+  },
+  {
+    "num": "7",
+    "t": "Les Traîtres - S02E04",
+    "id_tmdb": "208398",
+    "url": "https://vidzy.org/d/c69s81w4u1xh_n",
+    "cat": "SÉRIES, REALITY"
+  },
+  {
+    "num": "7",
+    "t": "Les Traîtres - S02E05",
+    "id_tmdb": "208398",
+    "url": "https://vidzy.org/d/44bifpnuezuz_n",
+    "cat": "SÉRIES, REALITY"
+  },
+  {
+    "num": "7",
+    "t": "Les Traîtres - S02E06",
+    "id_tmdb": "208398",
+    "url": "https://vidzy.org/d/mw5uqjfwds26_n",
+    "cat": "SÉRIES, REALITY"
+  },
+  {
+    "num": "7",
+    "t": "Les Traîtres - S02E07",
+    "id_tmdb": "208398",
+    "url": "https://vidzy.org/d/51lphgdkml3m_n",
+    "cat": "SÉRIES, REALITY"
+  },
+  {
+    "num": "7",
+    "t": "Les Traîtres - S02E08",
+    "id_tmdb": "208398",
+    "url": "https://vidzy.org/d/tbp8d41y0gpb_n",
+    "cat": "SÉRIES, REALITY"
+  },
+  {
+    "num": "7",
+    "t": "Les Traîtres - S02E09",
+    "id_tmdb": "208398",
+    "url": "https://vidzy.org/d/h8a70pay7teg_n",
+    "cat": "SÉRIES, REALITY"
+  },
+  {
+    "num": "7",
+    "t": "Les Traîtres - S02E10",
+    "id_tmdb": "208398",
+    "url": "https://vidzy.org/d/dig9htci8gr4_n",
+    "cat": "SÉRIES, REALITY"
+  },
+  {
+    "num": "7",
+    "t": "Les Traîtres - S01E01",
+    "id_tmdb": "208398",
+    "url": "https://vidzy.org/d/quztvwcfne15_n",
+    "cat": "SÉRIES, REALITY"
+  },
+  {
+    "num": "7",
+    "t": "Les Traîtres - S01E02",
+    "id_tmdb": "208398",
+    "url": "https://vidzy.org/d/f4kk6gqvslst_n",
+    "cat": "SÉRIES, REALITY"
+  },
+  {
+    "num": "7",
+    "t": "Les Traîtres - S01E03",
+    "id_tmdb": "208398",
+    "url": "https://vidzy.org/d/7enwny449y6x_n",
+    "cat": "SÉRIES, REALITY"
+  },
+  {
+    "num": "7",
+    "t": "Les Traîtres - S01E04",
+    "id_tmdb": "208398",
+    "url": "https://vidzy.org/d/cy5q4v8n8718_n",
+    "cat": "SÉRIES, REALITY"
+  },
+  {
+    "num": "7",
+    "t": "Les Traîtres - S01E05",
+    "id_tmdb": "208398",
+    "url": "https://vidzy.org/d/dih1hujzuub9_n",
+    "cat": "SÉRIES, REALITY"
+  },
+  {
+    "num": "7",
+    "t": "Les Traîtres - S01E06",
+    "id_tmdb": "208398",
+    "url": "https://vidzy.org/d/rgpcultkrlkp_n",
+    "cat": "SÉRIES, REALITY"
+  },
+  {
+    "num": "6",
+    "t": "Perfect Crown - S01E01",
+    "id_tmdb": "278573",
+    "url": "https://vidzy.live/d/xwxdc91mf57v_n",
+    "cat": "SÉRIES, DRAME, COMRDIE"
+  },
+  {
+    "num": "6",
+    "t": "Perfect Crown - S01E02",
+    "id_tmdb": "278573",
+    "url": "https://vidzy.live/d/585kfahiiib0_n",
+    "cat": "SÉRIES, DRAME, COMRDIE"
+  },
+  {
+    "num": "6",
+    "t": "Perfect Crown - S01E03",
+    "id_tmdb": "278573",
+    "url": "https://vidzy.live/d/1unna39uaihe_n",
+    "cat": "SÉRIES, DRAME, COMRDIE"
+  },
+  {
+    "num": "6",
+    "t": "Perfect Crown - S01E04",
+    "id_tmdb": "278573",
+    "url": "https://vidzy.live/d/af989m1hl5on_n",
+    "cat": "SÉRIES, DRAME, COMRDIE"
+  },
+  {
+    "num": "6",
+    "t": "Perfect Crown - S01E05",
+    "id_tmdb": "278573",
+    "url": "https://vidzy.live/d/wui9m254jp8m_n",
+    "cat": "SÉRIES, DRAME, COMRDIE"
+  },
+  {
+    "num": "6",
+    "t": "Perfect Crown - S01E06",
+    "id_tmdb": "278573",
+    "url": "https://vidzy.live/d/7lsceqnwr2o7_n",
+    "cat": "SÉRIES, DRAME, COMRDIE"
+  },
+  {
+    "num": "6",
+    "t": "Perfect Crown - S01E07",
+    "id_tmdb": "278573",
+    "url": "https://vidzy.live/d/1apz52rwynj9_n",
+    "cat": "SÉRIES, DRAME, COMRDIE"
+  },
+  {
+    "num": "6",
+    "t": "Perfect Crown - S01E08",
+    "id_tmdb": "278573",
+    "url": "https://vidzy.cc/d/5no9j5xy7yzj_n",
+    "cat": "SÉRIES, DRAME, COMRDIE"
+  },
+  {
+    "num": "6",
+    "t": "Perfect Crown - S01E09",
+    "id_tmdb": "278573",
+    "url": "https://vidzy.live/d/bid6lo5i0lf1_n",
+    "cat": "SÉRIES, DRAME, COMRDIE"
+  },
+  {
+    "num": "6",
+    "t": "Perfect Crown - S01E10",
+    "id_tmdb": "278573",
+    "url": "https://vidzy.cc/d/f5xsc9zt149w_n",
+    "cat": "SÉRIES, DRAME, COMRDIE"
+  },
+  {
+    "num": "6",
+    "t": "Perfect Crown - S01E11",
+    "id_tmdb": "278573",
+    "url": "https://vidzy.cc/d/zftrrr8uh0xt_n",
+    "cat": "SÉRIES, DRAME, COMRDIE"
+  },
+  {
+    "num": "6",
+    "t": "Perfect Crown - S01E12",
+    "id_tmdb": "278573",
+    "url": "https://vidzy.cc/d/ibonepbuccqi_n",
+    "cat": "SÉRIES, DRAME, COMRDIE"
+  },
+  {
+    "num": "5",
+    "t": "1923 - S02E01",
+    "id_tmdb": "157744",
+    "url": "https://cdn.cinemama.xyz/series/1923-S02e01.mp4",
+    "cat": "SÉRIES, DRAME, WESTERN"
+  },
+  {
+    "num": "5",
+    "t": "1923 - S02E02",
+    "id_tmdb": "157744",
+    "url": "https://cdn.cinemama.xyz/series/1923-S02e02.mp4",
+    "cat": "SÉRIES, DRAME, WESTERN"
+  },
+  {
+    "num": "5",
+    "t": "1923 - S02E03",
+    "id_tmdb": "157744",
+    "url": "https://cdn.cinemama.xyz/series/1923-S02e03.mp4",
+    "cat": "SÉRIES, DRAME, WESTERN"
+  },
+  {
+    "num": "5",
+    "t": "1923 - S02E04",
+    "id_tmdb": "157744",
+    "url": "https://cdn.cinemama.xyz/series/1923-S02e04.mp4",
+    "cat": "SÉRIES, DRAME, WESTERN"
+  },
+  {
+    "num": "5",
+    "t": "1923 - S02E05",
+    "id_tmdb": "157744",
+    "url": "https://vidzy.org/d/ya4ryj339ggu_n",
+    "cat": "SÉRIES, DRAME, WESTERN"
+  },
+  {
+    "num": "5",
+    "t": "1923 - S02E06",
+    "id_tmdb": "157744",
+    "url": "https://cdn.cinemama.xyz/series/1923-S02e06.mp4",
+    "cat": "SÉRIES, DRAME, WESTERN"
+  },
+  {
+    "num": "5",
+    "t": "1923 - S02E07",
+    "id_tmdb": "157744",
+    "url": "https://cdn.cinemama.xyz/series/1923-S02e07.mp4",
+    "cat": "SÉRIES, DRAME, WESTERN"
+  },
+  {
+    "num": "5",
+    "t": "1923 - S01E01",
+    "id_tmdb": "157744",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/528b826683245222640f29f011d1ad7b9bb5efd03c2cdc7dfbf02765abb2d453.mp4",
+    "cat": "SÉRIES, DRAME, WESTERN"
+  },
+  {
+    "num": "5",
+    "t": "1923 - S01E02",
+    "id_tmdb": "157744",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/03c5f14e789d05d6708f5b7d751aeaf6404509c16a3f790335386935589d4ea5.mp4",
+    "cat": "SÉRIES, DRAME, WESTERN"
+  },
+  {
+    "num": "5",
+    "t": "1923 - S01E03",
+    "id_tmdb": "157744",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/0874e097fd85e0667e23d029f6aa38a1747f5ef939e0d59969c42a674e6b9ee7.mp4",
+    "cat": "SÉRIES, DRAME, WESTERN"
+  },
+  {
+    "num": "5",
+    "t": "1923 - S01E04",
+    "id_tmdb": "157744",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/97b6b3ab0389ea58e904af51ab40678949fbd3c02cbcb0f94c307652ad4119f3.mp4",
+    "cat": "SÉRIES, DRAME, WESTERN"
+  },
+  {
+    "num": "5",
+    "t": "1923 - S01E05",
+    "id_tmdb": "157744",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/264dadfc9a7c926a10cdbdfaa7d7f6aa32801246f94efe4ddba55af53084ef77.mp4",
+    "cat": "SÉRIES, DRAME, WESTERN"
+  },
+  {
+    "num": "5",
+    "t": "1923 - S01E06",
+    "id_tmdb": "157744",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/d32a9d2b8f672cb53fb4cb785caff2540557f00962162a3ee325a08b3b1aeb31.mp4",
+    "cat": "SÉRIES, DRAME, WESTERN"
+  },
+  {
+    "num": "5",
+    "t": "1923 - S01E07",
+    "id_tmdb": "157744",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/19a809d48ab91512e73f8aa0bdcb757680698770e9d63ac11de877fc669db561.mp4",
+    "cat": "SÉRIES, DRAME, WESTERN"
+  },
+  {
+    "num": "5",
+    "t": "1923 - S01E08",
+    "id_tmdb": "157744",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/01b9eba65dbe3675ae56bd603f9b1aab91c486a0f25ecc859435b62d6d4f474c.mp4",
+    "cat": "SÉRIES, DRAME, WESTERN"
+  },
+  {
+    "num": "4",
+    "t": "1883 - S01E01",
+    "id_tmdb": "118357",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/26e401a54958ca6c9387f521568c738213ed0e68c06cab3d33d9d4eac0045d9c.mp4",
+    "cat": "SÉRIES, DRAME, WESTERN"
+  },
+  {
+    "num": "4",
+    "t": "1883 - S01E02",
+    "id_tmdb": "118357",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/d0ac4a75fc15a01f0c032d40e66ecfe76c71d1e26f8c9c031d06a4f0aaa4c0ea.mp4",
+    "cat": "SÉRIES, DRAME, WESTERN"
+  },
+  {
+    "num": "4",
+    "t": "1883 - S01E03",
+    "id_tmdb": "118357",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/edc7ce9c0bcc2f448f7493b6cc4a5fa3917a27c90ee7f653b5a6a1d94223ba9d.mp4",
+    "cat": "SÉRIES, DRAME, WESTERN"
+  },
+  {
+    "num": "4",
+    "t": "1883 - S01E04",
+    "id_tmdb": "118357",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/3930d8c24dea113e201ce479f7486933f3ad01fe833ab52ca994e9645d32bfce.mp4",
+    "cat": "SÉRIES, DRAME, WESTERN"
+  },
+  {
+    "num": "4",
+    "t": "1883 - S01E05",
+    "id_tmdb": "118357",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/d447224f0abe6a9785d5baac5a69d0414c74d7cecb9a01ceb0b8ce635f7bac28.mp4",
+    "cat": "SÉRIES, DRAME, WESTERN"
+  },
+  {
+    "num": "4",
+    "t": "1883 - S01E06",
+    "id_tmdb": "118357",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/9f58d59aa48eed9382ea01c2d0d35ce003a3cc8659df5d10921e7558790fc0df.mp4",
+    "cat": "SÉRIES, DRAME, WESTERN"
+  },
+  {
+    "num": "4",
+    "t": "1883 - S01E07",
+    "id_tmdb": "118357",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/f0b6cc6b01585f85d8d461ba2bc40661b81230feae62b95d0a90af06708d7518.mp4",
+    "cat": "SÉRIES, DRAME, WESTERN"
+  },
+  {
+    "num": "4",
+    "t": "1883 - S01E08",
+    "id_tmdb": "118357",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/5b33c1381a40735f709c1f93d2bdc3db4c28bcdd6a39d9a253431e620b4932ef.mp4",
+    "cat": "SÉRIES, DRAME, WESTERN"
+  },
+  {
+    "num": "4",
+    "t": "1883 - S01E09",
+    "id_tmdb": "118357",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/152ec129e1b053f96c1e30e8c0e2f2e44e6b7e085f4354d9caa6ce820c4f2453.mp4",
+    "cat": "SÉRIES, DRAME, WESTERN"
+  },
+  {
+    "num": "4",
+    "t": "1883 - S01E10",
+    "id_tmdb": "118357",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/2d3d240981ab9256b21a1b67c30fcc671111f64b9814157cc6dc9cf75ea11c34.mp4",
+    "cat": "SÉRIES, DRAME, WESTERN"
+  },
+  {
+    "num": "3",
+    "t": "13 Reasons Why - S04E01",
+    "id_tmdb": "66788",
+    "url": "https://cdn.cinemama.xyz/series/13-reasons-why-s04e01.mp4",
+    "cat": "SÉRIES, DRAME, MYSTERE"
+  },
+  {
+    "num": "3",
+    "t": "13 Reasons Why - S04E02",
+    "id_tmdb": "66788",
+    "url": "https://cdn.cinemama.xyz/series/13-reasons-why-s04e02.mp4",
+    "cat": "SÉRIES, DRAME, MYSTERE"
+  },
+  {
+    "num": "3",
+    "t": "13 Reasons Why - S04E03",
+    "id_tmdb": "66788",
+    "url": "https://cdn.cinemama.xyz/series/13-reasons-why-s04e03.mp4",
+    "cat": "SÉRIES, DRAME, MYSTERE"
+  },
+  {
+    "num": "3",
+    "t": "13 Reasons Why - S04E04",
+    "id_tmdb": "66788",
+    "url": "https://cdn.cinemama.xyz/series/13-reasons-why-s04e04.mp4",
+    "cat": "SÉRIES, DRAME, MYSTERE"
+  },
+  {
+    "num": "3",
+    "t": "13 Reasons Why - S04E05",
+    "id_tmdb": "66788",
+    "url": "https://cdn.cinemama.xyz/series/13-reasons-why-s04e05.mp4",
+    "cat": "SÉRIES, DRAME, MYSTERE"
+  },
+  {
+    "num": "3",
+    "t": "13 Reasons Why - S04E06",
+    "id_tmdb": "66788",
+    "url": "https://cdn.cinemama.xyz/series/13-reasons-why-s04e06.mp4",
+    "cat": "SÉRIES, DRAME, MYSTERE"
+  },
+  {
+    "num": "3",
+    "t": "13 Reasons Why - S04E07",
+    "id_tmdb": "66788",
+    "url": "https://cdn.cinemama.xyz/series/13-reasons-why-s04e07.mp4",
+    "cat": "SÉRIES, DRAME, MYSTERE"
+  },
+  {
+    "num": "3",
+    "t": "13 Reasons Why - S04E08",
+    "id_tmdb": "66788",
+    "url": "https://cdn.cinemama.xyz/series/13-reasons-why-s04e08.mp4",
+    "cat": "SÉRIES, DRAME, MYSTERE"
+  },
+  {
+    "num": "3",
+    "t": "13 Reasons Why - S04E09",
+    "id_tmdb": "66788",
+    "url": "https://cdn.cinemama.xyz/series/13-reasons-why-s04e09.mp4",
+    "cat": "SÉRIES, DRAME, MYSTERE"
+  },
+  {
+    "num": "3",
+    "t": "13 Reasons Why - S04E10",
+    "id_tmdb": "66788",
+    "url": "https://cdn.cinemama.xyz/series/13-reasons-why-s04e10.mp4",
+    "cat": "SÉRIES, DRAME, MYSTERE"
+  },
+  {
+    "num": "3",
+    "t": "13 Reasons Why - S03E01",
+    "id_tmdb": "66788",
+    "url": "https://cdn.cinemama.xyz/series/13-reasons-why-s03e01.mp4",
+    "cat": "SÉRIES, DRAME, MYSTERE"
+  },
+  {
+    "num": "3",
+    "t": "13 Reasons Why - S03E02",
+    "id_tmdb": "66788",
+    "url": "https://cdn.cinemama.xyz/series/13-reasons-why-s03e02.mp4",
+    "cat": "SÉRIES, DRAME, MYSTERE"
+  },
+  {
+    "num": "3",
+    "t": "13 Reasons Why - S03E03",
+    "id_tmdb": "66788",
+    "url": "https://cdn.cinemama.xyz/series/13-reasons-why-s03e03.mp4",
+    "cat": "SÉRIES, DRAME, MYSTERE"
+  },
+  {
+    "num": "3",
+    "t": "13 Reasons Why - S03E04",
+    "id_tmdb": "66788",
+    "url": "https://cdn.cinemama.xyz/series/13-reasons-why-s03e04.mp4",
+    "cat": "SÉRIES, DRAME, MYSTERE"
+  },
+  {
+    "num": "3",
+    "t": "13 Reasons Why - S03E05",
+    "id_tmdb": "66788",
+    "url": "https://cdn.cinemama.xyz/series/13-reasons-why-s03e05.mp4",
+    "cat": "SÉRIES, DRAME, MYSTERE"
+  },
+  {
+    "num": "3",
+    "t": "13 Reasons Why - S03E06",
+    "id_tmdb": "66788",
+    "url": "https://cdn.cinemama.xyz/series/13-reasons-why-s03e06.mp4",
+    "cat": "SÉRIES, DRAME, MYSTERE"
+  },
+  {
+    "num": "3",
+    "t": "13 Reasons Why - S03E07",
+    "id_tmdb": "66788",
+    "url": "https://cdn.cinemama.xyz/series/13-reasons-why-s03e07.mp4",
+    "cat": "SÉRIES, DRAME, MYSTERE"
+  },
+  {
+    "num": "3",
+    "t": "13 Reasons Why - S03E08",
+    "id_tmdb": "66788",
+    "url": "https://cdn.cinemama.xyz/series/13-reasons-why-s03e08.mp4",
+    "cat": "SÉRIES, DRAME, MYSTERE"
+  },
+  {
+    "num": "3",
+    "t": "13 Reasons Why - S03E09",
+    "id_tmdb": "66788",
+    "url": "https://cdn.cinemama.xyz/series/13-reasons-why-s03e09.mp4",
+    "cat": "SÉRIES, DRAME, MYSTERE"
+  },
+  {
+    "num": "3",
+    "t": "13 Reasons Why - S03E10",
+    "id_tmdb": "66788",
+    "url": "https://cdn.cinemama.xyz/series/13-reasons-why-s03e10.mp4",
+    "cat": "SÉRIES, DRAME, MYSTERE"
+  },
+  {
+    "num": "3",
+    "t": "13 Reasons Why - S03E11",
+    "id_tmdb": "66788",
+    "url": "https://cdn.cinemama.xyz/series/13-reasons-why-s03e11.mp4",
+    "cat": "SÉRIES, DRAME, MYSTERE"
+  },
+  {
+    "num": "3",
+    "t": "13 Reasons Why - S03E12",
+    "id_tmdb": "66788",
+    "url": "https://cdn.cinemama.xyz/series/13-reasons-why-s03e12.mp4",
+    "cat": "SÉRIES, DRAME, MYSTERE"
+  },
+  {
+    "num": "3",
+    "t": "13 Reasons Why - S03E13",
+    "id_tmdb": "66788",
+    "url": "https://cdn.cinemama.xyz/series/13-reasons-why-s03e13.mp4",
+    "cat": "SÉRIES, DRAME, MYSTERE"
+  },
+  {
+    "num": "3",
+    "t": "13 Reasons Why - S02E01",
+    "id_tmdb": "66788",
+    "url": "https://cdn.cinemama.xyz/series/13-reasons-why-s02e01.mp4",
+    "cat": "SÉRIES, DRAME, MYSTERE"
+  },
+  {
+    "num": "3",
+    "t": "13 Reasons Why - S02E02",
+    "id_tmdb": "66788",
+    "url": "https://cdn.cinemama.xyz/series/13-reasons-why-s02e02.mp4",
+    "cat": "SÉRIES, DRAME, MYSTERE"
+  },
+  {
+    "num": "3",
+    "t": "13 Reasons Why - S02E03",
+    "id_tmdb": "66788",
+    "url": "https://cdn.cinemama.xyz/series/13-reasons-why-s02e03.mp4",
+    "cat": "SÉRIES, DRAME, MYSTERE"
+  },
+  {
+    "num": "3",
+    "t": "13 Reasons Why - S02E04",
+    "id_tmdb": "66788",
+    "url": "https://cdn.cinemama.xyz/series/13-reasons-why-s02e04.mp4",
+    "cat": "SÉRIES, DRAME, MYSTERE"
+  },
+  {
+    "num": "3",
+    "t": "13 Reasons Why - S02E05",
+    "id_tmdb": "66788",
+    "url": "https://cdn.cinemama.xyz/series/13-reasons-why-s02e05.mp4",
+    "cat": "SÉRIES, DRAME, MYSTERE"
+  },
+  {
+    "num": "3",
+    "t": "13 Reasons Why - S02E06",
+    "id_tmdb": "66788",
+    "url": "https://cdn.cinemama.xyz/series/13-reasons-why-s02e06.mp4",
+    "cat": "SÉRIES, DRAME, MYSTERE"
+  },
+  {
+    "num": "3",
+    "t": "13 Reasons Why - S02E07",
+    "id_tmdb": "66788",
+    "url": "https://cdn.cinemama.xyz/series/13-reasons-why-s02e07.mp4",
+    "cat": "SÉRIES, DRAME, MYSTERE"
+  },
+  {
+    "num": "3",
+    "t": "13 Reasons Why - S02E08",
+    "id_tmdb": "66788",
+    "url": "https://cdn.cinemama.xyz/series/13-reasons-why-s02e08.mp4",
+    "cat": "SÉRIES, DRAME, MYSTERE"
+  },
+  {
+    "num": "3",
+    "t": "13 Reasons Why - S02E09",
+    "id_tmdb": "66788",
+    "url": "https://cdn.cinemama.xyz/series/13-reasons-why-s02e09.mp4",
+    "cat": "SÉRIES, DRAME, MYSTERE"
+  },
+  {
+    "num": "3",
+    "t": "13 Reasons Why - S02E10",
+    "id_tmdb": "66788",
+    "url": "https://cdn.cinemama.xyz/series/13-reasons-why-s02e10.mp4",
+    "cat": "SÉRIES, DRAME, MYSTERE"
+  },
+  {
+    "num": "3",
+    "t": "13 Reasons Why - S02E11",
+    "id_tmdb": "66788",
+    "url": "https://cdn.cinemama.xyz/series/13-reasons-why-s02e11.mp4",
+    "cat": "SÉRIES, DRAME, MYSTERE"
+  },
+  {
+    "num": "3",
+    "t": "13 Reasons Why - S02E12",
+    "id_tmdb": "66788",
+    "url": "https://cdn.cinemama.xyz/series/13-reasons-why-s02e12.mp4",
+    "cat": "SÉRIES, DRAME, MYSTERE"
+  },
+  {
+    "num": "3",
+    "t": "13 Reasons Why - S02E13",
+    "id_tmdb": "66788",
+    "url": "https://cdn.cinemama.xyz/series/13-reasons-why-s02e13.mp4",
+    "cat": "SÉRIES, DRAME, MYSTERE"
+  },
+  {
+    "num": "3",
+    "t": "13 Reasons Why - S01E01",
+    "id_tmdb": "66788",
+    "url": "https://cdn.cinemama.xyz/series/13-reasons-why-s01e01.mp4",
+    "cat": "SÉRIES, DRAME, MYSTERE"
+  },
+  {
+    "num": "3",
+    "t": "13 Reasons Why - S01E02",
+    "id_tmdb": "66788",
+    "url": "https://cdn.cinemama.xyz/series/13-reasons-why-s01e02.mp4",
+    "cat": "SÉRIES, DRAME, MYSTERE"
+  },
+  {
+    "num": "3",
+    "t": "13 Reasons Why - S01E03",
+    "id_tmdb": "66788",
+    "url": "https://cdn.cinemama.xyz/series/13-reasons-why-s01e03.mp4",
+    "cat": "SÉRIES, DRAME, MYSTERE"
+  },
+  {
+    "num": "3",
+    "t": "13 Reasons Why - S01E04",
+    "id_tmdb": "66788",
+    "url": "https://cdn.cinemama.xyz/series/13-reasons-why-s01e04.mp4",
+    "cat": "SÉRIES, DRAME, MYSTERE"
+  },
+  {
+    "num": "3",
+    "t": "13 Reasons Why - S01E05",
+    "id_tmdb": "66788",
+    "url": "https://cdn.cinemama.xyz/series/13-reasons-why-s01e05.mp4",
+    "cat": "SÉRIES, DRAME, MYSTERE"
+  },
+  {
+    "num": "3",
+    "t": "13 Reasons Why - S01E06",
+    "id_tmdb": "66788",
+    "url": "https://cdn.cinemama.xyz/series/13-reasons-why-s01e06.mp4",
+    "cat": "SÉRIES, DRAME, MYSTERE"
+  },
+  {
+    "num": "3",
+    "t": "13 Reasons Why - S01E07",
+    "id_tmdb": "66788",
+    "url": "https://cdn.cinemama.xyz/series/13-reasons-why-s01e07.mp4",
+    "cat": "SÉRIES, DRAME, MYSTERE"
+  },
+  {
+    "num": "3",
+    "t": "13 Reasons Why - S01E08",
+    "id_tmdb": "66788",
+    "url": "https://cdn.cinemama.xyz/series/13-reasons-why-s01e08.mp4",
+    "cat": "SÉRIES, DRAME, MYSTERE"
+  },
+  {
+    "num": "3",
+    "t": "13 Reasons Why - S01E09",
+    "id_tmdb": "66788",
+    "url": "https://cdn.cinemama.xyz/series/13-reasons-why-s01e09.mp4",
+    "cat": "SÉRIES, DRAME, MYSTERE"
+  },
+  {
+    "num": "3",
+    "t": "13 Reasons Why - S01E10",
+    "id_tmdb": "66788",
+    "url": "https://cdn.cinemama.xyz/series/13-reasons-why-s01e10.mp4",
+    "cat": "SÉRIES, DRAME, MYSTERE"
+  },
+  {
+    "num": "3",
+    "t": "13 Reasons Why - S01E11",
+    "id_tmdb": "66788",
+    "url": "https://cdn.cinemama.xyz/series/13-reasons-why-s01e11.mp4",
+    "cat": "SÉRIES, DRAME, MYSTERE"
+  },
+  {
+    "num": "3",
+    "t": "13 Reasons Why - S01E12",
+    "id_tmdb": "66788",
+    "url": "https://cdn.cinemama.xyz/series/13-reasons-why-s01e12.mp4",
+    "cat": "SÉRIES, DRAME, MYSTERE"
+  },
+  {
+    "num": "3",
+    "t": "13 Reasons Why - S01E13",
+    "id_tmdb": "66788",
+    "url": "https://cdn.cinemama.xyz/series/13-reasons-why-s01e13.mp4",
+    "cat": "SÉRIES, DRAME, MYSTERE"
+  },
+  {
+    "num": "2",
+    "t": "Adolescence - S01E01",
+    "id_tmdb": "249042",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/24ea61067cb35dcd95649acba80428e9a6945b9632d6d5ca9523b6c2a1ed051e.mp4",
+    "cat": "SÉRIES, DRAME, CRIME"
+  },
+  {
+    "num": "2",
+    "t": "Adolescence - S01E02",
+    "id_tmdb": "249042",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/0700eb592a2002855e4435cffaa7beffacf3f216f12c3c385a27d4c7956b336b.mp4",
+    "cat": "SÉRIES, DRAME, CRIME"
+  },
+  {
+    "num": "2",
+    "t": "Adolescence - S01E03",
+    "id_tmdb": "249042",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/31211f685def84b4c018ea9449afae201346457fb757973a59636002de4d1daa.mp4",
+    "cat": "SÉRIES, DRAME, CRIME"
+  },
+  {
+    "num": "2",
+    "t": "Adolescence - S01E04",
+    "id_tmdb": "249042",
+    "url": "https://stream02-mp4w.hulkcrush.org/videos/f2576c627883459070d3f1630cfa9b9a3fd2a9b54b94954db90bf6e6908807a4.mp4",
+    "cat": "SÉRIES, DRAME, CRIME"
+  },
+  {
+    "num": "1",
+    "t": "The Son - S01E01",
+    "id_tmdb": "67232",
+    "url": "https://stream01-hls.hulkcrush.org/vod/ee7fee3ecf32a73ba02dec102d6cedf9e6fb62a7e1e09c82d3859daf3d9dcbbd/master.m3u8",
+    "cat": "SÉRIES, DRAME"
+  },
+  {
+    "num": "1",
+    "t": "The Son - S01E02",
+    "id_tmdb": "67232",
+    "url": "https://stream01-hls.hulkcrush.org/vod/6269ee71ea378a36838ccd875d978e1c4d27a4c84ec052bf3305baf343ed26a6/master.m3u8",
+    "cat": "SÉRIES, DRAME"
+  },
+  {
+    "num": "1",
+    "t": "The Son - S01E03",
+    "id_tmdb": "67232",
+    "url": "https://stream01-hls.hulkcrush.org/vod/974633fd5ea3c26f41a743ac6e7267d3587fbd38ff77409dbd2a19d3b2444a16/master.m3u8",
+    "cat": "SÉRIES, DRAME"
+  },
+  {
+    "num": "1",
+    "t": "The Son - S01E04",
+    "id_tmdb": "67232",
+    "url": "https://stream01-hls.hulkcrush.org/vod/f0695da101f6a6663217c5159ac7ca09aaea99ec64d93d5d56f06b8d35ef101e/master.m3u8",
+    "cat": "SÉRIES, DRAME"
+  },
+  {
+    "num": "1",
+    "t": "The Son - S01E05",
+    "id_tmdb": "67232",
+    "url": "https://stream01-hls.hulkcrush.org/vod/ab7d52b7b20ce2e4617a7666fbc61daa5521f80eb6a2092c8a6f620c8896433a/master.m3u8",
+    "cat": "SÉRIES, DRAME"
+  },
+  {
+    "num": "1",
+    "t": "The Son - S01E06",
+    "id_tmdb": "67232",
+    "url": "https://stream01-hls.hulkcrush.org/vod/a3188902a7289fc8c02c26dfbe84ac639e54e48c646ba596873b28d28bc51aec/master.m3u8",
+    "cat": "SÉRIES, DRAME"
+  },
+  {
+    "num": "1",
+    "t": "The Son - S01E07",
+    "id_tmdb": "67232",
+    "url": "https://stream01-hls.hulkcrush.org/vod/1ba36c3bb1ea99a32b98e0f821d78fe636b54458defe4b0d71e35db233b567f9/master.m3u8",
+    "cat": "SÉRIES, DRAME"
+  },
+  {
+    "num": "1",
+    "t": "The Son - S01E08",
+    "id_tmdb": "67232",
+    "url": "https://stream01-hls.hulkcrush.org/vod/55ac8e5c198bde0e2337bd11696db9a49d3dbdf7e6835dcff4660d0286319675/master.m3u8",
+    "cat": "SÉRIES, DRAME"
+  },
+  {
+    "num": "1",
+    "t": "The Son - S01E09",
+    "id_tmdb": "67232",
+    "url": "https://stream01-hls.hulkcrush.org/vod/b17e5869a0729abc7b738909033096e09943b729eece3c23d394318349a10a6c/master.m3u8",
+    "cat": "SÉRIES, DRAME"
+  },
+  {
+    "num": "1",
+    "t": "The Son - S01E10",
+    "id_tmdb": "67232",
+    "url": "https://stream01-hls.hulkcrush.org/vod/2d2d13e61046f10a35e4ac77ad995dff21a19d1eb327312490b3f93997413d37/master.m3u8",
+    "cat": "SÉRIES, DRAME"
+  },
+  {
+    "num": "1",
+    "t": "The Son - S02E01",
+    "id_tmdb": "67232",
+    "url": "https://stream01-hls.hulkcrush.org/vod/bfa14657dc06bcbbc1af5c2ba27aa780b91901679f605c27f97ec32545620c25/master.m3u8",
+    "cat": "SÉRIES, DRAME"
+  },
+  {
+    "num": "1",
+    "t": "The Son - S02E02",
+    "id_tmdb": "67232",
+    "url": "https://stream01-hls.hulkcrush.org/vod/9a5bb116e37950088368f05ca4713856b3d53bc98e5ada949610fc1c3c0555ff/master.m3u8",
+    "cat": "SÉRIES, DRAME"
+  },
+  {
+    "num": "1",
+    "t": "The Son - S02E03",
+    "id_tmdb": "67232",
+    "url": "https://stream01-hls.hulkcrush.org/vod/e55fb3b2b83fff9e41cd28516261ed9e053d5d8b812460970479bd0e7dfce2c4/master.m3u8",
+    "cat": "SÉRIES, DRAME"
+  },
+  {
+    "num": "1",
+    "t": "The Son - S02E04",
+    "id_tmdb": "67232",
+    "url": "https://stream01-hls.hulkcrush.org/vod/cf31d54f7680da4a1fe007d783ffd948025f8e86f3e0d90b579f11eb6550a4db/master.m3u8",
+    "cat": "SÉRIES, DRAME"
+  },
+  {
+    "num": "1",
+    "t": "The Son - S02E05",
+    "id_tmdb": "67232",
+    "url": "https://stream01-hls.hulkcrush.org/vod/ac2aebf2aae2d7810b22a5beddac17df5d424321b759d7d671e94e2fee4f932d/master.m3u8",
+    "cat": "SÉRIES, DRAME"
+  },
+  {
+    "num": "1",
+    "t": "The Son - S02E06",
+    "id_tmdb": "67232",
+    "url": "https://stream01-hls.hulkcrush.org/vod/f720c37ffc799e7030b7c74bb406abc3d07c84339ddbd67fe0accf0bd0878a6b/master.m3u8",
+    "cat": "SÉRIES, DRAME"
+  },
+  {
+    "num": "1",
+    "t": "The Son - S02E07",
+    "id_tmdb": "67232",
+    "url": "https://stream01-hls.hulkcrush.org/vod/fbef8b1fad05224dc71fec111f9c52311c2ab951ed0d9b540eb7192fb31f71be/master.m3u8",
+    "cat": "SÉRIES, DRAME"
+  },
+  {
+    "num": "1",
+    "t": "The Son - S02E08",
+    "id_tmdb": "67232",
+    "url": "https://stream01-hls.hulkcrush.org/vod/1f626c437ab2c7499119527f3aef4ae4301c49ad32523f8534e84ab9af85711e/master.m3u8",
+    "cat": "SÉRIES, DRAME"
+  },
+  {
+    "num": "1",
+    "t": "The Son - S02E09",
+    "id_tmdb": "67232",
+    "url": "https://stream01-hls.hulkcrush.org/vod/c3615b3855d869268c2b5dd39f201f6f78911d71dc6439a5c69a8a2ef7d91183/master.m3u8",
+    "cat": "SÉRIES, DRAME"
+  },
+  {
+    "num": "1",
+    "t": "The Son - S02E10",
+    "id_tmdb": "67232",
+    "url": "https://stream01-hls.hulkcrush.org/vod/1d3aa0ed7b2307fc6f4d32561c1c1e4ecf11e471ac2b3a4c0b90b7959ad7c4c5/master.m3u8",
+    "cat": "SÉRIES, DRAME"
+  }
+
+]
+
