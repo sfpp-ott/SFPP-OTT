@@ -1,5 +1,60 @@
 [
   {
+    "num": "2531",
+    "t": "‎Bagarre",
+    "id_tmdb": "1418709",
+    "cat": "COMÉDIE",
+    "url": "https://vidzy.org/d/d40n6b8mzqt9_n",
+    "img": "https://image.tmdb.org/t/p/w500/lQRKadGZSBUjkFfjF7kDV047MUN.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/w4ISfPkFLdG0ew07XcrlQSB4O4q.jpg",
+    "desc": "Naim est un amour dans la vie et un monstre quand il s’agit de se battre. Pour soigner sa chienne malade il est contraint d’intégrer « Allo Bagarre » un service de combattants de rue qui règlent les embrouilles à coups de poings. Mais le jour où il comprendra que les conflits se règlent par le dialogue, Naim aura bien du mal à se faire entendre.",
+    "year": "2026",
+    "note": 2,
+    "trailer": "slaaLh7b6wA",
+    "actors_pics": [
+      {
+        "name": "Nassim Lyes",
+        "img": "https://image.tmdb.org/t/p/w185/nMJ1qjhdfgRT8JuyUfFEkEwihOW.jpg"
+      },
+      {
+        "name": "Anaïde Rozam",
+        "img": "https://image.tmdb.org/t/p/w185/loZwn8wEJP5QTh2ujGi1RR9xnKa.jpg"
+      },
+      {
+        "name": "Ramzy Bedia",
+        "img": "https://image.tmdb.org/t/p/w185/fzGqj63WW6NFAK43oVjtYzVy75y.jpg"
+      },
+      {
+        "name": "Hedi Bouchenafa",
+        "img": "https://image.tmdb.org/t/p/w185/isbkfBuMRwoF6y0BqvWQzIeyFTt.jpg"
+      },
+      {
+        "name": "Arriles Amrani",
+        "img": "https://image.tmdb.org/t/p/w185/jPHDD8cnRdskksJyqEQxjJf2BSU.jpg"
+      },
+      {
+        "name": "Matthieu Longatte",
+        "img": "https://image.tmdb.org/t/p/w185/uhYWDmlnToiUEfVVweh9JlxREra.jpg"
+      },
+      {
+        "name": "Marina Foïs",
+        "img": "https://image.tmdb.org/t/p/w185/dLPo5cyKoH4Y8TNRkl2GIrd4Oae.jpg"
+      },
+      {
+        "name": "Hatik",
+        "img": "https://image.tmdb.org/t/p/w185/7NWaGZ7rmPUsZH6qukvu1Dre73N.jpg"
+      },
+      {
+        "name": "Hakim Jemili",
+        "img": "https://image.tmdb.org/t/p/w185/w7Cn5MNRdzeUl41LuEJAg1ldeTM.jpg"
+      },
+      {
+        "name": "Laminé Ba",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      }
+    ]
+  },
+  {
     "num": "2530",
     "t": "‎Love Me Tender",
     "id_tmdb": "1290450",
