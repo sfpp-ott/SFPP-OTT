@@ -1,5 +1,385 @@
 [
   {
+    "num": "2551",
+    "t": "‎Ilyes Djadel : Vrai",
+    "id_tmdb": "1331363",
+    "cat": "",
+    "url": "https://vidzy.org/d/8pa6e7xb2dsh_n"
+  },
+  {
+    "num": "2550",
+    "t": "‎‎Le Ciel, les Oiseaux et... ta mère !",
+    "id_tmdb": "57141",
+    "cat": "COMÉDIE",
+    "url": "https://vidzy.org/d/kkxhdgi2okx9_n",
+    "img": "https://image.tmdb.org/t/p/w500/hCmfK1K7aTbSwciXxwnC0dn1yQO.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/yfTU7NqS1KJiF8O7iZ84iAOmyJB.jpg",
+    "desc": "Grâce à un concours vidéo qu'ils viennent de remporter, Youssef, Stéphane, Christophe et Mike, quatuor inséparable qui vit depuis toujours dans une banlieue de la région parisienne, part pour un mois dans le Sud-Ouest de la France. C'est la première fois qu'ils sortent de leur cité. Ils se retrouvent à Biarritz, se promettant fous rires, délires, drague et farniente. Mais ils ne dégusteront en fait que la saveur des lendemains qui déchantent. Leur personnalité d'adulte se révélera au contact d'un monde qu'ils ne connaissent et ne maîtrisent pas.",
+    "year": "1999",
+    "note": 2,
+    "trailer": "K94xnOTF_aM",
+    "actors_pics": [
+      {
+        "name": "Jamel Debbouze",
+        "img": "https://image.tmdb.org/t/p/w185/aiqWSWbRJ6rrjxxVE6y2Xb3KdSp.jpg"
+      },
+      {
+        "name": "Lorànt Deutsch",
+        "img": "https://image.tmdb.org/t/p/w185/7d8JzqxdyJwJql0hdLyhE3BQ4JW.jpg"
+      },
+      {
+        "name": "Julien Courbey",
+        "img": "https://image.tmdb.org/t/p/w185/xbEtavEOw6blJ1ylN5tZ0k2N64n.jpg"
+      },
+      {
+        "name": "Stéphane Soo Mongo",
+        "img": "https://image.tmdb.org/t/p/w185/1xK0XPXw8jW4v8Bt2IQNROSTbgZ.jpg"
+      },
+      {
+        "name": "Olivia Bonamy",
+        "img": "https://image.tmdb.org/t/p/w185/cV2dPwnEFBv4sReDUxN0TpAKiYy.jpg"
+      },
+      {
+        "name": "Jessica Beudaert",
+        "img": "https://image.tmdb.org/t/p/w185/5dSquIzVJP0OGBjKlry7uVbSmi1.jpg"
+      },
+      {
+        "name": "Julia Vaidis-Bogard",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Marie Roversi",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Ramzy Bedia",
+        "img": "https://image.tmdb.org/t/p/w185/fzGqj63WW6NFAK43oVjtYzVy75y.jpg"
+      },
+      {
+        "name": "Sam Karmann",
+        "img": "https://image.tmdb.org/t/p/w185/k9ahrxy9lNlCk4pAqzxJRK6FWJv.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2549",
+    "t": "The Plastic Detox",
+    "id_tmdb": "1636918",
+    "cat": "DOCUMENTAIRE",
+    "url": "https://vidzy.org/d/de4s7u49yueh_n",
+    "img": "https://image.tmdb.org/t/p/w500/1FuExEaXy9ejGGm6VHCdirvk6zg.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/q3VkiqQi7syrVANAK8PjgIry0Vx.jpg",
+    "desc": "Dans ce documentaire édifiant, six couples confrontés à une infertilité inexpliquée tentent de réduire leur exposition aux plastiques dans l'espoir d'avoir un enfant.",
+    "year": "2026",
+    "note": 3,
+    "actors_pics": []
+  },
+  {
+    "num": "2548",
+    "t": "Noah Kahan: Out of Body",
+    "id_tmdb": "1492341",
+    "cat": "DOCUMENTAIRE, MUSIQUE",
+    "url": "https://vidzy.org/d/2yssdgwjj3jp_n",
+    "img": "https://image.tmdb.org/t/p/w500/8VtZAonOgK8hae7FwOZCSg7XmCu.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/qgQPajFB3gt58dwJX9A13P3rJIQ.jpg",
+    "desc": "Devenu une célébrité mondiale du jour au lendemain, le compositeur-interprète Noah Kahan retrouve ses racines du Vermont et se recentre sur lui-même dans ce documentaire sincère.",
+    "year": "2026",
+    "note": 4,
+    "actors_pics": [
+      {
+        "name": "Noah Kahan",
+        "img": "https://image.tmdb.org/t/p/w185/zDo8UmVkPZEgT85ijaY98EQrlVl.jpg"
+      },
+      {
+        "name": "Bernie Sanders",
+        "img": "https://image.tmdb.org/t/p/w185/bkoF9qXfZbmF5aHUKV0k2HtOrNi.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2547",
+    "t": "Les Intrus : Chapitre 3",
+    "id_tmdb": "1010755",
+    "cat": "HORREUR, THRILLER",
+    "url": "https://vidzy.org/d/t1gueksfx6k7_n",
+    "img": "https://image.tmdb.org/t/p/w500/8GkCZUA8RnpvbY6mZFMKziOnOD6.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/fPfDB0IHOqvmKIzFP9CA51OOS1N.jpg",
+    "desc": "Maya affronte une dernière fois les tueurs masqués dans un règlement de comptes brutal et complet, une histoire de survie et de vengeance.",
+    "year": "2026",
+    "note": 3,
+    "actors_pics": [
+      {
+        "name": "Madelaine Petsch",
+        "img": "https://image.tmdb.org/t/p/w185/mfZo30YgMx7vhAUajM8OG6I6VM8.jpg"
+      },
+      {
+        "name": "Richard Brake",
+        "img": "https://image.tmdb.org/t/p/w185/JwsiErANShzPSdYsNoiNYdrSg1.jpg"
+      },
+      {
+        "name": "Ema Horvath",
+        "img": "https://image.tmdb.org/t/p/w185/4YindT5cKhekpAilc6q0scQeUQx.jpg"
+      },
+      {
+        "name": "Gabriel Basso",
+        "img": "https://image.tmdb.org/t/p/w185/6jHYQf6Y37BEouavp03WWpWpFyR.jpg"
+      },
+      {
+        "name": "Pedro Leandro",
+        "img": "https://image.tmdb.org/t/p/w185/2mqNYfAKoazh2cWwPmSKLUuqzuV.jpg"
+      },
+      {
+        "name": "Rachel Shenton",
+        "img": "https://image.tmdb.org/t/p/w185/oCStwXsSGTDwO8md00tzwAviyBk.jpg"
+      },
+      {
+        "name": "George Young",
+        "img": "https://image.tmdb.org/t/p/w185/dDTtlhWEnqIvBoOljmX2Hoi8IO4.jpg"
+      },
+      {
+        "name": "Kyle Breitkopf",
+        "img": "https://image.tmdb.org/t/p/w185/zAxDr9wdkLYPD3sVnW5Y9gZVgA4.jpg"
+      },
+      {
+        "name": "Finn Cofell",
+        "img": "https://image.tmdb.org/t/p/w185/nzbhVDO6clR5B43S7Eui4fyJXqQ.jpg"
+      },
+      {
+        "name": "Stevee Davies",
+        "img": "https://image.tmdb.org/t/p/w185/3Wck1WgvZzU8WmTRHMdY6pU5Vpp.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2546",
+    "t": "L’Armure",
+    "id_tmdb": "1722699",
+    "cat": "",
+    "url": "https://vidzy.org/d/1q6737evv3ny_n",
+    "img": "https://image.tmdb.org/t/p/w500/bgq32VZSioSSEvpi4bHDElCZywv.jpg",
+    "bg": null,
+    "desc": "Dans un pays lointain, un gobelin se retrouve maudit et est depuis bloqué dans le corps d’une Armure vide. Après des années d’échecs à vouloir retrouver son corps d’antan, l’Armure décide d’en finir…jusqu’à sa rencontre avec Eustache.",
+    "year": "2026",
+    "note": 4,
+    "trailer": "udehEHiKesw",
+    "actors_pics": [
+      {
+        "name": "Emmanuel Curtil",
+        "img": "https://image.tmdb.org/t/p/w185/tQO8K30BgUC9SIEvj9I2286hsbF.jpg"
+      },
+      {
+        "name": "Gabriel Bismuth-Bienaimé",
+        "img": "https://image.tmdb.org/t/p/w185/9SSdXKVrJGJvnbLD7utp2gw4Ry3.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2545",
+    "t": "Libre antenne",
+    "id_tmdb": "1648407",
+    "cat": "DOCUMENTAIRE",
+    "url": "https://vidzy.org/d/i4zglk50i9xq_n",
+    "img": "https://image.tmdb.org/t/p/w500/w0ZQaXFvgcEi8yNd1vkdGn2PNjy.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/rmoBcPQsX7IKiJtKBI9N5RzxqBV.jpg",
+    "desc": "À l'aube des années 1990, Fun Radio et Skyrock, deux radios FM nationales, décident de mettre le grappin sur la même cible commerciale : les jeunes. Pour ça, ils ont une arme fatale : la Libre antenne. Un espace libre et décomplexé, où l'on peut rire, parler, écouter, et surtout, être écoutés. Un endroit déjanté, où on peut tout dire, poser toutes les questions, surtout les plus intimes, qu'on n'aurait évidemment pas osé aborder en famille et encore moins en cours. Surtout, on se rend compte qu'à l'autre bout de la France des filles et des garçons du même âge rencontrent les mêmes galères, ont les mêmes interrogations.",
+    "year": "2026",
+    "note": 3,
+    "trailer": "gQM6cgTsjsw",
+    "actors_pics": [
+      {
+        "name": "Franck Bargine",
+        "img": "https://image.tmdb.org/t/p/w185/trujABvKPX6DBwWJMiIGb4lIDd2.jpg"
+      },
+      {
+        "name": "Maurice Champvert",
+        "img": "https://image.tmdb.org/t/p/w185/mQvKZqMiq8OF0XpSOHVsV6nOfg7.jpg"
+      },
+      {
+        "name": "Fred Musa",
+        "img": "https://image.tmdb.org/t/p/w185/hLT4tR6eE0FEJpwd8Y90U6sjRdA.jpg"
+      },
+      {
+        "name": "Emilie Mazoyer",
+        "img": "https://image.tmdb.org/t/p/w185/5r36eAUaKgTvErsdbpmVqLr0oao.jpg"
+      },
+      {
+        "name": "Christophe Beaugrand",
+        "img": "https://image.tmdb.org/t/p/w185/6qtYMsNRESUsQEoEF2aWM1REcfN.jpg"
+      },
+      {
+        "name": "Gaëlle Voisin",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Thibault Raisse",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Francis Balle",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      }
+    ]
+  },
+  {
+    "num": "2544",
+    "t": "Louis Theroux : Plongée dans la manosphère",
+    "id_tmdb": "1633264",
+    "cat": "DOCUMENTAIRE",
+    "url": "https://vidzy.org/d/cis6smyand9o_n",
+    "img": "https://image.tmdb.org/t/p/w500/ouOvRvsgF37yEx3D6ZLWyuxZFjE.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/cmpiLnDIdxQNFZLZZFRj1rSo7fW.jpg",
+    "desc": "Disposant d'un accès privilégié, le documentariste plébiscité enquête sans filtre sur un réseau ultra-masculiniste en pleine expansion et ses influenceurs controversés.",
+    "year": "2026",
+    "note": 3,
+    "actors_pics": [
+      {
+        "name": "Louis Theroux",
+        "img": "https://image.tmdb.org/t/p/w185/bd1aUigEuidrND9C1vumCN3pC0o.jpg"
+      },
+      {
+        "name": "HSTikkyTokky",
+        "img": "https://image.tmdb.org/t/p/w185/eYs05dME93EZuoHlIjUQtLRmHOX.jpg"
+      },
+      {
+        "name": "Myron Gaines",
+        "img": "https://image.tmdb.org/t/p/w185/2gqzGIwG9mnbHOj3j33K4Dd1kBM.jpg"
+      },
+      {
+        "name": "Sneako",
+        "img": "https://image.tmdb.org/t/p/w185/kIt6xnJzinY7aSukXwt1jFXVPOg.jpg"
+      },
+      {
+        "name": "Justin Waller",
+        "img": "https://image.tmdb.org/t/p/w185/rLZK4rIWyrQQgUcNg8yz56FuR3T.jpg"
+      },
+      {
+        "name": "Ed Matthews",
+        "img": "https://image.tmdb.org/t/p/w185/47Siht4ZEq1o2twqSeZCMGqhAVW.jpg"
+      },
+      {
+        "name": "Elaine Sullivan",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Kacey May",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Andrew Tate",
+        "img": "https://image.tmdb.org/t/p/w185/ssWtttZktmgfdZl976bV9AHMVm4.jpg"
+      },
+      {
+        "name": "Tristan Tate",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      }
+    ]
+  },
+  {
+    "num": "2543",
+    "t": "Fukushima, un cauchemar nucléaire",
+    "id_tmdb": "1439660",
+    "cat": "DOCUMENTAIRE, DRAME, HISTOIRE",
+    "url": "https://vidzy.org/d/00234av41e2m_n",
+    "img": "https://image.tmdb.org/t/p/w500/lmcJpVfdXHgmgTOB0uohY6kDxSw.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/olz73f1yVWu5JlLDi8lI98Yekvl.jpg",
+    "desc": "Les ingénieurs, techniciens, soldats et pompiers qui sont entrés dans les réacteurs de Fukushima pour stabiliser le combustible nucléaire en fusion le 11 mars 2011 racontent.",
+    "year": "2026",
+    "note": 4,
+    "actors_pics": [
+      {
+        "name": "Ikuo Izawa",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Carl Pilliteri",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Wakana Yokoyama",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Martin Fackler",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Naoto Kan",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Katsuaki Hirano",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Katsutaka Idogawa",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Manabu Terata",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Dr. Charles A. Casto",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Akira Kawano",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      }
+    ]
+  },
+  {
+    "num": "2542",
+    "t": "Au coeur de nos terres",
+    "id_tmdb": "1536381",
+    "cat": "DRAME, TÉLÉFILM",
+    "url": "https://vidzy.org/d/flzid0u16o27_n",
+    "img": "https://image.tmdb.org/t/p/w500/r0fEHDm2sejkevZoGtjaiKnvhO5.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/wga5cD1BI88E6I8RIxCbKfZmJJc.jpg",
+    "desc": "Laure, commerciale en matériel agricole, revient dans l'exploitation familiale après l'accident cardiaque de Julien, son frère. Elle y découvre une ferme au bord de la faillite, son frère en voulant se diversifier s'est surendetté. Comment a-t-il pu s'enfoncer autant ?  Aidée d'Antoine, son amour de jeunesse et aujourd'hui gérant d'une association d'agriculteurs en difficulté, Laure découvre un complot visant à pousser les agriculteurs à la faillite pour racheter leurs terres... Et alors que l'eau vient à manquer dans la région, Laure comprend que sa famille et d'autres agriculteurs sont les cibles d'un vaste plan de mainmise sur l'eau, maquillé en écologie vertueuse...",
+    "year": "2026",
+    "note": 3,
+    "trailer": "WkUCDb063Zk",
+    "actors_pics": [
+      {
+        "name": "Mathilde Seigner",
+        "img": "https://image.tmdb.org/t/p/w185/xtoetsP4yIHS7BtRRM9JOWmKm40.jpg"
+      },
+      {
+        "name": "Caroline Proust",
+        "img": "https://image.tmdb.org/t/p/w185/5cTUI6EGnpnBqe3dyNQouLM5aIz.jpg"
+      },
+      {
+        "name": "Clémence Massart-Weit",
+        "img": "https://image.tmdb.org/t/p/w185/xymEzGtHkNgkGIJNoiGqeJQylBc.jpg"
+      },
+      {
+        "name": "Justine Lacroix",
+        "img": "https://image.tmdb.org/t/p/w185/wa8EtkRFS3TVhOH8i5oZiyjPzYr.jpg"
+      },
+      {
+        "name": "Stéphane Blancafort",
+        "img": "https://image.tmdb.org/t/p/w185/uoZlJVIUlQ9SfmNFoZy9F3c0uLj.jpg"
+      },
+      {
+        "name": "Patrick Descamps",
+        "img": "https://image.tmdb.org/t/p/w185/6XVRcX1C4XM8bwXPU4ZPwUeINCn.jpg"
+      },
+      {
+        "name": "Côme Thieulin",
+        "img": "https://image.tmdb.org/t/p/w185/sxu6ODXn92GE9GUHAnk7ZfqoPwc.jpg"
+      },
+      {
+        "name": "Maxime Jullia",
+        "img": "https://image.tmdb.org/t/p/w185/h1MG1trQ6JkWoeshwpPYKcKK3v1.jpg"
+      },
+      {
+        "name": "Laurent Secco",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      }
+    ]
+  },
+  {
     "num": "2541",
     "t": "‎R.L. Stine's Pumpkinhead",
     "id_tmdb": "1551003",
