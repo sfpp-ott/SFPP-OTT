@@ -1,5 +1,476 @@
 [
   {
+    "num": "2606",
+    "t": "‎The Mother and the Bear",
+    "id_tmdb": "1192730",
+    "cat": "COMÉDIE, DRAME",
+    "url": "https://vidzy.org/d/65ndwkqrk34j_n",
+    "img": "https://image.tmdb.org/t/p/w500/rzo06qIhyxa95cWE2SH9SyieJii.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/6OK5jr8tR11ZLPP4hRndrE07VUJ.jpg",
+    "desc": "Après que Sumi, 26 ans, ait eu un accident dans les rues enneigées de Winnipeg, sa mère autoritaire, Sara, vole depuis Séoul pour être aux côtés de sa fille désormais dans le coma. Alors que Sara s'immisce dans la vie de Sumi via une application de rencontre, elle se lance dans un voyage qui la changera à jamais.",
+    "year": "2026",
+    "note": 0,
+    "actors_pics": [
+      {
+        "name": "Kim Ho-jung",
+        "img": "https://image.tmdb.org/t/p/w185/caHnuEvLd9hISvhsQrx9NvNNIHC.jpg"
+      },
+      {
+        "name": "이원재",
+        "img": "https://image.tmdb.org/t/p/w185/3MFTs1z8HxonzjcZ62gIS4QemD6.jpg"
+      },
+      {
+        "name": "Jonathan Kim",
+        "img": "https://image.tmdb.org/t/p/w185/kS7uYgSLniIa63472TsePPqwLlq.jpg"
+      },
+      {
+        "name": "Amara Pedroso",
+        "img": "https://image.tmdb.org/t/p/w185/tHTY5wUciPLYT0zJYuQpYxowi60.jpg"
+      },
+      {
+        "name": "Kalyn Bomback",
+        "img": "https://image.tmdb.org/t/p/w185/a5a0N8teaUGiZamNe0G33l9IjBU.jpg"
+      },
+      {
+        "name": "Susan Hanson",
+        "img": "https://image.tmdb.org/t/p/w185/mdCRKx0BlrbG7tvyoXA9IGSsvtd.jpg"
+      },
+      {
+        "name": "Samantha Kendrick",
+        "img": "https://image.tmdb.org/t/p/w185/wrLYNsys35f54W7n2AbkdMUBC0X.jpg"
+      },
+      {
+        "name": "Leere Park",
+        "img": "https://image.tmdb.org/t/p/w185/dxE3muBaptwDmWcHNFd60TgOPvo.jpg"
+      },
+      {
+        "name": "Debra Ross",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      }
+    ]
+  },
+  {
+    "num": "2605",
+    "t": "‎‎La vérité sur Alice",
+    "id_tmdb": "1491388",
+    "cat": "THRILLER, TÉLÉFILM",
+    "url": "https://vidzy.org/d/d9v3yutwe6we_n",
+    "img": "https://image.tmdb.org/t/p/w500/3H6lRuI7rUh1mQ89MAfTZkuuaU1.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/anAJIFgo94fYmfrVN8AOIjrLW1x.jpg",
+    "desc": "Après que sa soeur a été brutalement attaquée, une femme doit se battre pour protéger sa nièce des sombres secrets de famille et d'un tueur déterminé à la récupérer.",
+    "year": "2025",
+    "note": 0,
+    "actors_pics": [
+      {
+        "name": "Kirsten Comerford",
+        "img": "https://image.tmdb.org/t/p/w185/eqCe5c1fPJbbX7da5s4BgLhpFDX.jpg"
+      },
+      {
+        "name": "Samantha Brown",
+        "img": "https://image.tmdb.org/t/p/w185/s8shUKGCNBCxnKeGHwV3wP0HpIS.jpg"
+      },
+      {
+        "name": "Jayne Heitmeyer",
+        "img": "https://image.tmdb.org/t/p/w185/7ZcniiFN6e2vYhJms1MaVCfNqE4.jpg"
+      },
+      {
+        "name": "Laura Provenzano",
+        "img": "https://image.tmdb.org/t/p/w185/xT0ActrGITMhUeOhnzmZLqWYpVX.jpg"
+      },
+      {
+        "name": "Dennis Andres",
+        "img": "https://image.tmdb.org/t/p/w185/482s0WO3Os7ibLok2AMML2nbHfx.jpg"
+      },
+      {
+        "name": "Riley Monaghan",
+        "img": "https://image.tmdb.org/t/p/w185/efsEbe2a5xflPUqdFWyZIKeMEuI.jpg"
+      },
+      {
+        "name": "JaNae Armogan",
+        "img": "https://image.tmdb.org/t/p/w185/prkX4qcXtSQGY97FvJE39UYy5Vk.jpg"
+      },
+      {
+        "name": "Debra Hale",
+        "img": "https://image.tmdb.org/t/p/w185/tyNSZGsU9ijJsqNxacaO6Ln5asU.jpg"
+      },
+      {
+        "name": "Dale Samms",
+        "img": "https://image.tmdb.org/t/p/w185/3c0ax0woYIWjRZ2xQqXzjosUK79.jpg"
+      },
+      {
+        "name": "Willow Astbury",
+        "img": "https://image.tmdb.org/t/p/w185/6mfYka14NyOc2yGfabePJEEs3cp.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2604",
+    "t": "Red Right Hand",
+    "id_tmdb": "1227816",
+    "cat": "CRIME, ACTION, THRILLER",
+    "url": "https://vidzy.org/d/z7wbce0rpiks_n",
+    "img": "https://image.tmdb.org/t/p/w500/wQLBKLFnHhsNQOxHjTIyjfmJvDM.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/1AZoKXDwfbuk6B7M0bjivcrWdmd.jpg",
+    "desc": "Cash essaie de mener une vie honnête et tranquille, en s'occupant de sa nièce Savannah dans les collines du comté d'Odim. Lorsque la sadique \"Big Cat\", dangereuse criminelle locale, lui réclame son aide, Cash découvre qu'il est capable de tout, même de tuer, pour protéger la ville et la seule famille qui lui reste.",
+    "year": "2024",
+    "note": 3,
+    "trailer": "1141477716",
+    "actors_pics": [
+      {
+        "name": "Orlando Bloom",
+        "img": "https://image.tmdb.org/t/p/w185/lwQoA0qJTCZ6l2FH6PjmhRQjiaB.jpg"
+      },
+      {
+        "name": "Andie MacDowell",
+        "img": "https://image.tmdb.org/t/p/w185/akeheO4i3cR1HpSU8yu9HrLcsKm.jpg"
+      },
+      {
+        "name": "Scott Haze",
+        "img": "https://image.tmdb.org/t/p/w185/i0k562EpJiuglK2VnUNAh12fZfj.jpg"
+      },
+      {
+        "name": "Chapel Oaks",
+        "img": "https://image.tmdb.org/t/p/w185/6UNOhXmAcvGAYr8sC9rhAjB7RIe.jpg"
+      },
+      {
+        "name": "Garret Dillahunt",
+        "img": "https://image.tmdb.org/t/p/w185/4L9bdqQIdfrtqR7JQdsIhlF3Fjk.jpg"
+      },
+      {
+        "name": "Mo McRae",
+        "img": "https://image.tmdb.org/t/p/w185/yU3VD12vMbG94xEvSBASWsFsL1B.jpg"
+      },
+      {
+        "name": "Brian Geraghty",
+        "img": "https://image.tmdb.org/t/p/w185/4sqeUc4xYyzQ3Qpl5oxlQBTAAQk.jpg"
+      },
+      {
+        "name": "Kenneth Miller",
+        "img": "https://image.tmdb.org/t/p/w185/2iSAuMNf0nczFjQyZe4Qdy9Pg14.jpg"
+      },
+      {
+        "name": "Nicholas Logan",
+        "img": "https://image.tmdb.org/t/p/w185/mEXZ8KXCyy67hOuMDuC2AYZvrIu.jpg"
+      },
+      {
+        "name": "Daniel David Stewart",
+        "img": "https://image.tmdb.org/t/p/w185/4rVIcLqueOMwLKX54UCYEHBpRwf.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2603",
+    "t": "Honey Bunch",
+    "id_tmdb": "1339173",
+    "cat": "FANTASTIQUE, HORREUR, SCIENCE-FICTION, THRILLER",
+    "url": "https://vidzy.org/d/c8afti5534nl_n",
+    "img": "https://image.tmdb.org/t/p/w500/aZs18sPGIypQ8Zi5OqwBCsemvFC.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/9L5Ekpoy4zT6o00qKUmZTeTkaVf.jpg",
+    "desc": "Diana se réveille d'un coma avec des souvenirs partiels de sa vie passée. Elle obtient un traitement expérimental mais à mesure que son protocole s'intensifie, son mariage est mis à l'épreuve...",
+    "year": "2026",
+    "note": 3,
+    "actors_pics": [
+      {
+        "name": "Grace Glowicki",
+        "img": "https://image.tmdb.org/t/p/w185/4SbxF12ARtTqL6xfbIn8fT0w7HL.jpg"
+      },
+      {
+        "name": "Ben Petrie",
+        "img": "https://image.tmdb.org/t/p/w185/r2mrAH6U7lh9hQspa9AkREQcwdH.jpg"
+      },
+      {
+        "name": "Jason Isaacs",
+        "img": "https://image.tmdb.org/t/p/w185/s6XRFjqUsrDJfDQuXPOoExAYPmb.jpg"
+      },
+      {
+        "name": "Kate Dickie",
+        "img": "https://image.tmdb.org/t/p/w185/mlFYUmZycpRa7TGgDTfP0xanE1Q.jpg"
+      },
+      {
+        "name": "Julian Richings",
+        "img": "https://image.tmdb.org/t/p/w185/6aXnbVDNlYXKFOUK7CZ2lboAlxE.jpg"
+      },
+      {
+        "name": "Jesse LaVercombe",
+        "img": "https://image.tmdb.org/t/p/w185/zvUshsQ4Bcj3TR8MgurYFSF7WmK.jpg"
+      },
+      {
+        "name": "Sarah Kolasky",
+        "img": "https://image.tmdb.org/t/p/w185/1WMdDoyPB5YoeIl8IWxJEaP2O6X.jpg"
+      },
+      {
+        "name": "India Brown",
+        "img": "https://image.tmdb.org/t/p/w185/qpvFrurNdhEufrVqJegtlzSoQ31.jpg"
+      },
+      {
+        "name": "Ahmed Moneka",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Cynthia Ashperger",
+        "img": "https://image.tmdb.org/t/p/w185/nJVbo3nTxp6dwSO7d01dIoXw5nN.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2602",
+    "t": "Le secret des mésanges",
+    "id_tmdb": "989246",
+    "cat": "ANIMATION, FAMILIAL",
+    "url": "https://vidzy.org/d/e9hb5tp33m86_n",
+    "img": "https://image.tmdb.org/t/p/w500/xMWZ3fOdrkHsEBRFw5rmeaDmUC.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/25Z6XXXPe4v63HPOje0yyYWKWfz.jpg",
+    "desc": "Lorsque Lucie, 9 ans, arrive à Bectoile pour les vacances, elle n'a aucune idée des aventures qui l'attendent ! Sa mère Caro y mène des fouilles archéologiques avec son collègue Pierrot. Cette dernière a grandi dans ce même village qui est aussi le théâtre d'un secret de famille que Lucie s'apprête à découvrir. Guidée par un couple de mésanges et avec l’aide de son nouvel ami Yann, Lucie est bien décidée à se plonger dans son histoire familiale. Des sous-sols d'un château en ruine à une vieille caravane oubliée à l'orée des bois, cette aventure les mènera de surprises insolites en fabuleuses découvertes !",
+    "year": "2025",
+    "note": 3,
+    "trailer": "pnNQ74iNNyY",
+    "actors_pics": []
+  },
+  {
+    "num": "2601",
+    "t": "Papa malgré lui",
+    "id_tmdb": "299252",
+    "cat": "DOCUMENTAIRE",
+    "url": "https://vidzy.org/d/63a7vkzeiv3e_n",
+    "img": "https://image.tmdb.org/t/p/w500/ibJqniBW5ccMN2ZIfkvndRRAtsq.jpg",
+    "bg": null,
+    "desc": "",
+    "year": "2014",
+    "note": 4,
+    "actors_pics": [
+      {
+        "name": "Rafael Amargo",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Estrella Morente",
+        "img": "https://image.tmdb.org/t/p/w185/kQhf799WNhqm1wB0F7DJZg0nZAl.jpg"
+      },
+      {
+        "name": "Antonio Carmona",
+        "img": "https://image.tmdb.org/t/p/w185/3gnX2qRKbWZmsWYKvTIm8scjjGx.jpg"
+      },
+      {
+        "name": "Eva Yerbabuena",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Juan Andrés Maya",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      }
+    ]
+  },
+  {
+    "num": "2600",
+    "t": "The Swedish Connection",
+    "id_tmdb": "1261188",
+    "cat": "DRAME, HISTOIRE, GUERRE",
+    "url": "https://vidzy.org/d/wfa1gl8g1uwe_n",
+    "img": "https://image.tmdb.org/t/p/w500/7In554c19TZNLeCjf5HFxEOBUvA.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/56VfTGANetZ5IIYQsXuciNePM28.jpg",
+    "desc": "Dans cette histoire vraie méconnue, un bureaucrate suédois se transforme en héros de guerre inattendu lorsqu'il tente de sauver des Juifs pendant la Seconde Guerre mondiale.",
+    "year": "2026",
+    "note": 4,
+    "actors_pics": [
+      {
+        "name": "Henrik Dorsin",
+        "img": "https://image.tmdb.org/t/p/w185/xCy1BDKAeGNCV6V1ntyYvo3kBB0.jpg"
+      },
+      {
+        "name": "Sissela Benn",
+        "img": "https://image.tmdb.org/t/p/w185/fprO11y9tGCfz6B2gObrPTupHjA.jpg"
+      },
+      {
+        "name": "Jonas Karlsson",
+        "img": "https://image.tmdb.org/t/p/w185/t1sriOmD7FY7iPzXCL3boIVyo7r.jpg"
+      },
+      {
+        "name": "Johan Glans",
+        "img": "https://image.tmdb.org/t/p/w185/5yJXXfNq62b4QGqAZUYCiFLIasW.jpg"
+      },
+      {
+        "name": "Olle Jansson",
+        "img": "https://image.tmdb.org/t/p/w185/wRuoAr6OD7tK8NbjRByyFca8QWK.jpg"
+      },
+      {
+        "name": "Oscar Töringe",
+        "img": "https://image.tmdb.org/t/p/w185/yHW4MIhVjslqxrCa2sz7y6B58Un.jpg"
+      },
+      {
+        "name": "Loa Falkman",
+        "img": "https://image.tmdb.org/t/p/w185/nLF1gK1InARA21VE3GWuSRSWJ3B.jpg"
+      },
+      {
+        "name": "Marianne Mörck",
+        "img": "https://image.tmdb.org/t/p/w185/mksDG8FQLo5Fd2HljggAbEOk0Hc.jpg"
+      },
+      {
+        "name": "Rakel Benér",
+        "img": "https://image.tmdb.org/t/p/w185/cgW294Fo7xnPPVzmtq5OaZdOmTe.jpg"
+      },
+      {
+        "name": "Figge Norling",
+        "img": "https://image.tmdb.org/t/p/w185/hlYONYoB46QI4dN1VCCRqzvNXXq.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2599",
+    "t": "Kaamelott - Deuxième volet, partie 1",
+    "id_tmdb": "1076897",
+    "cat": "AVENTURE, FANTASTIQUE, COMÉDIE, HISTOIRE",
+    "url": "https://vidzy.org/d/s74xulqo4sza_n",
+    "img": "https://image.tmdb.org/t/p/w500/7w6IvVwKxJvkaam00oYG8ksikYC.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/8hH8oViZnmWqyd7edBqlRjizoel.jpg",
+    "desc": "Les Dieux sont en colère contre Arthur ! Après la destruction de Kaamelott, son refus obstiné de tuer Lancelot précipite le Royaume de Logres à sa perte. Il réunit ses Chevaliers, novices téméraires et vétérans désabusés, autour de la Nouvelle Table Ronde et les envoie prouver leur valeur aux quatre coins du Monde, des Marais Orcaniens aux terres glacées du Dragon Opalescent.",
+    "year": "2025",
+    "note": 3,
+    "trailer": "6rB428f8U8k",
+    "actors_pics": [
+      {
+        "name": "Alexandre Astier",
+        "img": "https://image.tmdb.org/t/p/w185/itQkV39IyDouF7lWy9xmwJdgy3f.jpg"
+      },
+      {
+        "name": "Jean-Christophe Hembert",
+        "img": "https://image.tmdb.org/t/p/w185/2EZSnSgoBZqdFDhxKaNiCvw73gO.jpg"
+      },
+      {
+        "name": "Thomas Cousseau",
+        "img": "https://image.tmdb.org/t/p/w185/4xkDd6CIHQWsBy6PjsfFIb67oXl.jpg"
+      },
+      {
+        "name": "Anne Girouard",
+        "img": "https://image.tmdb.org/t/p/w185/ykySP1Ox1JObLbNSDsm36jwY5vE.jpg"
+      },
+      {
+        "name": "Christian Clavier",
+        "img": "https://image.tmdb.org/t/p/w185/9WsvKjheeizXCcZrFjZCrCoItqO.jpg"
+      },
+      {
+        "name": "Joëlle Sevilla",
+        "img": "https://image.tmdb.org/t/p/w185/spfZfG7tIB4AgN4hxKt5gQwdhJq.jpg"
+      },
+      {
+        "name": "Lionnel Astier",
+        "img": "https://image.tmdb.org/t/p/w185/fWDbPp3ORMswmnNp0AHBBeF6aZb.jpg"
+      },
+      {
+        "name": "David Ayala",
+        "img": "https://image.tmdb.org/t/p/w185/g1FlhpnXANAvr80osb0rpazI5V6.jpg"
+      },
+      {
+        "name": "Carlo Brandt",
+        "img": "https://image.tmdb.org/t/p/w185/37Yhd5Ri7mmMXZ7HnT7yvz5J2sr.jpg"
+      },
+      {
+        "name": "Marie-Christine Orry",
+        "img": "https://image.tmdb.org/t/p/w185/nSo8Bqm6mGGRC7LsfLRGIxYP2lS.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2598",
+    "t": "Rental Family",
+    "id_tmdb": "1208348",
+    "cat": "COMÉDIE, DRAME",
+    "url": "https://vidzy.org/d/sy64u0bqevbt_n",
+    "img": "https://image.tmdb.org/t/p/w500/7y4MMgdikoGMvQX8oEJNKMASUWr.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/euoXeFAOt9o7yAWA9zGZk7DdZWZ.jpg",
+    "desc": "Campé dans le Tokyo d’aujourd’hui, un acteur américain en crise professionnelle, embauché par une agence japonaise de « famille à louer », un emploi étrange qui lui fait jouer différents rôles auprès de parfaits inconnus. Plongeant dans le monde ses clients, il commence à former de véritables liens qui brouillent la frontière entre la fiction et la réalité. Face aux questions morales soulevées par son travail, il redécouvre un but, un sentiment d’appartenance et la beauté discrète des connexions humaines.",
+    "year": "2025",
+    "note": 4,
+    "trailer": "hEyPzvMbKCA",
+    "actors_pics": [
+      {
+        "name": "Brendan Fraser",
+        "img": "https://image.tmdb.org/t/p/w185/tFj5PaWWQbb8rHBBhu1EHklznph.jpg"
+      },
+      {
+        "name": "Takehiro Hira",
+        "img": "https://image.tmdb.org/t/p/w185/f8UK7xqwkfpIZiECcDgc0AErkj6.jpg"
+      },
+      {
+        "name": "Mari Yamamoto",
+        "img": "https://image.tmdb.org/t/p/w185/n0kSgZvoFD6ENdja5MDhAMDbDwT.jpg"
+      },
+      {
+        "name": "Shannon Mahina Gorman",
+        "img": "https://image.tmdb.org/t/p/w185/cDnGx1RkYG4gQObcL3aqP4VPT5V.jpg"
+      },
+      {
+        "name": "Akira Emoto",
+        "img": "https://image.tmdb.org/t/p/w185/qQHdGgAL7idxy79oWHjYON6bYQm.jpg"
+      },
+      {
+        "name": "Paolo Andrea Di Pietro",
+        "img": "https://image.tmdb.org/t/p/w185/pnsPTQv0k6GVxRjgnBGVLUwOgci.jpg"
+      },
+      {
+        "name": "尾関伸嗣",
+        "img": "https://image.tmdb.org/t/p/w185/7KyN7b1ocVswsU2IhCLRNz3aYTU.jpg"
+      },
+      {
+        "name": "キンタカオ",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "亀田梨紗",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "楚南勇真",
+        "img": "https://image.tmdb.org/t/p/w185/fftNvhFcsUzQd1OWd6ncn2n3OVO.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2597",
+    "t": "Risqué",
+    "id_tmdb": "1512623",
+    "cat": "ACTION, CRIME, THRILLER",
+    "url": "https://vidzy.org/d/aj32vd4vp86j_n",
+    "img": "https://image.tmdb.org/t/p/w500/h6OsRrDwbspLnKMvlFl57QFDP7d.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/novE5UrqfLIFEMe5QBnjm18GG4E.jpg",
+    "desc": "Virée d'un club de strip-tease, une danseuse assoiffée de vengeance orchestre un braquage audacieux avec ses collègues pour faire tomber le patron corrompu et les hommes qui les sous-estiment.",
+    "year": "2025",
+    "note": 4,
+    "actors_pics": [
+      {
+        "name": "Leah Gibson",
+        "img": "https://image.tmdb.org/t/p/w185/pOZ3ILnzADt7KX3xowz4KWIbloK.jpg"
+      },
+      {
+        "name": "Eloise Lovell Anderson",
+        "img": "https://image.tmdb.org/t/p/w185/lC63Ik3IImhE1t2ifWwZvITqKTg.jpg"
+      },
+      {
+        "name": "Silvia Orduna",
+        "img": "https://image.tmdb.org/t/p/w185/8r0aRDOHhQHOVIl3BUETe4bJcYb.jpg"
+      },
+      {
+        "name": "Rex Adams",
+        "img": "https://image.tmdb.org/t/p/w185/pLjqYCCoGA2BCKNR5JAiZuP4iiq.jpg"
+      },
+      {
+        "name": "Julia Ueno",
+        "img": "https://image.tmdb.org/t/p/w185/l1zsoK7XrWmuJy2Kf85ecsJTWyr.jpg"
+      },
+      {
+        "name": "David Thomas Newman",
+        "img": "https://image.tmdb.org/t/p/w185/1S9BUBtA8ljo3sUEhCDkV8q8wo0.jpg"
+      },
+      {
+        "name": "Alexsandria Ralev",
+        "img": "https://image.tmdb.org/t/p/w185/rx0ZtTYmB1UkqM0Ht5XoxSJfAvZ.jpg"
+      },
+      {
+        "name": "Ephraim O.P. Sampson",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      }
+    ]
+  },
+  {
     "num": "2596",
     "t": "‎The Royal Cat",
     "id_tmdb": "1329566",
