@@ -1,5 +1,546 @@
 [
   {
+    "num": "2576",
+    "t": "‎Colony",
+    "id_tmdb": "1375646",
+    "cat": "ACTION, HORREUR, SCIENCE-FICTION",
+    "url": "https://vidzy.cc/d/3m5x6hgaytai_n",
+    "img": "https://image.tmdb.org/t/p/w500/1CuYfdSqpIjsWIaCftQKBCjNlG.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/cOKATn8lOcvVnOqqV5oYWaI9z2Z.jpg",
+    "desc": "Se-jeong, professeure de biotechnologie, assiste à une conférence sur le sujet, mais la situation dégénère rapidement lorsqu'un virus à mutation fulgurante se propage. Alors que l'épidémie s'étend et que les personnes infectées commencent à se transformer, les autorités bouclent l'ensemble du complexe, piégeant les survivants face à une menace grandissante…",
+    "year": "2026",
+    "note": 4,
+    "trailer": "EqmRexAoUXs",
+    "actors_pics": [
+      {
+        "name": "Gianna Jun",
+        "img": "https://image.tmdb.org/t/p/w185/qejOQBdIzN18e69yRcsiD0JQi4c.jpg"
+      },
+      {
+        "name": "Koo Kyo-hwan",
+        "img": "https://image.tmdb.org/t/p/w185/aFwCpSKPGFqoiTStY6ljXnD5CwH.jpg"
+      },
+      {
+        "name": "Ji Chang-wook",
+        "img": "https://image.tmdb.org/t/p/w185/sBmHrO5Tn27Ot5hy0yAKniROmNb.jpg"
+      },
+      {
+        "name": "Kim Shin-rok",
+        "img": "https://image.tmdb.org/t/p/w185/x4zo2mSbehnQY80PbuldAZ7ruGm.jpg"
+      },
+      {
+        "name": "Shin Hyun-been",
+        "img": "https://image.tmdb.org/t/p/w185/lU0yMFh5KgOEWZRThLYbB6ZI1hE.jpg"
+      },
+      {
+        "name": "Go Soo",
+        "img": "https://image.tmdb.org/t/p/w185/77209yRtUHOEk3ILJY1rG3X3VUj.jpg"
+      },
+      {
+        "name": "Lee Joong-ok",
+        "img": "https://image.tmdb.org/t/p/w185/fMkBpHRElwNatevfGinSv248bYg.jpg"
+      },
+      {
+        "name": "Kim Jong-tae",
+        "img": "https://image.tmdb.org/t/p/w185/vf3R5QU7UCVEr3dOGt3bdFbypzu.jpg"
+      },
+      {
+        "name": "황재열",
+        "img": "https://image.tmdb.org/t/p/w185/cyEibdvqNRurcNC63gqDSvX1qzE.jpg"
+      },
+      {
+        "name": "이담희",
+        "img": "https://image.tmdb.org/t/p/w185/wGiJAT7w7r3VBZdTXClfEQZ9IOV.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2575",
+    "t": "‎‎L'Incroyable femme des neiges",
+    "id_tmdb": "1221711",
+    "cat": "COMÉDIE, DRAME",
+    "url": "https://vidzy.org/d/hq2ayo97fgnr_n",
+    "img": "https://image.tmdb.org/t/p/w500/t4z9IUdnpDGdvK3UfOrzRLS1WrC.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/mFpruC9PWsgxjqGC7kelia2bhUT.jpg",
+    "desc": "Dormir sur la banquise, traverser le Groenland en solitaire, se battre à mains nues avec un ours… Il n’y a plus grand chose qui fasse peur à Coline Morel. À part, peut-être, se confronter à sa propre existence.",
+    "year": "2025",
+    "note": 3,
+    "trailer": "DjBZmWtsqhY",
+    "actors_pics": [
+      {
+        "name": "Blanche Gardin",
+        "img": "https://image.tmdb.org/t/p/w185/bMlrHb3guCpI9YqwiKUoPr8huH1.jpg"
+      },
+      {
+        "name": "Philippe Katerine",
+        "img": "https://image.tmdb.org/t/p/w185/vGo21vRILgGPT5Q3TTwzLxANemF.jpg"
+      },
+      {
+        "name": "Bastien Bouillon",
+        "img": "https://image.tmdb.org/t/p/w185/8ksm25v40MS2p2y0EyyNrxdt7it.jpg"
+      },
+      {
+        "name": "Ole Eliassen",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Martin Jensen",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Laurent Papot",
+        "img": "https://image.tmdb.org/t/p/w185/gyCWb0A7FSd1b7y1qGHy2HCWhsB.jpg"
+      },
+      {
+        "name": "Ferdinand Redouloux",
+        "img": "https://image.tmdb.org/t/p/w185/p3GQGG99kMm6GtQovKXodLWReLX.jpg"
+      },
+      {
+        "name": "Clémentine Baert",
+        "img": "https://image.tmdb.org/t/p/w185/8i3OIMM7fKJGByNeYzOKktzF7dp.jpg"
+      },
+      {
+        "name": "Aymeric Lompret",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      }
+    ]
+  },
+  {
+    "num": "2574",
+    "t": "Deux femmes et quelques hommes",
+    "id_tmdb": "1221711",
+    "cat": "COMÉDIE, DRAME",
+    "url": "https://vidzy.org/d/kaptcyz7yzfy_n",
+    "img": "https://image.tmdb.org/t/p/w500/t4z9IUdnpDGdvK3UfOrzRLS1WrC.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/mFpruC9PWsgxjqGC7kelia2bhUT.jpg",
+    "desc": "Dormir sur la banquise, traverser le Groenland en solitaire, se battre à mains nues avec un ours… Il n’y a plus grand chose qui fasse peur à Coline Morel. À part, peut-être, se confronter à sa propre existence.",
+    "year": "2025",
+    "note": 3,
+    "trailer": "DjBZmWtsqhY",
+    "actors_pics": [
+      {
+        "name": "Blanche Gardin",
+        "img": "https://image.tmdb.org/t/p/w185/bMlrHb3guCpI9YqwiKUoPr8huH1.jpg"
+      },
+      {
+        "name": "Philippe Katerine",
+        "img": "https://image.tmdb.org/t/p/w185/vGo21vRILgGPT5Q3TTwzLxANemF.jpg"
+      },
+      {
+        "name": "Bastien Bouillon",
+        "img": "https://image.tmdb.org/t/p/w185/8ksm25v40MS2p2y0EyyNrxdt7it.jpg"
+      },
+      {
+        "name": "Ole Eliassen",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Martin Jensen",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Laurent Papot",
+        "img": "https://image.tmdb.org/t/p/w185/gyCWb0A7FSd1b7y1qGHy2HCWhsB.jpg"
+      },
+      {
+        "name": "Ferdinand Redouloux",
+        "img": "https://image.tmdb.org/t/p/w185/p3GQGG99kMm6GtQovKXodLWReLX.jpg"
+      },
+      {
+        "name": "Clémentine Baert",
+        "img": "https://image.tmdb.org/t/p/w185/8i3OIMM7fKJGByNeYzOKktzF7dp.jpg"
+      },
+      {
+        "name": "Aymeric Lompret",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      }
+    ]
+  },
+  {
+    "num": "2573",
+    "t": "Les Rêveurs",
+    "id_tmdb": "1221724",
+    "cat": "COMÉDIE, DRAME",
+    "url": "https://vidzy.org/d/njcknmo31b1f_n",
+    "img": "https://image.tmdb.org/t/p/w500/6W6nKyFSOcHSX1qq4qDsOR8MaSM.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/oT0hoo5V933lWktpE9VdRS0Jxei.jpg",
+    "desc": "Élisabeth, comédienne, anime des ateliers d'écriture à l'hôpital Necker avec des adolescents en grande détresse psychologique. À leur contact, elle replonge dans sa propre histoire : son internement à 14 ans. Peu à peu, les souvenirs refont surface. Et avec eux, la découverte du théâtre, qui un jour l'a sauvée.",
+    "year": "2025",
+    "note": 4,
+    "trailer": "2JItttYeVFk",
+    "actors_pics": [
+      {
+        "name": "Bernard Campan",
+        "img": "https://image.tmdb.org/t/p/w185/cILI8cr9ZLQVdgHSNCktpi7gGO6.jpg"
+      },
+      {
+        "name": "Judith Chemla",
+        "img": "https://image.tmdb.org/t/p/w185/duOQg0sLbFgJ7wKdoaivQ0tArDv.jpg"
+      },
+      {
+        "name": "Tessa Dumont Janod",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Isabelle Carré",
+        "img": "https://image.tmdb.org/t/p/w185/hC7NLIv6RGvtwb8pjy9DJbbHhJG.jpg"
+      },
+      {
+        "name": "Alex Lutz",
+        "img": "https://image.tmdb.org/t/p/w185/rrZcNAIOrTOLFLZqmpi1enF57Lp.jpg"
+      },
+      {
+        "name": "Pablo Pauly",
+        "img": "https://image.tmdb.org/t/p/w185/cmJ97Qpef4hjwxgBeD6WSaZVM0f.jpg"
+      },
+      {
+        "name": "Nicole Garcia",
+        "img": "https://image.tmdb.org/t/p/w185/kZWBVMLkxGhH97DgJ0uoUlSF5Z5.jpg"
+      },
+      {
+        "name": "Vincent Dedienne",
+        "img": "https://image.tmdb.org/t/p/w185/j6tser7BHGoi6cP7bQAXQlCGbMO.jpg"
+      },
+      {
+        "name": "Mélissa Boros",
+        "img": "https://image.tmdb.org/t/p/w185/8N5wVrUIXFeFeachqB49Is83svv.jpg"
+      },
+      {
+        "name": "Solan Machado-Graner",
+        "img": "https://image.tmdb.org/t/p/w185/eQMHcOHgqunbujQnFh0RyxKi256.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2572",
+    "t": "Les Aigles de la République",
+    "id_tmdb": "1220566",
+    "cat": "THRILLER, DRAME",
+    "url": "https://vidzy.org/d/0ei1klofqiqt_n",
+    "img": "https://image.tmdb.org/t/p/w500/mk5QDhCJSCeen1n2Ij8OcuXBcPy.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/84DgFoFDppvf3i5MKZzOctx9HFz.jpg",
+    "desc": "George Fahmy, l’acteur le plus adulé d’Égypte, accepte sous la contrainte de jouer dans un film commandé par les plus hautes autorités du pays. Il se retrouve plongé dans le cercle étroit du pouvoir. Comme un papillon de nuit attiré par la lumière, il entame une liaison avec la mystérieuse épouse du général qui supervise le film.",
+    "year": "2025",
+    "note": 3,
+    "trailer": "2_uBrWb8bWo",
+    "actors_pics": [
+      {
+        "name": "Fares Fares",
+        "img": "https://image.tmdb.org/t/p/w185/rLk2uAENs1cNyWFy039fErxNpLj.jpg"
+      },
+      {
+        "name": "Lyna Khoudri",
+        "img": "https://image.tmdb.org/t/p/w185/jYnaHKrATeLl4GMlvhTDazkIr5o.jpg"
+      },
+      {
+        "name": "Zineb Triki",
+        "img": "https://image.tmdb.org/t/p/w185/jzirHij82gbKTfDL3oA45kZyvex.jpg"
+      },
+      {
+        "name": "Amr Waked",
+        "img": "https://image.tmdb.org/t/p/w185/eRcAC2beUP52lQiejmKQA8jiyld.jpg"
+      },
+      {
+        "name": "Cherien Dabis",
+        "img": "https://image.tmdb.org/t/p/w185/mfTEWYhZJURN4LbbJDlB4iVqjX.jpg"
+      },
+      {
+        "name": "Ahmed Khairi",
+        "img": "https://image.tmdb.org/t/p/w185/8MzvSHjJPox8fN7TUTUxltbHmlj.jpg"
+      },
+      {
+        "name": "Nael Ali",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Sherwan Haji",
+        "img": "https://image.tmdb.org/t/p/w185/cmdATS01nwH9gcvIVQc6nXyELFa.jpg"
+      },
+      {
+        "name": "Suhaib Neshwan",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Donia Massoud",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      }
+    ]
+  },
+  {
+    "num": "2571",
+    "t": "Des preuves d'amour",
+    "id_tmdb": "1119537",
+    "cat": "DRAME, COMÉDIE",
+    "url": "https://vidzy.org/d/1486ri3bitls_n",
+    "img": "https://image.tmdb.org/t/p/w500/uh8JHOrusqGhR02jCvk2mutuWef.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/sV76oy9hyVjycnk0On04cpB9uzd.jpg",
+    "desc": "Céline attend l’arrivée de son premier enfant. Mais elle n’est pas enceinte. Dans trois mois, c’est Nadia, sa femme, qui donnera naissance à leur fille. Sous le regard de ses amis, de sa mère, et aux yeux de la loi, elle cherche sa place et sa légitimité.",
+    "year": "2025",
+    "note": 4,
+    "trailer": "YxT4P1A309w",
+    "actors_pics": [
+      {
+        "name": "Ella Rumpf",
+        "img": "https://image.tmdb.org/t/p/w185/4igT9ZxHs26m6ttyMcZH50NrWgd.jpg"
+      },
+      {
+        "name": "Monia Chokri",
+        "img": "https://image.tmdb.org/t/p/w185/p8h6wof0vfYoNWWhLbuyy8ZCs2j.jpg"
+      },
+      {
+        "name": "Noémie Lvovsky",
+        "img": "https://image.tmdb.org/t/p/w185/rCAE48eQMBRxLGksTdbjTjeiPbP.jpg"
+      },
+      {
+        "name": "Emy Juretzko",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Julien Gaspar-Oliveri",
+        "img": "https://image.tmdb.org/t/p/w185/6rqBEDnlUeB3MEAry58trJChxHs.jpg"
+      },
+      {
+        "name": "Jeanne Herry",
+        "img": "https://image.tmdb.org/t/p/w185/2xmHOlRJ6LuBsO94WHB0pVNs59T.jpg"
+      },
+      {
+        "name": "Aude Pépin",
+        "img": "https://image.tmdb.org/t/p/w185/5ogWCpmF4Qua6uqYxogf8B2vmoq.jpg"
+      },
+      {
+        "name": "Philippe Petit",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Anne Le Ny",
+        "img": "https://image.tmdb.org/t/p/w185/eyvOUlmpllkSTRRT2mmGcUUrKZR.jpg"
+      },
+      {
+        "name": "Émilie Brisavoine",
+        "img": "https://image.tmdb.org/t/p/w185/rzmgsCj436pAF8CUdp1fyKcmtsv.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2570",
+    "t": "Le Gang des Amazones",
+    "id_tmdb": "1266816",
+    "cat": "THRILLER, DRAME, CRIME",
+    "url": "https://vidzy.org/d/n7mvykjvau3w_n",
+    "img": "https://image.tmdb.org/t/p/w500/nV7h24rrVi5Mr7Z8IIJzrb1TdPA.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/4PkClazNHMCnCa03uYjjSoXQfka.jpg",
+    "desc": "Au début des années 90, cinq jeunes femmes, amies d’enfance, ont braqué sept banques dans la région d’Avignon. La presse les a surnommées “Le Gang des Amazones”. Ce film est leur histoire.",
+    "year": "2025",
+    "note": 4,
+    "trailer": "eDMNyjhSjd4",
+    "actors_pics": [
+      {
+        "name": "Lyna Khoudri",
+        "img": "https://image.tmdb.org/t/p/w185/jYnaHKrATeLl4GMlvhTDazkIr5o.jpg"
+      },
+      {
+        "name": "Izïa Higelin",
+        "img": "https://image.tmdb.org/t/p/w185/bHt0lK9qNQLXhwRSYfp8Yt6i0kb.jpg"
+      },
+      {
+        "name": "Laura Felpin",
+        "img": "https://image.tmdb.org/t/p/w185/jSDgeJhj46YmeXTl3J0sYWAI175.jpg"
+      },
+      {
+        "name": "Mallory Wanecque",
+        "img": "https://image.tmdb.org/t/p/w185/mBgZ6YElr912iCMXs7w5UDR5m90.jpg"
+      },
+      {
+        "name": "Kenza Fortas",
+        "img": "https://image.tmdb.org/t/p/w185/ltlIN3uQZmOndJjVSZ4aikgm1Sd.jpg"
+      },
+      {
+        "name": "Moussa Maaskri",
+        "img": "https://image.tmdb.org/t/p/w185/auFuguYamVbf1NWYx0N4rZnKnNG.jpg"
+      },
+      {
+        "name": "Matéo Pastori",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Ashley Romano",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Constantin Vidal",
+        "img": "https://image.tmdb.org/t/p/w185/mxd1ORj6t3etDAA6NYCeISjRpRu.jpg"
+      },
+      {
+        "name": "Hatika Karaoui",
+        "img": "https://image.tmdb.org/t/p/w185/kI2eNodv0HhvGbGrIBPkfW3rSVd.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2569",
+    "t": "Le Corps Disparu",
+    "id_tmdb": "1198877",
+    "cat": "THRILLER, MYSTÈRE",
+    "url": "https://vidzy.org/d/oej46de9hds1_n",
+    "img": "https://image.tmdb.org/t/p/w500/lyt4qZa5dGux8xKIBQvWGKCBcmD.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/mje7UHKBiIOQglqoXIRlU4rFHVl.jpg",
+    "desc": "Un gardien de nuit s’enfuit de la morgue où il travaille et se fait brutalement écraser. L'inspecteur chargé de l’enquête découvre que le corps d'une femme récemment décédée a disparu. Après avoir interrogé son mari, il commence fortement à le soupçonner. Cette affaire semble bien plus complexe qu’il n’y parait.",
+    "year": "2024",
+    "note": 3,
+    "trailer": "4mR6HUitxA0",
+    "actors_pics": [
+      {
+        "name": "Giuseppe Battiston",
+        "img": "https://image.tmdb.org/t/p/w185/22btW2Wybe7CKcI53EcB2uv43sS.jpg"
+      },
+      {
+        "name": "Claudia Gerini",
+        "img": "https://image.tmdb.org/t/p/w185/QFBen9LPrKuSr9awe0Go3gl6sG.jpg"
+      },
+      {
+        "name": "Andrea Di Luigi",
+        "img": "https://image.tmdb.org/t/p/w185/zkgp8unozuTANfZeyR2mSts41vs.jpg"
+      },
+      {
+        "name": "Amanda Campana",
+        "img": "https://image.tmdb.org/t/p/w185/kV6rzf6GiX3vHQPy31LcIBnwRAo.jpg"
+      },
+      {
+        "name": "Andrea Sartoretti",
+        "img": "https://image.tmdb.org/t/p/w185/cmFNNzhkXTHPeraalhTKIt4tdEG.jpg"
+      },
+      {
+        "name": "Rebecca Sisti",
+        "img": "https://image.tmdb.org/t/p/w185/eTMwj6mKGm14W5y5JPdhlk3PANM.jpg"
+      },
+      {
+        "name": "Maria Catia Lamperini",
+        "img": "https://image.tmdb.org/t/p/w185/ndTYdrFtdV1pJvtA19SdXH0sP28.jpg"
+      },
+      {
+        "name": "Anastassia Bianchi",
+        "img": "https://image.tmdb.org/t/p/w185/ocIH4BNvtPwKNW6jLbfL2RIE628.jpg"
+      },
+      {
+        "name": "Martinus Tocchi",
+        "img": "https://image.tmdb.org/t/p/w185/wEtNvAVgsIZD6M2d12A9K4fe0ol.jpg"
+      },
+      {
+        "name": "Anna Terio",
+        "img": "https://image.tmdb.org/t/p/w185/iCOfz6ZA70WFDSGgFkoHvRbogo7.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2568",
+    "t": "Le Testament d’Ann Lee",
+    "id_tmdb": "1401281",
+    "cat": "HISTOIRE, DRAME, MUSIQUE",
+    "url": "https://vidzy.org/d/lag35j4v3l3w_n",
+    "img": "https://image.tmdb.org/t/p/w500/kVa32BHWeXU52ov8obUUTbt7Ltm.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/jZNR5onRZijwyGr5iWbs3J9QcYr.jpg",
+    "desc": "Au XVIIIe siècle, à Manchester, Ann Lee devient la mère spirituelle des Shakers, un mouvement religieux prônant la chasteté et l'égalité entre les sexes, et dont les prières s'expriment par la danse. Persécutée en Angleterre, la jeune femme charismatique part s'établir avec ses disciples dans le Nouveau Monde, quelques années avant la révolution américaine.",
+    "year": "2025",
+    "note": 3,
+    "trailer": "P_285BYOUqI",
+    "actors_pics": [
+      {
+        "name": "Amanda Seyfried",
+        "img": "https://image.tmdb.org/t/p/w185/gtBUIpZ3dvLpOMIVORxE6sHSyZj.jpg"
+      },
+      {
+        "name": "Lewis Pullman",
+        "img": "https://image.tmdb.org/t/p/w185/i2wJQ2eaVuTPaA84jzxNtxs54mO.jpg"
+      },
+      {
+        "name": "Thomasin McKenzie",
+        "img": "https://image.tmdb.org/t/p/w185/WOpnEFG5Q8LWxP81MtUrskmVox.jpg"
+      },
+      {
+        "name": "Matthew Beard",
+        "img": "https://image.tmdb.org/t/p/w185/qbFEcaQLnE0bU8xutnsmYzKrjn0.jpg"
+      },
+      {
+        "name": "Christopher Abbott",
+        "img": "https://image.tmdb.org/t/p/w185/bE7zzh60RXydH3p632ZZSmsTlcn.jpg"
+      },
+      {
+        "name": "Viola Prettejohn",
+        "img": "https://image.tmdb.org/t/p/w185/52Ien8Wm1tc7QIkfOQcXftxNFsF.jpg"
+      },
+      {
+        "name": "David Cale",
+        "img": "https://image.tmdb.org/t/p/w185/4pvw6DCZch873iaN4CKQ3dRhGvM.jpg"
+      },
+      {
+        "name": "Stacy Martin",
+        "img": "https://image.tmdb.org/t/p/w185/wLPh456xduwDkGgPpaf1KGH9EWz.jpg"
+      },
+      {
+        "name": "Scott Handy",
+        "img": "https://image.tmdb.org/t/p/w185/dGyqAGFUpPNOJpwcHRkHUQdHICD.jpg"
+      },
+      {
+        "name": "Jeremy Wheeler",
+        "img": "https://image.tmdb.org/t/p/w185/qysjgXM9zSuaoqT6JGKzbVqCqH.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2567",
+    "t": "Un beau mariage indien",
+    "id_tmdb": "1128614",
+    "cat": "ROMANCE, COMÉDIE",
+    "url": "https://vidzy.org/d/5w26sx1cg73z_n",
+    "img": "https://image.tmdb.org/t/p/w500/xfY2FZlnm5uaQbaWR9IYW41J1xG.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/5c5XkbaUQq02Mqp0mpM2eFF9ifn.jpg",
+    "desc": "Après s'être fiancé à un photographe blanc élevé par des parents indiens, un médecin américain d'origine indienne tente de le présenter à sa famille traditionnelle.",
+    "year": "2025",
+    "note": 4,
+    "actors_pics": [
+      {
+        "name": "Karan Soni",
+        "img": "https://image.tmdb.org/t/p/w185/t3eNrzRKy3wTVCUiEp002UXbjxX.jpg"
+      },
+      {
+        "name": "Jonathan Groff",
+        "img": "https://image.tmdb.org/t/p/w185/3kmnYKAzSc3Lp7iK5pcj97Hx9Cm.jpg"
+      },
+      {
+        "name": "Sunita Mani",
+        "img": "https://image.tmdb.org/t/p/w185/xQo4rkMEphSAt8F9D1OyWv0GBLx.jpg"
+      },
+      {
+        "name": "Zarna Garg",
+        "img": "https://image.tmdb.org/t/p/w185/6iNlWvcQ6Pn9RLBvm2Hc6pL3juU.jpg"
+      },
+      {
+        "name": "Harish Patel",
+        "img": "https://image.tmdb.org/t/p/w185/g2aHA5J5ODMcBgIwCa72ykcmN85.jpg"
+      },
+      {
+        "name": "Peter S. Kim",
+        "img": "https://image.tmdb.org/t/p/w185/4wnFQ5HharyJjanbpjmQqfqWB1k.jpg"
+      },
+      {
+        "name": "Sean Amsing",
+        "img": "https://image.tmdb.org/t/p/w185/iFeuwiZFd4o6Ps47Kxmc99rd28Y.jpg"
+      },
+      {
+        "name": "Sas Goldberg",
+        "img": "https://image.tmdb.org/t/p/w185/vittrEB80rZjQNDYMQzdt1cVLux.jpg"
+      },
+      {
+        "name": "Sachin Sahel",
+        "img": "https://image.tmdb.org/t/p/w185/lieLuEGNqGeyxetkX68sUP4jkpl.jpg"
+      },
+      {
+        "name": "Dhirendra",
+        "img": "https://image.tmdb.org/t/p/w185/7E4lmxilZV8Bv0X8Or5N33rDKx2.jpg"
+      }
+    ]
+  },
+  {
     "num": "2566",
     "t": "‎Seven",
     "id_tmdb": "807",
@@ -40418,7 +40959,7 @@
       },
       {
         "name": "Nino Castelnuovo",
-        "img": "https://image.tmdb.org/t/p/w185/mzrMYNEbME4tksVEAgYEQoIDHAB.jpg"
+        "img": "https://image.tmdb.org/t/p/w185/mLrOoJfAYBrGFTuox3SWLHfB19o.jpg"
       },
       {
         "name": "Franca Marzi",
