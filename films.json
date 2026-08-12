@@ -1,5 +1,474 @@
 [
   {
+    "num": "2586",
+    "t": "‎Coup de patte, coup de cœur",
+    "id_tmdb": "1546343",
+    "cat": "ROMANCE, TÉLÉFILM",
+    "url": "https://vidzy.org/d/7s9ren1j8r11_n",
+    "img": "https://image.tmdb.org/t/p/w500/jP7DxjtJGMP572N76wvC3HLBUXK.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/l7GJ6B2o2rM2MkJukh33wAVYbZm.jpg",
+    "desc": "Lily, organisatrice d'événements, est famille d'accueil pour un chien très espiègle, dont les pitreries sèment le chaos et la mènent à de nouvelles amitiés, et à l'amour aux côtés de Shane, alors qu'elle prépare un grand gala.",
+    "year": "2025",
+    "note": 4,
+    "actors_pics": [
+      {
+        "name": "Arielle Kebbel",
+        "img": "https://image.tmdb.org/t/p/w185/eFN9TTOFk4COQQsDSufChNd7GfP.jpg"
+      },
+      {
+        "name": "Benjamin Hollingsworth",
+        "img": "https://image.tmdb.org/t/p/w185/5dR2AbGdWHUsOu1HkW3x5fsTebw.jpg"
+      },
+      {
+        "name": "David Pinard",
+        "img": "https://image.tmdb.org/t/p/w185/8vn6LZLFvxm1MhsLLMGzKMfvhgR.jpg"
+      },
+      {
+        "name": "Brian Quintero",
+        "img": "https://image.tmdb.org/t/p/w185/nAnfn7NHjpjle2fHvFajzAwqsiL.jpg"
+      },
+      {
+        "name": "Suzanne Cyr",
+        "img": "https://image.tmdb.org/t/p/w185/oH2Eojqtn0tneGmzyqubaigIfgP.jpg"
+      },
+      {
+        "name": "Taylor Bernier",
+        "img": "https://image.tmdb.org/t/p/w185/pqg9nnlVbMAv0lvVphzbIhv8rU7.jpg"
+      },
+      {
+        "name": "Alison Mackay",
+        "img": "https://image.tmdb.org/t/p/w185/2t6zjjyQNkJJDCLuYaGeVFo5THL.jpg"
+      },
+      {
+        "name": "Holly Jade Balmer",
+        "img": "https://image.tmdb.org/t/p/w185/7JDriCBRCo1NdWSHl8skHAD0F2y.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2585",
+    "t": "‎‎Gad Elmaleh : Lui-même",
+    "id_tmdb": "1647134",
+    "cat": "COMÉDIE",
+    "url": "https://vidzy.org/d/n95nrk8if1qp_n",
+    "img": "https://image.tmdb.org/t/p/w500/eyWjavMEW0vJ4RzSuSInQSB3W6V.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/scy13Jd0Rf6LouPb7EQG7AotQ5h.jpg",
+    "desc": "Dans son nouveau spectacle « Lui-même », Gad Elmaleh nous entraîne en immersion dans sa vie de papa cinquantenaire qui n'a plus le temps de s'embarrasser de fioritures. C'est un retour à l'essentiel, à la fois hilarant et émouvant, que nous propose l'artiste pour son 8ᵉ spectacle solo.",
+    "year": "2026",
+    "note": 3,
+    "trailer": "ePW-K_PNnXo",
+    "actors_pics": [
+      {
+        "name": "Gad Elmaleh",
+        "img": "https://image.tmdb.org/t/p/w185/oxWWtXt59WrngUja6INnFlyxtD2.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2584",
+    "t": "Monster Island",
+    "id_tmdb": "1214140",
+    "cat": "HORREUR, FANTASTIQUE, ACTION, THRILLER",
+    "url": "https://vidzy.org/d/xxfwg3ipffon_n",
+    "img": "https://image.tmdb.org/t/p/w500/BCEYcclrfWWLcsTzhweSVFb8tO.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/fxKC10HQliVA3Tn5smOclqzL96N.jpg",
+    "desc": "En 1942, dans le Pacifique, un navire japonais transporte des prisonniers de guerre vers les territoires occupés où ils sont réduits en esclavage. Après avoir été torpillés par des sous-marins alliés, un soldat japonais et un prisonnier de guerre britannique échouent sur une île déserte, mais découvrent rapidement qu’ils ne sont pas seuls. Ils sont poursuivis par une créature mythologique féroce, l’Orang Ikan, un hybride homme-poisson. Incapables de communiquer dans la langue de l’autre, les deux ennemis doivent s’unir pour survivre au monstre.",
+    "year": "2025",
+    "note": 3,
+    "actors_pics": [
+      {
+        "name": "ディーン・フジオカ",
+        "img": "https://image.tmdb.org/t/p/w185/4JnfeZFT5MdHdNJIBYnMxwtOhT2.jpg"
+      },
+      {
+        "name": "Callum Woodhouse",
+        "img": "https://image.tmdb.org/t/p/w185/yEzRDJLHue072070yAB2y6ZrB0h.jpg"
+      },
+      {
+        "name": "Alan Maxson",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Kazushi Kato",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Teruhiko Kameoka",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Yorihiro Nagai",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "川野直輝",
+        "img": "https://image.tmdb.org/t/p/w185/z7P9OyUwzQnYsaTSCON8Nrt9ulx.jpg"
+      },
+      {
+        "name": "James Edgar Langdong",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Kouji Miyoshi",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Kenji S Jahja",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      }
+    ]
+  },
+  {
+    "num": "2583",
+    "t": "Ghost Elephants",
+    "id_tmdb": "1451867",
+    "cat": "DOCUMENTAIRE",
+    "url": "https://vidzy.org/d/0fmeip5sa6c6_n",
+    "img": "https://image.tmdb.org/t/p/w500/jaxGFuZBFe8VLmsWf0cyDwAy78m.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/qEqvcwXH5skWfed1rgZq45FL36G.jpg",
+    "desc": "Sur les hauts plateaux angolais enveloppés de brume, trois maîtres pisteurs KhoiSan se lancent dans une quête spirituelle pour redécouvrir les légendaires « éléphants fantômes » de Lisima, des créatures que l'on croyait perdues à jamais, mais dont on se souvient grâce à la transe, aux rituels et à la mémoire ancestrale.",
+    "year": "2026",
+    "note": 4,
+    "actors_pics": [
+      {
+        "name": "Werner Herzog",
+        "img": "https://image.tmdb.org/t/p/w185/qKlz1oM482Xf0jTPfLiR6qXlLYK.jpg"
+      },
+      {
+        "name": "Steve Boyes",
+        "img": "https://image.tmdb.org/t/p/w185/lD8Y9frwW2pGihlm395W5qvDAT9.jpg"
+      },
+      {
+        "name": "Kerllen Costa",
+        "img": "https://image.tmdb.org/t/p/w185/4CAJprv8jeyQ6Dz4bClr8UzUbxJ.jpg"
+      },
+      {
+        "name": "Qui",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Qui-Dawid",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Kobus",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Gary Trower",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Jordana Meyer",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Regedor Kaketche",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "António Luhoke",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      }
+    ]
+  },
+  {
+    "num": "2582",
+    "t": "Prisoner of War",
+    "id_tmdb": "1328803",
+    "cat": "ACTION, GUERRE, THRILLER, HISTOIRE",
+    "url": "https://vidzy.org/d/v9578hgwu3rn_n",
+    "img": "https://image.tmdb.org/t/p/w500/rAbqDQ5yPkC4C9VBnShcFLNZ8fo.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/dztZteSrSSt5Po1w1PUdsY8P9yw.jpg",
+    "desc": "Philippines, 1942. Envoyé en mission au cœur de la bataille de Bataan, James Wright, pilote britannique, est capturé et envoyé dans un camp de prisonniers japonais. Forcé de combattre chaque jour pour survivre, il découvre que l'armée japonaise prépare la redoutable « marche de la mort ». Face à cette menace, il élabore un plan d'évasion pour prévenir les forces alliées…",
+    "year": "2025",
+    "note": 4,
+    "trailer": "KMqynQuZBBQ",
+    "actors_pics": [
+      {
+        "name": "Scott Adkins",
+        "img": "https://image.tmdb.org/t/p/w185/9NRr2a1riIn5CWn5McZLJlk4vxR.jpg"
+      },
+      {
+        "name": "Peter Shinkoda",
+        "img": "https://image.tmdb.org/t/p/w185/lCQl28poQr4bLwqZjhryGkV73jO.jpg"
+      },
+      {
+        "name": "Michael Copon",
+        "img": "https://image.tmdb.org/t/p/w185/i3k6kmAA3LLlPFEzkOs5hRIfwg6.jpg"
+      },
+      {
+        "name": "Gabbi Garcia",
+        "img": "https://image.tmdb.org/t/p/w185/ymGQhMZaNoCyXY4rNb2vDl4mKNT.jpg"
+      },
+      {
+        "name": "Michael Rene Walton",
+        "img": "https://image.tmdb.org/t/p/w185/t7yY3Cyei6hH5CVI7y2TtG1oJVX.jpg"
+      },
+      {
+        "name": "三元雅芸",
+        "img": "https://image.tmdb.org/t/p/w185/67aJNzhD9bbGJOpoQCubrKbtuQz.jpg"
+      },
+      {
+        "name": "Gary Cairns",
+        "img": "https://image.tmdb.org/t/p/w185/2J26NSBfmtborzz32ZqRpCkmr15.jpg"
+      },
+      {
+        "name": "樫尾篤紀",
+        "img": "https://image.tmdb.org/t/p/w185/3jpGhwtjIb5zhc0JliL20Ki0ETL.jpg"
+      },
+      {
+        "name": "Shane Kosugi",
+        "img": "https://image.tmdb.org/t/p/w185/7uFMbgrr4cJCfYtA3LAHKskycRB.jpg"
+      },
+      {
+        "name": "浅野寛介",
+        "img": "https://image.tmdb.org/t/p/w185/cM68GxdpN7BznXHacPr35crub8w.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2581",
+    "t": "The Good Boy",
+    "id_tmdb": "1381027",
+    "cat": "THRILLER, DRAME, MYSTÈRE",
+    "url": "https://vidzy.org/d/1486ri3bitls_n",
+    "img": "https://image.tmdb.org/t/p/w500/eWb841fMkSNly5gfL9J1N0xzVYI.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/zeCuk7kwfhzRZMN2KoYTYODgpU3.jpg",
+    "desc": "Tommy, jeune délinquant insouciant et impulsif naviguant entre fêtes alcoolisées et violences incontrôlables, se réveille un matin enchaîné dans la cave d’une maison. Il est à la merci de ses occupants, une étrange famille qui s’est donnée pour mission de le remettre dans le droit chemin. Quelqu’en soit le prix.",
+    "year": "2026",
+    "note": 4,
+    "actors_pics": [
+      {
+        "name": "Stephen Graham",
+        "img": "https://image.tmdb.org/t/p/w185/yguEO9zFvuccq87kOJpFLsmUgvs.jpg"
+      },
+      {
+        "name": "Andrea Riseborough",
+        "img": "https://image.tmdb.org/t/p/w185/dQzAXj6R8cTRqTwGzxUgegXbV13.jpg"
+      },
+      {
+        "name": "Anson Boon",
+        "img": "https://image.tmdb.org/t/p/w185/e1Fffuy99j5TSi0Qbyt1N6adlOI.jpg"
+      },
+      {
+        "name": "Kit Rakusen",
+        "img": "https://image.tmdb.org/t/p/w185/lyoMOjwECPXFOBFbM8GuXvfhdJE.jpg"
+      },
+      {
+        "name": "Monika Frajczyk",
+        "img": "https://image.tmdb.org/t/p/w185/ikJJ14ZDoMUHBbhxU67wghpfITU.jpg"
+      },
+      {
+        "name": "Savannah Steyn",
+        "img": "https://image.tmdb.org/t/p/w185/whGdq08tWguKmdJMQOvKzWLBLFK.jpg"
+      },
+      {
+        "name": "Mila Jankowska",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Callum Booth-Ford",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Noah Valentine",
+        "img": "https://image.tmdb.org/t/p/w185/9ekJrxkoVRCFFV2YvwzzcWEG7Zs.jpg"
+      },
+      {
+        "name": "Noah Manzoor",
+        "img": "https://image.tmdb.org/t/p/w185/72X2vD3v3tjAvmtyjjglbTnMuxS.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2580",
+    "t": "Les Braises",
+    "id_tmdb": "1331358",
+    "cat": "DRAME",
+    "url": "https://vidzy.org/d/tdy55vmsv0ju_n",
+    "img": "https://image.tmdb.org/t/p/w500/dioOL6pQ0xsOAga13uEuQm1Fl1u.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/8KnqV8ZAG7LpUXXlPMhUts4Xi9S.jpg",
+    "desc": "Karine et Jimmy forment un couple uni, toujours très amoureux après vingt ans de vie commune et deux enfants. Elle travaille dans une usine ; lui, chauffeur routier, s’acharne à faire grandir sa petite entreprise. Quand surgit le mouvement des Gilets Jaunes, Karine est emportée par la force du collectif, la colère, l’espoir d’un changement. Mais à mesure que son engagement grandit, l’équilibre du couple vacille.",
+    "year": "2025",
+    "note": 3,
+    "trailer": "So34CJde8RQ",
+    "actors_pics": [
+      {
+        "name": "Virginie Efira",
+        "img": "https://image.tmdb.org/t/p/w185/wQmOmgu1TQoF6OeBWjftxwcaFCi.jpg"
+      },
+      {
+        "name": "Arieh Worthalter",
+        "img": "https://image.tmdb.org/t/p/w185/3X5A6dwrFUlGo7SZtnf2Fms4BBe.jpg"
+      },
+      {
+        "name": "Mama Prassinos",
+        "img": "https://image.tmdb.org/t/p/w185/emVyeo6iCuoIwN3G5wP0qdGW9Md.jpg"
+      },
+      {
+        "name": "Justine Lacroix",
+        "img": "https://image.tmdb.org/t/p/w185/wa8EtkRFS3TVhOH8i5oZiyjPzYr.jpg"
+      },
+      {
+        "name": "Loup Pinard",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Katia Crivellari",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      }
+    ]
+  },
+  {
+    "num": "2579",
+    "t": "Bark",
+    "id_tmdb": "1146892",
+    "cat": "THRILLER",
+    "url": "https://vidzy.org/d/ap6ph0mrz7f7_n",
+    "img": "https://image.tmdb.org/t/p/w500/oOfPCEijTMEAwrGkK6Y8IkpKm7r.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/kNcbJs4jJWcrEeAPQRnED3FTNFx.jpg",
+    "desc": "Nolan Bentley, un homme sans histoire, se réveille au milieu d'une forêt isolée, attaché à un arbre. Il n'a aucun souvenir de la façon dont il est arrivé là. Les jours passent et rien ne vient rompre son isolement jusqu'à ce qu'un amateur de plein air le découvre par hasard, mais refuse poliment de l'aider...",
+    "year": "2024",
+    "note": 3,
+    "actors_pics": [
+      {
+        "name": "Michael Weston",
+        "img": "https://image.tmdb.org/t/p/w185/asS6TYplpuAdpuB0Evj65M42bWZ.jpg"
+      },
+      {
+        "name": "A.J. Buckley",
+        "img": "https://image.tmdb.org/t/p/w185/arGsJN4HuiNpFsRsNX81fDX1KJj.jpg"
+      },
+      {
+        "name": "Ricky Watson",
+        "img": "https://image.tmdb.org/t/p/w185/fOdEb91ozND436PP5CwfzXLfg1D.jpg"
+      },
+      {
+        "name": "Lennon Sickels",
+        "img": "https://image.tmdb.org/t/p/w185/v7kORmfIHkG2TP1cyMakxhAHuev.jpg"
+      },
+      {
+        "name": "Joana Vinogradoff",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "crazy horse",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      }
+    ]
+  },
+  {
+    "num": "2578",
+    "t": "Vie privée",
+    "id_tmdb": "1290432",
+    "cat": "MYSTÈRE, CRIME, DRAME",
+    "url": "https://vidzy.org/d/xe4393exs75z_n",
+    "img": "https://image.tmdb.org/t/p/w500/7aYpPqT2AK7zJIWSQ923cUrtVi5.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/3fZ5HvkrjaS34sZERshWm9koXdF.jpg",
+    "desc": "Lilian Steiner est une psychiatre reconnue. Un jour, elle apprend la mort de l’une de ses patientes. Troublée, Lilian se persuade qu’il s’agit d’un assassinat, elle décide alors de mener son enquête...",
+    "year": "2025",
+    "note": 3,
+    "trailer": "AYYmazQVIWg",
+    "actors_pics": [
+      {
+        "name": "Jodie Foster",
+        "img": "https://image.tmdb.org/t/p/w185/5emVgsLFlU6SmeBIFsF2Y7aqwtG.jpg"
+      },
+      {
+        "name": "Daniel Auteuil",
+        "img": "https://image.tmdb.org/t/p/w185/5asrvkdSnlYlHap3ldDNyE5opeI.jpg"
+      },
+      {
+        "name": "Virginie Efira",
+        "img": "https://image.tmdb.org/t/p/w185/wQmOmgu1TQoF6OeBWjftxwcaFCi.jpg"
+      },
+      {
+        "name": "Mathieu Amalric",
+        "img": "https://image.tmdb.org/t/p/w185/fMhfoTbjlXQy2Iojp7oYx49hLQl.jpg"
+      },
+      {
+        "name": "Vincent Lacoste",
+        "img": "https://image.tmdb.org/t/p/w185/dacX50IDdHxfRTjyDeqQUXCVMkp.jpg"
+      },
+      {
+        "name": "Luàna Bajrami",
+        "img": "https://image.tmdb.org/t/p/w185/2fqQuPWmdvcaScBqguN4rcRXcWc.jpg"
+      },
+      {
+        "name": "Noam Morgensztern",
+        "img": "https://image.tmdb.org/t/p/w185/coDyPa5OugCeHkAhsWxV69cPhaZ.jpg"
+      },
+      {
+        "name": "Sophie Guillemin",
+        "img": "https://image.tmdb.org/t/p/w185/vbvNjRqzLTvBdQxVVnfuBNgp0FZ.jpg"
+      },
+      {
+        "name": "Frederick Wiseman",
+        "img": "https://image.tmdb.org/t/p/w185/h0SIW7kP02MUFv8bqIhXZlibUvM.jpg"
+      },
+      {
+        "name": "Aurore Clément",
+        "img": "https://image.tmdb.org/t/p/w185/mS97i9fMcFAu1RqYbFlh3g4JdE4.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2577",
+    "t": "Oxana",
+    "id_tmdb": "1153111",
+    "cat": "HISTOIRE, DRAME",
+    "url": "https://vidzy.org/d/xweh9rmhusd3_n",
+    "img": "https://image.tmdb.org/t/p/w500/2275Go34dzcuDNLqK1XHKJL9otU.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/o8FCHWNsvPA6UjxHi8TgoeLDXJP.jpg",
+    "desc": "Ukraine, 2008. La jeune Oxana et son groupe d’amies multiplient les actions, slogans peints sur le corps et couronnes de fleurs dans les cheveux, contre un gouvernement arbitraire et corrompu. C’est la naissance d'un des mouvements les plus importants du XXIe siècle : FEMEN. Réfugiée politique, artiste, activiste, Oxana franchira les frontières et militera sans relâche pour les droits des femmes et la liberté, jusqu'à risquer sa propre vie.",
+    "year": "2025",
+    "note": 4,
+    "trailer": "spC2qVvaqIk",
+    "actors_pics": [
+      {
+        "name": "Альбіна Корж",
+        "img": "https://image.tmdb.org/t/p/w185/w6yGQhcNE4EANdvxHUsATl25NKC.jpg"
+      },
+      {
+        "name": "Марина Кошкіна",
+        "img": "https://image.tmdb.org/t/p/w185/eLPvR0xFkOOKtVjL7UWD6sFs5dF.jpg"
+      },
+      {
+        "name": "Лада Коровай",
+        "img": "https://image.tmdb.org/t/p/w185/4SOb2lyZwAgduRbT0MeONhLArej.jpg"
+      },
+      {
+        "name": "Оксана Жданова",
+        "img": "https://image.tmdb.org/t/p/w185/ypYNr9w4ktFoh9kLUOXKxUSbId1.jpg"
+      },
+      {
+        "name": "Noée Abita",
+        "img": "https://image.tmdb.org/t/p/w185/3dyRKujOLn1VsCo9ZQ6HOwMj4Ew.jpg"
+      },
+      {
+        "name": "Yoann Zimmer",
+        "img": "https://image.tmdb.org/t/p/w185/bxbqN0LRO8SUdH0uib3qN7GVPdo.jpg"
+      },
+      {
+        "name": "Félix Maritaud",
+        "img": "https://image.tmdb.org/t/p/w185/sZhU2EyLcWSbZd9RSzNhp7aDghI.jpg"
+      },
+      {
+        "name": "Марія Кокшайкіна",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Matthieu Dessertine",
+        "img": "https://image.tmdb.org/t/p/w185/zSaCPX4gcR0E0NMnREn3hMxJycH.jpg"
+      },
+      {
+        "name": "Olesya Ostrovskaya",
+        "img": "https://image.tmdb.org/t/p/w185/vISpP6SiRQgOIyUzTZ96oXaXVUL.jpg"
+      }
+    ]
+  },
+  {
     "num": "2576",
     "t": "‎Colony",
     "id_tmdb": "1375646",
@@ -108,51 +577,55 @@
   {
     "num": "2574",
     "t": "Deux femmes et quelques hommes",
-    "id_tmdb": "1221711",
-    "cat": "COMÉDIE, DRAME",
+    "id_tmdb": "1073588",
+    "cat": "COMÉDIE",
     "url": "https://vidzy.org/d/kaptcyz7yzfy_n",
-    "img": "https://image.tmdb.org/t/p/w500/t4z9IUdnpDGdvK3UfOrzRLS1WrC.jpg",
-    "bg": "https://image.tmdb.org/t/p/original/mFpruC9PWsgxjqGC7kelia2bhUT.jpg",
-    "desc": "Dormir sur la banquise, traverser le Groenland en solitaire, se battre à mains nues avec un ours… Il n’y a plus grand chose qui fasse peur à Coline Morel. À part, peut-être, se confronter à sa propre existence.",
+    "img": "https://image.tmdb.org/t/p/w500/w6wUMmrIb075xzUT5OM7thplKNa.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/lBIMuoJ3KkuHhv2KEJnCFP3Sfmt.jpg",
+    "desc": "Violette et Florence ne comprennent plus ce qui leur arrive. Respectivement, en congé de maternité, et en arrêt de travail, l’une, est à fleur de peau, l’autre ne ressent plus rien. Les voisines sont toutes deux habitées par un sentiment d’échec : malgré la carrière et la famille, elles ne sont pas heureuses. La première infidélité de Florence sera une révélation. Et si le bonheur, c’était de se rebeller contre notre rigide société de performance ? Dans un contexte, où avoir du fun est très loin sur la liste des priorités, coucher avec un livreur est peut-être carrément révolutionnaire. Ce sera pour Violette et Florence la bouffée d’air frais qu’elles espéraient.",
     "year": "2025",
     "note": 3,
-    "trailer": "DjBZmWtsqhY",
+    "trailer": "hZrqfbvOW8Q",
     "actors_pics": [
       {
-        "name": "Blanche Gardin",
-        "img": "https://image.tmdb.org/t/p/w185/bMlrHb3guCpI9YqwiKUoPr8huH1.jpg"
+        "name": "Karine Gonthier-Hyndman",
+        "img": "https://image.tmdb.org/t/p/w185/g7gmpKQH7lIuKzmPvlmsD7rsXYu.jpg"
       },
       {
-        "name": "Philippe Katerine",
-        "img": "https://image.tmdb.org/t/p/w185/vGo21vRILgGPT5Q3TTwzLxANemF.jpg"
+        "name": "Laurence Leboeuf",
+        "img": "https://image.tmdb.org/t/p/w185/tbsbBn7A6tFag0eAJjH0NbnS1MX.jpg"
       },
       {
-        "name": "Bastien Bouillon",
-        "img": "https://image.tmdb.org/t/p/w185/8ksm25v40MS2p2y0EyyNrxdt7it.jpg"
+        "name": "Félix Moati",
+        "img": "https://image.tmdb.org/t/p/w185/yUOjywBDEK3L18JPtUFna4tCR7S.jpg"
       },
       {
-        "name": "Ole Eliassen",
-        "img": "https://image.tmdb.org/t/p/w185null"
+        "name": "Mani Soleymanlou",
+        "img": "https://image.tmdb.org/t/p/w185/smyJHRcsF3tFJQpQkzG2fldcTSl.jpg"
       },
       {
-        "name": "Martin Jensen",
-        "img": "https://image.tmdb.org/t/p/w185null"
+        "name": "Sophie Nélisse",
+        "img": "https://image.tmdb.org/t/p/w185/gRznDS7CEKllld5wqxxUcaE0DWW.jpg"
       },
       {
-        "name": "Laurent Papot",
-        "img": "https://image.tmdb.org/t/p/w185/gyCWb0A7FSd1b7y1qGHy2HCWhsB.jpg"
+        "name": "Juliette Gariépy",
+        "img": "https://image.tmdb.org/t/p/w185/upFgZdi3IBIbsZSkFxknt5KTedi.jpg"
       },
       {
-        "name": "Ferdinand Redouloux",
-        "img": "https://image.tmdb.org/t/p/w185/p3GQGG99kMm6GtQovKXodLWReLX.jpg"
+        "name": "Isabelle Brouillette",
+        "img": "https://image.tmdb.org/t/p/w185/oZWMP0sm7w2lYRrLnR23jAPXu66.jpg"
       },
       {
-        "name": "Clémentine Baert",
-        "img": "https://image.tmdb.org/t/p/w185/8i3OIMM7fKJGByNeYzOKktzF7dp.jpg"
+        "name": "Mateo Laurent Membreño Daigle",
+        "img": "https://image.tmdb.org/t/p/w185/qr1VzWooUZI9DdZBrRNesRZESFF.jpg"
       },
       {
-        "name": "Aymeric Lompret",
-        "img": "https://image.tmdb.org/t/p/w185null"
+        "name": "Maxime Le Flaguais",
+        "img": "https://image.tmdb.org/t/p/w185/vdxPB7watd5jp6DRbaDx5bjAIeZ.jpg"
+      },
+      {
+        "name": "Claude Legault",
+        "img": "https://image.tmdb.org/t/p/w185/fEYWiaHahxekSj7M7uTfdR4qJ9x.jpg"
       }
     ]
   },
