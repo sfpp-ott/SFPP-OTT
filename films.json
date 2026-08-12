@@ -1,5 +1,375 @@
 [
   {
+    "num": "2558",
+    "t": "‎Under Fire",
+    "id_tmdb": "1511556",
+    "cat": "ACTION, COMÉDIE, THRILLER, DRAME",
+    "url": "https://vidzy.org/d/elrhfuy5hh1c_n",
+    "img": "https://image.tmdb.org/t/p/w500/dIQcDDuDPewwELfhmYMnt25AyZ6.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/oAFd9y3myakKyTAwcv0YIpxt08Z.jpg",
+    "desc": "Sous la chaleur écrasante de la frontière mexicaine, deux trafiquants de drogue rivaux, Griff et Abbott, se retrouvent pour une transaction routinière. Mais au moment de l’échange, tous deux dévoilent leurs badges : Griff est un agent infiltré du FBI, Abbott un agent de la DEA, et aucun ne savait qu’ils travaillaient sur la même affaire. Alors piégés par un sniper, ils doivent s’unir pour survivre.",
+    "year": "2025",
+    "note": 3,
+    "actors_pics": [
+      {
+        "name": "Dylan Sprouse",
+        "img": "https://image.tmdb.org/t/p/w185/zy7ueLZtJwiRFdYkDlzjQhbA6SW.jpg"
+      },
+      {
+        "name": "Mason Gooding",
+        "img": "https://image.tmdb.org/t/p/w185/bmlry1xqBzNgv8Chm783ss93Cvg.jpg"
+      },
+      {
+        "name": "Odette Annable",
+        "img": "https://image.tmdb.org/t/p/w185/zbEaTdg8a7USjfH5LxaU2U3W6Zb.jpg"
+      },
+      {
+        "name": "Bayardo De Murguia",
+        "img": "https://image.tmdb.org/t/p/w185/lk9A9gi6l1jqPh6gA52NleRil3q.jpg"
+      },
+      {
+        "name": "Emilio Rivera",
+        "img": "https://image.tmdb.org/t/p/w185/pHgPJSoZVgmt4FQ8zyMVqwovpRb.jpg"
+      },
+      {
+        "name": "Declan Michael Laird",
+        "img": "https://image.tmdb.org/t/p/w185/bCo8DZIeQfbEolIJ4RpUt61GdO2.jpg"
+      },
+      {
+        "name": "Austin North",
+        "img": "https://image.tmdb.org/t/p/w185/AuamGbm12flhZ0K95hhdyhYAbBS.jpg"
+      },
+      {
+        "name": "Lorena Abreu",
+        "img": "https://image.tmdb.org/t/p/w185/dLX84nYdQqvXnGALiiU9gHdwzlg.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2557",
+    "t": "‎‎L'oeil du mal",
+    "id_tmdb": "943221",
+    "cat": "HORREUR",
+    "url": "https://vidzy.org/d/ff0xrqw9lfvc_n",
+    "img": "https://image.tmdb.org/t/p/w500/7ToOejML1WLeywcou73hEn0sVXI.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/xOcwcyLM2lqXCrZG8AIHC8DXElF.jpg",
+    "desc": "Nala, une jeune fille de Mexico, se rend avec sa famille dans la maison de campagne de sa grand-mère. Ses parents espèrent y trouver le remède qui soignera la mystérieuse maladie de sa petite sœur. Mais Nala va bientôt découvrir que sa grand-mère n’est pas exactement la gentille dame qu’elle s’attendait à rencontrer.",
+    "year": "2022",
+    "note": 3,
+    "trailer": "CaH4tjS9DNE",
+    "actors_pics": [
+      {
+        "name": "Ofelia Medina",
+        "img": "https://image.tmdb.org/t/p/w185/8lRQ05k1UAEB8vf8WdxZ9Hh6J0j.jpg"
+      },
+      {
+        "name": "Paola Miguel",
+        "img": "https://image.tmdb.org/t/p/w185/NNOiMXbKU9IUlPtbGKp6kfflTV.jpg"
+      },
+      {
+        "name": "Ivanna Sofia Ferro",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Samantha Castillo",
+        "img": "https://image.tmdb.org/t/p/w185/lEncigxnVPIfkk8tQ3eECY7z8tz.jpg"
+      },
+      {
+        "name": "Arap Bethke",
+        "img": "https://image.tmdb.org/t/p/w185/aPXtmEoWjlb6lKm31KRC21wi0um.jpg"
+      },
+      {
+        "name": "Mauro González",
+        "img": "https://image.tmdb.org/t/p/w185/pO3jKuowxuW19K0sP8Jprl8YMzd.jpg"
+      },
+      {
+        "name": "Mildred Motta",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Paloma Alvamar",
+        "img": "https://image.tmdb.org/t/p/w185/fdVU71B8LibogeKQhIhXk8PcPc.jpg"
+      },
+      {
+        "name": "Pablo Guisa Koestinger",
+        "img": "https://image.tmdb.org/t/p/w185/fe3fy6eVdwG5c6VI5GDw7TXoGfL.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2556",
+    "t": "Shelby Oaks",
+    "id_tmdb": "937941",
+    "cat": "HORREUR, MYSTÈRE",
+    "url": "https://vidzy.org/d/bgs5120ypbk2_n",
+    "img": "https://image.tmdb.org/t/p/w500/xzPcDQRWqwa5HT636De4qOrpQGc.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/jOuu4mEBOuJVb6CkkmRDpjnrZed.jpg",
+    "desc": "The Paranormal Paranoids, un groupe d'enquêteurs spécialisés dans le paranormal, mettent à jour un héritage obscur et les répercussions majeures de leur travail, tandis que Mia part à la recherche de sa soeur Riley, la cheffe des enquêteurs, douze ans après sa disparition. En suivant de nouvelles pistes inquiétantes sur ce qui est arrivé à Riley, Mia découvre des indices révélant une force maléfique surnaturelle, enfouie depuis l'enfance de Riley et la sienne.",
+    "year": "2025",
+    "note": 3,
+    "trailer": "zG6B4OKXjl0",
+    "actors_pics": [
+      {
+        "name": "Camille Sullivan",
+        "img": "https://image.tmdb.org/t/p/w185/yEN22SSD81JR7iUo7ArgOmEEE7B.jpg"
+      },
+      {
+        "name": "Sarah Durn",
+        "img": "https://image.tmdb.org/t/p/w185/w5yNf08VaGwRjyxRtUTkZuKIWwv.jpg"
+      },
+      {
+        "name": "Brendan Sexton III",
+        "img": "https://image.tmdb.org/t/p/w185/kfvO3Mdk5yqzuaN8aIeaFfVl4T5.jpg"
+      },
+      {
+        "name": "Michael Beach",
+        "img": "https://image.tmdb.org/t/p/w185/7gCBCpK2OSzuUWk5iTZds9NjqkF.jpg"
+      },
+      {
+        "name": "Keith David",
+        "img": "https://image.tmdb.org/t/p/w185/1x0QXavmIy3QmhyrOsV7gMnJaEx.jpg"
+      },
+      {
+        "name": "Robin Bartlett",
+        "img": "https://image.tmdb.org/t/p/w185/94OpCjYBbxIoCtJpFWAlFQornKO.jpg"
+      },
+      {
+        "name": "Charlie Talbert",
+        "img": "https://image.tmdb.org/t/p/w185/4OHHVt0BtpfSYcOTbQTejplFEtD.jpg"
+      },
+      {
+        "name": "Emily Bennett",
+        "img": "https://image.tmdb.org/t/p/w185/yIByRjhsfKqeUHQYFeM94oK8Iw.jpg"
+      },
+      {
+        "name": "Derek Mears",
+        "img": "https://image.tmdb.org/t/p/w185/2ckpSGUa4EDKWS1KMP0hLtFUWi.jpg"
+      },
+      {
+        "name": "Mason Heidger",
+        "img": "https://image.tmdb.org/t/p/w185/5lG9P9GLjvRsHba8Y8OzilsGoIV.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2555",
+    "t": "Jean Valjean",
+    "id_tmdb": "1376439",
+    "cat": "DRAME, HISTOIRE",
+    "url": "https://vidzy.org/d/p41mssve1ma0_n",
+    "img": "https://image.tmdb.org/t/p/w500/emZT249SgRN92eNuWgMWqaWqSTX.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/rkxhSUzYWfhRYWK2JCy7yhwIWny.jpg",
+    "desc": "1815. Jean Valjean sort du bagne, brisé, rejeté de tous. Errant sans but, il trouve refuge chez un homme d’Église, sa sœur et leur servante. Face à cette main tendue, Jean Valjean vacille et, dans cette nuit suspendue, devra choisir qui il veut devenir.",
+    "year": "2025",
+    "note": 3,
+    "trailer": "X3SGsH2nFp8",
+    "actors_pics": [
+      {
+        "name": "Grégory Gadebois",
+        "img": "https://image.tmdb.org/t/p/w185/AvF337m0eGL9JLPEgG6Dy1T2Zu4.jpg"
+      },
+      {
+        "name": "Bernard Campan",
+        "img": "https://image.tmdb.org/t/p/w185/cILI8cr9ZLQVdgHSNCktpi7gGO6.jpg"
+      },
+      {
+        "name": "Isabelle Carré",
+        "img": "https://image.tmdb.org/t/p/w185/hC7NLIv6RGvtwb8pjy9DJbbHhJG.jpg"
+      },
+      {
+        "name": "Alexandra Lamy",
+        "img": "https://image.tmdb.org/t/p/w185/m52fdEhVo6sBjEhgyM6bqFwC1HA.jpg"
+      },
+      {
+        "name": "Dominique Pinon",
+        "img": "https://image.tmdb.org/t/p/w185/rIPUhNwGSglgKLgMQWz0JNCqIzf.jpg"
+      },
+      {
+        "name": "Albert Dupontel",
+        "img": "https://image.tmdb.org/t/p/w185/gwZFclFz6IQcKadX3wYhagP0r2I.jpg"
+      },
+      {
+        "name": "Laura Behague",
+        "img": "https://image.tmdb.org/t/p/w185/niOOTWn51QXf7AvpGoQvpaqzE5W.jpg"
+      },
+      {
+        "name": "Romane Libert",
+        "img": "https://image.tmdb.org/t/p/w185/6aYddYrQnFpCw91PTa0ZS0sLSux.jpg"
+      },
+      {
+        "name": "Patrick Pineau",
+        "img": "https://image.tmdb.org/t/p/w185/h1Mht3F3ZmMWku3x0MUeOnWJgLi.jpg"
+      },
+      {
+        "name": "Loup Cousteil",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      }
+    ]
+  },
+  {
+    "num": "2554",
+    "t": "The Choral",
+    "id_tmdb": "1262815",
+    "cat": "COMÉDIE, DRAME, MUSIQUE",
+    "url": "https://vidzy.org/d/2q2lxo235xvo_n",
+    "img": "https://image.tmdb.org/t/p/w500/3nzTWhdOrB2TjuxOTPam8CL0nni.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/4zyeIE8ceP95gehaPsgqamEYRuy.jpg",
+    "desc": "1916. La chorale de Ramsden, dans le Yorkshire, peine à remplacer ses chanteurs partis au combat, alors que la guerre fait rage sur le front de l'Ouest. Les ambitieux dirigeants de la chorale doivent recruter de jeunes hommes de la région et engager un nouveau chef de chœur. Malgré leurs soupçons sur son patriotisme, leur choix se porte le Dr Henry Guthrie (Ralph Fiennes), un homme motivé, intransigeant et fraîchement revenu d'Allemagne. Alors que les papiers de conscription commencent à arriver, toute la communauté découvre que la meilleure réponse au chaos qui ravage leurs vies est de faire de la musique ensemble.",
+    "year": "2025",
+    "note": 3,
+    "trailer": "dqAEm4x9fJE",
+    "actors_pics": [
+      {
+        "name": "Ralph Fiennes",
+        "img": "https://image.tmdb.org/t/p/w185/tJr9GcmGNHhLVVEH3i7QYbj6hBi.jpg"
+      },
+      {
+        "name": "Roger Allam",
+        "img": "https://image.tmdb.org/t/p/w185/hrtVjATnltwatFCOjhtCZTnN2hW.jpg"
+      },
+      {
+        "name": "Mark Addy",
+        "img": "https://image.tmdb.org/t/p/w185/4ao6jitEAxmQDlJheEOKT8lhJI8.jpg"
+      },
+      {
+        "name": "Alun Armstrong",
+        "img": "https://image.tmdb.org/t/p/w185/zSIzT6iM53ZdXbC2bEZCzNgW1h6.jpg"
+      },
+      {
+        "name": "Simon Russell Beale",
+        "img": "https://image.tmdb.org/t/p/w185/uw0ngaqgT8qXwJqVr353cx1mEdB.jpg"
+      },
+      {
+        "name": "Robert Emms",
+        "img": "https://image.tmdb.org/t/p/w185/yqXBUz5WMcuicfyp6GlKSLBdBJH.jpg"
+      },
+      {
+        "name": "Lyndsey Marshal",
+        "img": "https://image.tmdb.org/t/p/w185/rhgtb80RXEIwL2LFw9L1nMxoRxd.jpg"
+      },
+      {
+        "name": "Ron Cook",
+        "img": "https://image.tmdb.org/t/p/w185/gRHsTI9gwajULovSd2TVHROEEMj.jpg"
+      },
+      {
+        "name": "Amara Okereke",
+        "img": "https://image.tmdb.org/t/p/w185/nTSPtzWu6deZTJtWXHUpACVznY4.jpg"
+      },
+      {
+        "name": "Emily Fairn",
+        "img": "https://image.tmdb.org/t/p/w185/1weuKrWNPmZaT0ntdqeRiF9E4W3.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2553",
+    "t": "Plan à Trois",
+    "id_tmdb": "993708",
+    "cat": "COMÉDIE, ROMANCE, DRAME",
+    "url": "https://vidzy.org/d/een9yvazlnwb_n",
+    "img": "https://image.tmdb.org/t/p/w500/5q7IlyWZ4iwFji2zTMEtWaDUbkv.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/vXYRqIySwaa56quJGRKxXfSaTh0.jpg",
+    "desc": "Une nuit d'impulsivité mène à un plan à trois entre Olivia, Connor  et Jenny, laissant les deux jeunes femmes confrontées à des conséquences inattendues et plongeant les trois protagonistes dans le chaos brut et magnifiquement désordonné de l'âge adulte.",
+    "year": "2025",
+    "note": 3,
+    "actors_pics": [
+      {
+        "name": "Zoey Deutch",
+        "img": "https://image.tmdb.org/t/p/w185/csmSAm3vpJj9lB5vb5fTbRqOw9C.jpg"
+      },
+      {
+        "name": "Jonah Hauer-King",
+        "img": "https://image.tmdb.org/t/p/w185/yXGsk9UtOV9tprU5ZSuhwdFtaBB.jpg"
+      },
+      {
+        "name": "Ruby Cruz",
+        "img": "https://image.tmdb.org/t/p/w185/w8gUTSzEqbwM2LmduXIbY82mKDU.jpg"
+      },
+      {
+        "name": "Jaboukie Young-White",
+        "img": "https://image.tmdb.org/t/p/w185/8OYI8OqsMUpBZica4lM2odjgVH6.jpg"
+      },
+      {
+        "name": "Josh Segarra",
+        "img": "https://image.tmdb.org/t/p/w185/vXhukEBgpI8jmCUCSGcpJCNzXHV.jpg"
+      },
+      {
+        "name": "Robert Longstreet",
+        "img": "https://image.tmdb.org/t/p/w185/j9e2HBqicMM59lErK8pL94Jh59v.jpg"
+      },
+      {
+        "name": "Arden Myrin",
+        "img": "https://image.tmdb.org/t/p/w185/zJ0CqYNRWIcfZedYjYj1oRiBUov.jpg"
+      },
+      {
+        "name": "Kristin Slaysman",
+        "img": "https://image.tmdb.org/t/p/w185/oLxqVMQnRy354oTYUodPcRUZXHa.jpg"
+      },
+      {
+        "name": "Allan McLeod",
+        "img": "https://image.tmdb.org/t/p/w185/dGjDARKYBYlRIBSL6VvV2Jnu9gl.jpg"
+      },
+      {
+        "name": "Julia Sweeney",
+        "img": "https://image.tmdb.org/t/p/w185/lE4Ugwp0Cq1it6OfzP0no6ItQs7.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2552",
+    "t": "Bluey le Spectacle : tous sur scène",
+    "id_tmdb": "1453792",
+    "cat": "FAMILIAL",
+    "url": "https://vidzy.org/d/c10s8uvkilzu_n",
+    "img": "https://image.tmdb.org/t/p/w500/mAlnhL9XByEbQCpmOK9FgnxpmUg.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/e4jvAyz4xQoI5kyU4bYiLagBqce.jpg",
+    "desc": "Quand papa a envie de faire une petite pause, Bluey et Bingo ont d'autres plans ! Viens les rejoindre alors qu'ils sortent le grand jeu pour faire lever papa de son pouf.",
+    "year": "2025",
+    "note": 4,
+    "actors_pics": [
+      {
+        "name": "Dave McCormack",
+        "img": "https://image.tmdb.org/t/p/w185/tF2Xy0bqOf1C2CQjEX8TL9yuKSA.jpg"
+      },
+      {
+        "name": "Melanie Zanetti",
+        "img": "https://image.tmdb.org/t/p/w185/lbUQ7ilvBtWMU23reKsHg3jRmsf.jpg"
+      },
+      {
+        "name": "Brad Elliott",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Jessa Koncic",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Stephanie Stephens",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Rachel Burke",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Jess Minas",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Charlie Ball",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Jet Min",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Kidaan Zelleke",
+        "img": "https://image.tmdb.org/t/p/w185/2Cq3FL2yZ2atvR0zod7cGekteAL.jpg"
+      }
+    ]
+  },
+  {
     "num": "2551",
     "t": "‎Ilyes Djadel : Vrai",
     "id_tmdb": "1631363",
@@ -1946,7 +2316,7 @@
     "bg": "https://image.tmdb.org/t/p/original/dUbP1HNdI0aCq1zgRJw28PWSqmk.jpg",
     "desc": "",
     "year": "2026",
-    "note": 3,
+    "note": 4,
     "actors_pics": [
       {
         "name": "Johnny Knoxville",
