@@ -1,5 +1,426 @@
 [
   {
+    "num": "2566",
+    "t": "‎Seven",
+    "id_tmdb": "807",
+    "cat": "CRIME, MYSTÈRE, THRILLER",
+    "url": "https://vidzy.cc/d/j9jvnztumgj5_n",
+    "img": "https://image.tmdb.org/t/p/w500/to6jUaLJonMuKW2YovtWfQKtLYP.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/i5H7zusQGsysGQ8i6P361Vnr0n2.jpg",
+    "desc": "À New York, un criminel anonyme a décidé de commettre 7 meurtres basés sur les 7 pêchés capitaux énoncés dans la Bible : gourmandise, avarice, paresse, orgueil, luxure, envie et colère. Vieux flic blasé à 7 jours de la retraite, l'inspecteur Somerset mène l'enquête tout en formant son remplaçant, l'ambitieux inspecteur David Mills…",
+    "year": "1995",
+    "note": 4,
+    "trailer": "X4SAjaHFeDw",
+    "actors_pics": [
+      {
+        "name": "Morgan Freeman",
+        "img": "https://image.tmdb.org/t/p/w185/905k0RFzH0Kd6gx8oSxRdnr6FL.jpg"
+      },
+      {
+        "name": "Brad Pitt",
+        "img": "https://image.tmdb.org/t/p/w185/ajNaPmXVVMJFg9GWmu6MJzTaXdV.jpg"
+      },
+      {
+        "name": "Gwyneth Paltrow",
+        "img": "https://image.tmdb.org/t/p/w185/x040uB0CDrHjVAUSONw8bbWMvDC.jpg"
+      },
+      {
+        "name": "John Cassini",
+        "img": "https://image.tmdb.org/t/p/w185/kn2Rtn0I8ivCR7ydZTY74XUBh1K.jpg"
+      },
+      {
+        "name": "Peter Crombie",
+        "img": "https://image.tmdb.org/t/p/w185/pMvhE1wwQo3eTSp4vwq8Hb22CwN.jpg"
+      },
+      {
+        "name": "Reg E. Cathey",
+        "img": "https://image.tmdb.org/t/p/w185/cgyJJQUdbK4S7ihkL9hgIIwutk3.jpg"
+      },
+      {
+        "name": "R. Lee Ermey",
+        "img": "https://image.tmdb.org/t/p/w185/aXFJlEGHlQT7bwxkKwq6Sx7PeEp.jpg"
+      },
+      {
+        "name": "Daniel Zacapa",
+        "img": "https://image.tmdb.org/t/p/w185/85Ve9cyC2RG3cY20HHv1JrtMqdC.jpg"
+      },
+      {
+        "name": "Andrew Kevin Walker",
+        "img": "https://image.tmdb.org/t/p/w185/t7O6bNRscxOYadGNB1EWvBaSC0d.jpg"
+      },
+      {
+        "name": "George Christy",
+        "img": "https://image.tmdb.org/t/p/w185/8kmZnMFtItkqASxsRtsSBZbbBBl.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2565",
+    "t": "‎‎Pulp Fiction",
+    "id_tmdb": "680",
+    "cat": "THRILLER, CRIME, COMÉDIE",
+    "url": "https://vidzy.org/d/6ym39qyfdcvy_n",
+    "img": "https://image.tmdb.org/t/p/w500/4TBdF7nFw2aKNM0gPOlDNq3v3se.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/suaEOtk1N1sgg2MTM7oZd2cfVp3.jpg",
+    "desc": "L’odyssée sanglante et burlesque de petits malfrats dans la jungle d’Hollywood : Deux petits tueurs, un dangereux gangster marié à une camée, un boxeur roublard, des prêteurs sur gages sadiques, un caïd élégant et dévoué, un dealer bon mari et deux tourtereaux à la gâchette facile.",
+    "year": "1994",
+    "note": 4,
+    "trailer": "_H9ZgYyqZRc",
+    "actors_pics": [
+      {
+        "name": "John Travolta",
+        "img": "https://image.tmdb.org/t/p/w185/ap8eEYfBKTLixmVVpRlq4NslDD5.jpg"
+      },
+      {
+        "name": "Samuel L. Jackson",
+        "img": "https://image.tmdb.org/t/p/w185/qdfRtvPCj51C9Uy5VEgjgj69JyV.jpg"
+      },
+      {
+        "name": "Uma Thurman",
+        "img": "https://image.tmdb.org/t/p/w185/hlYG0MC6im0MHNq1xixxVilfwyR.jpg"
+      },
+      {
+        "name": "Bruce Willis",
+        "img": "https://image.tmdb.org/t/p/w185/w3aXr1e7gQCn8MSp1vW4sXHn99P.jpg"
+      },
+      {
+        "name": "Ving Rhames",
+        "img": "https://image.tmdb.org/t/p/w185/tOVDvu1EQP78AwaUw6uh1wN818E.jpg"
+      },
+      {
+        "name": "Harvey Keitel",
+        "img": "https://image.tmdb.org/t/p/w185/7P30hza1neYWW3r7rSQOC736K2Z.jpg"
+      },
+      {
+        "name": "Eric Stoltz",
+        "img": "https://image.tmdb.org/t/p/w185/idFuM00MeVmwGAiqvDaJcBiLAmD.jpg"
+      },
+      {
+        "name": "Tim Roth",
+        "img": "https://image.tmdb.org/t/p/w185/qSizF2i9gz6c6DbAC5RoIq8sVqX.jpg"
+      },
+      {
+        "name": "Amanda Plummer",
+        "img": "https://image.tmdb.org/t/p/w185/wEwyajjePFVVn2wFdH1NH7z9Qn5.jpg"
+      },
+      {
+        "name": "Maria de Medeiros",
+        "img": "https://image.tmdb.org/t/p/w185/v53G55qSYaVRvbgUZ2uch4gVHT6.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2564",
+    "t": "Nando Entre Dois Mundos: Um Filme Sintonia",
+    "id_tmdb": "1487864",
+    "cat": "CRIME, DRAME",
+    "url": "https://vidzy.org/d/t1xqekxc0tvn_n",
+    "img": "https://image.tmdb.org/t/p/w500/nKQKWvHCZEeQEoCQaahJLnXCTAJ.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/jQEBI1EQWspRVPCYzhoRi30fadD.jpg",
+    "desc": "Tiraillé entre vie de famille et obligations vis-à-vis de la pègre, Nando a bien du mal à choisir son camp.",
+    "year": "2026",
+    "note": 0,
+    "actors_pics": [
+      {
+        "name": "Christian Malheiros",
+        "img": "https://image.tmdb.org/t/p/w185/xbeqS1H5z7GLKLnXQ6rwp2NOw2o.jpg"
+      },
+      {
+        "name": "Jottapê",
+        "img": "https://image.tmdb.org/t/p/w185/fFk7RuOqWPWUaltiDH8dBR3LcR.jpg"
+      },
+      {
+        "name": "Bruna Mascarenhas",
+        "img": "https://image.tmdb.org/t/p/w185/3b5je1h0otETtktRLrLYASvMYby.jpg"
+      },
+      {
+        "name": "Julia Yamaguchi",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Duda Pimenta",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Victor Galisteu",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Matheus Santos",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      }
+    ]
+  },
+  {
+    "num": "2563",
+    "t": "Kika",
+    "id_tmdb": "1313226",
+    "cat": "DRAME, COMÉDIE",
+    "url": "https://vidzy.org/d/85cqfitkig90_n",
+    "img": "https://image.tmdb.org/t/p/w500/7AaB3EPZ4Oe9cWkVIz3GsEsiKEI.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/6q3gGVYj36im8OswF80CdsFH6BC.jpg",
+    "desc": "Alors qu’elle est enceinte, Kika perd brutalement l’homme qu’elle aime. Complètement fauchée, elle en vient à vendre ses petites culottes, avant de tenter sa chance dans un métier… déconcertant. Investie dans cette activité dont elle ignore à peu près tout, Kika entame sa remontée vers la lumière.",
+    "year": "2025",
+    "note": 3,
+    "trailer": "gvzVUI94Ato",
+    "actors_pics": [
+      {
+        "name": "Manon Clavel",
+        "img": "https://image.tmdb.org/t/p/w185/nmYvluoCuLh5BpPlx6b6zrButTe.jpg"
+      },
+      {
+        "name": "Makita Samba",
+        "img": "https://image.tmdb.org/t/p/w185/zR4VlUjgNPSzLkizpggNbLuw6EE.jpg"
+      },
+      {
+        "name": "Ethelle Gonzalez Lardued",
+        "img": "https://image.tmdb.org/t/p/w185/fLo7mFg2RUHhnBhJat6kb6vC5Ox.jpg"
+      },
+      {
+        "name": "Suzanne Elbaz",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Thomas Coumans",
+        "img": "https://image.tmdb.org/t/p/w185/4vYQIN9qgr5mhJKC6NKVnhricw9.jpg"
+      },
+      {
+        "name": "Anaël Snoek",
+        "img": "https://image.tmdb.org/t/p/w185/3K2mw7ODkLIgnrrxEOuRoSq6xY8.jpg"
+      },
+      {
+        "name": "Kadija Leclère",
+        "img": "https://image.tmdb.org/t/p/w185/vnPLKENDu5n6yOq1uHCETP0mc5z.jpg"
+      },
+      {
+        "name": "Bernard Blancan",
+        "img": "https://image.tmdb.org/t/p/w185/6VYHegXZT689i8b5nyWwc3e7tNs.jpg"
+      },
+      {
+        "name": "Caroline Faust",
+        "img": "https://image.tmdb.org/t/p/w185/13MkQl4re6IwBFNOppka5SihO9O.jpg"
+      },
+      {
+        "name": "Véronique Dumont",
+        "img": "https://image.tmdb.org/t/p/w185/mMuN8IF6KwoVRFcbqZO8vt3i1fN.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2562",
+    "t": "Afterburn",
+    "id_tmdb": "507244",
+    "cat": "ACTION, SCIENCE-FICTION, COMÉDIE",
+    "url": "https://vidzy.org/d/lz3bcc50g4mw_n",
+    "img": "https://image.tmdb.org/t/p/w500/fSXZFZVfJmC2v0TkW711QD5o76N.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/kHOfxq7cMTXyLbj0UmdoGhT540O.jpg",
+    "desc": "Des années après qu'une éruption solaire a détruit notre civilisation, un chasseur de trésors est envoyé en Europe pour récupérer la Joconde. Mais une fois sur place, cerné par des seigneurs de guerre prêts à tout pour s'en emparer, il comprend qu'il s'agit cette fois de bien plus qu'un simple tableau...",
+    "year": "2025",
+    "note": 3,
+    "trailer": "rTrPV84SBGo",
+    "actors_pics": [
+      {
+        "name": "Dave Bautista",
+        "img": "https://image.tmdb.org/t/p/w185/snk6JiXOOoRjPtHU5VMoy6qbd32.jpg"
+      },
+      {
+        "name": "Olga Kurylenko",
+        "img": "https://image.tmdb.org/t/p/w185/ei6eYUhQFw2AaV6U5fyPptBaPF0.jpg"
+      },
+      {
+        "name": "Kristofer Hivju",
+        "img": "https://image.tmdb.org/t/p/w185/bACL39GihNmBnFRay78rS3PUHsH.jpg"
+      },
+      {
+        "name": "Samuel L. Jackson",
+        "img": "https://image.tmdb.org/t/p/w185/qdfRtvPCj51C9Uy5VEgjgj69JyV.jpg"
+      },
+      {
+        "name": "Daniel Bernhardt",
+        "img": "https://image.tmdb.org/t/p/w185/3BLz32inDr1jznU6pKQmh20zfhK.jpg"
+      },
+      {
+        "name": "Simon Merrells",
+        "img": "https://image.tmdb.org/t/p/w185/87IYseF7F2RRUWYGkoXfsCiv0Cn.jpg"
+      },
+      {
+        "name": "Kevin Eldon",
+        "img": "https://image.tmdb.org/t/p/w185/1S3ft0f71Hho9QlHUnuyJVHrfKH.jpg"
+      },
+      {
+        "name": "Eden Epstein",
+        "img": "https://image.tmdb.org/t/p/w185/6ZYbrwHUR3VyGeWx7obPKDASGCJ.jpg"
+      },
+      {
+        "name": "George Somner",
+        "img": "https://image.tmdb.org/t/p/w185/9FocanO4wogWLjxxNiLk3dP84Aa.jpg"
+      },
+      {
+        "name": "Sergio Freijo",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      }
+    ]
+  },
+  {
+    "num": "2561",
+    "t": "Teresa",
+    "id_tmdb": "1292123",
+    "cat": "HISTOIRE, DRAME",
+    "url": "https://vidzy.org/d/yeum24ud0asu_n",
+    "img": "https://image.tmdb.org/t/p/w500/86fOYyj4Iq7XuasdOJXmhw1yMnq.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/sNGMFyGnr11CyZ81Fa1q7PRyA5q.jpg",
+    "desc": "Calcutta, 1948. Teresa s’apprête à quitter le couvent pour fonder l’ordre des Missionnaires de la Charité. En sept jours décisifs, entre foi, compassion et doute, elle forge la décision qui marquera à jamais son destin - et celui de milliers de vies.",
+    "year": "2025",
+    "note": 3,
+    "actors_pics": [
+      {
+        "name": "Noomi Rapace",
+        "img": "https://image.tmdb.org/t/p/w185/zkg9wfbXZi9OqvwW2ku38zNC1Hk.jpg"
+      },
+      {
+        "name": "Nikola Ristanovski",
+        "img": "https://image.tmdb.org/t/p/w185/gbOsUqdjz7PK4ro3BwCG5UMPAda.jpg"
+      },
+      {
+        "name": "Sylvia Hoeks",
+        "img": "https://image.tmdb.org/t/p/w185/wKC9LgqgJRCXuzs1kUKaK7Uicv.jpg"
+      },
+      {
+        "name": "Ekin Corapci",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Marijke Pinoy",
+        "img": "https://image.tmdb.org/t/p/w185/1dJqftg6GIYtN8SukbIx5WM2ZKQ.jpg"
+      },
+      {
+        "name": "Labina Mitevska",
+        "img": "https://image.tmdb.org/t/p/w185/wwZMlB4l0U2aeoE9zZendcCn3m6.jpg"
+      },
+      {
+        "name": "Vala Norén",
+        "img": "https://image.tmdb.org/t/p/w185/qUDpebu3MvYMtVCkS530r1k8RXA.jpg"
+      },
+      {
+        "name": "Akshay Kapoor",
+        "img": "https://image.tmdb.org/t/p/w185/nmwpij9YpZzJWA9GikIYTTo6z0I.jpg"
+      },
+      {
+        "name": "Amrita Chattopadhyay",
+        "img": "https://image.tmdb.org/t/p/w185/xype61UjGQFVIdgTc390Uj5YBoH.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2560",
+    "t": "The Bayou",
+    "id_tmdb": "1407861",
+    "cat": "THRILLER, HORREUR, ACTION",
+    "url": "https://vidzy.org/d/h1vkdqxgu5on_n",
+    "img": "https://image.tmdb.org/t/p/w500/3854lGVpwgLZqXVZdQKNkhqSC1H.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/y12HU18e5FHNeqkSZdvMBEOY6BU.jpg",
+    "desc": "Les vacances tournent au désastre lorsque Kyle, diplômé de Houston, et ses amis survivent à un accident d'avion dans les marais désolés de Louisiane, avant de découvrir que quelque chose de bien plus dangereux se cache dans les bas-fonds.",
+    "year": "2025",
+    "note": 3,
+    "actors_pics": [
+      {
+        "name": "Athena Strates",
+        "img": "https://image.tmdb.org/t/p/w185/yH11mKIFYWhKwBHArfPkrrJobte.jpg"
+      },
+      {
+        "name": "Madalena Aragão",
+        "img": "https://image.tmdb.org/t/p/w185/5vtrMX0OB9an6MN0NlvUkEvbjHm.jpg"
+      },
+      {
+        "name": "Elisha Applebaum",
+        "img": "https://image.tmdb.org/t/p/w185/62OOS8AHSXfxJ5nxmLVrMdJtq2i.jpg"
+      },
+      {
+        "name": "Mohammed Mansaray",
+        "img": "https://image.tmdb.org/t/p/w185/augb6iAM9wvkHPfhF9O9zNDChUX.jpg"
+      },
+      {
+        "name": "Tayla Kovacevic-Ebong",
+        "img": "https://image.tmdb.org/t/p/w185/e1Ww6Fvhu1sFkKL1qK35vWk7bUT.jpg"
+      },
+      {
+        "name": "Andonis Anthony",
+        "img": "https://image.tmdb.org/t/p/w185/sRVyrNZEMGLkPvXQYysDZjqKdwA.jpg"
+      },
+      {
+        "name": "Sarah Priddy",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Isabelle Bonfrer",
+        "img": "https://image.tmdb.org/t/p/w185/zuWMZedKqou0wxOhsRA2av7Q5wo.jpg"
+      },
+      {
+        "name": "Flynn Barnard",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "David Newman",
+        "img": "https://image.tmdb.org/t/p/w185/9Y8ySCUX4bvBdG99JWqSpYxFTkQ.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2559",
+    "t": "La Bonne Étoile",
+    "id_tmdb": "1255778",
+    "cat": "COMÉDIE, DRAME",
+    "url": "https://vidzy.org/d/1jot66bbafon_n",
+    "img": "https://image.tmdb.org/t/p/w500/cnl5uatyJqD5KyzHItKAEl8FFoM.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/JnmoGn6tIrFYdc0PHbsCei9nbb.jpg",
+    "desc": "France 1940, Jean Chevalin et sa famille vivent dans la misère après que ce dernier ait jugé bon de… déserter ! La situation n’est plus tenable. Convaincu que « certains » s’en sortent mieux, Chevalin a une brillante idée : se faire passer pour juifs afin de bénéficier de l’aide des passeurs pour accéder à la zone libre. De malentendus en révélations, il va entrainer sa famille dans ce grand périple qui déconstruira ses préjugés un à un…",
+    "year": "2025",
+    "note": 3,
+    "trailer": "D5Fnm3OwcEg",
+    "actors_pics": [
+      {
+        "name": "Benoît Poelvoorde",
+        "img": "https://image.tmdb.org/t/p/w185/eLCyWcuItrgp8KwdLimJkDCp3qi.jpg"
+      },
+      {
+        "name": "Audrey Lamy",
+        "img": "https://image.tmdb.org/t/p/w185/zRyuaPykapMI71yH6cPunGY5Ywz.jpg"
+      },
+      {
+        "name": "Hugo Becker",
+        "img": "https://image.tmdb.org/t/p/w185/o7XNhf8m08RvYrjTJ46H0cRVW8K.jpg"
+      },
+      {
+        "name": "Pascal Elbé",
+        "img": "https://image.tmdb.org/t/p/w185/hLjPLuVHhMC10LcOTcxvB5vtfRh.jpg"
+      },
+      {
+        "name": "Zabou Breitman",
+        "img": "https://image.tmdb.org/t/p/w185/5BYrIiIiq6kDl6tt0oHufJXLFcU.jpg"
+      },
+      {
+        "name": "Louis Lagorce Douce-Doussière",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "David Talbot",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Patrick Mille",
+        "img": "https://image.tmdb.org/t/p/w185/vxpQlYMyZNmDPD6JQrcnfRPdNI2.jpg"
+      },
+      {
+        "name": "Emmanuelle Schaaff",
+        "img": "https://image.tmdb.org/t/p/w185/tYhKPE3wkbVQLzRIEUY82b9jjcx.jpg"
+      },
+      {
+        "name": "Léa Alborghetti",
+        "img": "https://image.tmdb.org/t/p/w185/wlh4KDjTwWOhzcHwzATI5flaD3K.jpg"
+      }
+    ]
+  },
+  {
     "num": "2558",
     "t": "‎Under Fire",
     "id_tmdb": "1511556",
