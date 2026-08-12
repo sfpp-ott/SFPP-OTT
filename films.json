@@ -230,33 +230,39 @@
     "num": "2601",
     "t": "Papa malgré lui",
     "id_tmdb": "299252",
-    "cat": "DOCUMENTAIRE",
+    "cat": "COMÉDIE",
+    "tmdb_type": "tv",
     "url": "https://vidzy.org/d/63a7vkzeiv3e_n",
-    "img": "https://image.tmdb.org/t/p/w500/ibJqniBW5ccMN2ZIfkvndRRAtsq.jpg",
-    "bg": null,
-    "desc": "",
-    "year": "2014",
+    "img": "https://image.tmdb.org/t/p/w500/o7ni9KP4TvkThNgHSec836D4wSW.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/mrLB8iNFR8Oa3TJTFxrD4OfMq8e.jpg",
+    "desc": "À 43 ans, Alex, journaliste fêtard et insouciant, voit sa vie basculer le jour où il apprend que Manon, sa fille de 17 ans qu’il n’a jamais élevée, est victime de harcèlement scolaire. Bien qu’allergique aux règles et incapable de se plier à l’autorité, il décide de voler au secours de sa fille en s’infiltrant dans son lycée dans la peau d’un prof d’histoire…",
+    "year": "2026",
     "note": 4,
+    "trailer": "yZyBkmBFuhc",
     "actors_pics": [
       {
-        "name": "Rafael Amargo",
+        "name": "Arnaud Ducret",
+        "img": "https://image.tmdb.org/t/p/w185/k4wixf8xKSym0GTcYFRov6PgEj7.jpg"
+      },
+      {
+        "name": "Barbara Cabrita",
+        "img": "https://image.tmdb.org/t/p/w185/dGdVF0w0Z8F5afNB9Vqee4f8QHa.jpg"
+      },
+      {
+        "name": "Maud Baecker",
+        "img": "https://image.tmdb.org/t/p/w185/9Mq2vQY96S9GU5CF2M6edTaUBtp.jpg"
+      },
+      {
+        "name": "Élodie Poux",
+        "img": "https://image.tmdb.org/t/p/w185/7Y4SSCDYyaP4JVYsQiEyyGG7fOb.jpg"
+      },
+      {
+        "name": "Lara Tavella",
         "img": "https://image.tmdb.org/t/p/w185null"
       },
       {
-        "name": "Estrella Morente",
-        "img": "https://image.tmdb.org/t/p/w185/kQhf799WNhqm1wB0F7DJZg0nZAl.jpg"
-      },
-      {
-        "name": "Antonio Carmona",
-        "img": "https://image.tmdb.org/t/p/w185/3gnX2qRKbWZmsWYKvTIm8scjjGx.jpg"
-      },
-      {
-        "name": "Eva Yerbabuena",
-        "img": "https://image.tmdb.org/t/p/w185null"
-      },
-      {
-        "name": "Juan Andrés Maya",
-        "img": "https://image.tmdb.org/t/p/w185null"
+        "name": "Yara Charry",
+        "img": "https://image.tmdb.org/t/p/w185/rlcpHNeNYxrGDefEcMZvpncWtS5.jpg"
       }
     ]
   },
