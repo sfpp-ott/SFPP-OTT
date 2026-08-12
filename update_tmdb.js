@@ -51,7 +51,8 @@ async function processList(inputFile, outputFile, defaultType) {
                 console.log(`NOUVEAU - Recherche TMDB pour : ${item.t || item.id_tmdb}`);
                 try {
                     const isSeries = defaultType === "tv" || (item.cat && item.cat.toUpperCase().includes("SÉRIES"));
-                    const tmdbType = isSeries ? "tv" : "movie";
+                    const tmdbType = item.tmdb_type ? item.tmdb_type : (isSeries ? "tv" : "movie");
+
                     
                     const url = `https://api.themoviedb.org/3/${tmdbType}/${item.id_tmdb}?api_key=${API_KEY}&language=fr-FR&append_to_response=videos,credits`;
                     const data = await fetchJson(url);
