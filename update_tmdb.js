@@ -34,7 +34,7 @@ async function processList(inputFile, outputFile, defaultType) {
     for (let item of items) {
         if (item.id_tmdb) {
             let cached = existingCache[item.id_tmdb];
-            if (item.id_tmdb === 274320) { cached = null; }
+            if (item.id_tmdb === 1631346) { cached = null; }
 
             // 2. Si on a déjà les infos en mémoire, on les copie (MAIS on garde la nouvelle URL !)
             if (cached && cached.img && cached.desc) {
