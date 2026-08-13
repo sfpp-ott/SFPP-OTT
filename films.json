@@ -1,5 +1,550 @@
 [
   {
+    "num": "2616",
+    "t": "‎Influencers",
+    "id_tmdb": "1476740",
+    "cat": "HORREUR, THRILLER",
+    "url": "https://vidzy.org/d/ymis4v5fte54_n",
+    "img": "https://image.tmdb.org/t/p/w500/nRdjGDxBW60OhzjAtikLgQBwt3B.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/tNYExvyQluc5zj6eQdQj8KKsCFB.jpg",
+    "desc": "Dans les paysages pittoresques du sud de la France, la fascination effrayante d’une jeune femme pour le meurtre et le vol d’identité plonge sa vie dans un tourbillon de chaos.",
+    "year": "2025",
+    "note": 3,
+    "actors_pics": [
+      {
+        "name": "Cassandra Naud",
+        "img": "https://image.tmdb.org/t/p/w185/Fw2FlUQGmFC0DGLGEBATXfswHh.jpg"
+      },
+      {
+        "name": "Emily Tennant",
+        "img": "https://image.tmdb.org/t/p/w185/7s4xgP16c3jIwKpWK8JGclo74Az.jpg"
+      },
+      {
+        "name": "Georgina Campbell",
+        "img": "https://image.tmdb.org/t/p/w185/kgXHKjI728Nv7FLVf38S9QzHU2n.jpg"
+      },
+      {
+        "name": "Lisa Delamar",
+        "img": "https://image.tmdb.org/t/p/w185/bHHKsBKT4DT9u9F846v61PNHgcW.jpg"
+      },
+      {
+        "name": "Jonathan Whitesell",
+        "img": "https://image.tmdb.org/t/p/w185/aU1Tsj7PW4DPJf47CCNZLAkDlKP.jpg"
+      },
+      {
+        "name": "Veronica Long",
+        "img": "https://image.tmdb.org/t/p/w185/ytrg4NdduyNDqkwPoewYvWfcvpy.jpg"
+      },
+      {
+        "name": "Dylan Playfair",
+        "img": "https://image.tmdb.org/t/p/w185/iWkup8QYwyEYM4Dvi7x1OHHNR6G.jpg"
+      },
+      {
+        "name": "Osric Chau",
+        "img": "https://image.tmdb.org/t/p/w185/jqbRL2eNTxm4ut72dJGqlGZd6yW.jpg"
+      },
+      {
+        "name": "Liam James Collins",
+        "img": "https://image.tmdb.org/t/p/w185/vwqQkY0O3CwjUQWCovkvFHBIy8Y.jpg"
+      },
+      {
+        "name": "Lewis Raymond Taylor",
+        "img": "https://image.tmdb.org/t/p/w185/5HA8VahYrFZFJh9sgfoVdSHZZvm.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2615",
+    "t": "‎‎Pavane",
+    "id_tmdb": "1268609",
+    "cat": "ROMANCE, DRAME",
+    "url": "https://vidzy.org/d/o9xogjc64xnw_n",
+    "img": "https://image.tmdb.org/t/p/w500/22RlxpIT4u4psfIx9tmtbPvgAbm.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/atWzbjlDkfbkh4mdY3uuiF9vr3r.jpg",
+    "desc": "Trois personnes solitaires qui travaillent dans le même grand magasin trouvent du réconfort en compagnie les unes des autres tout en explorant les liens et la nature de l'amour.",
+    "year": "2026",
+    "note": 4,
+    "actors_pics": [
+      {
+        "name": "Go Ah-seong",
+        "img": "https://image.tmdb.org/t/p/w185/hzGxaqQ2LsBObBSijV9SYCEyhFv.jpg"
+      },
+      {
+        "name": "Moon Sang-min",
+        "img": "https://image.tmdb.org/t/p/w185/5w1vbIgYiKa01RF7OZ4Hot81blO.jpg"
+      },
+      {
+        "name": "Byeon Yo-han",
+        "img": "https://image.tmdb.org/t/p/w185/5kOBQYbgBTAf8nVzgx0ecCsJ1pW.jpg"
+      },
+      {
+        "name": "이이담",
+        "img": "https://image.tmdb.org/t/p/w185/raND8efeLH0TmIgs6ZSzgp42the.jpg"
+      },
+      {
+        "name": "한유은",
+        "img": "https://image.tmdb.org/t/p/w185/4E6f6nt9MY2LhMMFsKpIabEiekA.jpg"
+      },
+      {
+        "name": "서이라",
+        "img": "https://image.tmdb.org/t/p/w185/q4Gyp3XM6solBF35nSTKPHHDQb1.jpg"
+      },
+      {
+        "name": "신정근",
+        "img": "https://image.tmdb.org/t/p/w185/2zuxoRgBPNCQXDGb3wOnGaJCI4y.jpg"
+      },
+      {
+        "name": "Park Hae-joon",
+        "img": "https://image.tmdb.org/t/p/w185/heNKjLHWCQXXfkDB1Hb2nhuhDCf.jpg"
+      },
+      {
+        "name": "Lee Bong-ryun",
+        "img": "https://image.tmdb.org/t/p/w185/AkpzrUGpT0JvRY9Zk6qceKm937l.jpg"
+      },
+      {
+        "name": "이상진",
+        "img": "https://image.tmdb.org/t/p/w185/sTTXFUzQ4DoHDXCooeehpM24PiQ.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2614",
+    "t": "Black Dog",
+    "id_tmdb": "1249423",
+    "cat": "DRAME",
+    "url": "https://vidzy.org/d/4i0ro86fqk55_n",
+    "img": "https://image.tmdb.org/t/p/w500/i7ij703R7BCWSIryfU0wz2IzNrg.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/70OLwlzUhlZ8JNX4SFo5xHbX3d1.jpg",
+    "desc": "Lang revient dans sa ville natale aux portes du désert de Gobi. Alors qu'il travaille pour la patrouille locale chargée de débarrasser la ville des chiens errants, il se lie d’amitié avec l’un d’entre eux. Une rencontre qui va marquer un nouveau départ pour ces deux âmes solitaires.",
+    "year": "2024",
+    "note": 4,
+    "trailer": "44ZlcnGvcF4",
+    "actors_pics": [
+      {
+        "name": "彭于晏",
+        "img": "https://image.tmdb.org/t/p/w185/ro73UewPtqFAO9OifEknW2kXqd7.jpg"
+      },
+      {
+        "name": "佟丽娅",
+        "img": "https://image.tmdb.org/t/p/w185/5sAxE9pC4l5lBWJV8m3YChyibsq.jpg"
+      },
+      {
+        "name": "Jia Zhangke",
+        "img": "https://image.tmdb.org/t/p/w185/cGiELw2j5tczIyUB6qeWPB2BymK.jpg"
+      },
+      {
+        "name": "周游",
+        "img": "https://image.tmdb.org/t/p/w185/rKMgNYEXxQQ0Qp2g40YSATJ4fuv.jpg"
+      },
+      {
+        "name": "胡晓光",
+        "img": "https://image.tmdb.org/t/p/w185/dKhOAVnb6GBmVcMil51PAn7DMVU.jpg"
+      },
+      {
+        "name": "王奕权",
+        "img": "https://image.tmdb.org/t/p/w185/W1y0cRfBhK1iFICJ4Q4Xk6zrI8.jpg"
+      },
+      {
+        "name": "牛犇",
+        "img": "https://image.tmdb.org/t/p/w185/4OotJ4kv3BbLHfdBl5qRHyD25U3.jpg"
+      },
+      {
+        "name": "Yin Yuanzhang",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "张立",
+        "img": "https://image.tmdb.org/t/p/w185/6VVab2pbbqqLTZWfq31KuCoKra2.jpg"
+      },
+      {
+        "name": "Mo Tuhongzhe",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      }
+    ]
+  },
+  {
+    "num": "2613",
+    "t": "Marcel et Monsieur Pagnol",
+    "id_tmdb": "840873",
+    "cat": "ANIMATION, HISTOIRE, DRAME",
+    "url": "https://vidzy.org/d/h3ebpsabvro6_n",
+    "img": "https://image.tmdb.org/t/p/w500/jKYHuENFUXYDAkOQOlN7RRzMowO.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/xPquMr2qgZcpV31dZl5T2Td1nBN.jpg",
+    "desc": "À l’apogée de sa renommée, Marcel Pagnol reçoit la commande d’une rédactrice en chef d’un grand magazine féminin pour l’écriture d’un feuilleton littéraire, dans lequel il pourra raconter son enfance, sa Provence, ses premières amours... En rédigeant les premiers feuillets, l’enfant qu’il a été autrefois, le petit Marcel, lui apparaît soudain. Ainsi, ses souvenirs ressurgissent au fil des mots : l’arrivée du cinéma parlant, la cité du cinéma, son attachement aux acteurs, l'expérience de l’écriture. Le plus grand conteur de tous les temps devient alors le héros de sa propre histoire.",
+    "year": "2025",
+    "note": 4,
+    "trailer": "BjhZdM-9drY",
+    "actors_pics": [
+      {
+        "name": "Laurent Lafitte",
+        "img": "https://image.tmdb.org/t/p/w185/9mTtfK5F9WMoYqvUvqlugnsX6SS.jpg"
+      },
+      {
+        "name": "Géraldine Pailhas",
+        "img": "https://image.tmdb.org/t/p/w185/e1xAdLDPKOO3sfMU2I52vL6pL2I.jpg"
+      },
+      {
+        "name": "Thierry Garcia",
+        "img": "https://image.tmdb.org/t/p/w185/fmSAqMishfHAsVwyX2F6CdklDUX.jpg"
+      },
+      {
+        "name": "Olivia Gotanègre",
+        "img": "https://image.tmdb.org/t/p/w185/6sGKFvanGBFbEb6Cz8jvtzDsAjz.jpg"
+      },
+      {
+        "name": "Sophie Maréchal",
+        "img": "https://image.tmdb.org/t/p/w185/9XDUDkEwYQfrFqy7toekdBiT11Q.jpg"
+      },
+      {
+        "name": "Vincent Fernandel",
+        "img": "https://image.tmdb.org/t/p/w185/iCMh2d8ZQQS9TuRWD4gQlcOmL3e.jpg"
+      },
+      {
+        "name": "Noa Staes",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Martin Meersman",
+        "img": "https://image.tmdb.org/t/p/w185/xwZqbit1uh8MAjdgleJzhGyvjgT.jpg"
+      },
+      {
+        "name": "Lohen Van Houtte",
+        "img": "https://image.tmdb.org/t/p/w185/2g33IieYFYLAwl0jS5EJisVTO5a.jpg"
+      },
+      {
+        "name": "Elodie Barthels",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      }
+    ]
+  },
+  {
+    "num": "2612",
+    "t": "La Petite Dernière",
+    "id_tmdb": "961077",
+    "cat": "DRAME, ROMANCE",
+    "url": "https://vidzy.org/d/0frcwk7n8eun_n",
+    "img": "https://image.tmdb.org/t/p/w500/hiwHR2Ak9qrwfDjhLaB7pn8RuUO.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/vzIKxaav4Q5KBDDfYpphMzRQEOG.jpg",
+    "desc": "Fatima, 17 ans, est la petite dernière. Elle vit en banlieue avec ses sœurs, dans une famille joyeuse et aimante. Bonne élève, elle intègre une fac de philosophie à Paris et découvre un tout nouveau monde. Alors que débute sa vie de jeune femme, elle s’émancipe de sa famille et ses traditions. Fatima se met alors à questionner son identité. Comment concilier sa foi avec ses désirs naissants ?",
+    "year": "2025",
+    "note": 3,
+    "trailer": "oa7Ic7mFtBI",
+    "actors_pics": [
+      {
+        "name": "Nadia Melliti",
+        "img": "https://image.tmdb.org/t/p/w185/cuuwXDvLXWroFlOhfB1Xf2eYamw.jpg"
+      },
+      {
+        "name": "Park Ji-Min",
+        "img": "https://image.tmdb.org/t/p/w185/1gpAlvvsfpjX3TuAjvn35xbpYA1.jpg"
+      },
+      {
+        "name": "Amina Ben Mohamed",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Rita Benmannana",
+        "img": "https://image.tmdb.org/t/p/w185/6verDBJXb8wm1RWPZbz7R6TRtv6.jpg"
+      },
+      {
+        "name": "Melissa Guers",
+        "img": "https://image.tmdb.org/t/p/w185/evoFvzK91mkZvnZh1twlJ3yT6im.jpg"
+      },
+      {
+        "name": "Razzak Ridha",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Louis Memmi",
+        "img": "https://image.tmdb.org/t/p/w185/rXPASrPPQFcIzPkiXwuQrwn0XFD.jpg"
+      },
+      {
+        "name": "Anouar Kardellas",
+        "img": "https://image.tmdb.org/t/p/w185/9hCAZTQxIYJvsD6w8bpDdaZrLrC.jpg"
+      },
+      {
+        "name": "Waniss Chaouki",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Madi Dembele",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      }
+    ]
+  },
+  {
+    "num": "2611",
+    "t": "Is This Thing On?",
+    "id_tmdb": "1140498",
+    "cat": "COMÉDIE, DRAME, ROMANCE",
+    "url": "https://vidzy.org/d/bwkmzob7iboe_n",
+    "img": "https://image.tmdb.org/t/p/w500/7BTJB1HZXzOmBR20D3Vh0TFnu3R.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/argJlxQHbXAzyH8fKnjLfoEyDcd.jpg",
+    "desc": "Le mariage d’Alex et Tess ne tient plus qu’à un fil. Alex doit soudain affronter les doutes de la cinquantaine et la menace d’un divorce imminent. A la recherche d’un nouveau souffle, il se lance dans le milieu du stand-up new-yorkais, tandis que Tess remet en question les sacrifices qu’elle a faits pour leur famille... Ils vont devoir composer avec la coparentalité, questionner leurs propres envies et répondre à une interrogation essentielle : l’amour peut-il prendre une nouvelle forme ?",
+    "year": "2025",
+    "note": 3,
+    "actors_pics": [
+      {
+        "name": "Will Arnett",
+        "img": "https://image.tmdb.org/t/p/w185/cXupYqk2ERP13XBkw816skYdVDO.jpg"
+      },
+      {
+        "name": "Laura Dern",
+        "img": "https://image.tmdb.org/t/p/w185/gB9PnGEvxKg33OSlcqptQwTBwPE.jpg"
+      },
+      {
+        "name": "Andra Day",
+        "img": "https://image.tmdb.org/t/p/w185/bWYnm8nPv8mhZ3MHNcK1dH7sp0R.jpg"
+      },
+      {
+        "name": "Bradley Cooper",
+        "img": "https://image.tmdb.org/t/p/w185/sQq0nft6YZmJ7EMQwPcbaxym3AL.jpg"
+      },
+      {
+        "name": "Christine Ebersole",
+        "img": "https://image.tmdb.org/t/p/w185/bSFrS3JtDwnzbw877Iqwf8tEmF.jpg"
+      },
+      {
+        "name": "Ciarán Hinds",
+        "img": "https://image.tmdb.org/t/p/w185/d8wLIX9VYgwXRGSp1gmUdUxmApv.jpg"
+      },
+      {
+        "name": "Amy Sedaris",
+        "img": "https://image.tmdb.org/t/p/w185/iQClumvSfTHgysxSofFmcLXmkCc.jpg"
+      },
+      {
+        "name": "Sean Hayes",
+        "img": "https://image.tmdb.org/t/p/w185/31TI5l5QvcZHN4fh0NpejZyJtP.jpg"
+      },
+      {
+        "name": "Scott Icenogle",
+        "img": "https://image.tmdb.org/t/p/w185/lInCWHpUxRcX6KlerrKu1Ed79Iy.jpg"
+      },
+      {
+        "name": "Blake Kane",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      }
+    ]
+  },
+  {
+    "num": "2610",
+    "t": "Météors",
+    "id_tmdb": "1262773",
+    "cat": "DRAME",
+    "url": "https://vidzy.org/d/e9xiou0yc6v2_n",
+    "img": "https://image.tmdb.org/t/p/w500/8svmicBAZZdV8GuCzfXDflgYXIv.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/5p6C2Hobsv03evXQbJY8czisQMi.jpg",
+    "desc": "Diagonale du vide. Trois amis inséparables. Tony est devenu le roi du BTP, Mika et Dan les rois de rien du tout. Ils ont beaucoup de rêves et pas beaucoup de chance. Après un nouveau plan raté, Mika et Dan doivent se sauver d'ici, et même se sauver tout court. Ils se retrouvent à bosser pour Tony dans une poubelle nucléaire. Est-ce le début d'une nouvelle vie ou la fin de tout ?",
+    "year": "2025",
+    "note": 3,
+    "trailer": "ku0MGhQgj7g",
+    "actors_pics": [
+      {
+        "name": "Paul Kircher",
+        "img": "https://image.tmdb.org/t/p/w185/13tZrN9FfyNLosr9M4TszzUaGC3.jpg"
+      },
+      {
+        "name": "Idir Azougli",
+        "img": "https://image.tmdb.org/t/p/w185/Ai6dsG4qtbUsXDEXx0Yd0Y7llpb.jpg"
+      },
+      {
+        "name": "Salif Cissé",
+        "img": "https://image.tmdb.org/t/p/w185/h0EzP4ZCdNK6ouMjQBSYDsSLPb7.jpg"
+      },
+      {
+        "name": "Elsa Bouchain",
+        "img": "https://image.tmdb.org/t/p/w185/qHVBl2NhQbhIA94XWA6syMfW5Eu.jpg"
+      },
+      {
+        "name": "Stéphane Rideau",
+        "img": "https://image.tmdb.org/t/p/w185/jlVbjtsLzzhdPdfieUsx4FCcen8.jpg"
+      },
+      {
+        "name": "François Pérache",
+        "img": "https://image.tmdb.org/t/p/w185/z0zxTH0l8yR820ky5TDkpzQLDIy.jpg"
+      },
+      {
+        "name": "Patrick de Valette",
+        "img": "https://image.tmdb.org/t/p/w185/3I5bHXRmjM7EMvnQzzGW15DPF5s.jpg"
+      },
+      {
+        "name": "Alexandra Thomas",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Claire Langmann",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Célie Valdenaire",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      }
+    ]
+  },
+  {
+    "num": "2609",
+    "t": "Bury Me When I'm Dead",
+    "id_tmdb": "1012582",
+    "cat": "HORREUR, MYSTÈRE, THRILLER",
+    "url": "https://vidzy.org/d/abncfg752c02_n",
+    "img": "https://image.tmdb.org/t/p/w500/tYBkLF4FIJDHOw8DC6HWwFNy7ut.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/kNVh4G3rA4fkfFSbsbPIynvnvDl.jpg",
+    "desc": "Henry n'a pas respecté le dernier souhait de sa femme mourante d'être enterrée dans une forêt reculée. Après sa mort, une série d'incidents et de visions troublantes l'entraînent dans une spirale où réalité et rétribution semblent se mêler.",
+    "year": "2025",
+    "note": 3,
+    "actors_pics": [
+      {
+        "name": "Devon Terrell",
+        "img": "https://image.tmdb.org/t/p/w185/kXdDkKxcs2HMBT0lScv4Toigv7.jpg"
+      },
+      {
+        "name": "Charlotte Hope",
+        "img": "https://image.tmdb.org/t/p/w185/ApsyxD8gK7TFYav2LRwE68D3YEE.jpg"
+      },
+      {
+        "name": "Makenzie Leigh",
+        "img": "https://image.tmdb.org/t/p/w185/1lKaB2pEA1fTcljDS7pbf7Lqi3B.jpg"
+      },
+      {
+        "name": "Roxanne Hart",
+        "img": "https://image.tmdb.org/t/p/w185/sNDRhIcW51b7ruS8yt0Xpwa12Mz.jpg"
+      },
+      {
+        "name": "Richard Bekins",
+        "img": "https://image.tmdb.org/t/p/w185/1Pgbx17u57jQe9tuWpfVUP620vc.jpg"
+      },
+      {
+        "name": "Mike Houston",
+        "img": "https://image.tmdb.org/t/p/w185/slFvhF8uFXfnrquxVbcbx3lFSRz.jpg"
+      },
+      {
+        "name": "Elisha Lawson",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Teo Rapp-Olsson",
+        "img": "https://image.tmdb.org/t/p/w185/q9clTLbSdgq7Lmb0KnsGZ6RnIdr.jpg"
+      },
+      {
+        "name": "Franklin Ojeda Smith",
+        "img": "https://image.tmdb.org/t/p/w185/1Lg4ShWpmVDZe1GxM5nJFh7BLhe.jpg"
+      },
+      {
+        "name": "Clint James",
+        "img": "https://image.tmdb.org/t/p/w185/1q6io3YbPGDR29HsFOoMClI6oFo.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2608",
+    "t": "Le Roi des rois",
+    "id_tmdb": "1181107",
+    "cat": "AVENTURE, ANIMATION, FAMILIAL, FANTASTIQUE",
+    "url": "https://vidzy.org/d/wmjefi044qhe_n",
+    "img": "https://image.tmdb.org/t/p/w500/iRXpamm8OFyZ8JhH3KLo8kZ8qoj.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/mr2LvZydvor6CDZhrpJLRYMCcBc.jpg",
+    "desc": "Walter, un garçon turbulent, ne rêve que des exploits du Roi Arthur et de sa fidèle épée Excalibur. Son père, Charles Dickens, décide alors de lui raconter la vie du « Roi des rois » : Jésus-Christ. Grâce aux talents de conteur et à l’imagination débordante du célèbre romancier, Walter, accompagné de son chat Willa, va vivre une aventure palpitante et découvrir l’une des plus belles histoires de l’humanité.",
+    "year": "2025",
+    "note": 4,
+    "trailer": "IrovYEHaq5k",
+    "actors_pics": [
+      {
+        "name": "Oscar Isaac",
+        "img": "https://image.tmdb.org/t/p/w185/dW5U5yrIIPmMjRThR9KT2xH6nTz.jpg"
+      },
+      {
+        "name": "Kenneth Branagh",
+        "img": "https://image.tmdb.org/t/p/w185/AbCqqFxNi5w3nDUFdQt0DGMFh5H.jpg"
+      },
+      {
+        "name": "Uma Thurman",
+        "img": "https://image.tmdb.org/t/p/w185/hlYG0MC6im0MHNq1xixxVilfwyR.jpg"
+      },
+      {
+        "name": "Pierce Brosnan",
+        "img": "https://image.tmdb.org/t/p/w185/dzXVwwJLPwiZeXOnf7YxorqVEEM.jpg"
+      },
+      {
+        "name": "Roman Griffin Davis",
+        "img": "https://image.tmdb.org/t/p/w185/jEox6Bq4TlINrnp5EUjqSlDK3eP.jpg"
+      },
+      {
+        "name": "Forest Whitaker",
+        "img": "https://image.tmdb.org/t/p/w185/4w7l5JUwnwFNBy7J93ZwYN1nihm.jpg"
+      },
+      {
+        "name": "Ben Kingsley",
+        "img": "https://image.tmdb.org/t/p/w185/k3Dmu49B2akwDvgqy52MOxznI59.jpg"
+      },
+      {
+        "name": "Mark Hamill",
+        "img": "https://image.tmdb.org/t/p/w185/zMQ93JTLW8KxusKhOlHFZhih3YQ.jpg"
+      },
+      {
+        "name": "Ava Sanger",
+        "img": "https://image.tmdb.org/t/p/w185/aNkgSg4MEttq72cDcWpDviIImFg.jpg"
+      },
+      {
+        "name": "Jim Cummings",
+        "img": "https://image.tmdb.org/t/p/w185/c0sQPRCM5Ri3F4gVyxPr4AcPmIq.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2607",
+    "t": "Joe's College Road Trip",
+    "id_tmdb": "1243460",
+    "cat": "COMÉDIE",
+    "url": "https://vidzy.org/d/u94terb76j4b_n",
+    "img": "https://image.tmdb.org/t/p/w500/hFvH6hycJFFOX2DyDQOvrMjkJpH.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/dbr3eceKuGnKc9v5GaVTVtegZNK.jpg",
+    "desc": "Pour initier son petit-fils à la vraie vie avant l'université, Joe, le frère mal léché de Madea, l'embarque dans un road trip déjanté à travers le pays.",
+    "year": "2026",
+    "note": 3,
+    "actors_pics": [
+      {
+        "name": "Tyler Perry",
+        "img": "https://image.tmdb.org/t/p/w185/8KU0OizemVLrERXt5HJIa0PAkIN.jpg"
+      },
+      {
+        "name": "Jermaine Harris",
+        "img": "https://image.tmdb.org/t/p/w185/cglG5hOKRJWVd9f41ihxnaqp7fY.jpg"
+      },
+      {
+        "name": "Amber Reign Smith",
+        "img": "https://image.tmdb.org/t/p/w185/3YMyankl95BdQe183GZohfdloAL.jpg"
+      },
+      {
+        "name": "Bethany Anne Lind",
+        "img": "https://image.tmdb.org/t/p/w185/d0FjeKbWYhbTzFSimCnC9K1Maza.jpg"
+      },
+      {
+        "name": "Jeremy Gimenez",
+        "img": "https://image.tmdb.org/t/p/w185/o599alnl49u8NNYzE7WZfdKDiaD.jpg"
+      },
+      {
+        "name": "Millie Jackson",
+        "img": "https://image.tmdb.org/t/p/w185/qtyd5p1Ml2QRXCDVCw2ayIQ1GpQ.jpg"
+      },
+      {
+        "name": "Wil Deusner",
+        "img": "https://image.tmdb.org/t/p/w185/uIo2SXuel3aeVRq6NX3AivuWCo5.jpg"
+      },
+      {
+        "name": "Patricia Williams",
+        "img": "https://image.tmdb.org/t/p/w185/sQ1VJzwcoog5ePZWMSXKzUBWTlg.jpg"
+      },
+      {
+        "name": "Deetta West",
+        "img": "https://image.tmdb.org/t/p/w185/eup8kRxSRRfo14r2sfDPJXkch2s.jpg"
+      },
+      {
+        "name": "Shawn Alexander Thompson",
+        "img": "https://image.tmdb.org/t/p/w185/iFkEg38hL9We4PqCQiAC1mhKkG2.jpg"
+      }
+    ]
+  },
+  {
     "num": "2606",
     "t": "‎The Mother and the Bear",
     "id_tmdb": "1192730",
