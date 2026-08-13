@@ -1,5 +1,456 @@
 [
   {
+    "num": "2636",
+    "t": "‎Roman Frayssinet : Ô Dela",
+    "id_tmdb": "1631346",
+    "cat": "COMÉDIE",
+    "url": "https://vidzy.org/d/ozdun3nuogqj_n",
+    "img": "https://image.tmdb.org/t/p/w500/jeFY9hrchhHwZ8cvenu2H0FIvUC.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/cCyPeisTrGlcsFTjeRJE4XV03iM.jpg",
+    "desc": "Après s'être aventuré Ô dedans, le deuxième volet de la trilogie de spectacles de Roman Frayssinet invite à aller Ô delà pour se détacher et observer la vie de loin pour faire la paix avec elle. C'est un nouveau voyage drôle et surréaliste durant lequel Roman Frayssinet pose son regard sur le monde à la recherche de nuances, de beauté, d'équilibre et surtout de rire.",
+    "year": "2026",
+    "note": 4,
+    "actors_pics": [
+      {
+        "name": "Roman Frayssinet",
+        "img": "https://image.tmdb.org/t/p/w185/141MKkwfYeRkVBqvP77z5tFSipO.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2635",
+    "t": "‎‎Dust Bunny",
+    "id_tmdb": "1043197",
+    "cat": "FANTASTIQUE, ACTION, HORREUR",
+    "url": "https://vidzy.org/d/p4ok1eo6sa2y_n",
+    "img": "https://image.tmdb.org/t/p/w500/qaRuV4cbAbrCngM5b7NkGqARDIg.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/AecGG1XVCmkk7fT10ko3FC0dLIP.jpg",
+    "desc": "Aurora, dix ans, demande à un tueur à gages d'éliminer le monstre qui, selon elle, a dévoré toute sa famille. Pour la protéger, il devra affronter une horde d'assassins tout en acceptant l'idée que certains monstres existent bel et bien.",
+    "year": "2025",
+    "note": 3,
+    "actors_pics": [
+      {
+        "name": "Mads Mikkelsen",
+        "img": "https://image.tmdb.org/t/p/w185/AsX4bdvZ8UCayWTmAf9lAqOA8V7.jpg"
+      },
+      {
+        "name": "Sophie Sloan",
+        "img": "https://image.tmdb.org/t/p/w185/orJhg6oQ4h2qdBSTaKSwdEvD4xa.jpg"
+      },
+      {
+        "name": "Sheila Atim",
+        "img": "https://image.tmdb.org/t/p/w185/esAjvG2IXvzQODNEHVCVsc4WALI.jpg"
+      },
+      {
+        "name": "David Dastmalchian",
+        "img": "https://image.tmdb.org/t/p/w185/nER1Vzhk51pGHb60KBF1Ja5tEXA.jpg"
+      },
+      {
+        "name": "Rebecca Henderson",
+        "img": "https://image.tmdb.org/t/p/w185/6e9M5qhNr0TaziQxWLS91SZiS0D.jpg"
+      },
+      {
+        "name": "Sigourney Weaver",
+        "img": "https://image.tmdb.org/t/p/w185/wTSnfktNBLd6kwQxgvkqYw6vEon.jpg"
+      },
+      {
+        "name": "Line Kruse",
+        "img": "https://image.tmdb.org/t/p/w185/AqGjJgCMeXYBP18DR6XV0OI3Ydv.jpg"
+      },
+      {
+        "name": "Caspar Phillipson",
+        "img": "https://image.tmdb.org/t/p/w185/2344bWYuEN4NTL4ZVXBCxvpucN0.jpg"
+      },
+      {
+        "name": "Armond Willis",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Rea Milla",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      }
+    ]
+  },
+  {
+    "num": "2634",
+    "t": "C'est vraiment moi",
+    "id_tmdb": "1570282",
+    "cat": "DRAME, MUSIQUE",
+    "url": "https://vidzy.org/d/ctyvzvy4hecr_n",
+    "img": "https://image.tmdb.org/t/p/w500/tsICvuboVKXKUfDu5m2h3kqXNP0.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/6aa0MMYI0cnrAw2ra3E5CmfHfUV.jpg",
+    "desc": "Victime d'intimidation parce qu'il voulait devenir une idole, Kenji trouve sa place dans un cabaret et l'aide d'un médecin pionnier, et fait son apparition sur scène sous sa véritable identité, Ai Haruna.",
+    "year": "2026",
+    "note": 4,
+    "actors_pics": [
+      {
+        "name": "望月春希",
+        "img": "https://image.tmdb.org/t/p/w185/oJTIyWZIIwo7zLnFh5IH9pcZSVG.jpg"
+      },
+      {
+        "name": "Takumi Saito",
+        "img": "https://image.tmdb.org/t/p/w185/bI4F2yT9R3HW4o17V7Mne7EqIbB.jpg"
+      },
+      {
+        "name": "木村多江",
+        "img": "https://image.tmdb.org/t/p/w185/nENSbtdlmj8uJAiXsEnDdoT4uNR.jpg"
+      },
+      {
+        "name": "千原せいじ",
+        "img": "https://image.tmdb.org/t/p/w185/fwCpDWLJyTPaL0ERSDAGrAV0z6I.jpg"
+      },
+      {
+        "name": "中村中",
+        "img": "https://image.tmdb.org/t/p/w185/gaLOF7XlzKnFsfFsG1RTt0GCrfh.jpg"
+      },
+      {
+        "name": "吉村界人",
+        "img": "https://image.tmdb.org/t/p/w185/6S8T4LuBZKMORP2Xdvgrn1Wxihd.jpg"
+      },
+      {
+        "name": "末成映薫",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "MEGUMI",
+        "img": "https://image.tmdb.org/t/p/w185/9qqVBUuiszwHErmVx9wIXp6wPqk.jpg"
+      },
+      {
+        "name": "Shidō Nakamura",
+        "img": "https://image.tmdb.org/t/p/w185/dMyf8ZoHD5xkld66h8bEw9QgQZI.jpg"
+      },
+      {
+        "name": "藤原紀香",
+        "img": "https://image.tmdb.org/t/p/w185/2TAVriYSfT9gQVLA0gyGl5uYmnZ.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2633",
+    "t": "Mur mure",
+    "id_tmdb": "1617129",
+    "cat": "COMÉDIE, ROMANCE",
+    "url": "https://vidzy.org/d/v7xehwmwnau0_n",
+    "img": "https://image.tmdb.org/t/p/w500/4HevJ3d3rzfTjgaZRx1fiYIRri8.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/tEs6S6MOQNWT2Kosne1pO2Pehqk.jpg",
+    "desc": "Machin, inventeur loufoque et misanthrope assumé, n'a besoin que d'une chose : le silence absolu. Grâce à ses inventions aussi ingénieuses que saugrenues, il a toujours réussi à faire fuir ses voisins. Jusqu'au jour où une pianiste, Machine, emménage pour la première fois de sa vie… dans l'appartement mitoyen ! Captation au Théâtre de la Michodière à Paris 2ème.",
+    "year": "2026",
+    "note": 3,
+    "trailer": "w5J2Z46D8XQ",
+    "actors_pics": [
+      {
+        "name": "Clovis Cornillac",
+        "img": "https://image.tmdb.org/t/p/w185/8wokcSilL7u4V8aKcagI7elKsgn.jpg"
+      },
+      {
+        "name": "Laurence Arné",
+        "img": "https://image.tmdb.org/t/p/w185/guOZu05KRqXXA8qmZbEpo63q7wg.jpg"
+      },
+      {
+        "name": "Lilou Fogli",
+        "img": "https://image.tmdb.org/t/p/w185/5SEdkJ0rduq9YrFalb9BGvWi25p.jpg"
+      },
+      {
+        "name": "Arnaud Maillard",
+        "img": "https://image.tmdb.org/t/p/w185/zfOujhJVucQtGTY2S2loEDLdtkY.jpg"
+      },
+      {
+        "name": "Boris Terral",
+        "img": "https://image.tmdb.org/t/p/w185/7ysEbxq29XtI5wR3sXG7cVHHXfy.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2632",
+    "t": "Raqqa",
+    "id_tmdb": "1239481",
+    "cat": "THRILLER",
+    "url": "https://vidzy.org/d/skk586pybwow_n",
+    "img": "https://image.tmdb.org/t/p/w500/7rEDjVUyNN9WU376AK32SuQ8yBr.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/pYe8myfqBXypkm77jROAbTigEb.jpg",
+    "desc": "En 2014, dans les rues dangereuses de Raqqa, Haibala, un espion mercenaire, traque l'un des chefs les plus recherchés de l'Etat islamique. Mais il n'est pas le seul à avoir infiltré la Syrie : Malika, une agent secret travaillant pour Europol, est arrivée dans la ville pour la même raison...",
+    "year": "2024",
+    "note": 3,
+    "actors_pics": [
+      {
+        "name": "Álvaro Morte",
+        "img": "https://image.tmdb.org/t/p/w185/2TGPhdpRC5wjdFEJqnLYiN5kbwg.jpg"
+      },
+      {
+        "name": "Mina El Hammani",
+        "img": "https://image.tmdb.org/t/p/w185/bTOSFO0sYJYyHHIShmmheeYmprP.jpg"
+      },
+      {
+        "name": "Abdelatif Hwidar",
+        "img": "https://image.tmdb.org/t/p/w185/zeJjozJIvaa0qlZRufSC0J2sr86.jpg"
+      },
+      {
+        "name": "Fariba Sheikhan",
+        "img": "https://image.tmdb.org/t/p/w185/bgULbaEJAtWvAOrEtvcoCMrGRsm.jpg"
+      },
+      {
+        "name": "Ben Temple",
+        "img": "https://image.tmdb.org/t/p/w185/zq9CxNYbpCHv3Yb4wYRRyx5ws7r.jpg"
+      },
+      {
+        "name": "Cristina Kovani",
+        "img": "https://image.tmdb.org/t/p/w185/q4QqK8lmLllrLAjzekYsbuq97k5.jpg"
+      },
+      {
+        "name": "Déborah François",
+        "img": "https://image.tmdb.org/t/p/w185/6eDjVmPDRDCN6B25pt0h1fNSj9o.jpg"
+      },
+      {
+        "name": "Ali El Aziz",
+        "img": "https://image.tmdb.org/t/p/w185/tZo16ttyGpfbh4sICY8G0dExmQY.jpg"
+      },
+      {
+        "name": "Juan Carlos Vellido",
+        "img": "https://image.tmdb.org/t/p/w185/m1GEfFgcDNPTCTGUhrita7d5ec1.jpg"
+      },
+      {
+        "name": "Sara Hwidar",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      }
+    ]
+  },
+  {
+    "num": "2631",
+    "t": "The Muppet Show",
+    "id_tmdb": "1548113",
+    "cat": "COMÉDIE, FAMILIAL, MUSIQUE, TÉLÉFILM",
+    "url": "https://vidzy.org/d/rb0pc5ntn219_n",
+    "img": "https://image.tmdb.org/t/p/w500/tcwar1rL0neoLvnklL7DzYw7sN8.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/qz7B5uDspnkoz068wLbLnleotwV.jpg",
+    "desc": "C'est le Muppet Show ! Kermit, Miss Piggy et la troupe adorée des Muppets sont de retour pour un événement spécial inédit. Musique, comédie et une bonne dose de chaos sont au rendez-vous quand ils remontent sur la scène du théâtre original des Muppets avec leur invitée très spéciale, Sabrina Carpenter",
+    "year": "2026",
+    "note": 4,
+    "actors_pics": [
+      {
+        "name": "Bill Barretta",
+        "img": "https://image.tmdb.org/t/p/w185/m4M99V64Bni91R8J2YgJ2QPwRDL.jpg"
+      },
+      {
+        "name": "Dave Goelz",
+        "img": "https://image.tmdb.org/t/p/w185/tBJDwH008IVSeTCB5e2P856NbIv.jpg"
+      },
+      {
+        "name": "Eric Jacobson",
+        "img": "https://image.tmdb.org/t/p/w185/bB4DRQwKUswG8uvFmDDHHWFwzlz.jpg"
+      },
+      {
+        "name": "Peter Linz",
+        "img": "https://image.tmdb.org/t/p/w185/hQZzWLqAK1sf45ddLCMh6Yuiaai.jpg"
+      },
+      {
+        "name": "David Rudman",
+        "img": "https://image.tmdb.org/t/p/w185/lHk21OS9k5aeACDSYJFBaJgMrCP.jpg"
+      },
+      {
+        "name": "Matt Vogel",
+        "img": "https://image.tmdb.org/t/p/w185/oRWKHxkG90AZKxxJaGKzKYlKFCD.jpg"
+      },
+      {
+        "name": "Sabrina Carpenter",
+        "img": "https://image.tmdb.org/t/p/w185/h2JcSqZ220VXDqb6xKBVcRquGGN.jpg"
+      },
+      {
+        "name": "Seth Rogen",
+        "img": "https://image.tmdb.org/t/p/w185/nYl9bvQzaPQLzlf0wf75clLN6Hi.jpg"
+      },
+      {
+        "name": "Maya Rudolph",
+        "img": "https://image.tmdb.org/t/p/w185/bpEVMFMyHEQ8wLdii9WKB279w8p.jpg"
+      },
+      {
+        "name": "Stephanie D'Abruzzo",
+        "img": "https://image.tmdb.org/t/p/w185/itU46YDRtGk4SCghM3Ai1SjeCrW.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2630",
+    "t": "Muganga - Celui qui soigne",
+    "id_tmdb": "1000169",
+    "cat": "HISTOIRE, DRAME",
+    "url": "https://vidzy.org/d/5oyx7or71t7a_n",
+    "img": "https://image.tmdb.org/t/p/w500/wVnjMOp0IrWgdvZfmkugIn5mQY7.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/nZhRZy8YvWf2EysAajHGG6DfhxM.jpg",
+    "desc": "Denis Mukwege, médecin congolais et futur Prix Nobel de la paix, soigne — au péril de sa vie — des milliers de femmes victimes de violences sexuelles en République démocratique du Congo. Sa rencontre avec Guy Cadière, chirurgien belge, va redonner un souffle à son engagement.",
+    "year": "2025",
+    "note": 4,
+    "trailer": "pHc6no_VO7c",
+    "actors_pics": [
+      {
+        "name": "Isaach de Bankolé",
+        "img": "https://image.tmdb.org/t/p/w185/aGjABQBgTA3tduuh54hzWx0aQ44.jpg"
+      },
+      {
+        "name": "Vincent Macaigne",
+        "img": "https://image.tmdb.org/t/p/w185/6Z4JmAauiallW2lXTOuSAiHdHGf.jpg"
+      },
+      {
+        "name": "Manon Bresch",
+        "img": "https://image.tmdb.org/t/p/w185/qv3atQzKpIDhZ9oK0hVuPRC2xUy.jpg"
+      },
+      {
+        "name": "Babetida Sadjo",
+        "img": "https://image.tmdb.org/t/p/w185/wrjfsAZqcITkAgaGCZlAQp8JC1H.jpg"
+      },
+      {
+        "name": "Déborah Lukumuena",
+        "img": "https://image.tmdb.org/t/p/w185/arEY8cOQjWdykHgnQMZtMiujslw.jpg"
+      },
+      {
+        "name": "Joely Mbundu",
+        "img": "https://image.tmdb.org/t/p/w185/k0mYoak8Mee9zNdgCGk74iSuaJ3.jpg"
+      },
+      {
+        "name": "Yves-Marina Gnahoua",
+        "img": "https://image.tmdb.org/t/p/w185/wLkTQiCL6AxUH5vKxK1PavCaNs8.jpg"
+      },
+      {
+        "name": "Soliane Moisset",
+        "img": "https://image.tmdb.org/t/p/w185/vfP1GazyZnuiQ7qmU0lkQkkZYkq.jpg"
+      },
+      {
+        "name": "Kody Kim",
+        "img": "https://image.tmdb.org/t/p/w185/b88y3dTfTz1JoEgw2rDxCP27j8Z.jpg"
+      },
+      {
+        "name": "Nadège Ouedraogo",
+        "img": "https://image.tmdb.org/t/p/w185/8uKFFHIvh3t10XsMq890nalZhdb.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2629",
+    "t": "Even If This Love Disappears Tonight",
+    "id_tmdb": "1466115",
+    "cat": "ROMANCE, DRAME",
+    "url": "https://vidzy.org/d/v9vovyqd2ohh_n",
+    "img": "https://image.tmdb.org/t/p/w500/bMA6E5cu1QUMehjBZOjWjqQjhey.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/iL5eGI9ctHdUOV4yG6dyGKctSEX.jpg",
+    "desc": "Une lycéenne se réveille chaque matin sans aucun souvenir du jour précédent. Elle sort avec un camarade timide, mais l'amour peut-il s'épanouir dans cet éternel recommencement ?",
+    "year": "2025",
+    "note": 4,
+    "actors_pics": [
+      {
+        "name": "추영우",
+        "img": "https://image.tmdb.org/t/p/w185/nGICKq8yq7G6nDUNVjrUoMe4iQ0.jpg"
+      },
+      {
+        "name": "신시아",
+        "img": "https://image.tmdb.org/t/p/w185/qTYx9jnIhUtNJedYK4t6pkQBds5.jpg"
+      },
+      {
+        "name": "조유정",
+        "img": "https://image.tmdb.org/t/p/w185/nYx2YyBlirpJ6cG4eTq1oiI8Ilj.jpg"
+      },
+      {
+        "name": "Jin Ho-eun",
+        "img": "https://image.tmdb.org/t/p/w185/qUbjtCCnltqTXaK4hZUHOdUBDMl.jpg"
+      },
+      {
+        "name": "Cho Han-chul",
+        "img": "https://image.tmdb.org/t/p/w185/58DGEXFyWfaFdqL7yKKW0VdEg3R.jpg"
+      },
+      {
+        "name": "Lee Chae-kyung",
+        "img": "https://image.tmdb.org/t/p/w185/6HiiyBkEjOe0WdBq0YSTqcGFMz5.jpg"
+      },
+      {
+        "name": "장유상",
+        "img": "https://image.tmdb.org/t/p/w185/ljYAPcYaEHULhUwVS51mIsNafWd.jpg"
+      },
+      {
+        "name": "Yun Ki-chang",
+        "img": "https://image.tmdb.org/t/p/w185/oY4ndQi0vvVoypehy9Yq8KFo4fS.jpg"
+      },
+      {
+        "name": "유아름",
+        "img": "https://image.tmdb.org/t/p/w185/p2YhAH7QJECx0iDEU8izyWGvGO8.jpg"
+      },
+      {
+        "name": "이경화",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      }
+    ]
+  },
+  {
+    "num": "2628",
+    "t": "Pour Ema",
+    "id_tmdb": "274320",
+    "cat": "DOCUMENTAIRE",
+    "url": "https://vidzy.org/d/uusdgopxnu38_n",
+    "img": null,
+    "bg": null,
+    "desc": "",
+    "year": "1992",
+    "note": 4,
+    "actors_pics": [
+      {
+        "name": "Jodie Foster",
+        "img": "https://image.tmdb.org/t/p/w185/5emVgsLFlU6SmeBIFsF2Y7aqwtG.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2627",
+    "t": "Anemone",
+    "id_tmdb": "1364608",
+    "cat": "DRAME",
+    "url": "https://vidzy.org/d/xb72jxi8hce4_n",
+    "img": "https://image.tmdb.org/t/p/w500/oB69yZFTSzu7Wf16v9WADdDH7Oi.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/4nExMuYsypZasoX8ri3t0lYLfAF.jpg",
+    "desc": "Des secrets enfouis refont surface quand deux frères éloignés sont contraints d'affronter leur passé, des années après l'exil de l'un d'eux dans les terres sauvages. Avec force et sensibilité, Ronan Day-Lewis signe un premier film intense et envoûtant, un récit visuellement spectaculaire où se mêlent blessures du passé et quête de rédemption.",
+    "year": "2025",
+    "note": 3,
+    "trailer": "CVIMrvhlXvA",
+    "actors_pics": [
+      {
+        "name": "Daniel Day-Lewis",
+        "img": "https://image.tmdb.org/t/p/w185/3kNA9VcmymoEwT0btQ4bvMYxzcP.jpg"
+      },
+      {
+        "name": "Sean Bean",
+        "img": "https://image.tmdb.org/t/p/w185/kTjiABk3TJ3yI0Cto5RsvyT6V3o.jpg"
+      },
+      {
+        "name": "Samantha Morton",
+        "img": "https://image.tmdb.org/t/p/w185/hyxtpw9axreB8CcS30eRmvzdLAY.jpg"
+      },
+      {
+        "name": "Samuel Bottomley",
+        "img": "https://image.tmdb.org/t/p/w185/8LlRmjdxJ4iDCcDHa5Xdt1EGIgV.jpg"
+      },
+      {
+        "name": "Safia Oakley-Green",
+        "img": "https://image.tmdb.org/t/p/w185/k4JrjdSIfwWF1Qd5KHChDfnXpF2.jpg"
+      },
+      {
+        "name": "Lewis Ian Bray",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Paul Butterworth",
+        "img": "https://image.tmdb.org/t/p/w185/xtyvuOxKxsp8vbRx5kKxAqJrs3L.jpg"
+      },
+      {
+        "name": "Karl Cam",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "JP Conway",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Angus Cooper",
+        "img": "https://image.tmdb.org/t/p/w185/oyB5JeN7XRb6xi7alp7jiy9mJfH.jpg"
+      }
+    ]
+  },
+  {
     "num": "2626",
     "t": "‎Love Me Love Me",
     "id_tmdb": "1317672",
