@@ -381,17 +381,34 @@
     "num": "2628",
     "t": "Pour Ema",
     "id_tmdb": "274320",
-    "cat": "DOCUMENTAIRE",
+    "cat": "DRAME",
+    "tmdb_type": "tv",
     "url": "https://vidzy.org/d/uusdgopxnu38_n",
-    "img": null,
-    "bg": null,
-    "desc": "",
-    "year": "1992",
-    "note": 4,
+    "img": "https://image.tmdb.org/t/p/w500/ywY2vjzVMc1ZkOms7dAWD5wBnr7.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/A8AguK5K43ziWJsFMeLFrLe4Y1s.jpg",
+    "desc": "Paul et Claire vivent depuis peu dans une paisible commune avec Emma, leur fille de 8 ans. Mais alors que la petite est invitée à passer le week-end chez Marius, un camarade de classe, pour profiter de la grande fête du village, elle meurt soudainement après avoir ingéré son antibiotique, de la Josacine, un médicament pourtant courant que sa maman a pris soin de lui préparer. Emma a été empoisonnée. Qui a ajouté du cyanure au flacon ? Le poison était-il réellement destiné à la petite fille ? S’agit-il d’une erreur ou d’une vengeance personnelle ? Déterminée à découvrir la vérité sur la mort de sa fille, Claire décide de mener l’enquête, seule contre tous.",
+    "year": "2026",
+    "note": 0,
     "actors_pics": [
       {
-        "name": "Jodie Foster",
-        "img": "https://image.tmdb.org/t/p/w185/5emVgsLFlU6SmeBIFsF2Y7aqwtG.jpg"
+        "name": "Julie de Bona",
+        "img": "https://image.tmdb.org/t/p/w185/i2bQAuNoAPvu2ZsVjri3aTpafjB.jpg"
+      },
+      {
+        "name": "Alysson Paradis",
+        "img": "https://image.tmdb.org/t/p/w185/r1If1qg2P9LCTFDincao7MOoVMi.jpg"
+      },
+      {
+        "name": "Charlie Dupont",
+        "img": "https://image.tmdb.org/t/p/w185/mIWUxAEJr88JwarxFNS8ndwqjKm.jpg"
+      },
+      {
+        "name": "Moïse Santamaria",
+        "img": "https://image.tmdb.org/t/p/w185/w224ls8qq9U7gjmOpMtjGQQANNQ.jpg"
+      },
+      {
+        "name": "Martin Swabey",
+        "img": "https://image.tmdb.org/t/p/w185/gBV5ElUGdHEIt1LZBdiAHaaIhR9.jpg"
       }
     ]
   },
