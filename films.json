@@ -216,57 +216,16 @@
   },
   {
     "num": "2654",
-    "t": "Anna Kiri",
-    "id_tmdb": "1232933",
-    "cat": "HORREUR, ACTION, AVENTURE, THRILLER",
-    "url": "https://vidzy.org/d/looz02bpayzr_n",
-    "img": "https://image.tmdb.org/t/p/w500/uh8nwCFx9zFRJeiDUg4SxQ7Koug.jpg",
-    "bg": "https://image.tmdb.org/t/p/original/hr3yzjzfsiNxWqlDgRTSHgYB7fz.jpg",
-    "desc": "Une bande de criminels sans pitié perd son butin d'or dans une rivière et fait appel à une équipe de plongeurs désespérés pour le récupérer. Ce qui commence comme une mission de récupération à haut risque tourne rapidement au cauchemar.",
-    "year": "2025",
-    "note": 3,
-    "actors_pics": [
-      {
-        "name": "Hermione Corfield",
-        "img": "https://image.tmdb.org/t/p/w185/wHTsaef270ng3OlMfFzsO9yBo5b.jpg"
-      },
-      {
-        "name": "Jake Ryan",
-        "img": "https://image.tmdb.org/t/p/w185/3OO5qc1kj2ny7rCLjKYDdEzPBdJ.jpg"
-      },
-      {
-        "name": "Josh McConville",
-        "img": "https://image.tmdb.org/t/p/w185/3Au004X5BsV5KIpOLMB8g9DuevT.jpg"
-      },
-      {
-        "name": "Kevin Dee",
-        "img": "https://image.tmdb.org/t/p/w185/sjfypAWoYbhS6jFWPx2RF5QvfHf.jpg"
-      },
-      {
-        "name": "Clayton Watson",
-        "img": "https://image.tmdb.org/t/p/w185/7T4RCGl5jfpB1XcjXywb6ZmwGUC.jpg"
-      },
-      {
-        "name": "Sam Parsonson",
-        "img": "https://image.tmdb.org/t/p/w185/ta9h0LYwhyDTjUDhtwCuA8B8R9I.jpg"
-      },
-      {
-        "name": "Jacob Junior Nayinggul",
-        "img": "https://image.tmdb.org/t/p/w185/5ackR05aMPwz2LZnSbVVUFpBFdn.jpg"
-      },
-      {
-        "name": "Arthur Angel",
-        "img": "https://image.tmdb.org/t/p/w185/ds27HdKDhJaXdKnmT1iftzCPfaO.jpg"
-      },
-      {
-        "name": "Maximillian Johnson",
-        "img": "https://image.tmdb.org/t/p/w185/sjlNcH8ftVnbYzMkVw2tB1CVYuC.jpg"
-      },
-      {
-        "name": "Will Fletcher",
-        "img": "https://image.tmdb.org/t/p/w185/muaodyITSCIODVh3xZvTd4OFy4x.jpg"
-      }
-    ]
+    "t": "Meadowlark",
+    "id_tmdb": "580551",
+    "cat": "DOCUMENTAIRE",
+    "url": "https://vidzy.org/d/k2klykmp3pfb_n",
+    "img": "https://image.tmdb.org/t/p/w500/xWGTzrr24pxPNl86SEBHydFgj8a.jpg",
+    "bg": null,
+    "desc": "",
+    "year": "2008",
+    "note": 1,
+    "actors_pics": []
   },
   {
     "num": "2653",
