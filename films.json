@@ -1,5 +1,394 @@
 [
   {
+    "num": "2626",
+    "t": "‎Love Me Love Me",
+    "id_tmdb": "1317672",
+    "cat": "ROMANCE, DRAME",
+    "url": "https://vidzy.org/d/w6vezmwcrw9v_n",
+    "img": "https://image.tmdb.org/t/p/w500/erKr74Xexw2OrkRJiFQW3Jnnub0.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/ohUhHOqW8cM59Ay5UjqplLzJbH3.jpg",
+    "desc": "Après la mort de son frère, June s'installe à Milan pour repartir de zéro et trouve du réconfort en sortant avec Will, l'élève modèle de sa nouvelle école. Mais le meilleur ami de Will, James, adepte de combats clandestins de MMA, attise une rivalité qui se mue en attirance irrésistible. June doit alors choisir entre la sécurité et un amour qui remet en question tout ce qu'elle pensait vouloir.",
+    "year": "2026",
+    "note": 3,
+    "trailer": "XDAp3fUJCC4",
+    "actors_pics": [
+      {
+        "name": "Pepe Barroso",
+        "img": "https://image.tmdb.org/t/p/w185/1aclLzISTojUZ9CrKsRcI1eIJls.jpg"
+      },
+      {
+        "name": "Mia Jenkins",
+        "img": "https://image.tmdb.org/t/p/w185/alrv5alzg7p76MnmGETKcGGJY03.jpg"
+      },
+      {
+        "name": "Luca Melucci",
+        "img": "https://image.tmdb.org/t/p/w185/2lo03n0c384PKsUVrN3L7bYQUuy.jpg"
+      },
+      {
+        "name": "Andrea Guo",
+        "img": "https://image.tmdb.org/t/p/w185/xFmzjzxzuMvRAEYs9DQPzUQBx3l.jpg"
+      },
+      {
+        "name": "Michelangelo Vizzini",
+        "img": "https://image.tmdb.org/t/p/w185/oLXMchaEaabWcFl2yAp63WCPlqa.jpg"
+      },
+      {
+        "name": "Madior Fall",
+        "img": "https://image.tmdb.org/t/p/w185/aHEr670j2N4VZuai0mF6XhkR9mY.jpg"
+      },
+      {
+        "name": "Vanessa Donghi",
+        "img": "https://image.tmdb.org/t/p/w185/hlMccYxEKs1tR4CgoUMjMo3v67U.jpg"
+      },
+      {
+        "name": "Elizabeth Kinnear",
+        "img": "https://image.tmdb.org/t/p/w185/aULRpczkkQK4ietPJOOu9bcOB9c.jpg"
+      },
+      {
+        "name": "Tommaso Caporali",
+        "img": "https://image.tmdb.org/t/p/w185/k8itWmTKgD3TU9VlphFZC9nPnB2.jpg"
+      },
+      {
+        "name": "Ángel de Miguel",
+        "img": "https://image.tmdb.org/t/p/w185/9MIRTVsSnCa4wHw5H8w74QSdRtV.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2625",
+    "t": "‎‎Hopper et le Secret de la Marmotte",
+    "id_tmdb": "1215532",
+    "cat": "ANIMATION, AVENTURE, COMÉDIE, FAMILIAL",
+    "url": "https://vidzy.org/d/xjyyqwavbph5_n",
+    "img": "https://image.tmdb.org/t/p/w500/wjMCp298feITxBpZx4zlU7g979r.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/fnuJV4WwxGM8w784lGV7j32JVsG.jpg",
+    "desc": "La légende raconte qu’une mystérieuse marmotte, cachée dans une montagne secrète, aurait le pouvoir de remonter le temps. Quand il apprend qu’elle serait la seule à pouvoir sauver son espèce, Hopper, aventurier intrépide, est prêt à tout pour retrouver la trace de cette marmotte ! Mais le voyage sera semé d’embûches… Il semblerait qu’il ne soit pas le seul à vouloir mettre la main sur le secret de la marmotte !",
+    "year": "2025",
+    "note": 4,
+    "trailer": "OuqcgS1JzCI",
+    "actors_pics": [
+      {
+        "name": "Jordan Tartakow",
+        "img": "https://image.tmdb.org/t/p/w185/ocv0tLJM8hXu7alqkfE4faIZICX.jpg"
+      },
+      {
+        "name": "Laila Berzins",
+        "img": "https://image.tmdb.org/t/p/w185/6FIOa6WKq8zEVQW3v6Y7lZiMTOE.jpg"
+      },
+      {
+        "name": "Joe Ochman",
+        "img": "https://image.tmdb.org/t/p/w185/yCKPrJxK7KsJ3yLbnTXzV4n4wp6.jpg"
+      },
+      {
+        "name": "Xanthe Huynh",
+        "img": "https://image.tmdb.org/t/p/w185/8XNUF4NGUysOcYLOyANKuCzLwFV.jpg"
+      },
+      {
+        "name": "Odessa Lurlean",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Dino Andrade",
+        "img": "https://image.tmdb.org/t/p/w185/eoP6UUSYeuGmgnJ1DQYZRHRgXdn.jpg"
+      },
+      {
+        "name": "Todd Haberkorn",
+        "img": "https://image.tmdb.org/t/p/w185/tT8YzZMfNXXJhhS7KyYRdxgoZcN.jpg"
+      },
+      {
+        "name": "Christopher Bass",
+        "img": "https://image.tmdb.org/t/p/w185/AtZ0cQFdzgXXwIc9U2ZfLLJxxoS.jpg"
+      },
+      {
+        "name": "Wally Wingert",
+        "img": "https://image.tmdb.org/t/p/w185/5B9STa1OwelvyUs37SWUIFzhIhB.jpg"
+      },
+      {
+        "name": "Brent Mukai",
+        "img": "https://image.tmdb.org/t/p/w185/2i4RPM659pvrhtYG9Wr30OcEDqX.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2624",
+    "t": "Royaumes d'Asie",
+    "id_tmdb": "1631598",
+    "cat": "DOCUMENTAIRE",
+    "url": "https://vidzy.org/d/lhs3rkxoaolx_n",
+    "img": "https://image.tmdb.org/t/p/w500/f919Cq4PAvvRZ3SgoGJC1RkS5df.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/7iSAEDIw68pxCXbzdCR6XmXJ4jH.jpg",
+    "desc": "L’Asie n’a pas fini de vous surprendre. Partez pour un voyage magique au cœur du plus grand, du plus extrême, du plus varié de tous les continents. Avec des images à couper le souffle, Royaumes d’Asie célèbre la beauté et la diversité de ce continent-monde, tout en posant une question essentielle : dans un univers où les habitats disparaissent, jusqu’où la nature pourra-t-elle s’adapter ? Des glaces du lac Baïkal aux jungles tropicales, des sommets himalayens aux récifs coralliens, ce film révèle l’ingéniosité des animaux face aux multiples défis de ce continent en pleine mutation.",
+    "year": "2026",
+    "note": 5,
+    "actors_pics": [
+      {
+        "name": "Virginie Efira",
+        "img": "https://image.tmdb.org/t/p/w185/wQmOmgu1TQoF6OeBWjftxwcaFCi.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2623",
+    "t": "Pandora: Fire and Ice",
+    "id_tmdb": "1591822",
+    "cat": "SCIENCE-FICTION, ACTION, AVENTURE",
+    "url": "https://vidzy.org/d/q7lddibxomvv_n",
+    "img": "https://image.tmdb.org/t/p/w500/13YU9zVOD6unuZuiLapZTXQql4G.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/quQeahjlVgqIxL3WjNFwRaKQcNX.jpg",
+    "desc": "Des décennies après le premier contact avec Pandora, une expédition est envoyée pour exploiter les dernières ressources de cette lune de Saturne. Mais sur place, l'équipage découvre qu'une espèce extraterrestre très évoluée se prépare à lancer une riposte dévastatrice contre la Terre.",
+    "year": "2025",
+    "note": 3,
+    "actors_pics": [
+      {
+        "name": "Erika K. Marks",
+        "img": "https://image.tmdb.org/t/p/w185/cx8jFelajG91uFaiI8eZuhFlsg7.jpg"
+      },
+      {
+        "name": "William McNamara",
+        "img": "https://image.tmdb.org/t/p/w185/c6mLOGGpJK94a0RNt6LPeoHEONh.jpg"
+      },
+      {
+        "name": "Hannah Hueston",
+        "img": "https://image.tmdb.org/t/p/w185/wc48icP82y3WoI37w3gqBWNUbiQ.jpg"
+      },
+      {
+        "name": "Kristos Andrews",
+        "img": "https://image.tmdb.org/t/p/w185/t2SXjAL1afX5ZMQPNnhLZBTCdQx.jpg"
+      },
+      {
+        "name": "Paul Logan",
+        "img": "https://image.tmdb.org/t/p/w185/ahVtxgcNuQm1js7gmbVR6tQYhTE.jpg"
+      },
+      {
+        "name": "Jordan Iverach",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "John Swansiger",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Jeff Verge",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Biagio Castelo",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Myah Daniels",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      }
+    ]
+  },
+  {
+    "num": "2622",
+    "t": "Génération Biétry",
+    "id_tmdb": "1637818",
+    "cat": "DOCUMENTAIRE",
+    "url": "https://vidzy.org/d/7nuicvo8or7s_n",
+    "img": "https://image.tmdb.org/t/p/w500/pal9s3ALrvtqdu8gXgZhbMC1aST.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/sbNXJSAn9r3ZeK079E5YNPLe6jX.jpg",
+    "desc": "Il a tout inventé, ou presque : Charles Bietry a révolutionné le sport à la télévision française. Atteint de la maladie de Charcot, ce visionnaire se confie aujourd'hui sur sa vie et son dernier combat : pouvoir mourir dans la dignité.",
+    "year": "2026",
+    "note": 4,
+    "actors_pics": [
+      {
+        "name": "Charles Bietry",
+        "img": "https://image.tmdb.org/t/p/w185/vuvT4kKTSmyeFOtyZU7vMQta5zD.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2621",
+    "t": "Tu seras pro mon fils",
+    "id_tmdb": "1637136",
+    "cat": "DOCUMENTAIRE",
+    "url": "https://vidzy.org/d/lyv312eofv6i_n",
+    "img": "https://image.tmdb.org/t/p/w500/g2TKI153xDjfykJTZzsTm6GTbDI.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/mZVIRMjNlVw81ZNwkbnYy4TjQSH.jpg",
+    "desc": "Le documentaire plonge au cœur du football amateur français à travers le parcours de trois jeunes joueurs et de leurs familles, pris entre espoir, sacrifice et performance.",
+    "year": "2026",
+    "note": 4,
+    "trailer": "nRGiTJ23CKU",
+    "actors_pics": []
+  },
+  {
+    "num": "2620",
+    "t": "Du pain coûte que croûte",
+    "id_tmdb": "1451173",
+    "cat": "DOCUMENTAIRE",
+    "url": "https://vidzy.org/d/82s9kekawd1w_n",
+    "img": "https://image.tmdb.org/t/p/w500/hfOFOVWh8a32iTBIZsSHhHPn73T.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/1roJ0aivgZel8VqQm6mgUVBOEPa.jpg",
+    "desc": "La baguette est l'un des symboles de la gastronomie française, tellement emblématique qu'elle a été inscrite en 2022 au patrimoine immatériel de l'UNESCO. Mais toutes les baguettes méritent-elles cette reconnaissance ? Derrière cette icône se cachent de nombreuses différences de goût et de qualité. Pour mieux comprendre les enjeux du secteur de la boulangerie, rencontre avec ses différents acteurs. Les quelque 30 000 artisans boulangers que comptent la France doivent s'adapter à la fois à la concurrence des boulangeries low-cost et à l'évolution des habitudes alimentaires. Les Français consomment en effet trois fois moins de pain qu'en 1950.",
+    "year": "2025",
+    "note": 4,
+    "actors_pics": []
+  },
+  {
+    "num": "2619",
+    "t": "Salve Geral: Irmandade",
+    "id_tmdb": "1426964",
+    "cat": "ACTION, THRILLER, CRIME, DRAME",
+    "url": "https://vidzy.org/d/eog5pgm3a4pk_n",
+    "img": "https://image.tmdb.org/t/p/w500/13s4msih3QsxvDNr4ecvW2ttMyW.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/1Xdsq7U7bvJJd2X7Jg4qNaKVkYO.jpg",
+    "desc": "Alors qu'une vague de violence sans précédent secoue São Paulo, une avocate liée au milieu criminel doit négocier avec la police pour sauver sa nièce qui a été enlevée.",
+    "year": "2026",
+    "note": 3,
+    "actors_pics": [
+      {
+        "name": "Naruna Costa",
+        "img": "https://image.tmdb.org/t/p/w185/wPkIbXgvLWxgRy4d7vjSSYujsaX.jpg"
+      },
+      {
+        "name": "Camilla Damião",
+        "img": "https://image.tmdb.org/t/p/w185/qw8nKlkH5VsTPDlCNaAOTfaZglY.jpg"
+      },
+      {
+        "name": "Seu Jorge",
+        "img": "https://image.tmdb.org/t/p/w185/p8VUk0ZSzfAF9uWjWg2jEVpPtTy.jpg"
+      },
+      {
+        "name": "David Santos",
+        "img": "https://image.tmdb.org/t/p/w185/owWCmZsL0siy8oxm9q9QXUqMSPO.jpg"
+      },
+      {
+        "name": "Marcélia Cartaxo",
+        "img": "https://image.tmdb.org/t/p/w185/ch8qtxE9oy9lwNzoksjnRCjfoEu.jpg"
+      },
+      {
+        "name": "Lee Taylor",
+        "img": "https://image.tmdb.org/t/p/w185/ylMjegqeoGOjNHeI2caA75f2jwL.jpg"
+      },
+      {
+        "name": "Enio Cavalcante",
+        "img": "https://image.tmdb.org/t/p/w185/dsM5QrDS8GrFwnnrp8HXMwlNS53.jpg"
+      },
+      {
+        "name": "Hermila Guedes",
+        "img": "https://image.tmdb.org/t/p/w185/dJJh7sekL9dl77tviU5yEVXa1qo.jpg"
+      },
+      {
+        "name": "Yetunde Hammed",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Elzio Vieira",
+        "img": "https://image.tmdb.org/t/p/w185/xf7ko8BC2Vh18ZP6cz3UhId8fas.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2618",
+    "t": "Deathstalker",
+    "id_tmdb": "1253000",
+    "cat": "FANTASTIQUE, ACTION, AVENTURE",
+    "url": "https://vidzy.org/d/5aa7dsfy1iaj_n",
+    "img": "https://image.tmdb.org/t/p/w500/nEI3DnzQC1afAjJOAizx6UX27pL.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/7aiQebqYUHbs2wZPhsTznuMWyeH.jpg",
+    "desc": "Afin de se défaire d'une amulette maudite revenant constamment à lui, Deathstalker est entrainé dans une quête qui l'opposera au nécromancien Necromemnon.",
+    "year": "2025",
+    "note": 3,
+    "actors_pics": [
+      {
+        "name": "Daniel Bernhardt",
+        "img": "https://image.tmdb.org/t/p/w185/3BLz32inDr1jznU6pKQmh20zfhK.jpg"
+      },
+      {
+        "name": "Christina Orjalo",
+        "img": "https://image.tmdb.org/t/p/w185/lPY1beljfolNWmAKmFJlJSojlVk.jpg"
+      },
+      {
+        "name": "Paul Lazenby",
+        "img": "https://image.tmdb.org/t/p/w185/nLql838eW98JYcNyZ8FlBHACxGo.jpg"
+      },
+      {
+        "name": "Patton Oswalt",
+        "img": "https://image.tmdb.org/t/p/w185/ljQvjbPmcIAl205Lb2Mu4CW8WO7.jpg"
+      },
+      {
+        "name": "Nicholas Rice",
+        "img": "https://image.tmdb.org/t/p/w185/dGUbzewwZ7R0tJlAoUW3YwRRIlZ.jpg"
+      },
+      {
+        "name": "Adam Brooks",
+        "img": "https://image.tmdb.org/t/p/w185/tlLasboHGnCp1hKm3UWj6vMe8PY.jpg"
+      },
+      {
+        "name": "John Clifford Talbot",
+        "img": "https://image.tmdb.org/t/p/w185/9HWpEjj1re3mSqPvhpbSjKkujZd.jpg"
+      },
+      {
+        "name": "Matthew Kennedy",
+        "img": "https://image.tmdb.org/t/p/w185/kVOgHnroIuZGeaFnN8junkZUvuM.jpg"
+      },
+      {
+        "name": "Ron Tough",
+        "img": "https://image.tmdb.org/t/p/w185/dh2ARylESMoSeaGMoZ2MSpzAZ2a.jpg"
+      },
+      {
+        "name": "Matthew Ninaber",
+        "img": "https://image.tmdb.org/t/p/w185/pdF252TBThy1L4elrkYsGP2YJdz.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2617",
+    "t": "Fear the Night",
+    "id_tmdb": "1143190",
+    "cat": "ACTION, THRILLER, HORREUR",
+    "url": "https://vidzy.org/d/kipdev0wcmtl_n",
+    "img": "https://image.tmdb.org/t/p/w500/oAWpvlroYbHbkaeKwlL3XlVRnyG.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/2gmaQoioyg0nmYEMBlSjBovLcUy.jpg",
+    "desc": "Tess, une vétérante de la guerre d'Irak, se prépare pour l'enterrement de vie de jeune fille de sa sœur. La fête est brusquement interrompue par un groupe de cambrioleurs qui assiègent la maison à la recherche d'une fortune cachée. Tess comprend que les voleurs sont déterminés à ne laisser aucun témoin. Tess riposte et l'experte en opérations spéciales prend les choses en main.",
+    "year": "2023",
+    "note": 3,
+    "actors_pics": [
+      {
+        "name": "Margaret Denise Quigley",
+        "img": "https://image.tmdb.org/t/p/w185/1Z0A8axunWqZrskGkfANv6W5qCl.jpg"
+      },
+      {
+        "name": "Kat Foster",
+        "img": "https://image.tmdb.org/t/p/w185/rWSlHrbQb2kfc0x0pH595iINsSh.jpg"
+      },
+      {
+        "name": "Travis Hammer",
+        "img": "https://image.tmdb.org/t/p/w185/oiYzy7turdp3GICqprkIBOwaNg.jpg"
+      },
+      {
+        "name": "Gia Crovatin",
+        "img": "https://image.tmdb.org/t/p/w185/cKhxNgdlZvUuiEj6LyUFz0To4Kt.jpg"
+      },
+      {
+        "name": "Brenda Meaney",
+        "img": "https://image.tmdb.org/t/p/w185/dltClDHGdTOjcpteaTvZmusoAa6.jpg"
+      },
+      {
+        "name": "Ito Aghayere",
+        "img": "https://image.tmdb.org/t/p/w185/lHpCIrNETLg16WkCa7YGAUETCdI.jpg"
+      },
+      {
+        "name": "Kirstin Leigh",
+        "img": "https://image.tmdb.org/t/p/w185/xpClOeRPm0ujcBESFecS1hOdC82.jpg"
+      },
+      {
+        "name": "Highdee Kuan",
+        "img": "https://image.tmdb.org/t/p/w185/6g9a5LEdPp8ju4qRMIJbRIjjOqS.jpg"
+      },
+      {
+        "name": "KeiLyn Durrel Jones",
+        "img": "https://image.tmdb.org/t/p/w185/4wDO3Zt9KJg9CARCEgjuVdhWa8x.jpg"
+      },
+      {
+        "name": "Roshni Shukla",
+        "img": "https://image.tmdb.org/t/p/w185/b3tVlY3Jhg05eWXg38GGtX1WKSY.jpg"
+      }
+    ]
+  },
+  {
     "num": "2616",
     "t": "‎Influencers",
     "id_tmdb": "1476740",
