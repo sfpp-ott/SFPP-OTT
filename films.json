@@ -1,5 +1,453 @@
 [
   {
+    "num": "2648",
+    "t": "‎Rupture à domicile",
+    "id_tmdb": "1599093",
+    "cat": "COMÉDIE",
+    "url": "https://vidzy.org/d/t289v35sxcxm_n",
+    "img": "https://image.tmdb.org/t/p/w500/gR2ySi5N4SjvbxtU6S9JZJySATf.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/blyAmyV8JCSQH8Th7KsCCc0eljT.jpg",
+    "desc": "Un soir, Éric Vence, fondateur de « Rupture à domicile », est missionné par Hyppolite pour annoncer à sa compagne qu'il a décidé de la quitter. C'est là qu'Éric tombe sur Gaëlle, son ex partie il y a 7 ans sans la moindre explication. Un trio amoureux inédit se met alors en place : l'ex, la femme et le futur-ex. C'est le début d'un poker menteur explosif dont personne ne ressortira indemne... Captation depuis le Palais des Congrès et des Festivals Atlantia de La Baule.",
+    "year": "2025",
+    "note": 0,
+    "trailer": "dcDhQMCtcoU",
+    "actors_pics": [
+      {
+        "name": "Corinne Tong-Chaï",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Isabelle Vitari",
+        "img": "https://image.tmdb.org/t/p/w185/tdCxFJbAmpi6I4muv5K7XyRZgha.jpg"
+      },
+      {
+        "name": "Loup-Denis Elion",
+        "img": "https://image.tmdb.org/t/p/w185/xZXlnkvx16zVNRtoMkSqzfkid7s.jpg"
+      },
+      {
+        "name": "Cyril Garnier",
+        "img": "https://image.tmdb.org/t/p/w185/5TdNV4VkZDA6VdjiZTbSu3TVUvc.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2647",
+    "t": "‎‎Les Bodin's ouvrent un gîte",
+    "id_tmdb": "1612235",
+    "cat": "SPECTACLE",
+    "url": "https://vidzy.org/d/5zgl9cwlyx16_n",
+    "img": "https://image.tmdb.org/t/p/w500/xxal1KQsNHyQiAlolTdqW9ucl2w.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/vHi5ENDBraI1KctmZ16XBo3zVXG.jpg",
+    "desc": "La ferme des Bodin's est écrasée par les factures et les réparations. Maria et Christian n’ont plus le choix : il faut trouver une nouvelle source de revenus. Et puisqu'on parle beaucoup de tourisme vert, d’authenticité et de retour à la terre, pourquoi ne pas transformer la ferme familiale en gîte rural ? L’idée semble évidente, mais l’application, elle, laisse à désirer. Entre un inspecteur peu coopératif, des installations bricolées à leur manière et une clientèle exigeante, Maria et Christian semblent se lancer là dans un projet qui les dépasse quelque peu... Avec : Vincent Dubois (Maria Bodin), Jean-Christian Fraiscinet (Christian Bodin), Antoine Duléry, Philippe Lellouche, Jeanfi Janssens, Bénabar, Pascal Obispo, Olivier de Benoist, Karina Marimon, Rebecca Hampton, Roman Doduik, Alexandre Pesle, Chicandier, Yann Stotz, Cécile Giroud, Christian Zanati.",
+    "year": "2026",
+    "note": 3,
+    "actors_pics": []
+  },
+  {
+    "num": "2646",
+    "t": "Miracle aux JO : Le triomphe des hockeyeurs américains",
+    "id_tmdb": "1613335",
+    "cat": "DOCUMENTAIRE, HISTOIRE",
+    "url": "https://vidzy.org/d/3xe2wtcs14gz_n",
+    "img": "https://image.tmdb.org/t/p/w500/zmMlJPZremA7iSqzg3SgZTXR28Z.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/1VSS8owtFBcpeH2b9vWRLsH7IBv.jpg",
+    "desc": "De jeunes hockeyeurs participent aux JO de 1980 en outsiders… et deviennent des héros. Une victoire racontée via de nouvelles images et les témoignages des premiers concernés.",
+    "year": "2026",
+    "note": 4,
+    "actors_pics": [
+      {
+        "name": "Herb Brooks",
+        "img": "https://image.tmdb.org/t/p/w185/whIW4612cq6IKo26q9UXIIDHAJO.jpg"
+      },
+      {
+        "name": "Mike Eruzione",
+        "img": "https://image.tmdb.org/t/p/w185/AmXQyf76V7Tnfn9OhTVA67ENYGn.jpg"
+      },
+      {
+        "name": "Jim Craig",
+        "img": "https://image.tmdb.org/t/p/w185/5djzwDLIFExM3zJe8xBdOkkbQh4.jpg"
+      },
+      {
+        "name": "Gary Smith",
+        "img": "https://image.tmdb.org/t/p/w185/cychWYIiI28QLTL7jvIpSvhnZOG.jpg"
+      },
+      {
+        "name": "Steve Janaszak",
+        "img": "https://image.tmdb.org/t/p/w185/s1CJhE7UAqV48O3Z5pqDsFfi0A1.jpg"
+      },
+      {
+        "name": "John Harrington",
+        "img": "https://image.tmdb.org/t/p/w185/3NIpno8QP2RpdDGWDHqpcTiDJv8.jpg"
+      },
+      {
+        "name": "Craig Patrick",
+        "img": "https://image.tmdb.org/t/p/w185/to39bL58xkFrsRR8AizERMqXNK8.jpg"
+      },
+      {
+        "name": "Buzz Schneider",
+        "img": "https://image.tmdb.org/t/p/w185/5TgMU6WZDZFDvRqYUaDyECxKGdf.jpg"
+      },
+      {
+        "name": "George F. Will",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Ralph Cox",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      }
+    ]
+  },
+  {
+    "num": "2645",
+    "t": "Comme une ombre",
+    "id_tmdb": "1423716",
+    "cat": "TÉLÉFILM, THRILLER, CRIME, DRAME",
+    "url": "https://vidzy.org/d/mulipg5r4sx1_n",
+    "img": "https://image.tmdb.org/t/p/w500/9DqO6v4v1gYZ7njD6uYjOy1HhwL.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/nYClIpicJksTErfsuQikACP4pVk.jpg",
+    "desc": "Malgré les efforts de la police, un assassin rôde dans Lyon et tue des citoyens de tous bords. Leur point commun : soupçonnés d'actes graves, ils ont échappé à la justice. Une commissaire locale et une profileuse parisienne vont tout faire pour que les masques tombent.",
+    "year": "2025",
+    "note": 3,
+    "trailer": "8ilGwcMIM00",
+    "actors_pics": [
+      {
+        "name": "Marie Denarnaud",
+        "img": "https://image.tmdb.org/t/p/w185/dVhFwkjZatOeS3fRQ1uzsVYQhCC.jpg"
+      },
+      {
+        "name": "Sara Martins",
+        "img": "https://image.tmdb.org/t/p/w185/hvW2YMMkonRk3WBsBBx1pDo7dkY.jpg"
+      },
+      {
+        "name": "Foëd Amara",
+        "img": "https://image.tmdb.org/t/p/w185/vQRiS6bnYnwEsYFPXKBoqHGAbVM.jpg"
+      },
+      {
+        "name": "Tiphaine Daviot",
+        "img": "https://image.tmdb.org/t/p/w185/4O7QVChMHPwsvzUb46sfw3JkPeb.jpg"
+      },
+      {
+        "name": "Cédric Appietto",
+        "img": "https://image.tmdb.org/t/p/w185/gZmZqY1aM0yVeNiVV5HkYqqlNka.jpg"
+      },
+      {
+        "name": "Moïse Santamaria",
+        "img": "https://image.tmdb.org/t/p/w185/w224ls8qq9U7gjmOpMtjGQQANNQ.jpg"
+      },
+      {
+        "name": "Etienne Diallo",
+        "img": "https://image.tmdb.org/t/p/w185/98B18QJSPvkg10fbDtciuyOtEVh.jpg"
+      },
+      {
+        "name": "Pasquale D'Inca",
+        "img": "https://image.tmdb.org/t/p/w185/hymbrRpdfAmG22jGVB0EW16PHnU.jpg"
+      },
+      {
+        "name": "Franck Adrien",
+        "img": "https://image.tmdb.org/t/p/w185/jtnbSTsBAaDeUnK9WNZ6qEY8q84.jpg"
+      },
+      {
+        "name": "Jérôme Fonlupt",
+        "img": "https://image.tmdb.org/t/p/w185/pa5JgDxUhlaZLULacRCHZen3W2O.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2644",
+    "t": "Fear Below: Plongée Sous Pression",
+    "id_tmdb": "1232933",
+    "cat": "HORREUR, ACTION, AVENTURE, THRILLER",
+    "url": "https://vidzy.org/d/looz02bpayzr_n",
+    "img": "https://image.tmdb.org/t/p/w500/uh8nwCFx9zFRJeiDUg4SxQ7Koug.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/hr3yzjzfsiNxWqlDgRTSHgYB7fz.jpg",
+    "desc": "Une bande de criminels sans pitié perd son butin d'or dans une rivière et fait appel à une équipe de plongeurs désespérés pour le récupérer. Ce qui commence comme une mission de récupération à haut risque tourne rapidement au cauchemar.",
+    "year": "2025",
+    "note": 3,
+    "actors_pics": [
+      {
+        "name": "Hermione Corfield",
+        "img": "https://image.tmdb.org/t/p/w185/wHTsaef270ng3OlMfFzsO9yBo5b.jpg"
+      },
+      {
+        "name": "Jake Ryan",
+        "img": "https://image.tmdb.org/t/p/w185/3OO5qc1kj2ny7rCLjKYDdEzPBdJ.jpg"
+      },
+      {
+        "name": "Josh McConville",
+        "img": "https://image.tmdb.org/t/p/w185/3Au004X5BsV5KIpOLMB8g9DuevT.jpg"
+      },
+      {
+        "name": "Kevin Dee",
+        "img": "https://image.tmdb.org/t/p/w185/sjfypAWoYbhS6jFWPx2RF5QvfHf.jpg"
+      },
+      {
+        "name": "Clayton Watson",
+        "img": "https://image.tmdb.org/t/p/w185/7T4RCGl5jfpB1XcjXywb6ZmwGUC.jpg"
+      },
+      {
+        "name": "Sam Parsonson",
+        "img": "https://image.tmdb.org/t/p/w185/ta9h0LYwhyDTjUDhtwCuA8B8R9I.jpg"
+      },
+      {
+        "name": "Jacob Junior Nayinggul",
+        "img": "https://image.tmdb.org/t/p/w185/5ackR05aMPwz2LZnSbVVUFpBFdn.jpg"
+      },
+      {
+        "name": "Arthur Angel",
+        "img": "https://image.tmdb.org/t/p/w185/ds27HdKDhJaXdKnmT1iftzCPfaO.jpg"
+      },
+      {
+        "name": "Maximillian Johnson",
+        "img": "https://image.tmdb.org/t/p/w185/sjlNcH8ftVnbYzMkVw2tB1CVYuC.jpg"
+      },
+      {
+        "name": "Will Fletcher",
+        "img": "https://image.tmdb.org/t/p/w185/muaodyITSCIODVh3xZvTd4OFy4x.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2643",
+    "t": "Mariana's Room",
+    "id_tmdb": "1000828",
+    "cat": "DRAME, HISTOIRE",
+    "url": "https://vidzy.org/d/k4tssszzd8j3_n",
+    "img": "https://image.tmdb.org/t/p/w500/36dxYKEeWxirbuYYIt5mcXLKVmK.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/kijIGFRnm7noVyQhn1fELe6ng7p.jpg",
+    "desc": "1943, Ukraine, Hugo a 12 ans. Pour le sauver de la déportation, sa mère le confie à son amie d’enfance Mariana, une prostituée qui vit dans une maison close à la sortie de la ville. Caché dans le placard de la chambre de Mariana, toute son existence est suspendue aux bruits qui l’entourent et aux scènes qu’il devine à travers la cloison... D'après La Chambre de Mariana d' Aharon Appelfeld.",
+    "year": "2025",
+    "note": 3,
+    "trailer": "k6G0eg5uKOY",
+    "actors_pics": [
+      {
+        "name": "Mélanie Thierry",
+        "img": "https://image.tmdb.org/t/p/w185/bzyr9QHNQhLwyxQ6mzN24HPyy3s.jpg"
+      },
+      {
+        "name": "Artem Kyryk",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Anastasia Fein",
+        "img": "https://image.tmdb.org/t/p/w185/3QTsYEgontR6s4wxFBHpoqKQZxz.jpg"
+      },
+      {
+        "name": "Julia Goldberg",
+        "img": "https://image.tmdb.org/t/p/w185/tiaqlTzqoFjeREzZArbxSS9dY7I.jpg"
+      },
+      {
+        "name": "Олена Хохлаткіна",
+        "img": "https://image.tmdb.org/t/p/w185/vtfPRsG6i6lC0EEjCbO93aofRWm.jpg"
+      },
+      {
+        "name": "Minou Monfared",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Valerii Bartkovska",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Dorka Gryllus",
+        "img": "https://image.tmdb.org/t/p/w185/ws5dUOd0trriPzoZLA3kzlVRdvy.jpg"
+      },
+      {
+        "name": "Yona Rozenkier",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Dima Savyan",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      }
+    ]
+  },
+  {
+    "num": "2642",
+    "t": "Gratte-ciel : L'ascension en direct",
+    "id_tmdb": "1599090",
+    "cat": "AVENTURE, DOCUMENTAIRE",
+    "url": "https://vidzy.org/d/nz7tgmzzcjwk_n",
+    "img": "https://image.tmdb.org/t/p/w500/lLdQaNQUrgkDyYIyEOd9lFhwozq.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/ln4AcBFey31UWfW3cQdKPwdfvAd.jpg",
+    "desc": "Sans corde ni peur. Alex Honnold, légende du solo intégral, tente en direct l'ascension à haut risque d'un des plus hauts gratte-ciel du monde à Taipei, à Taïwan.",
+    "year": "2026",
+    "note": 4,
+    "actors_pics": [
+      {
+        "name": "Alex Honnold",
+        "img": "https://image.tmdb.org/t/p/w185/jKpVo1wTFK7VoCULHFKpoxDgHRw.jpg"
+      },
+      {
+        "name": "Elle Duncan",
+        "img": "https://image.tmdb.org/t/p/w185/9954Rzshx4Cr914GrcHJRIcwtD3.jpg"
+      },
+      {
+        "name": "Emily Harrington",
+        "img": "https://image.tmdb.org/t/p/w185/jQHUiFenq97ZT20E8SMdiT3mJKJ.jpg"
+      },
+      {
+        "name": "Mark Rober",
+        "img": "https://image.tmdb.org/t/p/w185/mzMzyHwNxhUiUKbNVvjjv30fHVG.jpg"
+      },
+      {
+        "name": "Sanni McCandless",
+        "img": "https://image.tmdb.org/t/p/w185/62nnVlFdGBtp7eSY9xlPzoIrxlz.jpg"
+      },
+      {
+        "name": "Colby Lopez",
+        "img": "https://image.tmdb.org/t/p/w185/13OyPfzCoKhGVMNvmSEy6XiLuDI.jpg"
+      },
+      {
+        "name": "Pete Woods",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      }
+    ]
+  },
+  {
+    "num": "2641",
+    "t": "Moi qui t’aimais",
+    "id_tmdb": "1383266",
+    "cat": "HISTOIRE, DRAME, ROMANCE",
+    "url": "https://vidzy.org/d/y7j58aulwg5k_n",
+    "img": "https://image.tmdb.org/t/p/w500/9IwLq57nfP1wqLH5s1uTaS7PBRY.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/rWxfIIbDpdL12eTVsjmcMwmyXOd.jpg",
+    "desc": "Elle l’aimait plus que tout, il l’aimait plus que toutes les autres. Simone Signoret et Yves Montand étaient le couple le plus célèbre de leur temps. Hantée par la liaison de son mari avec Marilyn Monroe et meurtrie par toutes celles qui ont suivi, Signoret a toujours refusé le rôle de victime. Ce qu’ils savaient, c’est qu’ils ne se quitteraient jamais.",
+    "year": "2025",
+    "note": 3,
+    "trailer": "VmyJqSkxWUo",
+    "actors_pics": [
+      {
+        "name": "Roschdy Zem",
+        "img": "https://image.tmdb.org/t/p/w185/kx6FWwIKPDxFg3KNhGwctEjqWxX.jpg"
+      },
+      {
+        "name": "Marina Foïs",
+        "img": "https://image.tmdb.org/t/p/w185/dLPo5cyKoH4Y8TNRkl2GIrd4Oae.jpg"
+      },
+      {
+        "name": "Thierry de Peretti",
+        "img": "https://image.tmdb.org/t/p/w185/w3ERYv9QXHHQRjVU8PEPYWTNJGt.jpg"
+      },
+      {
+        "name": "Vincent Colombe",
+        "img": "https://image.tmdb.org/t/p/w185/gX6p0VVA8PDmh9R1svg0ssky9za.jpg"
+      },
+      {
+        "name": "Pauline Cassan",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Xavier Robic",
+        "img": "https://image.tmdb.org/t/p/w185/sXhSZ7Gyiq6sq3R85eRPMkoiJOh.jpg"
+      },
+      {
+        "name": "Nicolas Dangoise",
+        "img": "https://image.tmdb.org/t/p/w185/ftI4znirSoyVq14c73h1139VEvC.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2640",
+    "t": "Les Murmures de la forêt",
+    "id_tmdb": "1536355",
+    "cat": "TÉLÉFILM, THRILLER, CRIME",
+    "url": "https://vidzy.org/d/7b5o8qnt0k2p_n",
+    "img": "https://image.tmdb.org/t/p/w500/zMup1MrHkyq0mDsgHcK0AFQMUsc.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/rVlMbnSuuiOzlFdyuuOrdLs10C7.jpg",
+    "desc": "Julie Meyer, garde forestière pour la Direction des Services Forestiers (DSF), amoureuse des arbres et la nature, découvre le cadavre d’un jeune exploitant en bois dans la forêt aux alentours de Nancy. Samuel Masson, un flic de Strasbourg est désigné pour diriger l’enquête. Tous deux vont aussi résoudre l’énigme de la disparition du père de Julie, quatre ans auparavant.",
+    "year": "2026",
+    "note": 2,
+    "actors_pics": [
+      {
+        "name": "Déborah Krey",
+        "img": "https://image.tmdb.org/t/p/w185/7Yk7fpvFLb2C3ZbYHyjZdffI24P.jpg"
+      },
+      {
+        "name": "Antoine Gouy",
+        "img": "https://image.tmdb.org/t/p/w185/g0KnDyYzYHNY3TQgcX3B26ILnTu.jpg"
+      },
+      {
+        "name": "Marie-Sohna Condé",
+        "img": "https://image.tmdb.org/t/p/w185/8ByKJc0Qc1TaRg61X95MWir8UbG.jpg"
+      },
+      {
+        "name": "Léontine d'Oncieu",
+        "img": "https://image.tmdb.org/t/p/w185/orJtBX9JMDIW8F2SzgnNGCyHxQQ.jpg"
+      },
+      {
+        "name": "Guillaume Bouchède",
+        "img": "https://image.tmdb.org/t/p/w185/nUeHxQwx5nzBdltujc15nqcQU0R.jpg"
+      },
+      {
+        "name": "Alain Cauchi",
+        "img": "https://image.tmdb.org/t/p/w185/iFyWP5nXyh99Y6Llx53PeyeKPDY.jpg"
+      },
+      {
+        "name": "Maud Le Guénédal",
+        "img": "https://image.tmdb.org/t/p/w185/jPUb9VwEeFIKMnp94fOSLkSUtfY.jpg"
+      },
+      {
+        "name": "Meriem Serbah",
+        "img": "https://image.tmdb.org/t/p/w185/v64Cm9DKi1S9xQKsh3TqhUCe7c6.jpg"
+      },
+      {
+        "name": "Claire Cahen",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Marie Schoenbock",
+        "img": "https://image.tmdb.org/t/p/w185/xHbUo58p6OAb4pYPgPdWtlNkUWB.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2639",
+    "t": "Tout bascule",
+    "id_tmdb": "1618594",
+    "cat": "COMÉDIE",
+    "url": "https://vidzy.org/d/ub297cq1sqf2_n",
+    "img": "https://image.tmdb.org/t/p/w500/tqxJvt0L2rJTruKS5AkMNuBQ8aH.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/qGjfn9bbDSwKfqx7LZTRi0L2VwC.jpg",
+    "desc": "Qu’est ce qui peut bien pousser un homme à divorcer deux heures après s’être marié ? Jacques Lasségué, publicitaire renommé et séducteur impénitent, s'est enfin résigné à épouser Corinne. Alors que sa noce se déroule à cent mètres de sa résidence secondaire, il se réfugie chez lui à sa sortie de l'église. Sa sœur Lucie, en jetant du riz sur les mariés, lui a envoyé un grain de riz dans l'œil. C'est le grain qui va enrayer la machine car à partir de là… tout bascule ! Notre héros se trouve projeté dans un déferlement de catastrophes et de quiproquos détonants. Captation en direct le 24 janvier 2026 depuis le Théâtre de Villeneuve-Le-Roi, dans le Val-de-Marne, au profit de la chaîne privée Paris Première.",
+    "year": "2026",
+    "note": 0,
+    "trailer": "zpRiA1bY-fU",
+    "actors_pics": [
+      {
+        "name": "Corinne Tong-Chaï",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Arnaud Gidoin",
+        "img": "https://image.tmdb.org/t/p/w185/h8jg8vMFdaFVn4moiU3pJq1pRfS.jpg"
+      },
+      {
+        "name": "Julie Arnold",
+        "img": "https://image.tmdb.org/t/p/w185/pBR82JuVi5NwJSZiSOPdnS3VWWe.jpg"
+      },
+      {
+        "name": "Michel Guidoni",
+        "img": "https://image.tmdb.org/t/p/w185/nz2f1GwemYrQF9NG5AmIfSQHWTr.jpg"
+      },
+      {
+        "name": "Franck Fargier",
+        "img": "https://image.tmdb.org/t/p/w185/v1ZI0ewnLKx5rMUnvTWwjnGX2Hm.jpg"
+      },
+      {
+        "name": "Camille Muche",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Fred Vastair",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Sandra Beaudou",
+        "img": "https://image.tmdb.org/t/p/w185/92d7fYJ0bKi6ZPbqMoSNMFEnRCU.jpg"
+      }
+    ]
+  },
+  {
     "num": "2638",
     "t": "‎Silent Night, Deadly Night",
     "id_tmdb": "801937",
