@@ -25,7 +25,7 @@
    "img": "https://stock.wikimini.org/w/images/3/36/Logo_TF1_2013.png",
    "cat": "TV EN DIRECT, 1.GENERAL",
    "desc": "Regardez Tf1 en direct.",
-   "url": "https://huhu.to/watch?live=1334669376128ad4fb73e3"
+   "url": "https://huhu.to/watch?live=291352120051554ffa0eff"
   },
   {
    "t": "FRANCE 2 (Direct)",
@@ -252,11 +252,25 @@
    "url": "https://northlive.lol/api/v1/tv/rmc-life/player?api_key="
   },
   {
+  "t": "RMC LIFE (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/3/36/RMC_Life.png",
+   "cat": "TV EN DIRECT, 1.GENERAL",
+   "desc": "Regardez RMC LIFE en direct.",
+   "url": "https://northlive.lol/api/v1/tv/rmc-life/player?api_key="
+  },
+  {
   "t": "CANAL+ (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/c/c6/CanalPlus.svg",
    "cat": "TV EN DIRECT, 2.CINEMA",
    "desc": "Regardez CANAL+ en direct.",
    "url": "https://northlive.lol/api/v1/tv/canal-fhd-b/player?api_key="
+  },
+  {
+  "t": "CANAL+ (VPN)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/c/c6/CanalPlus.svg",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez CANAL+ en direct.",
+   "url": "https://huhu.to/watch?live=26416104865619e2642472"
   },
   {
   "t": "CANAL+ BOX OFFICE (Direct)",
@@ -266,11 +280,32 @@
    "url": "https://northlive.lol/api/v1/tv/canal-box-office-hd-b/player?api_key="
   },
   {
+  "t": "CANAL+ BOX OFFICE (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/5/55/C%2B_Box_Office.png",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez CANAL+ BOX OFFICE en direct.",
+   "url": "https://northlive.lol/api/v1/tv/canal-box-office-hd-b/player?api_key="
+  },
+  {
+  "t": "CANAL+ BOX OFFICE (VPN)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/5/55/C%2B_Box_Office.png",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez CANAL+ BOX OFFICE en direct.",
+   "url": "https://huhu.to/watch?live=821044379d8761cc82945"
+  },
+  {
   "t": "CANAL+ GRAND ECRAN (Direct)",
    "img": "https://i0.wp.com/www.planetecsat.com/wp-content/uploads/2022/01/CANALP_GRAND_ECRAN_1lignes_RVB_2021_06_07-07-01-22.png?resize=509%2C160&ssl=1",
    "cat": "TV EN DIRECT, 2.CINEMA",
    "desc": "Regardez CANAL+ GRAN ECRAN en direct.",
    "url": "https://northlive.lol/api/v1/tv/canal-grand-ecran-fhd-b/player?api_key="
+  },
+  {
+  "t": "CANAL+ GRAND ECRAN (VPN)",
+   "img": "https://i0.wp.com/www.planetecsat.com/wp-content/uploads/2022/01/CANALP_GRAND_ECRAN_1lignes_RVB_2021_06_07-07-01-22.png?resize=509%2C160&ssl=1",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez CANAL+ GRAN ECRAN en direct.",
+   "url": "https://huhu.to/watch?live=1373011235cbdf3f9703cf"
   },
   {
   "t": "CANAL+ CINEMA (Direct)",
@@ -287,11 +322,25 @@
    "url": "https://northlive.lol/api/v1/tv/canal-cinema-fhd-s/player?api_key="
   },
   {
+  "t": "CANAL+ CINEMA (VPN)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/1/1f/Logo_Canal%2B_Cin%C3%A9ma_2009.svg",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez CANAL+ CINEMA en direct.",
+   "url": "https://huhu.to/watch?live=10924038525acede34152d"
+  },
+  {
   "t": "CANAL+ SERIES (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/e/e3/C%2B_S%C3%A9ries.png",
    "cat": "TV EN DIRECT, 2.CINEMA",
    "desc": "Regardez CANAL+ SERIES en direct.",
    "url": "https://northlive.lol/api/v1/tv/canal-series-fhd-s/player?api_key="
+  },
+  {
+  "t": "CANAL+ SERIES (VPN)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/e/e3/C%2B_S%C3%A9ries.png",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez CANAL+ SERIES en direct.",
+   "url": "https://huhu.to/watch?live=907568283819771912644"
   },
   {
   "t": "CANAL+ FAMILY (Direct)",
@@ -301,6 +350,13 @@
    "url": "https://northlive.lol/api/v1/tv/cine-famiz-fhd-b/player?api_key="
   },
   {
+  "t": "CANAL+ FAMILY (VPN)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/7/73/Logo_Canal%2B_Family_2013.svg",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez CANAL+ FAMILY en direct.",
+   "url": "https://huhu.to/watch?live=400706295440b1c9a8bf76"
+  },
+  {
   "t": "CINE+ PREMIER (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/7/73/Canalplus_fr_cine_plus_premier_hd.png",
    "cat": "TV EN DIRECT, 2.CINEMA",
@@ -308,11 +364,25 @@
    "url": "https://northlive.lol/api/v1/tv/cina-premier-b/player?api_key="
   },
   {
+  "t": "CINE+ PREMIER (VPN)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/7/73/Canalplus_fr_cine_plus_premier_hd.png",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez CINE+ PREMIER en direct.",
+   "url": "https://huhu.to/watch?live=42491240424dc54819204e"
+  },
+  {
   "t": "CINE+ FRISSON (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/c/ce/Logo_Cin%C3%A9%2B_Frisson_2011.svg",
    "cat": "TV EN DIRECT, 2.CINEMA",
    "desc": "Regardez CINE+ FRISSON en direct.",
    "url": "https://northlive.lol/api/v1/tv/cine-frisson-fhd-b/player?api_key="
+  },
+  {
+  "t": "CINE+ FRISSON (VPN)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/c/ce/Logo_Cin%C3%A9%2B_Frisson_2011.svg",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez CINE+ FRISSON en direct.",
+   "url": "https://huhu.to/watch?live=392026093786a460f9e9fd"
   },
   {
   "t": "CINE+ EMOTION (Direct)",
