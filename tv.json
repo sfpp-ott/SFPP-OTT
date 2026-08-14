@@ -84,11 +84,11 @@
    "url": "https://northlive.lol/api/v1/tv/france-5-c/player?api_key="
   },
   {
-  "t": "FRANCE 5 (Direct)",
+  "t": "FRANCE 5 (VPN)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/2/26/Logo_France_5.svg",
    "cat": "TV EN DIRECT, 1.GENERAL",
    "desc": "Regardez FRANCE 5 en direct.",
-   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/573"
+   "url": "https://huhu.to/watch?live=22498233388ea7f7323540"
   },
   {
   "t": "M6 (Direct)",
@@ -105,11 +105,25 @@
    "url": "https://northlive.lol/api/v1/tv/m6-international-c/player?api_key="
   },
   {
+  "t": "M6 (VPN)",
+   "img": "https://stock.wikimini.org/w/images/d/db/Logo_M6.png",
+   "cat": "TV EN DIRECT, 1.GENERAL",
+   "desc": "Regardez M6 en direct.",
+   "url": "https://huhu.to/watch?live=2978370413259a7301d25c"
+  },
+  {
   "t": "ARTE (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/8/8c/Logo_ARTE.TV_2020.svg",
    "cat": "TV EN DIRECT, 1.GENERAL",
    "desc": "Regardez ARTE en direct.",
    "url": "https://northlive.lol/api/v1/tv/arte-fhd-s/player?api_key="
+  },
+  {
+  "t": "ARTE (VPN)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/8/8c/Logo_ARTE.TV_2020.svg",
+   "cat": "TV EN DIRECT, 1.GENERAL",
+   "desc": "Regardez ARTE en direct.",
+   "url": "https://huhu.to/watch?live=16663524193e5eacd6ada0"
   },
   {
   "t": "W9 (Direct)",
@@ -119,11 +133,25 @@
    "url": "https://northlive.lol/api/v1/tv/w9-hd-b/player?api_key="
   },
   {
+  "t": "W9 (VPN)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/2/2b/W9_2012.png",
+   "cat": "TV EN DIRECT, 1.GENERAL",
+   "desc": "Regardez W9 en direct.",
+   "url": "https://huhu.to/watch?live=128046615948b7ab99ef9"
+  },
+  {
   "t": "TMC (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/a/a6/TMC_%282009%29_Boule_Logo.png",
    "cat": "TV EN DIRECT, 1.GENERAL",
    "desc": "Regardez TMC en direct.",
    "url": "https://northlive.lol/api/v1/tv/tmc-hd-b/player?api_key="
+  },
+  {
+  "t": "TMC (VPN)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/a/a6/TMC_%282009%29_Boule_Logo.png",
+   "cat": "TV EN DIRECT, 1.GENERAL",
+   "desc": "Regardez TMC en direct.",
+   "url": "https://huhu.to/watch?live=42285072159fce9d15c755"
   },
   {
   "t": "TFX (Direct)",
@@ -133,11 +161,25 @@
    "url": "https://northlive.lol/api/v1/tv/tfx-b/player?api_key="
   },
   {
+  "t": "TFX (VPN)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/e/ef/Logo_TFX_2018.jpg",
+   "cat": "TV EN DIRECT, 1.GENERAL",
+   "desc": "Regardez TFX en direct.",
+   "url": "https://huhu.to/watch?live=9654013561a18f6516245"
+  },
+  {
   "t": "CSTAR (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/8/82/Cstar-logo.jpg",
    "cat": "TV EN DIRECT, 1.GENERAL",
    "desc": "Regardez CSTAR en direct.",
    "url": "https://northlive.lol/api/v1/tv/c-star-fhd-s/player?api_key="
+  },
+  {
+  "t": "CSTAR (VPN)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/8/82/Cstar-logo.jpg",
+   "cat": "TV EN DIRECT, 1.GENERAL",
+   "desc": "Regardez CSTAR en direct.",
+   "url": "https://huhu.to/watch?live=3480426017fb2984e10954"
   },
   {
   "t": "TF1 SERIES FILMS (Direct)",
@@ -154,11 +196,25 @@
    "url": "https://northlive.lol/api/v1/tv/tf1-s-ries-films/player?api_key="
   },
   {
+  "t": "TF1 SERIES FILMS (VPN)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/5/5f/TF1_S%C3%A9ries_Films_logo_2018.svg",
+   "cat": "TV EN DIRECT, 1.GENERAL",
+   "desc": "Regardez TF1 SERIES FILMS en direct.",
+   "url": "https://huhu.to/watch?live=1760063888424092082546"
+  },
+  {
   "t": "NOVO19 (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/b/b0/Logo_NOVO19_-_2025.svg",
    "cat": "TV EN DIRECT, 1.GENERAL",
    "desc": "Regardez NOVO19 en direct.",
    "url": "https://northlive.lol/api/v1/tv/novo19/player?api_key="
+  },
+  {
+  "t": "NOVO19 (VPN)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/b/b0/Logo_NOVO19_-_2025.svg",
+   "cat": "TV EN DIRECT, 1.GENERAL",
+   "desc": "Regardez NOVO19 en direct.",
+   "url": "https://huhu.to/watch?live=635278573df2ca936e07"
   },
   {
   "t": "6TER (Direct)",
@@ -168,11 +224,25 @@
    "url": "https://northlive.lol/api/v1/tv/6ter-fhd-b/player?api_key="
   },
   {
+  "t": "6TER (VPN)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/0/07/6ter.png",
+   "cat": "TV EN DIRECT, 1.GENERAL",
+   "desc": "Regardez 6TER en direct.",
+   "url": "https://huhu.to/watch?live=316025708410a038128426"
+  },
+  {
   "t": "RMC STORY (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/3/3e/RMC_Story_logo_2018.svg",
    "cat": "TV EN DIRECT, 1.GENERAL",
    "desc": "Regardez RMC STORY en direct.",
    "url": "https://northlive.lol/api/v1/tv/rmc-story-hd-s/player?api_key="
+  },
+  {
+  "t": "RMC STORY (VPN)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/3/3e/RMC_Story_logo_2018.svg",
+   "cat": "TV EN DIRECT, 1.GENERAL",
+   "desc": "Regardez RMC STORY en direct.",
+   "url": "https://huhu.to/watch?live=96807129149acb321f398"
   },
   {
   "t": "RMC LIFE (Direct)",
