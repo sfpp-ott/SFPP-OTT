@@ -1816,12 +1816,35 @@ if ('serviceWorker' in navigator) { window.addEventListener('load', () => { navi
             }
         }, { capture: true });
 
-        document.addEventListener('focus', function(e) {
+                document.addEventListener('focus', function(e) {
             if (e.target && e.target.classList && (e.target.classList.contains('sn-card') || e.target.classList.contains('actor-item'))) {
                 const carousel = e.target.closest('.carousel, .cast-row');
                 if (carousel) { const offset = e.target.offsetLeft - (carousel.clientWidth / 2) + (e.target.clientWidth / 2); try { carousel.scrollTo({ left: offset, behavior: 'smooth' }); } catch(err) { carousel.scrollLeft = offset; } }
             }
         }, true);
+    </script> <!-- Attention, il faut bien fermer le script précédent ici ! -->
+
+    <!-- === SYSTÈME DE MISE À JOUR SFPP ELITE === -->
+    <script>
+        window.addEventListener('load', function() {
+            // On vérifie environ 2 secondes après le chargement du site
+            setTimeout(function() {
+                // Si l'application Android est récente et possède la fonction checkUpdate
+                if (typeof window.SfppSync !== 'undefined' && typeof window.SfppSync.checkUpdate === 'function') {
+                    
+                    // Lancement de la vérification !
+                    // 1 = Le Version Code exigé (Change-le à 3, 4, etc. pour les prochaines MAJ)
+                    window.SfppSync.checkUpdate(
+                        1, 
+                        "Une nouvelle mise à jour critique de SFPP ELITE est disponible. Veuillez l'installer pour continuer.", 
+                        "https://github.com/ton-depot/sfpp-elite-v2.apk" // <-- METS LE VRAI LIEN VERS TON APK ICI
+                    );
+                    
+                }
+            }, 2000);
+        });
     </script>
+    <!-- ========================================== -->
+
 </body>
 </html>
