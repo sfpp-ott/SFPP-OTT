@@ -1114,6 +1114,13 @@
    "img": "https://upload.wikimedia.org/wikipedia/commons/8/8c/Logo_Ligue_1_2024.jpg",
    "cat": "TV EN DIRECT, 3.SPORTS",
    "desc": "Regardez LIGUE1+1 en direct.",
+   "url": "https://dlhd.st/stream/stream-960.php"
+  },
+  {
+  "t": "LIGUE1+1 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/8/8c/Logo_Ligue_1_2024.jpg",
+   "cat": "TV EN DIRECT, 3.SPORTS",
+   "desc": "Regardez LIGUE1+1 en direct.",
    "url": "https://northlive.lol/api/v1/tv/ligue1-c/player?api_key="
   },
   {
