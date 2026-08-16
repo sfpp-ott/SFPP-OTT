@@ -974,14 +974,14 @@
    "img": "https://upload.wikimedia.org/wikipedia/fr/2/2f/BeIN_Sports_1_%282014%29.png",
    "cat": "TV EN DIRECT, 3.SPORTS",
    "desc": "Regardez BEIN SPORTS 1 en direct.",
-   "url": "https://northlive.lol/api/v1/tv/bein-sports-1-fhd-b/player?api_key="
+   "url": "https://dlhd.st/watch.php?id=116"
   },
   {
   "t": "BEIN SPORTS 1 (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/2/2f/BeIN_Sports_1_%282014%29.png",
    "cat": "TV EN DIRECT, 3.SPORTS",
    "desc": "Regardez BEIN SPORTS 1 en direct.",
-   "url": "https://dlhd.st/stream/stream-116.php"
+   "url": "https://northlive.lol/api/v1/tv/bein-sports-1-fhd-b/player?api_key="
   },
   {
   "t": "BEIN SPORTS 2 (Direct)",
@@ -996,6 +996,14 @@
    "cat": "TV EN DIRECT, 3.SPORTS",
    "desc": "Regardez BEIN SPORTS 3 en direct.",
    "url": "https://northlive.lol/api/v1/tv/bein-sports-3-fhd-b/player?api_key="
+  },
+  
+  {
+  "t": "RMC SPORT 1 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/3/3b/Logo_RMC_Sport_1_2018.svg",
+   "cat": "TV EN DIRECT, 3.SPORTS",
+   "desc": "Regardez RMC SPORT 1 en direct.",
+   "url": "https://dlhd.st/watch.php?id=119"
   },
   {
   "t": "RMC SPORT 1 (Direct)",
@@ -1080,13 +1088,6 @@
    "cat": "TV EN DIRECT, 3.SPORTS",
    "desc": "Regardez EQUIDIA en direct.",
    "url": "https://dlhd.st/stream/stream-118.php"
-  },
-  {
-  "t": "EQUIDIA (Direct)",
-   "img": "https://upload.wikimedia.org/wikipedia/fr/2/28/Equidia_logo_2018.svg",
-   "cat": "TV EN DIRECT, 3.SPORTS",
-   "desc": "Regardez EQUIDIA en direct.",
-   "url": "https://dlhd.st/watch.php?id=119"
   },
   {
   "t": "DAZN 1 (Direct)",
