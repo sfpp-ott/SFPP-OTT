@@ -298,6 +298,13 @@
    "img": "https://upload.wikimedia.org/wikipedia/commons/c/c6/CanalPlus.svg",
    "cat": "TV EN DIRECT, 2.CINEMA",
    "desc": "Regardez CANAL+ en direct.",
+   "url": "https://dlstreams.st/watch.php?id=121"
+  },
+  {
+  "t": "CANAL+ (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/c/c6/CanalPlus.svg",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez CANAL+ en direct.",
    "url": "https://northlive.lol/api/v1/tv/canal-fhd-b/player?api_key="
   },
   
