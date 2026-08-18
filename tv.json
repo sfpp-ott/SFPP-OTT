@@ -172,6 +172,13 @@
    "img": "https://stock.wikimini.org/w/images/d/db/Logo_M6.png",
    "cat": "TV EN DIRECT, 1.GENERAL",
    "desc": "Regardez M6 en direct.",
+   "url": "https://dlstreams.st/watch.php?id=470"
+  },
+  {
+  "t": "M6 (Direct)",
+   "img": "https://stock.wikimini.org/w/images/d/db/Logo_M6.png",
+   "cat": "TV EN DIRECT, 1.GENERAL",
+   "desc": "Regardez M6 en direct.",
    "url": "https://northlive.lol/api/v1/tv/m6-fhd-b/player?api_key="
   },
   {
