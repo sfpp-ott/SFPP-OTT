@@ -216,7 +216,13 @@
    "desc": "Regardez ARTE en direct.",
    "url": "https://northlive.lol/api/v1/tv/arte-fhd-s/player?api_key="
   },
-  
+  {
+  "t": "W9 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/2/2b/W9_2012.png",
+   "cat": "TV EN DIRECT, 1.GENERAL",
+   "desc": "Regardez W9 en direct.",
+   "url": "https://dlstreams.st/watch/stream-959.php"
+  },
   {
   "t": "W9 (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/2/2b/W9_2012.png",
