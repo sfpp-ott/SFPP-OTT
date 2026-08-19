@@ -207,6 +207,13 @@
    "img": "https://upload.wikimedia.org/wikipedia/fr/8/8c/Logo_ARTE.TV_2020.svg",
    "cat": "TV EN DIRECT, 1.GENERAL",
    "desc": "Regardez ARTE en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=dlstreams&d=https%3A%2F%2Fdlstreams.st%2Fwatch.php%3Fid%3D958"
+  },
+  {
+  "t": "ARTE (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/8/8c/Logo_ARTE.TV_2020.svg",
+   "cat": "TV EN DIRECT, 1.GENERAL",
+   "desc": "Regardez ARTE en direct.",
    "url": "https://northlive.lol/api/v1/tv/arte-fhd-s/player?api_key="
   },
   
