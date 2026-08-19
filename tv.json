@@ -222,6 +222,20 @@
    "img": "https://upload.wikimedia.org/wikipedia/fr/8/8c/Logo_ARTE.TV_2020.svg",
    "cat": "TV EN DIRECT, 1.GENERAL",
    "desc": "Regardez ARTE en direct.",
+   "url": "https://dlstreams.st/watch.php?id=958#joueur3"
+  },
+  {
+  "t": "ARTE (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/8/8c/Logo_ARTE.TV_2020.svg",
+   "cat": "TV EN DIRECT, 1.GENERAL",
+   "desc": "Regardez ARTE en direct.",
+   "url": "https://dlstreams.st/watch.php?id=958#joueur4"
+  },
+  {
+  "t": "ARTE (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/8/8c/Logo_ARTE.TV_2020.svg",
+   "cat": "TV EN DIRECT, 1.GENERAL",
+   "desc": "Regardez ARTE en direct.",
    "url": "https://northlive.lol/api/v1/tv/arte-fhd-s/player?api_key="
   },
   {
