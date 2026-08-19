@@ -438,6 +438,14 @@
     </div>
 </div>
 
+<div id="tv-overlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.9); z-index:4000; align-items:center; justify-content:center; flex-direction:column;">
+    <div style="background:#111; padding:30px; border-radius:8px; text-align:center; border:1px solid #333; width: 80%; max-width: 400px; position:relative;">
+        <button class="btn-close-details" onclick="closeTvOverlay()" style="position:absolute; top:10px; right:10px; font-size:16px; width:30px; height:30px;" tabindex="0">✕</button>
+        <h2 id="tv-title" style="color:white; margin-bottom: 20px;">Choix de la source</h2>
+        <div id="tv-sources-list" style="display:flex; flex-direction:column; gap:10px;"></div>
+    </div>
+</div>
+
 <section id="player-section">
     <button class="btn-close-player" onclick="closeP_internal()" tabindex="0">✕</button>
     <div class="video-container" id="video-container">
@@ -898,6 +906,9 @@ window.handleBackAction = function() {
 
     const searchOverlay = document.getElementById('search-overlay');
     if (searchOverlay && searchOverlay.style.display === 'flex') { closeSearch_internal(); return; }
+
+    const tvOverlay = document.getElementById('tv-overlay');
+    if (tvOverlay && tvOverlay.style.display === 'flex') { closeTvOverlay(); return; }
 };
 
 window.closeP_internal = function() {
@@ -1291,8 +1302,12 @@ function render(search = "") {
 
         let displayData = [];
         let processedSeries = new Set();
+        let processedTV = new Map();
+
         data.forEach(m => {
             const isSeries = m.is_series || (m.cat && m.cat.toUpperCase().includes("SÉRIES"));
+            const itemIsTV = m.is_tv || (m.cat && (m.cat.toUpperCase().includes("DIRECT") || m.cat.toUpperCase().includes("TV")));
+
             if (isSeries) {
                 let match = String(m.t).match(/(.*?)\s+-\s+S\d{2}/i);
                 let baseName = match ? match[1].trim() : String(m.t).split(' - ')[0].trim();
@@ -1302,6 +1317,20 @@ function render(search = "") {
                     seriesCard.t = baseName; 
                     seriesCard.is_grouped_series = true;
                     displayData.push(seriesCard);
+                }
+            } else if (itemIsTV) {
+                let baseName = String(m.t).trim();
+                if (!processedTV.has(baseName)) {
+                    processedTV.set(baseName, true);
+                    let tvCard = Object.assign({}, m);
+                    tvCard.is_grouped_tv = true;
+                    tvCard.tv_sources = [m.original_index];
+                    displayData.push(tvCard);
+                } else {
+                    let existing = displayData.find(c => c.is_grouped_tv && c.t === baseName);
+                    if (existing) {
+                        existing.tv_sources.push(m.original_index);
+                    }
                 }
             } else {
                 displayData.push(m);
@@ -1376,7 +1405,7 @@ function render(search = "") {
                 displayData.forEach(m => {
                     const itemIsTV = m.is_tv || (m.cat && (m.cat.toUpperCase().includes("DIRECT") || m.cat.toUpperCase().includes("TV")));
                     const is_fav = favs.includes(m.t); const heartClass = is_fav ? 'is-fav' : ''; const heartIcon = is_fav ? '❤️' : '♡';
-                    const clickAction = m.is_grouped_series ? `openSeries('${safeStr(m.t)}')` : (itemIsTV ? `playMovie(${m.original_index})` : `openDetails(${m.original_index})`);
+                    const clickAction = m.is_grouped_series ? `openSeries('${safeStr(m.t)}')` : m.is_grouped_tv ? `openTvSources('${safeStr(m.t)}', '${m.tv_sources.join(',')}')` : (itemIsTV ? `playMovie(${m.original_index})` : `openDetails(${m.original_index})`);
                     const pct = (prog[m.t] && prog[m.t].p > 1) ? '<div class="prog-bg"><div class="prog-fill" style="width:' + prog[m.t].p + '%"></div></div>' : "";
                     let m_stars = ""; for (let i = 0; i < 5; i++) { m_stars += (i < (m.note || 5)) ? "★" : "☆"; }
                     const ratingHtml = !itemIsTV ? '<div class="card-rating">' + m_stars + '</div>' : "";
@@ -1404,7 +1433,7 @@ function render(search = "") {
                 displayData.forEach(m => {
                     const itemIsTV = m.is_tv || (m.cat && (m.cat.toUpperCase().includes("DIRECT") || m.cat.toUpperCase().includes("TV")));
                     const is_fav = favs.includes(m.t); const heartClass = is_fav ? 'is-fav' : ''; const heartIcon = is_fav ? '❤️' : '♡';
-                    const clickAction = m.is_grouped_series ? `openSeries('${safeStr(m.t)}')` : (itemIsTV ? `playMovie(${m.original_index})` : `openDetails(${m.original_index})`);
+                    const clickAction = m.is_grouped_series ? `openSeries('${safeStr(m.t)}')` : m.is_grouped_tv ? `openTvSources('${safeStr(m.t)}', '${m.tv_sources.join(',')}')` : (itemIsTV ? `playMovie(${m.original_index})` : `openDetails(${m.original_index})`);
                     const pct = (prog[m.t] && prog[m.t].p > 1) ? '<div class="prog-bg"><div class="prog-fill" style="width:' + prog[m.t].p + '%"></div></div>' : "";
                     let m_stars = ""; for (let i = 0; i < 5; i++) { m_stars += (i < (m.note || 5)) ? "★" : "☆"; }
                     const ratingHtml = !itemIsTV ? '<div class="card-rating">' + m_stars + '</div>' : "";
@@ -1437,7 +1466,7 @@ function render(search = "") {
                 filtered.forEach(m => {
                     const itemIsTV = m.is_tv || (m.cat && (m.cat.toUpperCase().includes("DIRECT") || m.cat.toUpperCase().includes("TV")));
                     const is_fav = favs.includes(m.t); const heartClass = is_fav ? 'is-fav' : ''; const heartIcon = is_fav ? '❤️' : '♡';
-                    const clickAction = m.is_grouped_series ? `openSeries('${safeStr(m.t)}')` : (itemIsTV ? `playMovie(${m.original_index})` : `openDetails(${m.original_index})`);
+                    const clickAction = m.is_grouped_series ? `openSeries('${safeStr(m.t)}')` : m.is_grouped_tv ? `openTvSources('${safeStr(m.t)}', '${m.tv_sources.join(',')}')` : (itemIsTV ? `playMovie(${m.original_index})` : `openDetails(${m.original_index})`);
                     const pct = (prog[m.t] && prog[m.t].p > 1) ? '<div class="prog-bg"><div class="prog-fill" style="width:' + prog[m.t].p + '%"></div></div>' : "";
                     let m_stars = ""; for (let i = 0; i < 5; i++) { m_stars += (i < (m.note || 5)) ? "★" : "☆"; }
                     const ratingHtml = !itemIsTV ? '<div class="card-rating">' + m_stars + '</div>' : "";
@@ -1461,6 +1490,40 @@ function render(search = "") {
         if (typeof updateSpatialNav === 'function') { setTimeout(updateSpatialNav, 200); }
     } catch(err) {}
 }
+
+window.openTvSources = function(title, sourcesStr) {
+    const sources = sourcesStr.split(',');
+    if(sources.length === 1) {
+        playMovie(parseInt(sources[0]));
+        return;
+    }
+    
+    document.getElementById('tv-title').innerText = title;
+    let html = '';
+    
+    sources.forEach((idxStr, i) => {
+        let idx = parseInt(idxStr);
+        html += `<button class="sn-card" style="padding:15px; background:#222; color:white; border:1px solid #444; border-radius:4px; cursor:pointer; font-weight:bold; font-size:16px; transition: 0.2s;" onclick="playMovie(${idx}); closeTvOverlay();" tabindex="0">Serveur ${i+1}</button>`;
+    });
+    
+    document.getElementById('tv-sources-list').innerHTML = html;
+    document.getElementById('tv-overlay').style.display = 'flex';
+    
+    setTimeout(() => {
+        if(typeof SpatialNavigation !== 'undefined') {
+            SpatialNavigation.makeFocusable();
+            const firstBtn = document.querySelector('#tv-sources-list button');
+            if(firstBtn) {
+                firstBtn.focus();
+                SpatialNavigation.focus(firstBtn);
+            }
+        }
+    }, 200);
+};
+
+window.closeTvOverlay = function() {
+    document.getElementById('tv-overlay').style.display = 'none';
+};
 
 function openSeries(name) {
     const overlay = document.getElementById('series-overlay'); 
@@ -1822,24 +1885,18 @@ if ('serviceWorker' in navigator) { window.addEventListener('load', () => { navi
                 if (carousel) { const offset = e.target.offsetLeft - (carousel.clientWidth / 2) + (e.target.clientWidth / 2); try { carousel.scrollTo({ left: offset, behavior: 'smooth' }); } catch(err) { carousel.scrollLeft = offset; } }
             }
         }, true);
-    </script> <!-- Attention, il faut bien fermer le script précédent ici ! -->
+    </script> 
 
     <!-- === SYSTÈME DE MISE À JOUR SFPP ELITE === -->
     <script>
         window.addEventListener('load', function() {
-            // On vérifie environ 2 secondes après le chargement du site
             setTimeout(function() {
-                // Si l'application Android est récente et possède la fonction checkUpdate
                 if (typeof window.SfppSync !== 'undefined' && typeof window.SfppSync.checkUpdate === 'function') {
-                    
-                    // Lancement de la vérification !
-                    // 6 = Le Version Code exigé (Change-le à 3, 4, etc. pour les prochaines MAJ)
                     window.SfppSync.checkUpdate(
                        6, 
                         "Une nouvelle mise à jour critique de SFPP ELITE est disponible. Veuillez l'installer pour continuer.", 
-                        "https://sfpp-ott.github.io/SFPP-OTT/SFPP-ELITE_1.0.apk" // <-- METS LE VRAI LIEN VERS TON APK ICI
+                        "https://sfpp-ott.github.io/SFPP-OTT/SFPP-ELITE_1.0.apk" 
                     );
-                    
                 }
             }, 2000);
         });
