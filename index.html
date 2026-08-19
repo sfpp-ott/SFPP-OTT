@@ -1509,9 +1509,14 @@ window.openTvSources = function(title, sourcesStr) {
     document.getElementById('tv-sources-list').innerHTML = html;
     document.getElementById('tv-overlay').style.display = 'flex';
     
+    // On attend un tout petit peu que la fenêtre s'affiche
     setTimeout(() => {
-        if(typeof SpatialNavigation !== 'undefined') {
-            SpatialNavigation.makeFocusable();
+        // 1. On force la mise à jour de la navigation pour la TV
+        if (typeof updateSpatialNav === 'function') {
+            updateSpatialNav();
+        }
+        // 2. On place le focus sur le premier bouton
+        if (typeof SpatialNavigation !== 'undefined') {
             const firstBtn = document.querySelector('#tv-sources-list button');
             if(firstBtn) {
                 firstBtn.focus();
@@ -1523,6 +1528,10 @@ window.openTvSources = function(title, sourcesStr) {
 
 window.closeTvOverlay = function() {
     document.getElementById('tv-overlay').style.display = 'none';
+    // On redonne le focus au menu principal quand on ferme
+    setTimeout(() => { 
+        if (typeof SpatialNavigation !== 'undefined') SpatialNavigation.focus(); 
+    }, 100);
 };
 
 function openSeries(name) {
@@ -1887,7 +1896,6 @@ if ('serviceWorker' in navigator) { window.addEventListener('load', () => { navi
         }, true);
     </script> 
 
-    <!-- === SYSTÈME DE MISE À JOUR SFPP ELITE === -->
     <script>
         window.addEventListener('load', function() {
             setTimeout(function() {
@@ -1901,7 +1909,5 @@ if ('serviceWorker' in navigator) { window.addEventListener('load', () => { navi
             }, 2000);
         });
     </script>
-    <!-- ========================================== -->
-
-</body>
+    </body>
 </html>
