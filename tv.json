@@ -202,12 +202,20 @@
    "desc": "Regardez M6 en direct.",
    "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D688242401078f5e51c480"
   },
+  
   {
   "t": "ARTE (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/8/8c/Logo_ARTE.TV_2020.svg",
    "cat": "TV EN DIRECT, 1.GENERAL",
    "desc": "Regardez ARTE en direct.",
-   "url": "https://dlstreams.st/watch.php?id=958"
+   "url": "https://dlstreams.st/watch.php?id=958#joueur1"
+  },
+  {
+  "t": "ARTE (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/8/8c/Logo_ARTE.TV_2020.svg",
+   "cat": "TV EN DIRECT, 1.GENERAL",
+   "desc": "Regardez ARTE en direct.",
+   "url": "https://dlstreams.st/watch.php?id=958#joueur2"
   },
   {
   "t": "ARTE (Direct)",
