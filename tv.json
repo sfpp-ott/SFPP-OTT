@@ -766,6 +766,41 @@
   },
   
   {
+  "t": "CANAL+ SERIES (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/e/e3/C%2B_S%C3%A9ries.png",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez CANAL+ SERIES en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D412353586256ea59f8b7b5"
+  },
+  {
+  "t": "CANAL+ SERIES (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/e/e3/C%2B_S%C3%A9ries.png",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez CANAL+ SERIES en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D2354397782686b0f84677f"
+  },
+  {
+  "t": "CANAL+ SERIES (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/e/e3/C%2B_S%C3%A9ries.png",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez CANAL+ SERIES en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D2141653939fb56edcf97da"
+  },
+  {
+  "t": "CANAL+ SERIES (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/e/e3/C%2B_S%C3%A9ries.png",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez CANAL+ SERIES en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D31229880095478070434b1"
+  },
+  {
+  "t": "CANAL+ SERIES (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/e/e3/C%2B_S%C3%A9ries.png",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez CANAL+ SERIES en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D1150638466929051c2fa8c"
+  },
+  {
   "t": "CANAL+ FAMILY (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/7/73/Logo_Canal%2B_Family_2013.svg",
    "cat": "TV EN DIRECT, 2.CINEMA",
