@@ -1888,6 +1888,20 @@
    "cat": "TV EN DIRECT, 3.SPORTS",
    "desc": "Regardez LIGUE1+3 en direct.",
    "url": "https://northlive.lol/api/v1/tv/ligue1-3-c/player?api_key="
+  },
+  {
+  "t": "LIGUE1+4 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/8/8c/Logo_Ligue_1_2024.jpg",
+   "cat": "TV EN DIRECT, 4.SPORTS",
+   "desc": "Regardez LIGUE1+4 en direct.",
+   "url": "https://dlstreams.st/watch.php?id=55#joueur1"
+  },
+  {
+  "t": "LIGUE1+4 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/8/8c/Logo_Ligue_1_2024.jpg",
+   "cat": "TV EN DIRECT, 4.SPORTS",
+   "desc": "Regardez LIGUE1+4 en direct.",
+   "url": "https://dlstreams.st/watch.php?id=55#joueur3"
   }
 
 ]
