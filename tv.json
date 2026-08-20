@@ -871,7 +871,55 @@
    "desc": "Regardez CINE+ FRISSON en direct.",
    "url": "https://northlive.lol/api/v1/tv/cine-frisson-fhd-b/player?api_key="
   },
-  
+  {
+  "t": "CINE+ FRISSON (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/c/ce/Logo_Cin%C3%A9%2B_Frisson_2011.svg",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez CINE+ FRISSON en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D3654122461b46665c82b8f"
+  },
+  {
+  "t": "CINE+ FRISSON (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/c/ce/Logo_Cin%C3%A9%2B_Frisson_2011.svg",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez CINE+ FRISSON en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D336074375a15a0dca0457"
+  },
+  {
+  "t": "CINE+ FRISSON (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/c/ce/Logo_Cin%C3%A9%2B_Frisson_2011.svg",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez CINE+ FRISSON en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D438122160b886d305d865"
+  },
+  {
+  "t": "CINE+ FRISSON (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/c/ce/Logo_Cin%C3%A9%2B_Frisson_2011.svg",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez CINE+ FRISSON en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D1649216218f2fbdc734689"
+  },
+  {
+  "t": "CINE+ FRISSON (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/c/ce/Logo_Cin%C3%A9%2B_Frisson_2011.svg",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez CINE+ FRISSON en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D39202609374011e03db8d9"
+  },
+  {
+  "t": "CINE+ FRISSON (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/c/ce/Logo_Cin%C3%A9%2B_Frisson_2011.svg",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez CINE+ FRISSON en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D5447747685684452c8ca9"
+  },
+  {
+  "t": "CINE+ FRISSON (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/c/ce/Logo_Cin%C3%A9%2B_Frisson_2011.svg",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez CINE+ FRISSON en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D4419846843b1345797858"
+  },
   {
   "t": "CINE+ EMOTION (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/7/71/Logo_Cin%C3%A9%2B_Emotion_2011.svg",
