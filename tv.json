@@ -1803,6 +1803,20 @@
    "img": "https://upload.wikimedia.org/wikipedia/fr/3/34/Automoto_La_cha%C3%AEne_%282018%29.png",
    "cat": "TV EN DIRECT, 3.SPORTS",
    "desc": "Regardez AUTOMOTO en direct.",
+   "url": "https://dlstreams.st/watch.php?id=961#joueur1"
+  },
+  {
+  "t": "AUTOMOTO (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/3/34/Automoto_La_cha%C3%AEne_%282018%29.png",
+   "cat": "TV EN DIRECT, 3.SPORTS",
+   "desc": "Regardez AUTOMOTO en direct.",
+   "url": "https://dlstreams.st/watch.php?id=961#joueur3"
+  },
+  {
+  "t": "AUTOMOTO (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/3/34/Automoto_La_cha%C3%AEne_%282018%29.png",
+   "cat": "TV EN DIRECT, 3.SPORTS",
+   "desc": "Regardez AUTOMOTO en direct.",
    "url": "https://northlive.lol/api/v1/tv/auto-moto-hd-s/player?api_key="
   },
   {
