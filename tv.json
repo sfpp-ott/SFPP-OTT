@@ -282,6 +282,20 @@
    "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D621108426057f0edcfe9d"
   },
   {
+  "t": "ARTE (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/8/8c/Logo_ARTE.TV_2020.svg",
+   "cat": "TV EN DIRECT, 1.GENERAL",
+   "desc": "Regardez ARTE en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D28525090523bed95eaf3d2"
+  },
+  {
+  "t": "ARTE (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/8/8c/Logo_ARTE.TV_2020.svg",
+   "cat": "TV EN DIRECT, 1.GENERAL",
+   "desc": "Regardez ARTE en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D16663524193943bf4b5dde"
+  },
+  {
   "t": "W9 (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/2/2b/W9_2012.png",
    "cat": "TV EN DIRECT, 1.GENERAL",
@@ -301,6 +315,20 @@
    "cat": "TV EN DIRECT, 1.GENERAL",
    "desc": "Regardez W9 en direct.",
    "url": "https://northlive.lol/api/v1/tv/w9-hd-b/player?api_key="
+  },
+  {
+  "t": "W9 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/2/2b/W9_2012.png",
+   "cat": "TV EN DIRECT, 1.GENERAL",
+   "desc": "Regardez W9 en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D12804661554f36ca1095a"
+  },
+  {
+  "t": "W9 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/2/2b/W9_2012.png",
+   "cat": "TV EN DIRECT, 1.GENERAL",
+   "desc": "Regardez W9 en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D338554998683e8b650775f"
   },
   {
   "t": "TMC (Direct)",
@@ -323,7 +351,27 @@
    "desc": "Regardez TMC en direct.",
    "url": "https://northlive.lol/api/v1/tv/tmc-hd-b/player?api_key="
   },
-  
+  {
+  "t": "TMC (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/a/a6/TMC_%282009%29_Boule_Logo.png",
+   "cat": "TV EN DIRECT, 1.GENERAL",
+   "desc": "Regardez TMC en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D42285072155d6c7509c2ed"
+  },
+  {
+  "t": "TMC (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/a/a6/TMC_%282009%29_Boule_Logo.png",
+   "cat": "TV EN DIRECT, 1.GENERAL",
+   "desc": "Regardez TMC en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D361211396f33e971ef526"
+  },
+  {
+  "t": "TMC (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/a/a6/TMC_%282009%29_Boule_Logo.png",
+   "cat": "TV EN DIRECT, 1.GENERAL",
+   "desc": "Regardez TMC en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D1149078876048c6fd8939d"
+  },
   {
   "t": "TFX (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/e/ef/Logo_TFX_2018.jpg",
