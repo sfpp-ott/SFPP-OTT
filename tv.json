@@ -659,7 +659,27 @@
    "desc": "Regardez CANAL+ BOX OFFICE en direct.",
    "url": "https://northlive.lol/api/v1/tv/canal-box-office-hd-b/player?api_key="
   },
-  
+  {
+  "t": "CANAL+ BOX OFFICE (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/5/55/C%2B_Box_Office.png",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez CANAL+ BOX OFFICE en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D8210443791c934dc94e58"
+  },
+  {
+  "t": "CANAL+ BOX OFFICE (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/5/55/C%2B_Box_Office.png",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez CANAL+ BOX OFFICE en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D3655983806eda3054f7e69"
+  },
+  {
+  "t": "CANAL+ BOX OFFICE (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/5/55/C%2B_Box_Office.png",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez CANAL+ BOX OFFICE en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D97238400212a5a98e376c"
+  },
   {
   "t": "CANAL+ GRAND ECRAN (Direct)",
    "img": "https://i0.wp.com/www.planetecsat.com/wp-content/uploads/2022/01/CANALP_GRAND_ECRAN_1lignes_RVB_2021_06_07-07-01-22.png?resize=509%2C160&ssl=1",
@@ -667,7 +687,27 @@
    "desc": "Regardez CANAL+ GRAN ECRAN en direct.",
    "url": "https://northlive.lol/api/v1/tv/canal-grand-ecran-fhd-b/player?api_key="
   },
-  
+  {
+  "t": "CANAL+ GRAND ECRAN (Direct)",
+   "img": "https://i0.wp.com/www.planetecsat.com/wp-content/uploads/2022/01/CANALP_GRAND_ECRAN_1lignes_RVB_2021_06_07-07-01-22.png?resize=509%2C160&ssl=1",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez CANAL+ GRAN ECRAN en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D25747471736b92892116f8"
+  },
+  {
+  "t": "CANAL+ GRAND ECRAN (Direct)",
+   "img": "https://i0.wp.com/www.planetecsat.com/wp-content/uploads/2022/01/CANALP_GRAND_ECRAN_1lignes_RVB_2021_06_07-07-01-22.png?resize=509%2C160&ssl=1",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez CANAL+ GRAN ECRAN en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D764514828841cf1a946e8"
+  },
+  {
+  "t": "CANAL+ GRAND ECRAN (Direct)",
+   "img": "https://i0.wp.com/www.planetecsat.com/wp-content/uploads/2022/01/CANALP_GRAND_ECRAN_1lignes_RVB_2021_06_07-07-01-22.png?resize=509%2C160&ssl=1",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez CANAL+ GRAN ECRAN en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D25481898009fc4dd96f118"
+  },
   {
   "t": "CANAL+ CINEMA (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/1/1f/Logo_Canal%2B_Cin%C3%A9ma_2009.svg",
@@ -682,7 +722,41 @@
    "desc": "Regardez CANAL+ CINEMA en direct.",
    "url": "https://northlive.lol/api/v1/tv/canal-cinema-fhd-s/player?api_key="
   },
-  
+  {
+  "t": "CANAL+ CINEMA (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/1/1f/Logo_Canal%2B_Cin%C3%A9ma_2009.svg",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez CANAL+ CINEMA en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D7815381974235226e525c"
+  },
+  {
+  "t": "CANAL+ CINEMA (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/1/1f/Logo_Canal%2B_Cin%C3%A9ma_2009.svg",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez CANAL+ CINEMA en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D2898387495718e66ec3be"
+  },
+  {
+  "t": "CANAL+ CINEMA (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/1/1f/Logo_Canal%2B_Cin%C3%A9ma_2009.svg",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez CANAL+ CINEMA en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D1092403852958115d9680b"
+  },
+  {
+  "t": "CANAL+ CINEMA (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/1/1f/Logo_Canal%2B_Cin%C3%A9ma_2009.svg",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez CANAL+ CINEMA en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D238104318bc0332836492"
+  },
+  {
+  "t": "CANAL+ CINEMA (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/1/1f/Logo_Canal%2B_Cin%C3%A9ma_2009.svg",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez CANAL+ CINEMA en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D3602737855a4e6ebf3fc10"
+  },
   {
   "t": "CANAL+ SERIES (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/e/e3/C%2B_S%C3%A9ries.png",
