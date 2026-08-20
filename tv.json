@@ -380,6 +380,27 @@
    "url": "https://northlive.lol/api/v1/tv/tfx-b/player?api_key="
   },
   {
+  "t": "TFX (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/e/ef/Logo_TFX_2018.jpg",
+   "cat": "TV EN DIRECT, 1.GENERAL",
+   "desc": "Regardez TFX en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D965401356d56a26be4f45"
+  },
+  {
+  "t": "TFX (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/e/ef/Logo_TFX_2018.jpg",
+   "cat": "TV EN DIRECT, 1.GENERAL",
+   "desc": "Regardez TFX en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D17522320208e62334baa89"
+  },
+  {
+  "t": "TFX (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/e/ef/Logo_TFX_2018.jpg",
+   "cat": "TV EN DIRECT, 1.GENERAL",
+   "desc": "Regardez TFX en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D3794086467dcb3e9b1728b"
+  },
+  {
   "t": "CSTAR (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/8/82/Cstar-logo.jpg",
    "cat": "TV EN DIRECT, 1.GENERAL",
