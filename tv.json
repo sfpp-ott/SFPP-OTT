@@ -519,7 +519,27 @@
    "desc": "Regardez RMC STORY en direct.",
    "url": "https://northlive.lol/api/v1/tv/rmc-story-hd-s/player?api_key="
   },
-  
+  {
+  "t": "RMC STORY (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/3/3e/RMC_Story_logo_2018.svg",
+   "cat": "TV EN DIRECT, 1.GENERAL",
+   "desc": "Regardez RMC STORY en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D1668303217b6fac5d2a3f2"
+  },
+  {
+  "t": "RMC STORY (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/3/3e/RMC_Story_logo_2018.svg",
+   "cat": "TV EN DIRECT, 1.GENERAL",
+   "desc": "Regardez RMC STORY en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D104723646397da6b0c2b31"
+  },
+  {
+  "t": "RMC STORY (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/3/3e/RMC_Story_logo_2018.svg",
+   "cat": "TV EN DIRECT, 1.GENERAL",
+   "desc": "Regardez RMC STORY en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D9680712917f989558355c"
+  },
   {
   "t": "RMC LIFE (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/3/36/RMC_Life.png",
@@ -533,6 +553,41 @@
    "cat": "TV EN DIRECT, 1.GENERAL",
    "desc": "Regardez RMC LIFE en direct.",
    "url": "https://northlive.lol/api/v1/tv/rmc-life/player?api_key="
+  },
+  {
+  "t": "RMC LIFE (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/3/36/RMC_Life.png",
+   "cat": "TV EN DIRECT, 1.GENERAL",
+   "desc": "Regardez RMC LIFE en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D4244955973c8f304ed42de"
+  },
+  {
+  "t": "RMC LIFE (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/3/36/RMC_Life.png",
+   "cat": "TV EN DIRECT, 1.GENERAL",
+   "desc": "Regardez RMC LIFE en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D19697030465be86491cf97"
+  },
+  {
+  "t": "RMC LIFE (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/3/36/RMC_Life.png",
+   "cat": "TV EN DIRECT, 1.GENERAL",
+   "desc": "Regardez RMC LIFE en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D22857335597969a7fb2827"
+  },
+  {
+  "t": "RMC LIFE (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/3/36/RMC_Life.png",
+   "cat": "TV EN DIRECT, 1.GENERAL",
+   "desc": "Regardez RMC LIFE en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D1213116343b6ee2df27a59"
+  },
+  {
+  "t": "RMC LIFE (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/3/36/RMC_Life.png",
+   "cat": "TV EN DIRECT, 1.GENERAL",
+   "desc": "Regardez RMC LIFE en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D1414688969c02b1874f894"
   },
   {
   "t": "CANAL+ (Direct)",
@@ -555,7 +610,41 @@
    "desc": "Regardez CANAL+ en direct.",
    "url": "https://northlive.lol/api/v1/tv/canal-fhd-b/player?api_key="
   },
-  
+  {
+  "t": "CANAL+ (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/c/c6/CanalPlus.svg",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez CANAL+ en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D1839597702d549646f5393"
+  },
+  {
+  "t": "CANAL+ (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/c/c6/CanalPlus.svg",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez CANAL+ en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D6981957d8c5d6ef6ebe"
+  },
+  {
+  "t": "CANAL+ (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/c/c6/CanalPlus.svg",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez CANAL+ en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D26416104866fb42ff4ebfa"
+  },
+  {
+  "t": "CANAL+ (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/c/c6/CanalPlus.svg",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez CANAL+ en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D1860727909951701e97ea9"
+  },
+  {
+  "t": "CANAL+ (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/c/c6/CanalPlus.svg",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez CANAL+ en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D133793341c6d2006f6954"
+  },
   {
   "t": "CANAL+ BOX OFFICE (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/5/55/C%2B_Box_Office.png",
