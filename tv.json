@@ -1047,6 +1047,55 @@
    "url": "https://northlive.lol/api/v1/tv/cine-classic-fhd-b/player?api_key="
   },
   {
+  "t": "CINE+ CLASSIC (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/2/2e/Cin%C3%A9%2BClassic2024.svg",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez CINE+ CLASSIC en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D826335846cd94062fe98"
+  },
+  {
+  "t": "CINE+ CLASSIC (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/2/2e/Cin%C3%A9%2BClassic2024.svg",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez CINE+ CLASSIC en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D351213883544926ea6dec5"
+  },
+  {
+  "t": "CINE+ CLASSIC (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/2/2e/Cin%C3%A9%2BClassic2024.svg",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez CINE+ CLASSIC en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D37438091755105404f14e5"
+  },
+  {
+  "t": "CINE+ CLASSIC (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/2/2e/Cin%C3%A9%2BClassic2024.svg",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez CINE+ CLASSIC en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D6861478577ef4ccd7286e"
+  },
+  {
+  "t": "CINE+ CLASSIC (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/2/2e/Cin%C3%A9%2BClassic2024.svg",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez CINE+ CLASSIC en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D3342642717ab7f2fad50a4"
+  },
+  {
+  "t": "CINE+ CLASSIC (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/2/2e/Cin%C3%A9%2BClassic2024.svg",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez CINE+ CLASSIC en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D581219766ec0c08526620"
+  },
+  {
+  "t": "CINE+ CLASSIC (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/2/2e/Cin%C3%A9%2BClassic2024.svg",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez CINE+ CLASSIC en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D3677483481c601971abf79"
+  },
+  {
   "t": "CINE+ CLUB (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/5/55/Logo_Cin%C3%A9%2B_Club_2011.svg",
    "cat": "TV EN DIRECT, 2.CINEMA",
