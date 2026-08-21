@@ -1,5 +1,518 @@
 [
   {
+    "num": "2678",
+    "t": "‎Facing El Chapo",
+    "id_tmdb": "1621552",
+    "cat": "CRIME, ACTION, THRILLER",
+    "url": "https://vidzy.org/d/gms0en3n3onv_n",
+    "img": "https://image.tmdb.org/t/p/w500/iwCeOpuBtuTP1kLosqgniey5OvX.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/c4U96GrPRfnNrS01mBtqnocvlLJ.jpg",
+    "desc": "Deux agents mexicains doivent survivre aux dernières heures de leur service après avoir froissé un chef de cartel dans ce drame policier inspiré de faits réels.",
+    "year": "2026",
+    "note": 0,
+    "actors_pics": [
+      {
+        "name": "Alfonso Herrera",
+        "img": "https://image.tmdb.org/t/p/w185/54KLFvt8iMDFmam2tsb5wk3AIcv.jpg"
+      },
+      {
+        "name": "Noé Hernández",
+        "img": "https://image.tmdb.org/t/p/w185/l3NXUy1x5buKHawSw4xye5JW8pl.jpg"
+      },
+      {
+        "name": "Héctor Kotsifakis",
+        "img": "https://image.tmdb.org/t/p/w185/tpobhdBDEdSG2cUXq9N8o2wPOOe.jpg"
+      },
+      {
+        "name": "Juan Pablo Cruz García",
+        "img": "https://image.tmdb.org/t/p/w185/pg87ETUWRTalWieLmWldxAIDHSf.jpg"
+      },
+      {
+        "name": "Paola Fernández",
+        "img": "https://image.tmdb.org/t/p/w185/kRfjEVZULgJNf8XC5PJETkoc7bx.jpg"
+      },
+      {
+        "name": "Antonio Fortier",
+        "img": "https://image.tmdb.org/t/p/w185/oIpGGZursCk2DIINUirsliVNOrK.jpg"
+      },
+      {
+        "name": "Allan Durell",
+        "img": "https://image.tmdb.org/t/p/w185/tbucBHuZaI6MjcxBDBvoqQoWXgd.jpg"
+      },
+      {
+        "name": "Gerardo Trejoluna",
+        "img": "https://image.tmdb.org/t/p/w185/fJzcjj3JrARh3iQEx5lMbCEfRKq.jpg"
+      },
+      {
+        "name": "Isaac Bravo",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Fernando Cuautle",
+        "img": "https://image.tmdb.org/t/p/w185/yxGoMBPVvieHrSkA2A0LACWcr68.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2677",
+    "t": "‎‎Back to the 90s",
+    "id_tmdb": "1676318",
+    "cat": "COMÉDIE, DRAME",
+    "url": "https://vidzy.org/d/e7tl09umca8r_n",
+    "img": "https://image.tmdb.org/t/p/w500/2T0j25ofU6aUei6J6ek2hlTL1wc.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/xNM42dnmIYUXpVJmPwxYCcFuHWC.jpg",
+    "desc": "",
+    "year": "2026",
+    "note": 0,
+    "actors_pics": [
+      {
+        "name": "Jacob Rott",
+        "img": "https://image.tmdb.org/t/p/w185/yW0cienzeDOh4WzRgzYx5da9HHO.jpg"
+      },
+      {
+        "name": "Luis Freitag",
+        "img": "https://image.tmdb.org/t/p/w185/oxRp4WXWeuBbXEvlcWNTE9snOUI.jpg"
+      },
+      {
+        "name": "Bene Schulz",
+        "img": "https://image.tmdb.org/t/p/w185/43wvDDjoE2f46sxklkkf0FtGmle.jpg"
+      },
+      {
+        "name": "Julien Brown",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Tim Schäcker",
+        "img": "https://image.tmdb.org/t/p/w185/jyVXNRvEIUXrfpBXeCnQlg4T5TY.jpg"
+      },
+      {
+        "name": "Felicitas Woll",
+        "img": "https://image.tmdb.org/t/p/w185/dgErPN7Az41tGsd5zbdh4qIwrog.jpg"
+      },
+      {
+        "name": "Derya Akyol",
+        "img": "https://image.tmdb.org/t/p/w185/tKnhzcPA1oMUw29rGthdKKiRycq.jpg"
+      },
+      {
+        "name": "Miles Hafeneth",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Matthew Charlery-Smith",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Luise Aschenbrenner",
+        "img": "https://image.tmdb.org/t/p/w185/piipXN00MaTNl6J3UsfsvGjcjh7.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2676",
+    "t": "LEGO Magical : Pagaille au Château",
+    "id_tmdb": "1732625",
+    "cat": "ANIMATION, FANTASTIQUE, COMÉDIE, AVENTURE",
+    "url": "https://vidzy.org/d/x3lgxzj07qkk_n",
+    "img": "https://image.tmdb.org/t/p/w500/xwIjtLG5YV9CFwavZll0v4NZ9JJ.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/iyJc33L3SCOkNrt7lTHITcZtGkx.jpg",
+    "desc": "Lors d'une violente averse, les princesses et leurs fidèles compagnons recueillent des animaux en détresse tout en profitant d'une journée douillette au château. Mais lorsque les animaux sèment la pagaille, c'est le chaos total. Une enquête révèle qu'un méchant farceur est à l'origine de ce désordre ; grâce au travail d'équipe, à leur vivacité d'esprit et à l'aide d'un ami inattendu, les princesses devront rétablir l'ordre et sauver leur foyer.",
+    "year": "2026",
+    "note": 0,
+    "trailer": "JIYUIhqnOVI",
+    "actors_pics": [
+      {
+        "name": "Jodi Benson",
+        "img": "https://image.tmdb.org/t/p/w185/4mxtuq3mXLZwPKbI7t0KFxf0PRW.jpg"
+      },
+      {
+        "name": "Auli'i Cravalho",
+        "img": "https://image.tmdb.org/t/p/w185/vEroqcnM2g6yY7qXDAie7hx2Cyp.jpg"
+      },
+      {
+        "name": "Mandy Moore",
+        "img": "https://image.tmdb.org/t/p/w185/2n0rqUGojRNEHrmtPeCEptHREEY.jpg"
+      },
+      {
+        "name": "Katherine Von Till",
+        "img": "https://image.tmdb.org/t/p/w185/fL9GGRnKnbD8uplaCWrYAtmprjo.jpg"
+      },
+      {
+        "name": "Ming-Na Wen",
+        "img": "https://image.tmdb.org/t/p/w185/eqCzFF83It56cUdjpskzvg8jgq.jpg"
+      },
+      {
+        "name": "Linda Larkin",
+        "img": "https://image.tmdb.org/t/p/w185/uN35v1Z374JvfdnDJBVmvnB2JNQ.jpg"
+      },
+      {
+        "name": "Jim Cummings",
+        "img": "https://image.tmdb.org/t/p/w185/c0sQPRCM5Ri3F4gVyxPr4AcPmIq.jpg"
+      },
+      {
+        "name": "Gracen Newton",
+        "img": "https://image.tmdb.org/t/p/w185/yyMBocOeMuHujjVnYcAPaNBkgMx.jpg"
+      },
+      {
+        "name": "Isaac Robinson-Smith",
+        "img": "https://image.tmdb.org/t/p/w185/ceNxqevAX7c9uAzl8IthjG3slqy.jpg"
+      },
+      {
+        "name": "Corey Burton",
+        "img": "https://image.tmdb.org/t/p/w185/wcpFwdL7m01cZoBJiUSMQVakK2G.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2675",
+    "t": "What We Dreamed of Then",
+    "id_tmdb": "1457169",
+    "cat": "DRAME",
+    "url": "https://vidzy.org/d/b7t4ixvbdhb5_n",
+    "img": "https://image.tmdb.org/t/p/w500/mHUamJDZIF1Foazklo8boy0rOqg.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/7ECvhNWQnPILhd22cI37kJ67Eiw.jpg",
+    "desc": "",
+    "year": "2026",
+    "note": 0,
+    "actors_pics": [
+      {
+        "name": "Taylor Olson",
+        "img": "https://image.tmdb.org/t/p/w185/jlbC2RFi1yFf54QtvENOBG4akzq.jpg"
+      },
+      {
+        "name": "Christie Burke",
+        "img": "https://image.tmdb.org/t/p/w185/ltrTLKdYV8OdeYFKR6NPfRdYLli.jpg"
+      },
+      {
+        "name": "Parveen Kaur",
+        "img": "https://image.tmdb.org/t/p/w185/p6L1Ma1MDda7I7aSZ68rcc1I6CR.jpg"
+      },
+      {
+        "name": "River Price-Maenpaa",
+        "img": "https://image.tmdb.org/t/p/w185/yVztYyemTaePo9eYijHuqwXR1Rf.jpg"
+      },
+      {
+        "name": "Hugh Thompson",
+        "img": "https://image.tmdb.org/t/p/w185/gqBxmvQH9ichNJlJguBjiJjiEVS.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2674",
+    "t": "La Mystères des harmonies hantées: La clé du château",
+    "id_tmdb": "1663525",
+    "cat": "MYSTÈRE, TÉLÉFILM",
+    "url": "https://vidzy.org/d/rh0j0ax695v5_n",
+    "img": "https://image.tmdb.org/t/p/w500/l9Pm8DnilY7A1POSOacy1JEYE5Y.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/p8bXnT5In5gd9vIEDQNfzfHu2pr.jpg",
+    "desc": "Lorsqu'une émission de chasse aux fantômes arrive en ville, c'est à Gethsémani et Eamon de résoudre le meurtre inattendu de l'animateur, permettant ainsi au nouvel esprit de passer dans l'autre monde.",
+    "year": "2026",
+    "note": 5,
+    "actors_pics": [
+      {
+        "name": "Tamera Mowry-Housley",
+        "img": "https://image.tmdb.org/t/p/w185/1DCF3kbfKioof8ilbbK9Y16a6jE.jpg"
+      },
+      {
+        "name": "Marco Grazzini",
+        "img": "https://image.tmdb.org/t/p/w185/ml42pjzKn7sjNR5FkpEn5cTjIdZ.jpg"
+      },
+      {
+        "name": "Risteard Cooper",
+        "img": "https://image.tmdb.org/t/p/w185/cM0PgBm4lLKCqpJaiQqS7RAReM5.jpg"
+      },
+      {
+        "name": "Adam Fergus",
+        "img": "https://image.tmdb.org/t/p/w185/wlnQZ7ucO4jnrE3jqfDwT1tz0vq.jpg"
+      },
+      {
+        "name": "Julie Lamberton",
+        "img": "https://image.tmdb.org/t/p/w185/nOP2EtkYINdGg9WN5oziU4OSFmF.jpg"
+      },
+      {
+        "name": "Frankie McCafferty",
+        "img": "https://image.tmdb.org/t/p/w185/qO12dRPtuXXX40Eab3QrliAsnz8.jpg"
+      },
+      {
+        "name": "Luke Griffin",
+        "img": "https://image.tmdb.org/t/p/w185/bu0UOvSBkK73NkmFxsZm6dpw5GV.jpg"
+      },
+      {
+        "name": "Sarah Gallagher",
+        "img": "https://image.tmdb.org/t/p/w185/4yw6fyt56280pzuDmHXCAUgUfFv.jpg"
+      },
+      {
+        "name": "Aidan Redmond",
+        "img": "https://image.tmdb.org/t/p/w185/hX9xd2L9bUAb1kOHXQfwzaVeMSP.jpg"
+      },
+      {
+        "name": "Ryan Murray",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      }
+    ]
+  },
+  {
+    "num": "2673",
+    "t": "The Fires",
+    "id_tmdb": "1307384",
+    "cat": "THRILLER",
+    "url": "https://vidzy.org/d/k553v288qjq9_n",
+    "img": "https://image.tmdb.org/t/p/w500/1020OYhA1YRAZISRNZgQ7TCXZl8.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/miydeUpspKXPRHZ5llPp2mIn0Cb.jpg",
+    "desc": "La volcanologue de renom Anna Arnardóttir doit faire face à deux catastrophes simultanément : une éruption volcanique qui menace la sécurité de la capitale et une liaison amoureuse qui pourrait détruire son mariage.",
+    "year": "2025",
+    "note": 3,
+    "actors_pics": [
+      {
+        "name": "Vigdís Hrefna Pálsdóttir",
+        "img": "https://image.tmdb.org/t/p/w185/32fka8oFx3UuwwF3IIpavKtV78M.jpg"
+      },
+      {
+        "name": "Pilou Asbæk",
+        "img": "https://image.tmdb.org/t/p/w185/hUJAtjbYG7rqm54aoWtNWeeKjTY.jpg"
+      },
+      {
+        "name": "Joi Johannsson",
+        "img": "https://image.tmdb.org/t/p/w185/mXkaCKZDlUXvLWxabCgsURnBzvy.jpg"
+      },
+      {
+        "name": "Steinunn Kaldal Jakobsdóttir",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "María Heba Þorkelsdóttir",
+        "img": "https://image.tmdb.org/t/p/w185/hEJjLvlzVSWt72F4dBpwtt39X7W.jpg"
+      },
+      {
+        "name": "Thor Tulinius",
+        "img": "https://image.tmdb.org/t/p/w185/70t9zgX0STvGa5pATI9obt6gmB8.jpg"
+      },
+      {
+        "name": "Sigurður Sigurjónsson",
+        "img": "https://image.tmdb.org/t/p/w185/771PMUbylZqX4TbUmONzfOBhsSK.jpg"
+      },
+      {
+        "name": "Guðmundur Ólafsson",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Arndís Hrönn Egilsdóttir",
+        "img": "https://image.tmdb.org/t/p/w185/2MxDcdXTALRXIAou8rB7I2Vjhnq.jpg"
+      },
+      {
+        "name": "Almar Blær Sigurjonsson",
+        "img": "https://image.tmdb.org/t/p/w185/yLGkGDFkw8qlP6hnGbtEla8BZ9I.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2672",
+    "t": "Dernière enquête",
+    "id_tmdb": "1409853",
+    "cat": "ACTION, THRILLER",
+    "url": "https://vidzy.org/d/oke48tmxn0it_n",
+    "img": "https://image.tmdb.org/t/p/w500/yp0cF606jIoSWfI4KiFNLHSFhOG.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/5nilYwx9jH6P27pnORwlrRdtCwZ.jpg",
+    "desc": "Un adolescent couvert de sang fait irruption dans un poste de police et exige de parler à l’inspecteur Matthew Shaw, lui lançant un ultimatum terrifiant : résoudre une série de meurtres atroces ou son fils kidnappé sera tué. Dans une course contre la montre, Shaw démêle un tissu de secrets pour découvrir une vérité encore plus sombre qui remet en cause tout ce qu’il croyait savoir sur l’institution à laquelle il a consacré sa vie.",
+    "year": "2026",
+    "note": 3,
+    "actors_pics": [
+      {
+        "name": "Josh Duhamel",
+        "img": "https://image.tmdb.org/t/p/w185/5Rp9aeWdN2S623KCjwfii9MhDK1.jpg"
+      },
+      {
+        "name": "Dylan Sprouse",
+        "img": "https://image.tmdb.org/t/p/w185/zy7ueLZtJwiRFdYkDlzjQhbA6SW.jpg"
+      },
+      {
+        "name": "Til Schweiger",
+        "img": "https://image.tmdb.org/t/p/w185/3Jk7y4sKgckrN9RzAAt0drlR0QG.jpg"
+      },
+      {
+        "name": "Jeremy London",
+        "img": "https://image.tmdb.org/t/p/w185/2eSv6kcfWinz0xDoAclyCVsArhu.jpg"
+      },
+      {
+        "name": "Jason London",
+        "img": "https://image.tmdb.org/t/p/w185/bFkC2ZRcurTQzbjBuuMljFCKfEv.jpg"
+      },
+      {
+        "name": "Elena Sanchez",
+        "img": "https://image.tmdb.org/t/p/w185/prhbHW3WWqnbpChZZIKPsdzS7ny.jpg"
+      },
+      {
+        "name": "Corbin Pitts",
+        "img": "https://image.tmdb.org/t/p/w185/kL87wIiTEpHfz5HOIRcNle33TgU.jpg"
+      },
+      {
+        "name": "Melissa Cannon",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      }
+    ]
+  },
+  {
+    "num": "2671",
+    "t": "Black Box",
+    "id_tmdb": "1321008",
+    "cat": "HORREUR, THRILLER",
+    "url": "https://vidzy.org/d/0awg94g0mj4c_n",
+    "img": "https://image.tmdb.org/t/p/w500/vfRPdppXyM9uPAR5KXBXmLEHPNS.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/ce0RjYfcgzQeiT3PjaARWv5PVQO.jpg",
+    "desc": "Faisant la liaison entre la Nouvelle-Orléans et Seattle, le vol 298 de Vero Airlines est frappé d’un mystérieux phénomène surnaturel.",
+    "year": "2026",
+    "note": 3,
+    "actors_pics": [
+      {
+        "name": "Tom Brittney",
+        "img": "https://image.tmdb.org/t/p/w185/qSe3SuZHVPR5AMOuOAGxLdD6kYv.jpg"
+      },
+      {
+        "name": "Holly White",
+        "img": "https://image.tmdb.org/t/p/w185/lkQmGKoC996jgcJ6lBbbRayjl5J.jpg"
+      },
+      {
+        "name": "Betsy Blue-English",
+        "img": "https://image.tmdb.org/t/p/w185/bmsIruL18XXxkFqlK5BKt6WllKz.jpg"
+      },
+      {
+        "name": "Dane Whyte O'Hara",
+        "img": "https://image.tmdb.org/t/p/w185/yNmVq7CaixCk4N9eOpb3BCQ5XAH.jpg"
+      },
+      {
+        "name": "Kaja Chan",
+        "img": "https://image.tmdb.org/t/p/w185/uOfFVTPkkaNvCgBoDFuzlFoAyhm.jpg"
+      },
+      {
+        "name": "Georgina Leonidas",
+        "img": "https://image.tmdb.org/t/p/w185/1xjHlxkxxAh7qltWhz6Ko03Nkd8.jpg"
+      },
+      {
+        "name": "Hanneke Talbot",
+        "img": "https://image.tmdb.org/t/p/w185/cPvaCSaPbFCqc86FHLFGscjRLuz.jpg"
+      },
+      {
+        "name": "Anton Trendafilov",
+        "img": "https://image.tmdb.org/t/p/w185/fjuJLlvq7cSAAHpgvXgpoYtJaMv.jpg"
+      },
+      {
+        "name": "Asa Ali",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Boadicea Ricketts",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      }
+    ]
+  },
+  {
+    "num": "2670",
+    "t": "Speed Demon",
+    "id_tmdb": "1473878",
+    "cat": "HORREUR",
+    "url": "https://vidzy.org/d/j8359bb4g5nt_n",
+    "img": "https://image.tmdb.org/t/p/w500/tLjWqe5kP9kiQQEMAvZ2BHnSVWY.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/wivNPOtg6saz1XrCTU3C7sYYFt6.jpg",
+    "desc": "Dans un train à grande vitesse, une religieuse ayant perdu la foi doit réaliser son premier exorcisme sur un passager possédé déterminé à faire dérailler le train devenu incontrôlable.",
+    "year": "2026",
+    "note": 2,
+    "actors_pics": [
+      {
+        "name": "Katie Cassidy",
+        "img": "https://image.tmdb.org/t/p/w185/v7cs7RFcfoiL8W1YRkZK5lBc57H.jpg"
+      },
+      {
+        "name": "William H. Macy",
+        "img": "https://image.tmdb.org/t/p/w185/hdVEGSrP8qWlJnt0v5vSVcGOjy7.jpg"
+      },
+      {
+        "name": "John Patrick Jordan",
+        "img": "https://image.tmdb.org/t/p/w185/zjqNGyZwURh1FagXWREy3hOwxKa.jpg"
+      },
+      {
+        "name": "Michael Emery",
+        "img": "https://image.tmdb.org/t/p/w185/98R6yBq9bJpXQKsWPjratVlgeOr.jpg"
+      },
+      {
+        "name": "Allen McCullough",
+        "img": "https://image.tmdb.org/t/p/w185/A05TOKN3jkMCHbrAwt2ySR18Eb3.jpg"
+      },
+      {
+        "name": "Sabrina Schlegel-Mejia",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Noriko Sato",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Ray Faiola",
+        "img": "https://image.tmdb.org/t/p/w185/gACrqC1qQmlTVBhlrftqJD5ZKwh.jpg"
+      },
+      {
+        "name": "Jeremy Feight",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Michael John Improta",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      }
+    ]
+  },
+  {
+    "num": "2669",
+    "t": "Chompoo: petite fille perdue et oubliée",
+    "id_tmdb": "1741201",
+    "cat": "DOCUMENTAIRE",
+    "url": "https://vidzy.org/d/x7mhyb1uiys3_n",
+    "img": "https://image.tmdb.org/t/p/w500/lVEoZMJtYmkiebrVrMcsfKpEYXc.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/rQ6tQBa9AL5MtACakhYKSDZ3sV4.jpg",
+    "desc": "Ce documentaire revient sur la tragique disparition d'une fillette thaïlandaise qui a captivé tout un pays, propulsé un suspect au rang de star et fait la une à la télévision.",
+    "year": "2026",
+    "note": 3,
+    "actors_pics": [
+      {
+        "name": "Tanawat Tantiwaleeawat",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "คาลิณ ศิริรุ้งนภัส",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Sirisawat Kaewdam",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Laksanayaporn Sriutta",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Phetkasem Suriyawongwongsa",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Somchai Mahachaicharoen",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Tanyatorn Kraikitithanawath",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Sutree Chanachai",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Nelda Jeamton",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Werawat Jumroensarn",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      }
+    ]
+  },
+  {
     "num": "2668",
     "t": "‎Hostile Takeover",
     "id_tmdb": "1319895",
@@ -7567,7 +8080,7 @@
     "id_tmdb": "1612018",
     "cat": "ACTION, COMÉDIE, DOCUMENTAIRE",
     "url": "https://vidzy.org/d/tzxtgayvdlaw_n",
-    "img": "https://image.tmdb.org/t/p/w500/8wSqjDRQsKF2OkT7wR1MYXUwbJG.jpg",
+    "img": "https://image.tmdb.org/t/p/w500/xd7tpoTpkOUIMf0Xd6DcCWqNrNQ.jpg",
     "bg": "https://image.tmdb.org/t/p/original/dUbP1HNdI0aCq1zgRJw28PWSqmk.jpg",
     "desc": "",
     "year": "2026",
