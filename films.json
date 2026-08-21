@@ -1,5 +1,386 @@
 [
   {
+    "num": "2695",
+    "t": "‎Fous Furieux",
+    "id_tmdb": "1588838",
+    "cat": "DRAME, AVENTURE",
+    "url": "https://vidzy.org/d/zhxnqv4ijfns_n",
+    "img": "https://image.tmdb.org/t/p/w500/2eEuRsrK7JZQHxs7zBOmiOJIXdx.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/vIYxi7G0nK64cgiiVwSV0sFeQ7F.jpg",
+    "desc": "Trois parachutistes sont morts dans des accidents similaires en cinq ans. Salvador Calvo a voulu raconter leur histoire avec le seul survivant, Carlos Suárez.",
+    "year": "2026",
+    "note": 3,
+    "actors_pics": [
+      {
+        "name": "Carlos Cuevas",
+        "img": "https://image.tmdb.org/t/p/w185/he5a5qQV3ZydOpTiBGb4HCrc8Z6.jpg"
+      },
+      {
+        "name": "Miguel Bernardeau",
+        "img": "https://image.tmdb.org/t/p/w185/dFA8oHPaFseIqlpCFKtsDwzhrz1.jpg"
+      },
+      {
+        "name": "Miguel Ángel Silvestre",
+        "img": "https://image.tmdb.org/t/p/w185/ft14HqAFsvk0o2m5rOXrfYUI4KA.jpg"
+      },
+      {
+        "name": "José Manuel Poga",
+        "img": "https://image.tmdb.org/t/p/w185/baaV0r14Jnit0OZA4jv2BTWb3QO.jpg"
+      },
+      {
+        "name": "David Marcé",
+        "img": "https://image.tmdb.org/t/p/w185/9NCay00oPMT9k0uZ7r38GW6IIcH.jpg"
+      },
+      {
+        "name": "Nuria Casas",
+        "img": "https://image.tmdb.org/t/p/w185/uCgtyetWSP7FV980Hu3zRaSNv4f.jpg"
+      },
+      {
+        "name": "Paloma Bloyd",
+        "img": "https://image.tmdb.org/t/p/w185/1MBEPN0Y4YvIJAw3WOqBOeALDFT.jpg"
+      },
+      {
+        "name": "Candela González",
+        "img": "https://image.tmdb.org/t/p/w185/sQrZLtdg9d29e6Zx4Thvc3EpKCn.jpg"
+      },
+      {
+        "name": "Stéphanie Magnin",
+        "img": "https://image.tmdb.org/t/p/w185/fPDyHTbQMS2hn6LVBNIZjeemCOc.jpg"
+      },
+      {
+        "name": "Nüll García",
+        "img": "https://image.tmdb.org/t/p/w185/jsSQWkOEp96KAjjHrUjhgDoBns.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2694",
+    "t": "‎‎Don't Say Good Luck",
+    "id_tmdb": "1504358",
+    "cat": "COMÉDIE, MUSIQUE, DRAME",
+    "url": "https://vidzy.org/d/7mpbajnl8w4i_n",
+    "img": "https://image.tmdb.org/t/p/w500/dgTKahWonzVLeN8Lm22WR2S7D0A.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/yzdMGn8IRHSGuV8AIzw19wkRU2W.jpg",
+    "desc": "Alors qu'elle s'apprête à briller dans le rôle principal de la comédie musicale de son lycée, Sophie Birenbaum se retrouve soudain confrontée à de graves problèmes familiaux.",
+    "year": "2026",
+    "note": 4,
+    "actors_pics": [
+      {
+        "name": "Sunny Sandler",
+        "img": "https://image.tmdb.org/t/p/w185/bZqheNbKINcFeVJUtkeBVKeQK8h.jpg"
+      },
+      {
+        "name": "Melanie Lynskey",
+        "img": "https://image.tmdb.org/t/p/w185/kzrWI1sTgnA0H7TCIKzDOUtOW4n.jpg"
+      },
+      {
+        "name": "Max Greenfield",
+        "img": "https://image.tmdb.org/t/p/w185/79w2mSZT8JwYv5ZwjJMDYQbzptE.jpg"
+      },
+      {
+        "name": "Stephanie Beatriz",
+        "img": "https://image.tmdb.org/t/p/w185/7gNPOlsVIdg7QQOv1gRfHjv1Sdb.jpg"
+      },
+      {
+        "name": "Bebe Neuwirth",
+        "img": "https://image.tmdb.org/t/p/w185/yFOdER8Fc07DU6U3kq2PRcbvDR.jpg"
+      },
+      {
+        "name": "Steve Buscemi",
+        "img": "https://image.tmdb.org/t/p/w185/n0pZumkrcZrAPMoPq684RhYnjPV.jpg"
+      },
+      {
+        "name": "Matan Friedman",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Eitan Friedman",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Scarlett Estevez",
+        "img": "https://image.tmdb.org/t/p/w185/eGZsZRPJ0aUBGaght37a3pQXEjs.jpg"
+      },
+      {
+        "name": "Emma McNulty",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      }
+    ]
+  },
+  {
+    "num": "2693",
+    "t": "La femme de",
+    "id_tmdb": "1000990",
+    "cat": "DRAME",
+    "url": "https://vidzy.org/d/lo07gkpbqc10_n",
+    "img": "https://image.tmdb.org/t/p/w500/2jWVQPOHvMfnOokoougM4blUlYk.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/iR3kcb9uXP9HmBa4CidYx2BUFru.jpg",
+    "desc": "Voilà Marianne aujourd’hui : femme d’un riche industriel, épouse modèle et mère de famille dévouée. Elle va avoir 40 ans, et le confort de la vaste demeure familiale a lentement refermé sur elle son piège impitoyable. Prisonnière d’un inextricable réseau d’obligations sociales, familiales et conjugales, elle a renoncé à elle-même. Alors, quand resurgit l’ombre de son passé, une brèche s’ouvre.",
+    "year": "2026",
+    "note": 3,
+    "trailer": "s6kKTFE5wf8",
+    "actors_pics": [
+      {
+        "name": "Mélanie Thierry",
+        "img": "https://image.tmdb.org/t/p/w185/bzyr9QHNQhLwyxQ6mzN24HPyy3s.jpg"
+      },
+      {
+        "name": "Éric Caravaca",
+        "img": "https://image.tmdb.org/t/p/w185/yJkhAfF1flznA2GzLWah2nDecIa.jpg"
+      },
+      {
+        "name": "Jérémie Renier",
+        "img": "https://image.tmdb.org/t/p/w185/3oBBshsyiBEh4PkR9YDMCl3iyp1.jpg"
+      },
+      {
+        "name": "Arnaud Valois",
+        "img": "https://image.tmdb.org/t/p/w185/yuSnJud8EnrJSDaaDpMQhWpsEPU.jpg"
+      },
+      {
+        "name": "Jérôme Deschamps",
+        "img": "https://image.tmdb.org/t/p/w185/yjV8LhSnlVSU5anv230HwQGocDf.jpg"
+      },
+      {
+        "name": "Jeanne Rosa",
+        "img": "https://image.tmdb.org/t/p/w185/4Cphjde680UnNydbNKpcQjiJqKQ.jpg"
+      },
+      {
+        "name": "Lila Gueneau",
+        "img": "https://image.tmdb.org/t/p/w185/ns14Wm7G5wyoJCFVxnSbkCQcfKu.jpg"
+      },
+      {
+        "name": "Sarah Le Picard",
+        "img": "https://image.tmdb.org/t/p/w185/6OIETJY9geWiqaS3RPmsRaRfaS1.jpg"
+      },
+      {
+        "name": "Jules Mariot",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Nathalie Bécue",
+        "img": "https://image.tmdb.org/t/p/w185/xCPrl8ro4ej9XkbP9AW0zuf71Db.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2692",
+    "t": "The Plague",
+    "id_tmdb": "1370814",
+    "cat": "DRAME, THRILLER",
+    "url": "https://vidzy.org/d/jthn1lbhwc5p_n",
+    "img": "https://image.tmdb.org/t/p/w500/agW0Xi07cpuhGiguRx9FeJvMkAA.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/kHyN3PejjlYWYz1Eah3jS64oV0g.jpg",
+    "desc": "États-Unis, 2003. À son arrivée dans une nouvelle ville en compagnie de sa mère et de l'homme avec qui elle a refait sa vie, Ben, 13 ans, est inscrit à un camp de water-polo. Discret et insécure, il cherche l'approbation de Jake, qui semble être le meneur parmi les joueurs. Celui-ci le met en garde contre Eli, un marginal réputé pestiféré en raison de sa maladie de peau. Quand Ben, par compassion pour Eli, lui frictionne le dos dans le vestiaire, Jake le prend pour cible, faisant de sa vie un enfer.",
+    "year": "2025",
+    "note": 3,
+    "actors_pics": [
+      {
+        "name": "Everett Blunck",
+        "img": "https://image.tmdb.org/t/p/w185/r2nFAae69Ze9xJcAAQ5sGG13iyO.jpg"
+      },
+      {
+        "name": "Kayo Martin",
+        "img": "https://image.tmdb.org/t/p/w185/x2R2EkfYWNd855yGDxzppqAfIBu.jpg"
+      },
+      {
+        "name": "Joel Edgerton",
+        "img": "https://image.tmdb.org/t/p/w185/r2TTDZ8cG5wrZqx7Drz1M95S9z3.jpg"
+      },
+      {
+        "name": "Kenny Rasmussen",
+        "img": "https://image.tmdb.org/t/p/w185/o0lRLMccd3biNskXGmLHn2qZcvh.jpg"
+      },
+      {
+        "name": "Lucas Adler",
+        "img": "https://image.tmdb.org/t/p/w185/vfRRVHUOo2T6lTptZuU2putgKJd.jpg"
+      },
+      {
+        "name": "Caden Burris",
+        "img": "https://image.tmdb.org/t/p/w185/iOMVWRgt86AMTUDJ5mhsj8qJrAg.jpg"
+      },
+      {
+        "name": "Elliott Heffernan",
+        "img": "https://image.tmdb.org/t/p/w185/gXn6pP5F42Z2Es5Jc2ePBj5KcIO.jpg"
+      },
+      {
+        "name": "Lennox Espy",
+        "img": "https://image.tmdb.org/t/p/w185/uj3g6ixNmEo83yLxrbo4MLUhy0J.jpg"
+      },
+      {
+        "name": "Kolton Lee",
+        "img": "https://image.tmdb.org/t/p/w185/cxYDAZArl5b1YtVu7uk5pdmTPOD.jpg"
+      },
+      {
+        "name": "Geo Dobre",
+        "img": "https://image.tmdb.org/t/p/w185/yDwkgzFKl2277XB8QAbZsX1rItU.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2691",
+    "t": "Camp Rock 3",
+    "id_tmdb": "1493400",
+    "cat": "MUSIQUE, COMÉDIE, DRAME, TÉLÉFILM, ROMANCE",
+    "url": "https://vidzy.org/d/ah7c726zlkxb_n",
+    "img": "https://image.tmdb.org/t/p/w500/9oKGprrXuvXb4wsIyzoQV9czgn3.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/vJb3fniB8E0JnSMr1tDyIsb6gPi.jpg",
+    "desc": "Le groupe Connect 3 perd sa première partie pour une tournée de concerts très attendue. Le groupe retourne alors à son cher Camp Rock pour y dénicher la prochaine grande révélation musicale. Alors que les campeurs rivalisent pour avoir la chance d’ouvrir pour leur groupe préféré, les tensions montent, les amitiés sont mises à l’épreuve, et des alliances, des révélations et des romances inattendues se forment.",
+    "year": "2026",
+    "note": 3,
+    "trailer": "OX6zqV_8zh4",
+    "actors_pics": [
+      {
+        "name": "Liamani Segura",
+        "img": "https://image.tmdb.org/t/p/w185/jqjmZQwrYQNj9QModC9HoEfF3N2.jpg"
+      },
+      {
+        "name": "Malachi Barton",
+        "img": "https://image.tmdb.org/t/p/w185/lmV6ParCZkniV1OQO71xxfjFjaG.jpg"
+      },
+      {
+        "name": "Lumi Pollack",
+        "img": "https://image.tmdb.org/t/p/w185/ngKlo2wJ54OMDFgX3cpFEdsTvfi.jpg"
+      },
+      {
+        "name": "Hudson Stone",
+        "img": "https://image.tmdb.org/t/p/w185/q7cpKCtm50jPnlYESislWb1H8Gr.jpg"
+      },
+      {
+        "name": "Casey Trotter",
+        "img": "https://image.tmdb.org/t/p/w185/xVCdT8ww3iuU8bPYG548GKK5Z8S.jpg"
+      },
+      {
+        "name": "Brooklynn Pitts",
+        "img": "https://image.tmdb.org/t/p/w185/s4SC9qvQVzFYhd4WxPerCaC8uuy.jpg"
+      },
+      {
+        "name": "Joe Jonas",
+        "img": "https://image.tmdb.org/t/p/w185/wlzMYfBH3uBwOyU0LfDMK3XaFpr.jpg"
+      },
+      {
+        "name": "Nick Jonas",
+        "img": "https://image.tmdb.org/t/p/w185/y79k7wrDeyRbrGFs2Z3XHU5mq0o.jpg"
+      },
+      {
+        "name": "Kevin Jonas",
+        "img": "https://image.tmdb.org/t/p/w185/cVj7VeRSpEOtqrX9arH6U5JoXdm.jpg"
+      },
+      {
+        "name": "Ava Jean",
+        "img": "https://image.tmdb.org/t/p/w185/cqn311bJW7bqFpELolaIMDS2JWQ.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2690",
+    "t": "La Voix du Pardon 2",
+    "id_tmdb": "1405769",
+    "cat": "MUSIQUE, DRAME",
+    "url": "https://vidzy.org/d/mwwc9byeahl3_n",
+    "img": "https://image.tmdb.org/t/p/w500/lu5CIa1LPpjm6Zz50BzqZ8MBTNy.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/qHBnPZA3J6hSl9a3Q1JAQzDeo2L.jpg",
+    "desc": "Après le succès retentissant de \"I Can Only Imagine,\" Bart Millard, membre de MercyMe, vit un rêve : des salles combles, une communauté d'admirateurs dévoués et une carrière florissante. Mais son monde bascule sous le poids de défis dévastateurs, dont un diagnostic bouleversant pour son jeune fils, Sam.",
+    "year": "2026",
+    "note": 4,
+    "trailer": "6npZZi7EqlQ",
+    "actors_pics": [
+      {
+        "name": "J. Michael Finley",
+        "img": "https://image.tmdb.org/t/p/w185/Aw2aNQg7mShRwVCUSgBYjaqE0hO.jpg"
+      },
+      {
+        "name": "Milo Ventimiglia",
+        "img": "https://image.tmdb.org/t/p/w185/9yFPsQCYi9sbPQ0xJGtoAF4Ar6v.jpg"
+      },
+      {
+        "name": "Sophie Skelton",
+        "img": "https://image.tmdb.org/t/p/w185/oBkearm8XdrYTEK0VCWCGmwURt6.jpg"
+      },
+      {
+        "name": "Arielle Kebbel",
+        "img": "https://image.tmdb.org/t/p/w185/eFN9TTOFk4COQQsDSufChNd7GfP.jpg"
+      },
+      {
+        "name": "Sammy Dell",
+        "img": "https://image.tmdb.org/t/p/w185/o03LVIpEUEnF5c0z1BTNIUmndSv.jpg"
+      },
+      {
+        "name": "Mark Furze",
+        "img": "https://image.tmdb.org/t/p/w185/uuwTv6R1DtF1nj0oMHroMYsLU6U.jpg"
+      },
+      {
+        "name": "Ezra Proch",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Jason Burkey",
+        "img": "https://image.tmdb.org/t/p/w185/wdiwFFH5xSx8AquNFRSwL5lUH0J.jpg"
+      },
+      {
+        "name": "Aaron Benward",
+        "img": "https://image.tmdb.org/t/p/w185/516N9XfCfimikO8nKE4jeZ9ujsf.jpg"
+      },
+      {
+        "name": "Anjelah Johnson-Reyes",
+        "img": "https://image.tmdb.org/t/p/w185/aMTTPuXs9AF2nW3zj7ZnvqooCQz.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2689",
+    "t": "Mon meilleur ami, sa copine et moi",
+    "id_tmdb": "1589248",
+    "cat": "COMÉDIE",
+    "url": "https://vidzy.org/d/izapdvrng4ow_n",
+    "img": "https://image.tmdb.org/t/p/w500/sWFzFNvqpas8y0BFSx0o7dURG8H.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/oAFBdUTyyJZ7EMImZAdMGuPvt6V.jpg",
+    "desc": "Pour Olli, une chose est claire : son meilleur ami Matze a manifestement été manipulé par sa nouvelle petite amie Rebecca. Son influence désastreuse compromet non seulement leur amitié, mais surtout le voyage autour du monde qu'Olli et Matze préparent depuis des années dans les moindres détails. Il n'y a donc qu'une seule solution : il faut arrêter Rebecca ! Avec son copain Schmitti, Olli passe à l'offensive. Mais contre toute attente, Rebecca a elle aussi plus d'un tour dans son sac. La bataille commence.",
+    "year": "2026",
+    "note": 2,
+    "actors_pics": [
+      {
+        "name": "Kostja Ullmann",
+        "img": "https://image.tmdb.org/t/p/w185/mQguH03eznJhsfwpZJZrnWCs5Su.jpg"
+      },
+      {
+        "name": "Janina Uhse",
+        "img": "https://image.tmdb.org/t/p/w185/4hNJMls70kcfEH0mU0csLXbO9nk.jpg"
+      },
+      {
+        "name": "David Kross",
+        "img": "https://image.tmdb.org/t/p/w185/jRFxrLwiroTbGedG9uyXZghgxlX.jpg"
+      },
+      {
+        "name": "Ferdinand Hofer",
+        "img": "https://image.tmdb.org/t/p/w185/9v8fMkN8ECTRpFeXJ9OGB9keGus.jpg"
+      },
+      {
+        "name": "Clara Immel",
+        "img": "https://image.tmdb.org/t/p/w185/baVSJjmc0loXFtRPWGtrM6UPZvW.jpg"
+      },
+      {
+        "name": "Mira Huber",
+        "img": "https://image.tmdb.org/t/p/w185/ovhU6dEdxs0qZS6hUeEXAxrke5h.jpg"
+      },
+      {
+        "name": "Larissa Sirah Herden",
+        "img": "https://image.tmdb.org/t/p/w185/aC4WbnYRTKqeDLWW0ZolXmbMJMv.jpg"
+      },
+      {
+        "name": "Anna Herrmann",
+        "img": "https://image.tmdb.org/t/p/w185/8nzbHoIfc7kboIqySz2fEDRmVcm.jpg"
+      },
+      {
+        "name": "Timon Ballenberger",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Thomas Heinze",
+        "img": "https://image.tmdb.org/t/p/w185/i8j5uOthHZl1DndZClKdRFdhlnJ.jpg"
+      }
+    ]
+  },
+  {
     "num": "2688",
     "t": "‎Cap Farewell",
     "id_tmdb": "1001386",
@@ -501,7 +882,7 @@
     "url": "https://vidzy.org/d/e7tl09umca8r_n",
     "img": "https://image.tmdb.org/t/p/w500/2T0j25ofU6aUei6J6ek2hlTL1wc.jpg",
     "bg": "https://image.tmdb.org/t/p/original/xNM42dnmIYUXpVJmPwxYCcFuHWC.jpg",
-    "desc": "",
+    "desc": "À quelques jours du plus grand concert de leur vie, une mystérieuse anomalie renvoie un boys band prometteur en 1995. Les cinq amis sont déterminés à inverser le processus, mais des liens inattendus se tissent alors que le passé renforce son emprise. Impatients de revenir à leur époque, ils devront réfléchir à ce qu'ils sont prêts à laisser derrière eux et au véritable lien qui les unit.",
     "year": "2026",
     "note": 0,
     "actors_pics": [
