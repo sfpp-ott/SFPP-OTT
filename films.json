@@ -1,5 +1,445 @@
 [
   {
+    "num": "2688",
+    "t": "‎Cap Farewell",
+    "id_tmdb": "1001386",
+    "cat": "DRAME",
+    "url": "https://vidzy.org/d/ohwuuufy6yls_n",
+    "img": "https://image.tmdb.org/t/p/w500/akwUhEOlZZd0S2D7oTmKZ1FY7MX.jpg",
+    "bg": null,
+    "desc": "Toni, une jeune femme de 24 ans, sort de prison et doit retourner vivre chez sa mère Betty, avec qui les relations sont tendues. Déterminée à renouer avec sa fille Anna, qui a été élevée par Betty en son absence, Toni travaille dans la brasserie de son oncle aux abords du port. Mais elle se retrouve bientôt impliquée de nouveau dans les affaires de contrebande de son amour d’enfance, Max, le père d’Anna, pour lequel elle est allée en prison. Pressée de toutes parts, Toni devra faire preuve de combativité pour se libérer de cet environnement toxique et prendre sa place en tant que mère et femme libre.",
+    "year": "2026",
+    "note": 4,
+    "trailer": "3hTWxjm-9uU",
+    "actors_pics": [
+      {
+        "name": "Noée Abita",
+        "img": "https://image.tmdb.org/t/p/w185/3dyRKujOLn1VsCo9ZQ6HOwMj4Ew.jpg"
+      },
+      {
+        "name": "Matteo Simoni",
+        "img": "https://image.tmdb.org/t/p/w185/Ta1Gjq2uYOzkD188w7PfzzYIOG.jpg"
+      },
+      {
+        "name": "Pascale Bussières",
+        "img": "https://image.tmdb.org/t/p/w185/noDgwj59eqKxyMf2YwIB2Pd2WXH.jpg"
+      },
+      {
+        "name": "Olivier Gourmet",
+        "img": "https://image.tmdb.org/t/p/w185/dxylGdqFfe6WiXaZGZnFTfvyyZm.jpg"
+      },
+      {
+        "name": "Myriem Akheddiou",
+        "img": "https://image.tmdb.org/t/p/w185/9Xw3XoQSAuUcArgyDjV9erC8W3C.jpg"
+      },
+      {
+        "name": "Aélis Mottart",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Claudio Dos Santos",
+        "img": "https://image.tmdb.org/t/p/w185/hwdoiiMnQGzhK0szh7uZk6ZOJQV.jpg"
+      },
+      {
+        "name": "Peter van den Eede",
+        "img": "https://image.tmdb.org/t/p/w185/1SlkhJwPYvHv1AsZvffoNjkoo4T.jpg"
+      },
+      {
+        "name": "Yoann Blanc",
+        "img": "https://image.tmdb.org/t/p/w185/mBed4TQcWd3xhugRUk1yaVNJNP5.jpg"
+      },
+      {
+        "name": "Ariane Rousseau",
+        "img": "https://image.tmdb.org/t/p/w185/d82YKcpS968GAiiUTFVhqXs7q8l.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2687",
+    "t": "‎‎Pour le meilleur",
+    "id_tmdb": "1427472",
+    "cat": "DRAME, HISTOIRE, COMÉDIE",
+    "url": "https://vidzy.org/d/7sbswnnssmxu_n",
+    "img": "https://image.tmdb.org/t/p/w500/idXsnt9nkmeVo32Zoa9IuE4V0wV.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/rzfUDBOIf3Ugjq2EbvziOsxV9iG.jpg",
+    "desc": "L’incroyable histoire d’amour entre Philippe Croizon, un homme privé de ses quatre membres et de Suzana, une femme qui va lui redonner l’énergie et la possibilité d’avoir encore des rêves, dont celui de traverser la Manche à la nage.",
+    "year": "2026",
+    "note": 4,
+    "trailer": "FuSyxLsGQEM",
+    "actors_pics": [
+      {
+        "name": "Pierre Rabine",
+        "img": "https://image.tmdb.org/t/p/w185/4Y5a6zs3SXsdD4EBpyLQLsETt65.jpg"
+      },
+      {
+        "name": "Lilly-Fleur Pointeaux",
+        "img": "https://image.tmdb.org/t/p/w185/wQ0Nx1ncZGnFT34WhBB2EdRyg21.jpg"
+      },
+      {
+        "name": "Corinne Masiero",
+        "img": "https://image.tmdb.org/t/p/w185/6MojaeeGYKii8M957thIxvC8Gz9.jpg"
+      },
+      {
+        "name": "Pierre Deladonchamps",
+        "img": "https://image.tmdb.org/t/p/w185/egIMzrrjVXVTMVsp7nrIXIfP7TD.jpg"
+      },
+      {
+        "name": "Christian Sonderegger",
+        "img": "https://image.tmdb.org/t/p/w185/mjsYHaKcZiXzQstiAEMpKhGHFug.jpg"
+      },
+      {
+        "name": "Zinedine Soualem",
+        "img": "https://image.tmdb.org/t/p/w185/feyQoQ89GDPnnmbeiiVFHkJvQtH.jpg"
+      },
+      {
+        "name": "Sandrine Bonnaire",
+        "img": "https://image.tmdb.org/t/p/w185/iTHkJuVdFcAuZZtBH2frKTeujKG.jpg"
+      },
+      {
+        "name": "Lolita Chammah",
+        "img": "https://image.tmdb.org/t/p/w185/1A8NamRmw1DHRRIqkioenRDDouf.jpg"
+      },
+      {
+        "name": "Julien Le Berre",
+        "img": "https://image.tmdb.org/t/p/w185/gR81sOU7NH38DhRNc38TUbdJigA.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2686",
+    "t": "Soumsoum, la nuit des astres",
+    "id_tmdb": "1376457",
+    "cat": "DRAME",
+    "url": "https://vidzy.org/d/m52y8zf2j27b_n",
+    "img": "https://image.tmdb.org/t/p/w500/dsVB83xtAhdQ0DIjmomXwfH68Ro.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/2gwrEpV0YZI73nLjPD6E9urdHz.jpg",
+    "desc": "Dans un village isolé du Tchad, Kellou est traversée par des visions qu’elle ne comprend pas. Grâce à sa rencontre avec Aya, une exilée aux secrets douloureux, elle va découvrir une autre façon de regarder son passé, ses rêves et son village. Mais en prenant la défense d’Aya, que le chef du village tente de chasser, elle se heurte à la peur et à la colère des habitants, et devra se battre pour garder sa liberté.",
+    "year": "2026",
+    "note": 4,
+    "trailer": "JRMY1s_8YFU",
+    "actors_pics": [
+      {
+        "name": "Maïmouna Miawama",
+        "img": "https://image.tmdb.org/t/p/w185/Apo8etY7WfV5HKajIO9xA3AR5L.jpg"
+      },
+      {
+        "name": "Ériq Ebouaney",
+        "img": "https://image.tmdb.org/t/p/w185/7x8P4IL9DnVlsAB5KFmMB9gfzLX.jpg"
+      },
+      {
+        "name": "Achouackh Abakar Souleymane",
+        "img": "https://image.tmdb.org/t/p/w185/gma53KsWlArj2heQCziLpidXg7t.jpg"
+      },
+      {
+        "name": "Brigitte Tchanégué",
+        "img": "https://image.tmdb.org/t/p/w185/giZAWytzNtT3kjugwLWXyOFBmT7.jpg"
+      },
+      {
+        "name": "Saleh Sambo",
+        "img": "https://image.tmdb.org/t/p/w185/kc8TAzOqx1JTKHRAnIQuJzYEImo.jpg"
+      },
+      {
+        "name": "Christ Assidjim Mbaihornom",
+        "img": "https://image.tmdb.org/t/p/w185/oGoKCu1egkNIyUmNRUSs5KOx0uu.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2685",
+    "t": "Blood Lines",
+    "id_tmdb": "1453479",
+    "cat": "DRAME",
+    "url": "https://vidzy.org/d/hukdgvt2zln0_n",
+    "img": "https://image.tmdb.org/t/p/w500/pvbjC0cVMybV5RusvXVQprcp77k.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/8KXk2UFU0gTltS4Y118zkX9YUgN.jpg",
+    "desc": "Alors qu'elle entame une relation lesbienne avec la nouvelle venue en ville, la vie d'une femme métisse est bouleversée jusqu'au plus profond d'elle-même lorsque sa mère, dont elle était séparée, refait surface.",
+    "year": "2026",
+    "note": 0,
+    "actors_pics": [
+      {
+        "name": "Dana Solomon",
+        "img": "https://image.tmdb.org/t/p/w185/cNRg0YGuh2es6xKgbR5O8j4gLcV.jpg"
+      },
+      {
+        "name": "Gail Maurice",
+        "img": "https://image.tmdb.org/t/p/w185/i6RjUHk86qvI6xljud4faB6lHq1.jpg"
+      },
+      {
+        "name": "Derica Lafrance",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Tamara Podemski",
+        "img": "https://image.tmdb.org/t/p/w185/nqcdt9ko2XGA5XXqGX6ybxD5AKw.jpg"
+      },
+      {
+        "name": "Margaret Maurice",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Mary Burnouf",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Bertha Durocher",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "David Webster",
+        "img": "https://image.tmdb.org/t/p/w185/gWQ9r3s8fAsmEs0hvKBSgZppWEQ.jpg"
+      },
+      {
+        "name": "Tom Blumberg",
+        "img": "https://image.tmdb.org/t/p/w185/cmoqnvKiscxVoMDatouAtoDNRaf.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2684",
+    "t": "Mi Amor",
+    "id_tmdb": "1432817",
+    "cat": "THRILLER",
+    "url": "https://vidzy.org/d/x2wmzttcvzxc_n",
+    "img": "https://image.tmdb.org/t/p/w500/ukOLfGfUileYmo2RArqyofwkpWS.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/p2FOv6EdjbqmyxlbZLx7HZNhrpo.jpg",
+    "desc": "Romy, accompagnée de son amie Chloé, se rend aux Canaries pour mixer lors d’une soirée techno. Au petit matin, son amie a disparu. Aidée de Vincent, le patron du nightclub, Romy se lance à la recherche de Chloé…",
+    "year": "2026",
+    "note": 3,
+    "trailer": "oAXlOzxI9gA",
+    "actors_pics": [
+      {
+        "name": "Pom Klementieff",
+        "img": "https://image.tmdb.org/t/p/w185/hfUKAI2kXTMMWjno0i4sLPJud5N.jpg"
+      },
+      {
+        "name": "Benoît Magimel",
+        "img": "https://image.tmdb.org/t/p/w185/pdXiN4doHkWmIF18mDg6pe0RtAv.jpg"
+      },
+      {
+        "name": "Freya Mavor",
+        "img": "https://image.tmdb.org/t/p/w185/1YK67UVVUrUgmnfsWhF3Y1GgN6c.jpg"
+      },
+      {
+        "name": "Astrid Bergès-Frisbey",
+        "img": "https://image.tmdb.org/t/p/w185/2mcTwrg61M7beQv05YQFPLWADmc.jpg"
+      },
+      {
+        "name": "Anaël Snoek",
+        "img": "https://image.tmdb.org/t/p/w185/3K2mw7ODkLIgnrrxEOuRoSq6xY8.jpg"
+      },
+      {
+        "name": "Elina Löwensohn",
+        "img": "https://image.tmdb.org/t/p/w185/pRFLUsONKzg0hnl2CLnNBE4AJZ1.jpg"
+      },
+      {
+        "name": "Leo Bulgari",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Tommy Kunnas",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Jaime Jiménez Pérez",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      }
+    ]
+  },
+  {
+    "num": "2683",
+    "t": "Folichonneries",
+    "id_tmdb": "1403189",
+    "cat": "COMÉDIE, ROMANCE",
+    "url": "https://vidzy.org/d/9xp2jg0irxm2_n",
+    "img": "https://image.tmdb.org/t/p/w500/8gPI34eVTkBXLXDFBQJbDeAOvsP.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/6y98EyDVC3cJuzFx8DCxvHYYXR5.jpg",
+    "desc": "François et Julie, en relation depuis 16 ans et parents de deux enfants, ne parviennent plus à se rejoindre sexuellement. Ils décident d'ouvrir leur couple afin de vivre des expériences folichonnes qui leur permettront d'en apprendre davantage sur eux-mêmes.",
+    "year": "2026",
+    "note": 3,
+    "actors_pics": [
+      {
+        "name": "Eric K. Boulianne",
+        "img": "https://image.tmdb.org/t/p/w185/rZidIbEwjMGkbng8cG8skbDKYnX.jpg"
+      },
+      {
+        "name": "Catherine Chabot",
+        "img": "https://image.tmdb.org/t/p/w185/bdQin1vMmV7G7F39jG9Mz0JsNa2.jpg"
+      },
+      {
+        "name": "Ambre Jabrane",
+        "img": "https://image.tmdb.org/t/p/w185/wCim9BvzKi2sIrJzw7n5A8YxLp3.jpg"
+      },
+      {
+        "name": "Étienne Galloy",
+        "img": "https://image.tmdb.org/t/p/w185/4slzBjhNgoeUHJwtEPQ9C7tal8m.jpg"
+      },
+      {
+        "name": "Sophie Letourneur",
+        "img": "https://image.tmdb.org/t/p/w185/gpgwKBpGKv78UeCnxqrkaNqYNoJ.jpg"
+      },
+      {
+        "name": "Antonin Mousseau-Rivard",
+        "img": "https://image.tmdb.org/t/p/w185/zZIOOiM4PKVWWbqDlGohSfm4bJY.jpg"
+      },
+      {
+        "name": "Simone Bellemare-Ledoux",
+        "img": "https://image.tmdb.org/t/p/w185/lrJGJF4yb3PcaI9zmWkduCZ8tsO.jpg"
+      },
+      {
+        "name": "Agathe Bellemare-Ledoux",
+        "img": "https://image.tmdb.org/t/p/w185/yQ9CCcgGUPQmta5NonSgdwddavV.jpg"
+      },
+      {
+        "name": "Nathalie Coupal",
+        "img": "https://image.tmdb.org/t/p/w185/yWIJxy89hPLpOM14nRXWHp4FqOD.jpg"
+      },
+      {
+        "name": "Jacques L'Heureux",
+        "img": "https://image.tmdb.org/t/p/w185/xEQhfaWBXfv1uUNNqcEtSHs18x7.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2682",
+    "t": "(Sur)vivants",
+    "id_tmdb": "1492636",
+    "cat": "DOCUMENTAIRE",
+    "url": "https://vidzy.org/d/e1ss95e5a7bo_n",
+    "img": "https://image.tmdb.org/t/p/w500/mE1852pMdvyKNqH4AlLiOwl4CUN.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/e9YJ3CxNGBs2b5FiWalNJDbAibb.jpg",
+    "desc": "Quand une femme est victime d'un féminicide, que deviennent ses enfants ? Ce documentaire aborde la douloureuse question de ces victimes collatérales.",
+    "year": "2025",
+    "note": 3,
+    "actors_pics": []
+  },
+  {
+    "num": "2681",
+    "t": "Vivante(s)",
+    "id_tmdb": "1254974",
+    "cat": "DOCUMENTAIRE, DRAME",
+    "url": "https://vidzy.org/d/dg7sq2eau0z0_n",
+    "img": "https://image.tmdb.org/t/p/w500/sacQ0LMhKuJdSVkSzONTLE6ZccB.jpg",
+    "bg": null,
+    "desc": "En France, en moyenne, une femme est tuée par son compagnon ou ex-compagnon tous les deux jours et demi, soit cent vingt-cinq féminicides par an, officiellement. Elles sont tuées par arme blanche, par arme à feu, étouffées, battues ou torturées à mort, brûlées vives, noyées, défenestrées. Sarah Barukh a passé 10 ans avec la peur au ventre et les menaces quotidiennes. Refugiée chez ses parents, elle a réalisé que beaucoup de femmes n'avaient pas eu sa chance. Elle est vivante, quand tant d'autres sont mortes. À travers son histoire, mais aussi celles de toutes ces disparues, elle explore les causes de ce que l'ONU a récemment qualifié de \"pandémie de l'ombre\" et propose des solutions concrètes.",
+    "year": "2024",
+    "note": 3,
+    "actors_pics": [
+      {
+        "name": "Sarah Barukh",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      }
+    ]
+  },
+  {
+    "num": "2680",
+    "t": "Juste une illusion",
+    "id_tmdb": "1404684",
+    "cat": "COMÉDIE, DRAME",
+    "url": "https://vidzy.org/d/gutjyrw5m8gp_n",
+    "img": "https://image.tmdb.org/t/p/w500/eWPq3wSvJEMakESTXzaBECUNBYr.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/l1fhfzNclQcp4oBz550KMY0CTre.jpg",
+    "desc": "Nous sommes en 1985, Vincent, bientôt 13 ans, vit en banlieue parisienne dans une famille de la classe moyenne, entre un grand frère distant et des parents en conflit permanent. Alors qu’il n’est « déjà plus » un enfant et qu’il n’est « pas encore » un adulte nous allons partager ses questions et ses doutes sur l’identité, l’amitié, la famille, la religion, le désir et les premiers élans amoureux.",
+    "year": "2026",
+    "note": 4,
+    "trailer": "89vZB1n-gR4",
+    "actors_pics": [
+      {
+        "name": "Louis Garrel",
+        "img": "https://image.tmdb.org/t/p/w185/iKJ1SL0im6tJVnE777HNLX2kUeG.jpg"
+      },
+      {
+        "name": "Camille Cottin",
+        "img": "https://image.tmdb.org/t/p/w185/ArBIA46esEk1qMlSwoVPR1SxPvc.jpg"
+      },
+      {
+        "name": "Simon Boublil",
+        "img": "https://image.tmdb.org/t/p/w185/zSR1JhhktzjjRvaIZ1ULmLVpiWi.jpg"
+      },
+      {
+        "name": "Alexis Rosenstiehl",
+        "img": "https://image.tmdb.org/t/p/w185/lSa63zKMIJurglCQv7SASzZled4.jpg"
+      },
+      {
+        "name": "Pierre Lottin",
+        "img": "https://image.tmdb.org/t/p/w185/1d0CBRIjScO7AUkQAqPcaRuC9Mg.jpg"
+      },
+      {
+        "name": "Jeanne Lamartine",
+        "img": "https://image.tmdb.org/t/p/w185/9WTvs470KA1cyzwemVHbzZRnWJu.jpg"
+      },
+      {
+        "name": "Rony Kramer",
+        "img": "https://image.tmdb.org/t/p/w185/yvLfyEB5f6EnvLoB301nrq3vp1v.jpg"
+      },
+      {
+        "name": "Giorgia Sinicorni",
+        "img": "https://image.tmdb.org/t/p/w185/9WUwennFaUBbnXrTHRcY7pX7qJD.jpg"
+      },
+      {
+        "name": "Augusto Fornari",
+        "img": "https://image.tmdb.org/t/p/w185/bfS2VOeTC10CaGM8QAW3KWCapQN.jpg"
+      },
+      {
+        "name": "Ragnar Le Breton",
+        "img": "https://image.tmdb.org/t/p/w185/5ATzaSUK8BZaCVUjFGFO52NqtQ0.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2679",
+    "t": "Quinze Jours",
+    "id_tmdb": "1418582",
+    "cat": "COMÉDIE, ROMANCE",
+    "url": "https://vidzy.org/d/6jfr3lphlohm_n",
+    "img": "https://image.tmdb.org/t/p/w500/3F1SkTYPzPBwcv33V3ryeNK8ZlE.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/wiIFKSEZkKgmoI1ylsrbqvRxu1S.jpg",
+    "desc": "Les projets de vacances d'un adolescent peu sûr de lui sont chamboulés par une visiteuse inattendue : sa voisine et amour secret d'école, qui va passer deux semaines à dormir chez lui. Les journées qui promettaient calme, tranquillité et marathons de séries épiques finissent par apporter un tourbillon d'émotions et de problèmes non résolus.",
+    "year": "2026",
+    "note": 4,
+    "actors_pics": [
+      {
+        "name": "Miguel Lallo",
+        "img": "https://image.tmdb.org/t/p/w185/s1WErTrdsjw4UERyXomjrmWfoXG.jpg"
+      },
+      {
+        "name": "Diego Lira",
+        "img": "https://image.tmdb.org/t/p/w185/fMD7L9nGqdK0WcZOGZhzy05qGRl.jpg"
+      },
+      {
+        "name": "Débora Falabella",
+        "img": "https://image.tmdb.org/t/p/w185/re1GFcBT6pTpiVEfxwMj4mWC1M7.jpg"
+      },
+      {
+        "name": "Mika Soeiro",
+        "img": "https://image.tmdb.org/t/p/w185/9e1t5YuALt4brrPNTpEBkxfK5IO.jpg"
+      },
+      {
+        "name": "Bel Moreira",
+        "img": "https://image.tmdb.org/t/p/w185/dY3clBg7Xpm3PQNscwzYto9mmk9.jpg"
+      },
+      {
+        "name": "Mariana Santos",
+        "img": "https://image.tmdb.org/t/p/w185/rpi4IiA9YoUOPmVy6ekopPfEM06.jpg"
+      },
+      {
+        "name": "Olivia Araújo",
+        "img": "https://image.tmdb.org/t/p/w185/auxJutx7ycx2dpIaBNCuKKi3vXD.jpg"
+      },
+      {
+        "name": "Sílvio Guindane",
+        "img": "https://image.tmdb.org/t/p/w185/7sQaDcVhytdhESRNwTIufSubogP.jpg"
+      },
+      {
+        "name": "Márcio Vito",
+        "img": "https://image.tmdb.org/t/p/w185/xxSJaXeh1r3cCemUmUfGDXaMaX8.jpg"
+      },
+      {
+        "name": "João Pedro Chaseliov",
+        "img": "https://image.tmdb.org/t/p/w185/jlkroiU36GtgVeH4ZJhTdVNDeG0.jpg"
+      }
+    ]
+  },
+  {
     "num": "2678",
     "t": "‎Facing El Chapo",
     "id_tmdb": "1621552",
