@@ -984,6 +984,55 @@
    "url": "https://northlive.lol/api/v1/tv/cine-famiz-fhd-b/player?api_key="
   },
   {
+  "t": "CINE+ FAMILY (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/b/b9/Cin%C3%A9%2BFamily2024.svg",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez CINE+ FAMILY en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D28333419172483a85ee0b2"
+  },
+  {
+  "t": "CINE+ FAMILY (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/b/b9/Cin%C3%A9%2BFamily2024.svg",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez CINE+ FAMILY en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D37191264208beaab60b7e5"
+  },
+  {
+  "t": "CINE+ FAMILY (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/b/b9/Cin%C3%A9%2BFamily2024.svg",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez CINE+ FAMILY en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D20822805044642b90cf20a"
+  },
+  {
+  "t": "CINE+ FAMILY (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/b/b9/Cin%C3%A9%2BFamily2024.svg",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez CINE+ FAMILY en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D2755354291c0d1748a003f"
+  },
+  {
+  "t": "CINE+ FAMILY (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/b/b9/Cin%C3%A9%2BFamily2024.svg",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez CINE+ FAMILY en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D2704150133fbb48751b7b5"
+  },
+  {
+  "t": "CINE+ FAMILY (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/b/b9/Cin%C3%A9%2BFamily2024.svg",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez CINE+ FAMILY en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D3406691536b1c2e278588c"
+  },
+  {
+  "t": "CINE+ FAMILY (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/b/b9/Cin%C3%A9%2BFamily2024.svg",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez CINE+ FAMILY en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D21820840461c5c31e1d60f"
+  },
+  {
   "t": "CINE+ CLASSIC (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/2/2e/Cin%C3%A9%2BClassic2024.svg",
    "cat": "TV EN DIRECT, 2.CINEMA",
