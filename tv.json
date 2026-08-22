@@ -2145,6 +2145,20 @@
    "img": "https://upload.wikimedia.org/wikipedia/commons/8/8c/Logo_Ligue_1_2024.jpg",
    "cat": "TV EN DIRECT, 3.SPORTS",
    "desc": "Regardez LIGUE1+2 en direct.",
+   "url": "https://dlstreams.st/watch.php?id=153#joueur1"
+  },
+  {
+  "t": "LIGUE1+2 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/8/8c/Logo_Ligue_1_2024.jpg",
+   "cat": "TV EN DIRECT, 3.SPORTS",
+   "desc": "Regardez LIGUE1+2 en direct.",
+   "url": "https://dlstreams.st/watch.php?id=153#joueur3"
+  },
+  {
+  "t": "LIGUE1+2 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/8/8c/Logo_Ligue_1_2024.jpg",
+   "cat": "TV EN DIRECT, 3.SPORTS",
+   "desc": "Regardez LIGUE1+2 en direct.",
    "url": "https://northlive.lol/api/v1/tv/ligue1-2-c/player?api_key="
   },
   {
@@ -2152,14 +2166,14 @@
    "img": "https://upload.wikimedia.org/wikipedia/commons/8/8c/Logo_Ligue_1_2024.jpg",
    "cat": "TV EN DIRECT, 3.SPORTS",
    "desc": "Regardez LIGUE1+3 en direct.",
-   "url": "https://dlstreams.st/watch.php?id=105#joueur1"
+   "url": "https://dlstreams.st/watch.php?id=152#joueur1"
   },
   {
   "t": "LIGUE1+3 (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/8/8c/Logo_Ligue_1_2024.jpg",
    "cat": "TV EN DIRECT, 3.SPORTS",
    "desc": "Regardez LIGUE1+3 en direct.",
-   "url": "https://dlstreams.st/watch.php?id=105#joueur3"
+   "url": "https://dlstreams.st/watch.php?id=152#joueur3"
   },
   {
   "t": "LIGUE1+3 (Direct)",
@@ -2173,28 +2187,28 @@
    "img": "https://upload.wikimedia.org/wikipedia/commons/8/8c/Logo_Ligue_1_2024.jpg",
    "cat": "TV EN DIRECT, 3.SPORTS",
    "desc": "Regardez LIGUE1+4 en direct.",
-   "url": "https://dlstreams.st/watch.php?id=55#joueur1"
+   "url": "https://dlstreams.st/watch.php?id=154#joueur1"
   },
   {
   "t": "LIGUE1+4 (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/8/8c/Logo_Ligue_1_2024.jpg",
    "cat": "TV EN DIRECT, 3.SPORTS",
    "desc": "Regardez LIGUE1+4 en direct.",
-   "url": "https://dlstreams.st/watch.php?id=55#joueur3"
+   "url": "https://dlstreams.st/watch.php?id=154#joueur3"
   },
   {
   "t": "LIGUE1+5 (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/8/8c/Logo_Ligue_1_2024.jpg",
    "cat": "TV EN DIRECT, 3.SPORTS",
    "desc": "Regardez LIGUE1+5 en direct.",
-   "url": "https://dlstreams.st/watch.php?id=59#joueur1"
+   "url": "https://dlstreams.st/watch.php?id=151#joueur1"
   },
   {
   "t": "LIGUE1+5 (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/8/8c/Logo_Ligue_1_2024.jpg",
    "cat": "TV EN DIRECT, 3.SPORTS",
    "desc": "Regardez LIGUE1+5 en direct.",
-   "url": "https://dlstreams.st/watch.php?id=59#joueur3"
+   "url": "https://dlstreams.st/watch.php?id=151#joueur3"
   },
   {
   "t": "LIGUE1+6 (Direct)",
