@@ -11,14 +11,14 @@
    "img": "https://stock.wikimini.org/w/images/3/36/Logo_TF1_2013.png",
    "cat": "TV EN DIRECT, 1.GENERAL",
    "desc": "Regardez Tf1 en direct.",
-   "url": "https://dlstreams.st/watch.php?id=469#joueur1"
+   "url": "https://embedsport.live/channel/tf1-france/469"
   },
   {
    "t": "Tf1 (Direct)",
    "img": "https://stock.wikimini.org/w/images/3/36/Logo_TF1_2013.png",
    "cat": "TV EN DIRECT, 1.GENERAL",
    "desc": "Regardez Tf1 en direct.",
-   "url": "https://dlstreams.st/watch.php?id=469#joueur3"
+   "url": "https://dlstreams.st/watch.php?id=469#joueur1"
   },
   {
    "t": "Tf1 (Direct)",
@@ -60,7 +60,7 @@
    "img": "https://upload.wikimedia.org/wikipedia/fr/5/59/France_2_%281992-2002%29.svg",
    "cat": "TV EN DIRECT, 1.GENERAL",
    "desc": "Regardez FRANCE 2 en direct.",
-   "url": "https://dlstreams.st/watch.php?id=950#joueur1"
+   "url": "https://embedsport.live/channel/france-2/950"
   },
   
   {
@@ -68,7 +68,7 @@
    "img": "https://upload.wikimedia.org/wikipedia/fr/5/59/France_2_%281992-2002%29.svg",
    "cat": "TV EN DIRECT, 1.GENERAL",
    "desc": "Regardez FRANCE 2 en direct.",
-   "url": "https://dlstreams.st/watch.php?id=950#joueur3"
+   "url": "https://dlstreams.st/watch.php?id=950#joueur1"
   },
   {
    "t": "FRANCE 2 (Direct)",
@@ -96,14 +96,14 @@
    "img": "https://upload.wikimedia.org/wikipedia/commons/8/8a/France_3_logo.png",
    "cat": "TV EN DIRECT, 1.GENERAL",
    "desc": "Regardez FRANCE 3 en direct.",
-   "url": "https://dlstreams.st/watch.php?id=951#joueur1"
+   "url": "https://embedsport.live/channel/france-3/951"
   },
   {
    "t": "FRANCE 3 (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/8/8a/France_3_logo.png",
    "cat": "TV EN DIRECT, 1.GENERAL",
    "desc": "Regardez FRANCE 3 en direct.",
-   "url": "https://dlstreams.st/watch.php?id=951#joueur3"
+   "url": "https://dlstreams.st/watch.php?id=951#joueur1"
   },
   {
    "t": "FRANCE 3 (Direct)",
@@ -145,14 +145,14 @@
    "img": "https://upload.wikimedia.org/wikipedia/commons/7/73/France_4_logo.png",
    "cat": "TV EN DIRECT, 1.GENERAL",
    "desc": "Regardez FRANCE 4 en direct.",
-   "url": "https://dlstreams.st/watch.php?id=952#joueur1"
+   "url": "https://embedsport.live/channel/france-4/952"
   },
   {
   "t": "FRANCE 4 (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/7/73/France_4_logo.png",
    "cat": "TV EN DIRECT, 1.GENERAL",
    "desc": "Regardez FRANCE 4 en direct.",
-   "url": "https://dlstreams.st/watch.php?id=952#joueur3"
+   "url": "https://dlstreams.st/watch.php?id=952#joueur1"
   },
   {
   "t": "FRANCE 4 (Direct)",
@@ -180,14 +180,14 @@
    "img": "https://upload.wikimedia.org/wikipedia/fr/2/26/Logo_France_5.svg",
    "cat": "TV EN DIRECT, 1.GENERAL",
    "desc": "Regardez FRANCE 5 en direct.",
-   "url": "https://dlstreams.st/watch.php?id=953#joueur1"
+   "url": "https://embedsport.live/channel/france-5/953"
   },
   {
   "t": "FRANCE 5 (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/2/26/Logo_France_5.svg",
    "cat": "TV EN DIRECT, 1.GENERAL",
    "desc": "Regardez FRANCE 5 en direct.",
-   "url": "https://dlstreams.st/watch.php?id=953#joueur3"
+   "url": "https://dlstreams.st/watch.php?id=953#joueur1"
   },
   {
   "t": "FRANCE 5 (Direct)",
@@ -215,14 +215,14 @@
    "img": "https://stock.wikimini.org/w/images/d/db/Logo_M6.png",
    "cat": "TV EN DIRECT, 1.GENERAL",
    "desc": "Regardez M6 en direct.",
-   "url": "https://dlstreams.st/watch.php?id=470#joueur1"
+   "url": "https://embedsport.live/channel/m6-france/470"
   },
   {
   "t": "M6 (Direct)",
    "img": "https://stock.wikimini.org/w/images/d/db/Logo_M6.png",
    "cat": "TV EN DIRECT, 1.GENERAL",
    "desc": "Regardez M6 en direct.",
-   "url": "https://dlstreams.st/watch.php?id=470#joueur3"
+   "url": "https://dlstreams.st/watch.php?id=470#joueur1"
   },
   {
   "t": "M6 (Direct)",
@@ -258,14 +258,14 @@
    "img": "https://upload.wikimedia.org/wikipedia/fr/8/8c/Logo_ARTE.TV_2020.svg",
    "cat": "TV EN DIRECT, 1.GENERAL",
    "desc": "Regardez ARTE en direct.",
-   "url": "https://dlstreams.st/watch.php?id=958#joueur1"
+   "url": "https://embedsport.live/channel/arte-france/958"
   },
   {
   "t": "ARTE (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/8/8c/Logo_ARTE.TV_2020.svg",
    "cat": "TV EN DIRECT, 1.GENERAL",
    "desc": "Regardez ARTE en direct.",
-   "url": "https://dlstreams.st/watch.php?id=958#joueur3"
+   "url": "https://dlstreams.st/watch.php?id=958#joueur1"
   },
   {
   "t": "ARTE (Direct)",
@@ -300,14 +300,14 @@
    "img": "https://upload.wikimedia.org/wikipedia/fr/2/2b/W9_2012.png",
    "cat": "TV EN DIRECT, 1.GENERAL",
    "desc": "Regardez W9 en direct.",
-   "url": "https://dlstreams.st/watch.php?id=959#joueur1"
+   "url": "https://embedsport.live/channel/w9-france/959"
   },
   {
   "t": "W9 (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/2/2b/W9_2012.png",
    "cat": "TV EN DIRECT, 1.GENERAL",
    "desc": "Regardez W9 en direct.",
-   "url": "https://dlstreams.st/watch.php?id=959#joueur3"
+   "url": "https://dlstreams.st/watch.php?id=959#joueur1"
   },
   {
   "t": "W9 (Direct)",
