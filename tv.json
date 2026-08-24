@@ -335,14 +335,14 @@
    "img": "https://upload.wikimedia.org/wikipedia/commons/a/a6/TMC_%282009%29_Boule_Logo.png",
    "cat": "TV EN DIRECT, 1.GENERAL",
    "desc": "Regardez TMC en direct.",
-   "url": "https://dlstreams.st/watch.php?id=955#joueur1"
+   "url": "https://embedsport.live/channel/tmc-france/955"
   },
   {
   "t": "TMC (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/a/a6/TMC_%282009%29_Boule_Logo.png",
    "cat": "TV EN DIRECT, 1.GENERAL",
    "desc": "Regardez TMC en direct.",
-   "url": "https://dlstreams.st/watch.php?id=955#joueur3"
+   "url": "https://dlstreams.st/watch.php?id=955#joueur1"
   },
   {
   "t": "TMC (Direct)",
@@ -594,14 +594,14 @@
    "img": "https://upload.wikimedia.org/wikipedia/commons/c/c6/CanalPlus.svg",
    "cat": "TV EN DIRECT, 2.CINEMA",
    "desc": "Regardez CANAL+ en direct.",
-   "url": "https://dlstreams.st/watch.php?id=121#joueur1"
+   "url": "https://embedsport.live/channel/canal-france/121"
   },
   {
   "t": "CANAL+ (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/c/c6/CanalPlus.svg",
    "cat": "TV EN DIRECT, 2.CINEMA",
    "desc": "Regardez CANAL+ en direct.",
-   "url": "https://dlstreams.st/watch.php?id=121#joueur3"
+   "url": "https://dlstreams.st/watch.php?id=121#joueur1"
   },
   {
   "t": "CANAL+ (Direct)",
@@ -1564,14 +1564,14 @@
    "img": "https://upload.wikimedia.org/wikipedia/fr/f/f8/BFM_TV.svg",
    "cat": "TV EN DIRECT, 6.INFORMATION",
    "desc": "Regardez BFMTV en direct.",
-   "url": "https://dlstreams.st/watch.php?id=957#joueur1"
+   "url": "https://embedsport.live/channel/bfm-tv-france/957"
   },
   {
   "t": "BFMTV (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/f/f8/BFM_TV.svg",
    "cat": "TV EN DIRECT, 6.INFORMATION",
    "desc": "Regardez BFMTV en direct.",
-   "url": "https://dlstreams.st/watch.php?id=957#joueur3"
+   "url": "https://dlstreams.st/watch.php?id=957#joueur1"
   },
   {
   "t": "BFMTV (Direct)",
@@ -1690,14 +1690,14 @@
    "img": "https://upload.wikimedia.org/wikipedia/commons/e/eb/Canal%2BFoot.png",
    "cat": "TV EN DIRECT, 3.SPORTS",
    "desc": "Regardez CANAL+ FOOT en direct.",
-   "url": "https://dlstreams.st/watch.php?id=463#joueur1"
+   "url": "https://embedsport.live/channel/canal-foot-france/463"
   },
   {
   "t": "CANAL+ FOOT (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/e/eb/Canal%2BFoot.png",
    "cat": "TV EN DIRECT, 3.SPORTS",
    "desc": "Regardez CANAL+ FOOT en direct.",
-   "url": "https://dlstreams.st/watch.php?id=463#joueur3"
+   "url": "https://dlstreams.st/watch.php?id=463#joueur1"
   },
   {
   "t": "CANAL+ FOOT (Direct)",
@@ -1711,14 +1711,14 @@
    "img": "https://upload.wikimedia.org/wikipedia/commons/0/05/Canal%2B_Sport_HD.png",
    "cat": "TV EN DIRECT, 3.SPORTS",
    "desc": "Regardez CANAL+ SPORT en direct.",
-   "url": "https://dlstreams.st/watch.php?id=122#joueur1"
+   "url": "https://embedsport.live/channel/canal-sport-france/122"
   },
   {
   "t": "CANAL+ SPORT (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/0/05/Canal%2B_Sport_HD.png",
    "cat": "TV EN DIRECT, 3.SPORTS",
    "desc": "Regardez CANAL+ SPORT en direct.",
-   "url": "https://dlstreams.st/watch.php?id=122#joueur3"
+   "url": "https://dlstreams.st/watch.php?id=122#joueur1"
   },
   {
   "t": "CANAL+ SPORT (Direct)",
@@ -1774,6 +1774,13 @@
    "img": "https://upload.wikimedia.org/wikipedia/fr/2/2f/BeIN_Sports_1_%282014%29.png",
    "cat": "TV EN DIRECT, 3.SPORTS",
    "desc": "Regardez BEIN SPORTS 1 en direct.",
+   "url": "https://embedsport.live/channel/bein-sports-1-france/116"
+  },
+  {
+  "t": "BEIN SPORTS 1 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/2/2f/BeIN_Sports_1_%282014%29.png",
+   "cat": "TV EN DIRECT, 3.SPORTS",
+   "desc": "Regardez BEIN SPORTS 1 en direct.",
    "url": "https://dlstreams.st/watch.php?id=116#joueur1"
   },
   {
@@ -1781,14 +1788,14 @@
    "img": "https://upload.wikimedia.org/wikipedia/fr/2/2f/BeIN_Sports_1_%282014%29.png",
    "cat": "TV EN DIRECT, 3.SPORTS",
    "desc": "Regardez BEIN SPORTS 1 en direct.",
-   "url": "https://dlstreams.st/watch.php?id=116#joueur3"
+   "url": "https://northlive.lol/api/v1/tv/bein-sports-1-fhd-b/player?api_key="
   },
   {
-  "t": "BEIN SPORTS 1 (Direct)",
-   "img": "https://upload.wikimedia.org/wikipedia/fr/2/2f/BeIN_Sports_1_%282014%29.png",
+  "t": "BEIN SPORTS 2 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/5/55/BeIN_Sports_2_%282014%29.png",
    "cat": "TV EN DIRECT, 3.SPORTS",
-   "desc": "Regardez BEIN SPORTS 1 en direct.",
-   "url": "https://northlive.lol/api/v1/tv/bein-sports-1-fhd-b/player?api_key="
+   "desc": "Regardez BEIN SPORTS 2 en direct.",
+   "url": "https://embedsport.live/channel/bein-sports-2-france/117"
   },
   {
   "t": "BEIN SPORTS 2 (Direct)",
@@ -1802,14 +1809,14 @@
    "img": "https://upload.wikimedia.org/wikipedia/fr/5/55/BeIN_Sports_2_%282014%29.png",
    "cat": "TV EN DIRECT, 3.SPORTS",
    "desc": "Regardez BEIN SPORTS 2 en direct.",
-   "url": "https://dlstreams.st/watch.php?id=117#joueur3"
+   "url": "https://northlive.lol/api/v1/tv/bein-sports-1-fhd-b/player?api_key="
   },
   {
-  "t": "BEIN SPORTS 2 (Direct)",
-   "img": "https://upload.wikimedia.org/wikipedia/fr/5/55/BeIN_Sports_2_%282014%29.png",
+  "t": "BEIN SPORTS 3 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/e/e9/BeIN_Sports_3_HD.png",
    "cat": "TV EN DIRECT, 3.SPORTS",
-   "desc": "Regardez BEIN SPORTS 2 en direct.",
-   "url": "https://northlive.lol/api/v1/tv/bein-sports-1-fhd-b/player?api_key="
+   "desc": "Regardez BEIN SPORTS 3 en direct.",
+   "url": "https://embedsport.live/channel/bein-sports-3-france/118"
   },
   {
   "t": "BEIN SPORTS 3 (Direct)",
@@ -1823,14 +1830,14 @@
    "img": "https://upload.wikimedia.org/wikipedia/commons/e/e9/BeIN_Sports_3_HD.png",
    "cat": "TV EN DIRECT, 3.SPORTS",
    "desc": "Regardez BEIN SPORTS 3 en direct.",
-   "url": "https://dlstreams.st/watch.php?id=118#joueur3"
+   "url": "https://northlive.lol/api/v1/tv/bein-sports-3-fhd-b/player?api_key="
   },
   {
-  "t": "BEIN SPORTS 3 (Direct)",
-   "img": "https://upload.wikimedia.org/wikipedia/commons/e/e9/BeIN_Sports_3_HD.png",
+  "t": "BEIN SPORTS 4 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/b/b1/Logo_BeIN_Sports_4_MAX.svg?utm_source=fr.wikipedia.org&utm_campaign=index&utm_content=original",
    "cat": "TV EN DIRECT, 3.SPORTS",
    "desc": "Regardez BEIN SPORTS 3 en direct.",
-   "url": "https://northlive.lol/api/v1/tv/bein-sports-3-fhd-b/player?api_key="
+   "url": "https://embedsport.live/channel/bein-sports-max-4-france/494"
   },
   {
   "t": "BEIN SPORTS 4 (Direct)",
@@ -1840,11 +1847,11 @@
    "url": "https://dlstreams.st/watch.php?id=494#joueur1"
   },
   {
-  "t": "BEIN SPORTS 4 (Direct)",
-   "img": "https://upload.wikimedia.org/wikipedia/commons/b/b1/Logo_BeIN_Sports_4_MAX.svg?utm_source=fr.wikipedia.org&utm_campaign=index&utm_content=original",
+  "t": "BEIN SPORTS 5 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/e/e7/Logo_BeinSports_5_MAX.svg?utm_source=fr.wikipedia.org&utm_campaign=index&utm_content=original",
    "cat": "TV EN DIRECT, 3.SPORTS",
-   "desc": "Regardez BEIN SPORTS 3 en direct.",
-   "url": "https://dlstreams.st/watch.php?id=494#joueur3"
+   "desc": "Regardez BEIN SPORTS 5 en direct.",
+   "url": "https://embedsport.live/channel/bein-sports-max-5-france/495"
   },
   {
   "t": "BEIN SPORTS 5 (Direct)",
@@ -1854,11 +1861,11 @@
    "url": "https://dlstreams.st/watch.php?id=495#joueur1"
   },
   {
-  "t": "BEIN SPORTS 5 (Direct)",
-   "img": "https://upload.wikimedia.org/wikipedia/commons/e/e7/Logo_BeinSports_5_MAX.svg?utm_source=fr.wikipedia.org&utm_campaign=index&utm_content=original",
+  "t": "BEIN SPORTS 6 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/9/9a/Logo_BeinSports_6_MAX.svg?utm_source=fr.wikipedia.org&utm_campaign=index&utm_content=original",
    "cat": "TV EN DIRECT, 3.SPORTS",
-   "desc": "Regardez BEIN SPORTS 5 en direct.",
-   "url": "https://dlstreams.st/watch.php?id=495#joueur3"
+   "desc": "Regardez BEIN SPORTS 6 en direct.",
+   "url": "https://embedsport.live/channel/bein-sports-max-6-france/496"
   },
   {
   "t": "BEIN SPORTS 6 (Direct)",
@@ -1868,11 +1875,11 @@
    "url": "https://dlstreams.st/watch.php?id=496#joueur1"
   },
   {
-  "t": "BEIN SPORTS 6 (Direct)",
-   "img": "https://upload.wikimedia.org/wikipedia/commons/9/9a/Logo_BeinSports_6_MAX.svg?utm_source=fr.wikipedia.org&utm_campaign=index&utm_content=original",
+  "t": "BEIN SPORTS 7 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/1/19/Logo-Beinsports-7MAX.png?utm_source=fr.wikipedia.org&utm_campaign=index&utm_content=original",
    "cat": "TV EN DIRECT, 3.SPORTS",
-   "desc": "Regardez BEIN SPORTS 6 en direct.",
-   "url": "https://dlstreams.st/watch.php?id=496#joueur3"
+   "desc": "Regardez BEIN SPORTS 7 en direct.",
+   "url": "https://embedsport.live/channel/bein-sports-max-7-france/497"
   },
   {
   "t": "BEIN SPORTS 7 (Direct)",
@@ -1882,11 +1889,11 @@
    "url": "https://dlstreams.st/watch.php?id=497#joueur1"
   },
   {
-  "t": "BEIN SPORTS 7 (Direct)",
-   "img": "https://upload.wikimedia.org/wikipedia/commons/1/19/Logo-Beinsports-7MAX.png?utm_source=fr.wikipedia.org&utm_campaign=index&utm_content=original",
+  "t": "BEIN SPORTS 8 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/6/65/Logo-Beinsports-8MAX.png?utm_source=fr.wikipedia.org&utm_campaign=index&utm_content=original",
    "cat": "TV EN DIRECT, 3.SPORTS",
-   "desc": "Regardez BEIN SPORTS 7 en direct.",
-   "url": "https://dlstreams.st/watch.php?id=497#joueur3"
+   "desc": "Regardez BEIN SPORTS 8 en direct.",
+   "url": "https://embedsport.live/channel/bein-sports-max-8-france/498"
   },
   {
   "t": "BEIN SPORTS 8 (Direct)",
@@ -1896,11 +1903,11 @@
    "url": "https://dlstreams.st/watch.php?id=498#joueur1"
   },
   {
-  "t": "BEIN SPORTS 8 (Direct)",
-   "img": "https://upload.wikimedia.org/wikipedia/commons/6/65/Logo-Beinsports-8MAX.png?utm_source=fr.wikipedia.org&utm_campaign=index&utm_content=original",
+  "t": "BEIN SPORTS 9 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/6/68/Logo-Beinsports-9MAX.png?utm_source=fr.wikipedia.org&utm_campaign=index&utm_content=original",
    "cat": "TV EN DIRECT, 3.SPORTS",
-   "desc": "Regardez BEIN SPORTS 8 en direct.",
-   "url": "https://dlstreams.st/watch.php?id=498#joueur3"
+   "desc": "Regardez BEIN SPORTS 9 en direct.",
+   "url": "https://embedsport.live/channel/bein-sports-max-9-france/499"
   },
   {
   "t": "BEIN SPORTS 9 (Direct)",
@@ -1910,11 +1917,11 @@
    "url": "https://dlstreams.st/watch.php?id=499#joueur1"
   },
   {
-  "t": "BEIN SPORTS 9 (Direct)",
-   "img": "https://upload.wikimedia.org/wikipedia/commons/6/68/Logo-Beinsports-9MAX.png?utm_source=fr.wikipedia.org&utm_campaign=index&utm_content=original",
+  "t": "BEIN SPORTS 10 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/9/93/Logo-Beinsports-10MAX.png?utm_source=fr.wikipedia.org&utm_campaign=index&utm_content=original",
    "cat": "TV EN DIRECT, 3.SPORTS",
-   "desc": "Regardez BEIN SPORTS 9 en direct.",
-   "url": "https://dlstreams.st/watch.php?id=499#joueur3"
+   "desc": "Regardez BEIN SPORTS 10 en direct.",
+   "url": "https://embedsport.live/channel/bein-sports-max-10-france/500"
   },
   {
   "t": "BEIN SPORTS 10 (Direct)",
@@ -1924,11 +1931,11 @@
    "url": "https://dlstreams.st/watch.php?id=500#joueur1"
   },
   {
-  "t": "BEIN SPORTS 10 (Direct)",
-   "img": "https://upload.wikimedia.org/wikipedia/commons/9/93/Logo-Beinsports-10MAX.png?utm_source=fr.wikipedia.org&utm_campaign=index&utm_content=original",
+  "t": "RMC SPORT 1 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/3/3b/Logo_RMC_Sport_1_2018.svg",
    "cat": "TV EN DIRECT, 3.SPORTS",
-   "desc": "Regardez BEIN SPORTS 10 en direct.",
-   "url": "https://dlstreams.st/watch.php?id=500#joueur3"
+   "desc": "Regardez RMC SPORT 1 en direct.",
+   "url": "https://embedsport.live/channel/rmc-sport-1-france/119"
   },
   {
   "t": "RMC SPORT 1 (Direct)",
@@ -1942,13 +1949,6 @@
    "img": "https://upload.wikimedia.org/wikipedia/commons/3/3b/Logo_RMC_Sport_1_2018.svg",
    "cat": "TV EN DIRECT, 3.SPORTS",
    "desc": "Regardez RMC SPORT 1 en direct.",
-   "url": "https://dlstreams.st/watch.php?id=119#joueur3"
-  },
-  {
-  "t": "RMC SPORT 1 (Direct)",
-   "img": "https://upload.wikimedia.org/wikipedia/commons/3/3b/Logo_RMC_Sport_1_2018.svg",
-   "cat": "TV EN DIRECT, 3.SPORTS",
-   "desc": "Regardez RMC SPORT 1 en direct.",
    "url": "https://northlive.lol/api/v1/tv/rmc-sport-1-fhd-b/player?api_key="
   },
   {
@@ -1956,14 +1956,14 @@
    "img": "https://upload.wikimedia.org/wikipedia/commons/3/3a/Logo_RMC_Sport_2_2018.svg",
    "cat": "TV EN DIRECT, 3.SPORTS",
    "desc": "Regardez RMC SPORT 2 en direct.",
-   "url": "https://dlstreams.st/watch.php?id=120#joueur1"
+   "url": "https://embedsport.live/channel/rmc-sport-2-france/120"
   },
   {
   "t": "RMC SPORT 2 (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/3/3a/Logo_RMC_Sport_2_2018.svg",
    "cat": "TV EN DIRECT, 3.SPORTS",
    "desc": "Regardez RMC SPORT 2 en direct.",
-   "url": "https://dlstreams.st/watch.php?id=120#joueur3"
+   "url": "https://dlstreams.st/watch.php?id=120#joueur1"
   },
   {
   "t": "RMC SPORT 2 (Direct)",
@@ -1991,14 +1991,14 @@
    "img": "https://upload.wikimedia.org/wikipedia/commons/e/e9/L_Equipe_Logo.svg",
    "cat": "TV EN DIRECT, 3.SPORTS",
    "desc": "Regardez L'EQUIPE en direct.",
-   "url": "https://dlstreams.st/watch.php?id=645#joueur1"
+   "url": "https://embedsport.live/channel/lequipe-france/645"
   },
   {
   "t": "L'EQUIPE (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/e/e9/L_Equipe_Logo.svg",
    "cat": "TV EN DIRECT, 3.SPORTS",
    "desc": "Regardez L'EQUIPE en direct.",
-   "url": "https://dlstreams.st/watch.php?id=645#joueur3"
+   "url": "https://dlstreams.st/watch.php?id=645#joueur1"
   },
   {
   "t": "L'EQUIPE (Direct)",
@@ -2019,14 +2019,14 @@
    "img": "https://upload.wikimedia.org/wikipedia/commons/e/e6/Eurosport_1_Logo_2015.png",
    "cat": "TV EN DIRECT, 3.SPORTS",
    "desc": "Regardez EUROSPORT 1 en direct.",
-   "url": "https://dlstreams.st/watch.php?id=772#joueur1"
+   "url": "https://embedsport.live/channel/eurosport-1-france/772"
   },
   {
   "t": "EUROSPORT 1 (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/e/e6/Eurosport_1_Logo_2015.png",
    "cat": "TV EN DIRECT, 3.SPORTS",
    "desc": "Regardez EUROSPORT 1 en direct.",
-   "url": "https://dlstreams.st/watch.php?id=772#joueur3"
+   "url": "https://dlstreams.st/watch.php?id=772#joueur1"
   },
   {
   "t": "EUROSPORT 1 (Direct)",
@@ -2040,14 +2040,14 @@
    "img": "https://upload.wikimedia.org/wikipedia/commons/d/d8/Eurosport_2_Logo_2015.svg",
    "cat": "TV EN DIRECT, 3.SPORTS",
    "desc": "Regardez EUROSPORT 2 en direct.",
-   "url": "https://dlstreams.st/watch.php?id=773#joueur1"
+   "url": "https://embedsport.live/channel/eurosport-2-france/773"
   },
   {
   "t": "EUROSPORT 2 (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/d/d8/Eurosport_2_Logo_2015.svg",
    "cat": "TV EN DIRECT, 3.SPORTS",
    "desc": "Regardez EUROSPORT 2 en direct.",
-   "url": "https://dlstreams.st/watch.php?id=773#joueur3"
+   "url": "https://dlstreams.st/watch.php?id=773#joueur1"
   },
   {
   "t": "EUROSPORT 2 (Direct)",
@@ -2068,14 +2068,14 @@
    "img": "https://upload.wikimedia.org/wikipedia/fr/3/34/Automoto_La_cha%C3%AEne_%282018%29.png",
    "cat": "TV EN DIRECT, 3.SPORTS",
    "desc": "Regardez AUTOMOTO en direct.",
-   "url": "https://dlstreams.st/watch.php?id=961#joueur1"
+   "url": "https://embedsport.live/channel/automoto-la-chane/961"
   },
   {
   "t": "AUTOMOTO (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/3/34/Automoto_La_cha%C3%AEne_%282018%29.png",
    "cat": "TV EN DIRECT, 3.SPORTS",
    "desc": "Regardez AUTOMOTO en direct.",
-   "url": "https://dlstreams.st/watch.php?id=961#joueur3"
+   "url": "https://dlstreams.st/watch.php?id=961#joueur1"
   },
   {
   "t": "AUTOMOTO (Direct)",
@@ -2096,7 +2096,7 @@
    "img": "https://upload.wikimedia.org/wikipedia/fr/2/28/Equidia_logo_2018.svg",
    "cat": "TV EN DIRECT, 3.SPORTS",
    "desc": "Regardez EQUIDIA en direct.",
-   "url": "https://embedsport.live/channel/tf1-france/469"
+   "url": ""
   },
   {
   "t": "DAZN 1 (Direct)",
@@ -2124,14 +2124,14 @@
    "img": "https://upload.wikimedia.org/wikipedia/commons/8/8c/Logo_Ligue_1_2024.jpg",
    "cat": "TV EN DIRECT, 3.SPORTS",
    "desc": "Regardez LIGUE1+1 en direct.",
-   "url": "https://dlstreams.st/watch.php?id=960#joueur1"
+   "url": "https://embedsport.live/channel/dazn-ligue-1-france/960"
   },
   {
   "t": "LIGUE1+1 (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/8/8c/Logo_Ligue_1_2024.jpg",
    "cat": "TV EN DIRECT, 3.SPORTS",
    "desc": "Regardez LIGUE1+1 en direct.",
-   "url": "https://dlstreams.st/watch.php?id=960#joueur3"
+   "url": "https://dlstreams.st/watch.php?id=960#joueur1"
   },
   {
   "t": "LIGUE1+1 (Direct)",
