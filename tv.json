@@ -1110,6 +1110,50 @@
    "url": "https://northlive.lol/api/v1/tv/serie-club-fhd-s/player?api_key="
   },
   {
+  "t": "SERIES CLUB (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/4/4c/Serieclub_%282012%29.svg",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez SERIE CLUB en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D26514025573f474a0abd81"
+  },
+  {
+  "t": "SERIES CLUB (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/4/4c/Serieclub_%282012%29.svg",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez SERIE CLUB en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D1800537483f21c95207e51"
+  },
+  {
+  "t": "SERIES CLUB (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/4/4c/Serieclub_%282012%29.svg",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez SERIE CLUB en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D5870248549e97edf632cd"
+  },
+  
+  {
+  "t": "SERIES CLUB (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/4/4c/Serieclub_%282012%29.svg",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez SERIE CLUB en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D2756225323d66c2d2340f9"
+  },
+  {
+  "t": "SERIES CLUB (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/4/4c/Serieclub_%282012%29.svg",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez SERIE CLUB en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D2756225323d66c2d2340f9"
+  },
+  {
+  "t": "SERIES CLUB (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/4/4c/Serieclub_%282012%29.svg",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez SERIE CLUB en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D176726491979039c050819"
+  },
+  
+  {
   "t": "ACTION (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/2/2f/Action_%282014%29.svg",
    "cat": "TV EN DIRECT, 2.CINEMA",
