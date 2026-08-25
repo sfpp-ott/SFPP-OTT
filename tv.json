@@ -1217,6 +1217,35 @@
    "url": "https://northlive.lol/api/v1/tv/tcm-cinema-fhd-s/player?api_key="
   },
   {
+  "t": "TCM CINEMA (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/8/83/TCM_logo.svg",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez TCM CINEMA en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D2418525396576391a587f9"
+  },
+  {
+  "t": "TCM CINEMA (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/8/83/TCM_logo.svg",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez TCM CINEMA en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D3385205051cf9c48ff0d44"
+  },
+  {
+  "t": "TCM CINEMA (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/8/83/TCM_logo.svg",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez TCM CINEMA en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D2451805128d0f9045d041b"
+  },
+  
+  {
+  "t": "TCM CINEMA (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/8/83/TCM_logo.svg",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez TCM CINEMA en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D3637294135d561d9540c1c"
+  },
+  {
   "t": "SYFY (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/3/37/Syfy_france.svg",
    "cat": "TV EN DIRECT, 2.CINEMA",
