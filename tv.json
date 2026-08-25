@@ -2239,7 +2239,7 @@
    "img": "https://upload.wikimedia.org/wikipedia/fr/2/28/Equidia_logo_2018.svg",
    "cat": "TV EN DIRECT, 3.SPORTS",
    "desc": "Regardez EQUIDIA en direct.",
-   "url": "http://130.162.57.69:7860/extractor/video?host=dlstreams&d=https%3A%2F%2Fdlstreams.st%2Fwatch.php%3Fid%3D469"
+   "url": "https://dlstreams.st/player/stream-469.php"
   },
   {
   "t": "DAZN 1 (Direct)",
