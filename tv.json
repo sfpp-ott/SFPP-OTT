@@ -1253,6 +1253,27 @@
    "url": "https://northlive.lol/api/v1/tv/syfy-b/player?api_key="
   },
   {
+  "t": "SYFY (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/3/37/Syfy_france.svg",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez SYFY en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D210674861187fc41ac93dc"
+  },
+  {
+  "t": "SYFY (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/3/37/Syfy_france.svg",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez SYFY en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D303282550000e34f35d8e7"
+  },
+  {
+  "t": "SYFY (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/3/37/Syfy_france.svg",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez SYFY en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D338881895125230dd16046"
+  },
+  {
   "t": "13EME RUE (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/0/0c/Logo_of_13e_Rue.png",
    "cat": "TV EN DIRECT, 2.CINEMA",
