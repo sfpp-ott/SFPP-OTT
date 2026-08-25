@@ -1161,6 +1161,55 @@
    "url": "https://northlive.lol/api/v1/tv/action-b/player?api_key="
   },
   {
+  "t": "ACTION (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/2/2f/Action_%282014%29.svg",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez ACTION en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D11522749934e5030a0ab3c"
+  },
+  {
+  "t": "ACTION (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/2/2f/Action_%282014%29.svg",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez ACTION en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D1316428074762ad2aa63dd"
+  },
+  {
+  "t": "ACTION (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/2/2f/Action_%282014%29.svg",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez ACTION en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D340010148454b4b576c9f3"
+  },
+  {
+  "t": "ACTION (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/2/2f/Action_%282014%29.svg",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez ACTION en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D3638789513f8ccd703cc28"
+  },
+  {
+  "t": "ACTION (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/2/2f/Action_%282014%29.svg",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez ACTION en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D2470227399426cd35299c7"
+  },
+  {
+  "t": "ACTION (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/2/2f/Action_%282014%29.svg",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez ACTION en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D2581411094f7c9ddaed910"
+  },
+  {
+  "t": "ACTION (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/2/2f/Action_%282014%29.svg",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez ACTION en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D3856042964fb24f530c4bc"
+  },
+  {
   "t": "TCM CINEMA (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/8/83/TCM_logo.svg",
    "cat": "TV EN DIRECT, 2.CINEMA",
