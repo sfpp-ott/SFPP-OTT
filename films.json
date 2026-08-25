@@ -1,5 +1,222 @@
 [
   {
+    "num": "2699",
+    "t": "‎The Outer Threat",
+    "id_tmdb": "1381202",
+    "cat": "SCIENCE-FICTION, THRILLER",
+    "url": "https://vidzy.org/d/s1u8y4d5eyei_n",
+    "img": "https://image.tmdb.org/t/p/w500/jspztckSybRKigzz5IFueP8qptV.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/ouEdGbvYnhAnHJYLYDkISs3X9yJ.jpg",
+    "desc": "Après avoir fait une découverte extraterrestre révolutionnaire, les astrophysiciens Daniel et Michelle sont contraints de fuir leur domicile avec leur famille, poursuivis à travers la campagne par un agresseur implacable et anonyme. Au fil de leur fuite, la frontière entre révélation cosmique et paranoïa humaine s'estompe, menant à une confrontation tendue et émouvante qui repousse les limites de la compréhension, de la science et de la survie.",
+    "year": "2026",
+    "note": 3,
+    "actors_pics": [
+      {
+        "name": "Constance Wu",
+        "img": "https://image.tmdb.org/t/p/w185/dMx2RlHDuCabtk8GHiijWtVOH8h.jpg"
+      },
+      {
+        "name": "Mark O'Brien",
+        "img": "https://image.tmdb.org/t/p/w185/8ckgltvlife4BBJcBpHEQWXfQ9p.jpg"
+      },
+      {
+        "name": "William Fichtner",
+        "img": "https://image.tmdb.org/t/p/w185/wWtJOoaNAwPparpzMNuRBjvxwEf.jpg"
+      },
+      {
+        "name": "Isaac Smelcer-Zhang",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Oscar Hsu",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Murray Furrow",
+        "img": "https://image.tmdb.org/t/p/w185/Ag0aT5GTRmJuQutYgdiFKBQ6oZx.jpg"
+      },
+      {
+        "name": "Callista  Crowe",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Stephanie Aubertin",
+        "img": "https://image.tmdb.org/t/p/w185/5k6xMp7AKkeU2Pcn91kNmQsXa4k.jpg"
+      },
+      {
+        "name": "Audrey Dymond",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Jenna Villeneuve",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      }
+    ]
+  },
+  {
+    "num": "2698",
+    "t": "‎‎LifeHack",
+    "id_tmdb": "1285669",
+    "cat": "THRILLER, CRIME",
+    "url": "https://vidzy.org/d/45bnpwf4k89x_n",
+    "img": "https://image.tmdb.org/t/p/w500/ab8uFG6L3gKnog7ntrUdgo28hzK.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/dGLU7gXIq9Yoh8J1ezmTqlVGjUV.jpg",
+    "desc": "",
+    "year": "2026",
+    "note": 4,
+    "actors_pics": [
+      {
+        "name": "Georgie Farmer",
+        "img": "https://image.tmdb.org/t/p/w185/lWhHmiwqvtUIln5OPPVbXqtUofI.jpg"
+      },
+      {
+        "name": "Yasmin Finney",
+        "img": "https://image.tmdb.org/t/p/w185/yxdPGDbWcmNhgW2szLGccHThP6K.jpg"
+      },
+      {
+        "name": "Roman Hayeck-Green",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "James Scholz",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Jessica Reynolds",
+        "img": "https://image.tmdb.org/t/p/w185/iHmfCsbGOs7kkr3JNpupLYdrdrj.jpg"
+      },
+      {
+        "name": "Charlie Creed-Miles",
+        "img": "https://image.tmdb.org/t/p/w185/aVPpJs7X03oNmbxFtHNaQdsnNod.jpg"
+      },
+      {
+        "name": "Cael King",
+        "img": "https://image.tmdb.org/t/p/w185/vWJ5mUfKTA34ySdLDNTAUIx5ubW.jpg"
+      },
+      {
+        "name": "Jill Winternitz",
+        "img": "https://image.tmdb.org/t/p/w185/bBfmth2C93OkyYir6w8qxjmHpiR.jpg"
+      },
+      {
+        "name": "Frances Katz",
+        "img": "https://image.tmdb.org/t/p/w185/kztik39r0zZo8tnMJefy1XL3OoJ.jpg"
+      },
+      {
+        "name": "Boo Holmes",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      }
+    ]
+  },
+  {
+    "num": "2697",
+    "t": "Irréalisable",
+    "id_tmdb": "1456741",
+    "cat": "COMÉDIE",
+    "url": "https://vidzy.org/d/ok10g9l81ggm_n",
+    "img": "https://image.tmdb.org/t/p/w500/qhmcVCOHIPOAvnyTP1rYuBKOpH9.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/7F0ECySjkyzqg5cSj0cVwl10rV9.jpg",
+    "desc": "Six personnes qui ne se connaissent pas se retrouvent à passer une semaine de vacances dans le magnifique gîte des Mimosas. Là-bas il fait fait bon vivre, Greg et sa femme Monica, les deux hôtes, sont absolument charmants et prennent soin de leurs pensionnaires. Mais tout ne va pas se passer comme prévu, l'un des protagonistes a un sombre projet qui implique à leur insu tous les résidents. Le séjour idyllique va tourner au cauchemar.",
+    "year": "2026",
+    "note": 0,
+    "trailer": "LqI8N4xhB28",
+    "actors_pics": [
+      {
+        "name": "Ambroise Carminati",
+        "img": "https://image.tmdb.org/t/p/w185/noDcYrTtimLejMZbkzNI9tveoX8.jpg"
+      },
+      {
+        "name": "Babor Lelefan",
+        "img": "https://image.tmdb.org/t/p/w185/2mrGo0S4KuQi3B3EBCO2pKtUgor.jpg"
+      },
+      {
+        "name": "Daphné Huynh",
+        "img": "https://image.tmdb.org/t/p/w185/fCqDyLSeTrOmtG0wPYVBt6eAQBR.jpg"
+      },
+      {
+        "name": "Camille Fievez",
+        "img": "https://image.tmdb.org/t/p/w185/a5o1JVe4E1h2nWJcb4nbl5bGHlQ.jpg"
+      },
+      {
+        "name": "Lucas Pastor",
+        "img": "https://image.tmdb.org/t/p/w185/mFcjXBgz7y7G9k6kE3Soa6Gpn40.jpg"
+      },
+      {
+        "name": "Clément Métayer",
+        "img": "https://image.tmdb.org/t/p/w185/jMkfZCAjATYjHdk5pajyRlvOvdy.jpg"
+      },
+      {
+        "name": "Jenny Letellier",
+        "img": "https://image.tmdb.org/t/p/w185/fh6MtVSFQyXwDiiymhGxdauYxPs.jpg"
+      },
+      {
+        "name": "Thomas Olland",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Kemar",
+        "img": "https://image.tmdb.org/t/p/w185/fyzvS67TY3vo10pAm0irIRwNoNF.jpg"
+      },
+      {
+        "name": "Augustin Shackelpopoulos",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      }
+    ]
+  },
+  {
+    "num": "2696",
+    "t": "Bang",
+    "id_tmdb": "1491902",
+    "cat": "ACTION, THRILLER",
+    "url": "https://vidzy.org/d/brxhc7lqv1xj_n",
+    "img": "https://image.tmdb.org/t/p/w500/gve34864IrFPFVKlSTkr9gm5X7J.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/sW0X1265yuRHUorLKCrJDv9TJD7.jpg",
+    "desc": "Bang est un tueur à gages. Le meilleur à avoir jamais porté une arme. Travailler pour un chef mafieux vieillissant du comté de Los Angeles est tout ce qu'il a connu, mais une expérience de mort imminente le change à jamais. La vie a une valeur qui dépasse le salaire auquel Bang est habitué et, avec l'aide d'une belle femme, il commence à entrevoir un avenir meilleur.",
+    "year": "2025",
+    "note": 3,
+    "actors_pics": [
+      {
+        "name": "Jack Kesy",
+        "img": "https://image.tmdb.org/t/p/w185/lQ8nUYK6InbCFk2TWNnXjjvG9IY.jpg"
+      },
+      {
+        "name": "Peter Weller",
+        "img": "https://image.tmdb.org/t/p/w185/3xevrmofgDhXBqV0UzSLOgR3jkk.jpg"
+      },
+      {
+        "name": "Tristin Mays",
+        "img": "https://image.tmdb.org/t/p/w185/5rV3IrC5AJq3yarWcnzCUa2BZCQ.jpg"
+      },
+      {
+        "name": "ケイン・コスギ",
+        "img": "https://image.tmdb.org/t/p/w185/wqMaPmNgrtqwZDktG0WFeKcqzJx.jpg"
+      },
+      {
+        "name": "Steve Bastoni",
+        "img": "https://image.tmdb.org/t/p/w185/gPCisCPAouIEHiO9P03O4SGIR3C.jpg"
+      },
+      {
+        "name": "Tofan Pirani",
+        "img": "https://image.tmdb.org/t/p/w185/izDUH8YihvwclQJuRf7OtE6BHAe.jpg"
+      },
+      {
+        "name": "Bear Williams",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Elliott Allison",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Carlo Natale",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Toma Morozova",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      }
+    ]
+  },
+  {
     "num": "2695",
     "t": "‎Fous Furieux",
     "id_tmdb": "1588838",
@@ -991,7 +1208,7 @@
     "url": "https://vidzy.org/d/b7t4ixvbdhb5_n",
     "img": "https://image.tmdb.org/t/p/w500/mHUamJDZIF1Foazklo8boy0rOqg.jpg",
     "bg": "https://image.tmdb.org/t/p/original/7ECvhNWQnPILhd22cI37kJ67Eiw.jpg",
-    "desc": "",
+    "desc": "Un entraîneur de natation passionné et un père dévoué font face à la réalité tumultueuse du sans-abrisme invisible lorsqu'il est contraint de vivre dans sa camionnette.",
     "year": "2026",
     "note": 0,
     "actors_pics": [
@@ -8903,7 +9120,7 @@
     "url": "https://vidzy.org/d/tzxtgayvdlaw_n",
     "img": "https://image.tmdb.org/t/p/w500/xd7tpoTpkOUIMf0Xd6DcCWqNrNQ.jpg",
     "bg": "https://image.tmdb.org/t/p/original/dUbP1HNdI0aCq1zgRJw28PWSqmk.jpg",
-    "desc": "",
+    "desc": "Suit l'équipe de Jackass alors qu'elle effectue sa dernière série de cascades et de farces dangereuses, marquant la fin de la franchise.",
     "year": "2026",
     "note": 4,
     "actors_pics": [
