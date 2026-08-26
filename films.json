@@ -1,5 +1,160 @@
 [
   {
+    "num": "2702",
+    "t": "‎Protector",
+    "id_tmdb": "1383731",
+    "cat": "ACTION, THRILLER",
+    "url": "https://vidzy.org/d/3s1l0r08mqdy_n",
+    "img": "https://image.tmdb.org/t/p/w500/icOZpnGuH9YrEaW3wrw5GJaXGih.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/vpuPY4UziUCxv7gYYoaZQ3LX7to.jpg",
+    "desc": "Nikki s’est forgée une réputation d’agente implacable au sein des forces spéciales de l’armée américaine. Après quinze ans passés à l’étranger, la mort brutale de son mari l’oblige à rentrer au pays et à retourner à la vie civile. Son monde bascule le jour où elle assiste, impuissante, à l’enlèvement de sa fille adolescente. Plongeant tête baissée dans les arcanes d’un puissant réseau de trafic humain, la soldate endurcie ne recule devant rien pour la retrouver. Alertées par ses méthodes expéditives, la police et l’armée tentent de l’arrêter.",
+    "year": "2026",
+    "note": 4,
+    "actors_pics": [
+      {
+        "name": "Milla Jovovich",
+        "img": "https://image.tmdb.org/t/p/w185/usWnHCzbADijULREZYSJ0qfM00y.jpg"
+      },
+      {
+        "name": "Matthew Modine",
+        "img": "https://image.tmdb.org/t/p/w185/z974QEHL12qUvLyk6hlWGAmDgom.jpg"
+      },
+      {
+        "name": "Isabel Myers",
+        "img": "https://image.tmdb.org/t/p/w185/z2HXGhtvnlyrqb0gf77v8bBaS2U.jpg"
+      },
+      {
+        "name": "D.B. Sweeney",
+        "img": "https://image.tmdb.org/t/p/w185/enY28APVRWfyHjGAkh6VCkYCWOA.jpg"
+      },
+      {
+        "name": "Don Harvey",
+        "img": "https://image.tmdb.org/t/p/w185/dc10W0hRNxrO0IcwgKOcsUajtOG.jpg"
+      },
+      {
+        "name": "Michael Stahl-David",
+        "img": "https://image.tmdb.org/t/p/w185/97a0cwKFuAHXh8X0NlxSGDvBvxn.jpg"
+      },
+      {
+        "name": "Lydia Hull",
+        "img": "https://image.tmdb.org/t/p/w185/w71z6hZrwLi0hBkPFxiUe60bgOI.jpg"
+      },
+      {
+        "name": "Chase Kim",
+        "img": "https://image.tmdb.org/t/p/w185/qBCL3znRI2OMwfhDEAzU9InKzAx.jpg"
+      },
+      {
+        "name": "Brooklyn Sudano",
+        "img": "https://image.tmdb.org/t/p/w185/o2PF0n6rErXN3td33SDUKTwwoOr.jpg"
+      },
+      {
+        "name": "Gabriel Sloyer",
+        "img": "https://image.tmdb.org/t/p/w185/hbAylhJM8jIQPxIfYSKmatOZwcB.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2701",
+    "t": "‎‎Yellow Mirror",
+    "id_tmdb": "1729723",
+    "cat": "ANIMATION, COMÉDIE",
+    "url": "https://vidzy.org/d/5im3vvm97et4_n",
+    "img": "https://image.tmdb.org/t/p/w500/ePafPnFV817iSOs9I6EB805EGX2.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/ykYnM1Lc9GH8vq88szXqztRhZPN.jpg",
+    "desc": "Une lampe défectueuse révèle une vérité déchirante sur ce qu'Homer croit être la réalité, tandis qu'une tablette dotée d'une intelligence artificielle se lie d'amitié avec Maggie et en prend le contrôle. Les Simpson tentent tant bien que mal de trouver la lumière à travers deux récits sombres, à la fois curieux et étranges, dans cette exclusivité Disney+.",
+    "year": "2026",
+    "note": 0,
+    "actors_pics": [
+      {
+        "name": "Dan Castellaneta",
+        "img": "https://image.tmdb.org/t/p/w185/AmeqWhP4A46AWkM4kVphg6jOTQX.jpg"
+      },
+      {
+        "name": "Nancy Cartwright",
+        "img": "https://image.tmdb.org/t/p/w185/kJQEz3NAwHGdb2sQzAnBf1RmMV4.jpg"
+      },
+      {
+        "name": "Julie Kavner",
+        "img": "https://image.tmdb.org/t/p/w185/87kSPYlWcHvqOVEkhdqxysiAf6w.jpg"
+      },
+      {
+        "name": "Yeardley Smith",
+        "img": "https://image.tmdb.org/t/p/w185/9AjPwbb3uz4GfgOPBYsy2ILvwkB.jpg"
+      },
+      {
+        "name": "Patti Harrison",
+        "img": "https://image.tmdb.org/t/p/w185/n9h4QmVkRzdOVqKTQoQESIbDjuX.jpg"
+      },
+      {
+        "name": "Demi Moore",
+        "img": "https://image.tmdb.org/t/p/w185/wApParZYBDi4yxekjfxjKEifJYh.jpg"
+      },
+      {
+        "name": "Harry Shearer",
+        "img": "https://image.tmdb.org/t/p/w185/wZpovXxQQqP7kxXPy2yj6QMbM55.jpg"
+      },
+      {
+        "name": "Alex Désert",
+        "img": "https://image.tmdb.org/t/p/w185/iz5fLxrOTKYUkpUmGXgVfCfIZxn.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2700",
+    "t": "The Last Sunrise",
+    "id_tmdb": "1516698",
+    "cat": "ROMANCE, DRAME",
+    "url": "https://vidzy.org/d/eaktfh217hxm_n",
+    "img": "https://image.tmdb.org/t/p/w500/myJdCnJEsFsMmjKhKopQ32lkcP3.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/5lB7yPaRhJHQ9dx7AnvPUi0GZDU.jpg",
+    "desc": "Inspiré du roman, The Last Sunrise raconte l'histoire de Ry, une étudiante souffrant d'une maladie chronique, durant des vacances à Marjoque avec sa mère. Tandis qu'elle tombe soudainement amoureuse de Julián et qu'elle commence à vivre l'instant présent, sa santé s'aggrave et de vieux secrets de famille menacent de tout gâcher avant la fin de l'été.",
+    "year": "2026",
+    "note": 0,
+    "trailer": "Q9TA0fWYpd8",
+    "actors_pics": [
+      {
+        "name": "Eva Longoria",
+        "img": "https://image.tmdb.org/t/p/w185/1u26GLWK1DE7gBugyI9P3OMFq4A.jpg"
+      },
+      {
+        "name": "Maia Reficco",
+        "img": "https://image.tmdb.org/t/p/w185/brPJjB7K3zkqKhmKkCTr5cGZXUy.jpg"
+      },
+      {
+        "name": "Fernando Lindez",
+        "img": "https://image.tmdb.org/t/p/w185/2e41CvEnNgJIij5X7CzgRGqEedP.jpg"
+      },
+      {
+        "name": "Chloé Sweetlove",
+        "img": "https://image.tmdb.org/t/p/w185/pjwHAPDzyKojzK47hjZ9RNzZ1yR.jpg"
+      },
+      {
+        "name": "Andrés Velencoso",
+        "img": "https://image.tmdb.org/t/p/w185/gzQlzEWYWDNDfAEH2pk8VR30xDe.jpg"
+      },
+      {
+        "name": "Sabrina Bartlett",
+        "img": "https://image.tmdb.org/t/p/w185/qizoRuIHcKme66ASppsOliEjRmX.jpg"
+      },
+      {
+        "name": "Molly B. Thomas",
+        "img": "https://image.tmdb.org/t/p/w185/pDZvlDpuk1pz6sZ7JTYhY6WdEEQ.jpg"
+      },
+      {
+        "name": "Razan Nassar",
+        "img": "https://image.tmdb.org/t/p/w185/4PpGRgPl5glsSQaoZSLRAv4hCJW.jpg"
+      },
+      {
+        "name": "Stephan Wiks",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Àlex Peracaula",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      }
+    ]
+  },
+  {
     "num": "2699",
     "t": "‎The Outer Threat",
     "id_tmdb": "1381202",
