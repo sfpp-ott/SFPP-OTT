@@ -962,12 +962,14 @@ window.closeSearch = function() { window.closeSearch_internal(); };
 // NOUVELLE FONCTION POUR LA RECHERCHE WEB VIA ANDROID
 window.lancerRechercheExterne = function(titre) {
     if (typeof window.SfppSearch !== 'undefined') {
-        window.SfppSearch.lancerRecherche(titre);
+        // CORRECTION ICI : On utilise bien "searchFilm" et non "lancerRecherche"
+        window.SfppSearch.searchFilm(titre);
         window.closeSearch_internal(); // Ferme le menu de recherche visuel
     } else {
         window.showToast("Cette fonction nécessite la dernière mise à jour de l'application Android.");
     }
 };
+
 
 async function fetchEPG() {
     try {
