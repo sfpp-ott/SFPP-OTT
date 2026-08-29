@@ -962,13 +962,26 @@ window.closeSearch = function() { window.closeSearch_internal(); };
 // NOUVELLE FONCTION POUR LA RECHERCHE WEB VIA ANDROID
 window.lancerRechercheExterne = function(titre) {
     if (typeof window.SfppSearch !== 'undefined') {
-        // CORRECTION ICI : On utilise bien "searchFilm" et non "lancerRecherche"
-        window.SfppSearch.searchFilm(titre);
+        
+        // Si on est dans l'onglet Séries, on utilise la nouvelle API des Séries
+        if (currentView === 'series') {
+            if (typeof window.SfppSearchSeries !== 'undefined') {
+                window.SfppSearchSeries.searchSeries(titre);
+            } else {
+                window.showToast("L'interface des séries n'est pas encore prête dans l'APK.");
+            }
+        } 
+        // Sinon (Films, Accueil, etc.), on utilise l'API des Films
+        else {
+            window.SfppSearch.searchFilm(titre);
+        }
+        
         window.closeSearch_internal(); // Ferme le menu de recherche visuel
     } else {
         window.showToast("Cette fonction nécessite la dernière mise à jour de l'application Android.");
     }
 };
+
 
 
 async function fetchEPG() {
