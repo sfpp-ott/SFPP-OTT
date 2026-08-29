@@ -966,8 +966,11 @@ window.lancerRechercheExterne = function(titre) {
     if (typeof window.SfppSearch !== 'undefined') {
         if (currentView === 'series' && typeof window.SfppSearchSeries !== 'undefined') {
             window.SfppSearchSeries.searchSeries(titre);
+        } else if (typeof window.SfppSearch.searchFilmWithResults === 'function') {
+            // Nouveau comportement : l'APK renvoie une liste de résultats
+            window.SfppSearch.searchFilmWithResults(titre);
         } else {
-            // Pour les films et le reste : on lance direct la vidéo comme avant !
+             // Comportement de secours (ancienne version)
             window.SfppSearch.searchFilm(titre);
         }
         window.closeSearch_internal();
@@ -975,6 +978,47 @@ window.lancerRechercheExterne = function(titre) {
         window.showToast("Mise à jour Android requise.");
     }
 };
+
+// ==========================================
+// AFFICHAGE DES RÉSULTATS DE RECHERCHE FILMS (Appelé par l'APK)
+// ==========================================
+window.afficherResultatsFilms = function(titreRecherche, base64Json) {
+    try {
+        let jsonStr = decodeURIComponent(escape(window.atob(base64Json)));
+        let data = JSON.parse(jsonStr);
+        
+        if (data.length > 0) {
+            let html = '<div class="category-title">RÉSULTATS WEB POUR : ' + safeStr(titreRecherche).toUpperCase() + '</div>';
+            html += '<div class="category-row" style="flex-wrap: wrap; display: flex; gap: 15px; padding: 20px 4%;">';
+            
+            data.forEach(f => {
+                html += `
+                    <div class="card sn-card" tabindex="0" onclick="lancerVideoDirect('${safeStr(f.lien)}')">
+                        <img src="${f.image}" style="opacity: 1;" onerror="handleImageError(this)">
+                        <div class="card-name" style="white-space: normal; line-height: 1.2; margin-top: 10px;">${f.titre}</div>
+                    </div>`;
+            });
+            html += '</div>';
+            
+            document.getElementById('categories-container').innerHTML = html;
+        } else {
+            window.showToast("Aucun film trouvé.");
+        }
+    } catch(e) {
+        window.showToast("Erreur lors de l'affichage des résultats.");
+    }
+};
+
+window.lancerVideoDirect = function(url) {
+     if(player) { player.pause(); player.src(""); player.load(); }
+     const pSection = document.getElementById('player-section'); 
+     pSection.style.display = 'block';
+     if(player) {
+         player.src({ src: url, type: 'video/mp4' }); // Ou m3u8 selon ton flux
+         player.ready(function() { player.play(); });
+     }
+};
+
 
 // ==========================================
 // AFFICHAGE DES SAISONS DE SÉRIES
