@@ -959,28 +959,53 @@ window.closeDetails = function() { window.closeDetails_internal(); };
 window.closeSeries = function() { window.closeSeries_internal(); };
 window.closeSearch = function() { window.closeSearch_internal(); };
 
-// NOUVELLE FONCTION POUR LA RECHERCHE WEB VIA ANDROID
-window.lancerRechercheExterne = function(titre) {
-    if (typeof window.SfppSearch !== 'undefined') {
-        
-        // Si on est dans l'onglet Séries, on utilise la nouvelle API des Séries
-        if (currentView === 'series') {
-            if (typeof window.SfppSearchSeries !== 'undefined') {
-                window.SfppSearchSeries.searchSeries(titre);
+// NOUVELLE FONCTION POUR LA RECHERCHE WEB VIA ANDROID / SERVEUR
+window.lancerRechercheExterne = async function(titre) {
+    if (currentView === 'series') {
+        window.showToast("Recherche de '" + titre + "' sur le serveur...");
+        try {
+            // On interroge directement ton API sur le serveur Oracle !
+            const response = await fetch("http://92.5.70.161:5000/series?q=" + encodeURIComponent(titre));
+            const data = await response.json();
+            
+            if (data.status === 'succes' && data.series.length > 0) {
+                let html = '<div class="category-title">SAISONS DISPONIBLES : ' + safeStr(titre).toUpperCase() + '</div>';
+                html += '<div class="category-row" style="flex-wrap: wrap; display: flex; gap: 15px; padding: 20px 4%;">';
+                
+                // Trier les saisons par ordre alphabétique (Saison 1, Saison 2...)
+                data.series.sort((a, b) => a.titre.localeCompare(b.titre));
+
+                data.series.forEach(s => {
+                    // Au clic, on envoie le lien au lecteur universel de l'APK
+                    html += `
+                        <div class="card sn-card" tabindex="0" onclick="window.location.href='${s.lien}'">
+                            <img src="${s.image}" style="opacity: 1;" onerror="handleImageError(this)">
+                            <div class="card-name" style="white-space: normal; line-height: 1.2; margin-top: 10px;">${s.titre}</div>
+                        </div>`;
+                });
+                html += '</div>';
+                
+                // On affiche les résultats à l'écran
+                document.getElementById('categories-container').innerHTML = html;
+                window.closeSearch_internal();
             } else {
-                window.showToast("L'interface des séries n'est pas encore prête dans l'APK.");
+                window.showToast("Aucune série trouvée pour cette recherche.");
             }
-        } 
-        // Sinon (Films, Accueil, etc.), on utilise l'API des Films
-        else {
-            window.SfppSearch.searchFilm(titre);
+        } catch(e) {
+            window.showToast("Erreur de connexion au serveur Oracle.");
         }
-        
-        window.closeSearch_internal(); // Ferme le menu de recherche visuel
-    } else {
-        window.showToast("Cette fonction nécessite la dernière mise à jour de l'application Android.");
+    } 
+    else {
+        // Si on est dans les films, on garde l'ancien système
+        if (typeof window.SfppSearch !== 'undefined') {
+            window.SfppSearch.searchFilm(titre);
+            window.closeSearch_internal();
+        } else {
+            window.showToast("Mise à jour Android requise.");
+        }
     }
 };
+
 
 
 
