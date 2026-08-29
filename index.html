@@ -1010,14 +1010,12 @@ window.afficherResultatsFilms = function(titreRecherche, base64Json) {
 };
 
 window.lancerVideoDirect = function(url) {
-     if(player) { player.pause(); player.src(""); player.load(); }
-     const pSection = document.getElementById('player-section'); 
-     pSection.style.display = 'block';
-     if(player) {
-         player.src({ src: url, type: 'video/mp4' }); // Ou m3u8 selon ton flux
-         player.ready(function() { player.play(); });
-     }
+     // Au lieu de lire le lien dans le lecteur web, 
+     // on le passe à l'application Android pour qu'elle l'aspire !
+     if(window.updateUserActivity) window.updateUserActivity("Recherche d'un flux web...");
+     window.location.href = url;
 };
+
 
 
 // ==========================================
