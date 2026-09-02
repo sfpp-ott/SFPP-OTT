@@ -1,5 +1,60 @@
 [
   {
+    "num": "2704",
+    "t": "‎Les Schtroumpfs, le film",
+    "id_tmdb": "936108",
+    "cat": "ANIMATION, FAMILIAL, FANTASTIQUE",
+    "url": "https://free.finepulfe.xyz/movies/936108-9dn2r/audio_fr/playlist.m3u8",
+    "img": "https://image.tmdb.org/t/p/w500/jDP1vSAWEsNli1gGLbjQuhHJnC7.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/9whEVuKte4Qi0LI4TzPf7glinJW.jpg",
+    "desc": "Lorsque le Grand Schtroumpf est mystérieusement kidnappé par les vilains sorciers : Razamel et Gargamel, la Schtroumpfette et son meilleur ami Le Schtroumpf Sans-Nom partent en mission pour le retrouver ! Commence alors une aventure délirante où nos héros bleus vont croiser la route de nouveaux amis hauts en couleur comme Mama Poot et ses petits. Les Schtroumpfs doivent prendre en main leur destin pour sauver celui du monde entier !",
+    "year": "2025",
+    "note": 3,
+    "trailer": "2OYDrsAn0eE",
+    "actors_pics": [
+      {
+        "name": "Rihanna",
+        "img": "https://image.tmdb.org/t/p/w185/piXUA7L0gWQNtnDPXtBe24C9FF6.jpg"
+      },
+      {
+        "name": "James Corden",
+        "img": "https://image.tmdb.org/t/p/w185/xGB0gfZ48M27gQjjL7inJIh1Pqj.jpg"
+      },
+      {
+        "name": "Nick Offerman",
+        "img": "https://image.tmdb.org/t/p/w185/f6z3mPVtaF40ewfdmZydprAjmYd.jpg"
+      },
+      {
+        "name": "JP Karliak",
+        "img": "https://image.tmdb.org/t/p/w185/7Rc3n8KmKUaztqfsIpddO1a2ggn.jpg"
+      },
+      {
+        "name": "Dan Levy",
+        "img": "https://image.tmdb.org/t/p/w185/2O9KqgCLHHMw5xmUpNexfWr2QVA.jpg"
+      },
+      {
+        "name": "Amy Sedaris",
+        "img": "https://image.tmdb.org/t/p/w185/AjVjRYI1PaC11i4FqGSK1TkwOmq.jpg"
+      },
+      {
+        "name": "Natasha Lyonne",
+        "img": "https://image.tmdb.org/t/p/w185/2QJoTBEIeYyjGSDot9qxv2ayPH3.jpg"
+      },
+      {
+        "name": "Sandra Oh",
+        "img": "https://image.tmdb.org/t/p/w185/zU8vjebHxcP60ESEL5Ok68KWZvj.jpg"
+      },
+      {
+        "name": "Jimmy Kimmel",
+        "img": "https://image.tmdb.org/t/p/w185/nBe0ByVL5hpPUby6rlU6DELgJ8Z.jpg"
+      },
+      {
+        "name": "Octavia Spencer",
+        "img": "https://image.tmdb.org/t/p/w185/zDGydyM1fmvNWzQlTAns9IZjNxT.jpg"
+      }
+    ]
+  },
+  {
     "num": "2703",
     "t": "‎Bienvenue chez les Ch'tis",
     "id_tmdb": "8265",
