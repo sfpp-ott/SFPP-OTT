@@ -1810,17 +1810,21 @@ function playMovie(idx) {
     
     document.getElementById('details-overlay').style.display = 'none'; document.getElementById('details-trailer-box').innerHTML = "";
     document.getElementById('series-overlay').style.display = 'none'; document.getElementById('series-trailer-box').innerHTML = "";
-    const pSection = document.getElementById('player-section'); pSection.style.display = 'block';
     
-    const backdrop = m.bg || m.img; document.getElementById('player-blur-bg').style.backgroundImage = "url('" + backdrop + "')"; if(player) player.poster(backdrop); 
-
     if(window.updateUserActivity) window.updateUserActivity("Regarde : " + m.t);
     const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
     let type = String(decodedUrl).includes('.m3u8') ? 'application/x-mpegURL' : 'video/mp4';
 
-    if(player) {
-        player.src({ src: decodedUrl, type: type });
-        player.ready(function() { if(prog[m.t] && prog[m.t].t > 10) { player.currentTime(prog[m.t].t); } player.play(); });
+    if (window.SfppSync && typeof window.SfppSync.playDirect === "function") {
+        window.SfppSync.playDirect(decodedUrl);
+    } else {
+        const pSection = document.getElementById('player-section'); pSection.style.display = 'block';
+        const backdrop = m.bg || m.img; document.getElementById('player-blur-bg').style.backgroundImage = "url('" + backdrop + "')"; if(player) player.poster(backdrop); 
+        
+        if(player) {
+            player.src({ src: decodedUrl, type: type });
+            player.ready(function() { if(prog[m.t] && prog[m.t].t > 10) { player.currentTime(prog[m.t].t); } player.play(); });
+        }
     }
 }
 
