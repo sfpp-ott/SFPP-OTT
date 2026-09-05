@@ -1815,9 +1815,11 @@ function playMovie(idx) {
     const prog = JSON.parse(localStorage.getItem('sfpp_p_' + currentProfile) || "{}");
     let type = String(decodedUrl).includes('.m3u8') ? 'application/x-mpegURL' : 'video/mp4';
 
-    if (window.SfppSync && typeof window.SfppSync.playDirect === "function") {
-        window.SfppSync.playDirect(decodedUrl);
+    // LA CORRECTION EST ICI : On utilise SfppIptv qui est reconnu par ton catalogue principal
+    if (typeof window.SfppIptv !== "undefined") {
+        window.SfppIptv.playIptv(decodedUrl);
     } else {
+        // Mode "PC / Navigateur Web" -> On garde Video.js
         const pSection = document.getElementById('player-section'); pSection.style.display = 'block';
         const backdrop = m.bg || m.img; document.getElementById('player-blur-bg').style.backgroundImage = "url('" + backdrop + "')"; if(player) player.poster(backdrop); 
         
