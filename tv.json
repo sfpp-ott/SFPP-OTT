@@ -483,6 +483,13 @@
    "img": "https://upload.wikimedia.org/wikipedia/commons/8/82/Cstar-logo.jpg",
    "cat": "TV EN DIRECT, 1.GENERAL",
    "desc": "Regardez CSTAR en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/643"
+  },
+  {
+  "t": "CSTAR (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/8/82/Cstar-logo.jpg",
+   "cat": "TV EN DIRECT, 1.GENERAL",
+   "desc": "Regardez CSTAR en direct.",
    "url": "https://northlive.lol/api/v1/tv/c-star-fhd-s/player?api_key="
   },
   {
