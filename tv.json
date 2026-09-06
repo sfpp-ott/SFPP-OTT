@@ -903,6 +903,13 @@
    "img": "https://upload.wikimedia.org/wikipedia/fr/e/e3/C%2B_S%C3%A9ries.png",
    "cat": "TV EN DIRECT, 2.CINEMA",
    "desc": "Regardez CANAL+ SERIES en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/605"
+  },
+  {
+  "t": "CANAL+ SERIES (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/e/e3/C%2B_S%C3%A9ries.png",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez CANAL+ SERIES en direct.",
    "url": "https://northlive.lol/api/v1/tv/canal-series-fhd-s/player?api_key="
   },
   
@@ -946,9 +953,22 @@
    "img": "https://upload.wikimedia.org/wikipedia/commons/7/73/Logo_Canal%2B_Family_2013.svg",
    "cat": "TV EN DIRECT, 2.CINEMA",
    "desc": "Regardez CANAL+ FAMILY en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/554"
+  },
+  {
+  "t": "CANAL+ FAMILY (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/7/73/Logo_Canal%2B_Family_2013.svg",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez CANAL+ FAMILY en direct.",
    "url": "https://northlive.lol/api/v1/tv/cine-famiz-fhd-b/player?api_key="
   },
-  
+  {
+  "t": "CINE+ PREMIER (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/7/73/Canalplus_fr_cine_plus_premier_hd.png",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez CINE+ PREMIER en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/615"
+  },
   {
   "t": "CINE+ PREMIER (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/7/73/Canalplus_fr_cine_plus_premier_hd.png",
@@ -1066,6 +1086,13 @@
    "img": "https://upload.wikimedia.org/wikipedia/commons/7/71/Logo_Cin%C3%A9%2B_Emotion_2011.svg",
    "cat": "TV EN DIRECT, 2.CINEMA",
    "desc": "Regardez CINE+ EMOTION en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/557"
+  },
+  {
+  "t": "CINE+ EMOTION (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/7/71/Logo_Cin%C3%A9%2B_Emotion_2011.svg",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez CINE+ EMOTION en direct.",
    "url": "https://northlive.lol/api/v1/tv/cine-emotion-fhd-b/player?api_key="
   },
   {
@@ -1122,6 +1149,13 @@
    "img": "https://upload.wikimedia.org/wikipedia/commons/b/b9/Cin%C3%A9%2BFamily2024.svg",
    "cat": "TV EN DIRECT, 2.CINEMA",
    "desc": "Regardez CINE+ FAMILY en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/558"
+  },
+  {
+  "t": "CINE+ FAMILY (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/b/b9/Cin%C3%A9%2BFamily2024.svg",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez CINE+ FAMILY en direct.",
    "url": "https://northlive.lol/api/v1/tv/cine-famiz-fhd-b/player?api_key="
   },
   {
@@ -1172,6 +1206,14 @@
    "cat": "TV EN DIRECT, 2.CINEMA",
    "desc": "Regardez CINE+ FAMILY en direct.",
    "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D21820840461c5c31e1d60f"
+  },
+  
+  {
+  "t": "CINE+ CLASSIC (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/2/2e/Cin%C3%A9%2BClassic2024.svg",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez CINE+ CLASSIC en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/618"
   },
   {
   "t": "CINE+ CLASSIC (Direct)",
@@ -1241,6 +1283,13 @@
    "img": "https://upload.wikimedia.org/wikipedia/commons/5/55/Logo_Cin%C3%A9%2B_Club_2011.svg",
    "cat": "TV EN DIRECT, 2.CINEMA",
    "desc": "Regardez CINE+ CLUB en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/558"
+  },
+  {
+  "t": "CINE+ CLUB (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/5/55/Logo_Cin%C3%A9%2B_Club_2011.svg",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez CINE+ CLUB en direct.",
    "url": "https://northlive.lol/api/v1/tv/cine-club-fhd-b/player?api_key="
   },
   {
@@ -1293,7 +1342,13 @@
    "desc": "Regardez SERIE CLUB en direct.",
    "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D176726491979039c050819"
   },
-  
+  {
+  "t": "ACTION (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/2/2f/Action_%282014%29.svg",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez ACTION en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/622"
+  },
   {
   "t": "ACTION (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/2/2f/Action_%282014%29.svg",
@@ -1355,6 +1410,13 @@
    "img": "https://upload.wikimedia.org/wikipedia/commons/8/83/TCM_logo.svg",
    "cat": "TV EN DIRECT, 2.CINEMA",
    "desc": "Regardez TCM CINEMA en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/621"
+  },
+  {
+  "t": "TCM CINEMA (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/8/83/TCM_logo.svg",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez TCM CINEMA en direct.",
    "url": "https://northlive.lol/api/v1/tv/tcm-cinema-fhd-s/player?api_key="
   },
   {
@@ -1391,6 +1453,13 @@
    "img": "https://upload.wikimedia.org/wikipedia/commons/3/37/Syfy_france.svg",
    "cat": "TV EN DIRECT, 2.CINEMA",
    "desc": "Regardez SYFY en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/627"
+  },
+  {
+  "t": "SYFY (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/3/37/Syfy_france.svg",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez SYFY en direct.",
    "url": "https://northlive.lol/api/v1/tv/syfy-b/player?api_key="
   },
   {
@@ -1413,6 +1482,13 @@
    "cat": "TV EN DIRECT, 2.CINEMA",
    "desc": "Regardez SYFY en direct.",
    "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D338881895125230dd16046"
+  },
+  {
+  "t": "13EME RUE (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/0/0c/Logo_of_13e_Rue.png",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez 13EME RUE en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/633"
   },
   {
   "t": "13EME RUE (Direct)",
@@ -1454,6 +1530,13 @@
    "img": "https://upload.wikimedia.org/wikipedia/commons/6/69/Polar%2B_%28Logo%29.png",
    "cat": "TV EN DIRECT, 2.CINEMA",
    "desc": "Regardez POLAR+ en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/559"
+  },
+  {
+  "t": "POLAR+ (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/6/69/Polar%2B_%28Logo%29.png",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez POLAR+ en direct.",
    "url": "https://northlive.lol/api/v1/tv/cine-polar-s/player?api_key="
   },
   {
@@ -1468,6 +1551,13 @@
    "img": "https://upload.wikimedia.org/wikipedia/fr/4/4c/Serieclub_%282012%29.svg",
    "cat": "TV EN DIRECT, 2.CINEMA",
    "desc": "Regardez SERIE CLUB en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/632"
+  },
+  {
+  "t": "SERIES CLUB (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/4/4c/Serieclub_%282012%29.svg",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez SERIE CLUB en direct.",
    "url": "https://northlive.lol/api/v1/tv/serie-club-fhd-s/player?api_key="
   },
   {
@@ -1475,7 +1565,21 @@
    "img": "https://upload.wikimedia.org/wikipedia/fr/a/a2/Tv_Breizh_sept2011.png",
    "cat": "TV EN DIRECT, 2.CINEMA",
    "desc": "Regardez TV BREIZH en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/629"
+  },
+  {
+  "t": "TV BREIZH (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/a/a2/Tv_Breizh_sept2011.png",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez TV BREIZH en direct.",
    "url": "https://northlive.lol/api/v1/tv/tv-breizh-hd-s/player?api_key="
+  },
+  {
+  "t": "RTL9 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/7/75/RTL9_%282011%29.svg",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez RTL9 en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/630"
   },
   {
   "t": "RTL9 (Direct)",
@@ -1496,6 +1600,13 @@
    "img": "https://upload.wikimedia.org/wikipedia/fr/5/51/Logo_AB1_2021.svg",
    "cat": "TV EN DIRECT, 1.GENERAL",
    "desc": "Regardez AB1 en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/634"
+  },
+  {
+  "t": "AB1 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/5/51/Logo_AB1_2021.svg",
+   "cat": "TV EN DIRECT, 1.GENERAL",
+   "desc": "Regardez AB1 en direct.",
    "url": "https://northlive.lol/api/v1/tv/ab-1-hd-s/player?api_key="
   },
   {
@@ -1504,6 +1615,14 @@
    "cat": "TV EN DIRECT, 1.GENERAL",
    "desc": "Regardez AB1 en direct.",
    "url": "https://northlive.lol/api/v1/tv/ab1-b/player?api_key="
+  },
+  
+  {
+  "t": "AB3 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/0/0e/Logo_AB3.svg",
+   "cat": "TV EN DIRECT, 1.GENERAL",
+   "desc": "Regardez AB3 en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/635"
   },
   {
   "t": "AB3 (Direct)",
@@ -1531,7 +1650,21 @@
    "img": "https://upload.wikimedia.org/wikipedia/commons/3/3e/Com%C3%A9die%2B_logo_%C3%A0_l%27antenne.png",
    "cat": "TV EN DIRECT, 1.GENERAL",
    "desc": "Regardez COMEDIE+ en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/625"
+  },
+  {
+  "t": "COMEDIE+ (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/3/3e/Com%C3%A9die%2B_logo_%C3%A0_l%27antenne.png",
+   "cat": "TV EN DIRECT, 1.GENERAL",
+   "desc": "Regardez COMEDIE+ en direct.",
    "url": "https://northlive.lol/api/v1/tv/comedie-fhd-s/player?api_key="
+  },
+  {
+  "t": "PARIS PREMIERE (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/d/d1/Paris_Premi%C3%A8re_2011.svg",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez PARIS PREMIERE en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/628"
   },
   {
   "t": "PARIS PREMIERE (Direct)",
@@ -1540,12 +1673,27 @@
    "desc": "Regardez PARIS PREMIERE en direct.",
    "url": "https://northlive.lol/api/v1/tv/paris-premiere-fhd-s/player?api_key="
   },
+  
+  {
+  "t": "TEVA (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/d/d3/T%C3%A9va.svg",
+   "cat": "TV EN DIRECT, 1.GENERAL",
+   "desc": "Regardez TEVA en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/631"
+  },
   {
   "t": "TEVA (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/d/d3/T%C3%A9va.svg",
    "cat": "TV EN DIRECT, 1.GENERAL",
    "desc": "Regardez TEVA en direct.",
    "url": "https://northlive.lol/api/v1/tv/teva-b/player?api_key="
+  },
+  {
+  "t": "TV5MONDE (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/c/cc/TV5MONDE.jpg",
+   "cat": "TV EN DIRECT, 1.GENERAL",
+   "desc": "Regardez TV5MONDE en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/578"
   },
   {
   "t": "TV5MONDE (Direct)",
@@ -1567,6 +1715,13 @@
    "cat": "TV EN DIRECT, 5.DOCUMENTAIRE",
    "desc": "Regardez CANAL+ DOCS en direct.",
    "url": "https://northlive.lol/api/v1/tv/canal-docs-hd-s/player?api_key="
+  },
+  {
+  "t": "PLANETE+ (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/4/41/Planete_plus_hd.png",
+   "cat": "TV EN DIRECT, 5.DOCUMENTAIRE",
+   "desc": "Regardez PLANETE+ en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/681"
   },
   {
   "t": "PLANETE+ (Direct)",
