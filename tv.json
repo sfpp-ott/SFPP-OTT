@@ -1735,7 +1735,21 @@
    "img": "https://upload.wikimedia.org/wikipedia/fr/4/49/Planete_Plus_CI_2017.png?utm_source=fr.wikipedia.org&utm_campaign=index&utm_content=original",
    "cat": "TV EN DIRECT, 5.DOCUMENTAIRE",
    "desc": "Regardez PLANETE+ CI en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/680"
+  },
+  {
+  "t": "PLANETE+ CI(Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/4/49/Planete_Plus_CI_2017.png?utm_source=fr.wikipedia.org&utm_campaign=index&utm_content=original",
+   "cat": "TV EN DIRECT, 5.DOCUMENTAIRE",
+   "desc": "Regardez PLANETE+ CI en direct.",
    "url": "https://northlive.lol/api/v1/tv/planete-ci-b/player?api_key="
+  },
+  {
+  "t": "PLANETE+ AVENTURE (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/f/f6/Planeteplusaventure.png",
+   "cat": "TV EN DIRECT, 5.DOCUMENTAIRE",
+   "desc": "Regardez PLANETE+ AVENTURE en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/679"
   },
   {
   "t": "PLANETE+ AVENTURE (Direct)",
@@ -1756,6 +1770,13 @@
    "img": "https://upload.wikimedia.org/wikipedia/commons/f/fc/Natgeologo.svg",
    "cat": "TV EN DIRECT, 5.DOCUMENTAIRE",
    "desc": "Regardez NATIONAL GEOGRAPHIC en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/670"
+  },
+  {
+  "t": "NATIONAL GEOGRAPHIC (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/f/fc/Natgeologo.svg",
+   "cat": "TV EN DIRECT, 5.DOCUMENTAIRE",
+   "desc": "Regardez NATIONAL GEOGRAPHIC en direct.",
    "url": "https://northlive.lol/api/v1/tv/nat-geo-fhd-s/player?api_key="
   },
   {
@@ -1763,7 +1784,22 @@
    "img": "https://upload.wikimedia.org/wikipedia/commons/a/ab/National_Geographic_Wild_Logo_2019.svg",
    "cat": "TV EN DIRECT, 5.DOCUMENTAIRE",
    "desc": "Regardez NATIONAL GEOGRAPHIC WILD en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/671"
+  },
+  {
+  "t": "NATIONAL GEOGRAPHIC WILD (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/a/ab/National_Geographic_Wild_Logo_2019.svg",
+   "cat": "TV EN DIRECT, 5.DOCUMENTAIRE",
+   "desc": "Regardez NATIONAL GEOGRAPHIC WILD en direct.",
    "url": "https://northlive.lol/api/v1/tv/national-geo-wild-hd-s/player?api_key="
+  },
+  
+  {
+  "t": "DISCOVERY CHANNEL (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/8/89/Discovery_Channel_logo_2000.svg",
+   "cat": "TV EN DIRECT, 5.DOCUMENTAIRE",
+   "desc": "Regardez DISCOVERY CHANNEL en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/664"
   },
   {
   "t": "DISCOVERY CHANNEL (Direct)",
@@ -1784,7 +1820,21 @@
    "img": "https://upload.wikimedia.org/wikipedia/commons/1/18/Logo_id.png",
    "cat": "TV EN DIRECT, 5.DOCUMENTAIRE",
    "desc": "Regardez DISCOVERY INVESTIGATION en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/666"
+  },
+  {
+  "t": "DISCOVERY INVESTIGATION (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/1/18/Logo_id.png",
+   "cat": "TV EN DIRECT, 5.DOCUMENTAIRE",
+   "desc": "Regardez DISCOVERY INVESTIGATION en direct.",
    "url": "https://northlive.lol/api/v1/tv/discovery-investigation-hd-b/player?api_key="
+  },
+  {
+  "t": "RMC DÉCOUVERTE (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/7/73/Logo_RMC_D%C3%A9couverte_2012.png",
+   "cat": "TV EN DIRECT, 5.DOCUMENTAIRE",
+   "desc": "Regardez RMC DÉCOUVERTE en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/682"
   },
   {
   "t": "RMC DÉCOUVERTE (Direct)",
@@ -1798,6 +1848,13 @@
    "img": "https://upload.wikimedia.org/wikipedia/commons/d/d0/Bravo_Logo_Rouille.png",
    "cat": "TV EN DIRECT, 5.DOCUMENTAIRE",
    "desc": "Regardez BRAVO en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/623"
+  },
+  {
+  "t": "BRAVO (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/d/d0/Bravo_Logo_Rouille.png",
+   "cat": "TV EN DIRECT, 5.DOCUMENTAIRE",
+   "desc": "Regardez BRAVO en direct.",
    "url": "https://northlive.lol/api/v1/tv/e-entertainment-b/player?api_key="
   },
   {
@@ -1805,7 +1862,21 @@
    "img": "https://upload.wikimedia.org/wikipedia/fr/5/5c/Histoire_TV_logo_2019.svg",
    "cat": "TV EN DIRECT, 5.DOCUMENTAIRE",
    "desc": "Regardez HISTOIRE TV en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/677"
+  },
+  {
+  "t": "HISTOIRE TV (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/5/5c/Histoire_TV_logo_2019.svg",
+   "cat": "TV EN DIRECT, 5.DOCUMENTAIRE",
+   "desc": "Regardez HISTOIRE TV en direct.",
    "url": "https://northlive.lol/api/v1/tv/histoire-hd-b/player?api_key="
+  },
+  {
+  "t": "TOUTE L'HISTOIRE (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/5/53/Toute_L%27Histoire.svg",
+   "cat": "TV EN DIRECT, 5.DOCUMENTAIRE",
+   "desc": "Regardez TOUTE L'HISTOIRE en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/676"
   },
   {
   "t": "TOUTE L'HISTOIRE (Direct)",
@@ -1826,6 +1897,13 @@
    "img": "https://upload.wikimedia.org/wikipedia/fr/1/11/Chasse_%26_P%C3%AAche.svg",
    "cat": "TV EN DIRECT, 5.DOCUMENTAIRE",
    "desc": "Regardez CHASSE & PECHE en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/673"
+  },
+  {
+  "t": "CHASSE & PECHE (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/1/11/Chasse_%26_P%C3%AAche.svg",
+   "cat": "TV EN DIRECT, 5.DOCUMENTAIRE",
+   "desc": "Regardez CHASSE & PECHE en direct.",
    "url": "https://northlive.lol/api/v1/tv/chasse-et-peche-b/player?api_key="
   },
   {
@@ -1840,7 +1918,21 @@
    "img": "https://upload.wikimedia.org/wikipedia/fr/6/64/TLC_logo_2010.png",
    "cat": "TV EN DIRECT, 5.DOCUMENTAIRE",
    "desc": "Regardez TLC en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/668"
+  },
+  {
+  "t": "TLC (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/6/64/TLC_logo_2010.png",
+   "cat": "TV EN DIRECT, 5.DOCUMENTAIRE",
+   "desc": "Regardez TLC en direct.",
    "url": "https://northlive.lol/api/v1/tv/tlc-c/player?api_key="
+  },
+  {
+  "t": "CRIME DISTRICT (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/c/c5/Crime_District_logo_2016.svg",
+   "cat": "TV EN DIRECT, 5.DOCUMENTAIRE",
+   "desc": "Regardez CRIME DISTRICT en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/596"
   },
   {
   "t": "CRIME DISTRICT (Direct)",
@@ -1854,7 +1946,21 @@
    "img": "https://upload.wikimedia.org/wikipedia/fr/f/f8/Trek_logo_2015.svg",
    "cat": "TV EN DIRECT, 5.DOCUMENTAIRE",
    "desc": "Regardez TREK en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/683"
+  },
+  {
+  "t": "TREK (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/f/f8/Trek_logo_2015.svg",
+   "cat": "TV EN DIRECT, 5.DOCUMENTAIRE",
+   "desc": "Regardez TREK en direct.",
    "url": "https://northlive.lol/api/v1/tv/trek-hd-s/player?api_key="
+  },
+  {
+  "t": "ANIMAUX (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/a/a2/Logo-Animaux-2017.svg",
+   "cat": "TV EN DIRECT, DOCUMENTAIRE",
+   "desc": "Regardez ANIMAUX en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/672"
   },
   {
   "t": "ANIMAUX (Direct)",
@@ -1863,7 +1969,13 @@
    "desc": "Regardez ANIMAUX en direct.",
    "url": "https://northlive.lol/api/v1/tv/animaux-b/player?api_key="
   },
-  
+  {
+  "t": "USHUAIA TV (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/c/ce/Ushuaia_tv_logo_V2-RVB.jpg",
+   "cat": "TV EN DIRECT, DOCUMENTAIRE",
+   "desc": "Regardez USHUAIA TV en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/678"
+  },
   {
   "t": "USHUAIA TV (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/commons/c/ce/Ushuaia_tv_logo_V2-RVB.jpg",
