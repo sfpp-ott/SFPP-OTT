@@ -2206,6 +2206,13 @@
    "img": "https://upload.wikimedia.org/wikipedia/fr/f/f8/BFM_TV.svg",
    "cat": "TV EN DIRECT, 6.INFORMATION",
    "desc": "Regardez BFMTV en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/711"
+  },
+  {
+  "t": "BFMTV (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/f/f8/BFM_TV.svg",
+   "cat": "TV EN DIRECT, 6.INFORMATION",
+   "desc": "Regardez BFMTV en direct.",
    "url": "https://embedsport.live/channel/bfm-tv-france/957"
   },
   {
@@ -2221,6 +2228,13 @@
    "cat": "TV EN DIRECT, 6.INFORMATION",
    "desc": "Regardez BFMTV en direct.",
    "url": "https://northlive.lol/api/v1/tv/bfm-tv-hd-b/player?api_key="
+  },
+  {
+  "t": "LCI (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/8/85/LCI.png",
+   "cat": "TV EN DIRECT, 6.INFORMATION",
+   "desc": "Regardez LCI en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/712"
   },
   {
   "t": "LCI (Direct)",
@@ -2843,7 +2857,21 @@
    "img": "https://upload.wikimedia.org/wikipedia/fr/c/c2/Golf%2B.svg",
    "cat": "TV EN DIRECT, 3.SPORTS",
    "desc": "Regardez GOLF+ en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/595"
+  },
+  {
+  "t": "GOLF+ (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/c/c2/Golf%2B.svg",
+   "cat": "TV EN DIRECT, 3.SPORTS",
+   "desc": "Regardez GOLF+ en direct.",
    "url": "https://northlive.lol/api/v1/tv/golf-channel-fhd-s/player?api_key="
+  },
+  {
+  "t": "AUTOMOTO (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/3/34/Automoto_La_cha%C3%AEne_%282018%29.png",
+   "cat": "TV EN DIRECT, 3.SPORTS",
+   "desc": "Regardez AUTOMOTO en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/600"
   },
   {
   "t": "AUTOMOTO (Direct)",
@@ -2871,6 +2899,13 @@
    "img": "https://upload.wikimedia.org/wikipedia/fr/2/28/Equidia_logo_2018.svg",
    "cat": "TV EN DIRECT, 3.SPORTS",
    "desc": "Regardez EQUIDIA en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/599"
+  },
+  {
+  "t": "EQUIDIA (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/2/28/Equidia_logo_2018.svg",
+   "cat": "TV EN DIRECT, 3.SPORTS",
+   "desc": "Regardez EQUIDIA en direct.",
    "url": "https://northlive.lol/api/v1/tv/equidia-pro-c/player?api_key="
   },
   {
@@ -2879,6 +2914,13 @@
    "cat": "TV EN DIRECT, 3.SPORTS",
    "desc": "Regardez EQUIDIA en direct.",
    "url": "https://td3wb1bchdvsahp.ngolpdkyoctjcddxshli469r.org/sunshine/6Ok01QnpWVx7Ej8dd4o-SQk4R6vLSwbEf6Hif3ysOINsAzW9Ik4HeqdiYAykycJ5mUYOJ446_kRSOba0Wc1UY4zIIvxGyuA3h_9TzPold4R-cYbKH6nEOBJlBoAznk9o4UNYRlu1LJqDxoiTr_R_13yfa2iAQ6rEELMzYjAJiHf2_glz1gL3cCX_slNundoL72PSrLjXOpAnRSI7z-QMg_1UB7RbKKie69eet8nRvJdeTZqxKjdSFzaH8rQX_UKz/hls/index.m3u8"
+  },
+  {
+  "t": "DAZN 1 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/e/e3/Tv-channel-%E2%94%82-dazn-1.png",
+   "cat": "TV EN DIRECT, 3.SPORTS",
+   "desc": "Regardez DAZN 1 en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/713"
   },
   {
   "t": "DAZN 1 (Direct)",
@@ -2900,6 +2942,13 @@
    "cat": "TV EN DIRECT, 3.SPORTS",
    "desc": "Regardez DAZN 3 en direct.",
    "url": "https://fstv.rest/index.php?newsid=19"
+  },
+  {
+  "t": "LIGUE1+1 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/8/8c/Logo_Ligue_1_2024.jpg",
+   "cat": "TV EN DIRECT, 3.SPORTS",
+   "desc": "Regardez LIGUE1+1 en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/703"
   },
   {
   "t": "LIGUE1+1 (Direct)",
