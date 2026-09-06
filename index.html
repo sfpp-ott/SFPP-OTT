@@ -1991,15 +1991,21 @@ if ('serviceWorker' in navigator) { window.addEventListener('load', () => { navi
         }, true);
     </script> 
 
-    <script>
+        <script>
         window.addEventListener('load', function() {
             setTimeout(function() {
                 if (typeof window.SfppSync !== 'undefined' && typeof window.SfppSync.checkUpdate === 'function') {
-                    window.SfppSync.checkUpdate(
-                       7, 
-                        "Une nouvelle mise à jour critique de SFPP ELITE est disponible. Veuillez l'installer pour continuer.", 
-                        "https://sfpp-ott.github.io/SFPP-OTT/SFPP-ELITE_1.0.apk" 
-                    );
+                    // L'astuce "?t=" + l'heure actuelle force le téléphone à ignorer le cache pour lire ce fichier en direct
+                    fetch('version.json?t=' + new Date().getTime())
+                    .then(response => response.json())
+                    .then(data => {
+                        window.SfppSync.checkUpdate(
+                           data.versionCode, 
+                           data.message, 
+                           data.apkUrl 
+                        );
+                    })
+                    .catch(err => console.log("Impossible de vérifier les mises à jour"));
                 }
             }, 2000);
         });
