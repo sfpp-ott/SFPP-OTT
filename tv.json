@@ -511,6 +511,13 @@
    "img": "https://upload.wikimedia.org/wikipedia/fr/5/5f/TF1_S%C3%A9ries_Films_logo_2018.svg",
    "cat": "TV EN DIRECT, 1.GENERAL",
    "desc": "Regardez TF1 SERIES FILMS en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/637"
+  },
+  {
+  "t": "TF1 SERIES FILMS (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/5/5f/TF1_S%C3%A9ries_Films_logo_2018.svg",
+   "cat": "TV EN DIRECT, 1.GENERAL",
+   "desc": "Regardez TF1 SERIES FILMS en direct.",
    "url": "https://northlive.lol/api/v1/tv/tf-1-series-films-c/player?api_key="
   },
   {
@@ -546,6 +553,13 @@
    "img": "https://upload.wikimedia.org/wikipedia/commons/b/b0/Logo_NOVO19_-_2025.svg",
    "cat": "TV EN DIRECT, 1.GENERAL",
    "desc": "Regardez NOVO19 en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/639"
+  },
+  {
+  "t": "NOVO19 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/b/b0/Logo_NOVO19_-_2025.svg",
+   "cat": "TV EN DIRECT, 1.GENERAL",
+   "desc": "Regardez NOVO19 en direct.",
    "url": "https://northlive.lol/api/v1/tv/novo19/player?api_key="
   },
   {
@@ -568,6 +582,13 @@
    "cat": "TV EN DIRECT, 1.GENERAL",
    "desc": "Regardez NOVO19 en direct.",
    "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D635278573a8856a6b670"
+  },
+  {
+  "t": "6TER (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/0/07/6ter.png",
+   "cat": "TV EN DIRECT, 1.GENERAL",
+   "desc": "Regardez 6TER en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/641"
   },
   {
   "t": "6TER (Direct)",
@@ -602,6 +623,13 @@
    "img": "https://upload.wikimedia.org/wikipedia/fr/3/3e/RMC_Story_logo_2018.svg",
    "cat": "TV EN DIRECT, 1.GENERAL",
    "desc": "Regardez RMC STORY en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/564"
+  },
+  {
+  "t": "RMC STORY (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/3/3e/RMC_Story_logo_2018.svg",
+   "cat": "TV EN DIRECT, 1.GENERAL",
+   "desc": "Regardez RMC STORY en direct.",
    "url": "https://northlive.lol/api/v1/tv/rmc-story-hd-s/player?api_key="
   },
   {
@@ -624,6 +652,13 @@
    "cat": "TV EN DIRECT, 1.GENERAL",
    "desc": "Regardez RMC STORY en direct.",
    "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D9680712917f989558355c"
+  },
+  {
+  "t": "RMC LIFE (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/3/36/RMC_Life.png",
+   "cat": "TV EN DIRECT, 1.GENERAL",
+   "desc": "Regardez RMC LIFE en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/638"
   },
   {
   "t": "RMC LIFE (Direct)",
@@ -673,6 +708,13 @@
    "cat": "TV EN DIRECT, 1.GENERAL",
    "desc": "Regardez RMC LIFE en direct.",
    "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D1414688969c02b1874f894"
+  },
+  {
+  "t": "CANAL+ (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/c/c6/CanalPlus.svg",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez CANAL+ en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/550"
   },
   {
   "t": "CANAL+ (Direct)",
@@ -770,6 +812,13 @@
    "img": "https://i0.wp.com/www.planetecsat.com/wp-content/uploads/2022/01/CANALP_GRAND_ECRAN_1lignes_RVB_2021_06_07-07-01-22.png?resize=509%2C160&ssl=1",
    "cat": "TV EN DIRECT, 2.CINEMA",
    "desc": "Regardez CANAL+ GRAN ECRAN en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/608"
+  },
+  {
+  "t": "CANAL+ GRAND ECRAN (Direct)",
+   "img": "https://i0.wp.com/www.planetecsat.com/wp-content/uploads/2022/01/CANALP_GRAND_ECRAN_1lignes_RVB_2021_06_07-07-01-22.png?resize=509%2C160&ssl=1",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez CANAL+ GRAN ECRAN en direct.",
    "url": "https://northlive.lol/api/v1/tv/canal-grand-ecran-fhd-b/player?api_key="
   },
   {
@@ -792,6 +841,13 @@
    "cat": "TV EN DIRECT, 2.CINEMA",
    "desc": "Regardez CANAL+ GRAN ECRAN en direct.",
    "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D25481898009fc4dd96f118"
+  },
+  {
+  "t": "CANAL+ CINEMA (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/1/1f/Logo_Canal%2B_Cin%C3%A9ma_2009.svg",
+   "cat": "TV EN DIRECT, 2.CINEMA",
+   "desc": "Regardez CANAL+ CINEMA en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/602"
   },
   {
   "t": "CANAL+ CINEMA (Direct)",
