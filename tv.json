@@ -2255,6 +2255,13 @@
    "img": "https://upload.wikimedia.org/wikipedia/commons/8/8a/France24.png",
    "cat": "TV EN DIRECT, 6.INFORMATION",
    "desc": "Regardez FRANCE 24 en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/577"
+  },
+  {
+  "t": "FRANCE 24 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/8/8a/France24.png",
+   "cat": "TV EN DIRECT, 6.INFORMATION",
+   "desc": "Regardez FRANCE 24 en direct.",
    "url": "https://northlive.lol/api/v1/tv/i24-news-c/player?api_key="
   },
   {
@@ -2304,6 +2311,13 @@
    "img": "https://upload.wikimedia.org/wikipedia/fr/4/4b/MCM_Top_Logo.svg",
    "cat": "TV EN DIRECT, 7.MUSIQUE",
    "desc": "Regardez MCM TOP en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/626"
+  },
+  {
+  "t": "MCM TOP (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/4/4b/MCM_Top_Logo.svg",
+   "cat": "TV EN DIRECT, 7.MUSIQUE",
+   "desc": "Regardez MCM TOP en direct.",
    "url": "https://northlive.lol/api/v1/tv/mcm-top-sd-b/player?api_key="
   },
   {
@@ -2332,6 +2346,13 @@
    "img": "https://upload.wikimedia.org/wikipedia/commons/e/eb/Canal%2BFoot.png",
    "cat": "TV EN DIRECT, 3.SPORTS",
    "desc": "Regardez CANAL+ FOOT en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/593"
+  },
+  {
+  "t": "CANAL+ FOOT (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/e/eb/Canal%2BFoot.png",
+   "cat": "TV EN DIRECT, 3.SPORTS",
+   "desc": "Regardez CANAL+ FOOT en direct.",
    "url": "https://embedsport.live/channel/canal-foot-france/463"
   },
   {
@@ -2354,6 +2375,13 @@
    "cat": "TV EN DIRECT, 3.SPORTS",
    "desc": "Regardez CANAL+ SPORT en direct.",
    "url": "https://embedsport.live/channel/canal-sport-france/122"
+  },
+  {
+  "t": "CANAL+ SPORT (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/0/05/Canal%2B_Sport_HD.png",
+   "cat": "TV EN DIRECT, 3.SPORTS",
+   "desc": "Regardez CANAL+ SPORT en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/555"
   },
   {
   "t": "CANAL+ SPORT (Direct)",
@@ -2409,7 +2437,21 @@
    "img": "https://upload.wikimedia.org/wikipedia/commons/6/64/Canal%2BSport_360.png",
    "cat": "TV EN DIRECT, 3.SPORTS",
    "desc": "Regardez CANAL+ SPORT 360 en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/611"
+  },
+  {
+  "t": "CANAL+ SPORT 360 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/6/64/Canal%2BSport_360.png",
+   "cat": "TV EN DIRECT, 3.SPORTS",
+   "desc": "Regardez CANAL+ SPORT 360 en direct.",
    "url": "https://northlive.lol/api/v1/tv/canal-sport-360-c/player?api_key="
+  },
+  {
+  "t": "BEIN SPORTS 1 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/2/2f/BeIN_Sports_1_%282014%29.png",
+   "cat": "TV EN DIRECT, 3.SPORTS",
+   "desc": "Regardez BEIN SPORTS 1 en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/583"
   },
   {
   "t": "BEIN SPORTS 1 (Direct)",
@@ -2437,6 +2479,13 @@
    "img": "https://upload.wikimedia.org/wikipedia/fr/5/55/BeIN_Sports_2_%282014%29.png",
    "cat": "TV EN DIRECT, 3.SPORTS",
    "desc": "Regardez BEIN SPORTS 2 en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/584"
+  },
+  {
+  "t": "BEIN SPORTS 2 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/5/55/BeIN_Sports_2_%282014%29.png",
+   "cat": "TV EN DIRECT, 3.SPORTS",
+   "desc": "Regardez BEIN SPORTS 2 en direct.",
    "url": "https://embedsport.live/channel/bein-sports-2-france/117"
   },
   {
@@ -2452,6 +2501,13 @@
    "cat": "TV EN DIRECT, 3.SPORTS",
    "desc": "Regardez BEIN SPORTS 2 en direct.",
    "url": "https://northlive.lol/api/v1/tv/bein-sports-1-fhd-b/player?api_key="
+  },
+  {
+  "t": "BEIN SPORTS 3 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/e/e9/BeIN_Sports_3_HD.png",
+   "cat": "TV EN DIRECT, 3.SPORTS",
+   "desc": "Regardez BEIN SPORTS 3 en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/585"
   },
   {
   "t": "BEIN SPORTS 3 (Direct)",
@@ -2577,6 +2633,13 @@
    "img": "https://upload.wikimedia.org/wikipedia/commons/3/3b/Logo_RMC_Sport_1_2018.svg",
    "cat": "TV EN DIRECT, 3.SPORTS",
    "desc": "Regardez RMC SPORT 1 en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/579"
+  },
+  {
+  "t": "RMC SPORT 1 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/3/3b/Logo_RMC_Sport_1_2018.svg",
+   "cat": "TV EN DIRECT, 3.SPORTS",
+   "desc": "Regardez RMC SPORT 1 en direct.",
    "url": "https://embedsport.live/channel/rmc-sport-1-france/119"
   },
   {
@@ -2592,6 +2655,13 @@
    "cat": "TV EN DIRECT, 3.SPORTS",
    "desc": "Regardez RMC SPORT 1 en direct.",
    "url": "https://northlive.lol/api/v1/tv/rmc-sport-1-fhd-b/player?api_key="
+  },
+  {
+  "t": "RMC SPORT 2 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/3/3a/Logo_RMC_Sport_2_2018.svg",
+   "cat": "TV EN DIRECT, 3.SPORTS",
+   "desc": "Regardez RMC SPORT 2 en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/580"
   },
   {
   "t": "RMC SPORT 2 (Direct)",
@@ -2619,6 +2689,13 @@
    "img": "https://upload.wikimedia.org/wikipedia/commons/7/71/Logo_RMC_Sport_3_2018.svg",
    "cat": "TV EN DIRECT, 3.SPORTS",
    "desc": "Regardez RMC SPORT 3 en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/581"
+  },
+  {
+  "t": "RMC SPORT 3 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/7/71/Logo_RMC_Sport_3_2018.svg",
+   "cat": "TV EN DIRECT, 3.SPORTS",
+   "desc": "Regardez RMC SPORT 3 en direct.",
    "url": "https://northlive.lol/api/v1/tv/rmc-sport-3-fhd-b/player?api_key="
   },
   {
@@ -2626,7 +2703,21 @@
    "img": "https://upload.wikimedia.org/wikipedia/fr/2/24/InfosportPlus.svg",
    "cat": "TV EN DIRECT, 3.SPORTS",
    "desc": "Regardez INFOSPORT+ en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/597"
+  },
+  {
+  "t": "INFOSPORT+ (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/2/24/InfosportPlus.svg",
+   "cat": "TV EN DIRECT, 3.SPORTS",
+   "desc": "Regardez INFOSPORT+ en direct.",
    "url": "https://northlive.lol/api/v1/tv/infosport-b/player?api_key="
+  },
+  {
+  "t": "L'EQUIPE (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/e/e9/L_Equipe_Logo.svg",
+   "cat": "TV EN DIRECT, 3.SPORTS",
+   "desc": "Regardez L'EQUIPE en direct.",
+   "url": "http://sfpp-elite66.duckdns.org:8080/aOxrjeE7r1/MynTCnfUDD/594"
   },
   {
   "t": "L'EQUIPE (Direct)",
