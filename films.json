@@ -1,5 +1,546 @@
 [
   {
+    "num": "2725",
+    "t": "‎La Corde au Cou",
+    "id_tmdb": "1263012",
+    "cat": "CRIME, DRAME, THRILLER",
+    "url": "https://vidzy.org/d/nui1hkloeton_n",
+    "img": "https://image.tmdb.org/t/p/w500/g7Y94KrUd0pDGRVVZQMh4n9FnYp.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/ulw8SrKbDeDrsSVNKPb5211AseI.jpg",
+    "desc": "Indianapolis, 1977. Ruiné par une faillite immobilière, Tony Kiritsis prend en otage Richard Hall, le courtier qu’il tient responsable de tous ses malheurs. L'entrepreneur lie autour du cou de sa victime un fil métallique attaché à un fusil de chasse, lequel fera feu si la police tente d'intervenir. L’incident attire l’attention des médias, puis la faveur de l'opinion publique américaine, alors que le kidnappeur exige une énorme somme d’argent et une excuse publique du grand patron de la Meridian Mortgage Company. Alors que la prise d’otage se transforme en un gigantesque cirque médiatique, Kiritsis perd lentement mais sûrement le contrôle de la situation.",
+    "year": "2026",
+    "note": 3,
+    "trailer": "WQUK-bb1C-M",
+    "actors_pics": [
+      {
+        "name": "Bill Skarsgård",
+        "img": "https://image.tmdb.org/t/p/w185/xBXLx1m0uzhXIbY3wN8lmPGeUHl.jpg"
+      },
+      {
+        "name": "Dacre Montgomery",
+        "img": "https://image.tmdb.org/t/p/w185/v5zhoNq2RgnUEtSLAFLOPLTJWCT.jpg"
+      },
+      {
+        "name": "Cary Elwes",
+        "img": "https://image.tmdb.org/t/p/w185/9UszBdQJ9PmyBydIeIBxlStozhW.jpg"
+      },
+      {
+        "name": "Myha'la",
+        "img": "https://image.tmdb.org/t/p/w185/hRc3igngt5dkpM08i0a3z7gkYWa.jpg"
+      },
+      {
+        "name": "Kelly Lynch",
+        "img": "https://image.tmdb.org/t/p/w185/lYpcMbWOpZ552VHPCjwjyZ2jvvw.jpg"
+      },
+      {
+        "name": "John Robinson",
+        "img": "https://image.tmdb.org/t/p/w185/prehpEqJzLvsGHzu7gbhFsDSo1J.jpg"
+      },
+      {
+        "name": "Vinh Nguyen",
+        "img": "https://image.tmdb.org/t/p/w185/21v1XPPvsXgU1O4Z3kDOTvjeo35.jpg"
+      },
+      {
+        "name": "Mark Helms",
+        "img": "https://image.tmdb.org/t/p/w185/mJRv0wA4Ei8JIoDa8www373z8ZS.jpg"
+      },
+      {
+        "name": "Todd Gable",
+        "img": "https://image.tmdb.org/t/p/w185/d0hg5Q4CHn9S8y5CfNDH2iTNQMZ.jpg"
+      },
+      {
+        "name": "Michael Ashcraft",
+        "img": "https://image.tmdb.org/t/p/w185/hSpXE2iXGA5GkGepXcDvJu9E8fA.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2724",
+    "t": "‎‎Desert Warrior",
+    "id_tmdb": "898704",
+    "cat": "HISTOIRE, GUERRE, ACTION",
+    "url": "https://vidzy.org/d/ze4q8dksh7ym_n",
+    "img": "https://image.tmdb.org/t/p/w500/waxnw1NpzTPY5JkqWvu0muSopRJ.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/ohlNSR8MsHk5e6fcAxqAJmcz4Sm.jpg",
+    "desc": "Quand une jeune princesse refuse d'être soumise au redoutable empereur Kisra, une bataille éclate de telle sorte qu'elle change la région de l'ancienne Arabie Saoudite à jamais.",
+    "year": "2026",
+    "note": 3,
+    "actors_pics": [
+      {
+        "name": "Anthony Mackie",
+        "img": "https://image.tmdb.org/t/p/w185/vecvTm7SimizluJkyIwBxeLbvRm.jpg"
+      },
+      {
+        "name": "Aiysha Hart",
+        "img": "https://image.tmdb.org/t/p/w185/ilIvkFvqgyDrlKpJwNcDpAITeNd.jpg"
+      },
+      {
+        "name": "Sami Bouajila",
+        "img": "https://image.tmdb.org/t/p/w185/q903sFX1TVcFH7ySSRKbPhBTdS.jpg"
+      },
+      {
+        "name": "Sharlto Copley",
+        "img": "https://image.tmdb.org/t/p/w185/em89OJJvBRX7kNJJPASmNKQujsC.jpg"
+      },
+      {
+        "name": "Ben Kingsley",
+        "img": "https://image.tmdb.org/t/p/w185/k3Dmu49B2akwDvgqy52MOxznI59.jpg"
+      },
+      {
+        "name": "غسان مسعود",
+        "img": "https://image.tmdb.org/t/p/w185/cJuAOuB6M8XortdpdZbz64VIImB.jpg"
+      },
+      {
+        "name": "Lamis Ammar",
+        "img": "https://image.tmdb.org/t/p/w185/qNWpwJOXepQaoIDs1zLly0caRJi.jpg"
+      },
+      {
+        "name": "Ramsey Faragallah",
+        "img": "https://image.tmdb.org/t/p/w185/lxjwDvvfenkjUI1n8qwO13QmhEv.jpg"
+      },
+      {
+        "name": "Saïd Boumazoughe",
+        "img": "https://image.tmdb.org/t/p/w185/5aOxePnZD6X1rMYXueN7aKUl7u9.jpg"
+      },
+      {
+        "name": "Younes Bouab",
+        "img": "https://image.tmdb.org/t/p/w185/vlZtenkbtcUB6nt6qyfRjYRzshR.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2723",
+    "t": "The Whisper Man",
+    "id_tmdb": "860508",
+    "cat": "CRIME, DRAME, THRILLER",
+    "url": "https://vidzy.org/d/s4cpo4gzlt5y_n",
+    "img": "https://image.tmdb.org/t/p/w500/pSsX2LnGzyfHR9RioDEiLrPy5wa.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/xSJJQeAp9GBFmiKusysTRG6jQjt.jpg",
+    "desc": "Lorsque son jeune fils disparaît, un veuf se tourne vers son père avec qui il est brouillé, un policier à la retraite qui a autrefois arrêté le tueur en série lié à l'affaire.",
+    "year": "2026",
+    "note": 3,
+    "trailer": "jyf5XgJFDmU",
+    "actors_pics": [
+      {
+        "name": "Robert De Niro",
+        "img": "https://image.tmdb.org/t/p/w185/cT8htcckIuyI1Lqwt1CvD02ynTh.jpg"
+      },
+      {
+        "name": "Michelle Monaghan",
+        "img": "https://image.tmdb.org/t/p/w185/uK1qhSzKd9gkDh3p1H5e2PWMYyH.jpg"
+      },
+      {
+        "name": "Adam Scott",
+        "img": "https://image.tmdb.org/t/p/w185/b82C29R6fGiPoqIglQ4lzS6q2YX.jpg"
+      },
+      {
+        "name": "Acston Luca Porto",
+        "img": "https://image.tmdb.org/t/p/w185/ddAq8ZTkBoEbAzVuaseWoVkdLyy.jpg"
+      },
+      {
+        "name": "Michael Keaton",
+        "img": "https://image.tmdb.org/t/p/w185/tYSja1KByFnZ4Hkp3stPqkKHnNL.jpg"
+      },
+      {
+        "name": "Owen Teague",
+        "img": "https://image.tmdb.org/t/p/w185/tgCkGE0LIggyjMmgSwHhpZAkfJs.jpg"
+      },
+      {
+        "name": "Hamish Linklater",
+        "img": "https://image.tmdb.org/t/p/w185/ksTXQnWuKvmcVcbmHrvGaDof0P2.jpg"
+      },
+      {
+        "name": "Will Brill",
+        "img": "https://image.tmdb.org/t/p/w185/eTPXcvxlquT8ppKnwAe2a3CzI90.jpg"
+      },
+      {
+        "name": "Aniela Zeig",
+        "img": "https://image.tmdb.org/t/p/w185/tIRhm1c8yPukLsuRrYznn5McXPn.jpg"
+      },
+      {
+        "name": "Exavier Montanez",
+        "img": "https://image.tmdb.org/t/p/w185/aeVkCR3zzNyxAGdiLh8OZOeGTgn.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2722",
+    "t": "Normal",
+    "id_tmdb": "1242332",
+    "cat": "ACTION, CRIME, THRILLER",
+    "url": "https://vidzy.org/d/4gueklbvllyr_n",
+    "img": "https://image.tmdb.org/t/p/w500/t13MdGCKRZvkmrFW2A7Vih3QjwD.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/1YU6Hy3x7fUh7dfOzSfjifTp20g.jpg",
+    "desc": "Bienvenue à Normal dans le Minnesota. Population : 1890 âmes. Dans ce village isolé, l’ancien enquêteur Ulysses est nommé au poste de sheriff intérimaire. Ce qui était en apparence une communauté sans histoires se révèle être en réalité une fourmilière de secrets et de violence après qu’un hold-up a complètement dérapé. Ulysses découvre rapidement que rien ni personne n’est ce qu’il semble être en apparence. Derrière la façade amicale de Normal se cache un dangereux réseau de corruption et d’alliances secrètes où il se retrouve empêtré.",
+    "year": "2026",
+    "note": 4,
+    "actors_pics": [
+      {
+        "name": "Bob Odenkirk",
+        "img": "https://image.tmdb.org/t/p/w185/rF0Lb6SBhGSTvjRffmlKRSeI3jE.jpg"
+      },
+      {
+        "name": "Henry Winkler",
+        "img": "https://image.tmdb.org/t/p/w185/mGlSRA5RDswEDmY8oWEizXliShp.jpg"
+      },
+      {
+        "name": "Lena Headey",
+        "img": "https://image.tmdb.org/t/p/w185/cDyZLf8ddz0EgoUjpv4jjzy7qxA.jpg"
+      },
+      {
+        "name": "Billy MacLellan",
+        "img": "https://image.tmdb.org/t/p/w185/9ObnhjbbeVEhk8g941FrLq4W0r7.jpg"
+      },
+      {
+        "name": "Ryan Allen",
+        "img": "https://image.tmdb.org/t/p/w185/99O5NjoOmO4uCmTYaQhipj1qMNx.jpg"
+      },
+      {
+        "name": "Reena Jolly",
+        "img": "https://image.tmdb.org/t/p/w185/zd29cqltwMWnRVPJ08vsV02CYYQ.jpg"
+      },
+      {
+        "name": "Brendan Fletcher",
+        "img": "https://image.tmdb.org/t/p/w185/azeMOxQdCw18ABRwwOMIo3lV1If.jpg"
+      },
+      {
+        "name": "Peter Shinkoda",
+        "img": "https://image.tmdb.org/t/p/w185/lCQl28poQr4bLwqZjhryGkV73jO.jpg"
+      },
+      {
+        "name": "Jess McLeod",
+        "img": "https://image.tmdb.org/t/p/w185/nJXORUI8JJVkYTCO4Lpjxz6VgzF.jpg"
+      },
+      {
+        "name": "Alex MacMillan",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      }
+    ]
+  },
+  {
+    "num": "2721",
+    "t": "Clash of the Thundermans",
+    "id_tmdb": "1506560",
+    "cat": "TÉLÉFILM, FAMILIAL, SCIENCE-FICTION, ACTION, COMÉDIE",
+    "url": "https://vidzy.org/d/spi9ujmmsey6_n",
+    "img": "https://image.tmdb.org/t/p/w500/19SvZsTB6UINUZowkBsPSGZUNxD.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/tBZMwg5oCJn8P0pStfuOMhhSQD3.jpg",
+    "desc": "Chloé développe un nouveau pouvoir aussi inattendu qu'incontrôlable, poussant la Ligue des Héros à exiger qu'elle soit envoyée dans un internat pour super-héros afin d'apprendre à le maîtriser. Face à cette perspective, sa famille est divisée.",
+    "year": "2026",
+    "note": 3,
+    "trailer": "Lsywx8J3YgQ",
+    "actors_pics": [
+      {
+        "name": "Kira Kosarin",
+        "img": "https://image.tmdb.org/t/p/w185/rWshWHUPTlw3zIsgzXe3oo94mDP.jpg"
+      },
+      {
+        "name": "Jack Griffo",
+        "img": "https://image.tmdb.org/t/p/w185/tG3K8Lpwb0FXHEMLTvCbwUyH1LR.jpg"
+      },
+      {
+        "name": "Maya Le Clark",
+        "img": "https://image.tmdb.org/t/p/w185/5FVWT2mKZYWk7dDmL9KGURwY3Bb.jpg"
+      },
+      {
+        "name": "Rosa Blasi",
+        "img": "https://image.tmdb.org/t/p/w185/lhRsVoOXAx0bwn6eJcx38njZEMS.jpg"
+      },
+      {
+        "name": "Chris Tallman",
+        "img": "https://image.tmdb.org/t/p/w185/7ft585219p5A3HdYFLyM3Dxawi1.jpg"
+      },
+      {
+        "name": "Diego Velazquez",
+        "img": "https://image.tmdb.org/t/p/w185/sYfMqj0BO6y5fNB80AAbKOfbMTR.jpg"
+      },
+      {
+        "name": "Addison Riecke",
+        "img": "https://image.tmdb.org/t/p/w185/bLZDfktybcMbC2qp46G9LJ5L1UX.jpg"
+      },
+      {
+        "name": "Daniele Gaither",
+        "img": "https://image.tmdb.org/t/p/w185/jkQwV1jOwCCI5uTe99dS4ZfYc9p.jpg"
+      },
+      {
+        "name": "Ariel Winter",
+        "img": "https://image.tmdb.org/t/p/w185/1h0XaXnieP5CdTAeRGuALBJmD4R.jpg"
+      },
+      {
+        "name": "Dana Snyder",
+        "img": "https://image.tmdb.org/t/p/w185/3s6O93oeY4QaAVUjrjSiBUKlMFu.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2720",
+    "t": "Kenny Dalglish",
+    "id_tmdb": "1549105",
+    "cat": "DOCUMENTAIRE",
+    "url": "https://vidzy.org/d/p78ozeg2h849_n",
+    "img": "https://image.tmdb.org/t/p/w500/ukDcdP5KS2CppyR6Upco6xRsPwK.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/kqc9n5mqjv6fpAXCWqehAnzMUwK.jpg",
+    "desc": "",
+    "year": "2025",
+    "note": 3,
+    "actors_pics": [
+      {
+        "name": "Kenny Dalglish",
+        "img": "https://image.tmdb.org/t/p/w185/wPwzUmE4XDNzwp7SUYnS6WavFgF.jpg"
+      },
+      {
+        "name": "Marina Dalglish",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Paul McCartney",
+        "img": "https://image.tmdb.org/t/p/w185/sCPsv9ueP5UR6BkMSmRDlwbra6S.jpg"
+      },
+      {
+        "name": "Alan Hansen",
+        "img": "https://image.tmdb.org/t/p/w185/sKM3inOMkdEPn10Xbb7JHePdMuO.jpg"
+      },
+      {
+        "name": "Simon Hughes",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Graeme Souness",
+        "img": "https://image.tmdb.org/t/p/w185/dhGZhetP2Y8RF2NyOEq8PoukZyo.jpg"
+      },
+      {
+        "name": "Margaret Thatcher",
+        "img": "https://image.tmdb.org/t/p/w185/zQQF7mP4biVj1mw0XihZCCtR5Re.jpg"
+      },
+      {
+        "name": "Billy McNeill",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Jock Stein",
+        "img": "https://image.tmdb.org/t/p/w185/vivSle6hJH3jVJk5x1liOMGJHm5.jpg"
+      },
+      {
+        "name": "Kevin Keegan",
+        "img": "https://image.tmdb.org/t/p/w185/lahfK8ZFvJ4paMA4zLpCUk7aSd2.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2719",
+    "t": "La Poupée",
+    "id_tmdb": "1309396",
+    "cat": "COMÉDIE, ROMANCE",
+    "url": "https://vidzy.org/d/jp27bz1yas16_n",
+    "img": "https://image.tmdb.org/t/p/w500/vBAeiPmam86lgALArnDt4oY7NDD.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/qNtbEnmHjNDwhdgzgaIhn7BLLk9.jpg",
+    "desc": "Rémi ne s’est jamais remis de sa dernière séparation. Depuis, il s’est mis en couple avec une poupée, c’est plus simple. Elle s’appelle Audrey. Le jour où Patricia, une nouvelle collègue, arrive dans l’entreprise de Rémi, Audrey va mystérieusement prendre vie.",
+    "year": "2026",
+    "note": 3,
+    "trailer": "e3FUH3VKfHk",
+    "actors_pics": [
+      {
+        "name": "Vincent Macaigne",
+        "img": "https://image.tmdb.org/t/p/w185/6Z4JmAauiallW2lXTOuSAiHdHGf.jpg"
+      },
+      {
+        "name": "Cécile de France",
+        "img": "https://image.tmdb.org/t/p/w185/8nzL3XON3VfUevvP2KvYbnbF5sT.jpg"
+      },
+      {
+        "name": "Zoé Marchal",
+        "img": "https://image.tmdb.org/t/p/w185/cAc417DqXCnygDvGTKE3K1Wb3hn.jpg"
+      },
+      {
+        "name": "Adèle Journeaux",
+        "img": "https://image.tmdb.org/t/p/w185/dRkA7E0h7aKtx9NUFOVR5SI97Kz.jpg"
+      },
+      {
+        "name": "Gilbert Melki",
+        "img": "https://image.tmdb.org/t/p/w185/f1TwBvQV0vJTzpws5EL4On9Fb9n.jpg"
+      },
+      {
+        "name": "Marianne Basler",
+        "img": "https://image.tmdb.org/t/p/w185/74bRbi3pfSAzkwpbWtS822LRoYU.jpg"
+      },
+      {
+        "name": "Ludovic Thievon",
+        "img": "https://image.tmdb.org/t/p/w185/xChACnfNtHpVPVa6fqVTMJVYT1t.jpg"
+      },
+      {
+        "name": "Eric Guerin",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Victor Bonnel",
+        "img": "https://image.tmdb.org/t/p/w185/p6eNNSeLxYvsmrQOkD5jnIVS392.jpg"
+      },
+      {
+        "name": "Souleymane Sylla",
+        "img": "https://image.tmdb.org/t/p/w185/9OmROhsBPtlP3VpwudihYFem2H7.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2718",
+    "t": "Vivaldi et moi",
+    "id_tmdb": "1365683",
+    "cat": "HISTOIRE, DRAME, MUSIQUE",
+    "url": "https://vidzy.org/d/mkny64frop6r_n",
+    "img": "https://image.tmdb.org/t/p/w500/bavJsCFKGushwdftvG1LpdcfktT.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/eF7TVhcMLo1Upt7ex4sX2ZsITz4.jpg",
+    "desc": "Au début du XVIIIe siècle, à Venise, Cecilia, violoniste très douée, vit dans le plus grand orphelinat de la ville, l'Ospedale della Pietà. Les orphelines particulièrement talentueuses y reçoivent une formation musicale, mais uniquement dans le but d'attirer de riches mécènes qui financeront l'orphelinat grâce à l'orchestre. L'art a ouvert l'esprit de Cecilia, mais pas les portes de l'orphelinat. Son seul moyen de s'en sortir serait le mariage. Avec l'arrivée du nouveau professeur de violon, le monde ordonné de Cecilia est bouleversé. Son nom est Antonio Vivaldi.",
+    "year": "2025",
+    "note": 4,
+    "trailer": "clJE_v1vock",
+    "actors_pics": [
+      {
+        "name": "Tecla Insolia",
+        "img": "https://image.tmdb.org/t/p/w185/kMN9VjbZrlNEFWpSGJyD9GnemVm.jpg"
+      },
+      {
+        "name": "Michele Riondino",
+        "img": "https://image.tmdb.org/t/p/w185/9ipWrqJVYjZk0c2j2yDAEKZd2Fu.jpg"
+      },
+      {
+        "name": "Fabrizia Sacchi",
+        "img": "https://image.tmdb.org/t/p/w185/zBjLm24LOdAA2PnRdryvgUefcxN.jpg"
+      },
+      {
+        "name": "Andrea Pennacchi",
+        "img": "https://image.tmdb.org/t/p/w185/mFNZkGc0TgbfRbkRBWBH5ieVFW4.jpg"
+      },
+      {
+        "name": "Valentina Bellè",
+        "img": "https://image.tmdb.org/t/p/w185/pVkJQ7oBSvoS6a3JdB5WV3F52du.jpg"
+      },
+      {
+        "name": "Stefano Accorsi",
+        "img": "https://image.tmdb.org/t/p/w185/v0juBdStV3KECZL1nEL7AkbWQ0j.jpg"
+      },
+      {
+        "name": "Alessandro Bressanello",
+        "img": "https://image.tmdb.org/t/p/w185/dq9iFVxC7JP3XEs8jFvo7sSW5Na.jpg"
+      },
+      {
+        "name": "Miko Jarry",
+        "img": "https://image.tmdb.org/t/p/w185/xLN90LlPJDVIzoIxDEwn8ZHFpCS.jpg"
+      },
+      {
+        "name": "Hildegard De Stefano",
+        "img": "https://image.tmdb.org/t/p/w185/9IkooHYNyYWa3QovLLLobo6UUdx.jpg"
+      },
+      {
+        "name": "Paolo Rozzi",
+        "img": "https://image.tmdb.org/t/p/w185/cXzSXoB7KgTQhiKPYHm421cQMBA.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2717",
+    "t": "La Foi des Anges",
+    "id_tmdb": "1287537",
+    "cat": "DRAME",
+    "url": "https://vidzy.org/d/lbnjon9vcfym_n",
+    "img": "https://image.tmdb.org/t/p/w500/fyLdckjLBcIUYCULgczyUr3HFcL.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/kSwq9Iuh9JqNvoNlVWqXKmFsMY8.jpg",
+    "desc": "Un petit garçon de 10 ans, Joshua, se perd dans le labyrinthe d’une mine abandonnée. Alors que les recherche s'intensifient, un inconnu reçoit des appels mystérieux qui le poussent à participer au sauvetage. Malgré la résistance initiale des autorités, sa foi et sa détermination inébranlables l’entrainent dans une course contre la montre pour sauver Joshua.",
+    "year": "2024",
+    "note": 4,
+    "actors_pics": [
+      {
+        "name": "J. Michael Finley",
+        "img": "https://image.tmdb.org/t/p/w185/Aw2aNQg7mShRwVCUSgBYjaqE0hO.jpg"
+      },
+      {
+        "name": "Cameron Arnett",
+        "img": "https://image.tmdb.org/t/p/w185/r9JFN7CyYzybehriG8vB0F7280n.jpg"
+      },
+      {
+        "name": "Kirby Heyborne",
+        "img": "https://image.tmdb.org/t/p/w185/wXVH8j1bwrnGP4W8OLEgu1iQTRO.jpg"
+      },
+      {
+        "name": "Charlotte Hemmings",
+        "img": "https://image.tmdb.org/t/p/w185/8GXEF1IWXamTAkbItKmnYAeUtMM.jpg"
+      },
+      {
+        "name": "Jasen Wade",
+        "img": "https://image.tmdb.org/t/p/w185/3PiUntK8YStZmlnNQxa10j0RoPO.jpg"
+      },
+      {
+        "name": "Ben Lomu",
+        "img": "https://image.tmdb.org/t/p/w185/k6Itb3PLIeHvvLLAp4e1OIOioYH.jpg"
+      },
+      {
+        "name": "Ivey Lloyd",
+        "img": "https://image.tmdb.org/t/p/w185/pvstLQOy2xcWk7bTn0Q6fRQ4AmJ.jpg"
+      },
+      {
+        "name": "Kassandra Mahea",
+        "img": "https://image.tmdb.org/t/p/w185/sL8HhqgPegcFh7ToJw2ZPmKT5lY.jpg"
+      },
+      {
+        "name": "Michael Bradford",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      }
+    ]
+  },
+  {
+    "num": "2716",
+    "t": "Pitfall",
+    "id_tmdb": "1338972",
+    "cat": "HORREUR, ACTION, THRILLER",
+    "url": "https://vidzy.org/d/v4efyq5vz9xc_n",
+    "img": "https://image.tmdb.org/t/p/w500/xlkd8rmU3DMFKqCGOchAH1avrfM.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/ldCs9t4DpbiHRPA8gOe66OzmVEy.jpg",
+    "desc": "Après s'être retrouvé séparé de ses amis dans les bois, un jeune homme tombe dans une fosse remplie de pointes, profonde de dix pieds, qui lui transpercent la jambe et le laissent prisonnier. Il comprend rapidement que sa chute n'était pas un accident.",
+    "year": "2025",
+    "note": 3,
+    "actors_pics": [
+      {
+        "name": "Marshall Williams",
+        "img": "https://image.tmdb.org/t/p/w185/gatny6HYsqWpGQblJIeLpOoMAKG.jpg"
+      },
+      {
+        "name": "Alex Essoe",
+        "img": "https://image.tmdb.org/t/p/w185/rmY5nkPOdhVFYh2b72LfgSJMHf5.jpg"
+      },
+      {
+        "name": "Richard Harmon",
+        "img": "https://image.tmdb.org/t/p/w185/tlWgu5Kp37C7XsgJVLmYsPKiAd6.jpg"
+      },
+      {
+        "name": "Jordan Claire Robbins",
+        "img": "https://image.tmdb.org/t/p/w185/fLAwoiSRXGKvceUm3i3XaV5Fb2I.jpg"
+      },
+      {
+        "name": "Matt Hamilton",
+        "img": "https://image.tmdb.org/t/p/w185/cHBK0naxrE9GdjG1O8koXEyli3s.jpg"
+      },
+      {
+        "name": "Brenna Llewellyn",
+        "img": "https://image.tmdb.org/t/p/w185/c7fhxUFFv7iTLNpmYpt72puVKfr.jpg"
+      },
+      {
+        "name": "Shanelle Connell",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Randy Couture",
+        "img": "https://image.tmdb.org/t/p/w185/pmdPaQBWufFVwVxJYofLcERZr1l.jpg"
+      },
+      {
+        "name": "Teresa Laverty",
+        "img": "https://image.tmdb.org/t/p/w185/fOZz3cTHTCJ3s6pv6tpMCWZMAlR.jpg"
+      },
+      {
+        "name": "Grant Vlahovic",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      }
+    ]
+  },
+  {
     "num": "2715",
     "t": "‎Trahison",
     "id_tmdb": "1522923",
