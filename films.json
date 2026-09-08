@@ -1,5 +1,548 @@
 [
   {
+    "num": "2715",
+    "t": "‎Trahison",
+    "id_tmdb": "1522923",
+    "cat": "ACTION, THRILLER",
+    "url": "https://vidzy.org/d/1x8goulkgm41_n",
+    "img": "https://image.tmdb.org/t/p/w500/hDUlNBjZLG9bo1zsehPYNQ1YBIg.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/ptHXfOc0gEIG8CrieQ3t8MUBuiP.jpg",
+    "desc": "À la suite d’une violente embuscade du cortège du vice-président, six agents des Services Secrets, de la CIA, du Département de la Défense et de la Sécurité intérieure se réfugient dans une cache à haute sécurité. Mais lorsque les communications sont coupées et le bâtiment mis en confinement ils découvrent que le danger se trouve parmi eux : le signal du détonateur qui a déclenché plusieurs explosions a été retracé jusqu’à leur emplacement. Alors que des opérateurs armés convergent désormais vers eux et que des secrets se dévoilent, la méfiance dégénère en chaos. Chaque agent détient des informations classifiées et potentiellement des intentions mortelles.",
+    "year": "2025",
+    "note": 3,
+    "actors_pics": [
+      {
+        "name": "Lucien Laviscount",
+        "img": "https://image.tmdb.org/t/p/w185/3GndTFV0wMGDwocS4rP5Z194uYu.jpg"
+      },
+      {
+        "name": "Hannah John-Kamen",
+        "img": "https://image.tmdb.org/t/p/w185/V8P9EVelewGVXbuyEylqrzF6iG.jpg"
+      },
+      {
+        "name": "Lewis Tan",
+        "img": "https://image.tmdb.org/t/p/w185/yMr3mwHHBpfbXwDDkahOzFtTCak.jpg"
+      },
+      {
+        "name": "Holt McCallany",
+        "img": "https://image.tmdb.org/t/p/w185/xHnvYcJv6YEku9pIg8LoDNHWQy.jpg"
+      },
+      {
+        "name": "Ethan Embry",
+        "img": "https://image.tmdb.org/t/p/w185/feYnMlTejbHfkhD1akVVXKWG0u1.jpg"
+      },
+      {
+        "name": "Michael Bradway",
+        "img": "https://image.tmdb.org/t/p/w185/yq3JXWIi3vCHQymOr3HOHhz7qLo.jpg"
+      },
+      {
+        "name": "Brian Van Holt",
+        "img": "https://image.tmdb.org/t/p/w185/kvTDCM93pQ7EAfc9IOOCSPdbqL.jpg"
+      },
+      {
+        "name": "Adam Levy",
+        "img": "https://image.tmdb.org/t/p/w185/8KnI3N5hqIirvP6E3bywaDR932p.jpg"
+      },
+      {
+        "name": "Brett Cullen",
+        "img": "https://image.tmdb.org/t/p/w185/4P6TsRcnr9MRbXlCdHitulGM5LT.jpg"
+      },
+      {
+        "name": "Zan Gomes-Headley",
+        "img": "https://image.tmdb.org/t/p/w185/hmpiChR9lYONckazuzwMQsR0fnE.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2714",
+    "t": "‎‎Mata",
+    "id_tmdb": "1376043",
+    "cat": "THRILLER, DRAME",
+    "url": "https://vidzy.org/d/xnxcc4vmfxxh_n",
+    "img": "https://image.tmdb.org/t/p/w500/aiFnVjZFZ9WCz97oBHZ5ps13PiM.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/14fP7wku6XCsvhEQhPONXFzMKH0.jpg",
+    "desc": "Blessée lors d’une opération clandestine au Niger, MATA, agente du service action de la DGSE, perd la trace d’Antoine, son compagnon capturé sur place. À son retour, elle est affectée à la Sécurité Intérieure du Territoire et se saisit d’une mission de contre-espionnage dans les Alpes : une ombre semble relier ce dossier à l’embuscade en Afrique. Convaincue que ses supérieurs lui dissimulent des informations et hantée par la captivité d'Antoine, elle se lance dans une course contre la montre, hors de tout cadre officiel… au risque de tout perdre.",
+    "year": "2026",
+    "note": 3,
+    "trailer": "LXDHvjHk92c",
+    "actors_pics": [
+      {
+        "name": "Eye Haïdara",
+        "img": "https://image.tmdb.org/t/p/w185/lIsjqRGJOIg9mErmsT3S2nbcMMN.jpg"
+      },
+      {
+        "name": "Joséphine Japy",
+        "img": "https://image.tmdb.org/t/p/w185/5XLcArKXJS40umTC9uq5c66dhqE.jpg"
+      },
+      {
+        "name": "Raphaël Personnaz",
+        "img": "https://image.tmdb.org/t/p/w185/4eR91pTh7ZvIYtCp5qLPKLHrP70.jpg"
+      },
+      {
+        "name": "Hakim Jemili",
+        "img": "https://image.tmdb.org/t/p/w185/w7Cn5MNRdzeUl41LuEJAg1ldeTM.jpg"
+      },
+      {
+        "name": "Chloé Jouannet",
+        "img": "https://image.tmdb.org/t/p/w185/txb7rsuDWXeTK1i27pVIcO175Z5.jpg"
+      },
+      {
+        "name": "Juliette Chaigneau",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Pierre-Antoine Billon",
+        "img": "https://image.tmdb.org/t/p/w185/mRDgDNlo7VHg4OWJsQwDB75Kgjz.jpg"
+      },
+      {
+        "name": "Mélanie Laurent",
+        "img": "https://image.tmdb.org/t/p/w185/i99ogEo4gQyanCmHWYYoS6hsUqL.jpg"
+      },
+      {
+        "name": "Aleksandr Kuznetsov",
+        "img": "https://image.tmdb.org/t/p/w185/hFrl2Sp1tOcNIpfIpP6M2QMDjyp.jpg"
+      },
+      {
+        "name": "Brice Bexter",
+        "img": "https://image.tmdb.org/t/p/w185/uXLzBmeuIrORX6GVvuljgMCKsxs.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2713",
+    "t": "L’Arnaqueuse",
+    "id_tmdb": "1501523",
+    "cat": "COMÉDIE",
+    "url": "https://vidzy.org/d/eqnw1uu6oppn_n",
+    "img": "https://image.tmdb.org/t/p/w500/4DERbIpkG3xFeyEmdQcqOhdhhl5.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/i7Hk4DobZedGNpSjla8Lo0U7lDi.jpg",
+    "desc": "Fanny, 30 ans, enceinte, n’en peut plus de vivre chez son père avec Virgil, son compagnon, champion de la procrastination. Alors quand elle tombe sur une offre en or : un appartement « parquet, moulures, cheminées » en viager dans Paris, elle fonce tête baissée. Mais Masséna, la vendeuse, est tout sauf mourante… Bien décidée à récupérer les clés de sa nouvelle vie, Fanny s’engage dans une guerre sans pitié contre l’arnaqueuse professionnelle.",
+    "year": "2026",
+    "note": 3,
+    "trailer": "lFRIIV-d16E",
+    "actors_pics": [
+      {
+        "name": "Fadily Camara",
+        "img": "https://image.tmdb.org/t/p/w185/op22Xmp31FI8zqP5tqgFkSOIB3.jpg"
+      },
+      {
+        "name": "Josiane Balasko",
+        "img": "https://image.tmdb.org/t/p/w185/1ABz0yKr3nwiUX8Es8CrFJ1rse3.jpg"
+      },
+      {
+        "name": "Jean-Pascal Zadi",
+        "img": "https://image.tmdb.org/t/p/w185/wkI3RmKxNMtxNBOfSpgMgQsR53K.jpg"
+      },
+      {
+        "name": "Tiphaine Daviot",
+        "img": "https://image.tmdb.org/t/p/w185/4O7QVChMHPwsvzUb46sfw3JkPeb.jpg"
+      },
+      {
+        "name": "Denis Mpunga",
+        "img": "https://image.tmdb.org/t/p/w185/wrdsN4Z3f2YVcSigeYiPcptaEZB.jpg"
+      },
+      {
+        "name": "Pablo Pauly",
+        "img": "https://image.tmdb.org/t/p/w185/cmJ97Qpef4hjwxgBeD6WSaZVM0f.jpg"
+      },
+      {
+        "name": "Amaury de Crayencour",
+        "img": "https://image.tmdb.org/t/p/w185/jmyKusA9ETzSzajpppC440GBlEp.jpg"
+      },
+      {
+        "name": "Bertrand Usclat",
+        "img": "https://image.tmdb.org/t/p/w185/ourtPCh83Z3TnapULfs4rMt74u2.jpg"
+      },
+      {
+        "name": "Marc Riso",
+        "img": "https://image.tmdb.org/t/p/w185/uJnK2ciQnRkfHQUz5E5YrLvi94u.jpg"
+      },
+      {
+        "name": "Ted Etienne",
+        "img": "https://image.tmdb.org/t/p/w185/2Cbk41iNSQjCUmdYE33yf6arLik.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2712",
+    "t": "La face cachée de mon fils",
+    "id_tmdb": "1698152",
+    "cat": "THRILLER, TÉLÉFILM",
+    "url": "https://vidzy.org/d/9z3naaw4dx3j_n",
+    "img": "https://image.tmdb.org/t/p/w500/zPtPDabOSCC5EcYfO83N0DNAm0G.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/6S1UvFjk0HURLp2mwzQAK63wkgL.jpg",
+    "desc": "Kathy a fui son mari violent avec son fils Noah, lorsqu'il était enfant. Quelques années plus tard, alors qu'ils ont enfin une vie stable et heureuse, Noah se retrouve accusé du meurtre de son meilleur ami, Ethan. Il a beau clamer son innocence, il est le suspect numéro un et même sa mère commence à douter de lui.",
+    "year": "2026",
+    "note": 4,
+    "actors_pics": [
+      {
+        "name": "Emily Alatalo",
+        "img": "https://image.tmdb.org/t/p/w185/kF3vPObPKPYKDzsqsjvq8baOrrG.jpg"
+      },
+      {
+        "name": "Shanna Armogan",
+        "img": "https://image.tmdb.org/t/p/w185/fuoWMiIf9YOvBIeN4rnw6L7LEfT.jpg"
+      },
+      {
+        "name": "Sam Ashe Arnold",
+        "img": "https://image.tmdb.org/t/p/w185/tnkpvznxVwLEDzX7CG738eyBWKr.jpg"
+      },
+      {
+        "name": "Chris Violette",
+        "img": "https://image.tmdb.org/t/p/w185/feoV5wVPhMHMWkUdUARKE1obbbj.jpg"
+      },
+      {
+        "name": "Tori Barban",
+        "img": "https://image.tmdb.org/t/p/w185/rSDJg5gKWdW9Lg7ZOCGiAIQVNSZ.jpg"
+      },
+      {
+        "name": "Taylor Bernier",
+        "img": "https://image.tmdb.org/t/p/w185/pqg9nnlVbMAv0lvVphzbIhv8rU7.jpg"
+      },
+      {
+        "name": "Puja Uppal",
+        "img": "https://image.tmdb.org/t/p/w185/AriKyJ6wklo9A4841VApN4uQZco.jpg"
+      },
+      {
+        "name": "Amanda Thamage",
+        "img": "https://image.tmdb.org/t/p/w185/oGea7CnFTnnvriZqE4h6N0tFsIo.jpg"
+      },
+      {
+        "name": "Liam Wignall",
+        "img": "https://image.tmdb.org/t/p/w185/9xUOk5uZfuFAsEpBgmZG24Ju2HS.jpg"
+      },
+      {
+        "name": "Christine Trinh",
+        "img": "https://image.tmdb.org/t/p/w185/wlwG9UvVz6PRePjlB7qRPAVUFhZ.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2711",
+    "t": "La Femme secrète",
+    "id_tmdb": "1631807",
+    "cat": "DRAME, THRILLER, MYSTÈRE",
+    "url": "https://vidzy.org/d/ez7kb44cgst2_n",
+    "img": "https://image.tmdb.org/t/p/w500/bFOEhBpfJvRDBF0g0ZyQGXL60eH.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/ziOpmyZufqM7IusfThzBr1E9wqa.jpg",
+    "desc": "Louise Andersen mène une vie paisible au côté de son partenaire Joachim sur l'île norvégienne de Hidra où elle tient un petit café. Mais un jour d'été, leur tranquillité est bouleversée lorsqu'un inconnu affirme qu'elle n'est pas Louise, mais Helene Söderberg, une femme disparue au Danemark trois ans auparavant. La jeune femme découvre alors qu'elle est mariée et qu'elle a un fils. Déterminée à percer le mystère de son passé, Louise quitte Joachim et la vie qu'elle connaît pour retrouver sa famille et comprendre ce qu'il s'est réellement passé la nuit de sa disparition. À mesure qu'elle plonge dans sa quête sous l'identité d'Helene, elle met au jour une vérité bouleversante qui fait voler son monde en éclats.",
+    "year": "2026",
+    "note": 3,
+    "actors_pics": [
+      {
+        "name": "Natalie Madueño",
+        "img": "https://image.tmdb.org/t/p/w185/jZlygLDDW0joAZRkep7Fe9OGopv.jpg"
+      },
+      {
+        "name": "Claes Bang",
+        "img": "https://image.tmdb.org/t/p/w185/allXGdenaUpFq1bJSIeZPkJeHfe.jpg"
+      },
+      {
+        "name": "Pål Sverre Hagen",
+        "img": "https://image.tmdb.org/t/p/w185/eJzuZZfFBaMSgcbR3Pe5zBxEC3z.jpg"
+      },
+      {
+        "name": "Stina Ekblad",
+        "img": "https://image.tmdb.org/t/p/w185/sFf5N9Noxbj8Xpx7DHB6rOASIrR.jpg"
+      },
+      {
+        "name": "Ingrid Bolsø Berdal",
+        "img": "https://image.tmdb.org/t/p/w185/iv9RaskT1WronDXaTKh9mI5KNUn.jpg"
+      },
+      {
+        "name": "Lars Simonsen",
+        "img": "https://image.tmdb.org/t/p/w185/s4F4M7ViAkrY5EETrl6neRmNB4l.jpg"
+      },
+      {
+        "name": "Ida Appel",
+        "img": "https://image.tmdb.org/t/p/w185/4aU9cbXjQBQVP9TIz0HjyBC2Ysw.jpg"
+      },
+      {
+        "name": "Nina Christrup",
+        "img": "https://image.tmdb.org/t/p/w185/guFY2gcYKQk1mlz3giFLIFBqY5v.jpg"
+      },
+      {
+        "name": "David Elting",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Rasmus Hammerich",
+        "img": "https://image.tmdb.org/t/p/w185/j5TDse3vFQSdLEsUP4xNVb99XLN.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2710",
+    "t": "Gintama: Yoshiwara en Flammes",
+    "id_tmdb": "1530941",
+    "cat": "ANIMATION, ACTION, SCIENCE-FICTION, COMÉDIE",
+    "url": "https://vidzy.org/d/iau9tuniqlht_n",
+    "img": "https://image.tmdb.org/t/p/w500/5F7YrauGDP2tbzz84KKwji2MB3e.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/8qSFFK9AcMl2Ecp249f5J3Nr8MK.jpg",
+    "desc": "Dans le quartier dissimulé de Yoshiwara, Gintoki et ses amis affrontent un redoutable ennemi pour libérer les opprimés et aider un jeune garçon à retrouver sa mère disparue.",
+    "year": "2026",
+    "note": 5,
+    "actors_pics": [
+      {
+        "name": "Tomokazu Sugita",
+        "img": "https://image.tmdb.org/t/p/w185/cv5zuPZySNsHXu24pjKLYCRzJ2J.jpg"
+      },
+      {
+        "name": "阪口大助",
+        "img": "https://image.tmdb.org/t/p/w185/cP9lnoYSCyIpSlUkZN4k6RoD7fF.jpg"
+      },
+      {
+        "name": "Rie Kugimiya",
+        "img": "https://image.tmdb.org/t/p/w185/xHonhNFpTpz9zCVXLAF7D4OuHLv.jpg"
+      },
+      {
+        "name": "Satoshi Hino",
+        "img": "https://image.tmdb.org/t/p/w185/8ZJIiwIVF2zDyyFr7oXewj0eEuu.jpg"
+      },
+      {
+        "name": "甲斐田裕子",
+        "img": "https://image.tmdb.org/t/p/w185/wttsRGyYySLPfNcDtAbNLVizHLx.jpg"
+      },
+      {
+        "name": "Banjō Ginga",
+        "img": "https://image.tmdb.org/t/p/w185/qiXnKaZheMiVyA1U2mX9tPdNA3T.jpg"
+      },
+      {
+        "name": "三瓶由布子",
+        "img": "https://image.tmdb.org/t/p/w185/gms4G7ZRIQYXI9zsorkQr8aHnOU.jpg"
+      },
+      {
+        "name": "Kikuko Inoue",
+        "img": "https://image.tmdb.org/t/p/w185/pPxGWy53FgYSC79zmxblmHe0gI3.jpg"
+      },
+      {
+        "name": "Hochu Otsuka",
+        "img": "https://image.tmdb.org/t/p/w185/3RHQcrsWnAFK6AifSis1lMq08cR.jpg"
+      },
+      {
+        "name": "Kappei Yamaguchi",
+        "img": "https://image.tmdb.org/t/p/w185/mJyxKRZxLv9D7LH5KcNSkjSKYOB.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2709",
+    "t": "Au revoir Pluton",
+    "id_tmdb": "1248839",
+    "cat": "FAMILIAL, COMÉDIE",
+    "url": "https://vidzy.org/d/z45nh9xpn70c_n",
+    "img": "https://image.tmdb.org/t/p/w500/24YFqh02YE547prSdhAm50NIQru.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/yqja9KASS95ZSiWyZdLqA8kITQG.jpg",
+    "desc": "Dans l'espace galactique, une charmante petite planète du nom de Pluton rêve d'intégrer le corps de ballet officiel du Système solaire. Avec l'aide de son meilleur ami astéroïde Cérès, et de son découvreur humain Clyde William Tombaugh, elle fera tout pour y arriver. Dans ce film jeunesse où les humains et les planètes partagent la vedette, le spectateur accompagnera Pluton dans sa quête de sens et de célébrité, jusqu'au moment où elle devra faire face à son destin.",
+    "year": "2026",
+    "note": 0,
+    "actors_pics": [
+      {
+        "name": "Sarah-Jeanne Audet",
+        "img": "https://image.tmdb.org/t/p/w185/1aTqekqUwrBeDcOLhC0aYZie7cb.jpg"
+      },
+      {
+        "name": "Théo Beaudoin-Graton",
+        "img": "https://image.tmdb.org/t/p/w185/bz3RJjIoryAJnjsiMoJ5buTd18q.jpg"
+      },
+      {
+        "name": "Raphaëlle Morissette",
+        "img": "https://image.tmdb.org/t/p/w185/sfkiFptUgGDvkVDXp5hcb7z8bou.jpg"
+      },
+      {
+        "name": "Zakary Belharbi",
+        "img": "https://image.tmdb.org/t/p/w185/5R3P82rLsWLwhtTjjfHHyohzxnI.jpg"
+      },
+      {
+        "name": "Catherine-Audrey Volcy",
+        "img": "https://image.tmdb.org/t/p/w185/qpo3jZI5bxlb7uqLhz59r1URdsM.jpg"
+      },
+      {
+        "name": "Zélia Bernard",
+        "img": "https://image.tmdb.org/t/p/w185/fPcLbIU1Vi93e8M4ON7Iwd1l0jr.jpg"
+      },
+      {
+        "name": "Romane Lefebvre",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Miya Capuano",
+        "img": "https://image.tmdb.org/t/p/w185/nICPMBVm36ZxtmrSmamuUZIYIi9.jpg"
+      },
+      {
+        "name": "Matthew Rankin",
+        "img": "https://image.tmdb.org/t/p/w185/1kw8TdCp6ud1k0QIYPozBE8hexz.jpg"
+      },
+      {
+        "name": "Yves Morin",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      }
+    ]
+  },
+  {
+    "num": "2708",
+    "t": "Capitaine",
+    "id_tmdb": "1586573",
+    "cat": "DRAME, FAMILIAL",
+    "url": "https://vidzy.org/d/0lsnq0pd3b73_n",
+    "img": "https://image.tmdb.org/t/p/w500/wHUMBoe6GVfyOZy5hc07rpDTfO6.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/xIqdvLkDOC1eicRpSJMRfxTvTqg.jpg",
+    "desc": "Le capitaine d'un bateau de pêche d'une réserve innue isolée entreprend un voyage à travers le Québec dans l'espoir de retrouver sa fille disparue.",
+    "year": "2026",
+    "note": 4,
+    "actors_pics": [
+      {
+        "name": "Wayne Charles Baker",
+        "img": "https://image.tmdb.org/t/p/w185/gsxzql5aHdyw2hdLqcSFNmU5YPc.jpg"
+      },
+      {
+        "name": "McKenzie Deer Robinson",
+        "img": "https://image.tmdb.org/t/p/w185/a6BDyX4cnFkXcwWomvdntAY6MJV.jpg"
+      },
+      {
+        "name": "Kathia Rock",
+        "img": "https://image.tmdb.org/t/p/w185/6pLlkMfbXGWNok15cykoUDQ9cyW.jpg"
+      },
+      {
+        "name": "Douglas Grégoire",
+        "img": "https://image.tmdb.org/t/p/w185/2MVQMeK0e3ViF5sthK6m2FMs7ts.jpg"
+      },
+      {
+        "name": "Shukapesh André",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Matthew Alan Taylor",
+        "img": "https://image.tmdb.org/t/p/w185/hOjBHO0si8Z59ce0oppJYmnRdQF.jpg"
+      },
+      {
+        "name": "Richard Zeman",
+        "img": "https://image.tmdb.org/t/p/w185/61I5ggaejkbGbi6VXHqaNl9gKKv.jpg"
+      },
+      {
+        "name": "Mark Antony Krupa",
+        "img": "https://image.tmdb.org/t/p/w185/ek1qwhzkgj7ayCpEhdpt6fweRj.jpg"
+      },
+      {
+        "name": "Évelyne Rompré",
+        "img": "https://image.tmdb.org/t/p/w185/bvtsJMI2Ps3dotRYRGTRb1NtW9s.jpg"
+      },
+      {
+        "name": "Pierre Mailloux",
+        "img": "https://image.tmdb.org/t/p/w185/jmpat58uNFMoNvilQwjN7hoYUQd.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2707",
+    "t": "Untold Raygun: Breaking Badly",
+    "id_tmdb": "1739202",
+    "cat": "DOCUMENTAIRE",
+    "url": "https://vidzy.org/d/mzu9uj4z9ntb_n",
+    "img": "https://image.tmdb.org/t/p/w500/pgZoTGXmkQXoO7F8wgBmlyy6zxy.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/iBik58vWTbO3s9GgUW86v7fYqfZ.jpg",
+    "desc": "Lorsque la performance de Raygun aux Jeux olympiques de Paris 2024 est devenue virale du jour au lendemain, une avalanche de mèmes, de fausses informations et de théories du complot a suivi, tous remettant en question la manière dont elle avait réussi à atteindre la scène olympique.",
+    "year": "2026",
+    "note": 3,
+    "actors_pics": [
+      {
+        "name": "Rachael Gunn",
+        "img": "https://image.tmdb.org/t/p/w185/6G466HeNiMvaP2kDBGzR9L2iLID.jpg"
+      },
+      {
+        "name": "Samuel Free",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Beverly Gunn",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Russell Gunn",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Sammy Tinylocks",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Leah Clark",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Lowe Napalan",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Richard Branson",
+        "img": "https://image.tmdb.org/t/p/w185/1MiGnNZO5vJYsjuW0JVrup6rO8N.jpg"
+      },
+      {
+        "name": "Michael Chambers",
+        "img": "https://image.tmdb.org/t/p/w185/qrEIrI0o6upnQl4yjJGAABVmdXg.jpg"
+      },
+      {
+        "name": "Ben Lokey",
+        "img": "https://image.tmdb.org/t/p/w185/bdd5EGVjRbSV1XUjBDqoL9LWIDi.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2706",
+    "t": "Good Luck, Have Fun, Don't Die",
+    "id_tmdb": "1119449",
+    "cat": "SCIENCE-FICTION, ACTION, COMÉDIE",
+    "url": "https://vidzy.org/d/1rcbo9f5v78y_n",
+    "img": "https://image.tmdb.org/t/p/w500/9mP2PVMau6tSQTLHqKI2A5L0VPB.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/drRxbu2OHG0DEENptZ8wI5f0uEU.jpg",
+    "desc": "Un soir, dans un resto minable de Los Angeles, un homme étrange et débraillé débarque avec un détonateur à la main et affirme venir du futur. Ce serait la 117ème fois qu’il remonte le temps pour empêcher l’apocalypse déclenchée par une IA et sauver une humanité lobotomisée par les écrans. Son ultime stratégie : recruter les clients du restaurant pour former une équipe capable de sauver le Monde. Si ce groupe aussi improbable que mal préparé y parvient, alors l’Humanité a peut-être encore une chance… Ou peut-être pas. Qui sait ?",
+    "year": "2026",
+    "note": 4,
+    "trailer": "v7Uis6vMRXA",
+    "actors_pics": [
+      {
+        "name": "Sam Rockwell",
+        "img": "https://image.tmdb.org/t/p/w185/afYhNpLwpa65Yy0Q0g00FNFhzx5.jpg"
+      },
+      {
+        "name": "Juno Temple",
+        "img": "https://image.tmdb.org/t/p/w185/vwCjlWQLQWbmcUT2Lwn9G0O8r2.jpg"
+      },
+      {
+        "name": "Haley Lu Richardson",
+        "img": "https://image.tmdb.org/t/p/w185/iTNWzU5FlKT8s0CBZQyMIvebBPh.jpg"
+      },
+      {
+        "name": "Michael Peña",
+        "img": "https://image.tmdb.org/t/p/w185/afs4PCiwn8LR93a10drULLVeVLo.jpg"
+      },
+      {
+        "name": "Zazie Beetz",
+        "img": "https://image.tmdb.org/t/p/w185/ijrT4pvALvxU0gphea4YxDnDh6e.jpg"
+      },
+      {
+        "name": "Asim Chaudhry",
+        "img": "https://image.tmdb.org/t/p/w185/1F0DwOpxUAEpw5iovMHZ5Y1C8n6.jpg"
+      },
+      {
+        "name": "Tom Taylor",
+        "img": "https://image.tmdb.org/t/p/w185/pEDSmASONpB9FKLgb354fVpHBm3.jpg"
+      },
+      {
+        "name": "Georgia Goodman",
+        "img": "https://image.tmdb.org/t/p/w185/igrVZq0JVIkFW1TbgaOG9ESd9pR.jpg"
+      },
+      {
+        "name": "Daniel Barnett",
+        "img": "https://image.tmdb.org/t/p/w185/n8hnzKLIvPbMjqhC6fjjp73Wlo8.jpg"
+      },
+      {
+        "name": "Artie Wilkinson-Hunt",
+        "img": "https://image.tmdb.org/t/p/w185/7AmNS1dxEB2TCsuovbjc83hJ5El.jpg"
+      }
+    ]
+  },
+  {
     "num": "2705",
     "t": "‎Un p'tit truc en plus",
     "id_tmdb": "1152014",
