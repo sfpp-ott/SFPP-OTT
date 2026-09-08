@@ -1,5 +1,533 @@
 [
   {
+    "num": "2735",
+    "t": "‎Romería",
+    "id_tmdb": "1182861",
+    "cat": "DRAME",
+    "url": "https://vidzy.org/d/ldsau6fn9emg_n",
+    "img": "https://image.tmdb.org/t/p/w500/oE9fWg0f9ewu68hFq8TOVBrVDZe.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/wbykOr1LrP463tXqIMH0wZPvMpz.jpg",
+    "desc": "Afin d’obtenir un document d’état civil pour ses études supérieures, Marina, adoptée depuis l’enfance, doit renouer avec une partie de sa véritable famille. Guidée par le journal intime de sa mère qui ne l’a jamais quittée, elle se rend sur la côte atlantique et rencontre tout un pan de sa famille paternelle qu’elle ne connaît pas. L’arrivée de Marina va faire ressurgir le passé. En ravivant le souvenir de ses parents, elle va découvrir les secrets de cette famille, les non-dits et les hontes…",
+    "year": "2025",
+    "note": 3,
+    "trailer": "mJ2L8VNzzws",
+    "actors_pics": [
+      {
+        "name": "Llúcia Garcia",
+        "img": "https://image.tmdb.org/t/p/w185/A5scbTtNMBpnGcNGEPJwZgZJ5kA.jpg"
+      },
+      {
+        "name": "Mitch",
+        "img": "https://image.tmdb.org/t/p/w185/qfvnvvoNSqMviDIGByiUfXYzKrW.jpg"
+      },
+      {
+        "name": "Tristán Ulloa",
+        "img": "https://image.tmdb.org/t/p/w185/sglKcvdU3e8hTy1kOghEbT0GdHS.jpg"
+      },
+      {
+        "name": "Celine Tyll",
+        "img": "https://image.tmdb.org/t/p/w185/cJzVk2EBhbFGxcINyLSe5gJ33Cl.jpg"
+      },
+      {
+        "name": "León Romagosa",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Hans Romagosa",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Marina Troncoso",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "José Ángel Egido",
+        "img": "https://image.tmdb.org/t/p/w185/wnptjnLVE7FtcekyuPNVZuHDzJ4.jpg"
+      },
+      {
+        "name": "Miryam Gallego",
+        "img": "https://image.tmdb.org/t/p/w185/bW3DNCqGZpREUMF84A3znHe2Vw8.jpg"
+      },
+      {
+        "name": "Sara Casasnovas",
+        "img": "https://image.tmdb.org/t/p/w185/hQjKqCuEQd60NnhifLmhc9rOcQX.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2734",
+    "t": "‎‎The Runner",
+    "id_tmdb": "1386315",
+    "cat": "THRILLER, ACTION",
+    "url": "https://vidzy.org/d/ekpn1hcdh7wg_n",
+    "img": "https://image.tmdb.org/t/p/w500/m2FaGlQUKMMFE6nUMwFTcIWbnEi.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/ziXF8wIBguHNCeplNthUlDTCZP8.jpg",
+    "desc": "Maia Marten, une brillante avocate londonienne, voit sa vie basculer quand un appel durant son jogging lui annonce que son fils a été enlevé. Pour le récupérer, elle ne doit pas cesser de courir et suivre les ordres, aussi cruels soient-ils, sans se fier à personne. Chaque seconde est une épreuve qui repousse les limites d'une mère prête à tout pour sauver son enfant.",
+    "year": "2026",
+    "note": 3,
+    "actors_pics": [
+      {
+        "name": "Gal Gadot",
+        "img": "https://image.tmdb.org/t/p/w185/qCJB1ACi5VjtY4ypXuv3hjAvbSu.jpg"
+      },
+      {
+        "name": "Damian Lewis",
+        "img": "https://image.tmdb.org/t/p/w185/puOXtVatFnAxoOmsFO8z7KTfyJW.jpg"
+      },
+      {
+        "name": "Rory Wilmot",
+        "img": "https://image.tmdb.org/t/p/w185/qi56VP9tSU0F0VJ59Aq0yU4nIR9.jpg"
+      },
+      {
+        "name": "Alfred Enoch",
+        "img": "https://image.tmdb.org/t/p/w185/eEVvPHmxRBcEGqtoTujncmwNDhR.jpg"
+      },
+      {
+        "name": "Phoenix Di Sebastiani",
+        "img": "https://image.tmdb.org/t/p/w185/mBkkZ5irQZPsxdcCIPLCvNv5iT8.jpg"
+      },
+      {
+        "name": "Nathan Kirby",
+        "img": "https://image.tmdb.org/t/p/w185/5bnrS0ZncCFaL1DCm7n7Z6qHBlL.jpg"
+      },
+      {
+        "name": "Hélder Fernandes",
+        "img": "https://image.tmdb.org/t/p/w185/rt8Cp421KbfANb6b6AmMGlVz8wR.jpg"
+      },
+      {
+        "name": "Will Austin",
+        "img": "https://image.tmdb.org/t/p/w185/hwlsIMEImnpOc046cROxtVyJ2Ao.jpg"
+      },
+      {
+        "name": "Mark Hampton",
+        "img": "https://image.tmdb.org/t/p/w185/1QU9wjU4fxzYmJALQREMJYSVzS8.jpg"
+      },
+      {
+        "name": "Stevie Binns",
+        "img": "https://image.tmdb.org/t/p/w185/8z91lF6y3CFTT55YVC3qcBHLO1L.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2733",
+    "t": "LEGO Star Wars: The Mandalorian",
+    "id_tmdb": "1731694",
+    "cat": "ANIMATION, SCIENCE-FICTION, AVENTURE, FAMILIAL, ACTION",
+    "url": "https://vidzy.org/d/1d8hzdj6h7gi_n",
+    "img": "https://image.tmdb.org/t/p/w500/x3HEvYXWOW6WHqsHmg2MUVy3SLm.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/upecGaCuQOIbSpdz85mrJ395UMg.jpg",
+    "desc": "Le Mandalorien et Grogu retrouvent leurs alliés improbables lors d’une fête épique pour célébrer leur héroïsme. Alors que leurs amis racontent leurs aventures à un public enthousiaste, une attaque de pirates menace.",
+    "year": "2026",
+    "note": 4,
+    "actors_pics": [
+      {
+        "name": "Gavin Hammon",
+        "img": "https://image.tmdb.org/t/p/w185/9ZHGDWn5u4EZQhYU0RR628RTgOz.jpg"
+      },
+      {
+        "name": "Amy Sedaris",
+        "img": "https://image.tmdb.org/t/p/w185/AjVjRYI1PaC11i4FqGSK1TkwOmq.jpg"
+      },
+      {
+        "name": "Bill Burr",
+        "img": "https://image.tmdb.org/t/p/w185/4U95TX23X97OK9csaKVwzqAjFUV.jpg"
+      },
+      {
+        "name": "David Pasquesi",
+        "img": "https://image.tmdb.org/t/p/w185/oQplec891LMv0wndTtKh1bIS11Z.jpg"
+      },
+      {
+        "name": "Katee Sackhoff",
+        "img": "https://image.tmdb.org/t/p/w185/kzcwfDDrgXnVgyTfcpG0obOn7Qk.jpg"
+      },
+      {
+        "name": "Emily Swallow",
+        "img": "https://image.tmdb.org/t/p/w185/8wS86vFMoDnfAJzOL9yNqvXcCpA.jpg"
+      },
+      {
+        "name": "Giancarlo Esposito",
+        "img": "https://image.tmdb.org/t/p/w185/rcXnr82TwDzU4ZGdBeNXfG0ZQnZ.jpg"
+      },
+      {
+        "name": "Matthew Wood",
+        "img": "https://image.tmdb.org/t/p/w185/u1UjHLTeS5Dregg85A3GICf7Nkf.jpg"
+      },
+      {
+        "name": "Ming-Na Wen",
+        "img": "https://image.tmdb.org/t/p/w185/eqCzFF83It56cUdjpskzvg8jgq.jpg"
+      },
+      {
+        "name": "Nick Nolte",
+        "img": "https://image.tmdb.org/t/p/w185/jpYzFBi6zfn8CHVaXmqgiOTas4V.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2732",
+    "t": "Pour le plaisir",
+    "id_tmdb": "1516724",
+    "cat": "COMÉDIE",
+    "url": "https://vidzy.org/d/1h38xybhvnxm_n",
+    "img": "https://image.tmdb.org/t/p/w500/2cWdr2n7VNrLEAer6hMPASIP7Px.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/eJKKygAF718jp1HhGvH3SMoi5Cv.jpg",
+    "desc": "Et si on vous racontait l’invention du siècle ? Un couple, une vérité qui explose. Fanny et Tom sont mariés et heureux depuis 20 ans. Mais un jour un secret éclate : Fanny n’a jamais eu d’orgasme. Tom, ingénieur, décide alors de relever un défi audacieux : créer l’objet qui révolutionnera le plaisir féminin. Ensemble, ils se lancent dans cette quête aussi déjantée qu’émouvante qui va transformer leur couple. Jusqu’où iront-ils ? Loin, très loin.",
+    "year": "2026",
+    "note": 3,
+    "trailer": "oW-0f8c2izY",
+    "actors_pics": [
+      {
+        "name": "Alexandra Lamy",
+        "img": "https://image.tmdb.org/t/p/w185/m52fdEhVo6sBjEhgyM6bqFwC1HA.jpg"
+      },
+      {
+        "name": "François Cluzet",
+        "img": "https://image.tmdb.org/t/p/w185/f6PO7Lkrem1N4UmklxHro2k6Jto.jpg"
+      },
+      {
+        "name": "Mitty Hazanavicius",
+        "img": "https://image.tmdb.org/t/p/w185/4WzOf2T2NOlgG1t9k8SNMCfyhth.jpg"
+      },
+      {
+        "name": "Delphine Baril",
+        "img": "https://image.tmdb.org/t/p/w185/571fTrSLspp8xPGkwwBUpKhl884.jpg"
+      },
+      {
+        "name": "François-Xavier Demaison",
+        "img": "https://image.tmdb.org/t/p/w185/u2WWC1YAJuZLLk6Ho4IzhNAozqe.jpg"
+      },
+      {
+        "name": "Reem Kherici",
+        "img": "https://image.tmdb.org/t/p/w185/nfOOJB41gb0aFrPxfyF3u3i4HZn.jpg"
+      },
+      {
+        "name": "Kyan Khojandi",
+        "img": "https://image.tmdb.org/t/p/w185/e2XcdnMz6hCVz4skEZXjsEr9A72.jpg"
+      },
+      {
+        "name": "Camille Aumont Carnel",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "François Bureloup",
+        "img": "https://image.tmdb.org/t/p/w185/d9I0Qspe7U7V0VO1yMntaRvSG39.jpg"
+      },
+      {
+        "name": "Huguette Lacheau",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      }
+    ]
+  },
+  {
+    "num": "2731",
+    "t": "Gandhari",
+    "id_tmdb": "1355228",
+    "cat": "ACTION, DRAME, THRILLER",
+    "url": "https://vidzy.org/d/nkcr9hg7e08u_n",
+    "img": "https://image.tmdb.org/t/p/w500/hCHei97aPYCCsh4vicz9X0wmdFV.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/sT5WVT8LzvDwIbfy9BGXK0fvf3s.jpg",
+    "desc": "Suit la quête incessante d'une mère pour retrouver et sauver sa fille kidnappée, explorant les thèmes de la vengeance et de la rédemption au cours de son voyage éprouvant.",
+    "year": "2026",
+    "note": 2,
+    "actors_pics": [
+      {
+        "name": "Taapsee Pannu",
+        "img": "https://image.tmdb.org/t/p/w185/43e24aeOC8AZITo6ShaKKG9aV0Y.jpg"
+      },
+      {
+        "name": "Ishwak Singh",
+        "img": "https://image.tmdb.org/t/p/w185/iN1QUGzN7c4qBps3xpuWYVzpMag.jpg"
+      },
+      {
+        "name": "Mita Vashisht",
+        "img": "https://image.tmdb.org/t/p/w185/mcnaQTCmuz3lXNotFFdkwCO7FTY.jpg"
+      },
+      {
+        "name": "Swastika Mukherjee",
+        "img": "https://image.tmdb.org/t/p/w185/xjEdXwco3KjWU7zFDhJgMJYmerh.jpg"
+      },
+      {
+        "name": "Chhaya Kadam",
+        "img": "https://image.tmdb.org/t/p/w185/umOPkpPA4JUWLkVziYU5GF6gELD.jpg"
+      },
+      {
+        "name": "Jatin Sarna",
+        "img": "https://image.tmdb.org/t/p/w185/bnKqppKcRxSiEPiq2Fmbriibf5N.jpg"
+      },
+      {
+        "name": "Prashant Narayanan",
+        "img": "https://image.tmdb.org/t/p/w185/wm0EzbLnwUBgyz0DjQsGWXViXEa.jpg"
+      },
+      {
+        "name": "Chandan Roy",
+        "img": "https://image.tmdb.org/t/p/w185/2zIIonCsFrdcmmZD0g5YIaCPnQY.jpg"
+      },
+      {
+        "name": "Vishwanath Chatterjee",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Priti Shroff",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      }
+    ]
+  },
+  {
+    "num": "2730",
+    "t": "Finding Emily",
+    "id_tmdb": "1339588",
+    "cat": "ROMANCE, COMÉDIE",
+    "url": "https://vidzy.org/d/uowujlrf5ntn_n",
+    "img": "https://image.tmdb.org/t/p/w500/egPElljJxenQYhWxm3Fx0e3o4hR.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/7Ja28gO6OwncmCA94q2qPyeRrsA.jpg",
+    "desc": "Alors que la fille de ses rêves lui a donné un faux numéro, un musicien fou amoureux s'allie à une étudiante en psychologie en difficulté pour la retrouver. Ensemble, ils vont semer le chaos sur un campus et déclencher une crise qui mettra à l'épreuve leurs principes et leurs ambitions.",
+    "year": "2026",
+    "note": 3,
+    "actors_pics": [
+      {
+        "name": "Spike Fearn",
+        "img": "https://image.tmdb.org/t/p/w185/o1WcXkDdlN5wdL5WIuGXNpNouZ9.jpg"
+      },
+      {
+        "name": "Angourie Rice",
+        "img": "https://image.tmdb.org/t/p/w185/iHZzyhvIYW9CSsMSLnxm9FsJohL.jpg"
+      },
+      {
+        "name": "Cora Kirk",
+        "img": "https://image.tmdb.org/t/p/w185/4av80vVFZSBuKJyzXqEXLE8Vftc.jpg"
+      },
+      {
+        "name": "Jack Riddiford",
+        "img": "https://image.tmdb.org/t/p/w185/3GprRetu86xwmpyaezrUhUXEAgF.jpg"
+      },
+      {
+        "name": "Isabella Laughland",
+        "img": "https://image.tmdb.org/t/p/w185/3vdUpjDwTxZQbaeI8dE0GOu0qzU.jpg"
+      },
+      {
+        "name": "Prasanna Puwanarajah",
+        "img": "https://image.tmdb.org/t/p/w185/soIlyi4qNdRX11etHhoMFrlUJcI.jpg"
+      },
+      {
+        "name": "Nadia Parkes",
+        "img": "https://image.tmdb.org/t/p/w185/4FhvqGWPOD7r8qI1ADbq7E7UDm1.jpg"
+      },
+      {
+        "name": "Kat Ronney",
+        "img": "https://image.tmdb.org/t/p/w185/tQ54Wiq8siKmgeged3vdC2Xvine.jpg"
+      },
+      {
+        "name": "Minnie Driver",
+        "img": "https://image.tmdb.org/t/p/w185/2uwaHwpoutbXMuYY5v2dhWU0hml.jpg"
+      },
+      {
+        "name": "Anthony J. Abraham",
+        "img": "https://image.tmdb.org/t/p/w185/fdCBmCUt3CidV7xRMpZcyccGk7E.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2729",
+    "t": "Oradour",
+    "id_tmdb": "1509381",
+    "cat": "DRAME, HISTOIRE, TÉLÉFILM, GUERRE",
+    "url": "https://vidzy.org/d/r3quoranikzf_n",
+    "img": "https://image.tmdb.org/t/p/w500/bSI2RoKBKistmF2Cjdyhj5K35ee.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/3XXX57Uy1oaX7uKzfPjzuC6StNr.jpg",
+    "desc": "Le 5 juin 1944, cinq jours avant le plus important massacre de civils français pendant la Seconde Guerre mondiale, Philippe Gerbier, officier des Forces Françaises Libres, est parachuté près d’Oradour-sur-Glane où il doit diriger une mission secrète et capitale pour la Résistance à quelques jours du Débarquement. Sur place, il retrouve Marie, son amour de jeunesse, qui fuit avec sa fille un mari violent. Tandis que le passé refait surface, leurs destins se mêlent au drame historique d’Oradour-sur-Glane…",
+    "year": "2026",
+    "note": 3,
+    "actors_pics": [
+      {
+        "name": "M. Pokora",
+        "img": "https://image.tmdb.org/t/p/w185/dy1wYramKkBDhJy8GdkTVmMnOtk.jpg"
+      },
+      {
+        "name": "Caroline Anglade",
+        "img": "https://image.tmdb.org/t/p/w185/4tyUsgfkUih5CU8uoIeK2wYvEcH.jpg"
+      },
+      {
+        "name": "Chloé Stefani",
+        "img": "https://image.tmdb.org/t/p/w185/JN6KE4lXTvX9pHZgwmky2LGsYg.jpg"
+      },
+      {
+        "name": "Giulia Sagner",
+        "img": "https://image.tmdb.org/t/p/w185/kNLvkD0Pd0gjMxe3XyV35Iy1KGb.jpg"
+      },
+      {
+        "name": "Martin Swabey",
+        "img": "https://image.tmdb.org/t/p/w185/gBV5ElUGdHEIt1LZBdiAHaaIhR9.jpg"
+      },
+      {
+        "name": "Théo Frilet",
+        "img": "https://image.tmdb.org/t/p/w185/bPsbZA5D7m2Wy2sMOXJbL7w7BLq.jpg"
+      },
+      {
+        "name": "Hubert Roulleau",
+        "img": "https://image.tmdb.org/t/p/w185/n53GlhmJpAMst5QsIhSxhYTrTJG.jpg"
+      },
+      {
+        "name": "Vincent Londez",
+        "img": "https://image.tmdb.org/t/p/w185/sVVveDFGIU9Llk5scvrHr9UQgPY.jpg"
+      },
+      {
+        "name": "Clément Manuel",
+        "img": "https://image.tmdb.org/t/p/w185/49WFr6wFxPezZS37oujoXf1PMFm.jpg"
+      },
+      {
+        "name": "Anne-Pascale Clairembourg",
+        "img": "https://image.tmdb.org/t/p/w185/ha59frJtIljI9uivGZYyldaX6jF.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2728",
+    "t": "C’est quoi l’amour ?",
+    "id_tmdb": "1369286",
+    "cat": "COMÉDIE, DRAME",
+    "url": "https://vidzy.org/d/8xtncv24teid_n",
+    "img": "https://image.tmdb.org/t/p/w500/m5afVTwwWKclUCjSABwdd5EVatV.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/w5x5weniCCe0rs8lsW1XPhQxbKS.jpg",
+    "desc": "Lorsque Fred demande à son ex-femme, Marguerite, de faire annuler leur mariage à l'Église pour pouvoir s’y remarier, elle se réjouit de le voir refaire sa vie. Mais ce qui devait être une simple formalité s’avère plus compliqué que prévu et va les mener jusqu’à Rome avec leurs enfants et leurs nouveaux conjoints. Un voyage haut en couleurs pour tous les membres de cette famille recomposée.",
+    "year": "2026",
+    "note": 3,
+    "trailer": "LVDTBJpxLZs",
+    "actors_pics": [
+      {
+        "name": "Laure Calamy",
+        "img": "https://image.tmdb.org/t/p/w185/ov3BaihlXFRTzKTc7Hs5KWskEi4.jpg"
+      },
+      {
+        "name": "Vincent Macaigne",
+        "img": "https://image.tmdb.org/t/p/w185/6Z4JmAauiallW2lXTOuSAiHdHGf.jpg"
+      },
+      {
+        "name": "Lyes Salem",
+        "img": "https://image.tmdb.org/t/p/w185/rxijyAbXHtYC7yeSR7XBF2k1OzO.jpg"
+      },
+      {
+        "name": "Mélanie Thierry",
+        "img": "https://image.tmdb.org/t/p/w185/bzyr9QHNQhLwyxQ6mzN24HPyy3s.jpg"
+      },
+      {
+        "name": "Céleste Brunnquell",
+        "img": "https://image.tmdb.org/t/p/w185/cFupALXnIkDOOJPjqq0Vm1XJNp2.jpg"
+      },
+      {
+        "name": "Saül Benchetrit",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Grégoire Leprince-Ringuet",
+        "img": "https://image.tmdb.org/t/p/w185/kHwmtt3MCGCzh0DQplCwsdjwHGd.jpg"
+      },
+      {
+        "name": "Jean-Marc Barr",
+        "img": "https://image.tmdb.org/t/p/w185/65aLM2ZvBjJu2JWGSrTGHqXyc8w.jpg"
+      },
+      {
+        "name": "Abel Rozé",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Paul Stellar",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      }
+    ]
+  },
+  {
+    "num": "2727",
+    "t": "Mariés à une polygame",
+    "id_tmdb": "1720983",
+    "cat": "THRILLER, TÉLÉFILM",
+    "url": "https://vidzy.org/d/9zrntrys42mn_n",
+    "img": "https://image.tmdb.org/t/p/w500/gn1IWkxdZw2DhYslsvQTgkPQv4c.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/e2xOc2UYI63EZTqcop6v3vFqb9r.jpg",
+    "desc": "Natalie rend visite à son frère Marcus dans un ranch isolé pour lui annoncer la mort de leur père. Elle découvre que Marcus vit dans une relation polyandre avec Larissa et ses deux autres maris, Jack et Nico. Lorsque Jack est retrouvé mort dans ce qui semble être un accident, Natalie commence à soupçonner Nico et découvre peu à peu une série de mensonges et de manipulations. Personne ne la croit, et elle devient la prochaine cible...",
+    "year": "2026",
+    "note": 2,
+    "actors_pics": [
+      {
+        "name": "Victoria Antonelli",
+        "img": "https://image.tmdb.org/t/p/w185/vnUcjTGSIKGGbh9yW4pmHKLbMj8.jpg"
+      },
+      {
+        "name": "Adam Brudnicki",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Sully Christian",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Richard Formato",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Ella Frazee",
+        "img": "https://image.tmdb.org/t/p/w185/7Zu0kr5mxquAh3Ui8fRyAQmGsSv.jpg"
+      },
+      {
+        "name": "Bobby Slaski",
+        "img": "https://image.tmdb.org/t/p/w185/b27FQoFL0lXe6NdTFxdH8Jss7D8.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2726",
+    "t": "Dao",
+    "id_tmdb": "1135582",
+    "cat": "DRAME",
+    "url": "https://vidzy.org/d/by5l7nuh3c76_n",
+    "img": "https://image.tmdb.org/t/p/w500/4wiscRFdQwiWhdOEK9mwCbccdgc.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/1bcX2146IaCIMwfrBUUymaUo1Km.jpg",
+    "desc": "Aujourd’hui Gloria marie sa fille en banlieue parisienne. Il y a peu, en Guinée Bissau, elle assistait à la cérémonie qui consacre son père décédé en ancêtre. D’une cérémonie à l’autre, entre passé et présent, vie et mort, réalité et fiction, Gloria se réconcilie avec son histoire, trouve sa place et connaît un moment de paix.",
+    "year": "2026",
+    "note": 3,
+    "trailer": "Q5F8qK2vs-s",
+    "actors_pics": [
+      {
+        "name": "Katy Correa",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "D’Johé Kouadio",
+        "img": "https://image.tmdb.org/t/p/w185/kTPvSbEvOhCu429FZTtkJ9aoATR.jpg"
+      },
+      {
+        "name": "Samir Guesmi",
+        "img": "https://image.tmdb.org/t/p/w185/7x6FO6FGZgQAVz543d2F8Ra1Kjs.jpg"
+      },
+      {
+        "name": "Mike Etienne",
+        "img": "https://image.tmdb.org/t/p/w185/ziDaMi50u0INZCATMSqHeJ21Yoo.jpg"
+      },
+      {
+        "name": "Nicolas Gomis",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Fara Baco Gomis",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Poundo Gomis",
+        "img": "https://image.tmdb.org/t/p/w185/ej9aarEQnu8ZLq70jzqnmryprfg.jpg"
+      },
+      {
+        "name": "Thomas Ngijol",
+        "img": "https://image.tmdb.org/t/p/w185/t1mteWGl9nn3qocsknyeGLSzc5P.jpg"
+      },
+      {
+        "name": "Emile Diabar Gomis",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Saldania Gomis",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      }
+    ]
+  },
+  {
     "num": "2725",
     "t": "‎La Corde au Cou",
     "id_tmdb": "1263012",
