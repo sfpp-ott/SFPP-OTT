@@ -300,7 +300,21 @@
    "img": "https://stock.wikimini.org/w/images/d/db/Logo_M6.png",
    "cat": "TV EN DIRECT, 1.GENERAL",
    "desc": "Regardez M6 en direct.",
-   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D29783704130ceb4c2ce4bd"
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D2264106144b28f5fffc5e3"
+  },
+  {
+  "t": "M6 (Direct)",
+   "img": "https://stock.wikimini.org/w/images/d/db/Logo_M6.png",
+   "cat": "TV EN DIRECT, 1.GENERAL",
+   "desc": "Regardez M6 en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D3435456326462b8ebc1f88"
+  },
+  {
+  "t": "M6 (Direct)",
+   "img": "https://stock.wikimini.org/w/images/d/db/Logo_M6.png",
+   "cat": "TV EN DIRECT, 1.GENERAL",
+   "desc": "Regardez M6 en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D381306877060a38e6f63e1"
   },
   {
   "t": "M6 (Direct)",
@@ -308,6 +322,13 @@
    "cat": "TV EN DIRECT, 1.GENERAL",
    "desc": "Regardez M6 en direct.",
    "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D688242401078f5e51c480"
+  },
+  {
+  "t": "M6 (Direct)",
+   "img": "https://stock.wikimini.org/w/images/d/db/Logo_M6.png",
+   "cat": "TV EN DIRECT, 1.GENERAL",
+   "desc": "Regardez M6 en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D29783704130ceb4c2ce4bd"
   },
   
   {
