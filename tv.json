@@ -264,34 +264,6 @@
    "img": "https://stock.wikimini.org/w/images/d/db/Logo_M6.png",
    "cat": "TV EN DIRECT, 1.GENERAL",
    "desc": "Regardez M6 en direct.",
-   "url": "https://embedsport.live/channel/m6-france/470"
-  },
-  {
-  "t": "M6 (Direct)",
-   "img": "https://stock.wikimini.org/w/images/d/db/Logo_M6.png",
-   "cat": "TV EN DIRECT, 1.GENERAL",
-   "desc": "Regardez M6 en direct.",
-   "url": "https://dlstreams.st/watch.php?id=470#joueur1"
-  },
-  {
-  "t": "M6 (Direct)",
-   "img": "https://stock.wikimini.org/w/images/d/db/Logo_M6.png",
-   "cat": "TV EN DIRECT, 1.GENERAL",
-   "desc": "Regardez M6 en direct.",
-   "url": "https://northlive.lol/api/v1/tv/m6-fhd-b/player?api_key="
-  },
-  {
-  "t": "M6 (Direct)",
-   "img": "https://stock.wikimini.org/w/images/d/db/Logo_M6.png",
-   "cat": "TV EN DIRECT, 1.GENERAL",
-   "desc": "Regardez M6 en direct.",
-   "url": "https://northlive.lol/api/v1/tv/m6-international-c/player?api_key="
-  },
-  {
-  "t": "M6 (Direct)",
-   "img": "https://stock.wikimini.org/w/images/d/db/Logo_M6.png",
-   "cat": "TV EN DIRECT, 1.GENERAL",
-   "desc": "Regardez M6 en direct.",
    "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D2264106144b28f5fffc5e3"
   },
   {
@@ -321,6 +293,34 @@
    "cat": "TV EN DIRECT, 1.GENERAL",
    "desc": "Regardez M6 en direct.",
    "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D29783704130ceb4c2ce4bd"
+  },
+  {
+  "t": "M6 (Direct)",
+   "img": "https://stock.wikimini.org/w/images/d/db/Logo_M6.png",
+   "cat": "TV EN DIRECT, 1.GENERAL",
+   "desc": "Regardez M6 en direct.",
+   "url": "https://huhu.to/watch?live=2978370413259a7301d25c"
+  },
+  {
+  "t": "M6 (Direct)",
+   "img": "https://stock.wikimini.org/w/images/d/db/Logo_M6.png",
+   "cat": "TV EN DIRECT, 1.GENERAL",
+   "desc": "Regardez M6 en direct.",
+   "url": "https://huhu.to/watch?live=2264106144b5c0fe6a68e9"
+  },
+  {
+  "t": "M6 (Direct)",
+   "img": "https://stock.wikimini.org/w/images/d/db/Logo_M6.png",
+   "cat": "TV EN DIRECT, 1.GENERAL",
+   "desc": "Regardez M6 en direct.",
+   "url": "https://huhu.to/watch?live=3435456326088f7d6f9985"
+  },
+  {
+  "t": "M6 (Direct)",
+   "img": "https://stock.wikimini.org/w/images/d/db/Logo_M6.png",
+   "cat": "TV EN DIRECT, 1.GENERAL",
+   "desc": "Regardez M6 en direct.",
+   "url": "https://huhu.to/watch?live=68824240106019da32ca8"
   },
   
   {
