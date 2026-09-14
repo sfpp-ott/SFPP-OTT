@@ -215,27 +215,6 @@
    "img": "https://upload.wikimedia.org/wikipedia/fr/2/26/Logo_France_5.svg",
    "cat": "TV EN DIRECT, 1.GENERAL",
    "desc": "Regardez FRANCE 5 en direct.",
-   "url": "https://embedsport.live/channel/france-5/953"
-  },
-  {
-  "t": "FRANCE 5 (Direct)",
-   "img": "https://upload.wikimedia.org/wikipedia/fr/2/26/Logo_France_5.svg",
-   "cat": "TV EN DIRECT, 1.GENERAL",
-   "desc": "Regardez FRANCE 5 en direct.",
-   "url": "https://dlstreams.st/watch.php?id=953#joueur1"
-  },
-  {
-  "t": "FRANCE 5 (Direct)",
-   "img": "https://upload.wikimedia.org/wikipedia/fr/2/26/Logo_France_5.svg",
-   "cat": "TV EN DIRECT, 1.GENERAL",
-   "desc": "Regardez FRANCE 5 en direct.",
-   "url": "https://northlive.lol/api/v1/tv/france-5-c/player?api_key="
-  },
-  {
-  "t": "FRANCE 5 (Direct)",
-   "img": "https://upload.wikimedia.org/wikipedia/fr/2/26/Logo_France_5.svg",
-   "cat": "TV EN DIRECT, 1.GENERAL",
-   "desc": "Regardez FRANCE 5 en direct.",
    "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D2249823338273b7989b2e7"
   },
   {
@@ -244,6 +223,34 @@
    "cat": "TV EN DIRECT, 1.GENERAL",
    "desc": "Regardez FRANCE 5 en direct.",
    "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D3004974450980927089433"
+  },
+  {
+  "t": "FRANCE 5 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/2/26/Logo_France_5.svg",
+   "cat": "TV EN DIRECT, 1.GENERAL",
+   "desc": "Regardez FRANCE 5 en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D15743448890eaf9d60a67b"
+  },
+  {
+  "t": "FRANCE 5 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/2/26/Logo_France_5.svg",
+   "cat": "TV EN DIRECT, 1.GENERAL",
+   "desc": "Regardez FRANCE 5 en direct.",
+   "url": "https://huhu.to/watch?live=22498233388ea7f7323540"
+  },
+  {
+  "t": "FRANCE 5 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/2/26/Logo_France_5.svg",
+   "cat": "TV EN DIRECT, 1.GENERAL",
+   "desc": "Regardez FRANCE 5 en direct.",
+   "url": "https://huhu.to/watch?live=1574344889878898d0b77a"
+  },
+  {
+  "t": "FRANCE 5 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/2/26/Logo_France_5.svg",
+   "cat": "TV EN DIRECT, 1.GENERAL",
+   "desc": "Regardez FRANCE 5 en direct.",
+   "url": "https://huhu.to/watch?live=30049744509aba307f91a6"
   },
   {
   "t": "M6 (Direct)",
