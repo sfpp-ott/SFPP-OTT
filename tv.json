@@ -102,34 +102,6 @@
    "img": "https://upload.wikimedia.org/wikipedia/commons/8/8a/France_3_logo.png",
    "cat": "TV EN DIRECT, 1.GENERAL",
    "desc": "Regardez FRANCE 3 en direct.",
-   "url": "https://embedsport.live/channel/france-3/951"
-  },
-  {
-   "t": "FRANCE 3 (Direct)",
-   "img": "https://upload.wikimedia.org/wikipedia/commons/8/8a/France_3_logo.png",
-   "cat": "TV EN DIRECT, 1.GENERAL",
-   "desc": "Regardez FRANCE 3 en direct.",
-   "url": "https://dlstreams.st/watch.php?id=951#joueur1"
-  },
-  {
-   "t": "FRANCE 3 (Direct)",
-   "img": "https://upload.wikimedia.org/wikipedia/commons/8/8a/France_3_logo.png",
-   "cat": "TV EN DIRECT, 1.GENERAL",
-   "desc": "Regardez FRANCE 3 en direct.",
-   "url": "https://northlive.lol/api/v1/tv/france-3-hd-b/player?api_key="
-  },
-  {
-   "t": "FRANCE 3 (Direct)",
-   "img": "https://upload.wikimedia.org/wikipedia/commons/8/8a/France_3_logo.png",
-   "cat": "TV EN DIRECT, 1.GENERAL",
-   "desc": "Regardez FRANCE 3 en direct.",
-   "url": "https://northlive.lol/api/v1/tv/france-3-noa-c/player?api_key="
-  },
-  {
-   "t": "FRANCE 3 (Direct)",
-   "img": "https://upload.wikimedia.org/wikipedia/commons/8/8a/France_3_logo.png",
-   "cat": "TV EN DIRECT, 1.GENERAL",
-   "desc": "Regardez FRANCE 3 en direct.",
    "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D1568526820de51fc140eb"
   },
   {
@@ -153,6 +125,48 @@
    "cat": "TV EN DIRECT, 1.GENERAL",
    "desc": "Regardez FRANCE 3 en direct.",
    "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D183277419a167cd02f32e"
+  },
+  {
+   "t": "FRANCE 3 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/8/8a/France_3_logo.png",
+   "cat": "TV EN DIRECT, 1.GENERAL",
+   "desc": "Regardez FRANCE 3 en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D14061094293858041c6086"
+  },
+  {
+   "t": "FRANCE 3 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/8/8a/France_3_logo.png",
+   "cat": "TV EN DIRECT, 1.GENERAL",
+   "desc": "Regardez FRANCE 3 en direct.",
+   "url": "https://huhu.to/watch?live=156852682c6a998b03b6c"
+  },
+  {
+   "t": "FRANCE 3 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/8/8a/France_3_logo.png",
+   "cat": "TV EN DIRECT, 1.GENERAL",
+   "desc": "Regardez FRANCE 3 en direct.",
+   "url": "https://huhu.to/watch?live=35330736898d26dfd071b5"
+  },
+  {
+   "t": "FRANCE 3 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/8/8a/France_3_logo.png",
+   "cat": "TV EN DIRECT, 1.GENERAL",
+   "desc": "Regardez FRANCE 3 en direct.",
+   "url": "https://huhu.to/watch?live=183277419709d97172a48"
+  },
+  {
+   "t": "FRANCE 3 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/8/8a/France_3_logo.png",
+   "cat": "TV EN DIRECT, 1.GENERAL",
+   "desc": "Regardez FRANCE 3 en direct.",
+   "url": "https://huhu.to/watch?live=140610942972166ec1301f"
+  },
+  {
+   "t": "FRANCE 3 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/8/8a/France_3_logo.png",
+   "cat": "TV EN DIRECT, 1.GENERAL",
+   "desc": "Regardez FRANCE 3 en direct.",
+   "url": "https://huhu.to/watch?live=1970490613a988a3a4e9e8"
   },
   {
   "t": "FRANCE 4 (Direct)",
