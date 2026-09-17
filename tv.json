@@ -229,27 +229,6 @@
    "img": "https://upload.wikimedia.org/wikipedia/fr/2/2b/W9_2012.png",
    "cat": "TV EN DIRECT, 1.GENERAL",
    "desc": "Regardez W9 en direct.",
-   "url": "https://embedsport.live/channel/w9-france/959"
-  },
-  {
-  "t": "W9 (Direct)",
-   "img": "https://upload.wikimedia.org/wikipedia/fr/2/2b/W9_2012.png",
-   "cat": "TV EN DIRECT, 1.GENERAL",
-   "desc": "Regardez W9 en direct.",
-   "url": "https://dlstreams.st/watch.php?id=959#joueur1"
-  },
-  {
-  "t": "W9 (Direct)",
-   "img": "https://upload.wikimedia.org/wikipedia/fr/2/2b/W9_2012.png",
-   "cat": "TV EN DIRECT, 1.GENERAL",
-   "desc": "Regardez W9 en direct.",
-   "url": "https://northlive.lol/api/v1/tv/w9-hd-b/player?api_key="
-  },
-  {
-  "t": "W9 (Direct)",
-   "img": "https://upload.wikimedia.org/wikipedia/fr/2/2b/W9_2012.png",
-   "cat": "TV EN DIRECT, 1.GENERAL",
-   "desc": "Regardez W9 en direct.",
    "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D12804661554f36ca1095a"
   },
   {
@@ -258,6 +237,13 @@
    "cat": "TV EN DIRECT, 1.GENERAL",
    "desc": "Regardez W9 en direct.",
    "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D338554998683e8b650775f"
+  },
+  {
+  "t": "W9 (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/fr/2/2b/W9_2012.png",
+   "cat": "TV EN DIRECT, 1.GENERAL",
+   "desc": "Regardez W9 en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D280062836403e9b757ac4c"
   },
   {
   "t": "TMC (Direct)",
