@@ -323,6 +323,13 @@
    "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D3480426017c3f2b3e10a98"
   },
   {
+  "t": "CSTAR (Direct)",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/8/82/Cstar-logo.jpg",
+   "cat": "TV EN DIRECT, 1.GENERAL",
+   "desc": "Regardez CSTAR en direct.",
+   "url": "http://130.162.57.69:7860/extractor/video?host=vavoo&d=https%3A%2F%2Fvavoo.to%2Fwatch%3Flive%3D2115964580e124fb89e2af"
+  },
+  {
   "t": "TF1 SERIES FILMS (Direct)",
    "img": "https://upload.wikimedia.org/wikipedia/fr/5/5f/TF1_S%C3%A9ries_Films_logo_2018.svg",
    "cat": "TV EN DIRECT, 1.GENERAL",
