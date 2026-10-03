@@ -1,5 +1,60 @@
 [
   {
+    "num": "2743",
+    "t": "‎L'Odyssée",
+    "id_tmdb": "1368337",
+    "cat": "AVENTURE, ACTION, FANTASTIQUE",
+    "url": "https://vidzy.org/d/kkhfn4t6l33q_n",
+    "img": "https://image.tmdb.org/t/p/w500/kP8jJIkmX0vWEYiqQ9c5zU0dvcn.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/bulFtfy3oBQtCnAMSi7g6DSSds3.jpg",
+    "desc": "Vingt ans après son départ pour la guerre de Troie, le roi Ulysse rentre enfin à Ithaque, mais son voyage est parsemé d'aventures et d'épreuves.",
+    "year": "2026",
+    "note": 4,
+    "trailer": "9YGuN8sQpL0",
+    "actors_pics": [
+      {
+        "name": "Matt Damon",
+        "img": "https://image.tmdb.org/t/p/w185/aCvBXTAR9B1qRjIRzMBYhhbm1fR.jpg"
+      },
+      {
+        "name": "Tom Holland",
+        "img": "https://image.tmdb.org/t/p/w185/xKBAaPIa1c7tzZD3Y0MhBLv4hPE.jpg"
+      },
+      {
+        "name": "Anne Hathaway",
+        "img": "https://image.tmdb.org/t/p/w185/nbccV2pMoyLTCeg5DQip24Eq0Jp.jpg"
+      },
+      {
+        "name": "Robert Pattinson",
+        "img": "https://image.tmdb.org/t/p/w185/3qZ09UE7lN6AtorfXFRYpEtSY93.jpg"
+      },
+      {
+        "name": "Himesh Patel",
+        "img": "https://image.tmdb.org/t/p/w185/icqsXLmU0FxBGTv63kkA0GcrecO.jpg"
+      },
+      {
+        "name": "Charlize Theron",
+        "img": "https://image.tmdb.org/t/p/w185/gd7ShD0yt4bsR2STeQ19KQ6hvXL.jpg"
+      },
+      {
+        "name": "John Leguizamo",
+        "img": "https://image.tmdb.org/t/p/w185/kwYCdxTlDh9zauUCg4mp2XTCQTw.jpg"
+      },
+      {
+        "name": "Travis Scott",
+        "img": "https://image.tmdb.org/t/p/w185/eBdm7HQS6lLGg4BocgfoJ5qB9yp.jpg"
+      },
+      {
+        "name": "Corey Hawkins",
+        "img": "https://image.tmdb.org/t/p/w185/wRt0Bc0chN5BSjvYzmg2evgqNzp.jpg"
+      },
+      {
+        "name": "Jarreth J. Merz",
+        "img": "https://image.tmdb.org/t/p/w185/ze8WDEujZmTXdCLcUy0IaymwlcS.jpg"
+      }
+    ]
+  },
+  {
     "num": "2742",
     "t": "‎Mutiny",
     "id_tmdb": "1288445",
@@ -1189,9 +1244,9 @@
     "id_tmdb": "1549105",
     "cat": "DOCUMENTAIRE",
     "url": "https://vidzy.org/d/p78ozeg2h849_n",
-    "img": "https://image.tmdb.org/t/p/w500/ukDcdP5KS2CppyR6Upco6xRsPwK.jpg",
-    "bg": "https://image.tmdb.org/t/p/original/kqc9n5mqjv6fpAXCWqehAnzMUwK.jpg",
-    "desc": "",
+    "img": "https://image.tmdb.org/t/p/w500/oZ5nREpCAYMnonBFzF6kmZLCSpY.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/jLkbWXJwpe3cyOa0dJx81TSPU00.jpg",
+    "desc": "Le récit inspirant, plein d'humour et d'émotion de la légende du football Sir Kenny Dalglish, raconté par lui-même et illustré par des images d'archives inédites. Kenny Dalglish est passé du Celtic Glasgow au Liverpool FC, avant de devenir une légende du football européen et une icône de Liverpool, grâce à son impact en tant que joueur et au sein de la communauté. Ce documentaire, plein d'humour et d'émotion, est raconté par Sir Kenny Dalglish lui-même et illustré par des images d'archives inédites.",
     "year": "2025",
     "note": 3,
     "actors_pics": [
@@ -100617,7 +100672,7 @@
       },
       {
         "name": "Maia Morgenstern",
-        "img": "https://image.tmdb.org/t/p/w185/c1lEUhb2dqe9jyzEDJ4M4b4hJWR.jpg"
+        "img": "https://image.tmdb.org/t/p/w185/zmqKMZcT5z0QKwTTmmb9O0rekbt.jpg"
       },
       {
         "name": "Sergiu Nicolaescu",
@@ -106585,7 +106640,7 @@
       },
       {
         "name": "Elizabeth Berkley",
-        "img": "https://image.tmdb.org/t/p/w185/gYz3ZeNWPI7aP21eB2OWrILE1KM.jpg"
+        "img": "https://image.tmdb.org/t/p/w185/ibYmq9qTMV3haM9ITDmUpbl45Qu.jpg"
       },
       {
         "name": "Kobe Bryant",
