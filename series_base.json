@@ -1,9 +1,16 @@
 [
   {
     "num": "16",
-    "t": "Tom Sawyer- S01E01",
+    "t": "Tom Sawyer - S01E01",
     "id_tmdb": "43513",
     "url": "https://vidzy.cc/d/0gb5ylv4mnhc_n",
+    "cat": "ANIMATION"
+  },
+  {
+    "num": "16",
+    "t": "Tom Sawyer - S01E02",
+    "id_tmdb": "43513",
+    "url": "https://vidzy.cc/d/85elow27qe50_n",
     "cat": "ANIMATION"
   },
   {
