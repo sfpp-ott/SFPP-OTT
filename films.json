@@ -1,5 +1,387 @@
 [
   {
+    "num": "2751",
+    "t": "Histoires parallèles",
+    "id_tmdb": "1157869",
+    "cat": "DRAME, MYSTÈRE, THRILLER",
+    "url": "https://vidzy.org/d/8o3dveibn3gs_n",
+    "img": "https://image.tmdb.org/t/p/w500/skVHP9WjL0N7urDMJGXev2RwoK8.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/3lKjspWl46OWPmn6jIp8Wo8UdP4.jpg",
+    "desc": "En quête d’inspiration pour son nouveau roman, Sylvie espionne ses voisins dans l’immeuble d’en face. Quand elle engage le jeune Tomek pour l’aider dans son quotidien, elle ignore que celui-ci va bouleverser sa vie et son travail jusqu’à ce que la fiction qu’elle avait imaginée dépasse leur réalité à tous.",
+    "year": "2026",
+    "note": 3,
+    "trailer": "2Cld8pyFzYs",
+    "actors_pics": [
+      {
+        "name": "Isabelle Huppert",
+        "img": "https://image.tmdb.org/t/p/w185/wGG9v1Uci3sfrbjt0bRXkLrTqjY.jpg"
+      },
+      {
+        "name": "Virginie Efira",
+        "img": "https://image.tmdb.org/t/p/w185/sJFBDkZ2AMAkQBsSZricrUnZv50.jpg"
+      },
+      {
+        "name": "Vincent Cassel",
+        "img": "https://image.tmdb.org/t/p/w185/ivUQfhn5olOmR5hthN8C8GThBV4.jpg"
+      },
+      {
+        "name": "Pierre Niney",
+        "img": "https://image.tmdb.org/t/p/w185/jxOOaWYodZT5kO15Uih1pLjaX3e.jpg"
+      },
+      {
+        "name": "Adam Bessa",
+        "img": "https://image.tmdb.org/t/p/w185/v8y5C5AA4G9Wr8ZbOZ0zbfNymIW.jpg"
+      },
+      {
+        "name": "Catherine Deneuve",
+        "img": "https://image.tmdb.org/t/p/w185/7NS1KuwxTIzyMcpNGKBGlSV0Hqo.jpg"
+      },
+      {
+        "name": "India Hair",
+        "img": "https://image.tmdb.org/t/p/w185/gThHB2y6frehGeYJmOxMtkp7icc.jpg"
+      },
+      {
+        "name": "Véronique Ruggia Saura",
+        "img": "https://image.tmdb.org/t/p/w185/pJwDIbaLYDdwgEq15X7owYDUP67.jpg"
+      },
+      {
+        "name": "Iris Bry",
+        "img": "https://image.tmdb.org/t/p/w185/AuW67IdL464WyBCflgi3AiYb8Px.jpg"
+      },
+      {
+        "name": "François Delaive",
+        "img": "https://image.tmdb.org/t/p/w185/d66Lbvsxsk42vem7ts3RYglCBsc.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2750",
+    "t": "L'Esprit d'équipe",
+    "id_tmdb": "1558568",
+    "cat": "COMÉDIE",
+    "url": "https://vidzy.org/d/kngw5f03hjua_n",
+    "img": "https://image.tmdb.org/t/p/w500/xA2MZbFzIf0AvEXKml2FwiRkgtu.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/24JmHBUaZVmZRoEMjzejLL3sJc5.jpg",
+    "desc": "L'Esprit d'équipe relate l'histoire de Tío Mochales, une entreprise qui, il y a quelques années, régnait en souveraine incontestée du fromage espagnol. Aujourd'hui, ce n'est plus qu'une société un peu poussiéreuse qui tente de sauver les apparences. La dernière grande idée des dirigeants ? L'organisation d'une retraite rurale dans le village qui a vu naître la marque, afin de stimuler l'esprit d'équipe. Mais ce qui devait être une escapade pour renouer avec les \"valeurs traditionnelles\" devient un piège lorsque les participants découvrent que des licenciements sont à venir – et en grand nombre. Cette soi-disant parenthèse motivante se transforme alors rapidement en un vaste champ de bataille sur fond de flatteries, de trahisons et de fuites. Une comédie noire sur des bureaux délabrés, des cadres sans scrupules et des employés qui n'ont plus la patience nécessaire pour l'absurdité moderne des séminaires de team building.",
+    "year": "2026",
+    "note": 3,
+    "trailer": "c3HilWbv31U",
+    "actors_pics": [
+      {
+        "name": "Alexandra Jiménez",
+        "img": "https://image.tmdb.org/t/p/w185/2dRN4aqsNgO9Um2f3FUWSx5WMcx.jpg"
+      },
+      {
+        "name": "Maribel Verdú",
+        "img": "https://image.tmdb.org/t/p/w185/7hxTsW5CKi2lkz5yGMWShki7DOo.jpg"
+      },
+      {
+        "name": "Pedro Casablanc",
+        "img": "https://image.tmdb.org/t/p/w185/7oXGl8Nr2w7SaES4tbzjw4RYtF0.jpg"
+      },
+      {
+        "name": "Raúl Tejón",
+        "img": "https://image.tmdb.org/t/p/w185/cKc2AQ8t7bn2XXceg7vYP3XlJIe.jpg"
+      },
+      {
+        "name": "Blanca Martínez",
+        "img": "https://image.tmdb.org/t/p/w185/wIQhqLe9cvIkWL7V2oBMAeuxqk1.jpg"
+      },
+      {
+        "name": "Victor Rebull",
+        "img": "https://image.tmdb.org/t/p/w185/locdIJLnX1elVJr3ufV4sprk6Yh.jpg"
+      },
+      {
+        "name": "Pepe Viyuela",
+        "img": "https://image.tmdb.org/t/p/w185/aDDn9kF809MMCIXGQ7Cl0crW7Zj.jpg"
+      },
+      {
+        "name": "Saturnino García",
+        "img": "https://image.tmdb.org/t/p/w185/yubpcNgsdb5rKZPhKmiNRJfA0qX.jpg"
+      },
+      {
+        "name": "Ismael Fritschi",
+        "img": "https://image.tmdb.org/t/p/w185/8fRvH1drA5VUD1nodNdcTrf9mQ0.jpg"
+      },
+      {
+        "name": "Clara de Ramon",
+        "img": "https://image.tmdb.org/t/p/w185/yLlKusqKznBCRN4FZBzej6GL3XU.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2749",
+    "t": "Elena Nagapetyan - Ça valait le coup",
+    "id_tmdb": "1763275",
+    "cat": "COMÉDIE",
+    "url": "https://vidzy.org/d/k9ifulc84to1_n",
+    "img": "https://image.tmdb.org/t/p/w500/aoih5nsFG0azdOsNyzn57StYPIy.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/l6GD0vP5iXdMYzRK0xOtZC4mT5y.jpg",
+    "desc": "Je suis née en Ouzbékistan, j'ai grandi en Russie et, après une dépression post-partum, un divorce et plusieurs métiers, j'ai ressenti le besoin de raconter mon histoire. Monter sur scène pour le faire dans une langue qui n'est pas la mienne, mais que je maîtrise mieux que certains français, ça valait vraiment le coup. Ce spectacle raconte le parcours d'une fille qui essaie d'assumer...",
+    "year": "2026",
+    "note": 3,
+    "trailer": "9mAbP0U7UwE",
+    "actors_pics": [
+      {
+        "name": "Elena Nagapetyan",
+        "img": "https://image.tmdb.org/t/p/w185/u1lZLYGYXgf2Q9gcY8dmiiuHJTO.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2748",
+    "t": "Dix Pour Cent ! Le Film",
+    "id_tmdb": "1365884",
+    "cat": "COMÉDIE, DRAME",
+    "url": "https://vidzy.org/d/3vbtw9ia79yv_n",
+    "img": "https://image.tmdb.org/t/p/w500/lJUmTDi1ssxcxkHrzVBlwhaB0v8.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/4v8XgcmtUFVXUzGb7noltdjg2Ou.jpg",
+    "desc": "Cinq ans après la fermeture de l'agence, Andréa s'apprête à réaliser son premier long-métrage. Quand son acteur principal la plante et qu'elle se fâche avec son producteur, elle s'allie à Noémie, devenue productrice de télé populaire, qu'elle pense pouvoir manipuler. Mais entre un casting à reconstruire, des accidents sur le plateau et une procédure qui menace de lui faire perdre la garde de sa fille : tout prend l'eau. Autour d'elle, les anciens d'ASK convergent vers ce tournage sous haute tension. Chacun arrive avec sa fonction, son égo et son lot de vieilles rancunes — loin d'imaginer ce que ces retrouvailles leur réservent.",
+    "year": "2026",
+    "note": 3,
+    "trailer": "afCKKmg_BaQ",
+    "actors_pics": [
+      {
+        "name": "Camille Cottin",
+        "img": "https://image.tmdb.org/t/p/w185/ArBIA46esEk1qMlSwoVPR1SxPvc.jpg"
+      },
+      {
+        "name": "Thibault de Montalembert",
+        "img": "https://image.tmdb.org/t/p/w185/wfPsfqRmuxXlVmZUTfsOXf9nwGA.jpg"
+      },
+      {
+        "name": "Grégory Montel",
+        "img": "https://image.tmdb.org/t/p/w185/nImuHSjUgi8v8CaYp5UAZTHbY0j.jpg"
+      },
+      {
+        "name": "Liliane Rovère",
+        "img": "https://image.tmdb.org/t/p/w185/mo7NTceScg2S8YByd9Nc5jCsdfm.jpg"
+      },
+      {
+        "name": "Fanny Sidney",
+        "img": "https://image.tmdb.org/t/p/w185/vZslkUvialyIejC4CoDnY6WvT4Q.jpg"
+      },
+      {
+        "name": "Laure Calamy",
+        "img": "https://image.tmdb.org/t/p/w185/ov3BaihlXFRTzKTc7Hs5KWskEi4.jpg"
+      },
+      {
+        "name": "Nicolas Maury",
+        "img": "https://image.tmdb.org/t/p/w185/31wQP13EufTzCtldFBU2ckmLsve.jpg"
+      },
+      {
+        "name": "Ophélia Kolb",
+        "img": "https://image.tmdb.org/t/p/w185/90jLuYsywTxMGiRvrAmQ2aJgcHJ.jpg"
+      },
+      {
+        "name": "Anne Marivin",
+        "img": "https://image.tmdb.org/t/p/w185/m0CnA4iVKCQcnEVBVqRewSwlTLM.jpg"
+      },
+      {
+        "name": "Laetitia Casta",
+        "img": "https://image.tmdb.org/t/p/w185/6hakGGXWNWJ5VxMd2u8ExVwjRrj.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2747",
+    "t": "‎La Pat’ Patrouille : Le film mission Dino",
+    "id_tmdb": "1185806",
+    "cat": "ANIMATION, AVENTURE, FAMILIAL, FANTASTIQUE, COMÉDIE",
+    "url": "https://vidzy.org/d/q7gkl0one54l_n",
+    "img": "https://image.tmdb.org/t/p/w500/iprKhXVhUuGo3LbPurtB7Zcq6ph.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/6TSxLmwT7j1ugtKi8NyMmdzWAGj.jpg",
+    "desc": "Lorsqu’une mystérieuse tempête surprend leur navire, la Pat’ Patrouille s’échoue sur une île tropicale encore inexplorée… et peuplée de dinosaures ! Ils y rencontrent Rex, un chiot courageux installé sur l’île depuis des années et devenu un véritable expert des dinosaures. Mais leur ennemi de toujours, M. Hellinger, arrive lui aussi sur l’île avec un projet dangereux : exploiter ses richesses naturelles en creusant des mines. Ses actions imprudentes déclenchent bientôt l’éruption d’un gigantesque volcan endormi. La Pat’ Patrouille se retrouve alors entraînée dans une série de missions de sauvetage spectaculaires, plus impressionnantes que tout ce qu’elle a connu jusqu’ici. Elle devra arrêter M. Hellinger et sauver l’île avant qu’il ne soit trop tard.",
+    "year": "2026",
+    "note": 4,
+    "trailer": "qELH7nUUs14",
+    "actors_pics": [
+      {
+        "name": "Carter Young",
+        "img": "https://image.tmdb.org/t/p/w185/ezkMRnYOjsYXrcwHEJ2JIDWTJJq.jpg"
+      },
+      {
+        "name": "Mckenna Grace",
+        "img": "https://image.tmdb.org/t/p/w185/mbY7ngjgYcrUPDVNBikB9sMdaIk.jpg"
+      },
+      {
+        "name": "Terry Crews",
+        "img": "https://image.tmdb.org/t/p/w185/pxTY4SglLo5hFcMH00MxPeC5u55.jpg"
+      },
+      {
+        "name": "Meredith MacNeill",
+        "img": "https://image.tmdb.org/t/p/w185/jcJq5Af7KSleMFVhrla5xbv8TOg.jpg"
+      },
+      {
+        "name": "Ron Pardo",
+        "img": "https://image.tmdb.org/t/p/w185/hE4QOBmPqstfmBVXmlcJmsljUMw.jpg"
+      },
+      {
+        "name": "Jennifer Hudson",
+        "img": "https://image.tmdb.org/t/p/w185/4wpTUqEjHYjDMj0Fv6BvfjeIS1H.jpg"
+      },
+      {
+        "name": "Hayden Chemberlen",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Fortune Feimster",
+        "img": "https://image.tmdb.org/t/p/w185/9f2p2T61K4pIvKQMLRlow8znkXU.jpg"
+      },
+      {
+        "name": "Jameela Jamil",
+        "img": "https://image.tmdb.org/t/p/w185/e9RviCItpPoSwD79y4YYlDbIwM6.jpg"
+      },
+      {
+        "name": "Rain Janjua",
+        "img": "https://image.tmdb.org/t/p/w185/39VLLyRP55v9ImeKT50EdCIrZ84.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2746",
+    "t": "‎Pourquoi je me suis marié, déjà ?",
+    "id_tmdb": "1522689",
+    "cat": "COMÉDIE, ROMANCE, DRAME",
+    "url": "https://vidzy.org/d/14x1yafhfn6q_n",
+    "img": "https://image.tmdb.org/t/p/w500/8mmQWqkvZrvxqr21WhV7Pk0WIHl.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/lJYniNRM2i9wXnfWVHOB4PxygFZ.jpg",
+    "desc": "Réunis à l'étranger pour le mariage de la fille de Marcus et Angela, les couples attisent des tensions anciennes et nouvelles en se demandant : « Pourquoi on s'est mariés, déjà ? »",
+    "year": "2026",
+    "note": 3,
+    "actors_pics": [
+      {
+        "name": "Tyler Perry",
+        "img": "https://image.tmdb.org/t/p/w185/8KU0OizemVLrERXt5HJIa0PAkIN.jpg"
+      },
+      {
+        "name": "Taraji P. Henson",
+        "img": "https://image.tmdb.org/t/p/w185/jUU2X9mDwJaAniEmJOfvImBS9qb.jpg"
+      },
+      {
+        "name": "Jill Scott",
+        "img": "https://image.tmdb.org/t/p/w185/vfq3acT3sWG1b2M4ior10zqXFd1.jpg"
+      },
+      {
+        "name": "Richard T. Jones",
+        "img": "https://image.tmdb.org/t/p/w185/hdko2C45Wr5G03Z8JwGjWMynP84.jpg"
+      },
+      {
+        "name": "Tasha Smith",
+        "img": "https://image.tmdb.org/t/p/w185/viJnHL3BjQ5oqisXklQWGlh29Hx.jpg"
+      },
+      {
+        "name": "Michael Jai White",
+        "img": "https://image.tmdb.org/t/p/w185/YPoHYuzR37wFpPpwEXZYQlhLln.jpg"
+      },
+      {
+        "name": "Sharon Leal",
+        "img": "https://image.tmdb.org/t/p/w185/3dJCnAZDG2ZN7Hxct8UAdPePpuz.jpg"
+      },
+      {
+        "name": "Lamman Rucker",
+        "img": "https://image.tmdb.org/t/p/w185/97JGsO3FR13MLa3hrs9A0cIzGBo.jpg"
+      },
+      {
+        "name": "Armani Greer",
+        "img": "https://image.tmdb.org/t/p/w185/96ZcQ2uxhmKxATJpYtLMsLaUXrd.jpg"
+      },
+      {
+        "name": "Everett Osborne",
+        "img": "https://image.tmdb.org/t/p/w185/mDBkxdX8p0fc1wEFNyAF5MFTHGG.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2745",
+    "t": "‎Élise sous emprise",
+    "id_tmdb": "1001111",
+    "cat": "COMÉDIE",
+    "url": "https://vidzy.org/d/w0jkpojzq9oe_n",
+    "img": "https://image.tmdb.org/t/p/w500/jUqVCXGWjSOTsY0WSXxlzNOobqS.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/qP0KxsYuVgj0BlKmWUPtEEIUPVz.jpg",
+    "desc": "Rien ne va plus dans la vie d'Élise : engluée dans une relation amoureuse toxique, elle se retrouve propulsée metteuse en scène suite à la mort soudaine du célèbre Groutchov dont elle était l’assistante. Un étrange symptôme, le trouble panique, la submerge. Élise tente de faire bonne figure mais son rapport au monde s’en trouve totalement modifié. Ne serait-ce pas l’occasion pour elle de regarder la vie différemment ?",
+    "year": "2026",
+    "note": 3,
+    "trailer": "LmftLRe6yfg",
+    "actors_pics": [
+      {
+        "name": "Marie Rémond",
+        "img": "https://image.tmdb.org/t/p/w185/hxcEAQYZz4gMqKmOzXJ36UiS4i3.jpg"
+      },
+      {
+        "name": "Yannick Choirat",
+        "img": "https://image.tmdb.org/t/p/w185/e731ITPWEOjD1xY4TH6VvO8qY7v.jpg"
+      },
+      {
+        "name": "Olivia Côte",
+        "img": "https://image.tmdb.org/t/p/w185/1ZOrkqlyDsGDUDEvbrSfU4Gx5iB.jpg"
+      },
+      {
+        "name": "Lolita Chammah",
+        "img": "https://image.tmdb.org/t/p/w185/1A8NamRmw1DHRRIqkioenRDDouf.jpg"
+      },
+      {
+        "name": "José Garcia",
+        "img": "https://image.tmdb.org/t/p/w185/ml8JHunZl2TCBrcaseqtiEfpykm.jpg"
+      },
+      {
+        "name": "Gustave Kervern",
+        "img": "https://image.tmdb.org/t/p/w185/cRbHFJJ5yAWUbENYhcLDmnCZUHX.jpg"
+      },
+      {
+        "name": "Anne Le Ny",
+        "img": "https://image.tmdb.org/t/p/w185/eyvOUlmpllkSTRRT2mmGcUUrKZR.jpg"
+      },
+      {
+        "name": "Alain Françon",
+        "img": "https://image.tmdb.org/t/p/w185/a0a5TxlsI0FrFZO5grtRet47nH7.jpg"
+      },
+      {
+        "name": "Céline Menville",
+        "img": "https://image.tmdb.org/t/p/w185/aZYWdBE0V6U3FwyKXcYtfxDiPEu.jpg"
+      },
+      {
+        "name": "Olivier Pruvel",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      }
+    ]
+  },
+  {
+    "num": "2744",
+    "t": "‎L'Envers du sport : Qui a peur des Jail Blazers ?",
+    "id_tmdb": "1641965",
+    "cat": "DOCUMENTAIRE",
+    "url": "https://vidzy.org/d/483a7s9q9lmf_n",
+    "img": "https://image.tmdb.org/t/p/w500/vmp45llJTRr6JLaIamt3RlfxgTH.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/gyYTuYSwiqGNaqNomscb6oSZ8Mt.jpg",
+    "desc": "Joueurs instables. Poursuites criminelles. Une des journaux. Ce documentaire sans concession revient sur l'implosion spectaculaire de la talentueuse équipe de Portland en NBA.",
+    "year": "2026",
+    "note": 3,
+    "actors_pics": [
+      {
+        "name": "Rasheed Wallace",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Damon Stoudamire",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Bonzi Wells",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Shawn Kemp",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Bob Whitsitt",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      }
+    ]
+  },
+  {
     "num": "2743",
     "t": "‎L'Odyssée",
     "id_tmdb": "1368337",
