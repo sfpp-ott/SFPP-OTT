@@ -1,5 +1,311 @@
 [
   {
+    "num": "17",
+    "t": "HIS & HERS - S01E01",
+    "id_tmdb": "259731",
+    "url": "https://vidzy.org/d/266ekgsccabb_n",
+    "cat": "DRAME, CRIME, MYSTERE",
+    "img": "https://image.tmdb.org/t/p/w500/p0uRDsiYCgLSZwiXgX7Xgw3llwk.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/n4hJLZmBG8kZccNn7bNgBDsVQ6a.jpg",
+    "desc": "Deux époux séparés, un inspecteur et une journaliste, s'affrontent pour résoudre une affaire de meurtre dans laquelle chacun considère l'autre comme le principal suspect.",
+    "year": "2026",
+    "note": 4,
+    "trailer": "ww9Mb98NcTE",
+    "actors_pics": [
+      {
+        "name": "Tessa Thompson",
+        "img": "https://image.tmdb.org/t/p/w185/19ze60jXlb2j7dXc2UpA3MujXA8.jpg"
+      },
+      {
+        "name": "Jon Bernthal",
+        "img": "https://image.tmdb.org/t/p/w185/bjcglF1IpDcZNs1HwFxakGpzBo6.jpg"
+      },
+      {
+        "name": "Pablo Schreiber",
+        "img": "https://image.tmdb.org/t/p/w185/trKW3kwhwx4UeCNZg43A1x1h4Uv.jpg"
+      },
+      {
+        "name": "Marin Ireland",
+        "img": "https://image.tmdb.org/t/p/w185/jAIOQNraHjvIAdqk81QDV5Phupp.jpg"
+      },
+      {
+        "name": "Sunita Mani",
+        "img": "https://image.tmdb.org/t/p/w185/xQo4rkMEphSAt8F9D1OyWv0GBLx.jpg"
+      },
+      {
+        "name": "Rebecca Rittenhouse",
+        "img": "https://image.tmdb.org/t/p/w185/jQMrD7E4FCEBOD8tqQsi6q5FwH.jpg"
+      },
+      {
+        "name": "Chris Bauer",
+        "img": "https://image.tmdb.org/t/p/w185/1AjdNxbVmy6azlOxIfnCX5OruEA.jpg"
+      },
+      {
+        "name": "Poppy Liu",
+        "img": "https://image.tmdb.org/t/p/w185/i36QkUChZN7K8BQa1ReaZHes6L4.jpg"
+      },
+      {
+        "name": "Crystal R. Fox",
+        "img": "https://image.tmdb.org/t/p/w185/u5mv4EiIl5oS2s0yUaqtjbpWEz2.jpg"
+      }
+    ]
+  },
+  {
+    "num": "17",
+    "t": "HIS & HERS - S01E02",
+    "id_tmdb": "259731",
+    "url": "https://vidzy.org/d/ngflkwnuhaq8_n",
+    "cat": "DRAME, CRIME, MYSTERE",
+    "img": "https://image.tmdb.org/t/p/w500/p0uRDsiYCgLSZwiXgX7Xgw3llwk.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/n4hJLZmBG8kZccNn7bNgBDsVQ6a.jpg",
+    "desc": "Deux époux séparés, un inspecteur et une journaliste, s'affrontent pour résoudre une affaire de meurtre dans laquelle chacun considère l'autre comme le principal suspect.",
+    "year": "2026",
+    "note": 4,
+    "trailer": "ww9Mb98NcTE",
+    "actors_pics": [
+      {
+        "name": "Tessa Thompson",
+        "img": "https://image.tmdb.org/t/p/w185/19ze60jXlb2j7dXc2UpA3MujXA8.jpg"
+      },
+      {
+        "name": "Jon Bernthal",
+        "img": "https://image.tmdb.org/t/p/w185/bjcglF1IpDcZNs1HwFxakGpzBo6.jpg"
+      },
+      {
+        "name": "Pablo Schreiber",
+        "img": "https://image.tmdb.org/t/p/w185/trKW3kwhwx4UeCNZg43A1x1h4Uv.jpg"
+      },
+      {
+        "name": "Marin Ireland",
+        "img": "https://image.tmdb.org/t/p/w185/jAIOQNraHjvIAdqk81QDV5Phupp.jpg"
+      },
+      {
+        "name": "Sunita Mani",
+        "img": "https://image.tmdb.org/t/p/w185/xQo4rkMEphSAt8F9D1OyWv0GBLx.jpg"
+      },
+      {
+        "name": "Rebecca Rittenhouse",
+        "img": "https://image.tmdb.org/t/p/w185/jQMrD7E4FCEBOD8tqQsi6q5FwH.jpg"
+      },
+      {
+        "name": "Chris Bauer",
+        "img": "https://image.tmdb.org/t/p/w185/1AjdNxbVmy6azlOxIfnCX5OruEA.jpg"
+      },
+      {
+        "name": "Poppy Liu",
+        "img": "https://image.tmdb.org/t/p/w185/i36QkUChZN7K8BQa1ReaZHes6L4.jpg"
+      },
+      {
+        "name": "Crystal R. Fox",
+        "img": "https://image.tmdb.org/t/p/w185/u5mv4EiIl5oS2s0yUaqtjbpWEz2.jpg"
+      }
+    ]
+  },
+  {
+    "num": "17",
+    "t": "HIS & HERS - S01E03",
+    "id_tmdb": "259731",
+    "url": "https://vidzy.org/d/f6rzmqiks1mx_n",
+    "cat": "DRAME, CRIME, MYSTERE",
+    "img": "https://image.tmdb.org/t/p/w500/p0uRDsiYCgLSZwiXgX7Xgw3llwk.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/n4hJLZmBG8kZccNn7bNgBDsVQ6a.jpg",
+    "desc": "Deux époux séparés, un inspecteur et une journaliste, s'affrontent pour résoudre une affaire de meurtre dans laquelle chacun considère l'autre comme le principal suspect.",
+    "year": "2026",
+    "note": 4,
+    "trailer": "ww9Mb98NcTE",
+    "actors_pics": [
+      {
+        "name": "Tessa Thompson",
+        "img": "https://image.tmdb.org/t/p/w185/19ze60jXlb2j7dXc2UpA3MujXA8.jpg"
+      },
+      {
+        "name": "Jon Bernthal",
+        "img": "https://image.tmdb.org/t/p/w185/bjcglF1IpDcZNs1HwFxakGpzBo6.jpg"
+      },
+      {
+        "name": "Pablo Schreiber",
+        "img": "https://image.tmdb.org/t/p/w185/trKW3kwhwx4UeCNZg43A1x1h4Uv.jpg"
+      },
+      {
+        "name": "Marin Ireland",
+        "img": "https://image.tmdb.org/t/p/w185/jAIOQNraHjvIAdqk81QDV5Phupp.jpg"
+      },
+      {
+        "name": "Sunita Mani",
+        "img": "https://image.tmdb.org/t/p/w185/xQo4rkMEphSAt8F9D1OyWv0GBLx.jpg"
+      },
+      {
+        "name": "Rebecca Rittenhouse",
+        "img": "https://image.tmdb.org/t/p/w185/jQMrD7E4FCEBOD8tqQsi6q5FwH.jpg"
+      },
+      {
+        "name": "Chris Bauer",
+        "img": "https://image.tmdb.org/t/p/w185/1AjdNxbVmy6azlOxIfnCX5OruEA.jpg"
+      },
+      {
+        "name": "Poppy Liu",
+        "img": "https://image.tmdb.org/t/p/w185/i36QkUChZN7K8BQa1ReaZHes6L4.jpg"
+      },
+      {
+        "name": "Crystal R. Fox",
+        "img": "https://image.tmdb.org/t/p/w185/u5mv4EiIl5oS2s0yUaqtjbpWEz2.jpg"
+      }
+    ]
+  },
+  {
+    "num": "17",
+    "t": "HIS & HERS - S01E04",
+    "id_tmdb": "259731",
+    "url": "https://vidzy.org/d/5e47884enbz8_n",
+    "cat": "DRAME, CRIME, MYSTERE",
+    "img": "https://image.tmdb.org/t/p/w500/p0uRDsiYCgLSZwiXgX7Xgw3llwk.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/n4hJLZmBG8kZccNn7bNgBDsVQ6a.jpg",
+    "desc": "Deux époux séparés, un inspecteur et une journaliste, s'affrontent pour résoudre une affaire de meurtre dans laquelle chacun considère l'autre comme le principal suspect.",
+    "year": "2026",
+    "note": 4,
+    "trailer": "ww9Mb98NcTE",
+    "actors_pics": [
+      {
+        "name": "Tessa Thompson",
+        "img": "https://image.tmdb.org/t/p/w185/19ze60jXlb2j7dXc2UpA3MujXA8.jpg"
+      },
+      {
+        "name": "Jon Bernthal",
+        "img": "https://image.tmdb.org/t/p/w185/bjcglF1IpDcZNs1HwFxakGpzBo6.jpg"
+      },
+      {
+        "name": "Pablo Schreiber",
+        "img": "https://image.tmdb.org/t/p/w185/trKW3kwhwx4UeCNZg43A1x1h4Uv.jpg"
+      },
+      {
+        "name": "Marin Ireland",
+        "img": "https://image.tmdb.org/t/p/w185/jAIOQNraHjvIAdqk81QDV5Phupp.jpg"
+      },
+      {
+        "name": "Sunita Mani",
+        "img": "https://image.tmdb.org/t/p/w185/xQo4rkMEphSAt8F9D1OyWv0GBLx.jpg"
+      },
+      {
+        "name": "Rebecca Rittenhouse",
+        "img": "https://image.tmdb.org/t/p/w185/jQMrD7E4FCEBOD8tqQsi6q5FwH.jpg"
+      },
+      {
+        "name": "Chris Bauer",
+        "img": "https://image.tmdb.org/t/p/w185/1AjdNxbVmy6azlOxIfnCX5OruEA.jpg"
+      },
+      {
+        "name": "Poppy Liu",
+        "img": "https://image.tmdb.org/t/p/w185/i36QkUChZN7K8BQa1ReaZHes6L4.jpg"
+      },
+      {
+        "name": "Crystal R. Fox",
+        "img": "https://image.tmdb.org/t/p/w185/u5mv4EiIl5oS2s0yUaqtjbpWEz2.jpg"
+      }
+    ]
+  },
+  {
+    "num": "17",
+    "t": "HIS & HERS - S01E05",
+    "id_tmdb": "259731",
+    "url": "https://vidzy.org/d/1l4yl2r2k2v7_n",
+    "cat": "DRAME, CRIME, MYSTERE",
+    "img": "https://image.tmdb.org/t/p/w500/p0uRDsiYCgLSZwiXgX7Xgw3llwk.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/n4hJLZmBG8kZccNn7bNgBDsVQ6a.jpg",
+    "desc": "Deux époux séparés, un inspecteur et une journaliste, s'affrontent pour résoudre une affaire de meurtre dans laquelle chacun considère l'autre comme le principal suspect.",
+    "year": "2026",
+    "note": 4,
+    "trailer": "ww9Mb98NcTE",
+    "actors_pics": [
+      {
+        "name": "Tessa Thompson",
+        "img": "https://image.tmdb.org/t/p/w185/19ze60jXlb2j7dXc2UpA3MujXA8.jpg"
+      },
+      {
+        "name": "Jon Bernthal",
+        "img": "https://image.tmdb.org/t/p/w185/bjcglF1IpDcZNs1HwFxakGpzBo6.jpg"
+      },
+      {
+        "name": "Pablo Schreiber",
+        "img": "https://image.tmdb.org/t/p/w185/trKW3kwhwx4UeCNZg43A1x1h4Uv.jpg"
+      },
+      {
+        "name": "Marin Ireland",
+        "img": "https://image.tmdb.org/t/p/w185/jAIOQNraHjvIAdqk81QDV5Phupp.jpg"
+      },
+      {
+        "name": "Sunita Mani",
+        "img": "https://image.tmdb.org/t/p/w185/xQo4rkMEphSAt8F9D1OyWv0GBLx.jpg"
+      },
+      {
+        "name": "Rebecca Rittenhouse",
+        "img": "https://image.tmdb.org/t/p/w185/jQMrD7E4FCEBOD8tqQsi6q5FwH.jpg"
+      },
+      {
+        "name": "Chris Bauer",
+        "img": "https://image.tmdb.org/t/p/w185/1AjdNxbVmy6azlOxIfnCX5OruEA.jpg"
+      },
+      {
+        "name": "Poppy Liu",
+        "img": "https://image.tmdb.org/t/p/w185/i36QkUChZN7K8BQa1ReaZHes6L4.jpg"
+      },
+      {
+        "name": "Crystal R. Fox",
+        "img": "https://image.tmdb.org/t/p/w185/u5mv4EiIl5oS2s0yUaqtjbpWEz2.jpg"
+      }
+    ]
+  },
+  {
+    "num": "17",
+    "t": "HIS & HERS - S01E06",
+    "id_tmdb": "259731",
+    "url": "https://vidzy.org/d/kvslrvqho7nw_n",
+    "cat": "DRAME, CRIME, MYSTERE",
+    "img": "https://image.tmdb.org/t/p/w500/p0uRDsiYCgLSZwiXgX7Xgw3llwk.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/n4hJLZmBG8kZccNn7bNgBDsVQ6a.jpg",
+    "desc": "Deux époux séparés, un inspecteur et une journaliste, s'affrontent pour résoudre une affaire de meurtre dans laquelle chacun considère l'autre comme le principal suspect.",
+    "year": "2026",
+    "note": 4,
+    "trailer": "ww9Mb98NcTE",
+    "actors_pics": [
+      {
+        "name": "Tessa Thompson",
+        "img": "https://image.tmdb.org/t/p/w185/19ze60jXlb2j7dXc2UpA3MujXA8.jpg"
+      },
+      {
+        "name": "Jon Bernthal",
+        "img": "https://image.tmdb.org/t/p/w185/bjcglF1IpDcZNs1HwFxakGpzBo6.jpg"
+      },
+      {
+        "name": "Pablo Schreiber",
+        "img": "https://image.tmdb.org/t/p/w185/trKW3kwhwx4UeCNZg43A1x1h4Uv.jpg"
+      },
+      {
+        "name": "Marin Ireland",
+        "img": "https://image.tmdb.org/t/p/w185/jAIOQNraHjvIAdqk81QDV5Phupp.jpg"
+      },
+      {
+        "name": "Sunita Mani",
+        "img": "https://image.tmdb.org/t/p/w185/xQo4rkMEphSAt8F9D1OyWv0GBLx.jpg"
+      },
+      {
+        "name": "Rebecca Rittenhouse",
+        "img": "https://image.tmdb.org/t/p/w185/jQMrD7E4FCEBOD8tqQsi6q5FwH.jpg"
+      },
+      {
+        "name": "Chris Bauer",
+        "img": "https://image.tmdb.org/t/p/w185/1AjdNxbVmy6azlOxIfnCX5OruEA.jpg"
+      },
+      {
+        "name": "Poppy Liu",
+        "img": "https://image.tmdb.org/t/p/w185/i36QkUChZN7K8BQa1ReaZHes6L4.jpg"
+      },
+      {
+        "name": "Crystal R. Fox",
+        "img": "https://image.tmdb.org/t/p/w185/u5mv4EiIl5oS2s0yUaqtjbpWEz2.jpg"
+      }
+    ]
+  },
+  {
     "num": "16",
     "t": "Tom Sawyer - S01E01",
     "id_tmdb": "43513",
