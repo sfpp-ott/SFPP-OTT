@@ -1,5 +1,335 @@
 [
   {
+    "num": "18",
+    "t": "Mon amie Adèle - S01E01",
+    "id_tmdb": "97173",
+    "url": "https://vidzy.org/d/1mgygzp5p2wa_n",
+    "cat": "MYSTERE, SCIENCE-FICTION, FANTASTIQUE, DRAME",
+    "img": "https://image.tmdb.org/t/p/w500/3gZXeo1AwPWjBcgbkHoDPtY1ayb.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/w99Pk4pJSieveKIIc7KGXtsFT3U.jpg",
+    "desc": "Louise, une mère célibataire qui entretient une liaison avec son patron David, un psychiatre. La situation se complique lorsque Louise se lie d'amitié avec la femme de Tom, Adèle. Elle se retrouve alors piégée dans un tissu de secrets et de mensonges où les apparences sont trompeuses.",
+    "year": "2021",
+    "note": 4,
+    "trailer": "lNJZCr1LteU",
+    "actors_pics": [
+      {
+        "name": "Simona Brown",
+        "img": "https://image.tmdb.org/t/p/w185/6bKw90z2GoyrYOp5xEBbJQI7wSr.jpg"
+      },
+      {
+        "name": "Eve Hewson",
+        "img": "https://image.tmdb.org/t/p/w185/1OlMfQrXEujIPTBUWt3AM0J0hJa.jpg"
+      },
+      {
+        "name": "Tom Bateman",
+        "img": "https://image.tmdb.org/t/p/w185/6elQzmY4EJHlLvHsaeoeo2dXOQ1.jpg"
+      },
+      {
+        "name": "Robert Aramayo",
+        "img": "https://image.tmdb.org/t/p/w185/1wqSZVvB018H2mZbemMSn6gH4zq.jpg"
+      },
+      {
+        "name": "Tyler Howitt",
+        "img": "https://image.tmdb.org/t/p/w185/uYxwVv1u6bWYukatuzwkjI9O5vx.jpg"
+      },
+      {
+        "name": "Georgie Glen",
+        "img": "https://image.tmdb.org/t/p/w185/21xo3xVkP44qcoxoYwGFhMNU8uB.jpg"
+      },
+      {
+        "name": "Nichola Burley",
+        "img": "https://image.tmdb.org/t/p/w185/orbLsH17Jp8deODoJO2ImjzxqSW.jpg"
+      },
+      {
+        "name": "Aaron Anthony",
+        "img": "https://image.tmdb.org/t/p/w185/r7jTc7hPnsvobl5w0769GMHhwD0.jpg"
+      },
+      {
+        "name": "Charlotte Mills",
+        "img": "https://image.tmdb.org/t/p/w185/sIE2Y3gIz1iNvCY8fIe65vMivyh.jpg"
+      },
+      {
+        "name": "Roshan Seth",
+        "img": "https://image.tmdb.org/t/p/w185/4TbHkaZxPegaTns250cVXr8F91F.jpg"
+      }
+    ]
+  },
+  {
+    "num": "18",
+    "t": "Mon amie Adèle - S01E02",
+    "id_tmdb": "97173",
+    "url": "https://vidzy.org/d/kw9mpq3qs886_n",
+    "cat": "MYSTERE, SCIENCE-FICTION, FANTASTIQUE, DRAME",
+    "img": "https://image.tmdb.org/t/p/w500/3gZXeo1AwPWjBcgbkHoDPtY1ayb.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/w99Pk4pJSieveKIIc7KGXtsFT3U.jpg",
+    "desc": "Louise, une mère célibataire qui entretient une liaison avec son patron David, un psychiatre. La situation se complique lorsque Louise se lie d'amitié avec la femme de Tom, Adèle. Elle se retrouve alors piégée dans un tissu de secrets et de mensonges où les apparences sont trompeuses.",
+    "year": "2021",
+    "note": 4,
+    "trailer": "lNJZCr1LteU",
+    "actors_pics": [
+      {
+        "name": "Simona Brown",
+        "img": "https://image.tmdb.org/t/p/w185/6bKw90z2GoyrYOp5xEBbJQI7wSr.jpg"
+      },
+      {
+        "name": "Eve Hewson",
+        "img": "https://image.tmdb.org/t/p/w185/1OlMfQrXEujIPTBUWt3AM0J0hJa.jpg"
+      },
+      {
+        "name": "Tom Bateman",
+        "img": "https://image.tmdb.org/t/p/w185/6elQzmY4EJHlLvHsaeoeo2dXOQ1.jpg"
+      },
+      {
+        "name": "Robert Aramayo",
+        "img": "https://image.tmdb.org/t/p/w185/1wqSZVvB018H2mZbemMSn6gH4zq.jpg"
+      },
+      {
+        "name": "Tyler Howitt",
+        "img": "https://image.tmdb.org/t/p/w185/uYxwVv1u6bWYukatuzwkjI9O5vx.jpg"
+      },
+      {
+        "name": "Georgie Glen",
+        "img": "https://image.tmdb.org/t/p/w185/21xo3xVkP44qcoxoYwGFhMNU8uB.jpg"
+      },
+      {
+        "name": "Nichola Burley",
+        "img": "https://image.tmdb.org/t/p/w185/orbLsH17Jp8deODoJO2ImjzxqSW.jpg"
+      },
+      {
+        "name": "Aaron Anthony",
+        "img": "https://image.tmdb.org/t/p/w185/r7jTc7hPnsvobl5w0769GMHhwD0.jpg"
+      },
+      {
+        "name": "Charlotte Mills",
+        "img": "https://image.tmdb.org/t/p/w185/sIE2Y3gIz1iNvCY8fIe65vMivyh.jpg"
+      },
+      {
+        "name": "Roshan Seth",
+        "img": "https://image.tmdb.org/t/p/w185/4TbHkaZxPegaTns250cVXr8F91F.jpg"
+      }
+    ]
+  },
+  {
+    "num": "18",
+    "t": "Mon amie Adèle - S01E03",
+    "id_tmdb": "97173",
+    "url": "https://vidzy.org/d/17jjcwfburag_n",
+    "cat": "MYSTERE, SCIENCE-FICTION, FANTASTIQUE, DRAME",
+    "img": "https://image.tmdb.org/t/p/w500/3gZXeo1AwPWjBcgbkHoDPtY1ayb.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/w99Pk4pJSieveKIIc7KGXtsFT3U.jpg",
+    "desc": "Louise, une mère célibataire qui entretient une liaison avec son patron David, un psychiatre. La situation se complique lorsque Louise se lie d'amitié avec la femme de Tom, Adèle. Elle se retrouve alors piégée dans un tissu de secrets et de mensonges où les apparences sont trompeuses.",
+    "year": "2021",
+    "note": 4,
+    "trailer": "lNJZCr1LteU",
+    "actors_pics": [
+      {
+        "name": "Simona Brown",
+        "img": "https://image.tmdb.org/t/p/w185/6bKw90z2GoyrYOp5xEBbJQI7wSr.jpg"
+      },
+      {
+        "name": "Eve Hewson",
+        "img": "https://image.tmdb.org/t/p/w185/1OlMfQrXEujIPTBUWt3AM0J0hJa.jpg"
+      },
+      {
+        "name": "Tom Bateman",
+        "img": "https://image.tmdb.org/t/p/w185/6elQzmY4EJHlLvHsaeoeo2dXOQ1.jpg"
+      },
+      {
+        "name": "Robert Aramayo",
+        "img": "https://image.tmdb.org/t/p/w185/1wqSZVvB018H2mZbemMSn6gH4zq.jpg"
+      },
+      {
+        "name": "Tyler Howitt",
+        "img": "https://image.tmdb.org/t/p/w185/uYxwVv1u6bWYukatuzwkjI9O5vx.jpg"
+      },
+      {
+        "name": "Georgie Glen",
+        "img": "https://image.tmdb.org/t/p/w185/21xo3xVkP44qcoxoYwGFhMNU8uB.jpg"
+      },
+      {
+        "name": "Nichola Burley",
+        "img": "https://image.tmdb.org/t/p/w185/orbLsH17Jp8deODoJO2ImjzxqSW.jpg"
+      },
+      {
+        "name": "Aaron Anthony",
+        "img": "https://image.tmdb.org/t/p/w185/r7jTc7hPnsvobl5w0769GMHhwD0.jpg"
+      },
+      {
+        "name": "Charlotte Mills",
+        "img": "https://image.tmdb.org/t/p/w185/sIE2Y3gIz1iNvCY8fIe65vMivyh.jpg"
+      },
+      {
+        "name": "Roshan Seth",
+        "img": "https://image.tmdb.org/t/p/w185/4TbHkaZxPegaTns250cVXr8F91F.jpg"
+      }
+    ]
+  },
+  {
+    "num": "18",
+    "t": "Mon amie Adèle - S01E04",
+    "id_tmdb": "97173",
+    "url": "https://vidzy.org/d/hya9x9fag0ef_n",
+    "cat": "MYSTERE, SCIENCE-FICTION, FANTASTIQUE, DRAME",
+    "img": "https://image.tmdb.org/t/p/w500/3gZXeo1AwPWjBcgbkHoDPtY1ayb.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/w99Pk4pJSieveKIIc7KGXtsFT3U.jpg",
+    "desc": "Louise, une mère célibataire qui entretient une liaison avec son patron David, un psychiatre. La situation se complique lorsque Louise se lie d'amitié avec la femme de Tom, Adèle. Elle se retrouve alors piégée dans un tissu de secrets et de mensonges où les apparences sont trompeuses.",
+    "year": "2021",
+    "note": 4,
+    "trailer": "lNJZCr1LteU",
+    "actors_pics": [
+      {
+        "name": "Simona Brown",
+        "img": "https://image.tmdb.org/t/p/w185/6bKw90z2GoyrYOp5xEBbJQI7wSr.jpg"
+      },
+      {
+        "name": "Eve Hewson",
+        "img": "https://image.tmdb.org/t/p/w185/1OlMfQrXEujIPTBUWt3AM0J0hJa.jpg"
+      },
+      {
+        "name": "Tom Bateman",
+        "img": "https://image.tmdb.org/t/p/w185/6elQzmY4EJHlLvHsaeoeo2dXOQ1.jpg"
+      },
+      {
+        "name": "Robert Aramayo",
+        "img": "https://image.tmdb.org/t/p/w185/1wqSZVvB018H2mZbemMSn6gH4zq.jpg"
+      },
+      {
+        "name": "Tyler Howitt",
+        "img": "https://image.tmdb.org/t/p/w185/uYxwVv1u6bWYukatuzwkjI9O5vx.jpg"
+      },
+      {
+        "name": "Georgie Glen",
+        "img": "https://image.tmdb.org/t/p/w185/21xo3xVkP44qcoxoYwGFhMNU8uB.jpg"
+      },
+      {
+        "name": "Nichola Burley",
+        "img": "https://image.tmdb.org/t/p/w185/orbLsH17Jp8deODoJO2ImjzxqSW.jpg"
+      },
+      {
+        "name": "Aaron Anthony",
+        "img": "https://image.tmdb.org/t/p/w185/r7jTc7hPnsvobl5w0769GMHhwD0.jpg"
+      },
+      {
+        "name": "Charlotte Mills",
+        "img": "https://image.tmdb.org/t/p/w185/sIE2Y3gIz1iNvCY8fIe65vMivyh.jpg"
+      },
+      {
+        "name": "Roshan Seth",
+        "img": "https://image.tmdb.org/t/p/w185/4TbHkaZxPegaTns250cVXr8F91F.jpg"
+      }
+    ]
+  },
+  {
+    "num": "18",
+    "t": "Mon amie Adèle - S01E05",
+    "id_tmdb": "97173",
+    "url": "https://vidzy.org/d/sumyd5uo65lb_n",
+    "cat": "MYSTERE, SCIENCE-FICTION, FANTASTIQUE, DRAME",
+    "img": "https://image.tmdb.org/t/p/w500/3gZXeo1AwPWjBcgbkHoDPtY1ayb.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/w99Pk4pJSieveKIIc7KGXtsFT3U.jpg",
+    "desc": "Louise, une mère célibataire qui entretient une liaison avec son patron David, un psychiatre. La situation se complique lorsque Louise se lie d'amitié avec la femme de Tom, Adèle. Elle se retrouve alors piégée dans un tissu de secrets et de mensonges où les apparences sont trompeuses.",
+    "year": "2021",
+    "note": 4,
+    "trailer": "lNJZCr1LteU",
+    "actors_pics": [
+      {
+        "name": "Simona Brown",
+        "img": "https://image.tmdb.org/t/p/w185/6bKw90z2GoyrYOp5xEBbJQI7wSr.jpg"
+      },
+      {
+        "name": "Eve Hewson",
+        "img": "https://image.tmdb.org/t/p/w185/1OlMfQrXEujIPTBUWt3AM0J0hJa.jpg"
+      },
+      {
+        "name": "Tom Bateman",
+        "img": "https://image.tmdb.org/t/p/w185/6elQzmY4EJHlLvHsaeoeo2dXOQ1.jpg"
+      },
+      {
+        "name": "Robert Aramayo",
+        "img": "https://image.tmdb.org/t/p/w185/1wqSZVvB018H2mZbemMSn6gH4zq.jpg"
+      },
+      {
+        "name": "Tyler Howitt",
+        "img": "https://image.tmdb.org/t/p/w185/uYxwVv1u6bWYukatuzwkjI9O5vx.jpg"
+      },
+      {
+        "name": "Georgie Glen",
+        "img": "https://image.tmdb.org/t/p/w185/21xo3xVkP44qcoxoYwGFhMNU8uB.jpg"
+      },
+      {
+        "name": "Nichola Burley",
+        "img": "https://image.tmdb.org/t/p/w185/orbLsH17Jp8deODoJO2ImjzxqSW.jpg"
+      },
+      {
+        "name": "Aaron Anthony",
+        "img": "https://image.tmdb.org/t/p/w185/r7jTc7hPnsvobl5w0769GMHhwD0.jpg"
+      },
+      {
+        "name": "Charlotte Mills",
+        "img": "https://image.tmdb.org/t/p/w185/sIE2Y3gIz1iNvCY8fIe65vMivyh.jpg"
+      },
+      {
+        "name": "Roshan Seth",
+        "img": "https://image.tmdb.org/t/p/w185/4TbHkaZxPegaTns250cVXr8F91F.jpg"
+      }
+    ]
+  },
+  {
+    "num": "18",
+    "t": "Mon amie Adèle - S01E06",
+    "id_tmdb": "97173",
+    "url": "https://vidzy.org/d/o4rwpp3cf2bb_n",
+    "cat": "MYSTERE, SCIENCE-FICTION, FANTASTIQUE, DRAME",
+    "img": "https://image.tmdb.org/t/p/w500/3gZXeo1AwPWjBcgbkHoDPtY1ayb.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/w99Pk4pJSieveKIIc7KGXtsFT3U.jpg",
+    "desc": "Louise, une mère célibataire qui entretient une liaison avec son patron David, un psychiatre. La situation se complique lorsque Louise se lie d'amitié avec la femme de Tom, Adèle. Elle se retrouve alors piégée dans un tissu de secrets et de mensonges où les apparences sont trompeuses.",
+    "year": "2021",
+    "note": 4,
+    "trailer": "lNJZCr1LteU",
+    "actors_pics": [
+      {
+        "name": "Simona Brown",
+        "img": "https://image.tmdb.org/t/p/w185/6bKw90z2GoyrYOp5xEBbJQI7wSr.jpg"
+      },
+      {
+        "name": "Eve Hewson",
+        "img": "https://image.tmdb.org/t/p/w185/1OlMfQrXEujIPTBUWt3AM0J0hJa.jpg"
+      },
+      {
+        "name": "Tom Bateman",
+        "img": "https://image.tmdb.org/t/p/w185/6elQzmY4EJHlLvHsaeoeo2dXOQ1.jpg"
+      },
+      {
+        "name": "Robert Aramayo",
+        "img": "https://image.tmdb.org/t/p/w185/1wqSZVvB018H2mZbemMSn6gH4zq.jpg"
+      },
+      {
+        "name": "Tyler Howitt",
+        "img": "https://image.tmdb.org/t/p/w185/uYxwVv1u6bWYukatuzwkjI9O5vx.jpg"
+      },
+      {
+        "name": "Georgie Glen",
+        "img": "https://image.tmdb.org/t/p/w185/21xo3xVkP44qcoxoYwGFhMNU8uB.jpg"
+      },
+      {
+        "name": "Nichola Burley",
+        "img": "https://image.tmdb.org/t/p/w185/orbLsH17Jp8deODoJO2ImjzxqSW.jpg"
+      },
+      {
+        "name": "Aaron Anthony",
+        "img": "https://image.tmdb.org/t/p/w185/r7jTc7hPnsvobl5w0769GMHhwD0.jpg"
+      },
+      {
+        "name": "Charlotte Mills",
+        "img": "https://image.tmdb.org/t/p/w185/sIE2Y3gIz1iNvCY8fIe65vMivyh.jpg"
+      },
+      {
+        "name": "Roshan Seth",
+        "img": "https://image.tmdb.org/t/p/w185/4TbHkaZxPegaTns250cVXr8F91F.jpg"
+      }
+    ]
+  },
+  {
     "num": "17",
     "t": "HIS & HERS - S01E01",
     "id_tmdb": "259731",
