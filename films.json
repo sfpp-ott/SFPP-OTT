@@ -1,5 +1,439 @@
 [
   {
+    "num": "2775",
+    "t": "Ice Cream Man",
+    "id_tmdb": "1477712",
+    "cat": "COMÉDIE, HORREUR, THRILLER",
+    "url": "https://vidzy.org/d/xolf072j61rp_n",
+    "img": "https://image.tmdb.org/t/p/w500/ui7pm8GVaYblXxczqg49UwjrMHX.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/hjF1rzTDR7YvnJUcH2SfP48w492.jpg",
+    "desc": "Une ville estivale idyllique sombre dans la folie lorsqu'un marchand de glaces sert des douceurs aux enfants avec des résultats effroyables.",
+    "year": "2026",
+    "note": 2,
+    "actors_pics": [
+      {
+        "name": "Ari Millen",
+        "img": "https://image.tmdb.org/t/p/w185/x2hFdgnrJ1er0VpteRcqTr8aWTT.jpg"
+      },
+      {
+        "name": "Charlie Zeltzer",
+        "img": "https://image.tmdb.org/t/p/w185/ytbrQ4R1iiRD3I0qdAddVfgooD7.jpg"
+      },
+      {
+        "name": "Shiloh O’Reilly",
+        "img": "https://image.tmdb.org/t/p/w185/ogT1ycS4CoOassN1GeCaS7qVcgO.jpg"
+      },
+      {
+        "name": "Kiori Mirza Waldman",
+        "img": "https://image.tmdb.org/t/p/w185/yfEe5f4kT411DH2NNx1VU3gDQZV.jpg"
+      },
+      {
+        "name": "Sarah Abbott",
+        "img": "https://image.tmdb.org/t/p/w185/riLNrHSQNFL2jgT3IRhIYOiBCXG.jpg"
+      },
+      {
+        "name": "Benjamin Byron Davis",
+        "img": "https://image.tmdb.org/t/p/w185/5WHDh9l9Ylsbf5ZKt3nQ4FRweUi.jpg"
+      },
+      {
+        "name": "Karen Cliche",
+        "img": "https://image.tmdb.org/t/p/w185/fVXdJyDRVDo7C5tTHauDm9zDvi9.jpg"
+      },
+      {
+        "name": "Dylan Hawco",
+        "img": "https://image.tmdb.org/t/p/w185/scuhT7GDRFIXP2Iw7Yz2Mplq7oW.jpg"
+      },
+      {
+        "name": "Eli Roth",
+        "img": "https://image.tmdb.org/t/p/w185/qQTkpxzh1FlBGL1HD5hzdUMxv49.jpg"
+      },
+      {
+        "name": "Lorenzo Antonucci",
+        "img": "https://image.tmdb.org/t/p/w185/rUPpfC8HwWdwB8NNP1m1zLPIhlH.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2774",
+    "t": "Gail Daughtry and the Celebrity Sex Pass",
+    "id_tmdb": "1476682",
+    "cat": "COMÉDIE",
+    "url": "https://vidzy.org/d/5phvygun79a3_n",
+    "img": "https://image.tmdb.org/t/p/w500/98T4bnMjJs71WOVZoeY8edZhfgZ.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/vfcqksiJMpzFJ8Y1cVbSAH6J6rY.jpg",
+    "desc": "Gail Daughtry a un accord de « laisser-passer célébrité » avec son fiancé… qui décide de l’utiliser. Gail se lance alors dans une épopée à travers Hollywood pour rétablir l’équilibre de son couple.",
+    "year": "2026",
+    "note": 3,
+    "actors_pics": [
+      {
+        "name": "Zoey Deutch",
+        "img": "https://image.tmdb.org/t/p/w185/cpKcORQx7QquIy1ZZvEy8LEVLr2.jpg"
+      },
+      {
+        "name": "John Slattery",
+        "img": "https://image.tmdb.org/t/p/w185/tm7g84OWD5gQRoyfG4hduBphP1j.jpg"
+      },
+      {
+        "name": "Ken Marino",
+        "img": "https://image.tmdb.org/t/p/w185/7MeXvFGhzBwDm6c7lvdalA3GJYM.jpg"
+      },
+      {
+        "name": "Miles Gutierrez-Riley",
+        "img": "https://image.tmdb.org/t/p/w185/22JmiXEKoIHTKAdZaxOiS5wVHnM.jpg"
+      },
+      {
+        "name": "Ben Wang",
+        "img": "https://image.tmdb.org/t/p/w185/5A6JgNR9nlFVjuzJ1oOXyj2hfJo.jpg"
+      },
+      {
+        "name": "Sabrina Impacciatore",
+        "img": "https://image.tmdb.org/t/p/w185/6g88MTxghHRPuhwxgnxsttTmFEC.jpg"
+      },
+      {
+        "name": "Joe Lo Truglio",
+        "img": "https://image.tmdb.org/t/p/w185/lHqOK2LJWGtHACUOqhApFrs38eV.jpg"
+      },
+      {
+        "name": "Mather Zickel",
+        "img": "https://image.tmdb.org/t/p/w185/i8LGye7othWAbIs3tyUuVhOdJph.jpg"
+      },
+      {
+        "name": "Tobie Windham",
+        "img": "https://image.tmdb.org/t/p/w185/swCw3wezzMutdzRNL9c1EEAmy55.jpg"
+      },
+      {
+        "name": "Fred Melamed",
+        "img": "https://image.tmdb.org/t/p/w185/cb5HSNuu6n4OVuxxQCDd5CfEocb.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2773",
+    "t": "Spa Weekend",
+    "id_tmdb": "1341138",
+    "cat": "COMÉDIE",
+    "url": "https://vidzy.org/d/u612l6mzfbij_n",
+    "img": "https://image.tmdb.org/t/p/w500/wW2M5FnQrjTZPrIpOKqYpitAGdj.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/8NGPUlR4xKQfgLaWCeXALGF3i27.jpg",
+    "desc": "Entre carrière, famille et responsabilités quotidiennes, quatre amies de longue date réalisent qu'elles ont oublié comment prendre soin d'elles-mêmes. Épuisées et méritant une pause longtemps due, elles partent pour un week-end de détente au sein d'un spa pour un moment de plaisir, de rire et de très mauvaises décisions.",
+    "year": "2026",
+    "note": 3,
+    "actors_pics": [
+      {
+        "name": "Leslie Mann",
+        "img": "https://image.tmdb.org/t/p/w185/x3OS9RL3qsv50kzRtpR2OhbuTkr.jpg"
+      },
+      {
+        "name": "Michelle Buteau",
+        "img": "https://image.tmdb.org/t/p/w185/mgAH1JsATQXsQPwquuNJpqux4TO.jpg"
+      },
+      {
+        "name": "Anna Faris",
+        "img": "https://image.tmdb.org/t/p/w185/tptTb0BQwCpKWETNqzkZzzf5qSZ.jpg"
+      },
+      {
+        "name": "Isla Fisher",
+        "img": "https://image.tmdb.org/t/p/w185/vVeKcMyFMPcIDLYNAnGSGnQrJ3k.jpg"
+      },
+      {
+        "name": "Adam Demos",
+        "img": "https://image.tmdb.org/t/p/w185/cfeDhsrviNLG30e7cZOABqoKIQc.jpg"
+      },
+      {
+        "name": "Dominic Ona-Ariki",
+        "img": "https://image.tmdb.org/t/p/w185/xGdtiWh06fVMAuVOUONcFVva2n9.jpg"
+      },
+      {
+        "name": "Erika Heynatz",
+        "img": "https://image.tmdb.org/t/p/w185/gfzEzRE2ScFSSOaNrSwrjHSQVnV.jpg"
+      },
+      {
+        "name": "Courtney Clarke",
+        "img": "https://image.tmdb.org/t/p/w185/zAerkipyeHkUwkR1mSL3iL35epr.jpg"
+      },
+      {
+        "name": "Quinn Aune",
+        "img": "https://image.tmdb.org/t/p/w185/hQcg9uijh53xs4YmNeE60K8JRML.jpg"
+      },
+      {
+        "name": "Sierra Rose",
+        "img": "https://image.tmdb.org/t/p/w185/fqFA0nrvDD7MRtSitZJSpGIzUXj.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2772",
+    "t": "One Last Shot",
+    "id_tmdb": "1607127",
+    "cat": "ACTION, THRILLER",
+    "url": "https://vidzy.org/d/x0k7qfj5qcgb_n",
+    "img": "https://image.tmdb.org/t/p/w500/hfcAHngTFwUiXplEGlCFKiCpJQT.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/8giIQcHpxgsPVP6c7aQtHl3txuh.jpg",
+    "desc": "Jake Harris, un Navy SEAL chevronné, reprend du service lorsque le monde est menacé par Elliot Carter, l'un de ses anciens compagnons d'armes devenu terroriste. Alors que les chefs d'état-major interarmées sont retenus en otage dans un bunker nucléaire, il reste peu de temps avant que Carter ne s'empare de codes nucléaires et plonge le monde dans le chaos. Pour l'arrêter, Harris n'a d'autre choix que de conduire son équipe en territoire ennemi. Face à une armée de mercenaires impitoyables et à des pièges mortels, il va également devoir affronter les démons de son passé.",
+    "year": "2026",
+    "note": 4,
+    "trailer": "USeaZNKPAng",
+    "actors_pics": [
+      {
+        "name": "Scott Adkins",
+        "img": "https://image.tmdb.org/t/p/w185/9NRr2a1riIn5CWn5McZLJlk4vxR.jpg"
+      },
+      {
+        "name": "Steven Cree",
+        "img": "https://image.tmdb.org/t/p/w185/oH9uSQMJPdFHeVggqvMwheW7nZl.jpg"
+      },
+      {
+        "name": "Hannah Ware",
+        "img": "https://image.tmdb.org/t/p/w185/vQqZkQsGZnikCk0QfJFW7OBuQ07.jpg"
+      },
+      {
+        "name": "Dolph Lundgren",
+        "img": "https://image.tmdb.org/t/p/w185/fB1tOws6Gav0xE8LYlELEb82hJt.jpg"
+      },
+      {
+        "name": "ケイン・コスギ",
+        "img": "https://image.tmdb.org/t/p/w185/wqMaPmNgrtqwZDktG0WFeKcqzJx.jpg"
+      },
+      {
+        "name": "Neil Linpow",
+        "img": "https://image.tmdb.org/t/p/w185/1be5xAB1L4gCdo6cd01pYfSZMc0.jpg"
+      },
+      {
+        "name": "Ray Fearon",
+        "img": "https://image.tmdb.org/t/p/w185/ou2cqhqdhfQoKVEBpIh0P3sKZti.jpg"
+      },
+      {
+        "name": "Tom Dunne",
+        "img": "https://image.tmdb.org/t/p/w185/uxjZmYJ231RwfZsFQI2cksvz2jJ.jpg"
+      },
+      {
+        "name": "Michel Curiel",
+        "img": "https://image.tmdb.org/t/p/w185/ml4NqwB24Vr0PpRXiKjelUAWab5.jpg"
+      },
+      {
+        "name": "Tom Leigh",
+        "img": "https://image.tmdb.org/t/p/w185/z54gxrnWeFTDrxIfEkkU1RQLmTV.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2771",
+    "t": "The Get Out",
+    "id_tmdb": "1279493",
+    "cat": "ACTION, THRILLER",
+    "url": "https://vidzy.org/d/7vr3pfiq4ich_n",
+    "img": "https://image.tmdb.org/t/p/w500/zlkeH0s7dDxcnuPcHBqAyXFUxqN.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/mDVnHFcxxUJC9TQFVeKh1TJNBzh.jpg",
+    "desc": "Après avoir été mystérieusement plumé par deux amants hors-la-loi et complètement fous, un propriétaire de boîte de nuit vieillissant mais impitoyable doit trouver un moyen d'échapper aux cartels pour lesquels sa petite amie et lui blanchissaient de l'argent.",
+    "year": "2026",
+    "note": 3,
+    "actors_pics": [
+      {
+        "name": "Russell Crowe",
+        "img": "https://image.tmdb.org/t/p/w185/3IBZF0qCZMZ7zJYlgrH0sQzNZV.jpg"
+      },
+      {
+        "name": "Luke Evans",
+        "img": "https://image.tmdb.org/t/p/w185/qUkYJcrDc4M0LHNYASs30luFvw0.jpg"
+      },
+      {
+        "name": "Teresa Palmer",
+        "img": "https://image.tmdb.org/t/p/w185/sjSiLSCp9LS1Z0nyGpmquTBuUyr.jpg"
+      },
+      {
+        "name": "Daniel Zovatto",
+        "img": "https://image.tmdb.org/t/p/w185/oDD8ioAU8w7Lhp92DpU9lU1XkXX.jpg"
+      },
+      {
+        "name": "Josh McConville",
+        "img": "https://image.tmdb.org/t/p/w185/3Au004X5BsV5KIpOLMB8g9DuevT.jpg"
+      },
+      {
+        "name": "Benedict Hardie",
+        "img": "https://image.tmdb.org/t/p/w185/bf02Dz4LMV23scJC6c8P4R6xji6.jpg"
+      },
+      {
+        "name": "Nina Dobrev",
+        "img": "https://image.tmdb.org/t/p/w185/euHNgS3z3M3OTzLhQQAezViQddq.jpg"
+      },
+      {
+        "name": "Aaron Paul",
+        "img": "https://image.tmdb.org/t/p/w185/8Ac9uuoYwZoYVAIJfRLzzLsGGJn.jpg"
+      },
+      {
+        "name": "Kartiah Vergara",
+        "img": "https://image.tmdb.org/t/p/w185/je5XTyAj7gqev0j9CxENW4JLx0j.jpg"
+      },
+      {
+        "name": "Steffi Gil",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      }
+    ]
+  },
+  {
+    "num": "2770",
+    "t": "Best of the Best",
+    "id_tmdb": "1514863",
+    "cat": "COMÉDIE",
+    "url": "https://vidzy.org/d/7run00aygoy6_n",
+    "img": "https://image.tmdb.org/t/p/w500/9soOjsZ91vtMzypK2F3MC378JI5.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/5m1j7Wibh3HnZq5QHm97v8dI3GH.jpg",
+    "desc": "Deux meilleures amies inséparables depuis l'enfance se lancent un défi de taille : intégrer et faire triompher la troupe universitaire de danse Bollywood. Mais la compétition s'avère bien plus féroce et impitoyable qu'elles ne l'imaginaient, mettant leur amitié fusionnelle à rude épreuve.",
+    "year": "2026",
+    "note": 3,
+    "trailer": "d0UXKjtqT08",
+    "actors_pics": [
+      {
+        "name": "Maitreyi Ramakrishnan",
+        "img": "https://image.tmdb.org/t/p/w185/dkhYjeCU5ByYKxAr2wtXz20vb60.jpg"
+      },
+      {
+        "name": "Priyanka Kedia",
+        "img": "https://image.tmdb.org/t/p/w185/7ZJ4OszAo0Y0cbKiZyxSm8fxcj9.jpg"
+      },
+      {
+        "name": "Ankur Rathee",
+        "img": "https://image.tmdb.org/t/p/w185/5ZR7jiE4cGhaM6ZqBS6R7N7h5Q7.jpg"
+      },
+      {
+        "name": "Chaneil Kular",
+        "img": "https://image.tmdb.org/t/p/w185/b6TmM2wcVntDMJGZWQM3ftshhIi.jpg"
+      },
+      {
+        "name": "Shreya Navile",
+        "img": "https://image.tmdb.org/t/p/w185/zSAyBphLIDxtKN78YRNHzgq5VbL.jpg"
+      },
+      {
+        "name": "Becky Alex",
+        "img": "https://image.tmdb.org/t/p/w185/2VtL4c60ElZX7HEFKWcoAuGKoKz.jpg"
+      },
+      {
+        "name": "Nihar Duvvuri",
+        "img": "https://image.tmdb.org/t/p/w185/orcNFUgGCRY4XzLbe2PznOSkxr3.jpg"
+      },
+      {
+        "name": "Nico Greetham",
+        "img": "https://image.tmdb.org/t/p/w185/xiF00qwPVP7FaKWZOAKckQbuSwx.jpg"
+      },
+      {
+        "name": "Amryn Khurana",
+        "img": "https://image.tmdb.org/t/p/w185/h60Aq989JDaefmdDol3XfUDgI5l.jpg"
+      },
+      {
+        "name": "Tanishq Joshi",
+        "img": "https://image.tmdb.org/t/p/w185/mjA2mQhn1MADqzX2YTpOL0MT3UC.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2769",
+    "t": "Hunting Season",
+    "id_tmdb": "1387382",
+    "cat": "ACTION, DRAME, THRILLER",
+    "url": "https://vidzy.org/d/qt1hf09eqkmg_n",
+    "img": "https://image.tmdb.org/t/p/w500/p7cAkSxZ5Mxw4z5v0sqDofKZHVR.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/eJ0HooOOD1uzI39CfOQNWIiWKlJ.jpg",
+    "desc": "Dans les forêts reculées de l’Oklahoma, Bowdrie vit en marge du monde avec Tag, l’adolescente qu’il élève. Leur quotidien bascule lorsqu’ils recueillent une jeune femme grièvement blessée, seule survivante d’un enlèvement sanglant. Tandis qu’un criminel impitoyable se lance à leur poursuite, Bowdrie doit tout risquer pour protéger ceux qu’il aime.",
+    "year": "2025",
+    "note": 4,
+    "actors_pics": [
+      {
+        "name": "Mel Gibson",
+        "img": "https://image.tmdb.org/t/p/w185/jnqHMaOslt8cef2atSmOpGRvNla.jpg"
+      },
+      {
+        "name": "Shelley Hennig",
+        "img": "https://image.tmdb.org/t/p/w185/bsqU5e9rVuLhP8l1GqUWjsBRQvq.jpg"
+      },
+      {
+        "name": "Jordi Mollà",
+        "img": "https://image.tmdb.org/t/p/w185/9XsTmWLJ2qMXoUpcb105h6h5OUX.jpg"
+      },
+      {
+        "name": "Sofia Hublitz",
+        "img": "https://image.tmdb.org/t/p/w185/A1nSqZXtKJwuQXDGrhmYa0CP0cZ.jpg"
+      },
+      {
+        "name": "A.J. Buckley",
+        "img": "https://image.tmdb.org/t/p/w185/arGsJN4HuiNpFsRsNX81fDX1KJj.jpg"
+      },
+      {
+        "name": "James DuMont",
+        "img": "https://image.tmdb.org/t/p/w185/8DLNFj3a4SJWdtw5daPBQm0qrOO.jpg"
+      },
+      {
+        "name": "Rocky Myers",
+        "img": "https://image.tmdb.org/t/p/w185/eN5NK71ABZtso4QDrYFrhz2JRvZ.jpg"
+      },
+      {
+        "name": "Oliver Trevena",
+        "img": "https://image.tmdb.org/t/p/w185/j0ejU7vdE7lRxYKKrhA5aWw1zCT.jpg"
+      },
+      {
+        "name": "Scarlet Rose Stallone",
+        "img": "https://image.tmdb.org/t/p/w185/13f6FANe7TdbvjtZCbArygnDv1S.jpg"
+      },
+      {
+        "name": "Rob Moran",
+        "img": "https://image.tmdb.org/t/p/w185/lwGI1FIdRpwvKnZlD3dKhntP4i4.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2768",
+    "t": "Histoires Sensuelles 3",
+    "id_tmdb": "1451944",
+    "cat": "ROMANCE, DRAME",
+    "url": "https://vidzy.org/d/4gjx0b2vr3tf_n",
+    "img": "https://image.tmdb.org/t/p/w500/cjlTP8YWEmlzASE2tRZ1LGB0Yz5.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/jRtR4aTq4vmxRg9ah60R5i1kkQ7.jpg",
+    "desc": "À travers quatre courts métrages, brefs mais chargés d'émotion, cette anthologie explore une nouvelle fois la luxure, l'amour, les relations et le désir refoulé, offrant ainsi un regard neuf sur l'intimité, le désir et les liens humains dans toute leur complexité.",
+    "year": "2026",
+    "note": 3,
+    "actors_pics": [
+      {
+        "name": "Radhika Apte",
+        "img": "https://image.tmdb.org/t/p/w185/wKPybRcSYcbgDiJZwELudrRNf0r.jpg"
+      },
+      {
+        "name": "कोंकणा सेन शर्मा",
+        "img": "https://image.tmdb.org/t/p/w185/i538HToMEGR6J2OVmOGX3GfWcQC.jpg"
+      },
+      {
+        "name": "विजय वर्मा",
+        "img": "https://image.tmdb.org/t/p/w185/A46ekiPFC3vA1442FJmiIudpxX1.jpg"
+      },
+      {
+        "name": "Abhishek Banerjee",
+        "img": "https://image.tmdb.org/t/p/w185/cfyRkFBFfodBbNKbsTc8eG9YtVj.jpg"
+      },
+      {
+        "name": "Ali Fazal",
+        "img": "https://image.tmdb.org/t/p/w185/lLDmx3RDuMXObASvdFXeUh1GOgd.jpg"
+      },
+      {
+        "name": "Radhika Madan",
+        "img": "https://image.tmdb.org/t/p/w185/xX6h0GMgJ1jLJdA5lHrFwZcjEIz.jpg"
+      },
+      {
+        "name": "अदिति राव हैदरी",
+        "img": "https://image.tmdb.org/t/p/w185/iVbsdPXzs4CjlG98qIxG2lsQl31.jpg"
+      },
+      {
+        "name": "சித்தார்த்",
+        "img": "https://image.tmdb.org/t/p/w185/9XrTuJp9lnB1rsBPzTaoXdp1ig8.jpg"
+      },
+      {
+        "name": "Gurfateh Pirzada",
+        "img": "https://image.tmdb.org/t/p/w185/gfeOmcTUCPoAJytEjxo5SvkKObb.jpg"
+      },
+      {
+        "name": "Sana Thampi",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      }
+    ]
+  },
+  {
     "num": "2767",
     "t": "Tout va super",
     "id_tmdb": "1417127",
