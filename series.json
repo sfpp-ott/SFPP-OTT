@@ -1,5 +1,335 @@
 [
   {
+    "num": "19",
+    "t": "The Undoing - S01E01",
+    "id_tmdb": "83851",
+    "url": "https://vidzy.org/d/i3o33brww4ci_n",
+    "cat": "DRAME, CRIME, MYSTERE",
+    "img": "https://image.tmdb.org/t/p/w500/kRSttUABWfavAjAzO28PQTDK2El.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/tJjwEzTglpxoWJXwEbZlKLppMhr.jpg",
+    "desc": "Thérapiste à succès sur le point de publier son premier livre, Grace Sachs a un mari aimant et un fils qui fréquente une école privée de prestige. Mais soudain, avec une mort violente, un mari qui disparaît et de terribles révélations concernant celui qu'elle pensait connaître, sa vie bascule...",
+    "year": "2020",
+    "note": 4,
+    "trailer": "7lWivp1kmZ0",
+    "actors_pics": [
+      {
+        "name": "Nicole Kidman",
+        "img": "https://image.tmdb.org/t/p/w185/4KSQDodyBtTDMaREYgMdWD1LbH1.jpg"
+      },
+      {
+        "name": "Hugh Grant",
+        "img": "https://image.tmdb.org/t/p/w185/dvV843fOuzsEPXHtFvdzsHpy1rC.jpg"
+      },
+      {
+        "name": "Edgar Ramírez",
+        "img": "https://image.tmdb.org/t/p/w185/o9xJcedad1BwpMcgDGtW5dVgzH.jpg"
+      },
+      {
+        "name": "Noah Jupe",
+        "img": "https://image.tmdb.org/t/p/w185/cBhJisZrIsZzamiUCVjOZODcqOK.jpg"
+      },
+      {
+        "name": "Lily Rabe",
+        "img": "https://image.tmdb.org/t/p/w185/mXTAWp502qXwolzFJdCG4rpdaZW.jpg"
+      },
+      {
+        "name": "Matilda De Angelis",
+        "img": "https://image.tmdb.org/t/p/w185/ofCQCcJVHXS934jphfvzmORlhS.jpg"
+      },
+      {
+        "name": "Ismael Cruz Cordova",
+        "img": "https://image.tmdb.org/t/p/w185/oXcrsQGndk60iFkNB8qFnMHlNzL.jpg"
+      },
+      {
+        "name": "Edan Alexander",
+        "img": "https://image.tmdb.org/t/p/w185/kjsoWZb9heDGgUo0gtmCIIUr4Uo.jpg"
+      },
+      {
+        "name": "Michael Devine",
+        "img": "https://image.tmdb.org/t/p/w185/bOlDusW65uRAeJrQehGX6F8DJmk.jpg"
+      },
+      {
+        "name": "Donald Sutherland",
+        "img": "https://image.tmdb.org/t/p/w185/t9rN5Vni7GYmqqNi9nANCZbmewx.jpg"
+      }
+    ]
+  },
+  {
+    "num": "19",
+    "t": "The Undoing - S01E02",
+    "id_tmdb": "83851",
+    "url": "https://vidzy.org/d/zm7rhrhcl8fs_n",
+    "cat": "DRAME, CRIME, MYSTERE",
+    "img": "https://image.tmdb.org/t/p/w500/kRSttUABWfavAjAzO28PQTDK2El.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/tJjwEzTglpxoWJXwEbZlKLppMhr.jpg",
+    "desc": "Thérapiste à succès sur le point de publier son premier livre, Grace Sachs a un mari aimant et un fils qui fréquente une école privée de prestige. Mais soudain, avec une mort violente, un mari qui disparaît et de terribles révélations concernant celui qu'elle pensait connaître, sa vie bascule...",
+    "year": "2020",
+    "note": 4,
+    "trailer": "7lWivp1kmZ0",
+    "actors_pics": [
+      {
+        "name": "Nicole Kidman",
+        "img": "https://image.tmdb.org/t/p/w185/4KSQDodyBtTDMaREYgMdWD1LbH1.jpg"
+      },
+      {
+        "name": "Hugh Grant",
+        "img": "https://image.tmdb.org/t/p/w185/dvV843fOuzsEPXHtFvdzsHpy1rC.jpg"
+      },
+      {
+        "name": "Edgar Ramírez",
+        "img": "https://image.tmdb.org/t/p/w185/o9xJcedad1BwpMcgDGtW5dVgzH.jpg"
+      },
+      {
+        "name": "Noah Jupe",
+        "img": "https://image.tmdb.org/t/p/w185/cBhJisZrIsZzamiUCVjOZODcqOK.jpg"
+      },
+      {
+        "name": "Lily Rabe",
+        "img": "https://image.tmdb.org/t/p/w185/mXTAWp502qXwolzFJdCG4rpdaZW.jpg"
+      },
+      {
+        "name": "Matilda De Angelis",
+        "img": "https://image.tmdb.org/t/p/w185/ofCQCcJVHXS934jphfvzmORlhS.jpg"
+      },
+      {
+        "name": "Ismael Cruz Cordova",
+        "img": "https://image.tmdb.org/t/p/w185/oXcrsQGndk60iFkNB8qFnMHlNzL.jpg"
+      },
+      {
+        "name": "Edan Alexander",
+        "img": "https://image.tmdb.org/t/p/w185/kjsoWZb9heDGgUo0gtmCIIUr4Uo.jpg"
+      },
+      {
+        "name": "Michael Devine",
+        "img": "https://image.tmdb.org/t/p/w185/bOlDusW65uRAeJrQehGX6F8DJmk.jpg"
+      },
+      {
+        "name": "Donald Sutherland",
+        "img": "https://image.tmdb.org/t/p/w185/t9rN5Vni7GYmqqNi9nANCZbmewx.jpg"
+      }
+    ]
+  },
+  {
+    "num": "19",
+    "t": "The Undoing - S01E03",
+    "id_tmdb": "83851",
+    "url": "https://vidzy.org/d/ii9w3k8ji3dg_n",
+    "cat": "DRAME, CRIME, MYSTERE",
+    "img": "https://image.tmdb.org/t/p/w500/kRSttUABWfavAjAzO28PQTDK2El.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/tJjwEzTglpxoWJXwEbZlKLppMhr.jpg",
+    "desc": "Thérapiste à succès sur le point de publier son premier livre, Grace Sachs a un mari aimant et un fils qui fréquente une école privée de prestige. Mais soudain, avec une mort violente, un mari qui disparaît et de terribles révélations concernant celui qu'elle pensait connaître, sa vie bascule...",
+    "year": "2020",
+    "note": 4,
+    "trailer": "7lWivp1kmZ0",
+    "actors_pics": [
+      {
+        "name": "Nicole Kidman",
+        "img": "https://image.tmdb.org/t/p/w185/4KSQDodyBtTDMaREYgMdWD1LbH1.jpg"
+      },
+      {
+        "name": "Hugh Grant",
+        "img": "https://image.tmdb.org/t/p/w185/dvV843fOuzsEPXHtFvdzsHpy1rC.jpg"
+      },
+      {
+        "name": "Edgar Ramírez",
+        "img": "https://image.tmdb.org/t/p/w185/o9xJcedad1BwpMcgDGtW5dVgzH.jpg"
+      },
+      {
+        "name": "Noah Jupe",
+        "img": "https://image.tmdb.org/t/p/w185/cBhJisZrIsZzamiUCVjOZODcqOK.jpg"
+      },
+      {
+        "name": "Lily Rabe",
+        "img": "https://image.tmdb.org/t/p/w185/mXTAWp502qXwolzFJdCG4rpdaZW.jpg"
+      },
+      {
+        "name": "Matilda De Angelis",
+        "img": "https://image.tmdb.org/t/p/w185/ofCQCcJVHXS934jphfvzmORlhS.jpg"
+      },
+      {
+        "name": "Ismael Cruz Cordova",
+        "img": "https://image.tmdb.org/t/p/w185/oXcrsQGndk60iFkNB8qFnMHlNzL.jpg"
+      },
+      {
+        "name": "Edan Alexander",
+        "img": "https://image.tmdb.org/t/p/w185/kjsoWZb9heDGgUo0gtmCIIUr4Uo.jpg"
+      },
+      {
+        "name": "Michael Devine",
+        "img": "https://image.tmdb.org/t/p/w185/bOlDusW65uRAeJrQehGX6F8DJmk.jpg"
+      },
+      {
+        "name": "Donald Sutherland",
+        "img": "https://image.tmdb.org/t/p/w185/t9rN5Vni7GYmqqNi9nANCZbmewx.jpg"
+      }
+    ]
+  },
+  {
+    "num": "19",
+    "t": "The Undoing - S01E04",
+    "id_tmdb": "83851",
+    "url": "https://vidzy.org/d/fhlt27x9tve7_n",
+    "cat": "DRAME, CRIME, MYSTERE",
+    "img": "https://image.tmdb.org/t/p/w500/kRSttUABWfavAjAzO28PQTDK2El.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/tJjwEzTglpxoWJXwEbZlKLppMhr.jpg",
+    "desc": "Thérapiste à succès sur le point de publier son premier livre, Grace Sachs a un mari aimant et un fils qui fréquente une école privée de prestige. Mais soudain, avec une mort violente, un mari qui disparaît et de terribles révélations concernant celui qu'elle pensait connaître, sa vie bascule...",
+    "year": "2020",
+    "note": 4,
+    "trailer": "7lWivp1kmZ0",
+    "actors_pics": [
+      {
+        "name": "Nicole Kidman",
+        "img": "https://image.tmdb.org/t/p/w185/4KSQDodyBtTDMaREYgMdWD1LbH1.jpg"
+      },
+      {
+        "name": "Hugh Grant",
+        "img": "https://image.tmdb.org/t/p/w185/dvV843fOuzsEPXHtFvdzsHpy1rC.jpg"
+      },
+      {
+        "name": "Edgar Ramírez",
+        "img": "https://image.tmdb.org/t/p/w185/o9xJcedad1BwpMcgDGtW5dVgzH.jpg"
+      },
+      {
+        "name": "Noah Jupe",
+        "img": "https://image.tmdb.org/t/p/w185/cBhJisZrIsZzamiUCVjOZODcqOK.jpg"
+      },
+      {
+        "name": "Lily Rabe",
+        "img": "https://image.tmdb.org/t/p/w185/mXTAWp502qXwolzFJdCG4rpdaZW.jpg"
+      },
+      {
+        "name": "Matilda De Angelis",
+        "img": "https://image.tmdb.org/t/p/w185/ofCQCcJVHXS934jphfvzmORlhS.jpg"
+      },
+      {
+        "name": "Ismael Cruz Cordova",
+        "img": "https://image.tmdb.org/t/p/w185/oXcrsQGndk60iFkNB8qFnMHlNzL.jpg"
+      },
+      {
+        "name": "Edan Alexander",
+        "img": "https://image.tmdb.org/t/p/w185/kjsoWZb9heDGgUo0gtmCIIUr4Uo.jpg"
+      },
+      {
+        "name": "Michael Devine",
+        "img": "https://image.tmdb.org/t/p/w185/bOlDusW65uRAeJrQehGX6F8DJmk.jpg"
+      },
+      {
+        "name": "Donald Sutherland",
+        "img": "https://image.tmdb.org/t/p/w185/t9rN5Vni7GYmqqNi9nANCZbmewx.jpg"
+      }
+    ]
+  },
+  {
+    "num": "19",
+    "t": "The Undoing - S01E05",
+    "id_tmdb": "83851",
+    "url": "https://vidzy.org/d/dil9653k99qj_n",
+    "cat": "DRAME, CRIME, MYSTERE",
+    "img": "https://image.tmdb.org/t/p/w500/kRSttUABWfavAjAzO28PQTDK2El.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/tJjwEzTglpxoWJXwEbZlKLppMhr.jpg",
+    "desc": "Thérapiste à succès sur le point de publier son premier livre, Grace Sachs a un mari aimant et un fils qui fréquente une école privée de prestige. Mais soudain, avec une mort violente, un mari qui disparaît et de terribles révélations concernant celui qu'elle pensait connaître, sa vie bascule...",
+    "year": "2020",
+    "note": 4,
+    "trailer": "7lWivp1kmZ0",
+    "actors_pics": [
+      {
+        "name": "Nicole Kidman",
+        "img": "https://image.tmdb.org/t/p/w185/4KSQDodyBtTDMaREYgMdWD1LbH1.jpg"
+      },
+      {
+        "name": "Hugh Grant",
+        "img": "https://image.tmdb.org/t/p/w185/dvV843fOuzsEPXHtFvdzsHpy1rC.jpg"
+      },
+      {
+        "name": "Edgar Ramírez",
+        "img": "https://image.tmdb.org/t/p/w185/o9xJcedad1BwpMcgDGtW5dVgzH.jpg"
+      },
+      {
+        "name": "Noah Jupe",
+        "img": "https://image.tmdb.org/t/p/w185/cBhJisZrIsZzamiUCVjOZODcqOK.jpg"
+      },
+      {
+        "name": "Lily Rabe",
+        "img": "https://image.tmdb.org/t/p/w185/mXTAWp502qXwolzFJdCG4rpdaZW.jpg"
+      },
+      {
+        "name": "Matilda De Angelis",
+        "img": "https://image.tmdb.org/t/p/w185/ofCQCcJVHXS934jphfvzmORlhS.jpg"
+      },
+      {
+        "name": "Ismael Cruz Cordova",
+        "img": "https://image.tmdb.org/t/p/w185/oXcrsQGndk60iFkNB8qFnMHlNzL.jpg"
+      },
+      {
+        "name": "Edan Alexander",
+        "img": "https://image.tmdb.org/t/p/w185/kjsoWZb9heDGgUo0gtmCIIUr4Uo.jpg"
+      },
+      {
+        "name": "Michael Devine",
+        "img": "https://image.tmdb.org/t/p/w185/bOlDusW65uRAeJrQehGX6F8DJmk.jpg"
+      },
+      {
+        "name": "Donald Sutherland",
+        "img": "https://image.tmdb.org/t/p/w185/t9rN5Vni7GYmqqNi9nANCZbmewx.jpg"
+      }
+    ]
+  },
+  {
+    "num": "19",
+    "t": "The Undoing - S01E06",
+    "id_tmdb": "83851",
+    "url": "https://vidzy.org/d/3f94c0t7wwnw_n",
+    "cat": "DRAME, CRIME, MYSTERE",
+    "img": "https://image.tmdb.org/t/p/w500/kRSttUABWfavAjAzO28PQTDK2El.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/tJjwEzTglpxoWJXwEbZlKLppMhr.jpg",
+    "desc": "Thérapiste à succès sur le point de publier son premier livre, Grace Sachs a un mari aimant et un fils qui fréquente une école privée de prestige. Mais soudain, avec une mort violente, un mari qui disparaît et de terribles révélations concernant celui qu'elle pensait connaître, sa vie bascule...",
+    "year": "2020",
+    "note": 4,
+    "trailer": "7lWivp1kmZ0",
+    "actors_pics": [
+      {
+        "name": "Nicole Kidman",
+        "img": "https://image.tmdb.org/t/p/w185/4KSQDodyBtTDMaREYgMdWD1LbH1.jpg"
+      },
+      {
+        "name": "Hugh Grant",
+        "img": "https://image.tmdb.org/t/p/w185/dvV843fOuzsEPXHtFvdzsHpy1rC.jpg"
+      },
+      {
+        "name": "Edgar Ramírez",
+        "img": "https://image.tmdb.org/t/p/w185/o9xJcedad1BwpMcgDGtW5dVgzH.jpg"
+      },
+      {
+        "name": "Noah Jupe",
+        "img": "https://image.tmdb.org/t/p/w185/cBhJisZrIsZzamiUCVjOZODcqOK.jpg"
+      },
+      {
+        "name": "Lily Rabe",
+        "img": "https://image.tmdb.org/t/p/w185/mXTAWp502qXwolzFJdCG4rpdaZW.jpg"
+      },
+      {
+        "name": "Matilda De Angelis",
+        "img": "https://image.tmdb.org/t/p/w185/ofCQCcJVHXS934jphfvzmORlhS.jpg"
+      },
+      {
+        "name": "Ismael Cruz Cordova",
+        "img": "https://image.tmdb.org/t/p/w185/oXcrsQGndk60iFkNB8qFnMHlNzL.jpg"
+      },
+      {
+        "name": "Edan Alexander",
+        "img": "https://image.tmdb.org/t/p/w185/kjsoWZb9heDGgUo0gtmCIIUr4Uo.jpg"
+      },
+      {
+        "name": "Michael Devine",
+        "img": "https://image.tmdb.org/t/p/w185/bOlDusW65uRAeJrQehGX6F8DJmk.jpg"
+      },
+      {
+        "name": "Donald Sutherland",
+        "img": "https://image.tmdb.org/t/p/w185/t9rN5Vni7GYmqqNi9nANCZbmewx.jpg"
+      }
+    ]
+  },
+  {
     "num": "18",
     "t": "Mon amie Adèle - S01E01",
     "id_tmdb": "97173",
