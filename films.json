@@ -1,5 +1,115 @@
 [
   {
+    "num": "2819",
+    "t": "Animals",
+    "id_tmdb": "1236045",
+    "cat": "THRILLER, DRAME",
+    "url": "https://vidzy.org/d/8kt3lzlzwzd7_n",
+    "img": "https://image.tmdb.org/t/p/w500/33MhDOKB0S5VwuaD9lZyV0v0st0.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/tzoarEu7TsG959upiELyYPm5kO9.jpg",
+    "desc": "Quand leur fils est enlevé, un candidat à la mairie de Los Angeles et sa femme s'efforcent de réunir l'argent de la rançon et font des choix qui pourraient bouleverser leur vie.",
+    "year": "2026",
+    "note": 4,
+    "trailer": "NranIqULe1c",
+    "actors_pics": [
+      {
+        "name": "Ben Affleck",
+        "img": "https://image.tmdb.org/t/p/w185/aTcqu8cI4wMohU17xTdqmXKTGrw.jpg"
+      },
+      {
+        "name": "Kerry Washington",
+        "img": "https://image.tmdb.org/t/p/w185/zgyjYlxmHG6Ntbg16JcTp8Vu8M3.jpg"
+      },
+      {
+        "name": "Gillian Anderson",
+        "img": "https://image.tmdb.org/t/p/w185/3Ny8ZYahb33vpqNEPNCE2IOXPew.jpg"
+      },
+      {
+        "name": "Steven Yeun",
+        "img": "https://image.tmdb.org/t/p/w185/fOMFO2Xx4duzpNgS9Q5ytO44yGb.jpg"
+      },
+      {
+        "name": "Adriana Paz",
+        "img": "https://image.tmdb.org/t/p/w185/aUBNKmudV1CCMUHskWemg58vc3n.jpg"
+      },
+      {
+        "name": "Luis Gerardo Méndez",
+        "img": "https://image.tmdb.org/t/p/w185/uV8XXAlTxNFsD4sBzCHsgo5MpKZ.jpg"
+      },
+      {
+        "name": "Christopher Woodley",
+        "img": "https://image.tmdb.org/t/p/w185/7qIR7rpHoQDUjtW0PUxPAvD2znu.jpg"
+      },
+      {
+        "name": "Jacob Estrada",
+        "img": "https://image.tmdb.org/t/p/w185/eai64zk7gMEyqOnK28r7P26oO9d.jpg"
+      },
+      {
+        "name": "Ray Fisher",
+        "img": "https://image.tmdb.org/t/p/w185/310snvA05xDOQZDn2fJSp242GHw.jpg"
+      },
+      {
+        "name": "Taylor Cooper",
+        "img": "https://image.tmdb.org/t/p/w185/ai4yynRG9h8VASG76NZQgnj2Kx1.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2818",
+    "t": "Matchbox – Le film",
+    "id_tmdb": "1148365",
+    "cat": "ACTION, COMÉDIE, AVENTURE",
+    "url": "https://vidzy.org/d/g4e5n2k1agsj_n",
+    "img": "https://image.tmdb.org/t/p/w500/vSgnJDw404JUokiy5NDZgXOi01E.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/jdJsnhHfkIi3J7jwfiCFT4gXNx5.jpg",
+    "desc": "Des amis d'enfance reprennent contact et les retrouvailles prennent une tournure inattendue quand ils découvrent un dangereux complot international et doivent sauver le monde.",
+    "year": "2026",
+    "note": 4,
+    "trailer": "dhSwc6rNEcg",
+    "actors_pics": [
+      {
+        "name": "John Cena",
+        "img": "https://image.tmdb.org/t/p/w185/rgB2eIOt7WyQjdgJCOuESdDlrjg.jpg"
+      },
+      {
+        "name": "Jessica Biel",
+        "img": "https://image.tmdb.org/t/p/w185/u5DzbWKvAzS0M4ZhYqpUR9MZr2M.jpg"
+      },
+      {
+        "name": "Sam Richardson",
+        "img": "https://image.tmdb.org/t/p/w185/hUN7IIbegvL7aSqQI5KRWoqqJLm.jpg"
+      },
+      {
+        "name": "Arturo Castro",
+        "img": "https://image.tmdb.org/t/p/w185/pbLoDCfjm3fLtGHVqQcnbM2d0cu.jpg"
+      },
+      {
+        "name": "Teyonah Parris",
+        "img": "https://image.tmdb.org/t/p/w185/iGvBTOi0y2fbBVwgnBRXgY0IXDY.jpg"
+      },
+      {
+        "name": "Corey Stoll",
+        "img": "https://image.tmdb.org/t/p/w185/2eMxKecTZBiS60gPUVWcimYgGDp.jpg"
+      },
+      {
+        "name": "Bill Camp",
+        "img": "https://image.tmdb.org/t/p/w185/wxYyJSltCHwU0MTg838SllOlvNT.jpg"
+      },
+      {
+        "name": "Golshifteh Farahani",
+        "img": "https://image.tmdb.org/t/p/w185/lbsd2lAIQq4egOUXDIfjhte12vv.jpg"
+      },
+      {
+        "name": "Danai Gurira",
+        "img": "https://image.tmdb.org/t/p/w185/z7H7QeQvr24vskGlANQhG43vozQ.jpg"
+      },
+      {
+        "name": "Daniel Bernhardt",
+        "img": "https://image.tmdb.org/t/p/w185/3BLz32inDr1jznU6pKQmh20zfhK.jpg"
+      }
+    ]
+  },
+  {
     "num": "2817",
     "t": "Normal",
     "id_tmdb": "1242332",
