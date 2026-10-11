@@ -1,5 +1,163 @@
 [
   {
+    "num": "2787",
+    "t": "Têtes brûlées",
+    "id_tmdb": "1404171",
+    "cat": "DRAME",
+    "url": "https://vidzy.org/d/4wvot9p5ryv3_n",
+    "img": "https://image.tmdb.org/t/p/w500/pF055ovYM1Rh8Ij6sUQv5z2eFp.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/hWqWVLGBxxLEPWcqAUySYfieqiS.jpg",
+    "desc": "",
+    "year": "2025",
+    "note": 0,
+    "actors_pics": [
+      {
+        "name": "Safa Gharbaoui",
+        "img": "https://image.tmdb.org/t/p/w185/zRtWvF3xtGxAJ6GQLbNR700cax1.jpg"
+      },
+      {
+        "name": "Mehdi Bouziane",
+        "img": "https://image.tmdb.org/t/p/w185/pVCqiJeYFjXoRE1bqS42K7jzb0K.jpg"
+      },
+      {
+        "name": "Mounir Amamra",
+        "img": "https://image.tmdb.org/t/p/w185/1cUiP7O7bCN9RYuc0Y1n9TYEWqT.jpg"
+      },
+      {
+        "name": "Adnane El Haruati",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Saber Tabi",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Nicolas Makola",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Mehdi Zellama",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Monia Taïeb",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Lotte Diependaele",
+        "img": "https://image.tmdb.org/t/p/w185/3L8gybXAds0I2HbCHuJAJC8pI8c.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2786",
+    "t": "Deaner '89",
+    "id_tmdb": "1255000",
+    "cat": "COMÉDIE, MUSIQUE",
+    "url": "https://vidzy.org/d/1ps7svr0cpnj_n",
+    "img": "https://image.tmdb.org/t/p/w500/5DS99gWF58x2GBzFf9hWuluP6qe.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/9XOLMdPBSG19iqnJNBZwcly2a9Q.jpg",
+    "desc": "",
+    "year": "2024",
+    "note": 2,
+    "actors_pics": [
+      {
+        "name": "Paul Spence",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Star Slade",
+        "img": "https://image.tmdb.org/t/p/w185/zA7AES22VAiYH0Ao5xGGAd99rvr.jpg"
+      },
+      {
+        "name": "Will Sasso",
+        "img": "https://image.tmdb.org/t/p/w185/4F8p9Dg32WJl12ras7CzQzLFy2i.jpg"
+      },
+      {
+        "name": "Mary Walsh",
+        "img": "https://image.tmdb.org/t/p/w185/aMvQu5iI4I5fFjYrDI2UzUTDEbk.jpg"
+      },
+      {
+        "name": "Maddy Foley",
+        "img": "https://image.tmdb.org/t/p/w185/rBHrgleo2518u8PGyG1eVXxqo6F.jpg"
+      },
+      {
+        "name": "Lauren Cochrane",
+        "img": "https://image.tmdb.org/t/p/w185/haOurV7B4Vh35TousTqNtwHnDfm.jpg"
+      },
+      {
+        "name": "Sonny Hamilton",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Julian Black Antelope",
+        "img": "https://image.tmdb.org/t/p/w185/tULt7BBKT7lRQNBbTz7z8zyZAwQ.jpg"
+      },
+      {
+        "name": "Stephen McHattie",
+        "img": "https://image.tmdb.org/t/p/w185/zqOwiEDXYM9AKQgHGJGeIp7QkPh.jpg"
+      },
+      {
+        "name": "Liam Stewart-Kanigan",
+        "img": "https://image.tmdb.org/t/p/w185/qGVVX9iWmOp9Cadmqd1lUZG1y5B.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2785",
+    "t": "Hungry",
+    "id_tmdb": "1382832",
+    "cat": "HORREUR, THRILLER",
+    "url": "https://vidzy.org/d/vebkfhavv4tu_n",
+    "img": "https://image.tmdb.org/t/p/w500/4uNhvGxBDiO0mU5UhxuXBsJwKF3.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/ikyzq678qnHtRY8ZiQJzK4hiOyW.jpg",
+    "desc": "Un groupe de touristes en visite dans les marais du bayou de Louisiane devient la proie d'un énorme hippopotame vicieux caché sous l'eau.",
+    "year": "2026",
+    "note": 3,
+    "actors_pics": [
+      {
+        "name": "Madison Davenport",
+        "img": "https://image.tmdb.org/t/p/w185/8yIHX149UVVeoJfUbi4oOC1nGcI.jpg"
+      },
+      {
+        "name": "Tracey Bonner",
+        "img": "https://image.tmdb.org/t/p/w185/1Y3dKqq9dkYIFYQZqgh7mB7Ts7g.jpg"
+      },
+      {
+        "name": "Joaquim de Almeida",
+        "img": "https://image.tmdb.org/t/p/w185/muXJn8kTEPxJaetkgCyS8RPEzTC.jpg"
+      },
+      {
+        "name": "Michel Curiel",
+        "img": "https://image.tmdb.org/t/p/w185/ml4NqwB24Vr0PpRXiKjelUAWab5.jpg"
+      },
+      {
+        "name": "Samantha Coughlan",
+        "img": "https://image.tmdb.org/t/p/w185/oTcw7AFY52UYyIjPLp9ZjySwivy.jpg"
+      },
+      {
+        "name": "Olivia Bernstone",
+        "img": "https://image.tmdb.org/t/p/w185/7rQGrzEHEZ7iBIrlVzbBDIIhnvP.jpg"
+      },
+      {
+        "name": "Jim Meskimen",
+        "img": "https://image.tmdb.org/t/p/w185/18eXUo8DfTwannhq8FOwgVdFs9Y.jpg"
+      },
+      {
+        "name": "River Codack",
+        "img": "https://image.tmdb.org/t/p/w185/linaIZJqleeWHjonIdDtISzVYrX.jpg"
+      },
+      {
+        "name": "Joe Azzopardi",
+        "img": "https://image.tmdb.org/t/p/w185/pImRPY1hkIXU7oLZO1znJOdoDDg.jpg"
+      },
+      {
+        "name": "Matthew Charlery-Smith",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      }
+    ]
+  },
+  {
     "num": "2784",
     "t": "La vengeance d'une maîtresse",
     "id_tmdb": "1059082",
