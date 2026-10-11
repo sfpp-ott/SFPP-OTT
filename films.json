@@ -1,5 +1,880 @@
 [
   {
+    "num": "2767",
+    "t": "Tout va super",
+    "id_tmdb": "1417127",
+    "cat": "COMÉDIE, ROMANCE",
+    "url": "https://vidzy.org/d/5ux6rwhfaxc4_n",
+    "img": "https://image.tmdb.org/t/p/w500/autMmaSXfL71IXCUv0eN83oiml0.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/wTXGv4iZbJCrdKB9MGsncFq8vuh.jpg",
+    "desc": "Elie est soulagé. Après plusieurs années à s’occuper de Sylvaine, sa mère envahissante et malade : elle est guérie ! Il va enfin pouvoir penser à lui. Dans un bar, il rencontre Anaïs. Ils tombent très vite amoureux. Mais l’euphorie est de courte durée, Sylvaine fait une rechute. Tiraillé entre cette nouvelle histoire d’amour et la maladie de sa mère, Elie va être très vite dépassé !",
+    "year": "2026",
+    "note": 3,
+    "trailer": "lNue39GpKLA",
+    "actors_pics": [
+      {
+        "name": "Hakim Jemili",
+        "img": "https://image.tmdb.org/t/p/w185/w7Cn5MNRdzeUl41LuEJAg1ldeTM.jpg"
+      },
+      {
+        "name": "Noémie Lvovsky",
+        "img": "https://image.tmdb.org/t/p/w185/rCAE48eQMBRxLGksTdbjTjeiPbP.jpg"
+      },
+      {
+        "name": "Marie Colomb",
+        "img": "https://image.tmdb.org/t/p/w185/yALH4PtvI9IrgAabjq9OLehW6Bw.jpg"
+      },
+      {
+        "name": "Rudy Milstein",
+        "img": "https://image.tmdb.org/t/p/w185/f85rGBeCZ4cYSomSvt6OvSNQ9T7.jpg"
+      },
+      {
+        "name": "Camille Chamoux",
+        "img": "https://image.tmdb.org/t/p/w185/yEQBeUdwPiJ4gCybtrirBEiaD0g.jpg"
+      },
+      {
+        "name": "Darina Al Joundi",
+        "img": "https://image.tmdb.org/t/p/w185/8cbLlrpuUM8gPdL2uM8UNcqFNK7.jpg"
+      },
+      {
+        "name": "Alexandra Roth",
+        "img": "https://image.tmdb.org/t/p/w185/mZaCwPfNUBuiCJkvuCnY1bRw1jZ.jpg"
+      },
+      {
+        "name": "Léa Issert",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Raphaël Almosni",
+        "img": "https://image.tmdb.org/t/p/w185/6XFL2jYb956wGI9iWkDFUbosKva.jpg"
+      },
+      {
+        "name": "Tania Dessources",
+        "img": "https://image.tmdb.org/t/p/w185/wmlvqVFRH3QxWBTPgHkRBVti9Tu.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2766",
+    "t": "Toi+Moi - Seuls contre tous",
+    "id_tmdb": "1641629",
+    "cat": "ROMANCE, DRAME",
+    "url": "https://vidzy.org/d/622tmth49yc5_n",
+    "img": "https://image.tmdb.org/t/p/w500/xwzLNsGMh1yDRGOGH58ftPWmfzq.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/nkEhDomjmPHJSA4Tx8pxv0NlKEy.jpg",
+    "desc": "Dans le dos de ses parents qui la pensent inscrite en droit, Alma Lancaster, jeune femme de bonne famille, s'est donné un an pour poursuivre son rêve de cinéma. Alors qu'elle est contrainte de réaliser un film avec Vadim Arcadi, jeune homme sans attaches, une attirance électrique naît entre eux. Dans l'ombre, une menace invisible les guette, bien décidée à les séparer au risque de tout révéler…",
+    "year": "2026",
+    "note": 3,
+    "trailer": "jZLAduvYWZA",
+    "actors_pics": [
+      {
+        "name": "Vittoria Di Savoia",
+        "img": "https://image.tmdb.org/t/p/w185/uxlRv4jnvzagvnTR18dnIBTvQNJ.jpg"
+      },
+      {
+        "name": "Lucas Barski",
+        "img": "https://image.tmdb.org/t/p/w185/bNJj7fynrB2ZMoPpDNfcVd4YBg.jpg"
+      },
+      {
+        "name": "Zoé Garcia",
+        "img": "https://image.tmdb.org/t/p/w185/alBs6QVCSNvnz4zoHXYRXw1GHYq.jpg"
+      },
+      {
+        "name": "Léo Legrand",
+        "img": "https://image.tmdb.org/t/p/w185/yTdqyHFID2EvZil1PvyYEFMlsID.jpg"
+      },
+      {
+        "name": "Jean-Yves Berteloot",
+        "img": "https://image.tmdb.org/t/p/w185/x8uFQOAsLSbWcbRMyItUj2nMZuo.jpg"
+      },
+      {
+        "name": "Suliane Brahim",
+        "img": "https://image.tmdb.org/t/p/w185/dxUO3EA9xPuj23MWXpFd8Sknv36.jpg"
+      },
+      {
+        "name": "Aymeric Fougeron",
+        "img": "https://image.tmdb.org/t/p/w185/2GiOfHcnoMqJGwDu7JiU8YMlgph.jpg"
+      },
+      {
+        "name": "Gabrielle Taittinger",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Bryan Trésor",
+        "img": "https://image.tmdb.org/t/p/w185/oKtmb7OrNauvgVUYGb7QlWtRIqj.jpg"
+      },
+      {
+        "name": "Aboubacar Bidanessy",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      }
+    ]
+  },
+  {
+    "num": "2765",
+    "t": "Saccharine",
+    "id_tmdb": "1363387",
+    "cat": "HORREUR",
+    "url": "https://vidzy.org/d/65macsxse4ij_n",
+    "img": "https://image.tmdb.org/t/p/w500/l2Z5Zkbar7e1xSYghW84yQ5bSWY.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/7NUx7bQAD4lo9yMDbprvIblhWo2.jpg",
+    "desc": "Une étudiante en médecine mal dans son corps se met à consommer une étrange gélule pour perdre du poids, libérant une force surnaturelle qui envahit de plus en plus son quotidien.",
+    "year": "2026",
+    "note": 4,
+    "actors_pics": [
+      {
+        "name": "Midori Francis",
+        "img": "https://image.tmdb.org/t/p/w185/we9Z3uiLUi06NxKXYNpcexrYOJx.jpg"
+      },
+      {
+        "name": "Danielle Macdonald",
+        "img": "https://image.tmdb.org/t/p/w185/pPaypOzZ4oldd7KJHvDEfPSynSi.jpg"
+      },
+      {
+        "name": "Madeleine Madden",
+        "img": "https://image.tmdb.org/t/p/w185/oOZ1EJeq2DHxNNLAkLEyYYOlqlM.jpg"
+      },
+      {
+        "name": "Robert Taylor",
+        "img": "https://image.tmdb.org/t/p/w185/wjeEGFarZNyvrqLL4W52eXnAnXe.jpg"
+      },
+      {
+        "name": "Showko Showfukutei",
+        "img": "https://image.tmdb.org/t/p/w185/xB4BRallUxSofsgDZLjTaZ1nXRe.jpg"
+      },
+      {
+        "name": "Octavia Barron-Martin",
+        "img": "https://image.tmdb.org/t/p/w185/1lRy9ZY2RYEFlK7PTuWYmd9TG3M.jpg"
+      },
+      {
+        "name": "Anna Adams",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Annie Shapero",
+        "img": "https://image.tmdb.org/t/p/w185/orBQJJrQVQdbNkT4Vx5Hkw91xPX.jpg"
+      },
+      {
+        "name": "Louisa Mignone",
+        "img": "https://image.tmdb.org/t/p/w185/aTq0QihzbgXuNJmhe8pWixpD4ID.jpg"
+      },
+      {
+        "name": "Joseph Baldwin",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      }
+    ]
+  },
+  {
+    "num": "2764",
+    "t": "LUPIN THE IIIRD: The Movie - La lignée immortelle",
+    "id_tmdb": "1395140",
+    "cat": "ANIMATION, ACTION, CRIME, AVENTURE",
+    "url": "https://vidzy.org/d/muoltqvfur8a_n",
+    "img": "https://image.tmdb.org/t/p/w500/tB1R5MumbQn13PMvfus5ko0yzAe.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/4zh2QNUFoVwfnOeppEKWPXGmg0y.jpg",
+    "desc": "Lupin III et ses compagnons se dirigent vers la mer des Bermudes, à la recherche d'une « île mystérieuse » absente de toutes les cartes du monde. Leur objectif : découvrir l'identité du cerveau qui envoie des assassins à leurs trousses, et mettre la main sur son immense trésor. Mais alors qu'ils approchent de leur destination, leur avion est pris pour cible par des snipers et s'écrase sur l'île de la mort.",
+    "year": "2025",
+    "note": 4,
+    "trailer": "RZnL2Ym_2Uc",
+    "actors_pics": [
+      {
+        "name": "Kanichi Kurita",
+        "img": "https://image.tmdb.org/t/p/w185/7XvDPMm6sNspJeZiyfIFBbLRBRI.jpg"
+      },
+      {
+        "name": "Akio Ōtsuka",
+        "img": "https://image.tmdb.org/t/p/w185/uH9oiqOOgrsz2zNnouVZ1qPzDyb.jpg"
+      },
+      {
+        "name": "Daisuke Namikawa",
+        "img": "https://image.tmdb.org/t/p/w185/iw0X8oDutxaBAri3Ifga8nhdUJK.jpg"
+      },
+      {
+        "name": "Miyuki Sawashiro",
+        "img": "https://image.tmdb.org/t/p/w185/11mGqwpmu8CoEy1YJgabj2g7MIv.jpg"
+      },
+      {
+        "name": "Kōichi Yamadera",
+        "img": "https://image.tmdb.org/t/p/w185/biov5jENp2XYfehkcdnRvi796Wi.jpg"
+      },
+      {
+        "name": "Ainosuke Kataoka",
+        "img": "https://image.tmdb.org/t/p/w185/4yKxYG6nI1Tf9u38CUNbTlWZVuE.jpg"
+      },
+      {
+        "name": "Aoi Morikawa",
+        "img": "https://image.tmdb.org/t/p/w185/p8hsgOvx7agnHAfJNHA71r6W4bO.jpg"
+      },
+      {
+        "name": "Akio Hirose",
+        "img": "https://image.tmdb.org/t/p/w185/jLxk2KiCE0WWALxab5CARGn9JKq.jpg"
+      },
+      {
+        "name": "Mizukawa Katamari",
+        "img": "https://image.tmdb.org/t/p/w185/hnvD4W4vSsrIYCYUigj9uf7p385.jpg"
+      },
+      {
+        "name": "Suzuki Mogura",
+        "img": "https://image.tmdb.org/t/p/w185/6xlWhWLNts6Kkj3nwjdEkQVIP6n.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2763",
+    "t": "Le Pacte des Innocentes",
+    "id_tmdb": "1729010",
+    "cat": "THRILLER, TÉLÉFILM",
+    "url": "https://vidzy.org/d/divl0756ybok_n",
+    "img": "https://image.tmdb.org/t/p/w500/7SS3Hspxj19h0e3pRrbgv6Vqj2s.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/Y30JqkSUjaCXDRfXqFy1hPSBFb.jpg",
+    "desc": "Ellie, Jessica, Kendall et Lily sont quatre lycéennes inséparables. Lorsque la mère d'Ellie annonce leur déménagement, la jeune fille prévoit de s'enfuir avec son petit ami Caleb après une fête. Mais la soirée tourne mal lorsqu'elle apprend que Caleb l'aurait trompée. Quelques heures plus tard, Ellie disparaît sans laisser de trace. Tandis que des photos compromettantes de Jessica circulent dans le lycée, les soupçons se multiplient. Déterminée à retrouver sa fille, Tina, la mère d'Ellie, mène l'enquête avec le lieutenant Patel. Très vite, secrets, jalousies et trahisons menacent de faire éclater le groupe d'amies.",
+    "year": "2026",
+    "note": 0,
+    "actors_pics": [
+      {
+        "name": "Lara Amersey",
+        "img": "https://image.tmdb.org/t/p/w185/mxEERu6yIqLSmsGijxn80Vu8sTM.jpg"
+      },
+      {
+        "name": "Monica Rodriguez Knox",
+        "img": "https://image.tmdb.org/t/p/w185/2Ela65jtumxkIP9wMY0BEh2rLES.jpg"
+      },
+      {
+        "name": "Sasha Clements",
+        "img": "https://image.tmdb.org/t/p/w185/pASF6OlOEFt8sRhJ9JR5PfZqslT.jpg"
+      },
+      {
+        "name": "Justin Nurse",
+        "img": "https://image.tmdb.org/t/p/w185/wzydPe1MnzsPRe2G7R7B5UHCsci.jpg"
+      },
+      {
+        "name": "Nicole Redmond",
+        "img": "https://image.tmdb.org/t/p/w185/xTvZrCXI5aquOAdk8f64Xy1H7VB.jpg"
+      },
+      {
+        "name": "Zara Matthews",
+        "img": "https://image.tmdb.org/t/p/w185/kO7hYpvurK7HbdfusBGOai8OeIi.jpg"
+      },
+      {
+        "name": "Colton Gobbo",
+        "img": "https://image.tmdb.org/t/p/w185/fCgYHfuuEDLWVPZHuFxizVvD15G.jpg"
+      },
+      {
+        "name": "Anshuman Pandey",
+        "img": "https://image.tmdb.org/t/p/w185/e26fz0Yyy05O3sJctETDphGQL8b.jpg"
+      },
+      {
+        "name": "Victoria Lenhardt",
+        "img": "https://image.tmdb.org/t/p/w185/372nEPZP0GrIfUdiakGEkAeXVEk.jpg"
+      },
+      {
+        "name": "Amelia Manuel",
+        "img": "https://image.tmdb.org/t/p/w185/29r3Hjup5GEVVik0g1xAZvCxDtu.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2762",
+    "t": "Tony",
+    "id_tmdb": "1329016",
+    "cat": "DRAME, COMÉDIE",
+    "url": "https://vidzy.org/d/t2emwprczby0_n",
+    "img": "https://image.tmdb.org/t/p/w500/zsisvReIrSIUPS3JXawt1ib9JDS.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/uQvz6NdyhoWE6dMurFn0BriLIv9.jpg",
+    "desc": "À l'âge de 19 ans, Anthony Bourdain se rend à Provincetown et se retrouve plongé dans l'univers chaotique des coulisses d'un restaurant, marquant ainsi le début d'un été qui va bouleverser le cours de sa vie.",
+    "year": "2026",
+    "note": 4,
+    "actors_pics": [
+      {
+        "name": "Dominic Sessa",
+        "img": "https://image.tmdb.org/t/p/w185/cTYdhJrye7oTREIkQaLAuLoJ8Rt.jpg"
+      },
+      {
+        "name": "Antonio Banderas",
+        "img": "https://image.tmdb.org/t/p/w185/n8YlGookYzgD3cmpMP45BYRNIoh.jpg"
+      },
+      {
+        "name": "Emilia Jones",
+        "img": "https://image.tmdb.org/t/p/w185/bYFLZCDsBHxAKePk1tsgQSea3m.jpg"
+      },
+      {
+        "name": "Leo Woodall",
+        "img": "https://image.tmdb.org/t/p/w185/yv2JjEVm1jLR44ynkyYfhWP4I6r.jpg"
+      },
+      {
+        "name": "Stavros Halkias",
+        "img": "https://image.tmdb.org/t/p/w185/9QB7YGMk6O7hRgGWvK0OimTVzl7.jpg"
+      },
+      {
+        "name": "Michael Jibrin",
+        "img": "https://image.tmdb.org/t/p/w185/uyaW8ltNwdyRIR906uY1gzt4NE7.jpg"
+      },
+      {
+        "name": "Monica Raymund",
+        "img": "https://image.tmdb.org/t/p/w185/cG8OzzgiAEOO5q1Jw4pC1cdJf7E.jpg"
+      },
+      {
+        "name": "Rich Sommer",
+        "img": "https://image.tmdb.org/t/p/w185/cfbJ3nyiyRpSq2mLrbbrbg1k3Dh.jpg"
+      },
+      {
+        "name": "Dagmara Dominczyk",
+        "img": "https://image.tmdb.org/t/p/w185/hWccb4AY6SUX5McdYtnKEHjHsCW.jpg"
+      },
+      {
+        "name": "Liam Fitch",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      }
+    ]
+  },
+  {
+    "num": "2761",
+    "t": "Oklahoma Honey",
+    "id_tmdb": "1124142",
+    "cat": "DRAME, CRIME",
+    "url": "https://vidzy.org/d/nx8ofqr8b8ma_n",
+    "img": "https://image.tmdb.org/t/p/w500/6YCH9yUVO9Fh23WIOORl6JmCpOo.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/nBSlvQrDX60rmngwcxMeMq33I9m.jpg",
+    "desc": "Au cœur des terres reculées de l’Oklahoma rural, Amziah King, personnage charismatique au talent musical hors du commun, veille sur une bande de marginaux passionnés de bluegrass tout en supervisant la plus importante exploitation apicole de la région. Lorsque sa fille adoptive, dont il était éloigné depuis des années, réapparaît soudainement, Amziah y voit l’occasion de renouer les liens et de bâtir avec elle une entreprise familiale. Mais le monde du miel est sans pitié, et les rivaux d’Amziah menacent de détruire tout ce qu’il a construit.",
+    "year": "2026",
+    "note": 3,
+    "trailer": "6Jpke59DC4I",
+    "actors_pics": [
+      {
+        "name": "Matthew McConaughey",
+        "img": "https://image.tmdb.org/t/p/w185/lCySuYjhXix3FzQdS4oceDDrXKI.jpg"
+      },
+      {
+        "name": "Kurt Russell",
+        "img": "https://image.tmdb.org/t/p/w185/6g1d98oH4miG4k0ZiZWmF3Dt0bO.jpg"
+      },
+      {
+        "name": "Angelina LookingGlass",
+        "img": "https://image.tmdb.org/t/p/w185/jo1OhLLAsM9Noqy9tD3ioJLi2AC.jpg"
+      },
+      {
+        "name": "Cole Sprouse",
+        "img": "https://image.tmdb.org/t/p/w185/mQAXL0rUGwX316d1FBBQmloZzHu.jpg"
+      },
+      {
+        "name": "Scott Shepherd",
+        "img": "https://image.tmdb.org/t/p/w185/leLuJUpF6uySDWPS7FwHpObAMs4.jpg"
+      },
+      {
+        "name": "Rob Morgan",
+        "img": "https://image.tmdb.org/t/p/w185/ps6wR3JZnk6MY9tbtOLORgadqs6.jpg"
+      },
+      {
+        "name": "Tony Revolori",
+        "img": "https://image.tmdb.org/t/p/w185/tSF6XmXDikrKZbFUeoDnafXxKjT.jpg"
+      },
+      {
+        "name": "Jake Horowitz",
+        "img": "https://image.tmdb.org/t/p/w185/ijZZcfnpgkJFW9NFsHSV0csVZ33.jpg"
+      },
+      {
+        "name": "Owen Teague",
+        "img": "https://image.tmdb.org/t/p/w185/tgCkGE0LIggyjMmgSwHhpZAkfJs.jpg"
+      },
+      {
+        "name": "Bruce Davis",
+        "img": "https://image.tmdb.org/t/p/w185/zS4lu2sT6Tz45K17MnCcq9Pkpk9.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2760",
+    "t": "Sultana",
+    "id_tmdb": "1656489",
+    "cat": "DRAME, MUSIQUE",
+    "url": "https://vidzy.org/d/ngeqozwomprv_n",
+    "img": "https://image.tmdb.org/t/p/w500/wDebpR4NplIM8EteAGfd51Zdisu.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/lDHfyYkTIWCWWdbHkLZwRXQx3Ul.jpg",
+    "desc": "Sultana est une histoire saisissante qui se déroule dans une boîte de nuit d'Istanbul, entre rivalité, solidarité et lutte pour le pouvoir. Meral, reine du célèbre club Sultana, prend sous son aile Anna, une danseuse talentueuse. Mais elle comprend vite qu'elle vient de se créer une redoutable rivale. Une lutte sans merci s'engage alors entre les deux femmes.",
+    "year": "2026",
+    "note": 4,
+    "trailer": "dQf1y2qCtnU",
+    "actors_pics": [
+      {
+        "name": "Tuba Büyüküstün",
+        "img": "https://image.tmdb.org/t/p/w185/14QRLZqXAZglMB7Z25uXg6IG3LG.jpg"
+      },
+      {
+        "name": "Derya Pınar Ak",
+        "img": "https://image.tmdb.org/t/p/w185/9PxHCK6FifopvrEgsAnwOrRcxs5.jpg"
+      },
+      {
+        "name": "Seray Kaya",
+        "img": "https://image.tmdb.org/t/p/w185/vonxi1y7pUDcbeOantOqYrBSizx.jpg"
+      },
+      {
+        "name": "Begüm Akkaya",
+        "img": "https://image.tmdb.org/t/p/w185/5JqzpYhyio17y0ievgDGEDiacBg.jpg"
+      },
+      {
+        "name": "Rojbin Erden",
+        "img": "https://image.tmdb.org/t/p/w185/nRTrcE1UHlPlaztsGvrawMHUN4Q.jpg"
+      },
+      {
+        "name": "Şirin Sultan Saldamlı",
+        "img": "https://image.tmdb.org/t/p/w185/fHCuvVh6SGBW2VMh5gTMCUsIbxL.jpg"
+      },
+      {
+        "name": "Itır Esen",
+        "img": "https://image.tmdb.org/t/p/w185/g6nYeWkmL4bI0fxRNYxcX1QArm7.jpg"
+      },
+      {
+        "name": "Taro Emir Tekin",
+        "img": "https://image.tmdb.org/t/p/w185/jzq1kYMT7YZSRVbpqQTB3fcL9fW.jpg"
+      },
+      {
+        "name": "Hakan Kurtaş",
+        "img": "https://image.tmdb.org/t/p/w185/bPqpPuQddPLqMNxbSwVYl4nc5O2.jpg"
+      },
+      {
+        "name": "Nur Sürer",
+        "img": "https://image.tmdb.org/t/p/w185/dHTgCwwmGyvJK5LyCpFtzYpap2d.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2759",
+    "t": "Autofiction",
+    "id_tmdb": "1088548",
+    "cat": "DRAME, COMÉDIE",
+    "url": "https://vidzy.org/d/zk6pnimz60v8_n",
+    "img": "https://image.tmdb.org/t/p/w500/totBmg5uDtbo23XNfj7AQktFPDj.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/ppLv2F7dhvI3wxaEoOP1E0OyBPP.jpg",
+    "desc": "Raúl est un cinéaste culte en pleine crise créative. Lorsqu’un drame frappe l’une de ses plus proches collaboratrices, il s’en inspire pour écrire son prochain film. Peu à peu, il imagine Elsa, une réalisatrice en pleine écriture, dont le parcours commence à refléter le sien. Les deux cinéastes deviennent les deux facettes d’un même personnage, dans un jeu de miroirs où l’impudeur de l’autofiction dévoile autant qu’elle détruit. Mais jusqu’où peut-on aller pour raconter une histoire ?",
+    "year": "2026",
+    "note": 3,
+    "trailer": "LEPH07FriVM",
+    "actors_pics": [
+      {
+        "name": "Bárbara Lennie",
+        "img": "https://image.tmdb.org/t/p/w185/pEiyonuiZbpkpfdGf5inWQ8Tr1h.jpg"
+      },
+      {
+        "name": "Leonardo Sbaraglia",
+        "img": "https://image.tmdb.org/t/p/w185/jGYgJqNEWVvp92ZPre1PEKfci5H.jpg"
+      },
+      {
+        "name": "Aitana Sánchez-Gijón",
+        "img": "https://image.tmdb.org/t/p/w185/4gm7EJzvJQbN2RPW1ZOcEzF1jDn.jpg"
+      },
+      {
+        "name": "Victoria Luengo",
+        "img": "https://image.tmdb.org/t/p/w185/sITOSQWB4nzQJUfrC5Fpx1jY8E5.jpg"
+      },
+      {
+        "name": "Patrick Criado",
+        "img": "https://image.tmdb.org/t/p/w185/irGL3gnK6EkiL1EsMAEzXkZ58U8.jpg"
+      },
+      {
+        "name": "Milena Smit",
+        "img": "https://image.tmdb.org/t/p/w185/a4ND4q8zjG9vNOPLMk59CmaFXDl.jpg"
+      },
+      {
+        "name": "Quim Gutiérrez",
+        "img": "https://image.tmdb.org/t/p/w185/17Mo65PvdiG8dN2nIyH5rK0qMHz.jpg"
+      },
+      {
+        "name": "Rossy de Palma",
+        "img": "https://image.tmdb.org/t/p/w185/3IH9ZBUcFNwBr8IcS1RZhMKTpeg.jpg"
+      },
+      {
+        "name": "Carmen Machi",
+        "img": "https://image.tmdb.org/t/p/w185/rlyC5BuoLBUAX0M4bDY24fbT1MI.jpg"
+      },
+      {
+        "name": "Diogo Belizario",
+        "img": "https://image.tmdb.org/t/p/w185/eTay1JGc8DKj95yR5YLVv5viA87.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2758",
+    "t": "Finding Emily",
+    "id_tmdb": "1339588",
+    "cat": "ROMANCE, COMÉDIE",
+    "url": "https://vidzy.org/d/rffdijbqwnbj_n",
+    "img": "https://image.tmdb.org/t/p/w500/egPElljJxenQYhWxm3Fx0e3o4hR.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/7Ja28gO6OwncmCA94q2qPyeRrsA.jpg",
+    "desc": "Alors que la fille de ses rêves lui a donné un faux numéro, un musicien fou amoureux s'allie à une étudiante en psychologie en difficulté pour la retrouver. Ensemble, ils vont semer le chaos sur un campus et déclencher une crise qui mettra à l'épreuve leurs principes et leurs ambitions.",
+    "year": "2026",
+    "note": 3,
+    "actors_pics": [
+      {
+        "name": "Spike Fearn",
+        "img": "https://image.tmdb.org/t/p/w185/o1WcXkDdlN5wdL5WIuGXNpNouZ9.jpg"
+      },
+      {
+        "name": "Angourie Rice",
+        "img": "https://image.tmdb.org/t/p/w185/iHZzyhvIYW9CSsMSLnxm9FsJohL.jpg"
+      },
+      {
+        "name": "Cora Kirk",
+        "img": "https://image.tmdb.org/t/p/w185/4av80vVFZSBuKJyzXqEXLE8Vftc.jpg"
+      },
+      {
+        "name": "Jack Riddiford",
+        "img": "https://image.tmdb.org/t/p/w185/3GprRetu86xwmpyaezrUhUXEAgF.jpg"
+      },
+      {
+        "name": "Isabella Laughland",
+        "img": "https://image.tmdb.org/t/p/w185/3vdUpjDwTxZQbaeI8dE0GOu0qzU.jpg"
+      },
+      {
+        "name": "Prasanna Puwanarajah",
+        "img": "https://image.tmdb.org/t/p/w185/soIlyi4qNdRX11etHhoMFrlUJcI.jpg"
+      },
+      {
+        "name": "Nadia Parkes",
+        "img": "https://image.tmdb.org/t/p/w185/4FhvqGWPOD7r8qI1ADbq7E7UDm1.jpg"
+      },
+      {
+        "name": "Kat Ronney",
+        "img": "https://image.tmdb.org/t/p/w185/tQ54Wiq8siKmgeged3vdC2Xvine.jpg"
+      },
+      {
+        "name": "Minnie Driver",
+        "img": "https://image.tmdb.org/t/p/w185/2uwaHwpoutbXMuYY5v2dhWU0hml.jpg"
+      },
+      {
+        "name": "Anthony J. Abraham",
+        "img": "https://image.tmdb.org/t/p/w185/fdCBmCUt3CidV7xRMpZcyccGk7E.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2757",
+    "t": "The Giaccomo",
+    "id_tmdb": "1422612",
+    "cat": "COMÉDIE",
+    "url": "https://vidzy.org/d/4109n9qbyi11_n",
+    "img": "https://image.tmdb.org/t/p/w500/jDrgAMnqr4KO9AGKHZmLOOYcLzn.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/iHa6Maq7zckKzhacseHial1cvbK.jpg",
+    "desc": "Giaccomo, un jeune homme originaire d'Amiens, rêve de sortir de l'anonymat, convaincu que \"la célébrité apporte le bonheur\". Prêt à tout pour atteindre son objectif, il commence par tourner des tutoriels sur le développement physique et le fitness dans la salle de sport où il est employé. Rapidement happé par l'ivresse des vues, des statistiques et de la reconnaissance en ligne, Giaccomo décide de devenir influenceur à plein temps. Il se fixe un objectif absolu : atteindre un million d'abonnés.",
+    "year": "2026",
+    "note": 3,
+    "trailer": "IDi6eL-RT-I",
+    "actors_pics": [
+      {
+        "name": "Xavier Lacaille",
+        "img": "https://image.tmdb.org/t/p/w185/oBqXWHrPi48D9tVIgPGnsfzJAlv.jpg"
+      },
+      {
+        "name": "Olivier Guibert",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Baptiste Drapeau",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Bastien Grimal",
+        "img": "https://image.tmdb.org/t/p/w185/d5lYNf4KOU01wvp5ASnNocQugtl.jpg"
+      },
+      {
+        "name": "Ragnar Le Breton",
+        "img": "https://image.tmdb.org/t/p/w185/5ATzaSUK8BZaCVUjFGFO52NqtQ0.jpg"
+      },
+      {
+        "name": "Benjamin Castaldi",
+        "img": "https://image.tmdb.org/t/p/w185/gosUDIxyw5kmb2zujy0ZmzU8W2I.jpg"
+      },
+      {
+        "name": "Thibaud Delapart",
+        "img": "https://image.tmdb.org/t/p/w185/k9ZAxwrPm828p34YZtE7rn4RyHP.jpg"
+      },
+      {
+        "name": "Michel Cymes",
+        "img": "https://image.tmdb.org/t/p/w185/733DXK6J1lIqLoGnczyENxsUina.jpg"
+      },
+      {
+        "name": "Magali Berdah",
+        "img": "https://image.tmdb.org/t/p/w185/d8xZYnozmsHxv4Kc5u1LdZfYWdD.jpg"
+      },
+      {
+        "name": "Jordan Guisnel",
+        "img": "https://image.tmdb.org/t/p/w185/1Dbd347V5fkkZEMdb6mMyOZcHbR.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2756",
+    "t": "La Fin d'Oak Street",
+    "id_tmdb": "1101383",
+    "cat": "SCIENCE-FICTION, MYSTÈRE, THRILLER",
+    "url": "https://vidzy.org/d/4j7bmyiavmrn_n",
+    "img": "https://image.tmdb.org/t/p/w500/yZINaQysj32K2DS2EW4Iy1bK4Bm.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/b9q9VmbXDvJmTziRqkwdEmFdwhr.jpg",
+    "desc": "Lorsqu’un mystérieux événement cosmique arrache Oak Street à sa paisible banlieue et la transporte vers un lieu inconnu, la famille Platt, désorientée dans ce nouvel environnement hostile, comprend vite qu’il leur faudra rester unis pour survivre.",
+    "year": "2026",
+    "note": 4,
+    "trailer": "t3fQ2lTNtks",
+    "actors_pics": [
+      {
+        "name": "Anne Hathaway",
+        "img": "https://image.tmdb.org/t/p/w185/nbccV2pMoyLTCeg5DQip24Eq0Jp.jpg"
+      },
+      {
+        "name": "Ewan McGregor",
+        "img": "https://image.tmdb.org/t/p/w185/q2UDxfwWnmXTB7khOUF3J9puBVP.jpg"
+      },
+      {
+        "name": "Maisy Stella",
+        "img": "https://image.tmdb.org/t/p/w185/dlnP0Yzbr9EEbVg6M0PQVQ7pwUF.jpg"
+      },
+      {
+        "name": "Christian Convery",
+        "img": "https://image.tmdb.org/t/p/w185/tOR2tSrvHPVDltE4jBDEva3GNqY.jpg"
+      },
+      {
+        "name": "Jordan Alexa Davis",
+        "img": "https://image.tmdb.org/t/p/w185/itz31u3sG9hAlwuFZ6FWz1KhY1R.jpg"
+      },
+      {
+        "name": "P.J. Byrne",
+        "img": "https://image.tmdb.org/t/p/w185/1JVBaxRy3OxkHymD3nwBd5kVWWL.jpg"
+      },
+      {
+        "name": "Hudson Meek",
+        "img": "https://image.tmdb.org/t/p/w185/29S5mIoO18vNbOs0qrLC2XRVNlV.jpg"
+      },
+      {
+        "name": "Anne Gee Byrd",
+        "img": "https://image.tmdb.org/t/p/w185/yNqUNepmVQ462yoTnZOWVbudKeG.jpg"
+      },
+      {
+        "name": "Emily Kuroda",
+        "img": "https://image.tmdb.org/t/p/w185/yaZhAxSsElEaX0az2U6FUBN38ET.jpg"
+      },
+      {
+        "name": "Simms May",
+        "img": "https://image.tmdb.org/t/p/w185/jfOkBcfi07i4xl9ayjwcOZgerhe.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2755",
+    "t": "Little Lorraine",
+    "id_tmdb": "1356963",
+    "cat": "THRILLER, CRIME, DRAME",
+    "url": "https://vidzy.org/d/tmttahf7915l_n",
+    "img": "https://image.tmdb.org/t/p/w500/nszmSg2Uv1cIezPjsNyVFvtIYX4.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/utpd4H566GFpw6hjufRxEuoSIIg.jpg",
+    "desc": "Little Lorraine, village côtier de l'Atlantique Nord peuplé de 60 habitants, se retrouve au coeur d'un trafic international de cocaïne mené au nez de plusieurs gouvernements. La drogue est distribuée dans des cercueils par un réseau de salons funéraires.",
+    "year": "2026",
+    "note": 3,
+    "actors_pics": [
+      {
+        "name": "Stephen Amell",
+        "img": "https://image.tmdb.org/t/p/w185/hyg78jsQLLaIVs4Je2znPysAUxj.jpg"
+      },
+      {
+        "name": "Sean Astin",
+        "img": "https://image.tmdb.org/t/p/w185/As3ctGUtBYmG4zj4Ifyrcqd71HP.jpg"
+      },
+      {
+        "name": "J Balvin",
+        "img": "https://image.tmdb.org/t/p/w185/5GIHixpuqbwlmNL6YNj4QhsehCP.jpg"
+      },
+      {
+        "name": "Matt Walsh",
+        "img": "https://image.tmdb.org/t/p/w185/fp1JsNbZyhJ3PHpwZJVDYRz1RGF.jpg"
+      },
+      {
+        "name": "Rhys Darby",
+        "img": "https://image.tmdb.org/t/p/w185/65Zy72IsUjopCkRt0s55Tk68GIm.jpg"
+      },
+      {
+        "name": "Stephen McHattie",
+        "img": "https://image.tmdb.org/t/p/w185/zqOwiEDXYM9AKQgHGJGeIp7QkPh.jpg"
+      },
+      {
+        "name": "Sugar Lyn Beard",
+        "img": "https://image.tmdb.org/t/p/w185/8AIFKRJ9bdW91PRXfx3Rx35xZQB.jpg"
+      },
+      {
+        "name": "Kaelen Ohm",
+        "img": "https://image.tmdb.org/t/p/w185/fTP7wslxx24MGEfsBK76HmlUcPp.jpg"
+      },
+      {
+        "name": "Steve Lund",
+        "img": "https://image.tmdb.org/t/p/w185/cG3CblgPuywaL2cKwZgrK5JAJUU.jpg"
+      },
+      {
+        "name": "Mike Dopud",
+        "img": "https://image.tmdb.org/t/p/w185/yOYOX3TnIaBrLdkAMznSK6SLY38.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2754",
+    "t": "L'Abandon",
+    "id_tmdb": "1645368",
+    "cat": "DRAME",
+    "url": "https://vidzy.org/d/osp9y7oaopjg_n",
+    "img": "https://image.tmdb.org/t/p/w500/kfUKP5IgzgLQyQD1MDt99yq9Af0.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/37LuuL6AFYr6vj0EOTpev9pJMi3.jpg",
+    "desc": "Tout le monde connaît le nom de Samuel Paty, mais peu de gens connaissent réellement son histoire. Le 16 octobre 2020, Samuel Paty, professeur d’Histoire-Géographie, est assassiné (décapité) à la sortie de son collège. À la lumière des enquêtes et des procès, ce film revient sur ses onze derniers jours, et l’engrenage qui a conduit à sa mort tragique.",
+    "year": "2026",
+    "note": 4,
+    "trailer": "M-zW4Dpg-lY",
+    "actors_pics": [
+      {
+        "name": "Antoine Reinartz",
+        "img": "https://image.tmdb.org/t/p/w185/OHGtRqIim2cEHOYKPlbgNOV6Cb.jpg"
+      },
+      {
+        "name": "Emmanuelle Bercot",
+        "img": "https://image.tmdb.org/t/p/w185/xywoj2EBThgQE8izX7979MmrlOd.jpg"
+      },
+      {
+        "name": "Nedjim Bouizzoul",
+        "img": "https://image.tmdb.org/t/p/w185/2tQeiEMVTttNc1l0Hfb3Q3pViRI.jpg"
+      },
+      {
+        "name": "Emma Boumali",
+        "img": "https://image.tmdb.org/t/p/w185/3kyAUx3zC3zxiaUdhUaGnGPpkAs.jpg"
+      },
+      {
+        "name": "Azize Kabouche",
+        "img": "https://image.tmdb.org/t/p/w185/oV6ig7i5uHsZPfBppEmFvTQtX7o.jpg"
+      },
+      {
+        "name": "Marie-Sohna Condé",
+        "img": "https://image.tmdb.org/t/p/w185/8ByKJc0Qc1TaRg61X95MWir8UbG.jpg"
+      },
+      {
+        "name": "Jean-Michel Lahmi",
+        "img": "https://image.tmdb.org/t/p/w185/eJsCMgWJxCozvOE8iyOT3ihawoi.jpg"
+      },
+      {
+        "name": "Nhoa François",
+        "img": "https://image.tmdb.org/t/p/w185/tGeCgHqo73qlvufzoTs9CwDEUB6.jpg"
+      },
+      {
+        "name": "Marwan Zeghoudi",
+        "img": "https://image.tmdb.org/t/p/w185/5sJLy3joOVqOGIt6430q63ZEa63.jpg"
+      },
+      {
+        "name": "Etienne Guillou-Kervern",
+        "img": "https://image.tmdb.org/t/p/w185/hbNAiy6lw4yKb1oA5hFvSANVP6b.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2753",
+    "t": "La Vénus électrique",
+    "id_tmdb": "1442669",
+    "cat": "DRAME, COMÉDIE",
+    "url": "https://vidzy.org/d/wi5b70sjtwz6_n",
+    "img": "https://image.tmdb.org/t/p/w500/6mGCyYnuGpxGT3Wx4xuRMV20EEi.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/hKV9IrDUAY8jGkvxDgcHyUxjSSW.jpg",
+    "desc": "Paris, 1928. Antoine Balestro, jeune peintre en vogue, n’arrive plus à travailler depuis la mort de son épouse et désespère Armand, son galeriste. Un soir d'ivresse, Antoine tente d’entrer en contact avec sa femme par l’intermédiaire d’une voyante. Sans le savoir, il parle en réalité avec Suzanne, une modeste foraine qui s’est glissée dans la roulotte pour y voler de la nourriture. Suzanne se révèle douée pour l’imposture et, rapidement secondée par Armand, elle enchaîne les fausses séances. Peu à peu, Antoine retrouve l'inspiration, mais pour Suzanne les choses se compliquent alors qu’elle tombe doucement amoureuse de l’homme qu’elle manipule...",
+    "year": "2026",
+    "note": 4,
+    "trailer": "T3IiNgAyLPo",
+    "actors_pics": [
+      {
+        "name": "Pio Marmaï",
+        "img": "https://image.tmdb.org/t/p/w185/3DlfGGHAcJUI5pHzDBYQz7JsxoM.jpg"
+      },
+      {
+        "name": "Anaïs Demoustier",
+        "img": "https://image.tmdb.org/t/p/w185/j4WOp6FfbJISy07FegDw4OTAUnG.jpg"
+      },
+      {
+        "name": "Gilles Lellouche",
+        "img": "https://image.tmdb.org/t/p/w185/5Ka9nodCWS6TRFJnmosjp9sV3iA.jpg"
+      },
+      {
+        "name": "Vimala Pons",
+        "img": "https://image.tmdb.org/t/p/w185/2sNmgouol2LeQ6QIAFP31hdlh8X.jpg"
+      },
+      {
+        "name": "Gustave Kervern",
+        "img": "https://image.tmdb.org/t/p/w185/cRbHFJJ5yAWUbENYhcLDmnCZUHX.jpg"
+      },
+      {
+        "name": "Madeleine Baudot",
+        "img": "https://image.tmdb.org/t/p/w185/lEO6s7ERB2qV1SRKJLY5JEPAcBq.jpg"
+      },
+      {
+        "name": "Charline Cerri",
+        "img": "https://image.tmdb.org/t/p/w185/bmIhOTefFjhp9c3jQGwtId3s1KJ.jpg"
+      },
+      {
+        "name": "Edwin Gillet",
+        "img": "https://image.tmdb.org/t/p/w185/zFnTbpoExK74MsUDZ1YfQSFGDzK.jpg"
+      },
+      {
+        "name": "Patrice Tépasso",
+        "img": "https://image.tmdb.org/t/p/w185/vcKLfojMfm05lnZD4eTc9cIlS6P.jpg"
+      },
+      {
+        "name": "Fanny Carbonnel",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      }
+    ]
+  },
+  {
+    "num": "2752",
+    "t": "Attirés Malgré Nous",
+    "id_tmdb": "1440098",
+    "cat": "ROMANCE, THRILLER",
+    "url": "https://vidzy.org/d/3nbvlxfymug0_n",
+    "img": "https://image.tmdb.org/t/p/w500/fWCEAgqwVgSqelrDS48F843ZHx7.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/i65y7cMae36K0giN0GRaMjAHUru.jpg",
+    "desc": "Marfil, fille d'un homme d'affaires espagnol, voit sa vie new-yorkaise basculer lorsqu'elle est enlevée puis mystérieusement relâchée. Son père engage un garde du corps, Sebastian Moore, et, contraints de passer tout leur temps ensemble, une attirance inévitable naît entre eux, dans un monde où les apparences sont trompeuses. Adapté du roman de Mercedes Ron, autrice de la saga À Contre-sens.",
+    "year": "2026",
+    "note": 3,
+    "trailer": "ER5EjO1zADo",
+    "actors_pics": [
+      {
+        "name": "Ester Expósito",
+        "img": "https://image.tmdb.org/t/p/w185/xoktRKmZQbNokVRIk9Ff1XJXMEg.jpg"
+      },
+      {
+        "name": "Hugo Diego Garcia",
+        "img": "https://image.tmdb.org/t/p/w185/mC0Aly8hHgNIYvZSa1SZmYU47pn.jpg"
+      },
+      {
+        "name": "Pablo Molinero",
+        "img": "https://image.tmdb.org/t/p/w185/mtoRws2DEpETuGJGmvI5DALUcce.jpg"
+      },
+      {
+        "name": "Lluís Homar",
+        "img": "https://image.tmdb.org/t/p/w185/p1AFBzyZRbHzA6S8q3RWw0YXoAf.jpg"
+      },
+      {
+        "name": "Joaquín Ferreira",
+        "img": "https://image.tmdb.org/t/p/w185/dGpDGDPMtvsZpc4ZMMgjy1DOGpU.jpg"
+      },
+      {
+        "name": "Zoe Bonafonte",
+        "img": "https://image.tmdb.org/t/p/w185/pwjNbRQP4GXVREfB96SuzHh2hqq.jpg"
+      },
+      {
+        "name": "Majo Gámez",
+        "img": "https://image.tmdb.org/t/p/w185/zjgbcRy2IQH30AySeXa3H0MkUUZ.jpg"
+      },
+      {
+        "name": "João Bettencourt",
+        "img": "https://image.tmdb.org/t/p/w185/a0wqnZmewxpNIXi1ol9fii2CzWJ.jpg"
+      },
+      {
+        "name": "Leander Vyvey",
+        "img": "https://image.tmdb.org/t/p/w185/dTKoYDKqU8vPx7tzbOEcjHKeYRb.jpg"
+      },
+      {
+        "name": "Eric Masip",
+        "img": "https://image.tmdb.org/t/p/w185/2JmF1hJ40a3k3oyeiAoITiX1CKI.jpg"
+      }
+    ]
+  },
+  {
     "num": "2751",
     "t": "Histoires parallèles",
     "id_tmdb": "1157869",
