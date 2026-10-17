@@ -1,5 +1,60 @@
 [
   {
+    "num": "2827",
+    "t": "Deviens génial",
+    "id_tmdb": "1443774",
+    "cat": "COMÉDIE",
+    "url": "https://vidzy.org/d/4dkus14rpr7q_n",
+    "img": "https://image.tmdb.org/t/p/w500/ibWODXJ3a3rrx7asLa3gY5Xxjgn.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/j2nIHX1vppKG6omTE2am2cP0qSB.jpg",
+    "desc": "Mathias est prof et vient enfin d’obtenir sa mutation dans le collège de sa fille. Pourtant à peine arrivé on lui apprend que sa classe d’allemand va fermer, faute d’inscrits. Il décide alors d’organiser un voyage en Allemagne pour motiver les adolescents à choisir la langue et pour le financer, il fait appel à Iris, la responsable du comité de jumelage local. Le hic, c’est que Mathias est prof d’espagnol. Entre un Mathias qui ne parle pas un mot d’allemand, des ados en souffrance et une Iris irrationnelle, le voyage scolaire va prendre des allures de gigantesque chaos. Pourtant, rien ne pourra l’empêcher de devenir le père que sa fille n’attend plus… et pour arriver à ses fins, il va devoir devenir génial !",
+    "year": "2026",
+    "note": 3,
+    "trailer": "UGvmNr8QMrc",
+    "actors_pics": [
+      {
+        "name": "Manu Payet",
+        "img": "https://image.tmdb.org/t/p/w185/fUky7Yc62AB3sN4ymvr75EOAdS9.jpg"
+      },
+      {
+        "name": "Elisa Murphy",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Melha Bedia",
+        "img": "https://image.tmdb.org/t/p/w185/wVRSQkFuIQmE3y362AOibFDn9jL.jpg"
+      },
+      {
+        "name": "Thomas Krutmann",
+        "img": "https://image.tmdb.org/t/p/w185/4sch1eqt1YT4PipWy0GmvvpqUhR.jpg"
+      },
+      {
+        "name": "Julia Stolba",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Roxan Bangalter",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Marie-Julie Baup",
+        "img": "https://image.tmdb.org/t/p/w185/8o3zCF8Cb5nDzgmgimobatzaQGu.jpg"
+      },
+      {
+        "name": "Luzian Gupta",
+        "img": "https://image.tmdb.org/t/p/w185/mDufoqwkAla8G1l52pCP3GNiQAC.jpg"
+      },
+      {
+        "name": "Derek Simon Robin",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Selma Rodot",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      }
+    ]
+  },
+  {
     "num": "2826",
     "t": "L'Amour de ta vie",
     "id_tmdb": "1381078",
