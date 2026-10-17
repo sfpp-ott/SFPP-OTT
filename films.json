@@ -1,5 +1,91 @@
 [
   {
+    "num": "2826",
+    "t": "L'Amour de ta vie",
+    "id_tmdb": "1381078",
+    "cat": "ROMANCE, DRAME",
+    "url": "https://vidzy.org/d/rg140vgtffzl_n",
+    "img": "https://image.tmdb.org/t/p/w500/1zrnRcJ8JOTXYp0Qizad1rnuIA0.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/mqYqKvrKTgMvK50VtEDZlYFsnHz.jpg",
+    "desc": "Maya dont la rencontre fortuite avec Charlie donne naissance à une histoire d'amour passionnée et à la vie dont elle n'osait pas rêver. Lorsque tout bascule, Maya doit déterminer qui elle est, ce qu'elle veut et comment réapprendre à aimer.",
+    "year": "2026",
+    "note": 3,
+    "trailer": "FbZtcEtSFgE",
+    "actors_pics": [
+      {
+        "name": "Margaret Qualley",
+        "img": "https://image.tmdb.org/t/p/w185/2H3VZ2Gjh0X4jeTc3a7ir3dzRGo.jpg"
+      },
+      {
+        "name": "Aaron Pierre",
+        "img": "https://image.tmdb.org/t/p/w185/hNwZWdT2KxKj1YLbipvtUhNjfAp.jpg"
+      },
+      {
+        "name": "Patrick Schwarzenegger",
+        "img": "https://image.tmdb.org/t/p/w185/jKbI0OpFMMz4SPCU1VoMHXIbA3Y.jpg"
+      },
+      {
+        "name": "Gabriel Basso",
+        "img": "https://image.tmdb.org/t/p/w185/6jHYQf6Y37BEouavp03WWpWpFyR.jpg"
+      },
+      {
+        "name": "Catherine Keener",
+        "img": "https://image.tmdb.org/t/p/w185/n4CTwGszs6cwS1wJRlDQ5Mlh7Ex.jpg"
+      },
+      {
+        "name": "Tamara Lawrance",
+        "img": "https://image.tmdb.org/t/p/w185/dxmaQIEhFVwOhU1f6vTV06CU2Jj.jpg"
+      },
+      {
+        "name": "Corey Johnson",
+        "img": "https://image.tmdb.org/t/p/w185/mhNbf4vGzixPL5mTIOBUPguqvpB.jpg"
+      },
+      {
+        "name": "Michael Shelford",
+        "img": "https://image.tmdb.org/t/p/w185/v3X5nAuS9IXf43OXU2Giz3Um4Sz.jpg"
+      },
+      {
+        "name": "Adam Woodward",
+        "img": "https://image.tmdb.org/t/p/w185/vzVxcLEg4MkYc133fxEouhHZkM9.jpg"
+      },
+      {
+        "name": "Gayané Kaligian",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      }
+    ]
+  },
+  {
+    "num": "2825",
+    "t": "Flush",
+    "id_tmdb": "1507442",
+    "cat": "COMÉDIE, THRILLER, HORREUR",
+    "url": "https://vidzy.org/d/knr52dieg30m_n",
+    "img": "https://image.tmdb.org/t/p/w500/mBYmQHhN3GMENbWTf0C0htbUPge.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/rx5BlsUw8LBZFf1YPJkv2yuo4H0.jpg",
+    "desc": "Quand on essaie de sortir la tête du trou, il y a toujours quelqu’un pour vous y replonger. Prenez Luc, un junkie à la dérive. Sa femme l’a quitté. Sa fille a été confiée aux services sociaux. Alors qu’il tente de reconquérir son ex devenue serveuse dans un bar, il se retrouve mêlé à un trafic de drogue. Une bagarre éclate. Laissé pour mort, le crâne coincé dans le trou d’une toilette à la turque, il aura la nuit pour se sortir de là et recomposer sa famille perdue.",
+    "year": "2025",
+    "note": 3,
+    "trailer": "Ih5VNQsClM0",
+    "actors_pics": [
+      {
+        "name": "Jonathan Lambert",
+        "img": "https://image.tmdb.org/t/p/w185/scQLnfutvoFLJ20qNklE2nW7ATA.jpg"
+      },
+      {
+        "name": "Élodie Navarre",
+        "img": "https://image.tmdb.org/t/p/w185/8QrnJmYiI1fh6vyqmKkRfOlS1vb.jpg"
+      },
+      {
+        "name": "Elliot Jenicot",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Rémy Adriaens",
+        "img": "https://image.tmdb.org/t/p/w185/jBXDMgzDsgyevg0H2VvZSqf2Op5.jpg"
+      }
+    ]
+  },
+  {
     "num": "2824",
     "t": "Hope",
     "id_tmdb": "1058424",
