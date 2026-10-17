@@ -1,5 +1,205 @@
 [
   {
+    "num": "2823",
+    "t": "Let's Have Kids!",
+    "id_tmdb": "1282159",
+    "cat": "COMÉDIE",
+    "url": "https://vidzy.org/d/5r3k5ghwimc8_n",
+    "img": "https://image.tmdb.org/t/p/w500/cY78RP8wjO7Kct4dFiYOYLg2Rxw.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/A42JE6WJDMsICN3NU6XkUyYEF5F.jpg",
+    "desc": "Les amies d'enfance Emma et Phoebe ont le pacte de tomber enceintes en même temps, persuadées de pouvoir affronter la maternité ensemble. Mais quand leur plan plonge dans le chaos, ce qui devait les rapprocher menace de les séparer. Alors que leurs vies s'éloignent, elles doivent lutter pour protéger l'amitié qui les a fait traverser toutes les épreuves.",
+    "year": "2026",
+    "note": 4,
+    "trailer": "Uizz-btsBjA",
+    "actors_pics": [
+      {
+        "name": "Karen Gillan",
+        "img": "https://image.tmdb.org/t/p/w185/qYx8CflXVq48nGKX1IJsDrAj0sT.jpg"
+      },
+      {
+        "name": "Zoë Chao",
+        "img": "https://image.tmdb.org/t/p/w185/lHz6ST2vJZcMy3fPlcnl8EqAjO6.jpg"
+      },
+      {
+        "name": "Sam Richardson",
+        "img": "https://image.tmdb.org/t/p/w185/hUN7IIbegvL7aSqQI5KRWoqqJLm.jpg"
+      },
+      {
+        "name": "Max Greenfield",
+        "img": "https://image.tmdb.org/t/p/w185/79w2mSZT8JwYv5ZwjJMDYQbzptE.jpg"
+      },
+      {
+        "name": "KJ Apa",
+        "img": "https://image.tmdb.org/t/p/w185/idpwm8ZdFnndjeQ3mKleF20hvRo.jpg"
+      },
+      {
+        "name": "Mary Steenburgen",
+        "img": "https://image.tmdb.org/t/p/w185/yJhfuqS3yXW7kLSyvRU6n3b35mq.jpg"
+      },
+      {
+        "name": "Ed Begley Jr.",
+        "img": "https://image.tmdb.org/t/p/w185/cdS6hZVabhpQ3UdIK0HNvYXj5IM.jpg"
+      },
+      {
+        "name": "Taylor Misiak",
+        "img": "https://image.tmdb.org/t/p/w185/kBYRhq27LZimfrk5YPiJgmHPfAH.jpg"
+      },
+      {
+        "name": "Amanda Crew",
+        "img": "https://image.tmdb.org/t/p/w185/diGTfFDOAjtfpClK3pJHkQIYhNc.jpg"
+      },
+      {
+        "name": "Lilly Singh",
+        "img": "https://image.tmdb.org/t/p/w185/5dBOPUqrYIZuKRqpKRsHBdERclp.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2822",
+    "t": "Her Private Hell",
+    "id_tmdb": "1469342",
+    "cat": "SCIENCE-FICTION, HORREUR, THRILLER",
+    "url": "https://vidzy.org/d/4ddn9egpviv9_n",
+    "img": "https://image.tmdb.org/t/p/w500/xFVviOiV7UFYaXucUJdlLw30gyt.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/hS4FcOM5y71FurkBQgDLTBxmWZh.jpg",
+    "desc": "Tandis qu'une étrange brume engloutit une métropole futuriste et libère une présence mortelle insaisissable, une jeune femme troublée part à la recherche de son père. Au cours de cette quête, son destin croise celui d'un GI américain engagé dans un voyage désespéré pour arracher sa fille de l'enfer.",
+    "year": "2026",
+    "note": 3,
+    "trailer": "fR5LipOLHRg",
+    "actors_pics": [
+      {
+        "name": "Sophie Thatcher",
+        "img": "https://image.tmdb.org/t/p/w185/s7wB4ORCwPPz7H3dWVCNSAKQz9P.jpg"
+      },
+      {
+        "name": "Charles Melton",
+        "img": "https://image.tmdb.org/t/p/w185/sxWslNRZdiBcPgwdVqoj7nSclr6.jpg"
+      },
+      {
+        "name": "Havana Rose Liu",
+        "img": "https://image.tmdb.org/t/p/w185/lqdialbfdj5l4KYMSlL4aausMaV.jpg"
+      },
+      {
+        "name": "Kristine Froseth",
+        "img": "https://image.tmdb.org/t/p/w185/plgE7OleHgqZrdazFzbkv18UsRN.jpg"
+      },
+      {
+        "name": "忽那汐里",
+        "img": "https://image.tmdb.org/t/p/w185/5EdMbcRIemzLszjEr36Ic0Obmdb.jpg"
+      },
+      {
+        "name": "山田 葵",
+        "img": "https://image.tmdb.org/t/p/w185/4VJzAyq9gZxUxdzk0u8bNwGkhDS.jpg"
+      },
+      {
+        "name": "Dougray Scott",
+        "img": "https://image.tmdb.org/t/p/w185/fDjTHSZuUIEstxxBvHApLrU1fWz.jpg"
+      },
+      {
+        "name": "Diego Calva",
+        "img": "https://image.tmdb.org/t/p/w185/k5khi8PwsYs2d7uL0uuO5zenL9R.jpg"
+      },
+      {
+        "name": "Hidetoshi Nishijima",
+        "img": "https://image.tmdb.org/t/p/w185/3FBdbeMMWfyKmHS5j8IECwsZWcY.jpg"
+      },
+      {
+        "name": "Lola Corfixen",
+        "img": "https://image.tmdb.org/t/p/w185/dqa3dXqPBH6Zl0Klyybbfks6PK.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2821",
+    "t": "Tad l'explorateur et la Lampe Magique",
+    "id_tmdb": "1187326",
+    "cat": "ANIMATION, COMÉDIE, FAMILIAL",
+    "url": "https://vidzy.org/d/brbsuaavukiq_n",
+    "img": "https://image.tmdb.org/t/p/w500/qCfO9njHx6TFOGXb4PdvLxRttLM.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/zbpimMxf6Ms96v3Zypuv8WltMSO.jpg",
+    "desc": "Tad et Sara sont désormais les heureux parents d'Oli, une adorable et intrépide petite fille de deux ans. Le bonheur de la petite famille fait un peu de l'ombre à Momie, qui a l'impression de passer au second plan. Alors qu'en vacances à Londres, la bande met la main sur la lampe merveilleuse des Mille et Une Nuits, Momie formule un vœu inattendu : voyager dans le temps pour retourner à l'époque de sa jeunesse où tout le monde l'adorait.",
+    "year": "2026",
+    "note": 4,
+    "trailer": "mk5azI2SRnM",
+    "actors_pics": [
+      {
+        "name": "Óscar Barberán",
+        "img": "https://image.tmdb.org/t/p/w185/3Knf7YGrqS8sfXNPo7k15TIJe92.jpg"
+      },
+      {
+        "name": "Michelle Jenner",
+        "img": "https://image.tmdb.org/t/p/w185/g3JyHqwBcV7g1ds3dHtWkDXyXqb.jpg"
+      },
+      {
+        "name": "Luis Posada",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Joseph Balderrama",
+        "img": "https://image.tmdb.org/t/p/w185/8BwRFsXzWD25dPih6IePcRD3EjT.jpg"
+      },
+      {
+        "name": "Trevor White",
+        "img": "https://image.tmdb.org/t/p/w185/hqSsJnshRL3rydOrE2coMXRWufP.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2820",
+    "t": "Les Ensorceleuses 2",
+    "id_tmdb": "1302904",
+    "cat": "ROMANCE, FANTASTIQUE, COMÉDIE",
+    "url": "https://vidzy.org/d/eb3m1iqeiznp_n",
+    "img": "https://image.tmdb.org/t/p/w500/qU6bErj56ebypPwA7zaiTfKzemA.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/oIglj0Jy9duG4LnrRUpH8n001Pk.jpg",
+    "desc": "Une famille de sorcières multigénérationnelle, maudite à être sans amour pendant des siècles, tente de briser le sort en affrontant de sombres secrets et en se sacrifiant les uns pour les autres.",
+    "year": "2026",
+    "note": 3,
+    "trailer": "fHwAPBQkiuI",
+    "actors_pics": [
+      {
+        "name": "Sandra Bullock",
+        "img": "https://image.tmdb.org/t/p/w185/4rfjISL3Flx16jfiusXoHbpt87X.jpg"
+      },
+      {
+        "name": "Nicole Kidman",
+        "img": "https://image.tmdb.org/t/p/w185/4KSQDodyBtTDMaREYgMdWD1LbH1.jpg"
+      },
+      {
+        "name": "Joey King",
+        "img": "https://image.tmdb.org/t/p/w185/94c69mPYSK9jFsAEu0OKB7Qs684.jpg"
+      },
+      {
+        "name": "Maisie Williams",
+        "img": "https://image.tmdb.org/t/p/w185/zk1rlBVci2fmnFhMezaPpa4kwZF.jpg"
+      },
+      {
+        "name": "Xolo Maridueña",
+        "img": "https://image.tmdb.org/t/p/w185/tJMI7BpjlhHSMpzSz9e1XxygnKd.jpg"
+      },
+      {
+        "name": "Lee Pace",
+        "img": "https://image.tmdb.org/t/p/w185/eeTc0d2AX1vFYVxZ6Qw7qZpg4Tz.jpg"
+      },
+      {
+        "name": "Dianne Wiest",
+        "img": "https://image.tmdb.org/t/p/w185/p9mfzY68FtEbedOMNB5X4eBShhx.jpg"
+      },
+      {
+        "name": "Stockard Channing",
+        "img": "https://image.tmdb.org/t/p/w185/fsk0HkOVKtdcbHfsc99bQvMJep3.jpg"
+      },
+      {
+        "name": "Solly McLeod",
+        "img": "https://image.tmdb.org/t/p/w185/6aMA4kUV1ji4uu3zzBzQ9fwgUDO.jpg"
+      },
+      {
+        "name": "Ema Cavolli",
+        "img": "https://image.tmdb.org/t/p/w185/mzAXiBoJeY1fA9Nc6KNsKNPfsgO.jpg"
+      }
+    ]
+  },
+  {
     "num": "2819",
     "t": "Animals",
     "id_tmdb": "1236045",
@@ -555,9 +755,9 @@
     "url": "https://vidzy.org/d/znzmrywyoc5y_n",
     "img": "https://image.tmdb.org/t/p/w500/3rcptXLuFRrkU0q878fOktny6pf.jpg",
     "bg": "https://image.tmdb.org/t/p/original/kGJRCZgUYLnsDufxWnXBTutqikO.jpg",
-    "desc": "",
+    "desc": "Dans un quartier somalien de Toronto, Farah et Halima, deux adolescentes, tombent amoureuses malgré les avertissements de leurs origines ethniques différentes. Lorsque la famille de Farah déménage à Vancouver, leur relation prend fin brutalement, jusqu'à leurs retrouvailles à Toronto, à la vingtaine. Mais les mêmes barrières culturelles qui les ont autrefois séparées ressurgissent bientôt. Leur amour sera-t-il assez fort pour changer le cours de leur histoire, ou certains destins sont-ils condamnés à se répéter ?",
     "year": "2026",
-    "note": 0,
+    "note": 2,
     "actors_pics": [
       {
         "name": "Dalmar Abuzeid",
@@ -1741,7 +1941,7 @@
     "url": "https://vidzy.org/d/4wvot9p5ryv3_n",
     "img": "https://image.tmdb.org/t/p/w500/pF055ovYM1Rh8Ij6sUQv5z2eFp.jpg",
     "bg": "https://image.tmdb.org/t/p/original/hWqWVLGBxxLEPWcqAUySYfieqiS.jpg",
-    "desc": "",
+    "desc": "Bruxelles. Eya, 12 ans, fan de rap et de danse, vit une relation fusionnelle avec son grand-frère, Younès. Elle passe son quotidien avec lui et sa bande d’amis qu’elle admire, bien qu’ils aient tous une dizaine d’années de plus qu’elle. Un jour, dans un contexte flou, Younès perd la vie. Eya va devoir trouver son propre cheminement pour survivre pendant cette période de deuil intense et très codifiée. Grâce à sa créativité, à sa capacité de résilience et son entourage et celui de son frère, elle va trouver sa propre manière d’accepter cette réalité. Le film offre le récit intimiste de relations croisées entre une jeune adolescente et des jeunes hommes adultes à travers la tristesse, la vulnérabilité et la solidarité.",
     "year": "2025",
     "note": 0,
     "actors_pics": [
@@ -110702,7 +110902,7 @@
       },
       {
         "name": "Mariah Carey",
-        "img": "https://image.tmdb.org/t/p/w185/k5vdcaZHKuP4UgHReFWVdo0MXGI.jpg"
+        "img": "https://image.tmdb.org/t/p/w185/5abhvNcfjv7Bhj0Jdqbgy9CwOvC.jpg"
       },
       {
         "name": "Berry Gordy",
