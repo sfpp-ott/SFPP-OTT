@@ -1,5 +1,732 @@
 [
   {
+    "num": "2841",
+    "t": "The Wrecker",
+    "id_tmdb": "1101284",
+    "cat": "ACTION, THRILLER",
+    "url": "https://vidzy.org/d/rx638gksn13k_n",
+    "img": "https://image.tmdb.org/t/p/w500/vIgM9lhRdbMPtjrRLzI5Crl3e3G.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/8XhHjzvfkwVvUL5QpDqzlkvuk9M.jpg",
+    "desc": "Lorsque son frère se met les mauvaises personnes à dos, un ancien marine doit compter sur son entraînement tactique pour protéger sa famille et survivre à une confrontation mortelle avec un puissant syndicat du crime.",
+    "year": "2025",
+    "note": 3,
+    "actors_pics": [
+      {
+        "name": "Tyrese Gibson",
+        "img": "https://image.tmdb.org/t/p/w185/jxoy4fbXNKFQtBdK73cLXEz3ufS.jpg"
+      },
+      {
+        "name": "Harvey Keitel",
+        "img": "https://image.tmdb.org/t/p/w185/7P30hza1neYWW3r7rSQOC736K2Z.jpg"
+      },
+      {
+        "name": "Niko Foster",
+        "img": "https://image.tmdb.org/t/p/w185/gN1YaMDZOrRERftUCamY1wqqnsI.jpg"
+      },
+      {
+        "name": "Mena Suvari",
+        "img": "https://image.tmdb.org/t/p/w185/xjqKvy0bos02oSKNYzC4mxLbQ0W.jpg"
+      },
+      {
+        "name": "Chad Michael Collins",
+        "img": "https://image.tmdb.org/t/p/w185/9lcEpAYRBCylYIVMZYXHqfmRzfP.jpg"
+      },
+      {
+        "name": "Danny Trejo",
+        "img": "https://image.tmdb.org/t/p/w185/7JrUkRGBscZ1Hy5JinaaXjjzSCF.jpg"
+      },
+      {
+        "name": "Ego Mikitas",
+        "img": "https://image.tmdb.org/t/p/w185/6bpMVYgZVbrpWiEFn2jNwaYQWv4.jpg"
+      },
+      {
+        "name": "Oleg Prudius",
+        "img": "https://image.tmdb.org/t/p/w185/vm35geTm0yagJnT6TLkmRabJpxL.jpg"
+      },
+      {
+        "name": "Doug Jeffery",
+        "img": "https://image.tmdb.org/t/p/w185/7cwnh8pFBvR9yo5ZJRwmtGPHj6C.jpg"
+      },
+      {
+        "name": "Forrest Campbell",
+        "img": "https://image.tmdb.org/t/p/w185/r8nt7lP4L0KxBphzDyRMi8BRcaq.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2840",
+    "t": "Sacrifice",
+    "id_tmdb": "1284186",
+    "cat": "AVENTURE, COMÉDIE, ACTION",
+    "url": "https://vidzy.org/d/aw9wg5qefb35_n",
+    "img": "https://image.tmdb.org/t/p/w500/rjxBLWp9zeu5ls6Y9h7JwretMoQ.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/dkQ95ve1iEyt738io4AJOmQgijJ.jpg",
+    "desc": "Un gala de charité est interrompu par l'attaque d'un violent groupe de radicaux lancés dans une mystérieuse quête pour accomplir une prophétie.",
+    "year": "2026",
+    "note": 3,
+    "trailer": "RhUc0gHeP0Q",
+    "actors_pics": [
+      {
+        "name": "Chris Evans",
+        "img": "https://image.tmdb.org/t/p/w185/3bOGNsHlrswhyW79uvIHH1V43JI.jpg"
+      },
+      {
+        "name": "Anya Taylor-Joy",
+        "img": "https://image.tmdb.org/t/p/w185/qYNofOjlRke2MlJVihmJmEdQI4v.jpg"
+      },
+      {
+        "name": "Vincent Cassel",
+        "img": "https://image.tmdb.org/t/p/w185/ivUQfhn5olOmR5hthN8C8GThBV4.jpg"
+      },
+      {
+        "name": "Salma Hayek",
+        "img": "https://image.tmdb.org/t/p/w185/3j8MpAjyopkAc8mbNiDeXyqBmcS.jpg"
+      },
+      {
+        "name": "John Malkovich",
+        "img": "https://image.tmdb.org/t/p/w185/7GoOdGNc4ra1L0F5nJTkmIB37iu.jpg"
+      },
+      {
+        "name": "Charli xcx",
+        "img": "https://image.tmdb.org/t/p/w185/xnYIKjdP2anSMmDlFbJN3zZQMkC.jpg"
+      },
+      {
+        "name": "Yung Lean",
+        "img": "https://image.tmdb.org/t/p/w185/z3nYfetgntuvLrljXvkyMokrLTy.jpg"
+      },
+      {
+        "name": "Sam Richardson",
+        "img": "https://image.tmdb.org/t/p/w185/hUN7IIbegvL7aSqQI5KRWoqqJLm.jpg"
+      },
+      {
+        "name": "Jade Croot",
+        "img": "https://image.tmdb.org/t/p/w185/j4DuuFPDdnEcDWFWCyBUuhhHkxg.jpg"
+      },
+      {
+        "name": "Ambika Mod",
+        "img": "https://image.tmdb.org/t/p/w185/jN9HhFYPNMYIupFt6GzGnHAW88c.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2839",
+    "t": "This Is Not a Test",
+    "id_tmdb": "1428990",
+    "cat": "THRILLER, HORREUR",
+    "url": "https://vidzy.org/d/u7eawrhognbz_n",
+    "img": "https://image.tmdb.org/t/p/w500/oZqxDDByIei1UVDgw7ZBXJCHHtI.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/dydvEc82Z6ptEx3aAubzJawesiQ.jpg",
+    "desc": "Sloane et quatre autres étudiants se réfugient à Cortege High pour échapper à un monde ravagé par des personnes infectés...",
+    "year": "2026",
+    "note": 3,
+    "actors_pics": [
+      {
+        "name": "Olivia Holt",
+        "img": "https://image.tmdb.org/t/p/w185/gOYenPpic8MJnfzszGyUWgsYHSC.jpg"
+      },
+      {
+        "name": "Froy Gutierrez",
+        "img": "https://image.tmdb.org/t/p/w185/8sCm6Jl8jDUwRBin6k7CIFIm0yg.jpg"
+      },
+      {
+        "name": "Carson MacCormac",
+        "img": "https://image.tmdb.org/t/p/w185/nk38siBWAe8BRz7iDpyppBRyjlQ.jpg"
+      },
+      {
+        "name": "Corteon Moore",
+        "img": "https://image.tmdb.org/t/p/w185/6jHlhaUdAOKEMmODVyQOQB4YMwY.jpg"
+      },
+      {
+        "name": "Chloe Avakian",
+        "img": "https://image.tmdb.org/t/p/w185/kHHLdCWHTsNWCMrxX3zT8prIk1T.jpg"
+      },
+      {
+        "name": "Luke Macfarlane",
+        "img": "https://image.tmdb.org/t/p/w185/yEpXM2sEFtZSwoLtI0rYZJERzvZ.jpg"
+      },
+      {
+        "name": "Krista Bridges",
+        "img": "https://image.tmdb.org/t/p/w185/zFA8HVDbi7RO3cfk5oGjaQTAm9t.jpg"
+      },
+      {
+        "name": "Joelle Farrow",
+        "img": "https://image.tmdb.org/t/p/w185/9VfmFQODCkjeSd4jjdLAbh94ajy.jpg"
+      },
+      {
+        "name": "Jeff Roop",
+        "img": "https://image.tmdb.org/t/p/w185/cbNfziruTcK06Ql1AnK0G2N8ISv.jpg"
+      },
+      {
+        "name": "Perez Tieku",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      }
+    ]
+  },
+  {
+    "num": "2838",
+    "t": "Masterplan",
+    "id_tmdb": "1561726",
+    "cat": "ACTION, THRILLER",
+    "url": "https://vidzy.org/d/w0nqpa6piato_n",
+    "img": "https://image.tmdb.org/t/p/w500/a13BTR3jJWr2ARoLvTC3f5gQhfw.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/dgUDj84BWtW6EZzee8BkgKnjDhh.jpg",
+    "desc": "Quand un voleur légendaire jette son dévolu sur La Joconde, il recrute deux jeunes inconnus pour l'aider (Chiara, une experte italienne du cybercrime et Jay, un spécialiste français des explosifs) avant de leur révéler qu'il est leur père. Au milieu de retrouvailles chaotiques, cette nouvelle famille devra apprendre à collaborer et éviter de s'entretuer si elle veut réussir le casse du siècle.",
+    "year": "2026",
+    "note": 4,
+    "trailer": "RXe5c9WNay0",
+    "actors_pics": [
+      {
+        "name": "Stanley Tucci",
+        "img": "https://image.tmdb.org/t/p/w185/q4TanMDI5Rgsvw4SfyNbPBh4URr.jpg"
+      },
+      {
+        "name": "Simona Tabasco",
+        "img": "https://image.tmdb.org/t/p/w185/eHH3kzBwc69E9BvDRCtOEtY1CSc.jpg"
+      },
+      {
+        "name": "Victor Belmondo",
+        "img": "https://image.tmdb.org/t/p/w185/sO3BOoXM8UseOJr7Ba0q0jgGbRV.jpg"
+      },
+      {
+        "name": "Eliott Margueron",
+        "img": "https://image.tmdb.org/t/p/w185/bXXHdRf9NBXHlA0OBlROZgolaMp.jpg"
+      },
+      {
+        "name": "Bruno Bilotta",
+        "img": "https://image.tmdb.org/t/p/w185/asuFRBT9YVLRjdRmugAHL43abl8.jpg"
+      },
+      {
+        "name": "Barbara Lo Gaglio",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Etienne Guillou-Kervern",
+        "img": "https://image.tmdb.org/t/p/w185/hbNAiy6lw4yKb1oA5hFvSANVP6b.jpg"
+      },
+      {
+        "name": "Srbo Markovic",
+        "img": "https://image.tmdb.org/t/p/w185/pYtUeefoM9CN78S0gRc6K6BUgUd.jpg"
+      },
+      {
+        "name": "Julia Messina",
+        "img": "https://image.tmdb.org/t/p/w185/pvmoRAjGVcoOgR6h6wg1ZhyvWxO.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2837",
+    "t": "Winner",
+    "id_tmdb": "1039659",
+    "cat": "COMÉDIE, DRAME",
+    "url": "https://vidzy.org/d/o7yel7wmnnya_n",
+    "img": "https://image.tmdb.org/t/p/w500/wvTlXCh0XKukjsQtFGC4qtnO6Cz.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/qS2rFOmMD6ExjMqDun96efA2MIa.jpg",
+    "desc": "Une jeune fille brillante et marginale, originaire d'une ville frontalière du Texas, qui aime son pistolet rose presque autant qu'aider les autres. Après avoir appris l'arabe au lycée pour pouvoir servir au Moyen-Orient, Reality est recrutée par l'armée de l'air, mais devient rapidement désillusionnée lorsque sa morale est mise à mal. Après avoir fait la transition vers un travail rémunéré en tant que contractante de la NSA, Reality tombe sur des secrets gouvernementaux concernant le piratage des élections par la Russie pendant la campagne présidentielle de 2016. Doit-elle révéler la vérité ou se taire ? En fin de compte, elle décide de divulguer la vérité, ce qui mène à son procès et à sa condamnation historique pour espionnage.",
+    "year": "2024",
+    "note": 3,
+    "actors_pics": [
+      {
+        "name": "Emilia Jones",
+        "img": "https://image.tmdb.org/t/p/w185/bYFLZCDsBHxAKePk1tsgQSea3m.jpg"
+      },
+      {
+        "name": "Connie Britton",
+        "img": "https://image.tmdb.org/t/p/w185/lxfHf4tTx5NukbemcJjmgqqFAiV.jpg"
+      },
+      {
+        "name": "Zach Galifianakis",
+        "img": "https://image.tmdb.org/t/p/w185/qsDfoUlRnXHUiqZeBPWHzmgmKGX.jpg"
+      },
+      {
+        "name": "Danny Ramirez",
+        "img": "https://image.tmdb.org/t/p/w185/7ZvcfWA5O5ULiupbHZtGGEPwnpI.jpg"
+      },
+      {
+        "name": "Kathryn Newton",
+        "img": "https://image.tmdb.org/t/p/w185/3mos4oK6bps0uhQzW1L7nj5O0Gd.jpg"
+      },
+      {
+        "name": "Leah Gibson",
+        "img": "https://image.tmdb.org/t/p/w185/pOZ3ILnzADt7KX3xowz4KWIbloK.jpg"
+      },
+      {
+        "name": "Averie Peters",
+        "img": "https://image.tmdb.org/t/p/w185/d1lU7VVcu8yssZoQaepIbn19q52.jpg"
+      },
+      {
+        "name": "Sam Duke",
+        "img": "https://image.tmdb.org/t/p/w185/dD2cluv3XUQGCFFwlqbBTOmnPyd.jpg"
+      },
+      {
+        "name": "Stephanie Sy",
+        "img": "https://image.tmdb.org/t/p/w185/o2LxSIY7kbSh8WNpnM0FOPP6CVK.jpg"
+      },
+      {
+        "name": "Adam Hurtig",
+        "img": "https://image.tmdb.org/t/p/w185/sJ0RxYecZCJ5zybOsQjTedhMwp.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2836",
+    "t": "Tenzing : à la conquête de l’Everest",
+    "id_tmdb": "1288069",
+    "cat": "DRAME, HISTOIRE",
+    "url": "https://vidzy.org/d/v1k5b91oy4u2_n",
+    "img": "https://image.tmdb.org/t/p/w500/hKA6G4Dj0Uonghi6AUwmpIvCFo0.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/6GXqVvL20Y0MpyVP30WoI2NPK69.jpg",
+    "desc": "Un homme déterminé se lance dans une aventure périlleuse - et brave des obstacles apparemment insurmontables - pour réaliser son rêve d'être le premier à atteindre le sommet de l'Everest.",
+    "year": "2026",
+    "note": 4,
+    "actors_pics": [
+      {
+        "name": "更登彭措",
+        "img": "https://image.tmdb.org/t/p/w185/2xsreNBuPpBZYJTlpuTapi2ZvP.jpg"
+      },
+      {
+        "name": "Tom Hiddleston",
+        "img": "https://image.tmdb.org/t/p/w185/mclHxMm8aPlCPKptP67257F5GPo.jpg"
+      },
+      {
+        "name": "Willem Dafoe",
+        "img": "https://image.tmdb.org/t/p/w185/ui8e4sgZAwMPi3hzEO53jyBJF9B.jpg"
+      },
+      {
+        "name": "Samdrup Dorje Lama",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Bhuchung Kata",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Johnny Flynn",
+        "img": "https://image.tmdb.org/t/p/w185/tS3HIDFJbD8uSLAvaxZfrPc3aM0.jpg"
+      },
+      {
+        "name": "Lhakpa Tsamchoe",
+        "img": "https://image.tmdb.org/t/p/w185/kiodZp3zbkgHEIGfmXQDAug1V57.jpg"
+      },
+      {
+        "name": "Jampa Kalsang Tamang",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Elizabeth Blackmore",
+        "img": "https://image.tmdb.org/t/p/w185/8IFEnd9hBbrQOleqTvjyuTlfQXu.jpg"
+      },
+      {
+        "name": "Brandon McClelland",
+        "img": "https://image.tmdb.org/t/p/w185/cYZ3Sk95h3FzSwVm4MqF6AtDC32.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2835",
+    "t": "On va s'arrêter là",
+    "id_tmdb": "1487317",
+    "cat": "COMÉDIE, DRAME",
+    "url": "https://vidzy.org/d/e7m43se814fy_n",
+    "img": "https://image.tmdb.org/t/p/w500/vaok2Dm7suKG2gEY2cKBXL4OMYf.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/fv9BAXOrPJXEhycgWF3Qb8aczqe.jpg",
+    "desc": "L'histoire d'un psychanalyste pragmatique qui déçu par l'approche traditionnelle de la psychologie, repousse les limites de l'éthique avec ses patients. Cette démarche semble fonctionner, jusqu'au jour où un écrivain en panne d'inspiration frappe à la porte de son cabinet.",
+    "year": "2026",
+    "note": 4,
+    "actors_pics": [
+      {
+        "name": "Ricardo Darín",
+        "img": "https://image.tmdb.org/t/p/w185/2laJXyYQkL9YdLL1PRdD3hLZ6Uy.jpg"
+      },
+      {
+        "name": "Diego Peretti",
+        "img": "https://image.tmdb.org/t/p/w185/honq5g3GPjaCBoiik4uU7va0OJf.jpg"
+      },
+      {
+        "name": "Inés Efrón",
+        "img": "https://image.tmdb.org/t/p/w185/aSXV4etwXL8PGAeoFMcrmNGoSfG.jpg"
+      },
+      {
+        "name": "Carlos Santamaría",
+        "img": "https://image.tmdb.org/t/p/w185/3Vlzyywvhw8jiDufLqbdzh5wC3.jpg"
+      },
+      {
+        "name": "Miriam Odorico",
+        "img": "https://image.tmdb.org/t/p/w185/3wdXhgm7DlrYA4mD7NZPwEotMbG.jpg"
+      },
+      {
+        "name": "Antonia Bengochea",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Andrea Politti",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Patricia Echegoyen",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Andrés Granier",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Gonzalo Urtizberea",
+        "img": "https://image.tmdb.org/t/p/w185/qVxJeohKi3Ig4bhZfYVoSFbeA7W.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2834",
+    "t": "La Petite Graine",
+    "id_tmdb": "1355084",
+    "cat": "COMÉDIE, DRAME",
+    "url": "https://vidzy.org/d/f1gof9qhkjvy_n",
+    "img": "https://image.tmdb.org/t/p/w500/bw7vF3GU9LcmvPMfiwdxYlNiGWU.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/4Gz6eB0qODLR0UuizLrd1AcPK4H.jpg",
+    "desc": "Denis et Céline rêvent d'avoir un enfant. Après des années d'inséminations artificielles infructueuses, ils se lancent dans le plan de la dernière chance : demander à Piche, un ancien camarade de classe dont Denis était le souffre douleur, de les aider.",
+    "year": "2026",
+    "note": 0,
+    "trailer": "oGjtFzzrwCA",
+    "actors_pics": [
+      {
+        "name": "Sébastien Chassagne",
+        "img": "https://image.tmdb.org/t/p/w185/2LxQhhs794et6rtQsIZaxgxTbwk.jpg"
+      },
+      {
+        "name": "Louise Massin",
+        "img": "https://image.tmdb.org/t/p/w185/m6Eqx4wEvrZJjX71LxnhnimHRkg.jpg"
+      },
+      {
+        "name": "Oussama Kheddam",
+        "img": "https://image.tmdb.org/t/p/w185/a0mdYea9y28sXhOdmRsdg9GMg8b.jpg"
+      },
+      {
+        "name": "Delphine Baril",
+        "img": "https://image.tmdb.org/t/p/w185/571fTrSLspp8xPGkwwBUpKhl884.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2833",
+    "t": "Comète",
+    "id_tmdb": "1715709",
+    "cat": "DRAME",
+    "url": "https://vidzy.org/d/2h8ohuo2ew60_n",
+    "img": "https://image.tmdb.org/t/p/w500/vIlV0GgQqa39aDG90hfOgdsAdLr.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/b7WI494R7k0ELf6D21HsYyZvmcT.jpg",
+    "desc": "Alors qu’une comète traverse le ciel de Paris, des destins se croisent dans une ronde mystérieuse. Deux amis sillonnent la ville et font le point sur leur vie. Une jeune femme retrouve un père qu’elle n’attendait plus. Une autre vend de la drogue pour le compte de son frère. Ailleurs, deux êtres hantés par la mort se rencontrent. Pendant ce temps, des comédiens répètent une pièce qui fait étrangement écho à ces existences. Une fresque sur les rencontres inattendues et les hasards qui tissent nos vies.",
+    "year": "2026",
+    "note": 3,
+    "trailer": "IhZ7LiBXgZg",
+    "actors_pics": [
+      {
+        "name": "Vincent Macaigne",
+        "img": "https://image.tmdb.org/t/p/w185/6Z4JmAauiallW2lXTOuSAiHdHGf.jpg"
+      },
+      {
+        "name": "Lou Lampros",
+        "img": "https://image.tmdb.org/t/p/w185/934IjhOif2xWeGnyV6KT1Vfj19w.jpg"
+      },
+      {
+        "name": "Sandor Funtek",
+        "img": "https://image.tmdb.org/t/p/w185/b16fZrwuMtz44Mw8e8EPAGMtQgl.jpg"
+      },
+      {
+        "name": "Alexia Chardard",
+        "img": "https://image.tmdb.org/t/p/w185/eNoG98A3T4WtjGg43RxBSGVphVi.jpg"
+      },
+      {
+        "name": "Anne-Lise Heimburger",
+        "img": "https://image.tmdb.org/t/p/w185/tiACLgeJ0omEWIbk6aiR4ScF7la.jpg"
+      },
+      {
+        "name": "Nader Boussandel",
+        "img": "https://image.tmdb.org/t/p/w185/xkyW5AUUhn6g9JzvVUUt0CsO3oC.jpg"
+      },
+      {
+        "name": "Maxime Tshibangu",
+        "img": "https://image.tmdb.org/t/p/w185/5z2KPINRDwlvo6V4nU14jXh4nC5.jpg"
+      },
+      {
+        "name": "Ike Zacsongo-Joseph",
+        "img": "https://image.tmdb.org/t/p/w185/436HoOgbA6ucGgc3MRhzdIio06X.jpg"
+      },
+      {
+        "name": "Éric Denize",
+        "img": "https://image.tmdb.org/t/p/w185/epwFOYPv1eecTadM6vOc5HhBY20.jpg"
+      },
+      {
+        "name": "Laurent Robert",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      }
+    ]
+  },
+  {
+    "num": "2832",
+    "t": "Harceleurs",
+    "id_tmdb": "1642600",
+    "cat": "DRAME, TÉLÉFILM",
+    "url": "https://vidzy.org/d/i3r3ltscbdjw_n",
+    "img": "https://image.tmdb.org/t/p/w500/yHE9nlvMq8f7YzSrYTi1CDAtMrT.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/dOxiqjaYzhnYw06zAQGvTxeqyP3.jpg",
+    "desc": "Camille est professeure dans un collège d'une ville pavillonnaire, son fils Mathias est en 3e dans le même établissement. Des faits de harcèlement lui sont signalés et, avant qu'elle n'ait le temps d'en comprendre l'ampleur et d'agir, l'élève harcelé fait une tentative de suicide et tombe dans le coma. Les parents, les autres élèves, tout le monde est sous le choc. En attendant le verdict autour du sort de la victime, les efforts se concentrent sur la recherche du coupable, et tout tend à croire que c'est le fils de Camille. Qui est vraiment son fils, que cache-t-il ? Comment gérer la situation ? Et surtout pourquoi n'a-t-elle rien vu ? Camille se retrouve prise en étau entre son rôle de professeure et de mère...",
+    "year": "2026",
+    "note": 4,
+    "trailer": "Q6VrGYuxI3Q",
+    "actors_pics": [
+      {
+        "name": "Virginie Ledoyen",
+        "img": "https://image.tmdb.org/t/p/w185/sIx8EAaGqEaveQtUrCzQOqmoY2J.jpg"
+      },
+      {
+        "name": "Honorat Bellet",
+        "img": "https://image.tmdb.org/t/p/w185/tBzyH1dV6A9Bknk9oDrXcjykjcz.jpg"
+      },
+      {
+        "name": "Cyril Descours",
+        "img": "https://image.tmdb.org/t/p/w185/r8VkfR8sey5AEO4i8AvbJEbM8YG.jpg"
+      },
+      {
+        "name": "Ninon Veys",
+        "img": "https://image.tmdb.org/t/p/w185/wmh8fx4UtLoez39dfzGk8gK5Uc8.jpg"
+      },
+      {
+        "name": "Caroline Anglade",
+        "img": "https://image.tmdb.org/t/p/w185/4tyUsgfkUih5CU8uoIeK2wYvEcH.jpg"
+      },
+      {
+        "name": "Constantin Vidal",
+        "img": "https://image.tmdb.org/t/p/w185/mxd1ORj6t3etDAA6NYCeISjRpRu.jpg"
+      },
+      {
+        "name": "Olivia Kuy",
+        "img": "https://image.tmdb.org/t/p/w185/jcM9NcKZJT2gdWUDtJZUQiBXcXP.jpg"
+      },
+      {
+        "name": "Christine Brücher",
+        "img": "https://image.tmdb.org/t/p/w185/f3ztr8ZN5Zdkx1hQXxKpxOnalvQ.jpg"
+      },
+      {
+        "name": "Grégory Lu",
+        "img": "https://image.tmdb.org/t/p/w185/bbAGUnmCUjzoFwV4JVVUrHQmwDe.jpg"
+      },
+      {
+        "name": "Yilin Yang",
+        "img": "https://image.tmdb.org/t/p/w185/s5NPAywEWMxRXbtioC12jJ8C9HV.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2831",
+    "t": "Seriously Single Too",
+    "id_tmdb": "1773759",
+    "cat": "COMÉDIE, ROMANCE",
+    "url": "https://vidzy.org/d/rjafahzllud1_n",
+    "img": "https://image.tmdb.org/t/p/w500/hbApG0WSwgtaK7hXTZpwZDstDaR.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/vVVTDymwLVogjz4JxoNv1BAfYCH.jpg",
+    "desc": "",
+    "year": "2026",
+    "note": 0,
+    "actors_pics": [
+      {
+        "name": "Fulu Modibedi",
+        "img": "https://image.tmdb.org/t/p/w185/dE6rn2IH3xlVXQ8teUiCaFkm5aq.jpg"
+      },
+      {
+        "name": "Tumi Morake",
+        "img": "https://image.tmdb.org/t/p/w185/uERkSz8bhHwKFkOAeUOAnINHeqE.jpg"
+      },
+      {
+        "name": "Buntu Petse",
+        "img": "https://image.tmdb.org/t/p/w185/e45zuTSktIq7PRAoTWXt7NqRGc0.jpg"
+      },
+      {
+        "name": "Keke Mphuthi",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Yonda Thomas",
+        "img": "https://image.tmdb.org/t/p/w185/hndhWzmfaGofk2K4pU3ImYWrf79.jpg"
+      },
+      {
+        "name": "Thabiso Isaac Rammusi",
+        "img": "https://image.tmdb.org/t/p/w185null"
+      },
+      {
+        "name": "Motlatsi Mafatshe",
+        "img": "https://image.tmdb.org/t/p/w185/2s4DXLERWmSHNx6je6Jhfki8Qv6.jpg"
+      },
+      {
+        "name": "Harriet Manamela",
+        "img": "https://image.tmdb.org/t/p/w185/m1Q7ulr5vu3XXqn8mDGPlt6Vrj0.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2830",
+    "t": "Stormen",
+    "id_tmdb": "1623256",
+    "cat": "COMÉDIE, DRAME",
+    "url": "https://vidzy.org/d/3fz589fpexel_n",
+    "img": "https://image.tmdb.org/t/p/w500/kjAsuaDcNsemYTQ8tUorpVE1FJb.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/zN5mRDu6jOYt5EJGYGjhWgOGwor.jpg",
+    "desc": "Pour ses 45 ans, Filip convie ses proches à dîner dans la somptueuse ferme qu'il vient d'acheter avec sa femme dans le nord de la Suède. Ce qu'ils ignorent, c'est qu'une violente tempête approche, et que tous vont se retrouver pris au piège. Peu à peu, les masques tombent et la tension monte. Alors que la panique s'installe et que la gravité de la situation devient évidente, les murs se resserrent, les secrets se dévoilent… et des sentiments inattendus émergent.",
+    "year": "2026",
+    "note": 3,
+    "actors_pics": [
+      {
+        "name": "Gustaf Skarsgård",
+        "img": "https://image.tmdb.org/t/p/w185/bfh0yP6Qr55jg9CGTGScXAw8Ftu.jpg"
+      },
+      {
+        "name": "Aliette Opheim",
+        "img": "https://image.tmdb.org/t/p/w185/waFUEGAL58vlAiQe0q3FjdUwsLX.jpg"
+      },
+      {
+        "name": "Filip Berg",
+        "img": "https://image.tmdb.org/t/p/w185/e3bcKd5ZnTjAVEanGaji5dffu5f.jpg"
+      },
+      {
+        "name": "Josephine Bornebusch",
+        "img": "https://image.tmdb.org/t/p/w185/nba2j9kEqZrFI1VdoYNXxWeK2Mv.jpg"
+      },
+      {
+        "name": "Jonas Karlsson",
+        "img": "https://image.tmdb.org/t/p/w185/1KHhcBGX5v9LsmWiHbtZpbEBrh5.jpg"
+      },
+      {
+        "name": "Johan Rheborg",
+        "img": "https://image.tmdb.org/t/p/w185/yfEAI5fzwC2IUycSdhU1wifMw6E.jpg"
+      },
+      {
+        "name": "Henrik Dorsin",
+        "img": "https://image.tmdb.org/t/p/w185/xCy1BDKAeGNCV6V1ntyYvo3kBB0.jpg"
+      },
+      {
+        "name": "Christopher Wagelin",
+        "img": "https://image.tmdb.org/t/p/w185/pqo0mTnRcRvL0zDKaK2SCIxbdPZ.jpg"
+      },
+      {
+        "name": "Sara Shirpey",
+        "img": "https://image.tmdb.org/t/p/w185/jNk3VZ2TZy9TzeHtz889u0g1eVo.jpg"
+      },
+      {
+        "name": "Gizem Erdogan",
+        "img": "https://image.tmdb.org/t/p/w185/k4K9hKFyCdTUD0Ywhsy8Q5kWbh8.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2829",
+    "t": "L'Être Aimé",
+    "id_tmdb": "1074074",
+    "cat": "DRAME",
+    "url": "https://vidzy.org/d/p35wxm57ouhe_n",
+    "img": "https://image.tmdb.org/t/p/w500/guyRccNh9py85OYQO7Y7pLblxGQ.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/pXtbTukWUFdkQmYydHihDceDFcU.jpg",
+    "desc": "Le célèbre réalisateur Esteban Martínez (Javier Bardem) est une légende, à la fois pour ses films et pour son passé marqué par la violence et les excès. Pour son nouveau projet, il propose à sa fille Emilia un rôle, en prétendant vouloir l’aider avec sa carrière d’actrice qui est au point mort. La vie ensemble sur le plateau de tournage fera naître un lien qu’ils n’ont plus eu depuis des années, mais elle rouvrira aussi des blessures anciennes qui ne se sont jamais refermées.",
+    "year": "2026",
+    "note": 3,
+    "trailer": "1CxRPRAnbOc",
+    "actors_pics": [
+      {
+        "name": "Javier Bardem",
+        "img": "https://image.tmdb.org/t/p/w185/zfRID0jx8DKBluPGU9xtk9sZWUt.jpg"
+      },
+      {
+        "name": "Victoria Luengo",
+        "img": "https://image.tmdb.org/t/p/w185/sITOSQWB4nzQJUfrC5Fpx1jY8E5.jpg"
+      },
+      {
+        "name": "Melina Matthews",
+        "img": "https://image.tmdb.org/t/p/w185/bPwRAyD6DrAEj3DIzTibVDdJ51M.jpg"
+      },
+      {
+        "name": "Malena Villa",
+        "img": "https://image.tmdb.org/t/p/w185/zlMqTD3FAm3bgbXnwsJ9ZcFpwT5.jpg"
+      },
+      {
+        "name": "Mourad Ouani",
+        "img": "https://image.tmdb.org/t/p/w185/s49plaLo3GtiblwzKx8eopMqvH0.jpg"
+      },
+      {
+        "name": "Pepa Gracia",
+        "img": "https://image.tmdb.org/t/p/w185/jsz9NHaXZFNuUxK1gXM4uX9L3SN.jpg"
+      },
+      {
+        "name": "Raúl Prieto",
+        "img": "https://image.tmdb.org/t/p/w185/osXhdIeQ44FTJIOOtJfP2yQ15tA.jpg"
+      },
+      {
+        "name": "Pablo Gómez-Pando",
+        "img": "https://image.tmdb.org/t/p/w185/qRhWnhF4U6as6wtk86YKMrdY8Vx.jpg"
+      },
+      {
+        "name": "Marina Foïs",
+        "img": "https://image.tmdb.org/t/p/w185/dLPo5cyKoH4Y8TNRkl2GIrd4Oae.jpg"
+      },
+      {
+        "name": "Raúl Arévalo",
+        "img": "https://image.tmdb.org/t/p/w185/npWhiRnqlbqku6mNnk5RTgGvnj2.jpg"
+      }
+    ]
+  },
+  {
+    "num": "2828",
+    "t": "Backrooms",
+    "id_tmdb": "1083381",
+    "cat": "HORREUR, MYSTÈRE, SCIENCE-FICTION",
+    "url": "https://vidzy.org/d/h8lbsqc4wo9l_n",
+    "img": "https://image.tmdb.org/t/p/w500/thQQ3BBBhGDtWm3UTtabhyDJd8U.jpg",
+    "bg": "https://image.tmdb.org/t/p/original/dqmMWNWfLnExDRpMtIMqI97GQFR.jpg",
+    "desc": "Une étrange porte apparaît dans le sous-sol d'un magasin de meubles.",
+    "year": "2026",
+    "note": 4,
+    "trailer": "mTPEEk55gZo",
+    "actors_pics": [
+      {
+        "name": "Chiwetel Ejiofor",
+        "img": "https://image.tmdb.org/t/p/w185/kq5DDnqqofoRI0t6ddtRlsJnNPT.jpg"
+      },
+      {
+        "name": "Renate Reinsve",
+        "img": "https://image.tmdb.org/t/p/w185/q0ljTd4fyFSJKxPgmcrKtdg3HKo.jpg"
+      },
+      {
+        "name": "Finn Bennett",
+        "img": "https://image.tmdb.org/t/p/w185/p4ya77nmLlhS2cyPKUZi9zVD4Mu.jpg"
+      },
+      {
+        "name": "Lukita Maxwell",
+        "img": "https://image.tmdb.org/t/p/w185/g5g6XxUAtSdPfsJrSoFkl7vH51d.jpg"
+      },
+      {
+        "name": "Mark Duplass",
+        "img": "https://image.tmdb.org/t/p/w185/lRDf99rAfcdqt8Cqk4LsIT7XSD2.jpg"
+      },
+      {
+        "name": "Avan Jogia",
+        "img": "https://image.tmdb.org/t/p/w185/7BX0Lg39bHlgtvWZpszTr1YjTAW.jpg"
+      },
+      {
+        "name": "Robert Bobroczkyi",
+        "img": "https://image.tmdb.org/t/p/w185/3SK7NuuBKR5PSJwsQ7HO4qHIM9C.jpg"
+      },
+      {
+        "name": "Ember Ambrose",
+        "img": "https://image.tmdb.org/t/p/w185/w7h6l4ltuWaMYanGgzwyhAHGL2y.jpg"
+      },
+      {
+        "name": "Krista Kosonen",
+        "img": "https://image.tmdb.org/t/p/w185/7iW2mxbxBgV5sX2y0fSY78lewW4.jpg"
+      },
+      {
+        "name": "Philip Granger",
+        "img": "https://image.tmdb.org/t/p/w185/bkrnrtSiUnumWVpAOy5QDcOePiA.jpg"
+      }
+    ]
+  },
+  {
     "num": "2827",
     "t": "Deviens génial",
     "id_tmdb": "1443774",
